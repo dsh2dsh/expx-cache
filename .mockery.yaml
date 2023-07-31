@@ -1,0 +1,10 @@
+dir: "{{.InterfaceDirRelative}}"
+disable-version-string: True
+filename: "mock_{{.InterfaceName}}_test.go"
+inpackage: True
+with-expecter: True
+packages:
+  github.com/dsh2dsh/expx-cache:
+    interfaces:
+      LocalCache:
+      RedisClient:

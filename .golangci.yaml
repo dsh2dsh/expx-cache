@@ -1,0 +1,30 @@
+run:
+  timeout: 5m
+
+linters:
+  enable:
+    - asciicheck
+    - bidichk
+    - errorlint
+    - exportloopref
+    - goconst
+    - gocritic
+    # - gofmt # we are using gofumpt instead
+    - gofumpt
+    - goimports
+    - gosec
+    - makezero
+    - misspell
+    - nolintlint
+    - prealloc
+    - unconvert
+    - usestdlibvars
+    - wastedassign
+    - wrapcheck
+
+linters-settings:
+  revive:
+    rules:
+      # https://github.com/mgechev/revive/blob/master/RULES_DESCRIPTIONS.md#receiver-naming
+      - name: receiver-naming
+        disabled: true
