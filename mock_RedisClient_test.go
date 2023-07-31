@@ -269,13 +269,12 @@ func (_c *MockRedisClient_SetXX_Call) RunAndReturn(run func(context.Context, str
 	return _c
 }
 
-type mockConstructorTestingTNewMockRedisClient interface {
+// NewMockRedisClient creates a new instance of MockRedisClient. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
+// The first argument is typically a *testing.T value.
+func NewMockRedisClient(t interface {
 	mock.TestingT
 	Cleanup(func())
-}
-
-// NewMockRedisClient creates a new instance of MockRedisClient. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewMockRedisClient(t mockConstructorTestingTNewMockRedisClient) *MockRedisClient {
+}) *MockRedisClient {
 	mock := &MockRedisClient{}
 	mock.Mock.Test(t)
 

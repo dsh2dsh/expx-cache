@@ -128,13 +128,12 @@ func (_c *MockLocalCache_Set_Call) RunAndReturn(run func(string, []byte)) *MockL
 	return _c
 }
 
-type mockConstructorTestingTNewMockLocalCache interface {
+// NewMockLocalCache creates a new instance of MockLocalCache. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
+// The first argument is typically a *testing.T value.
+func NewMockLocalCache(t interface {
 	mock.TestingT
 	Cleanup(func())
-}
-
-// NewMockLocalCache creates a new instance of MockLocalCache. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewMockLocalCache(t mockConstructorTestingTNewMockLocalCache) *MockLocalCache {
+}) *MockLocalCache {
 	mock := &MockLocalCache{}
 	mock.Mock.Test(t)
 
