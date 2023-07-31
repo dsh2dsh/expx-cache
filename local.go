@@ -8,12 +8,10 @@ import (
 	"github.com/vmihailenco/go-tinylfu"
 )
 
-type TinyLFU struct {
-	mu     sync.Mutex
-	rand   *rand.Rand
-	lfu    *tinylfu.T
-	ttl    time.Duration
-	offset time.Duration
+type LFU interface {
+	Get(key string) (any, bool)
+	Set(*tinylfu.Item)
+	Del(key string)
 }
 
 func NewTinyLFU(size int, ttl time.Duration) *TinyLFU {
@@ -30,6 +28,14 @@ func NewTinyLFU(size int, ttl time.Duration) *TinyLFU {
 		ttl:    ttl,
 		offset: offset,
 	}
+}
+
+type TinyLFU struct {
+	mu     sync.Mutex
+	rand   *rand.Rand
+	lfu    LFU
+	ttl    time.Duration
+	offset time.Duration
 }
 
 func (self *TinyLFU) UseRandomizedTTL(offset time.Duration) {

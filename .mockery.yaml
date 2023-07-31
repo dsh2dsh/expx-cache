@@ -6,5 +6,6 @@ with-expecter: True
 packages:
   github.com/dsh2dsh/expx-cache:
     interfaces:
+      LFU:
       LocalCache:
       RedisClient:

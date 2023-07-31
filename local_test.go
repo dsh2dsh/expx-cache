@@ -8,7 +8,9 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
+	"github.com/vmihailenco/go-tinylfu"
 )
 
 func TestTinyLFU_Get_CorruptionOnExpiry(t *testing.T) {
@@ -96,8 +98,27 @@ func TestTinyLFU_UseRandomizedTTL(t *testing.T) {
 	assert.Equal(t, 10*time.Hour, tlfu.offset)
 }
 
-func TestTinyLFU_setNil(t *testing.T) {
+func TestTinyLFU_Set(t *testing.T) {
+	ttl := 10 * time.Second
+	tlfu := NewTinyLFU(1000, ttl)
+	require.NotNil(t, tlfu)
+
+	lfu := NewMockLFU(t)
+	tlfu.lfu = lfu
+
+	start := time.Now().Add(ttl)
+	var expireAt time.Time
+	lfu.EXPECT().Set(mock.Anything).Run(func(item *tinylfu.Item) {
+		expireAt = item.ExpireAt
+	})
+
+	tlfu.Set(testKey, []byte("a string"))
+	assert.WithinRange(t, expireAt, start, time.Now().Add(ttl+tlfu.offset))
+}
+
+func TestTinyLFU_Set_nil(t *testing.T) {
 	tlfu := NewTinyLFU(1000, 10*time.Second)
 	require.NotNil(t, tlfu)
+	tlfu.lfu = NewMockLFU(t)
 	tlfu.Set(testKey, nil)
 }
