@@ -2,10 +2,12 @@ package cache
 
 import (
 	"context"
+	"io"
 	"testing"
 	"time"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/mock"
 )
 
 func (self *CacheTestSuite) TestDelete() {
@@ -50,4 +52,11 @@ func TestDelete_errRedisLocalCacheNil(t *testing.T) {
 
 func TestDeleteFromLocalCache_noCache(t *testing.T) {
 	New().DeleteFromLocalCache(testKey)
+}
+
+func TestDelete_errFromRedis(t *testing.T) {
+	redisClient := NewMockRedisClient(t)
+	redisClient.EXPECT().Del(mock.Anything, mock.Anything).Return(io.EOF)
+	cache := New().WithRedisCache(redisClient)
+	assert.Error(t, cache.Delete(context.Background(), testKey))
 }

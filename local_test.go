@@ -7,12 +7,13 @@ import (
 	"testing"
 	"time"
 
+	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
 func TestTinyLFU_Get_CorruptionOnExpiry(t *testing.T) {
 	if testing.Short() {
-		t.Skip("skipping in short mode.")
+		t.Skip("skipping in short mode")
 	}
 
 	strFor := func(i int) string {
@@ -56,4 +57,47 @@ loop:
 				got, key)
 		}
 	}
+}
+
+func TestNewTinyLFU_offset(t *testing.T) {
+	tests := []struct {
+		ttl      time.Duration
+		expected time.Duration
+	}{
+		{
+			ttl:      10 * time.Second,
+			expected: time.Second,
+		},
+		{
+			ttl:      100 * time.Second,
+			expected: 10 * time.Second,
+		},
+		{
+			ttl:      1000 * time.Second,
+			expected: 10 * time.Second,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.ttl.String(), func(t *testing.T) {
+			tlfu := NewTinyLFU(1000, tt.ttl)
+			require.NotNil(t, tlfu)
+			assert.Equal(t, tt.expected, tlfu.offset)
+		})
+	}
+}
+
+func TestTinyLFU_UseRandomizedTTL(t *testing.T) {
+	tlfu := NewTinyLFU(1000, 1000*time.Second)
+	require.NotNil(t, tlfu)
+	assert.Equal(t, 10*time.Second, tlfu.offset)
+
+	tlfu.UseRandomizedTTL(10 * time.Hour)
+	assert.Equal(t, 10*time.Hour, tlfu.offset)
+}
+
+func TestTinyLFU_setNil(t *testing.T) {
+	tlfu := NewTinyLFU(1000, 10*time.Second)
+	require.NotNil(t, tlfu)
+	tlfu.Set(testKey, nil)
 }
