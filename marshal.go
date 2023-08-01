@@ -39,7 +39,7 @@ func marshal(value any) ([]byte, error) {
 
 	b, err := msgpack.Marshal(value)
 	if err != nil {
-		return nil, fmt.Errorf("marshal value: %w", err)
+		return nil, fmt.Errorf("marshal: msgpack error: %w", err)
 	}
 
 	return compress(b), nil
@@ -74,16 +74,16 @@ func unmarshal(b []byte, value any) error {
 	case s2Compression:
 		b = b[:len(b)-1]
 		if decoded, err := s2.Decode(nil, b); err != nil {
-			return fmt.Errorf("decompress value: %w", err)
+			return fmt.Errorf("unmarshal: decompress error: %w", err)
 		} else {
 			b = decoded
 		}
 	default:
-		return fmt.Errorf("unknown compression method: %x", c)
+		return fmt.Errorf("unmarshal: unknown compression method: %x", c)
 	}
 
 	if err := msgpack.Unmarshal(b, value); err != nil {
-		return fmt.Errorf("unmarshal: %w", err)
+		return fmt.Errorf("unmarshal msgpack error: %w", err)
 	}
 
 	return nil
