@@ -15,7 +15,7 @@ func (self *Cache) Unmarshal(b []byte, value any) error {
 	return self.unmarshal(b, value)
 }
 
-func (self *Cache) WirhMarshal(fn MarshalFunc) *Cache {
+func (self *Cache) WithMarshal(fn MarshalFunc) *Cache {
 	self.marshal = fn
 	return self
 }
