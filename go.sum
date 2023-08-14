@@ -12,6 +12,8 @@ github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f h1:lO4WD4F/r
 github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f/go.mod h1:cuUVRXasLTGF7a8hSLbxyZXjz+1KgoB3wDUb6vlszIc=
 github.com/dsh2dsh/expx-dotenv v1.1.0 h1:T7aLcXkIM8IO/XFfSTqSx8ieCbSkPuUS+gpbANZS7Po=
 github.com/dsh2dsh/expx-dotenv v1.1.0/go.mod h1:Xl0nd+AK4Scu06CPMYcxMEdwaKT5umhgMHSm2AODfZo=
+github.com/dsh2dsh/expx-dotenv v1.2.0 h1:Yr8+A1JTuRcg8uB9MtdNXpQLK/mukCSqh9Bt55KEt9k=
+github.com/dsh2dsh/expx-dotenv v1.2.0/go.mod h1:TufV3Mr74YYmAY4VggH6ur4bSYGI4YAtT4rYb8jH3XI=
 github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
 github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
 github.com/klauspost/compress v1.16.7 h1:2mk3MPGNzKyxErAw8YaohYh69+pa4sIQSC0fPGCFR9I=

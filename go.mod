@@ -1,9 +1,11 @@
 module github.com/dsh2dsh/expx-cache
 
-go 1.20
+go 1.21
+
+toolchain go1.21.0
 
 require (
-	github.com/dsh2dsh/expx-dotenv v1.1.0
+	github.com/dsh2dsh/expx-dotenv v1.2.0
 	github.com/klauspost/compress v1.16.7
 	github.com/redis/go-redis/v9 v9.0.5
 	github.com/stretchr/testify v1.8.4
