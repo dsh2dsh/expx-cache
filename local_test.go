@@ -7,10 +7,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/dsh2dsh/go-tinylfu"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
-	"github.com/vmihailenco/go-tinylfu"
 )
 
 func TestTinyLFU_Get_CorruptionOnExpiry(t *testing.T) {

@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vmihailenco/go-tinylfu"
+	"github.com/dsh2dsh/go-tinylfu"
 )
 
 type LFU interface {
