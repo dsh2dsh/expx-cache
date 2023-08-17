@@ -6,7 +6,12 @@ import (
 	"io"
 	"sync"
 	"sync/atomic"
+	"testing"
 	"time"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/mock"
+	"github.com/stretchr/testify/require"
 )
 
 func (self *CacheTestSuite) TestOnce_cacheFails() {
@@ -241,4 +246,42 @@ func (self *CacheTestSuite) TestOnce_skipSetTTLNeg() {
 		exists := valueNoError[int64](self.T())(self.rdb.Exists(ctx, key).Result())
 		self.Equal(int64(0), exists)
 	}
+}
+
+func TestOnce_errUnmarshal(t *testing.T) {
+	localCache := NewMockLocalCache(t)
+	localCache.EXPECT().Get(mock.Anything).Return(nil)
+	localCache.EXPECT().Set(mock.Anything, mock.Anything).Once()
+
+	cache := New().WithLocalCache(localCache)
+	var got bool
+	err := cache.Once(&Item{
+		Ctx:   context.Background(),
+		Key:   testKey,
+		Value: &got,
+		Do: func(*Item) (any, error) {
+			return int64(0), nil
+		},
+	})
+	require.Error(t, err)
+	assert.False(t, got)
+}
+
+func TestOnce_errDelete(t *testing.T) {
+	redisClient := NewMockRedisClient(t)
+	redisClient.EXPECT().Get(mock.Anything, mock.Anything).Return([]byte{0x1}, nil)
+	redisClient.EXPECT().Del(mock.Anything, mock.Anything).Return(io.EOF)
+
+	cache := New().WithRedisCache(redisClient)
+	var got bool
+	err := cache.Once(&Item{
+		Ctx:   context.Background(),
+		Key:   testKey,
+		Value: &got,
+		Do: func(*Item) (any, error) {
+			return int64(0), nil
+		},
+	})
+	require.ErrorIs(t, err, io.EOF)
+	assert.False(t, got)
 }
