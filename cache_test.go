@@ -181,18 +181,18 @@ func TestCacheSuite(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			skipRedisTests(t, tt.name, true, rdb != nil)
 			runCacheTestSuite(t, rdb, tt.withStats, tt.withRedis)
 		})
 	}
 }
 
 func skipRedisTests(t *testing.T, name string, needsRedis, hasRedis bool) {
-	if testing.Short() && needsRedis {
-		t.Skipf("skip %q in short mode, because it uses Redis", name)
-	}
-	if needsRedis && !hasRedis {
-		t.Skipf("skip %q, because no Redis connection", name)
+	if needsRedis {
+		if testing.Short() {
+			t.Skipf("skip %q in short mode, because it uses Redis", name)
+		} else if !hasRedis {
+			t.Skipf("skip %q, because no Redis connection", name)
+		}
 	}
 }
 
@@ -203,15 +203,18 @@ func runCacheTestSuite(t *testing.T, rdb redis.Cmdable, withStats bool,
 		name       string
 		rdb        redis.Cmdable
 		needsLocal bool
+		needsRedis bool
 	}{
 		{
-			name: "without LocalCache",
-			rdb:  rdb,
+			name:       "without LocalCache",
+			rdb:        rdb,
+			needsRedis: true,
 		},
 		{
 			name:       "with LocalCache",
 			rdb:        rdb,
 			needsLocal: true,
+			needsRedis: true,
 		},
 		{
 			name:       "with LocalCache and without Redis",
@@ -221,7 +224,7 @@ func runCacheTestSuite(t *testing.T, rdb redis.Cmdable, withStats bool,
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			skipRedisTests(t, tt.name, tt.rdb != nil, rdb != nil)
+			skipRedisTests(t, tt.name, tt.needsRedis, rdb != nil)
 			suite.Run(t, &CacheTestSuite{
 				rdb: tt.rdb,
 				newCache: func() *Cache {
@@ -229,9 +232,9 @@ func runCacheTestSuite(t *testing.T, rdb redis.Cmdable, withStats bool,
 					if tt.needsLocal {
 						cache = cache.WithTinyLFU(1000, time.Minute)
 					}
-					if tt.rdb != nil && withRedis != nil {
+					if tt.needsRedis && withRedis != nil {
 						cache = withRedis(cache)
-					} else if tt.rdb != nil {
+					} else if tt.needsRedis {
 						cache = cache.WithRedis(rdb)
 					}
 					return cache
