@@ -8,6 +8,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
+
+	mocks "github.com/dsh2dsh/expx-cache/mocks/cache"
 )
 
 func (self *CacheTestSuite) TestDelete() {
@@ -55,7 +57,7 @@ func TestDeleteFromLocalCache_noCache(t *testing.T) {
 }
 
 func TestDelete_errFromRedis(t *testing.T) {
-	redisClient := NewMockRedisClient(t)
+	redisClient := mocks.NewMockRedisClient(t)
 	redisClient.EXPECT().Del(mock.Anything, mock.Anything).Return(io.EOF)
 	cache := New().WithRedisCache(redisClient)
 	assert.Error(t, cache.Delete(context.Background(), testKey))

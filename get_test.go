@@ -7,6 +7,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
+
+	mocks "github.com/dsh2dsh/expx-cache/mocks/cache"
 )
 
 func TestGet_errRedisLocalCacheNil(t *testing.T) {
@@ -16,7 +18,7 @@ func TestGet_errRedisLocalCacheNil(t *testing.T) {
 }
 
 func TestGet_redisErrAddsMiss(t *testing.T) {
-	redisClient := NewMockRedisClient(t)
+	redisClient := mocks.NewMockRedisClient(t)
 	redisClient.EXPECT().Get(mock.Anything, mock.Anything).Return(nil, io.EOF)
 
 	cache := New().WithStats(true).WithRedisCache(redisClient)
@@ -26,9 +28,9 @@ func TestGet_redisErrAddsMiss(t *testing.T) {
 }
 
 func TestGetSkippingLocalCache(t *testing.T) {
-	localCache := NewMockLocalCache(t)
+	localCache := mocks.NewMockLocalCache(t)
 
-	redisClient := NewMockRedisClient(t)
+	redisClient := mocks.NewMockRedisClient(t)
 	redisClient.EXPECT().Get(mock.Anything, mock.Anything).Return(nil, nil)
 
 	cache := New().WithLocalCache(localCache).WithRedisCache(redisClient)

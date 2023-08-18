@@ -11,6 +11,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
+
+	mocks "github.com/dsh2dsh/expx-cache/mocks/cache"
 )
 
 func TestTinyLFU_Get_CorruptionOnExpiry(t *testing.T) {
@@ -103,7 +105,7 @@ func TestTinyLFU_Set(t *testing.T) {
 	tlfu := NewTinyLFU(1000, ttl)
 	require.NotNil(t, tlfu)
 
-	lfu := NewMockLFU(t)
+	lfu := mocks.NewMockLFU(t)
 	tlfu.lfu = lfu
 
 	start := time.Now().Add(ttl)
@@ -119,6 +121,6 @@ func TestTinyLFU_Set(t *testing.T) {
 func TestTinyLFU_Set_nil(t *testing.T) {
 	tlfu := NewTinyLFU(1000, 10*time.Second)
 	require.NotNil(t, tlfu)
-	tlfu.lfu = NewMockLFU(t)
+	tlfu.lfu = mocks.NewMockLFU(t)
 	tlfu.Set(testKey, nil)
 }

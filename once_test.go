@@ -12,6 +12,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
+
+	mocks "github.com/dsh2dsh/expx-cache/mocks/cache"
 )
 
 func (self *CacheTestSuite) TestOnce_cacheFails() {
@@ -249,7 +251,7 @@ func (self *CacheTestSuite) TestOnce_skipSetTTLNeg() {
 }
 
 func TestOnce_errUnmarshal(t *testing.T) {
-	localCache := NewMockLocalCache(t)
+	localCache := mocks.NewMockLocalCache(t)
 	localCache.EXPECT().Get(mock.Anything).Return(nil)
 	localCache.EXPECT().Set(mock.Anything, mock.Anything).Once()
 
@@ -268,7 +270,7 @@ func TestOnce_errUnmarshal(t *testing.T) {
 }
 
 func TestOnce_errDelete(t *testing.T) {
-	redisClient := NewMockRedisClient(t)
+	redisClient := mocks.NewMockRedisClient(t)
 	redisClient.EXPECT().Get(mock.Anything, mock.Anything).Return([]byte{0x1}, nil)
 	redisClient.EXPECT().Del(mock.Anything, mock.Anything).Return(io.EOF)
 
