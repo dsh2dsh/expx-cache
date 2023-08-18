@@ -7,25 +7,11 @@ import (
 	"github.com/vmihailenco/msgpack/v5"
 )
 
-func (self *Cache) Marshal(value any) ([]byte, error) {
-	return self.marshal(value)
-}
-
-func (self *Cache) Unmarshal(b []byte, value any) error {
-	return self.unmarshal(b, value)
-}
-
-func (self *Cache) WithMarshal(fn MarshalFunc) *Cache {
-	self.marshal = fn
-	return self
-}
-
-func (self *Cache) WithUnmarshal(fn UnmarshalFunc) *Cache {
-	self.unmarshal = fn
-	return self
-}
-
-// --------------------------------------------------
+const (
+	compressionThreshold = 64
+	noCompression        = 0x0
+	s2Compression        = 0x1
+)
 
 func marshal(value any) ([]byte, error) {
 	switch value := value.(type) {
@@ -44,11 +30,6 @@ func marshal(value any) ([]byte, error) {
 
 	return compress(b), nil
 }
-
-const (
-	noCompression = 0x0
-	s2Compression = 0x1
-)
 
 func unmarshal(b []byte, value any) error {
 	if len(b) == 0 {
@@ -90,7 +71,6 @@ func unmarshal(b []byte, value any) error {
 }
 
 func compress(data []byte) []byte {
-	const compressionThreshold = 64
 	if len(data) < compressionThreshold {
 		b := make([]byte, len(data)+1)
 		copy(b, data)

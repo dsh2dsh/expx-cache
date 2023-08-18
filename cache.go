@@ -65,6 +65,11 @@ func (self *Cache) WithLocalCache(client LocalCache) *Cache {
 	return self
 }
 
+func (self *Cache) WithMarshal(fn MarshalFunc) *Cache {
+	self.marshal = fn
+	return self
+}
+
 func (self *Cache) WithRedis(rdb redis.Cmdable) *Cache {
 	if rdb != nil {
 		self.redis = NewStdRedis(rdb)
@@ -87,4 +92,19 @@ func (self *Cache) WithStats(val bool) *Cache {
 func (self *Cache) WithTinyLFU(size int, ttl time.Duration) *Cache {
 	self.localCache = NewTinyLFU(size, ttl)
 	return self
+}
+
+func (self *Cache) WithUnmarshal(fn UnmarshalFunc) *Cache {
+	self.unmarshal = fn
+	return self
+}
+
+// --------------------------------------------------
+
+func (self *Cache) Marshal(value any) ([]byte, error) {
+	return self.marshal(value)
+}
+
+func (self *Cache) Unmarshal(b []byte, value any) error {
+	return self.unmarshal(b, value)
 }
