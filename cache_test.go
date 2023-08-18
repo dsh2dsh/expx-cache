@@ -145,6 +145,8 @@ func NewRedisClient() (redis.Cmdable, error) {
 }
 
 func TestCacheSuite(t *testing.T) {
+	t.Parallel()
+
 	var rdb redis.Cmdable
 	if !testing.Short() {
 		rdb = valueNoError[redis.Cmdable](t)(NewRedisClient())

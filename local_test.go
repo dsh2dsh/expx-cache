@@ -19,6 +19,7 @@ func TestTinyLFU_Get_CorruptionOnExpiry(t *testing.T) {
 	if testing.Short() {
 		t.Skip("skipping in short mode")
 	}
+	t.Parallel()
 
 	strFor := func(i int) string {
 		return fmt.Sprintf("a string %d", i)
