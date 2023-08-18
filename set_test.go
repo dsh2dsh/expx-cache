@@ -1,6 +1,16 @@
 package cache
 
-import "context"
+import (
+	"context"
+	"io"
+	"testing"
+
+	"github.com/redis/go-redis/v9"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/mock"
+
+	redisMocks "github.com/dsh2dsh/expx-cache/mocks/redis"
+)
 
 func (self *CacheTestSuite) TestSet_canBeUsedWithIncr() {
 	if self.rdb == nil {
@@ -90,4 +100,43 @@ func (self *CacheTestSuite) TestSetXX() {
 
 	self.Require().NoError(self.cache.GetSkippingLocalCache(ctx, testKey, &got))
 	self.Equal(value, got)
+}
+
+func TestCache_Set_Marshall_error(t *testing.T) {
+	cache := New().WithMarshal(func(value any) ([]byte, error) {
+		return nil, io.EOF
+	})
+
+	err := cache.Set(&Item{
+		Ctx:   context.Background(),
+		Key:   testKey,
+		Value: "foobar",
+	})
+	assert.ErrorIs(t, err, io.EOF)
+}
+
+func TestCache_Set_errRedisLocalCacheNil(t *testing.T) {
+	cache := New()
+
+	err := cache.Set(&Item{
+		Ctx:   context.Background(),
+		Key:   testKey,
+		Value: "foobar",
+	})
+	assert.ErrorIs(t, err, errRedisLocalCacheNil)
+}
+
+func TestCache_Set_redisErr(t *testing.T) {
+	rdb := redisMocks.NewMockCmdable(t)
+	rdb.EXPECT().Set(mock.Anything, mock.Anything, mock.Anything, mock.Anything).
+		Return(redis.NewStatusResult("", io.EOF))
+
+	cache := New().WithRedis(rdb)
+
+	err := cache.Set(&Item{
+		Ctx:   context.Background(),
+		Key:   testKey,
+		Value: "foobar",
+	})
+	assert.ErrorIs(t, err, io.EOF)
 }
