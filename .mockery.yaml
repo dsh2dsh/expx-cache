@@ -1,11 +1,16 @@
-dir: "{{.InterfaceDirRelative}}"
+dir: "mocks/{{.PackageName}}"
 disable-version-string: True
-filename: "mock_{{.InterfaceName}}_test.go"
-inpackage: True
 with-expecter: True
 packages:
   github.com/dsh2dsh/expx-cache:
+    config:
+      dir: "{{.InterfaceDirRelative}}"
+      filename: "mock_{{.InterfaceName}}_test.go"
+      inpackage: True
     interfaces:
       LFU:
       LocalCache:
       RedisClient:
+  github.com/redis/go-redis/v9:
+    interfaces:
+      Cmdable:
