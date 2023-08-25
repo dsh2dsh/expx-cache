@@ -197,7 +197,7 @@ func TestCacheSuite(t *testing.T) {
 				}
 				return c
 			}
-			suiteRunSubTests(t, rdb, cfg, tt.subTests())
+			suiteRunSubTests(t, tt.rdb, cfg, tt.subTests())
 		})
 	}
 }
