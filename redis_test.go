@@ -18,16 +18,18 @@ func TestNewRefreshRedis(t *testing.T) {
 	const ttl = time.Minute
 
 	rr := NewRefreshRedis(nil, ttl)
-	require.IsType(t, new(RefreshRedis), rr)
+	require.IsType(t, new(StdRedis), rr)
 	assert.Nil(t, rr.rdb)
-	assert.Equal(t, rr.refreshTTL, ttl)
-	assert.Implements(t, (*RedisClient)(nil), new(RefreshRedis))
+	require.IsType(t, refreshRedisGet(ttl), rr.getter)
+	assert.Implements(t, (*RedisGetter)(nil), new(refreshRedisGet))
 }
 
 func TestNewStdRedis(t *testing.T) {
 	sr := NewStdRedis(nil)
 	require.IsType(t, new(StdRedis), sr)
 	assert.Nil(t, sr.rdb)
+	require.IsType(t, defaultRedisGet{}, sr.getter)
+	assert.Implements(t, (*RedisGetter)(nil), new(defaultRedisGet))
 	assert.Implements(t, (*RedisClient)(nil), new(StdRedis))
 }
 
@@ -52,7 +54,7 @@ func TestRedisClient_errors(t *testing.T) {
 			},
 			overrideConfigure: func(testName string, rdb *redisMocks.MockCmdable) bool {
 				if testName == "Get" {
-					rdb.EXPECT().GetEx(mock.Anything, mock.Anything, mock.Anything).
+					rdb.EXPECT().GetEx(mock.Anything, mock.Anything, time.Minute).
 						Return(redis.NewStringResult("", expectErr))
 					return true
 				}
