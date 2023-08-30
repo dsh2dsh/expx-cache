@@ -1,7 +1,6 @@
 package cache
 
 import (
-	"errors"
 	"fmt"
 )
 
@@ -47,11 +46,11 @@ func (self *Cache) getSetItemBytesOnce(item *Item) ([]byte, bool, error) {
 			return b, nil
 		}
 
-		b, err = self.set(item)
-		if err == nil || errors.Is(err, errRedisLocalCacheNil) {
-			return b, nil
+		b, err = self.set(item, false)
+		if err != nil {
+			return nil, err
 		}
-		return nil, err
+		return b, nil
 	})
 	if err != nil {
 		return nil, false, fmt.Errorf("cache: do: %w", err)

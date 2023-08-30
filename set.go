@@ -6,11 +6,11 @@ import (
 
 // Set caches the item.
 func (self *Cache) Set(item *Item) error {
-	_, err := self.set(item)
+	_, err := self.set(item, true)
 	return err
 }
 
-func (self *Cache) set(item *Item) ([]byte, error) {
+func (self *Cache) set(item *Item, needCache bool) ([]byte, error) {
 	value, err := item.value()
 	if err != nil {
 		return nil, err
@@ -23,14 +23,18 @@ func (self *Cache) set(item *Item) ([]byte, error) {
 		return nil, err
 	}
 
+	if self.localCache == nil && self.redis == nil {
+		if needCache {
+			return nil, errRedisLocalCacheNil
+		}
+		return b, nil
+	}
+
 	if self.localCache != nil && !item.SkipLocalCache {
 		self.localCache.Set(item.Key, b)
 	}
 
 	if self.redis == nil {
-		if self.localCache == nil {
-			return b, errRedisLocalCacheNil
-		}
 		return b, nil
 	}
 
