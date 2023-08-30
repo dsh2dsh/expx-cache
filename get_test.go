@@ -40,3 +40,10 @@ func TestGetSkippingLocalCache(t *testing.T) {
 		cache.GetSkippingLocalCache(context.Background(), testKey, nil))
 	assert.False(t, hit)
 }
+
+func TestExists_errRedisLocalCacheNil(t *testing.T) {
+	cache := New()
+	hit, err := cache.Exists(context.Background(), testKey)
+	assert.ErrorIs(t, err, errRedisLocalCacheNil)
+	assert.False(t, hit)
+}
