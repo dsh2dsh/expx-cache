@@ -38,11 +38,13 @@ func Example_basicUsage() {
 	}
 
 	var wanted Object
-	if err := mycache.Get(ctx, key, &wanted); err != nil {
+	if hit, err := mycache.Get(ctx, key, &wanted); err != nil {
 		log.Fatal(err)
+	} else if hit {
+		fmt.Println(wanted)
+	} else {
+		fmt.Println("not found")
 	}
-
-	fmt.Println(wanted)
 	// Output: {mystring 42}
 }
 

@@ -50,7 +50,7 @@ func TestCache_WithUnmarshal(t *testing.T) {
 		called = true
 		return unmarshal(b, v)
 	})
-	require.NoError(t, cache.Get(ctx, testKey, &value))
+	assert.True(t, valueNoError[bool](t)(cache.Get(ctx, testKey, &value)))
 	assert.True(t, called, "custom unmarshall func wasn't called")
 }
 

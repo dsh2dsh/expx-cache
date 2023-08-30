@@ -24,7 +24,7 @@ func (self *CacheTestSuite) TestDelete() {
 	self.True(self.cache.Exists(ctx, testKey))
 
 	self.Require().NoError(self.cache.Delete(ctx, testKey))
-	self.ErrorIs(self.cache.Get(ctx, testKey, nil), ErrCacheMiss)
+	self.False(valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, nil)))
 	self.False(self.cache.Exists(ctx, testKey))
 }
 

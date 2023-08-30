@@ -26,7 +26,7 @@ func (self *CacheTestSuite) TestOnce_cacheFails() {
 	self.Require().NoError(err)
 
 	var got bool
-	err = self.cache.Get(ctx, testKey, &got)
+	_, err = self.cache.Get(ctx, testKey, &got)
 	self.Require().ErrorContains(err, "msgpack: invalid code=d3 decoding bool")
 
 	err = self.cache.Once(&Item{
@@ -41,7 +41,7 @@ func (self *CacheTestSuite) TestOnce_cacheFails() {
 	self.True(got)
 
 	got = false
-	self.Require().NoError(self.cache.Get(ctx, testKey, &got))
+	self.True(valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, &got)))
 	self.True(got)
 }
 
@@ -62,10 +62,9 @@ func (self *CacheTestSuite) TestOnce_funcFails() {
 	})
 
 	var got bool
-	err := self.cache.Get(ctx, testKey, &got)
-	self.Require().ErrorIs(err, ErrCacheMiss)
+	self.False(valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, &got)))
 
-	err = self.cache.Once(&Item{
+	err := self.cache.Once(&Item{
 		Ctx:   ctx,
 		Key:   testKey,
 		Value: &got,
@@ -184,7 +183,7 @@ func (self *CacheTestSuite) TestOnce_withoutValueAndErr() {
 				return nil, errors.New("error stub")
 			},
 		})
-		self.EqualError(err, "error stub")
+		self.ErrorContains(err, "error stub")
 	})
 	self.Equal(int64(1), callCount)
 }
@@ -215,7 +214,7 @@ func (self *CacheTestSuite) TestOnce_doesntCacheErr() {
 
 	perform(100, func(int) {
 		n, err := do(100 * time.Millisecond)
-		self.EqualError(err, "error stub")
+		self.ErrorContains(err, "error stub")
 		self.Equal(0, n)
 	})
 

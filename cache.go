@@ -10,10 +10,8 @@ import (
 	"golang.org/x/sync/singleflight"
 )
 
-var (
-	ErrCacheMiss          = errors.New("cache: key is missing")
-	errRedisLocalCacheNil = errors.New("cache: both Redis and LocalCache are nil")
-)
+var errRedisLocalCacheNil = errors.New(
+	"cache: both Redis and LocalCache are nil")
 
 type LocalCache interface {
 	Set(key string, data []byte)

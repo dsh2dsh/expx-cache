@@ -6,20 +6,23 @@ import (
 )
 
 // Exists reports whether value for the given key exists.
-func (self *Cache) Exists(ctx context.Context, key string) bool {
-	_, err := self.getBytes(ctx, key, false)
-	return err == nil
+func (self *Cache) Exists(ctx context.Context, key string) (bool, error) {
+	b, err := self.getBytes(ctx, key, false)
+	if err != nil {
+		return false, err
+	}
+	return b != nil, nil
 }
 
 // Get gets the value for the given key.
-func (self *Cache) Get(ctx context.Context, key string, value any) error {
+func (self *Cache) Get(ctx context.Context, key string, value any) (bool, error) {
 	return self.get(ctx, key, value, false)
 }
 
 // Get gets the value for the given key skipping local cache.
 func (self *Cache) GetSkippingLocalCache(
 	ctx context.Context, key string, value any,
-) error {
+) (bool, error) {
 	return self.get(ctx, key, value, true)
 }
 
@@ -28,12 +31,12 @@ func (self *Cache) get(
 	key string,
 	value any,
 	skipLocalCache bool,
-) error {
+) (bool, error) {
 	b, err := self.getBytes(ctx, key, skipLocalCache)
 	if err != nil {
-		return err
+		return false, err
 	}
-	return self.unmarshal(b, value)
+	return b != nil, self.unmarshal(b, value)
 }
 
 func (self *Cache) getBytes(
@@ -52,7 +55,7 @@ func (self *Cache) getBytes(
 		if self.localCache == nil {
 			return nil, errRedisLocalCacheNil
 		}
-		return nil, ErrCacheMiss
+		return nil, nil
 	}
 
 	b, err := self.redis.Get(ctx, key)
@@ -61,7 +64,7 @@ func (self *Cache) getBytes(
 		return nil, fmt.Errorf("get %q from redis: %w", key, err)
 	} else if b == nil {
 		self.addMiss()
-		return nil, ErrCacheMiss
+		return nil, nil
 	}
 
 	self.addHit()

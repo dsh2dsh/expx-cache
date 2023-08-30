@@ -64,9 +64,10 @@ func (self *CacheTestSuite) TestGetSet_nil() {
 	self.Require().NoError(err)
 
 	ctx := context.Background()
-	self.Require().ErrorIs(self.cache.Get(ctx, testKey, nil), ErrCacheMiss)
+	self.False(valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, nil)))
 
-	self.False(self.cache.Exists(ctx, testKey), "nil value shouldn't be cached")
+	self.False(valueNoError[bool](self.T())(self.cache.Exists(ctx, testKey)),
+		"nil value shouldn't be cached")
 }
 
 func (self *CacheTestSuite) TestGetSet_data() {
@@ -81,7 +82,8 @@ func (self *CacheTestSuite) TestGetSet_data() {
 	self.Require().NoError(err)
 
 	gotValue := self.CacheableValue()
-	self.Require().NoError(self.cache.Get(ctx, testKey, gotValue))
+	self.Require().True(
+		valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, gotValue)))
 	self.Equal(val, gotValue)
 	self.True(self.cache.Exists(ctx, testKey))
 }
@@ -97,7 +99,8 @@ func (self *CacheTestSuite) TestGetSet_stringAsIs() {
 	self.Require().NoError(err)
 
 	var gotValue string
-	self.Require().NoError(self.cache.Get(ctx, testKey, &gotValue))
+	self.Require().True(
+		valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, &gotValue)))
 	self.Equal(value, gotValue)
 }
 
@@ -112,7 +115,8 @@ func (self *CacheTestSuite) TestGetSet_bytesAsIs() {
 	self.Require().NoError(err)
 
 	var gotValue []byte
-	self.Require().NoError(self.cache.Get(ctx, testKey, &gotValue))
+	self.Require().True(
+		valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, &gotValue)))
 	self.Equal(value, gotValue)
 }
 

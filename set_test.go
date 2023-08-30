@@ -45,7 +45,8 @@ func (self *CacheTestSuite) TestSetNX() {
 	}))
 
 	var got string
-	self.Require().NoError(self.cache.GetSkippingLocalCache(ctx, testKey, &got))
+	self.True(valueNoError[bool](self.T())(
+		self.cache.GetSkippingLocalCache(ctx, testKey, &got)))
 	self.Equal(value, got)
 
 	value2 := "barfoo"
@@ -57,7 +58,8 @@ func (self *CacheTestSuite) TestSetNX() {
 		SkipLocalCache: true,
 	}))
 
-	self.Require().NoError(self.cache.GetSkippingLocalCache(ctx, testKey, &got))
+	self.True(valueNoError[bool](self.T())(
+		self.cache.GetSkippingLocalCache(ctx, testKey, &got)))
 	self.Equal(value, got)
 }
 
@@ -76,7 +78,8 @@ func (self *CacheTestSuite) TestSetXX() {
 		SkipLocalCache: true,
 	}))
 
-	self.ErrorIs(self.cache.GetSkippingLocalCache(ctx, testKey, nil), ErrCacheMiss)
+	self.False(valueNoError[bool](
+		self.T())(self.cache.GetSkippingLocalCache(ctx, testKey, nil)))
 
 	self.Require().NoError(self.cache.Set(&Item{
 		Ctx:            ctx,
@@ -86,7 +89,8 @@ func (self *CacheTestSuite) TestSetXX() {
 	}))
 
 	var got string
-	self.Require().NoError(self.cache.GetSkippingLocalCache(ctx, testKey, &got))
+	self.True(valueNoError[bool](self.T())(
+		self.cache.GetSkippingLocalCache(ctx, testKey, &got)))
 	self.Equal(value, got)
 
 	value = "barfoo"
@@ -98,7 +102,8 @@ func (self *CacheTestSuite) TestSetXX() {
 		SkipLocalCache: true,
 	}))
 
-	self.Require().NoError(self.cache.GetSkippingLocalCache(ctx, testKey, &got))
+	self.True(valueNoError[bool](self.T())(
+		self.cache.GetSkippingLocalCache(ctx, testKey, &got)))
 	self.Equal(value, got)
 }
 
