@@ -123,15 +123,13 @@ func TestCache_Set_Marshall_error(t *testing.T) {
 	assert.ErrorIs(t, err, io.EOF)
 }
 
-func TestCache_Set_errRedisLocalCacheNil(t *testing.T) {
+func TestCache_Set_withoutCache(t *testing.T) {
 	cache := New()
-
-	err := cache.Set(&Item{
+	assert.NoError(t, cache.Set(&Item{
 		Ctx:   context.Background(),
 		Key:   testKey,
 		Value: "foobar",
-	})
-	assert.ErrorIs(t, err, errRedisLocalCacheNil)
+	}))
 }
 
 func TestCache_Set_redisErr(t *testing.T) {

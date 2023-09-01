@@ -6,10 +6,6 @@ import (
 )
 
 func (self *Cache) Delete(ctx context.Context, key string) error {
-	if err := self.validate(); err != nil {
-		return err
-	}
-
 	if self.localCache != nil {
 		self.localCache.Del(key)
 	}

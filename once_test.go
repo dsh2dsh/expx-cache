@@ -287,11 +287,11 @@ func TestOnce_errDelete(t *testing.T) {
 	assert.False(t, got)
 }
 
-func TestOnce_errRedisLocalCacheNil(t *testing.T) {
+func TestOnce_withoutCache(t *testing.T) {
 	cache := New()
 	callCount := 0
 	got := false
-	err := cache.Once(&Item{
+	require.NoError(t, cache.Once(&Item{
 		Ctx:   context.Background(),
 		Key:   testKey,
 		Value: &got,
@@ -299,8 +299,7 @@ func TestOnce_errRedisLocalCacheNil(t *testing.T) {
 			callCount++
 			return true, nil
 		},
-	})
-	require.ErrorIs(t, err, errRedisLocalCacheNil)
-	assert.Equal(t, 0, callCount)
-	assert.False(t, got)
+	}))
+	assert.Equal(t, 1, callCount)
+	assert.True(t, got)
 }

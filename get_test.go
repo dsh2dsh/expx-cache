@@ -11,10 +11,10 @@ import (
 	mocks "github.com/dsh2dsh/expx-cache/mocks/cache"
 )
 
-func TestGet_errRedisLocalCacheNil(t *testing.T) {
+func TestGet_withoutCache(t *testing.T) {
 	cache := New()
 	hit, err := cache.Get(context.Background(), testKey, nil)
-	assert.ErrorIs(t, err, errRedisLocalCacheNil)
+	assert.NoError(t, err)
 	assert.False(t, hit)
 }
 
@@ -41,9 +41,19 @@ func TestGetSkippingLocalCache(t *testing.T) {
 	assert.False(t, hit)
 }
 
-func TestExists_errRedisLocalCacheNil(t *testing.T) {
+func TestExists_withoutCache(t *testing.T) {
 	cache := New()
 	hit, err := cache.Exists(context.Background(), testKey)
-	assert.ErrorIs(t, err, errRedisLocalCacheNil)
+	assert.NoError(t, err)
+	assert.False(t, hit)
+}
+
+func TestExists_withError(t *testing.T) {
+	redisCache := mocks.NewMockRedisClient(t)
+	redisCache.EXPECT().Get(context.Background(), testKey).Return(nil, io.EOF)
+
+	cache := New().WithRedisCache(redisCache)
+	hit, err := cache.Exists(context.Background(), testKey)
+	assert.ErrorIs(t, err, io.EOF)
 	assert.False(t, hit)
 }

@@ -3,15 +3,11 @@ package cache
 
 import (
 	"context"
-	"errors"
 	"time"
 
 	"github.com/redis/go-redis/v9"
 	"golang.org/x/sync/singleflight"
 )
-
-var errRedisLocalCacheNil = errors.New(
-	"cache: both Redis and LocalCache are nil")
 
 type LocalCache interface {
 	Set(key string, data []byte)
@@ -105,13 +101,4 @@ func (self *Cache) Marshal(value any) ([]byte, error) {
 
 func (self *Cache) Unmarshal(b []byte, value any) error {
 	return self.unmarshal(b, value)
-}
-
-// --------------------------------------------------
-
-func (self *Cache) validate() error {
-	if self.localCache == nil && self.redis == nil {
-		return errRedisLocalCacheNil
-	}
-	return nil
 }

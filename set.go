@@ -11,10 +11,6 @@ func (self *Cache) Set(item *Item) error {
 }
 
 func (self *Cache) set(item *Item) ([]byte, error) {
-	if err := self.validate(); err != nil {
-		return nil, err
-	}
-
 	value, err := item.value()
 	if err != nil {
 		return nil, err

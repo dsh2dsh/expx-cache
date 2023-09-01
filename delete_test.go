@@ -46,10 +46,9 @@ func (self *CacheTestSuite) TestDeleteFromLocalCache() {
 	}
 }
 
-func TestDelete_errRedisLocalCacheNil(t *testing.T) {
+func TestDelete_withoutCache(t *testing.T) {
 	cache := New()
-	err := cache.Delete(context.Background(), testKey)
-	assert.ErrorIs(t, err, errRedisLocalCacheNil)
+	assert.NoError(t, cache.Delete(context.Background(), testKey))
 }
 
 func TestDeleteFromLocalCache_noCache(t *testing.T) {
