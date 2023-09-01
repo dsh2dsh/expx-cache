@@ -106,3 +106,12 @@ func (self *Cache) Marshal(value any) ([]byte, error) {
 func (self *Cache) Unmarshal(b []byte, value any) error {
 	return self.unmarshal(b, value)
 }
+
+// --------------------------------------------------
+
+func (self *Cache) validate() error {
+	if self.localCache == nil && self.redis == nil {
+		return errRedisLocalCacheNil
+	}
+	return nil
+}

@@ -42,6 +42,10 @@ func (self *Cache) get(
 func (self *Cache) getBytes(
 	ctx context.Context, key string, skipLocalCache bool,
 ) ([]byte, error) {
+	if err := self.validate(); err != nil {
+		return nil, err
+	}
+
 	if !skipLocalCache && self.localCache != nil {
 		b := self.localCache.Get(key)
 		if b != nil {
@@ -52,9 +56,6 @@ func (self *Cache) getBytes(
 	}
 
 	if self.redis == nil {
-		if self.localCache == nil {
-			return nil, errRedisLocalCacheNil
-		}
 		return nil, nil
 	}
 

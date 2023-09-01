@@ -289,15 +289,18 @@ func TestOnce_errDelete(t *testing.T) {
 
 func TestOnce_errRedisLocalCacheNil(t *testing.T) {
 	cache := New()
-	var got bool
+	callCount := 0
+	got := false
 	err := cache.Once(&Item{
 		Ctx:   context.Background(),
 		Key:   testKey,
 		Value: &got,
 		Do: func(*Item) (any, error) {
+			callCount++
 			return true, nil
 		},
 	})
 	require.ErrorIs(t, err, errRedisLocalCacheNil)
+	assert.Equal(t, 0, callCount)
 	assert.False(t, got)
 }

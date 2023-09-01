@@ -6,18 +6,17 @@ import (
 )
 
 func (self *Cache) Delete(ctx context.Context, key string) error {
+	if err := self.validate(); err != nil {
+		return err
+	}
+
 	if self.localCache != nil {
 		self.localCache.Del(key)
 	}
 
 	if self.redis == nil {
-		if self.localCache == nil {
-			return errRedisLocalCacheNil
-		}
 		return nil
-	}
-
-	if err := self.redis.Del(ctx, key); err != nil {
+	} else if err := self.redis.Del(ctx, key); err != nil {
 		return fmt.Errorf("delete %q from redis: %w", key, err)
 	}
 

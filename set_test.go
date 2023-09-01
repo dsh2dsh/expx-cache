@@ -9,6 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 
+	cacheMocks "github.com/dsh2dsh/expx-cache/mocks/cache"
 	redisMocks "github.com/dsh2dsh/expx-cache/mocks/redis"
 )
 
@@ -108,9 +109,11 @@ func (self *CacheTestSuite) TestSetXX() {
 }
 
 func TestCache_Set_Marshall_error(t *testing.T) {
-	cache := New().WithMarshal(func(value any) ([]byte, error) {
-		return nil, io.EOF
-	})
+	localCache := cacheMocks.NewMockLocalCache(t)
+	cache := New().WithLocalCache(localCache).
+		WithMarshal(func(value any) ([]byte, error) {
+			return nil, io.EOF
+		})
 
 	err := cache.Set(&Item{
 		Ctx:   context.Background(),

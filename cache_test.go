@@ -359,3 +359,22 @@ func TestWithTinyLFU(t *testing.T) {
 	assert.Same(t, cache, cache.WithTinyLFU(1000, time.Minute))
 	assert.NotNil(t, cache.localCache)
 }
+
+func TestCache_validate(t *testing.T) {
+	cache := New()
+	require.NotNil(t, cache)
+
+	assert.ErrorIs(t, cache.Delete(context.Background(), testKey),
+		errRedisLocalCacheNil)
+
+	_, err := cache.Exists(context.Background(), testKey)
+	assert.ErrorIs(t, err, errRedisLocalCacheNil)
+
+	_, err = cache.Get(context.Background(), testKey, nil)
+	assert.ErrorIs(t, err, errRedisLocalCacheNil)
+
+	_, err = cache.GetSkippingLocalCache(context.Background(), testKey, nil)
+	assert.ErrorIs(t, err, errRedisLocalCacheNil)
+
+	assert.ErrorIs(t, cache.Set(&Item{}), errRedisLocalCacheNil)
+}
