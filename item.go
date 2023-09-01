@@ -2,6 +2,7 @@ package cache
 
 import (
 	"context"
+	"fmt"
 	"time"
 )
 
@@ -54,4 +55,19 @@ func (self *Item) ttl() time.Duration {
 		return time.Second
 	}
 	return self.TTL
+}
+
+func (self *Item) redisSet(redisCache RedisClient, b []byte) error {
+	setFn := redisCache.Set
+	switch {
+	case self.SetXX:
+		setFn = redisCache.SetXX
+	case self.SetNX:
+		setFn = redisCache.SetNX
+	}
+
+	if err := setFn(self.Context(), self.Key, b, self.ttl()); err != nil {
+		return fmt.Errorf("item: set %q: %w", self.Key, err)
+	}
+	return nil
 }
