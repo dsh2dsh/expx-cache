@@ -298,6 +298,6 @@ func TestOnce_errRedisLocalCacheNil(t *testing.T) {
 			return true, nil
 		},
 	})
-	require.NoError(t, err)
-	assert.True(t, got)
+	require.ErrorIs(t, err, errRedisLocalCacheNil)
+	assert.False(t, got)
 }

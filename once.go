@@ -5,7 +5,7 @@ import (
 )
 
 // Once gets the item.Value for the given item.Key from the cache or executes,
-// caches, and returns the results of the given item.Func, making sure that only
+// caches, and returns the results of the given item.Do, making sure that only
 // one execution is in-flight for a given item.Key at a time. If a duplicate
 // comes in, the duplicate caller waits for the original to complete and
 // receives the same results.
@@ -46,14 +46,14 @@ func (self *Cache) getSetItemBytesOnce(item *Item) ([]byte, bool, error) {
 			return b, nil
 		}
 
-		b, err = self.set(item, false)
+		b, err = self.set(item)
 		if err != nil {
 			return nil, err
 		}
 		return b, nil
 	})
 	if err != nil {
-		return nil, false, fmt.Errorf("cache: do: %w", err)
+		return nil, false, fmt.Errorf("do: %w", err)
 	}
 
 	return v.([]byte), fromCache, nil
