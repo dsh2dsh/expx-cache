@@ -359,3 +359,48 @@ func TestWithTinyLFU(t *testing.T) {
 	assert.Same(t, cache, cache.WithTinyLFU(1000, time.Minute))
 	assert.NotNil(t, cache.localCache)
 }
+
+func TestWithDefaultTTL(t *testing.T) {
+	cache := New()
+	require.NotNil(t, cache)
+
+	assert.Equal(t, defaultTTL, cache.defaultTTL)
+	assert.Equal(t, cache.defaultTTL, cache.DefaultTTL())
+}
+
+func TestCache_ItemTTL(t *testing.T) {
+	cache := New()
+	require.NotNil(t, cache)
+
+	tests := []struct {
+		name    string
+		TTL     time.Duration
+		wantTTL time.Duration
+	}{
+		{
+			name:    "too small",
+			TTL:     time.Millisecond,
+			wantTTL: time.Second,
+		},
+		{
+			name:    "negative",
+			TTL:     -time.Second,
+			wantTTL: time.Duration(0),
+		},
+		{
+			name:    "ok",
+			TTL:     time.Minute,
+			wantTTL: time.Minute,
+		},
+		{
+			name:    "defaultTTL",
+			wantTTL: cache.DefaultTTL(),
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			assert.Equal(t, tt.wantTTL, cache.ItemTTL(&Item{TTL: tt.TTL}))
+		})
+	}
+}

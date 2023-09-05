@@ -27,9 +27,9 @@ func (self *Cache) set(item *Item) ([]byte, error) {
 		self.localCache.Set(item.Key, b)
 	}
 
-	if self.redis == nil || item.ttl() == 0 {
+	if self.redis == nil || self.ItemTTL(item) == 0 {
 		return b, nil
-	} else if err := item.redisSet(self.redis, b); err != nil {
+	} else if err := item.redisSet(self.redis, b, self.ItemTTL(item)); err != nil {
 		return nil, fmt.Errorf("cache: set: %w", err)
 	}
 

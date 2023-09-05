@@ -9,6 +9,8 @@ import (
 	"golang.org/x/sync/singleflight"
 )
 
+const defaultTTL = time.Hour
+
 type LocalCache interface {
 	Set(key string, data []byte)
 	Get(key string) []byte
@@ -31,8 +33,9 @@ type (
 
 func New() *Cache {
 	c := &Cache{
-		marshal:   marshal,
-		unmarshal: unmarshal,
+		defaultTTL: defaultTTL,
+		marshal:    marshal,
+		unmarshal:  unmarshal,
 	}
 
 	return c
@@ -41,6 +44,8 @@ func New() *Cache {
 type Cache struct {
 	redis      RedisClient
 	localCache LocalCache
+
+	defaultTTL time.Duration
 
 	marshal   MarshalFunc
 	unmarshal UnmarshalFunc
@@ -93,6 +98,11 @@ func (self *Cache) WithUnmarshal(fn UnmarshalFunc) *Cache {
 	return self
 }
 
+func (self *Cache) WithDefaultTTL(ttl time.Duration) *Cache {
+	self.defaultTTL = ttl
+	return self
+}
+
 // --------------------------------------------------
 
 func (self *Cache) Marshal(value any) ([]byte, error) {
@@ -101,4 +111,20 @@ func (self *Cache) Marshal(value any) ([]byte, error) {
 
 func (self *Cache) Unmarshal(b []byte, value any) error {
 	return self.unmarshal(b, value)
+}
+
+func (self *Cache) DefaultTTL() time.Duration {
+	return self.defaultTTL
+}
+
+func (self *Cache) ItemTTL(item *Item) time.Duration {
+	switch {
+	case item.TTL < 0:
+		return 0
+	case item.TTL == 0:
+		return self.DefaultTTL()
+	case item.TTL < time.Second:
+		return time.Second
+	}
+	return item.TTL
 }

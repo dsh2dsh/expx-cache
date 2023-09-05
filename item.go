@@ -6,8 +6,6 @@ import (
 	"time"
 )
 
-const defaultTTL = time.Hour
-
 type Item struct {
 	Ctx context.Context
 
@@ -15,7 +13,7 @@ type Item struct {
 	Value any
 
 	// TTL is the cache expiration time.
-	// Default TTL is 1 hour.
+	// Default TTL configured using [WithDefaultTTL] and it's 1 hour by default.
 	TTL time.Duration
 
 	// Do returns value to be cached.
@@ -57,7 +55,9 @@ func (self *Item) ttl() time.Duration {
 	return self.TTL
 }
 
-func (self *Item) redisSet(redisCache RedisClient, b []byte) error {
+func (self *Item) redisSet(redisCache RedisClient, b []byte,
+	ttl time.Duration,
+) error {
 	setFn := redisCache.Set
 	switch {
 	case self.SetXX:
@@ -66,7 +66,7 @@ func (self *Item) redisSet(redisCache RedisClient, b []byte) error {
 		setFn = redisCache.SetNX
 	}
 
-	if err := setFn(self.Context(), self.Key, b, self.ttl()); err != nil {
+	if err := setFn(self.Context(), self.Key, b, ttl); err != nil {
 		return fmt.Errorf("item: set %q: %w", self.Key, err)
 	}
 	return nil

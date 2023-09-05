@@ -3,19 +3,17 @@ package cache
 import (
 	"io"
 	"testing"
-	"time"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 
 	mocks "github.com/dsh2dsh/expx-cache/mocks/cache"
 )
 
-func TestItem_ttlTooSmall(t *testing.T) {
-	item := &Item{TTL: 500 * time.Millisecond}
-	assert.Equal(t, time.Second, item.ttl())
-}
-
 func TestItem_redisSet(t *testing.T) {
+	cache := New()
+	require.NotNil(t, cache)
+
 	b := []byte{}
 
 	tests := []struct {
@@ -26,8 +24,8 @@ func TestItem_redisSet(t *testing.T) {
 		{
 			name: "Set",
 			expecter: func(item *Item, redisCache *mocks.MockRedisClient) {
-				redisCache.EXPECT().Set(item.Context(), item.Key, b, item.ttl()).
-					Return(nil)
+				redisCache.EXPECT().
+					Set(item.Context(), item.Key, b, cache.ItemTTL(item)).Return(nil)
 			},
 		},
 		{
@@ -35,7 +33,7 @@ func TestItem_redisSet(t *testing.T) {
 			expecter: func(item *Item, redisCache *mocks.MockRedisClient) {
 				item.SetNX = true
 				redisCache.EXPECT().
-					SetNX(item.Context(), item.Key, b, item.ttl()).Return(nil)
+					SetNX(item.Context(), item.Key, b, cache.ItemTTL(item)).Return(nil)
 			},
 		},
 		{
@@ -43,14 +41,14 @@ func TestItem_redisSet(t *testing.T) {
 			expecter: func(item *Item, redisCache *mocks.MockRedisClient) {
 				item.SetXX = true
 				redisCache.EXPECT().
-					SetXX(item.Context(), item.Key, b, item.ttl()).Return(nil)
+					SetXX(item.Context(), item.Key, b, cache.ItemTTL(item)).Return(nil)
 			},
 		},
 		{
 			name: "error",
 			expecter: func(item *Item, redisCache *mocks.MockRedisClient) {
 				redisCache.EXPECT().
-					Set(item.Context(), item.Key, b, item.ttl()).Return(io.EOF)
+					Set(item.Context(), item.Key, b, cache.ItemTTL(item)).Return(io.EOF)
 			},
 			error: io.EOF,
 		},
@@ -61,7 +59,8 @@ func TestItem_redisSet(t *testing.T) {
 			item := Item{Key: testKey}
 			redisCache := mocks.NewMockRedisClient(t)
 			tt.expecter(&item, redisCache)
-			assert.ErrorIs(t, item.redisSet(redisCache, b), tt.error)
+			assert.ErrorIs(t, item.redisSet(redisCache, b, cache.ItemTTL(&item)),
+				tt.error)
 		})
 	}
 }
