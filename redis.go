@@ -9,9 +9,7 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
-type RedisGetter interface {
-	Get(ctx context.Context, rdb redis.Cmdable, key string) ([]byte, error)
-}
+type RedisGetter func(ctx context.Context, rdb redis.Cmdable, key string) ([]byte, error)
 
 func NewStdRedis(rdb redis.Cmdable) *StdRedis {
 	return &StdRedis{rdb: rdb, getter: defaultRedisGetter}
@@ -24,15 +22,14 @@ type StdRedis struct {
 
 // --------------------------------------------------
 
-var defaultRedisGetter defaultRedisGet
-
-type defaultRedisGet struct{}
-
-func (defaultRedisGet) Get(ctx context.Context, rdb redis.Cmdable,
-	key string,
+var defaultRedisGetter RedisGetter = func(ctx context.Context,
+	rdb redis.Cmdable, key string,
 ) ([]byte, error) {
-	//nolint:wrapcheck // StdRedis.Get wraps it
-	return rdb.Get(ctx, key).Bytes()
+	if b, err := rdb.Get(ctx, key).Bytes(); err == nil {
+		return b, nil
+	} else {
+		return nil, fmt.Errorf("redis get: %w", err)
+	}
 }
 
 func (self *StdRedis) WithGetter(getter RedisGetter) *StdRedis {
@@ -41,7 +38,7 @@ func (self *StdRedis) WithGetter(getter RedisGetter) *StdRedis {
 }
 
 func (self *StdRedis) Get(ctx context.Context, key string) ([]byte, error) {
-	b, err := self.getter.Get(ctx, self.rdb, key)
+	b, err := self.getter(ctx, self.rdb, key)
 	if errors.Is(err, redis.Nil) {
 		return nil, nil
 	} else if err != nil {
@@ -71,7 +68,7 @@ func (self *StdRedis) Set(ctx context.Context, key string, value any,
 // --------------------------------------------------
 
 func NewRefreshRedis(rdb redis.Cmdable, ttl time.Duration) *StdRedis {
-	return NewStdRedis(rdb).WithGetter(refreshRedisGet(ttl))
+	return NewStdRedis(rdb).WithGetter(refreshRedisGet(ttl).Get)
 }
 
 type refreshRedisGet time.Duration
@@ -79,6 +76,9 @@ type refreshRedisGet time.Duration
 func (self refreshRedisGet) Get(ctx context.Context, rdb redis.Cmdable,
 	key string,
 ) ([]byte, error) {
-	//nolint:wrapcheck // StdRedis.Get wraps it
-	return rdb.GetEx(ctx, key, time.Duration(self)).Bytes()
+	if b, err := rdb.GetEx(ctx, key, time.Duration(self)).Bytes(); err == nil {
+		return b, nil
+	} else {
+		return nil, fmt.Errorf("redis getex: %w", err)
+	}
 }

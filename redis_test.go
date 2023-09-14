@@ -16,20 +16,15 @@ import (
 
 func TestNewRefreshRedis(t *testing.T) {
 	const ttl = time.Minute
-
 	rr := NewRefreshRedis(nil, ttl)
 	require.IsType(t, new(StdRedis), rr)
 	assert.Nil(t, rr.rdb)
-	require.IsType(t, refreshRedisGet(ttl), rr.getter)
-	assert.Implements(t, (*RedisGetter)(nil), new(refreshRedisGet))
 }
 
 func TestNewStdRedis(t *testing.T) {
 	sr := NewStdRedis(nil)
 	require.IsType(t, new(StdRedis), sr)
 	assert.Nil(t, sr.rdb)
-	require.IsType(t, defaultRedisGet{}, sr.getter)
-	assert.Implements(t, (*RedisGetter)(nil), new(defaultRedisGet))
 	assert.Implements(t, (*RedisClient)(nil), new(StdRedis))
 }
 
