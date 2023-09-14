@@ -22,6 +22,8 @@ type StdRedis struct {
 	getter RedisGetter
 }
 
+// --------------------------------------------------
+
 var defaultRedisGetter defaultRedisGet
 
 type defaultRedisGet struct{}
@@ -48,6 +50,8 @@ func (self *StdRedis) Get(ctx context.Context, key string) ([]byte, error) {
 	return b, nil
 }
 
+// --------------------------------------------------
+
 func (self *StdRedis) Del(ctx context.Context, keys ...string) error {
 	if err := self.rdb.Del(ctx, keys...).Err(); err != nil {
 		return fmt.Errorf("delete keys from redis: %w", err)
@@ -59,25 +63,7 @@ func (self *StdRedis) Set(ctx context.Context, key string, value any,
 	ttl time.Duration,
 ) error {
 	if err := self.rdb.Set(ctx, key, value, ttl).Err(); err != nil {
-		return fmt.Errorf("set %q with ttl %v using redis: %w", key, ttl, err)
-	}
-	return nil
-}
-
-func (self *StdRedis) SetNX(ctx context.Context, key string, value any,
-	ttl time.Duration,
-) error {
-	if err := self.rdb.SetNX(ctx, key, value, ttl).Err(); err != nil {
-		return fmt.Errorf("setnx %q with ttl %v using redis: %w", key, ttl, err)
-	}
-	return nil
-}
-
-func (self *StdRedis) SetXX(ctx context.Context, key string, value any,
-	ttl time.Duration,
-) error {
-	if err := self.rdb.SetXX(ctx, key, value, ttl).Err(); err != nil {
-		return fmt.Errorf("setxx %q with ttl %v using redis: %w", key, ttl, err)
+		return fmt.Errorf("redis set %q: %w", key, err)
 	}
 	return nil
 }

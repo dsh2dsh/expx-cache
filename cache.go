@@ -20,10 +20,7 @@ type LocalCache interface {
 type RedisClient interface {
 	Get(ctx context.Context, key string) ([]byte, error)
 	Del(ctx context.Context, keys ...string) error
-
 	Set(ctx context.Context, key string, value any, ttl time.Duration) error
-	SetNX(ctx context.Context, key string, value any, ttl time.Duration) error
-	SetXX(ctx context.Context, key string, value any, ttl time.Duration) error
 }
 
 type (

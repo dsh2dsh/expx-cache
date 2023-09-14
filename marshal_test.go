@@ -74,7 +74,7 @@ func TestCache_Marshal_noCompression(t *testing.T) {
 	cache := New().WithTinyLFU(1000, time.Minute)
 	require.NotNil(t, cache)
 
-	s := "foobar" //nolint:goconst // I don't want use const for this
+	s := "foobar"
 	b := valueNoError[[]byte](t)(cache.Marshal(&s))
 	assert.NotNil(t, b)
 	assert.Equal(t, noCompression, int(b[len(b)-1]))

@@ -101,28 +101,6 @@ func TestRedisClient_errors(t *testing.T) {
 				return redisClient.Set(context.Background(), testKey, "", time.Minute)
 			},
 		},
-		{
-			name: "SetNX",
-			configure: func(rdb *redisMocks.MockCmdable) {
-				rdb.EXPECT().SetNX(mock.Anything, mock.Anything, mock.Anything, mock.Anything).
-					Return(redis.NewBoolResult(false, expectErr))
-			},
-			do: func(t *testing.T, redisClient RedisClient) error {
-				//nolint:wrapcheck
-				return redisClient.SetNX(context.Background(), testKey, "", time.Minute)
-			},
-		},
-		{
-			name: "SetXX",
-			configure: func(rdb *redisMocks.MockCmdable) {
-				rdb.EXPECT().SetXX(mock.Anything, mock.Anything, mock.Anything, mock.Anything).
-					Return(redis.NewBoolResult(false, expectErr))
-			},
-			do: func(t *testing.T, redisClient RedisClient) error {
-				//nolint:wrapcheck
-				return redisClient.SetXX(context.Background(), testKey, "", time.Minute)
-			},
-		},
 	}
 
 	for _, client := range clients {
