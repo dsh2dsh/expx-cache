@@ -366,6 +366,11 @@ func TestWithDefaultTTL(t *testing.T) {
 
 	assert.Equal(t, defaultTTL, cache.defaultTTL)
 	assert.Equal(t, cache.defaultTTL, cache.DefaultTTL())
+
+	ttl := cache.DefaultTTL() + time.Hour
+	assert.Same(t, cache, cache.WithDefaultTTL(ttl))
+	assert.Equal(t, ttl, cache.defaultTTL)
+	assert.Equal(t, cache.defaultTTL, cache.DefaultTTL())
 }
 
 func TestCache_ItemTTL(t *testing.T) {
