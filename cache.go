@@ -9,7 +9,10 @@ import (
 	"golang.org/x/sync/singleflight"
 )
 
-const defaultTTL = time.Hour
+const (
+	defaultBatchSize = 1000
+	defaultTTL       = time.Hour
+)
 
 type LocalCache interface {
 	Set(key string, data []byte)
@@ -30,6 +33,7 @@ type (
 
 func New() *Cache {
 	c := &Cache{
+		batchSize:  defaultBatchSize,
 		defaultTTL: defaultTTL,
 		marshal:    marshal,
 		unmarshal:  unmarshal,
@@ -42,6 +46,7 @@ type Cache struct {
 	redis      RedisClient
 	localCache LocalCache
 
+	batchSize  int
 	defaultTTL time.Duration
 
 	marshal   MarshalFunc
@@ -97,6 +102,11 @@ func (self *Cache) WithUnmarshal(fn UnmarshalFunc) *Cache {
 
 func (self *Cache) WithDefaultTTL(ttl time.Duration) *Cache {
 	self.defaultTTL = ttl
+	return self
+}
+
+func (self *Cache) WithBatchSize(size int) *Cache {
+	self.batchSize = size
 	return self
 }
 

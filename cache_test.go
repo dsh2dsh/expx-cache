@@ -36,15 +36,20 @@ type CacheTestSuite struct {
 	newCache func() *Cache
 }
 
-func (self *CacheTestSuite) SetupTest() {
-	self.cache = self.NewCache()
-}
-
-func (self *CacheTestSuite) NewCache() *Cache {
+func (self *CacheTestSuite) SetupSuite() {
 	if self.rdb != nil {
 		self.Require().NoError(self.rdb.FlushDB(context.Background()).Err())
 	}
-	return self.newCache()
+}
+
+func (self *CacheTestSuite) SetupTest() {
+	self.cache = self.newCache()
+}
+
+func (self *CacheTestSuite) TearDownTest() {
+	if self.rdb != nil && self.cache.redis != nil {
+		self.Require().NoError(self.rdb.FlushDB(context.Background()).Err())
+	}
 }
 
 func (self *CacheTestSuite) CacheableValue() *CacheableObject {
@@ -408,4 +413,15 @@ func TestCache_ItemTTL(t *testing.T) {
 			assert.Equal(t, tt.wantTTL, cache.ItemTTL(&Item{TTL: tt.TTL}))
 		})
 	}
+}
+
+func TestWithBatchSize(t *testing.T) {
+	cache := New()
+	require.NotNil(t, cache)
+
+	assert.Equal(t, defaultBatchSize, cache.batchSize)
+
+	batchSize := cache.batchSize * 2
+	assert.Same(t, cache, cache.WithBatchSize(batchSize))
+	assert.Equal(t, batchSize, cache.batchSize)
 }
