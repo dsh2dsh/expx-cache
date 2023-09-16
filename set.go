@@ -2,6 +2,7 @@ package cache
 
 import (
 	"fmt"
+	"time"
 )
 
 // Set caches the item.
@@ -11,28 +12,52 @@ func (self *Cache) Set(item *Item) error {
 }
 
 func (self *Cache) set(item *Item) ([]byte, error) {
-	value, err := item.value()
+	b, err := self.marshalItem(item)
+	if err != nil || b == nil {
+		return nil, err
+	}
+
+	useLocalCache := self.localCache != nil && !item.SkipLocalCache
+	ttl := self.ItemTTL(item)
+	useRedis := self.redis != nil && ttl != 0
+
+	switch {
+	case useLocalCache && useRedis:
+		done := make(chan error)
+		go func() {
+			done <- self.redisSet(item, b, ttl)
+		}()
+		self.localCache.Set(item.Key, b)
+		err = <-done
+	case useLocalCache:
+		self.localCache.Set(item.Key, b)
+	case useRedis:
+		err = self.redisSet(item, b, ttl)
+	}
+
 	if err != nil {
 		return nil, err
-	} else if value == nil {
-		return nil, nil
+	}
+
+	return b, nil
+}
+
+func (self *Cache) marshalItem(item *Item) ([]byte, error) {
+	value, err := item.value()
+	if err != nil || value == nil {
+		return nil, err
 	}
 
 	b, err := self.Marshal(value)
 	if err != nil {
 		return nil, err
 	}
-
-	if self.localCache != nil && !item.SkipLocalCache {
-		self.localCache.Set(item.Key, b)
-	}
-
-	ttl := self.ItemTTL(item)
-	if self.redis == nil || ttl == 0 {
-		return b, nil
-	} else if err := self.redis.Set(item.Context(), item.Key, b, ttl); err != nil {
-		return nil, fmt.Errorf("redis set: %w", err)
-	}
-
 	return b, nil
+}
+
+func (self *Cache) redisSet(item *Item, b []byte, ttl time.Duration) error {
+	if err := self.redis.Set(item.Context(), item.Key, b, ttl); err != nil {
+		return fmt.Errorf("redis set: %w", err)
+	}
+	return nil
 }
