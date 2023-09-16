@@ -3,30 +3,22 @@ package cache
 import (
 	"context"
 	"fmt"
-	"sync"
 )
 
 func (self *Cache) Delete(ctx context.Context, keys ...string) error {
-	gogogo := len(keys) > 0 && self.redis != nil
-	var wg sync.WaitGroup
-
-	if gogogo {
-		wg.Add(1)
+	done := make(chan error)
+	if self.redis != nil {
 		go func() {
-			defer wg.Done()
-			self.DeleteFromLocalCache(keys...)
+			done <- self.DeleteFromRedis(ctx, keys...)
 		}()
-	} else {
-		self.DeleteFromLocalCache(keys...)
+	}
+	self.DeleteFromLocalCache(keys...)
+
+	if self.redis != nil {
+		return <-done
 	}
 
-	err := self.DeleteFromRedis(ctx, keys...)
-
-	if gogogo {
-		wg.Wait()
-	}
-
-	return err
+	return nil
 }
 
 func (self *Cache) DeleteFromLocalCache(keys ...string) {
