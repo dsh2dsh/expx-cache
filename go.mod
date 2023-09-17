@@ -2,8 +2,6 @@ module github.com/dsh2dsh/expx-cache
 
 go 1.21
 
-toolchain go1.21.0
-
 require (
 	github.com/dsh2dsh/expx-dotenv v1.2.0
 	github.com/dsh2dsh/go-tinylfu v1.0.1
