@@ -189,7 +189,7 @@ func TestCacheSuite(t *testing.T) {
 			},
 		},
 		{
-			name:       "with LocalCache and without Redis",
+			name:       "without Redis",
 			needsLocal: true,
 			subTests: func() []cacheSubTest {
 				return []cacheSubTest{subTestsWithStats}
