@@ -37,6 +37,7 @@ func New() *Cache {
 		defaultTTL: defaultTTL,
 		marshal:    marshal,
 		unmarshal:  unmarshal,
+		stats:      new(Stats),
 	}
 
 	return c
@@ -52,11 +53,8 @@ type Cache struct {
 	marshal   MarshalFunc
 	unmarshal UnmarshalFunc
 
+	stats        *Stats
 	statsEnabled bool
-	hits         uint64
-	misses       uint64
-	localHits    uint64
-	localMisses  uint64
 
 	group singleflight.Group
 }
