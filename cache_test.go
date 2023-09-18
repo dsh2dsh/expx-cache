@@ -127,7 +127,7 @@ func (self *CacheTestSuite) TestGetSet_bytesAsIs() {
 
 // --------------------------------------------------
 
-func NewRedisClient() (redis.Cmdable, error) {
+func NewRedisClient() (*redis.Client, error) {
 	cfg := struct {
 		WithRedis string `env:"WITH_REDIS"`
 	}{
@@ -159,62 +159,79 @@ type cacheSubTest func(t *testing.T, cfg func(*Cache) *Cache,
 func TestCacheSuite(t *testing.T) {
 	t.Parallel()
 
-	var rdb redis.Cmdable
+	var rdb *redis.Client
 	if !testing.Short() {
-		rdb = valueNoError[redis.Cmdable](t)(NewRedisClient())
+		rdb = valueNoError[*redis.Client](t)(NewRedisClient())
 	}
 
 	tests := []struct {
 		name       string
-		rdb        redis.Cmdable
 		needsLocal bool
 		needsRedis bool
-		subTests   func() []cacheSubTest
+		subTests   func(rdb redis.Cmdable) []cacheSubTest
 	}{
 		{
-			name:       "without LocalCache",
-			rdb:        rdb,
+			name:       "with LocalCache",
+			needsLocal: true,
 			needsRedis: true,
-			subTests: func() []cacheSubTest {
+			subTests: func(rdb redis.Cmdable) []cacheSubTest {
 				return []cacheSubTest{subTestsWithRedis(rdb), subTestsWithStats}
 			},
 		},
 		{
-			name:       "with LocalCache",
-			rdb:        rdb,
-			needsLocal: true,
+			name:       "without LocalCache",
 			needsRedis: true,
-			subTests: func() []cacheSubTest {
+			subTests: func(rdb redis.Cmdable) []cacheSubTest {
 				return []cacheSubTest{subTestsWithRedis(rdb), subTestsWithStats}
 			},
 		},
 		{
 			name:       "without Redis",
 			needsLocal: true,
-			subTests: func() []cacheSubTest {
+			subTests: func(rdb redis.Cmdable) []cacheSubTest {
 				return []cacheSubTest{subTestsWithStats}
 			},
 		},
 	}
 
+	db := clientDB(t, rdb)
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			skipRedisTests(t, tt.name, tt.needsRedis, rdb != nil)
+			var r redis.Cmdable
+			if tt.needsRedis && rdb != nil {
+				cn := rdb.Conn()
+				t.Cleanup(func() {
+					require.NoError(t, cn.Close())
+				})
+				require.NoError(t, cn.Select(context.Background(), db).Err())
+				db++
+				r = cn
+			}
 			cfg := func(c *Cache) *Cache {
 				if tt.needsLocal {
 					return c.WithTinyLFU(1000, time.Minute)
 				}
 				return c
 			}
-			suiteRunSubTests(t, tt.rdb, cfg, tt.subTests())
+			suiteRunSubTests(t, r, cfg, tt.subTests(r))
 		})
 	}
+}
+
+func clientDB(t *testing.T, rdb *redis.Client) int {
+	if rdb != nil {
+		info := valueNoError[*redis.ClientInfo](t)(
+			rdb.ClientInfo(context.Background()).Result())
+		return info.DB
+	}
+	return 0
 }
 
 func skipRedisTests(t *testing.T, name string, needsRedis, hasRedis bool) {
 	if needsRedis {
 		if testing.Short() {
-			t.Skipf("skip %q in short mode, because it uses Redis", name)
+			t.Skipf("skip %q in short mode, because it requires Redis", name)
 		} else if !hasRedis {
 			t.Skipf("skip %q, because no Redis connection", name)
 		}
@@ -224,6 +241,7 @@ func skipRedisTests(t *testing.T, name string, needsRedis, hasRedis bool) {
 func suiteRunSubTests(t *testing.T, rdb redis.Cmdable, cfg func(*Cache) *Cache,
 	subTests []cacheSubTest,
 ) {
+	t.Parallel()
 	runCacheSubTests(t, cfg,
 		func(t *testing.T, cfg func(*Cache) *Cache, _ cacheSubTest,
 			subTests []cacheSubTest,
