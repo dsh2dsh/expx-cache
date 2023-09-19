@@ -194,7 +194,9 @@ func TestCacheSuite(t *testing.T) {
 		},
 	}
 
-	db := clientDB(t, rdb)
+	cfgDB := clientDB(t, rdb)
+	curDB := cfgDB
+
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			skipRedisTests(t, tt.name, tt.needsRedis, rdb != nil)
@@ -202,10 +204,11 @@ func TestCacheSuite(t *testing.T) {
 			if tt.needsRedis && rdb != nil {
 				cn := rdb.Conn()
 				t.Cleanup(func() {
+					require.NoError(t, cn.Select(context.Background(), cfgDB).Err())
 					require.NoError(t, cn.Close())
 				})
-				require.NoError(t, cn.Select(context.Background(), db).Err())
-				db++
+				require.NoError(t, cn.Select(context.Background(), curDB).Err())
+				curDB++
 				r = cn
 			}
 			cfg := func(c *Cache) *Cache {
