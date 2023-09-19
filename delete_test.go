@@ -24,10 +24,15 @@ func (self *CacheTestSuite) TestDelete() {
 	})
 	self.Require().NoError(err)
 	self.True(self.cache.Exists(ctx, testKey))
+	self.cacheHit()
 
 	self.Require().NoError(self.cache.Delete(ctx, testKey))
 	self.False(valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, nil)))
+	self.cacheMiss()
 	self.False(self.cache.Exists(ctx, testKey))
+	self.cacheMiss()
+
+	self.assertStats()
 }
 
 func (self *CacheTestSuite) TestDeleteFromLocalCache() {
@@ -47,9 +52,13 @@ func (self *CacheTestSuite) TestDeleteFromLocalCache() {
 
 	if self.cache.redis != nil {
 		self.True(self.cache.Exists(ctx, testKey))
+		self.cacheHitLocalMiss()
 	} else {
 		self.False(self.cache.Exists(ctx, testKey))
+		self.cacheMiss()
 	}
+
+	self.assertStats()
 }
 
 func (self *CacheTestSuite) TestDeleteFromRedis() {
@@ -64,13 +73,16 @@ func (self *CacheTestSuite) TestDeleteFromRedis() {
 	self.Require().NoError(self.cache.DeleteFromRedis(ctx, testKey))
 	if self.cache.localCache != nil {
 		self.True(self.cache.Exists(ctx, testKey))
+		self.cacheHit()
 	} else {
 		self.False(self.cache.Exists(ctx, testKey))
+		self.cacheMiss()
 	}
 
 	if self.cache.redis != nil {
 		self.Nil(valueNoError[[]byte](self.T())(self.cache.redis.Get(ctx, testKey)))
 	}
+	self.assertStats()
 }
 
 func (self *CacheTestSuite) TestDelete_manyKeys() {
@@ -92,9 +104,12 @@ func (self *CacheTestSuite) TestDelete_manyKeys() {
 		self.Require().NoError(err)
 	}
 	self.Require().NoError(self.cache.Delete(ctx, allKeys...))
+
 	for _, key := range allKeys {
 		self.Require().False(self.cache.Exists(ctx, key))
+		self.cacheMiss()
 	}
+	self.assertStats()
 }
 
 func TestDelete_withoutCache(t *testing.T) {

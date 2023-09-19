@@ -28,6 +28,7 @@ func (self *CacheTestSuite) TestOnce_cacheFails() {
 	var got bool
 	_, err = self.cache.Get(ctx, testKey, &got)
 	self.Require().ErrorContains(err, "msgpack: invalid code=d3 decoding bool")
+	self.cacheHit()
 
 	err = self.cache.Once(&Item{
 		Ctx:   ctx,
@@ -39,10 +40,15 @@ func (self *CacheTestSuite) TestOnce_cacheFails() {
 	})
 	self.Require().NoError(err)
 	self.True(got)
+	self.cacheHit()
+	self.cacheMiss()
 
 	got = false
 	self.True(valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, &got)))
 	self.True(got)
+	self.cacheHit()
+
+	self.assertStats()
 }
 
 func (self *CacheTestSuite) TestOnce_funcFails() {
@@ -54,6 +60,7 @@ func (self *CacheTestSuite) TestOnce_funcFails() {
 			Key:   testKey,
 			Value: &got,
 			Do: func(*Item) (any, error) {
+				self.cacheMiss()
 				return nil, io.EOF
 			},
 		})
@@ -63,6 +70,7 @@ func (self *CacheTestSuite) TestOnce_funcFails() {
 
 	var got bool
 	self.False(valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, &got)))
+	self.cacheMiss()
 
 	err := self.cache.Once(&Item{
 		Ctx:   ctx,
@@ -74,6 +82,9 @@ func (self *CacheTestSuite) TestOnce_funcFails() {
 	})
 	self.Require().NoError(err)
 	self.True(got)
+	self.cacheMiss()
+
+	self.assertStats()
 }
 
 func perform(n int, callbacks ...func(int)) {
@@ -91,130 +102,167 @@ func perform(n int, callbacks ...func(int)) {
 }
 
 func (self *CacheTestSuite) TestOnce_withValue() {
-	var callCount int64
+	var callCount uint64
 	ctx := context.Background()
 	obj := self.CacheableValue()
 	perform(100, func(int) {
 		got := new(CacheableObject)
+		hit := true
 		err := self.cache.Once(&Item{
 			Ctx:   ctx,
 			Key:   testKey,
 			Value: got,
 			Do: func(*Item) (any, error) {
-				atomic.AddInt64(&callCount, 1)
+				atomic.AddUint64(&callCount, 1)
+				self.cacheMiss()
+				hit = false
 				return obj, nil
 			},
 		})
 		self.Require().NoError(err)
 		self.Equal(obj, got)
+		if hit && self.cache.statsEnabled {
+			self.stats.localHit()
+		}
 	})
-	self.Equal(int64(1), callCount)
+	self.Equal(uint64(1), callCount)
+	self.assertStats()
 }
 
 func (self *CacheTestSuite) TestOnce_withPtrNonPtr() {
-	var callCount int64
+	var callCount uint64
 	ctx := context.Background()
 	obj := self.CacheableValue()
 	perform(100, func(int) {
 		got := new(CacheableObject)
+		hit := true
 		err := self.cache.Once(&Item{
 			Ctx:   ctx,
 			Key:   testKey,
 			Value: got,
 			Do: func(*Item) (any, error) {
-				atomic.AddInt64(&callCount, 1)
+				atomic.AddUint64(&callCount, 1)
+				self.cacheMiss()
+				hit = false
 				return *obj, nil
 			},
 		})
 		self.Require().NoError(err)
 		self.Equal(obj, got)
+		if hit && self.cache.statsEnabled {
+			self.stats.localHit()
+		}
 	})
-	self.Equal(int64(1), callCount)
+	self.Equal(uint64(1), callCount)
+	self.assertStats()
 }
 
 func (self *CacheTestSuite) TestOnce_withBool() {
-	var callCount int64
+	var callCount uint64
 	ctx := context.Background()
 	perform(100, func(int) {
 		var got bool
+		hit := true
 		err := self.cache.Once(&Item{
 			Ctx:   ctx,
 			Key:   testKey,
 			Value: &got,
 			Do: func(*Item) (any, error) {
-				atomic.AddInt64(&callCount, 1)
+				atomic.AddUint64(&callCount, 1)
+				self.cacheMiss()
+				hit = false
 				return true, nil
 			},
 		})
 		self.Require().NoError(err)
 		self.True(got)
+		if hit && self.cache.statsEnabled {
+			self.stats.localHit()
+		}
 	})
-	self.Equal(int64(1), callCount)
+	self.Equal(uint64(1), callCount)
+	self.assertStats()
 }
 
 func (self *CacheTestSuite) TestOnce_withoutValueAndNil() {
-	var callCount int64
+	var callCount uint64
 	ctx := context.Background()
 	perform(100, func(int) {
+		hit := true
 		err := self.cache.Once(&Item{
 			Ctx: ctx,
 			Key: testKey,
 			Do: func(*Item) (any, error) {
 				time.Sleep(100 * time.Millisecond)
-				atomic.AddInt64(&callCount, 1)
+				atomic.AddUint64(&callCount, 1)
+				self.cacheMiss()
+				hit = false
 				return nil, nil
 			},
 		})
 		self.Require().NoError(err)
+		if hit && self.cache.statsEnabled {
+			self.stats.localHit()
+		}
 	})
-	self.Equal(int64(1), callCount)
+	self.Equal(uint64(1), callCount)
+	self.assertStats()
 }
 
 func (self *CacheTestSuite) TestOnce_withoutValueAndErr() {
-	var callCount int64
+	var callCount uint64
 	ctx := context.Background()
+	errStub := errors.New("error stub")
 	perform(100, func(int) {
 		err := self.cache.Once(&Item{
 			Ctx: ctx,
 			Key: testKey,
 			Do: func(*Item) (any, error) {
 				time.Sleep(100 * time.Millisecond)
-				atomic.AddInt64(&callCount, 1)
-				return nil, errors.New("error stub")
+				atomic.AddUint64(&callCount, 1)
+				self.cacheMiss()
+				return nil, errStub
 			},
 		})
-		self.ErrorContains(err, "error stub")
+		self.ErrorIs(err, errStub)
 	})
-	self.Equal(int64(1), callCount)
+	self.Equal(uint64(1), callCount)
+	self.assertStats()
 }
 
 func (self *CacheTestSuite) TestOnce_doesntCacheErr() {
-	var callCount int64
+	var callCount uint64
 	ctx := context.Background()
+	errStub := errors.New("error stub")
 	do := func(sleep time.Duration) (int, error) {
 		var n int
+		hit := true
 		err := self.cache.Once(&Item{
 			Ctx:   ctx,
 			Key:   testKey,
 			Value: &n,
 			Do: func(*Item) (any, error) {
 				time.Sleep(sleep)
-				n := atomic.AddInt64(&callCount, 1)
+				self.cacheMiss()
+				hit = false
+				n := atomic.AddUint64(&callCount, 1)
 				if n == 1 {
-					return nil, errors.New("error stub")
+					return nil, errStub
 				}
 				return 42, nil
 			},
 		})
 		if err != nil {
 			return 0, err
+		} else if hit && self.cache.statsEnabled {
+			self.stats.localHit()
 		}
 		return n, nil
 	}
 
 	perform(100, func(int) {
 		n, err := do(100 * time.Millisecond)
-		self.ErrorContains(err, "error stub")
+		self.ErrorIs(err, errStub)
 		self.Equal(0, n)
 	})
 
@@ -224,7 +272,8 @@ func (self *CacheTestSuite) TestOnce_doesntCacheErr() {
 		self.Equal(42, n)
 	})
 
-	self.Equal(int64(2), callCount)
+	self.Equal(uint64(2), callCount)
+	self.assertStats()
 }
 
 func (self *CacheTestSuite) TestOnce_skipSetTTLNeg() {
@@ -238,6 +287,7 @@ func (self *CacheTestSuite) TestOnce_skipSetTTLNeg() {
 		Value: &value,
 		Do: func(item *Item) (any, error) {
 			item.TTL = -1
+			self.cacheMiss()
 			return "hello", nil
 		},
 	}))
@@ -247,6 +297,7 @@ func (self *CacheTestSuite) TestOnce_skipSetTTLNeg() {
 		exists := valueNoError[int64](self.T())(self.rdb.Exists(ctx, key).Result())
 		self.Equal(int64(0), exists)
 	}
+	self.assertStats()
 }
 
 func TestOnce_errUnmarshal(t *testing.T) {

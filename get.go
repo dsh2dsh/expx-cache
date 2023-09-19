@@ -63,7 +63,6 @@ func (self *Cache) getBytes(
 		self.addMiss()
 		return nil, nil
 	}
-
 	self.addHit()
 
 	if !skipLocalCache && self.localCache != nil {

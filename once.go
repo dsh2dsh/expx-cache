@@ -34,12 +34,15 @@ func (self *Cache) getSetItemBytesOnce(item *Item) ([]byte, bool, error) {
 	if self.localCache != nil {
 		b := self.localCache.Get(item.Key)
 		if b != nil {
+			self.addLocalHit()
 			return b, true, nil
 		}
+		// We don't need double addLocalMiss() here, because getBytes does it.
 	}
 
-	fromCache := false
+	fromCache, localHit := false, true
 	v, err, _ := self.group.Do(item.Key, func() (any, error) {
+		localHit = false
 		b, err := self.getBytes(item.Context(), item.Key, item.SkipLocalCache)
 		if err == nil && b != nil {
 			fromCache = true
@@ -52,8 +55,11 @@ func (self *Cache) getSetItemBytesOnce(item *Item) ([]byte, bool, error) {
 		}
 		return b, nil
 	})
+
 	if err != nil {
 		return nil, false, fmt.Errorf("do: %w", err)
+	} else if localHit {
+		self.addLocalHit()
 	}
 
 	return v.([]byte), fromCache, nil

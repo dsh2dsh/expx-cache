@@ -32,6 +32,7 @@ type CacheTestSuite struct {
 
 	cache *Cache
 	rdb   redis.Cmdable
+	stats *Stats
 
 	newCache func() *Cache
 }
@@ -44,6 +45,7 @@ func (self *CacheTestSuite) SetupSuite() {
 
 func (self *CacheTestSuite) SetupTest() {
 	self.cache = self.newCache()
+	self.stats = &Stats{}
 }
 
 func (self *CacheTestSuite) TearDownTest() {
@@ -61,6 +63,44 @@ func (self *CacheTestSuite) CacheableValue() *CacheableObject {
 
 // --------------------------------------------------
 
+func (self *CacheTestSuite) cacheHit() {
+	if self.cache.statsEnabled {
+		if self.cache.localCache != nil {
+			self.stats.localHit()
+		} else if self.cache.redis != nil {
+			self.stats.hit()
+		}
+	}
+}
+
+func (self *CacheTestSuite) cacheMiss() {
+	if self.cache.statsEnabled {
+		if self.cache.localCache != nil {
+			self.stats.localMiss()
+		}
+		if self.cache.redis != nil {
+			self.stats.miss()
+		}
+
+	}
+}
+
+func (self *CacheTestSuite) cacheHitLocalMiss() {
+	if self.cache.statsEnabled {
+		self.stats.hit()
+		if self.cache.localCache != nil {
+			self.stats.localMiss()
+		}
+	}
+}
+
+func (self *CacheTestSuite) assertStats() {
+	s := self.cache.Stats()
+	self.Equal(self.stats, &s, "unexpected cache Stats")
+}
+
+// --------------------------------------------------
+
 func (self *CacheTestSuite) TestGetSet_nil() {
 	err := self.cache.Set(&Item{
 		Key: testKey,
@@ -70,9 +110,11 @@ func (self *CacheTestSuite) TestGetSet_nil() {
 
 	ctx := context.Background()
 	self.False(valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, nil)))
-
+	self.cacheMiss()
 	self.False(valueNoError[bool](self.T())(self.cache.Exists(ctx, testKey)),
 		"nil value shouldn't be cached")
+	self.cacheMiss()
+	self.assertStats()
 }
 
 func (self *CacheTestSuite) TestGetSet_data() {
@@ -89,8 +131,11 @@ func (self *CacheTestSuite) TestGetSet_data() {
 	gotValue := self.CacheableValue()
 	self.Require().True(
 		valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, gotValue)))
+	self.cacheHit()
 	self.Equal(val, gotValue)
 	self.True(self.cache.Exists(ctx, testKey))
+	self.cacheHit()
+	self.assertStats()
 }
 
 func (self *CacheTestSuite) TestGetSet_stringAsIs() {
@@ -106,7 +151,9 @@ func (self *CacheTestSuite) TestGetSet_stringAsIs() {
 	var gotValue string
 	self.Require().True(
 		valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, &gotValue)))
+	self.cacheHit()
 	self.Equal(value, gotValue)
+	self.assertStats()
 }
 
 func (self *CacheTestSuite) TestGetSet_bytesAsIs() {
@@ -122,7 +169,9 @@ func (self *CacheTestSuite) TestGetSet_bytesAsIs() {
 	var gotValue []byte
 	self.Require().True(
 		valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, &gotValue)))
+	self.cacheHit()
 	self.Equal(value, gotValue)
+	self.assertStats()
 }
 
 // --------------------------------------------------
@@ -198,6 +247,7 @@ func TestCacheSuite(t *testing.T) {
 	curDB := cfgDB
 
 	for _, tt := range tests {
+		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			skipRedisTests(t, tt.name, tt.needsRedis, rdb != nil)
 			var r redis.Cmdable
