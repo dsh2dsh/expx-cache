@@ -31,11 +31,8 @@ func (self *Cache) DeleteFromLocalCache(keys ...string) {
 
 func (self *Cache) DeleteFromRedis(ctx context.Context, keys ...string) error {
 	if self.redis != nil {
-		for low := 0; low < len(keys); low += self.batchSize {
-			high := min(len(keys), low+self.batchSize)
-			if err := self.redis.Del(ctx, keys[low:high]...); err != nil {
-				return fmt.Errorf("redis delete: %w", err)
-			}
+		if err := self.redis.Del(ctx, keys...); err != nil {
+			return fmt.Errorf("redis delete: %w", err)
 		}
 	}
 	return nil

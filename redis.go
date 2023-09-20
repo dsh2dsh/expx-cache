@@ -9,15 +9,27 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
+const defaultBatchSize = 1000
+
 type RedisGetter func(ctx context.Context, rdb redis.Cmdable, key string) ([]byte, error)
 
 func NewStdRedis(rdb redis.Cmdable) *StdRedis {
-	return &StdRedis{rdb: rdb, getter: defaultRedisGetter}
+	return &StdRedis{
+		rdb:       rdb,
+		getter:    defaultRedisGetter,
+		batchSize: defaultBatchSize,
+	}
 }
 
 type StdRedis struct {
-	rdb    redis.Cmdable
-	getter RedisGetter
+	rdb       redis.Cmdable
+	getter    RedisGetter
+	batchSize int
+}
+
+func (self *StdRedis) WithBatchSize(size int) *StdRedis {
+	self.batchSize = size
+	return self
 }
 
 // --------------------------------------------------
@@ -50,8 +62,11 @@ func (self *StdRedis) Get(ctx context.Context, key string) ([]byte, error) {
 // --------------------------------------------------
 
 func (self *StdRedis) Del(ctx context.Context, keys ...string) error {
-	if err := self.rdb.Del(ctx, keys...).Err(); err != nil {
-		return fmt.Errorf("delete keys from redis: %w", err)
+	for low := 0; low < len(keys); low += self.batchSize {
+		high := min(len(keys), low+self.batchSize)
+		if err := self.rdb.Del(ctx, keys[low:high]...).Err(); err != nil {
+			return fmt.Errorf("redis del: %w", err)
+		}
 	}
 	return nil
 }

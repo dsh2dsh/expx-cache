@@ -485,14 +485,3 @@ func TestCache_ItemTTL(t *testing.T) {
 		})
 	}
 }
-
-func TestWithBatchSize(t *testing.T) {
-	cache := New()
-	require.NotNil(t, cache)
-
-	assert.Equal(t, defaultBatchSize, cache.batchSize)
-
-	batchSize := cache.batchSize * 2
-	assert.Same(t, cache, cache.WithBatchSize(batchSize))
-	assert.Equal(t, batchSize, cache.batchSize)
-}

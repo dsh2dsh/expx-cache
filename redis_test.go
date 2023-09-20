@@ -113,3 +113,14 @@ func TestRedisClient_errors(t *testing.T) {
 		})
 	}
 }
+
+func TestStdRedis_WithBatchSize(t *testing.T) {
+	redisCache := NewStdRedis(nil)
+	require.NotNil(t, redisCache)
+
+	assert.Equal(t, defaultBatchSize, redisCache.batchSize)
+
+	batchSize := redisCache.batchSize * 2
+	assert.Same(t, redisCache, redisCache.WithBatchSize(batchSize))
+	assert.Equal(t, batchSize, redisCache.batchSize)
+}
