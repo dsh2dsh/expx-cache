@@ -46,13 +46,14 @@ func (self *TinyLFU) Set(key string, b []byte) {
 	if b == nil {
 		return
 	}
-	self.mu.Lock()
-	defer self.mu.Unlock()
 
 	ttl := self.ttl
 	if self.offset > 0 {
 		ttl += time.Duration(self.rand.Int63n(int64(self.offset)))
 	}
+
+	self.mu.Lock()
+	defer self.mu.Unlock()
 
 	self.lfu.Set(&tinylfu.Item{
 		Key:      key,
