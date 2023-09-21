@@ -931,52 +931,6 @@ func (_c *MockCmdable_BFReserve_Call) RunAndReturn(run func(context.Context, str
 	return _c
 }
 
-// BFReserveArgs provides a mock function with given fields: ctx, key, options
-func (_m *MockCmdable) BFReserveArgs(ctx context.Context, key string, options *redis.BFReserveOptions) *redis.StatusCmd {
-	ret := _m.Called(ctx, key, options)
-
-	var r0 *redis.StatusCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.BFReserveOptions) *redis.StatusCmd); ok {
-		r0 = rf(ctx, key, options)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.StatusCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_BFReserveArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BFReserveArgs'
-type MockCmdable_BFReserveArgs_Call struct {
-	*mock.Call
-}
-
-// BFReserveArgs is a helper method to define mock.On call
-//   - ctx context.Context
-//   - key string
-//   - options *redis.BFReserveOptions
-func (_e *MockCmdable_Expecter) BFReserveArgs(ctx interface{}, key interface{}, options interface{}) *MockCmdable_BFReserveArgs_Call {
-	return &MockCmdable_BFReserveArgs_Call{Call: _e.mock.On("BFReserveArgs", ctx, key, options)}
-}
-
-func (_c *MockCmdable_BFReserveArgs_Call) Run(run func(ctx context.Context, key string, options *redis.BFReserveOptions)) *MockCmdable_BFReserveArgs_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.BFReserveOptions))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_BFReserveArgs_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_BFReserveArgs_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_BFReserveArgs_Call) RunAndReturn(run func(context.Context, string, *redis.BFReserveOptions) *redis.StatusCmd) *MockCmdable_BFReserveArgs_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // BFReserveExpansion provides a mock function with given fields: ctx, key, errorRate, capacity, expansion
 func (_m *MockCmdable) BFReserveExpansion(ctx context.Context, key string, errorRate float64, capacity int64, expansion int64) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, errorRate, capacity, expansion)
@@ -1068,6 +1022,52 @@ func (_c *MockCmdable_BFReserveNonScaling_Call) Return(_a0 *redis.StatusCmd) *Mo
 }
 
 func (_c *MockCmdable_BFReserveNonScaling_Call) RunAndReturn(run func(context.Context, string, float64, int64) *redis.StatusCmd) *MockCmdable_BFReserveNonScaling_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// BFReserveWithArgs provides a mock function with given fields: ctx, key, options
+func (_m *MockCmdable) BFReserveWithArgs(ctx context.Context, key string, options *redis.BFReserveOptions) *redis.StatusCmd {
+	ret := _m.Called(ctx, key, options)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.BFReserveOptions) *redis.StatusCmd); ok {
+		r0 = rf(ctx, key, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_BFReserveWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BFReserveWithArgs'
+type MockCmdable_BFReserveWithArgs_Call struct {
+	*mock.Call
+}
+
+// BFReserveWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - options *redis.BFReserveOptions
+func (_e *MockCmdable_Expecter) BFReserveWithArgs(ctx interface{}, key interface{}, options interface{}) *MockCmdable_BFReserveWithArgs_Call {
+	return &MockCmdable_BFReserveWithArgs_Call{Call: _e.mock.On("BFReserveWithArgs", ctx, key, options)}
+}
+
+func (_c *MockCmdable_BFReserveWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.BFReserveOptions)) *MockCmdable_BFReserveWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(*redis.BFReserveOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_BFReserveWithArgs_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_BFReserveWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_BFReserveWithArgs_Call) RunAndReturn(run func(context.Context, string, *redis.BFReserveOptions) *redis.StatusCmd) *MockCmdable_BFReserveWithArgs_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -1666,444 +1666,6 @@ func (_c *MockCmdable_BgSave_Call) RunAndReturn(run func(context.Context) *redis
 	return _c
 }
 
-// BitCount provides a mock function with given fields: ctx, key, bitCount
-func (_m *MockCmdable) BitCount(ctx context.Context, key string, bitCount *redis.BitCount) *redis.IntCmd {
-	ret := _m.Called(ctx, key, bitCount)
-
-	var r0 *redis.IntCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.BitCount) *redis.IntCmd); ok {
-		r0 = rf(ctx, key, bitCount)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_BitCount_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitCount'
-type MockCmdable_BitCount_Call struct {
-	*mock.Call
-}
-
-// BitCount is a helper method to define mock.On call
-//   - ctx context.Context
-//   - key string
-//   - bitCount *redis.BitCount
-func (_e *MockCmdable_Expecter) BitCount(ctx interface{}, key interface{}, bitCount interface{}) *MockCmdable_BitCount_Call {
-	return &MockCmdable_BitCount_Call{Call: _e.mock.On("BitCount", ctx, key, bitCount)}
-}
-
-func (_c *MockCmdable_BitCount_Call) Run(run func(ctx context.Context, key string, bitCount *redis.BitCount)) *MockCmdable_BitCount_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.BitCount))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_BitCount_Call) Return(_a0 *redis.IntCmd) *MockCmdable_BitCount_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_BitCount_Call) RunAndReturn(run func(context.Context, string, *redis.BitCount) *redis.IntCmd) *MockCmdable_BitCount_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// BitField provides a mock function with given fields: ctx, key, args
-func (_m *MockCmdable) BitField(ctx context.Context, key string, args ...interface{}) *redis.IntSliceCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, args...)
-	ret := _m.Called(_ca...)
-
-	var r0 *redis.IntSliceCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntSliceCmd); ok {
-		r0 = rf(ctx, key, args...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntSliceCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_BitField_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitField'
-type MockCmdable_BitField_Call struct {
-	*mock.Call
-}
-
-// BitField is a helper method to define mock.On call
-//   - ctx context.Context
-//   - key string
-//   - args ...interface{}
-func (_e *MockCmdable_Expecter) BitField(ctx interface{}, key interface{}, args ...interface{}) *MockCmdable_BitField_Call {
-	return &MockCmdable_BitField_Call{Call: _e.mock.On("BitField",
-		append([]interface{}{ctx, key}, args...)...)}
-}
-
-func (_c *MockCmdable_BitField_Call) Run(run func(ctx context.Context, key string, args ...interface{})) *MockCmdable_BitField_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
-	})
-	return _c
-}
-
-func (_c *MockCmdable_BitField_Call) Return(_a0 *redis.IntSliceCmd) *MockCmdable_BitField_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_BitField_Call) RunAndReturn(run func(context.Context, string, ...interface{}) *redis.IntSliceCmd) *MockCmdable_BitField_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// BitOpAnd provides a mock function with given fields: ctx, destKey, keys
-func (_m *MockCmdable) BitOpAnd(ctx context.Context, destKey string, keys ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
-	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, destKey)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
-
-	var r0 *redis.IntCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
-		r0 = rf(ctx, destKey, keys...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_BitOpAnd_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitOpAnd'
-type MockCmdable_BitOpAnd_Call struct {
-	*mock.Call
-}
-
-// BitOpAnd is a helper method to define mock.On call
-//   - ctx context.Context
-//   - destKey string
-//   - keys ...string
-func (_e *MockCmdable_Expecter) BitOpAnd(ctx interface{}, destKey interface{}, keys ...interface{}) *MockCmdable_BitOpAnd_Call {
-	return &MockCmdable_BitOpAnd_Call{Call: _e.mock.On("BitOpAnd",
-		append([]interface{}{ctx, destKey}, keys...)...)}
-}
-
-func (_c *MockCmdable_BitOpAnd_Call) Run(run func(ctx context.Context, destKey string, keys ...string)) *MockCmdable_BitOpAnd_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
-	})
-	return _c
-}
-
-func (_c *MockCmdable_BitOpAnd_Call) Return(_a0 *redis.IntCmd) *MockCmdable_BitOpAnd_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_BitOpAnd_Call) RunAndReturn(run func(context.Context, string, ...string) *redis.IntCmd) *MockCmdable_BitOpAnd_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// BitOpNot provides a mock function with given fields: ctx, destKey, key
-func (_m *MockCmdable) BitOpNot(ctx context.Context, destKey string, key string) *redis.IntCmd {
-	ret := _m.Called(ctx, destKey, key)
-
-	var r0 *redis.IntCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
-		r0 = rf(ctx, destKey, key)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_BitOpNot_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitOpNot'
-type MockCmdable_BitOpNot_Call struct {
-	*mock.Call
-}
-
-// BitOpNot is a helper method to define mock.On call
-//   - ctx context.Context
-//   - destKey string
-//   - key string
-func (_e *MockCmdable_Expecter) BitOpNot(ctx interface{}, destKey interface{}, key interface{}) *MockCmdable_BitOpNot_Call {
-	return &MockCmdable_BitOpNot_Call{Call: _e.mock.On("BitOpNot", ctx, destKey, key)}
-}
-
-func (_c *MockCmdable_BitOpNot_Call) Run(run func(ctx context.Context, destKey string, key string)) *MockCmdable_BitOpNot_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_BitOpNot_Call) Return(_a0 *redis.IntCmd) *MockCmdable_BitOpNot_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_BitOpNot_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntCmd) *MockCmdable_BitOpNot_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// BitOpOr provides a mock function with given fields: ctx, destKey, keys
-func (_m *MockCmdable) BitOpOr(ctx context.Context, destKey string, keys ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
-	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, destKey)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
-
-	var r0 *redis.IntCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
-		r0 = rf(ctx, destKey, keys...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_BitOpOr_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitOpOr'
-type MockCmdable_BitOpOr_Call struct {
-	*mock.Call
-}
-
-// BitOpOr is a helper method to define mock.On call
-//   - ctx context.Context
-//   - destKey string
-//   - keys ...string
-func (_e *MockCmdable_Expecter) BitOpOr(ctx interface{}, destKey interface{}, keys ...interface{}) *MockCmdable_BitOpOr_Call {
-	return &MockCmdable_BitOpOr_Call{Call: _e.mock.On("BitOpOr",
-		append([]interface{}{ctx, destKey}, keys...)...)}
-}
-
-func (_c *MockCmdable_BitOpOr_Call) Run(run func(ctx context.Context, destKey string, keys ...string)) *MockCmdable_BitOpOr_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
-	})
-	return _c
-}
-
-func (_c *MockCmdable_BitOpOr_Call) Return(_a0 *redis.IntCmd) *MockCmdable_BitOpOr_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_BitOpOr_Call) RunAndReturn(run func(context.Context, string, ...string) *redis.IntCmd) *MockCmdable_BitOpOr_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// BitOpXor provides a mock function with given fields: ctx, destKey, keys
-func (_m *MockCmdable) BitOpXor(ctx context.Context, destKey string, keys ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
-	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, destKey)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
-
-	var r0 *redis.IntCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
-		r0 = rf(ctx, destKey, keys...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_BitOpXor_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitOpXor'
-type MockCmdable_BitOpXor_Call struct {
-	*mock.Call
-}
-
-// BitOpXor is a helper method to define mock.On call
-//   - ctx context.Context
-//   - destKey string
-//   - keys ...string
-func (_e *MockCmdable_Expecter) BitOpXor(ctx interface{}, destKey interface{}, keys ...interface{}) *MockCmdable_BitOpXor_Call {
-	return &MockCmdable_BitOpXor_Call{Call: _e.mock.On("BitOpXor",
-		append([]interface{}{ctx, destKey}, keys...)...)}
-}
-
-func (_c *MockCmdable_BitOpXor_Call) Run(run func(ctx context.Context, destKey string, keys ...string)) *MockCmdable_BitOpXor_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
-	})
-	return _c
-}
-
-func (_c *MockCmdable_BitOpXor_Call) Return(_a0 *redis.IntCmd) *MockCmdable_BitOpXor_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_BitOpXor_Call) RunAndReturn(run func(context.Context, string, ...string) *redis.IntCmd) *MockCmdable_BitOpXor_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// BitPos provides a mock function with given fields: ctx, key, bit, pos
-func (_m *MockCmdable) BitPos(ctx context.Context, key string, bit int64, pos ...int64) *redis.IntCmd {
-	_va := make([]interface{}, len(pos))
-	for _i := range pos {
-		_va[_i] = pos[_i]
-	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key, bit)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
-
-	var r0 *redis.IntCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, int64, ...int64) *redis.IntCmd); ok {
-		r0 = rf(ctx, key, bit, pos...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_BitPos_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitPos'
-type MockCmdable_BitPos_Call struct {
-	*mock.Call
-}
-
-// BitPos is a helper method to define mock.On call
-//   - ctx context.Context
-//   - key string
-//   - bit int64
-//   - pos ...int64
-func (_e *MockCmdable_Expecter) BitPos(ctx interface{}, key interface{}, bit interface{}, pos ...interface{}) *MockCmdable_BitPos_Call {
-	return &MockCmdable_BitPos_Call{Call: _e.mock.On("BitPos",
-		append([]interface{}{ctx, key, bit}, pos...)...)}
-}
-
-func (_c *MockCmdable_BitPos_Call) Run(run func(ctx context.Context, key string, bit int64, pos ...int64)) *MockCmdable_BitPos_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]int64, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(int64)
-			}
-		}
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), variadicArgs...)
-	})
-	return _c
-}
-
-func (_c *MockCmdable_BitPos_Call) Return(_a0 *redis.IntCmd) *MockCmdable_BitPos_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_BitPos_Call) RunAndReturn(run func(context.Context, string, int64, ...int64) *redis.IntCmd) *MockCmdable_BitPos_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// BitPosSpan provides a mock function with given fields: ctx, key, bit, start, end, span
-func (_m *MockCmdable) BitPosSpan(ctx context.Context, key string, bit int8, start int64, end int64, span string) *redis.IntCmd {
-	ret := _m.Called(ctx, key, bit, start, end, span)
-
-	var r0 *redis.IntCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, int8, int64, int64, string) *redis.IntCmd); ok {
-		r0 = rf(ctx, key, bit, start, end, span)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_BitPosSpan_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitPosSpan'
-type MockCmdable_BitPosSpan_Call struct {
-	*mock.Call
-}
-
-// BitPosSpan is a helper method to define mock.On call
-//   - ctx context.Context
-//   - key string
-//   - bit int8
-//   - start int64
-//   - end int64
-//   - span string
-func (_e *MockCmdable_Expecter) BitPosSpan(ctx interface{}, key interface{}, bit interface{}, start interface{}, end interface{}, span interface{}) *MockCmdable_BitPosSpan_Call {
-	return &MockCmdable_BitPosSpan_Call{Call: _e.mock.On("BitPosSpan", ctx, key, bit, start, end, span)}
-}
-
-func (_c *MockCmdable_BitPosSpan_Call) Run(run func(ctx context.Context, key string, bit int8, start int64, end int64, span string)) *MockCmdable_BitPosSpan_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int8), args[3].(int64), args[4].(int64), args[5].(string))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_BitPosSpan_Call) Return(_a0 *redis.IntCmd) *MockCmdable_BitPosSpan_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_BitPosSpan_Call) RunAndReturn(run func(context.Context, string, int8, int64, int64, string) *redis.IntCmd) *MockCmdable_BitPosSpan_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // CFAdd provides a mock function with given fields: ctx, key, element
 func (_m *MockCmdable) CFAdd(ctx context.Context, key string, element interface{}) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, element)
@@ -2642,52 +2204,6 @@ func (_c *MockCmdable_CFReserve_Call) RunAndReturn(run func(context.Context, str
 	return _c
 }
 
-// CFReserveArgs provides a mock function with given fields: ctx, key, options
-func (_m *MockCmdable) CFReserveArgs(ctx context.Context, key string, options *redis.CFReserveOptions) *redis.StatusCmd {
-	ret := _m.Called(ctx, key, options)
-
-	var r0 *redis.StatusCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.CFReserveOptions) *redis.StatusCmd); ok {
-		r0 = rf(ctx, key, options)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.StatusCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_CFReserveArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CFReserveArgs'
-type MockCmdable_CFReserveArgs_Call struct {
-	*mock.Call
-}
-
-// CFReserveArgs is a helper method to define mock.On call
-//   - ctx context.Context
-//   - key string
-//   - options *redis.CFReserveOptions
-func (_e *MockCmdable_Expecter) CFReserveArgs(ctx interface{}, key interface{}, options interface{}) *MockCmdable_CFReserveArgs_Call {
-	return &MockCmdable_CFReserveArgs_Call{Call: _e.mock.On("CFReserveArgs", ctx, key, options)}
-}
-
-func (_c *MockCmdable_CFReserveArgs_Call) Run(run func(ctx context.Context, key string, options *redis.CFReserveOptions)) *MockCmdable_CFReserveArgs_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.CFReserveOptions))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_CFReserveArgs_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_CFReserveArgs_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_CFReserveArgs_Call) RunAndReturn(run func(context.Context, string, *redis.CFReserveOptions) *redis.StatusCmd) *MockCmdable_CFReserveArgs_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // CFReserveBucketSize provides a mock function with given fields: ctx, key, capacity, bucketsize
 func (_m *MockCmdable) CFReserveBucketSize(ctx context.Context, key string, capacity int64, bucketsize int64) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, capacity, bucketsize)
@@ -2825,6 +2341,52 @@ func (_c *MockCmdable_CFReserveMaxIterations_Call) Return(_a0 *redis.StatusCmd) 
 }
 
 func (_c *MockCmdable_CFReserveMaxIterations_Call) RunAndReturn(run func(context.Context, string, int64, int64) *redis.StatusCmd) *MockCmdable_CFReserveMaxIterations_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// CFReserveWithArgs provides a mock function with given fields: ctx, key, options
+func (_m *MockCmdable) CFReserveWithArgs(ctx context.Context, key string, options *redis.CFReserveOptions) *redis.StatusCmd {
+	ret := _m.Called(ctx, key, options)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.CFReserveOptions) *redis.StatusCmd); ok {
+		r0 = rf(ctx, key, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_CFReserveWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CFReserveWithArgs'
+type MockCmdable_CFReserveWithArgs_Call struct {
+	*mock.Call
+}
+
+// CFReserveWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - options *redis.CFReserveOptions
+func (_e *MockCmdable_Expecter) CFReserveWithArgs(ctx interface{}, key interface{}, options interface{}) *MockCmdable_CFReserveWithArgs_Call {
+	return &MockCmdable_CFReserveWithArgs_Call{Call: _e.mock.On("CFReserveWithArgs", ctx, key, options)}
+}
+
+func (_c *MockCmdable_CFReserveWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.CFReserveOptions)) *MockCmdable_CFReserveWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(*redis.CFReserveOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_CFReserveWithArgs_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_CFReserveWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_CFReserveWithArgs_Call) RunAndReturn(run func(context.Context, string, *redis.CFReserveOptions) *redis.StatusCmd) *MockCmdable_CFReserveWithArgs_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -7456,52 +7018,6 @@ func (_c *MockCmdable_Get_Call) Return(_a0 *redis.StringCmd) *MockCmdable_Get_Ca
 }
 
 func (_c *MockCmdable_Get_Call) RunAndReturn(run func(context.Context, string) *redis.StringCmd) *MockCmdable_Get_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// GetBit provides a mock function with given fields: ctx, key, offset
-func (_m *MockCmdable) GetBit(ctx context.Context, key string, offset int64) *redis.IntCmd {
-	ret := _m.Called(ctx, key, offset)
-
-	var r0 *redis.IntCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, int64) *redis.IntCmd); ok {
-		r0 = rf(ctx, key, offset)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_GetBit_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetBit'
-type MockCmdable_GetBit_Call struct {
-	*mock.Call
-}
-
-// GetBit is a helper method to define mock.On call
-//   - ctx context.Context
-//   - key string
-//   - offset int64
-func (_e *MockCmdable_Expecter) GetBit(ctx interface{}, key interface{}, offset interface{}) *MockCmdable_GetBit_Call {
-	return &MockCmdable_GetBit_Call{Call: _e.mock.On("GetBit", ctx, key, offset)}
-}
-
-func (_c *MockCmdable_GetBit_Call) Run(run func(ctx context.Context, key string, offset int64)) *MockCmdable_GetBit_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_GetBit_Call) Return(_a0 *redis.IntCmd) *MockCmdable_GetBit_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_GetBit_Call) RunAndReturn(run func(context.Context, string, int64) *redis.IntCmd) *MockCmdable_GetBit_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -13104,53 +12620,6 @@ func (_c *MockCmdable_SetArgs_Call) RunAndReturn(run func(context.Context, strin
 	return _c
 }
 
-// SetBit provides a mock function with given fields: ctx, key, offset, value
-func (_m *MockCmdable) SetBit(ctx context.Context, key string, offset int64, value int) *redis.IntCmd {
-	ret := _m.Called(ctx, key, offset, value)
-
-	var r0 *redis.IntCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int) *redis.IntCmd); ok {
-		r0 = rf(ctx, key, offset, value)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_SetBit_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetBit'
-type MockCmdable_SetBit_Call struct {
-	*mock.Call
-}
-
-// SetBit is a helper method to define mock.On call
-//   - ctx context.Context
-//   - key string
-//   - offset int64
-//   - value int
-func (_e *MockCmdable_Expecter) SetBit(ctx interface{}, key interface{}, offset interface{}, value interface{}) *MockCmdable_SetBit_Call {
-	return &MockCmdable_SetBit_Call{Call: _e.mock.On("SetBit", ctx, key, offset, value)}
-}
-
-func (_c *MockCmdable_SetBit_Call) Run(run func(ctx context.Context, key string, offset int64, value int)) *MockCmdable_SetBit_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_SetBit_Call) Return(_a0 *redis.IntCmd) *MockCmdable_SetBit_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_SetBit_Call) RunAndReturn(run func(context.Context, string, int64, int) *redis.IntCmd) *MockCmdable_SetBit_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // SetEx provides a mock function with given fields: ctx, key, value, expiration
 func (_m *MockCmdable) SetEx(ctx context.Context, key string, value interface{}, expiration time.Duration) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, value, expiration)
@@ -15006,6 +14475,1357 @@ func (_c *MockCmdable_TFunctionLoadArgs_Call) RunAndReturn(run func(context.Cont
 	return _c
 }
 
+// TSAdd provides a mock function with given fields: ctx, key, timestamp, value
+func (_m *MockCmdable) TSAdd(ctx context.Context, key string, timestamp interface{}, value float64) *redis.IntCmd {
+	ret := _m.Called(ctx, key, timestamp, value)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, float64) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, timestamp, value)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSAdd_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSAdd'
+type MockCmdable_TSAdd_Call struct {
+	*mock.Call
+}
+
+// TSAdd is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - timestamp interface{}
+//   - value float64
+func (_e *MockCmdable_Expecter) TSAdd(ctx interface{}, key interface{}, timestamp interface{}, value interface{}) *MockCmdable_TSAdd_Call {
+	return &MockCmdable_TSAdd_Call{Call: _e.mock.On("TSAdd", ctx, key, timestamp, value)}
+}
+
+func (_c *MockCmdable_TSAdd_Call) Run(run func(ctx context.Context, key string, timestamp interface{}, value float64)) *MockCmdable_TSAdd_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(float64))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSAdd_Call) Return(_a0 *redis.IntCmd) *MockCmdable_TSAdd_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSAdd_Call) RunAndReturn(run func(context.Context, string, interface{}, float64) *redis.IntCmd) *MockCmdable_TSAdd_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSAddWithArgs provides a mock function with given fields: ctx, key, timestamp, value, options
+func (_m *MockCmdable) TSAddWithArgs(ctx context.Context, key string, timestamp interface{}, value float64, options *redis.TSOptions) *redis.IntCmd {
+	ret := _m.Called(ctx, key, timestamp, value, options)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, float64, *redis.TSOptions) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, timestamp, value, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSAddWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSAddWithArgs'
+type MockCmdable_TSAddWithArgs_Call struct {
+	*mock.Call
+}
+
+// TSAddWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - timestamp interface{}
+//   - value float64
+//   - options *redis.TSOptions
+func (_e *MockCmdable_Expecter) TSAddWithArgs(ctx interface{}, key interface{}, timestamp interface{}, value interface{}, options interface{}) *MockCmdable_TSAddWithArgs_Call {
+	return &MockCmdable_TSAddWithArgs_Call{Call: _e.mock.On("TSAddWithArgs", ctx, key, timestamp, value, options)}
+}
+
+func (_c *MockCmdable_TSAddWithArgs_Call) Run(run func(ctx context.Context, key string, timestamp interface{}, value float64, options *redis.TSOptions)) *MockCmdable_TSAddWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(float64), args[4].(*redis.TSOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSAddWithArgs_Call) Return(_a0 *redis.IntCmd) *MockCmdable_TSAddWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSAddWithArgs_Call) RunAndReturn(run func(context.Context, string, interface{}, float64, *redis.TSOptions) *redis.IntCmd) *MockCmdable_TSAddWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSAlter provides a mock function with given fields: ctx, key, options
+func (_m *MockCmdable) TSAlter(ctx context.Context, key string, options *redis.TSAlterOptions) *redis.StatusCmd {
+	ret := _m.Called(ctx, key, options)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.TSAlterOptions) *redis.StatusCmd); ok {
+		r0 = rf(ctx, key, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSAlter_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSAlter'
+type MockCmdable_TSAlter_Call struct {
+	*mock.Call
+}
+
+// TSAlter is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - options *redis.TSAlterOptions
+func (_e *MockCmdable_Expecter) TSAlter(ctx interface{}, key interface{}, options interface{}) *MockCmdable_TSAlter_Call {
+	return &MockCmdable_TSAlter_Call{Call: _e.mock.On("TSAlter", ctx, key, options)}
+}
+
+func (_c *MockCmdable_TSAlter_Call) Run(run func(ctx context.Context, key string, options *redis.TSAlterOptions)) *MockCmdable_TSAlter_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(*redis.TSAlterOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSAlter_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_TSAlter_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSAlter_Call) RunAndReturn(run func(context.Context, string, *redis.TSAlterOptions) *redis.StatusCmd) *MockCmdable_TSAlter_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSCreate provides a mock function with given fields: ctx, key
+func (_m *MockCmdable) TSCreate(ctx context.Context, key string) *redis.StatusCmd {
+	ret := _m.Called(ctx, key)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StatusCmd); ok {
+		r0 = rf(ctx, key)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSCreate_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSCreate'
+type MockCmdable_TSCreate_Call struct {
+	*mock.Call
+}
+
+// TSCreate is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+func (_e *MockCmdable_Expecter) TSCreate(ctx interface{}, key interface{}) *MockCmdable_TSCreate_Call {
+	return &MockCmdable_TSCreate_Call{Call: _e.mock.On("TSCreate", ctx, key)}
+}
+
+func (_c *MockCmdable_TSCreate_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_TSCreate_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSCreate_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_TSCreate_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSCreate_Call) RunAndReturn(run func(context.Context, string) *redis.StatusCmd) *MockCmdable_TSCreate_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSCreateRule provides a mock function with given fields: ctx, sourceKey, destKey, aggregator, bucketDuration
+func (_m *MockCmdable) TSCreateRule(ctx context.Context, sourceKey string, destKey string, aggregator redis.Aggregator, bucketDuration int) *redis.StatusCmd {
+	ret := _m.Called(ctx, sourceKey, destKey, aggregator, bucketDuration)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, redis.Aggregator, int) *redis.StatusCmd); ok {
+		r0 = rf(ctx, sourceKey, destKey, aggregator, bucketDuration)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSCreateRule_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSCreateRule'
+type MockCmdable_TSCreateRule_Call struct {
+	*mock.Call
+}
+
+// TSCreateRule is a helper method to define mock.On call
+//   - ctx context.Context
+//   - sourceKey string
+//   - destKey string
+//   - aggregator redis.Aggregator
+//   - bucketDuration int
+func (_e *MockCmdable_Expecter) TSCreateRule(ctx interface{}, sourceKey interface{}, destKey interface{}, aggregator interface{}, bucketDuration interface{}) *MockCmdable_TSCreateRule_Call {
+	return &MockCmdable_TSCreateRule_Call{Call: _e.mock.On("TSCreateRule", ctx, sourceKey, destKey, aggregator, bucketDuration)}
+}
+
+func (_c *MockCmdable_TSCreateRule_Call) Run(run func(ctx context.Context, sourceKey string, destKey string, aggregator redis.Aggregator, bucketDuration int)) *MockCmdable_TSCreateRule_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(redis.Aggregator), args[4].(int))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSCreateRule_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_TSCreateRule_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSCreateRule_Call) RunAndReturn(run func(context.Context, string, string, redis.Aggregator, int) *redis.StatusCmd) *MockCmdable_TSCreateRule_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSCreateRuleWithArgs provides a mock function with given fields: ctx, sourceKey, destKey, aggregator, bucketDuration, options
+func (_m *MockCmdable) TSCreateRuleWithArgs(ctx context.Context, sourceKey string, destKey string, aggregator redis.Aggregator, bucketDuration int, options *redis.TSCreateRuleOptions) *redis.StatusCmd {
+	ret := _m.Called(ctx, sourceKey, destKey, aggregator, bucketDuration, options)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, redis.Aggregator, int, *redis.TSCreateRuleOptions) *redis.StatusCmd); ok {
+		r0 = rf(ctx, sourceKey, destKey, aggregator, bucketDuration, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSCreateRuleWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSCreateRuleWithArgs'
+type MockCmdable_TSCreateRuleWithArgs_Call struct {
+	*mock.Call
+}
+
+// TSCreateRuleWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - sourceKey string
+//   - destKey string
+//   - aggregator redis.Aggregator
+//   - bucketDuration int
+//   - options *redis.TSCreateRuleOptions
+func (_e *MockCmdable_Expecter) TSCreateRuleWithArgs(ctx interface{}, sourceKey interface{}, destKey interface{}, aggregator interface{}, bucketDuration interface{}, options interface{}) *MockCmdable_TSCreateRuleWithArgs_Call {
+	return &MockCmdable_TSCreateRuleWithArgs_Call{Call: _e.mock.On("TSCreateRuleWithArgs", ctx, sourceKey, destKey, aggregator, bucketDuration, options)}
+}
+
+func (_c *MockCmdable_TSCreateRuleWithArgs_Call) Run(run func(ctx context.Context, sourceKey string, destKey string, aggregator redis.Aggregator, bucketDuration int, options *redis.TSCreateRuleOptions)) *MockCmdable_TSCreateRuleWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(redis.Aggregator), args[4].(int), args[5].(*redis.TSCreateRuleOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSCreateRuleWithArgs_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_TSCreateRuleWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSCreateRuleWithArgs_Call) RunAndReturn(run func(context.Context, string, string, redis.Aggregator, int, *redis.TSCreateRuleOptions) *redis.StatusCmd) *MockCmdable_TSCreateRuleWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSCreateWithArgs provides a mock function with given fields: ctx, key, options
+func (_m *MockCmdable) TSCreateWithArgs(ctx context.Context, key string, options *redis.TSOptions) *redis.StatusCmd {
+	ret := _m.Called(ctx, key, options)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.TSOptions) *redis.StatusCmd); ok {
+		r0 = rf(ctx, key, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSCreateWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSCreateWithArgs'
+type MockCmdable_TSCreateWithArgs_Call struct {
+	*mock.Call
+}
+
+// TSCreateWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - options *redis.TSOptions
+func (_e *MockCmdable_Expecter) TSCreateWithArgs(ctx interface{}, key interface{}, options interface{}) *MockCmdable_TSCreateWithArgs_Call {
+	return &MockCmdable_TSCreateWithArgs_Call{Call: _e.mock.On("TSCreateWithArgs", ctx, key, options)}
+}
+
+func (_c *MockCmdable_TSCreateWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.TSOptions)) *MockCmdable_TSCreateWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(*redis.TSOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSCreateWithArgs_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_TSCreateWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSCreateWithArgs_Call) RunAndReturn(run func(context.Context, string, *redis.TSOptions) *redis.StatusCmd) *MockCmdable_TSCreateWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSDecrBy provides a mock function with given fields: ctx, Key, timestamp
+func (_m *MockCmdable) TSDecrBy(ctx context.Context, Key string, timestamp float64) *redis.IntCmd {
+	ret := _m.Called(ctx, Key, timestamp)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, float64) *redis.IntCmd); ok {
+		r0 = rf(ctx, Key, timestamp)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSDecrBy_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSDecrBy'
+type MockCmdable_TSDecrBy_Call struct {
+	*mock.Call
+}
+
+// TSDecrBy is a helper method to define mock.On call
+//   - ctx context.Context
+//   - Key string
+//   - timestamp float64
+func (_e *MockCmdable_Expecter) TSDecrBy(ctx interface{}, Key interface{}, timestamp interface{}) *MockCmdable_TSDecrBy_Call {
+	return &MockCmdable_TSDecrBy_Call{Call: _e.mock.On("TSDecrBy", ctx, Key, timestamp)}
+}
+
+func (_c *MockCmdable_TSDecrBy_Call) Run(run func(ctx context.Context, Key string, timestamp float64)) *MockCmdable_TSDecrBy_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(float64))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSDecrBy_Call) Return(_a0 *redis.IntCmd) *MockCmdable_TSDecrBy_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSDecrBy_Call) RunAndReturn(run func(context.Context, string, float64) *redis.IntCmd) *MockCmdable_TSDecrBy_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSDecrByWithArgs provides a mock function with given fields: ctx, key, timestamp, options
+func (_m *MockCmdable) TSDecrByWithArgs(ctx context.Context, key string, timestamp float64, options *redis.TSIncrDecrOptions) *redis.IntCmd {
+	ret := _m.Called(ctx, key, timestamp, options)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, float64, *redis.TSIncrDecrOptions) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, timestamp, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSDecrByWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSDecrByWithArgs'
+type MockCmdable_TSDecrByWithArgs_Call struct {
+	*mock.Call
+}
+
+// TSDecrByWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - timestamp float64
+//   - options *redis.TSIncrDecrOptions
+func (_e *MockCmdable_Expecter) TSDecrByWithArgs(ctx interface{}, key interface{}, timestamp interface{}, options interface{}) *MockCmdable_TSDecrByWithArgs_Call {
+	return &MockCmdable_TSDecrByWithArgs_Call{Call: _e.mock.On("TSDecrByWithArgs", ctx, key, timestamp, options)}
+}
+
+func (_c *MockCmdable_TSDecrByWithArgs_Call) Run(run func(ctx context.Context, key string, timestamp float64, options *redis.TSIncrDecrOptions)) *MockCmdable_TSDecrByWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(*redis.TSIncrDecrOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSDecrByWithArgs_Call) Return(_a0 *redis.IntCmd) *MockCmdable_TSDecrByWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSDecrByWithArgs_Call) RunAndReturn(run func(context.Context, string, float64, *redis.TSIncrDecrOptions) *redis.IntCmd) *MockCmdable_TSDecrByWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSDel provides a mock function with given fields: ctx, Key, fromTimestamp, toTimestamp
+func (_m *MockCmdable) TSDel(ctx context.Context, Key string, fromTimestamp int, toTimestamp int) *redis.IntCmd {
+	ret := _m.Called(ctx, Key, fromTimestamp, toTimestamp)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, int, int) *redis.IntCmd); ok {
+		r0 = rf(ctx, Key, fromTimestamp, toTimestamp)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSDel_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSDel'
+type MockCmdable_TSDel_Call struct {
+	*mock.Call
+}
+
+// TSDel is a helper method to define mock.On call
+//   - ctx context.Context
+//   - Key string
+//   - fromTimestamp int
+//   - toTimestamp int
+func (_e *MockCmdable_Expecter) TSDel(ctx interface{}, Key interface{}, fromTimestamp interface{}, toTimestamp interface{}) *MockCmdable_TSDel_Call {
+	return &MockCmdable_TSDel_Call{Call: _e.mock.On("TSDel", ctx, Key, fromTimestamp, toTimestamp)}
+}
+
+func (_c *MockCmdable_TSDel_Call) Run(run func(ctx context.Context, Key string, fromTimestamp int, toTimestamp int)) *MockCmdable_TSDel_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(int), args[3].(int))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSDel_Call) Return(_a0 *redis.IntCmd) *MockCmdable_TSDel_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSDel_Call) RunAndReturn(run func(context.Context, string, int, int) *redis.IntCmd) *MockCmdable_TSDel_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSDeleteRule provides a mock function with given fields: ctx, sourceKey, destKey
+func (_m *MockCmdable) TSDeleteRule(ctx context.Context, sourceKey string, destKey string) *redis.StatusCmd {
+	ret := _m.Called(ctx, sourceKey, destKey)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.StatusCmd); ok {
+		r0 = rf(ctx, sourceKey, destKey)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSDeleteRule_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSDeleteRule'
+type MockCmdable_TSDeleteRule_Call struct {
+	*mock.Call
+}
+
+// TSDeleteRule is a helper method to define mock.On call
+//   - ctx context.Context
+//   - sourceKey string
+//   - destKey string
+func (_e *MockCmdable_Expecter) TSDeleteRule(ctx interface{}, sourceKey interface{}, destKey interface{}) *MockCmdable_TSDeleteRule_Call {
+	return &MockCmdable_TSDeleteRule_Call{Call: _e.mock.On("TSDeleteRule", ctx, sourceKey, destKey)}
+}
+
+func (_c *MockCmdable_TSDeleteRule_Call) Run(run func(ctx context.Context, sourceKey string, destKey string)) *MockCmdable_TSDeleteRule_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSDeleteRule_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_TSDeleteRule_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSDeleteRule_Call) RunAndReturn(run func(context.Context, string, string) *redis.StatusCmd) *MockCmdable_TSDeleteRule_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSGet provides a mock function with given fields: ctx, key
+func (_m *MockCmdable) TSGet(ctx context.Context, key string) *redis.TSTimestampValueCmd {
+	ret := _m.Called(ctx, key)
+
+	var r0 *redis.TSTimestampValueCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.TSTimestampValueCmd); ok {
+		r0 = rf(ctx, key)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.TSTimestampValueCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSGet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSGet'
+type MockCmdable_TSGet_Call struct {
+	*mock.Call
+}
+
+// TSGet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+func (_e *MockCmdable_Expecter) TSGet(ctx interface{}, key interface{}) *MockCmdable_TSGet_Call {
+	return &MockCmdable_TSGet_Call{Call: _e.mock.On("TSGet", ctx, key)}
+}
+
+func (_c *MockCmdable_TSGet_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_TSGet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSGet_Call) Return(_a0 *redis.TSTimestampValueCmd) *MockCmdable_TSGet_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSGet_Call) RunAndReturn(run func(context.Context, string) *redis.TSTimestampValueCmd) *MockCmdable_TSGet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSGetWithArgs provides a mock function with given fields: ctx, key, options
+func (_m *MockCmdable) TSGetWithArgs(ctx context.Context, key string, options *redis.TSGetOptions) *redis.TSTimestampValueCmd {
+	ret := _m.Called(ctx, key, options)
+
+	var r0 *redis.TSTimestampValueCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.TSGetOptions) *redis.TSTimestampValueCmd); ok {
+		r0 = rf(ctx, key, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.TSTimestampValueCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSGetWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSGetWithArgs'
+type MockCmdable_TSGetWithArgs_Call struct {
+	*mock.Call
+}
+
+// TSGetWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - options *redis.TSGetOptions
+func (_e *MockCmdable_Expecter) TSGetWithArgs(ctx interface{}, key interface{}, options interface{}) *MockCmdable_TSGetWithArgs_Call {
+	return &MockCmdable_TSGetWithArgs_Call{Call: _e.mock.On("TSGetWithArgs", ctx, key, options)}
+}
+
+func (_c *MockCmdable_TSGetWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.TSGetOptions)) *MockCmdable_TSGetWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(*redis.TSGetOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSGetWithArgs_Call) Return(_a0 *redis.TSTimestampValueCmd) *MockCmdable_TSGetWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSGetWithArgs_Call) RunAndReturn(run func(context.Context, string, *redis.TSGetOptions) *redis.TSTimestampValueCmd) *MockCmdable_TSGetWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSIncrBy provides a mock function with given fields: ctx, Key, timestamp
+func (_m *MockCmdable) TSIncrBy(ctx context.Context, Key string, timestamp float64) *redis.IntCmd {
+	ret := _m.Called(ctx, Key, timestamp)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, float64) *redis.IntCmd); ok {
+		r0 = rf(ctx, Key, timestamp)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSIncrBy_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSIncrBy'
+type MockCmdable_TSIncrBy_Call struct {
+	*mock.Call
+}
+
+// TSIncrBy is a helper method to define mock.On call
+//   - ctx context.Context
+//   - Key string
+//   - timestamp float64
+func (_e *MockCmdable_Expecter) TSIncrBy(ctx interface{}, Key interface{}, timestamp interface{}) *MockCmdable_TSIncrBy_Call {
+	return &MockCmdable_TSIncrBy_Call{Call: _e.mock.On("TSIncrBy", ctx, Key, timestamp)}
+}
+
+func (_c *MockCmdable_TSIncrBy_Call) Run(run func(ctx context.Context, Key string, timestamp float64)) *MockCmdable_TSIncrBy_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(float64))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSIncrBy_Call) Return(_a0 *redis.IntCmd) *MockCmdable_TSIncrBy_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSIncrBy_Call) RunAndReturn(run func(context.Context, string, float64) *redis.IntCmd) *MockCmdable_TSIncrBy_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSIncrByWithArgs provides a mock function with given fields: ctx, key, timestamp, options
+func (_m *MockCmdable) TSIncrByWithArgs(ctx context.Context, key string, timestamp float64, options *redis.TSIncrDecrOptions) *redis.IntCmd {
+	ret := _m.Called(ctx, key, timestamp, options)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, float64, *redis.TSIncrDecrOptions) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, timestamp, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSIncrByWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSIncrByWithArgs'
+type MockCmdable_TSIncrByWithArgs_Call struct {
+	*mock.Call
+}
+
+// TSIncrByWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - timestamp float64
+//   - options *redis.TSIncrDecrOptions
+func (_e *MockCmdable_Expecter) TSIncrByWithArgs(ctx interface{}, key interface{}, timestamp interface{}, options interface{}) *MockCmdable_TSIncrByWithArgs_Call {
+	return &MockCmdable_TSIncrByWithArgs_Call{Call: _e.mock.On("TSIncrByWithArgs", ctx, key, timestamp, options)}
+}
+
+func (_c *MockCmdable_TSIncrByWithArgs_Call) Run(run func(ctx context.Context, key string, timestamp float64, options *redis.TSIncrDecrOptions)) *MockCmdable_TSIncrByWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(*redis.TSIncrDecrOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSIncrByWithArgs_Call) Return(_a0 *redis.IntCmd) *MockCmdable_TSIncrByWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSIncrByWithArgs_Call) RunAndReturn(run func(context.Context, string, float64, *redis.TSIncrDecrOptions) *redis.IntCmd) *MockCmdable_TSIncrByWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSInfo provides a mock function with given fields: ctx, key
+func (_m *MockCmdable) TSInfo(ctx context.Context, key string) *redis.MapStringInterfaceCmd {
+	ret := _m.Called(ctx, key)
+
+	var r0 *redis.MapStringInterfaceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.MapStringInterfaceCmd); ok {
+		r0 = rf(ctx, key)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.MapStringInterfaceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSInfo_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSInfo'
+type MockCmdable_TSInfo_Call struct {
+	*mock.Call
+}
+
+// TSInfo is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+func (_e *MockCmdable_Expecter) TSInfo(ctx interface{}, key interface{}) *MockCmdable_TSInfo_Call {
+	return &MockCmdable_TSInfo_Call{Call: _e.mock.On("TSInfo", ctx, key)}
+}
+
+func (_c *MockCmdable_TSInfo_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_TSInfo_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSInfo_Call) Return(_a0 *redis.MapStringInterfaceCmd) *MockCmdable_TSInfo_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSInfo_Call) RunAndReturn(run func(context.Context, string) *redis.MapStringInterfaceCmd) *MockCmdable_TSInfo_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSInfoWithArgs provides a mock function with given fields: ctx, key, options
+func (_m *MockCmdable) TSInfoWithArgs(ctx context.Context, key string, options *redis.TSInfoOptions) *redis.MapStringInterfaceCmd {
+	ret := _m.Called(ctx, key, options)
+
+	var r0 *redis.MapStringInterfaceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.TSInfoOptions) *redis.MapStringInterfaceCmd); ok {
+		r0 = rf(ctx, key, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.MapStringInterfaceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSInfoWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSInfoWithArgs'
+type MockCmdable_TSInfoWithArgs_Call struct {
+	*mock.Call
+}
+
+// TSInfoWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - options *redis.TSInfoOptions
+func (_e *MockCmdable_Expecter) TSInfoWithArgs(ctx interface{}, key interface{}, options interface{}) *MockCmdable_TSInfoWithArgs_Call {
+	return &MockCmdable_TSInfoWithArgs_Call{Call: _e.mock.On("TSInfoWithArgs", ctx, key, options)}
+}
+
+func (_c *MockCmdable_TSInfoWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.TSInfoOptions)) *MockCmdable_TSInfoWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(*redis.TSInfoOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSInfoWithArgs_Call) Return(_a0 *redis.MapStringInterfaceCmd) *MockCmdable_TSInfoWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSInfoWithArgs_Call) RunAndReturn(run func(context.Context, string, *redis.TSInfoOptions) *redis.MapStringInterfaceCmd) *MockCmdable_TSInfoWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSMAdd provides a mock function with given fields: ctx, ktvSlices
+func (_m *MockCmdable) TSMAdd(ctx context.Context, ktvSlices [][]interface{}) *redis.IntSliceCmd {
+	ret := _m.Called(ctx, ktvSlices)
+
+	var r0 *redis.IntSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, [][]interface{}) *redis.IntSliceCmd); ok {
+		r0 = rf(ctx, ktvSlices)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSMAdd_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSMAdd'
+type MockCmdable_TSMAdd_Call struct {
+	*mock.Call
+}
+
+// TSMAdd is a helper method to define mock.On call
+//   - ctx context.Context
+//   - ktvSlices [][]interface{}
+func (_e *MockCmdable_Expecter) TSMAdd(ctx interface{}, ktvSlices interface{}) *MockCmdable_TSMAdd_Call {
+	return &MockCmdable_TSMAdd_Call{Call: _e.mock.On("TSMAdd", ctx, ktvSlices)}
+}
+
+func (_c *MockCmdable_TSMAdd_Call) Run(run func(ctx context.Context, ktvSlices [][]interface{})) *MockCmdable_TSMAdd_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].([][]interface{}))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSMAdd_Call) Return(_a0 *redis.IntSliceCmd) *MockCmdable_TSMAdd_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSMAdd_Call) RunAndReturn(run func(context.Context, [][]interface{}) *redis.IntSliceCmd) *MockCmdable_TSMAdd_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSMGet provides a mock function with given fields: ctx, filters
+func (_m *MockCmdable) TSMGet(ctx context.Context, filters []string) *redis.MapStringSliceInterfaceCmd {
+	ret := _m.Called(ctx, filters)
+
+	var r0 *redis.MapStringSliceInterfaceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, []string) *redis.MapStringSliceInterfaceCmd); ok {
+		r0 = rf(ctx, filters)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.MapStringSliceInterfaceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSMGet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSMGet'
+type MockCmdable_TSMGet_Call struct {
+	*mock.Call
+}
+
+// TSMGet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - filters []string
+func (_e *MockCmdable_Expecter) TSMGet(ctx interface{}, filters interface{}) *MockCmdable_TSMGet_Call {
+	return &MockCmdable_TSMGet_Call{Call: _e.mock.On("TSMGet", ctx, filters)}
+}
+
+func (_c *MockCmdable_TSMGet_Call) Run(run func(ctx context.Context, filters []string)) *MockCmdable_TSMGet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].([]string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSMGet_Call) Return(_a0 *redis.MapStringSliceInterfaceCmd) *MockCmdable_TSMGet_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSMGet_Call) RunAndReturn(run func(context.Context, []string) *redis.MapStringSliceInterfaceCmd) *MockCmdable_TSMGet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSMGetWithArgs provides a mock function with given fields: ctx, filters, options
+func (_m *MockCmdable) TSMGetWithArgs(ctx context.Context, filters []string, options *redis.TSMGetOptions) *redis.MapStringSliceInterfaceCmd {
+	ret := _m.Called(ctx, filters, options)
+
+	var r0 *redis.MapStringSliceInterfaceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, []string, *redis.TSMGetOptions) *redis.MapStringSliceInterfaceCmd); ok {
+		r0 = rf(ctx, filters, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.MapStringSliceInterfaceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSMGetWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSMGetWithArgs'
+type MockCmdable_TSMGetWithArgs_Call struct {
+	*mock.Call
+}
+
+// TSMGetWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - filters []string
+//   - options *redis.TSMGetOptions
+func (_e *MockCmdable_Expecter) TSMGetWithArgs(ctx interface{}, filters interface{}, options interface{}) *MockCmdable_TSMGetWithArgs_Call {
+	return &MockCmdable_TSMGetWithArgs_Call{Call: _e.mock.On("TSMGetWithArgs", ctx, filters, options)}
+}
+
+func (_c *MockCmdable_TSMGetWithArgs_Call) Run(run func(ctx context.Context, filters []string, options *redis.TSMGetOptions)) *MockCmdable_TSMGetWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].([]string), args[2].(*redis.TSMGetOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSMGetWithArgs_Call) Return(_a0 *redis.MapStringSliceInterfaceCmd) *MockCmdable_TSMGetWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSMGetWithArgs_Call) RunAndReturn(run func(context.Context, []string, *redis.TSMGetOptions) *redis.MapStringSliceInterfaceCmd) *MockCmdable_TSMGetWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSMRange provides a mock function with given fields: ctx, fromTimestamp, toTimestamp, filterExpr
+func (_m *MockCmdable) TSMRange(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string) *redis.MapStringSliceInterfaceCmd {
+	ret := _m.Called(ctx, fromTimestamp, toTimestamp, filterExpr)
+
+	var r0 *redis.MapStringSliceInterfaceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, int, int, []string) *redis.MapStringSliceInterfaceCmd); ok {
+		r0 = rf(ctx, fromTimestamp, toTimestamp, filterExpr)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.MapStringSliceInterfaceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSMRange_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSMRange'
+type MockCmdable_TSMRange_Call struct {
+	*mock.Call
+}
+
+// TSMRange is a helper method to define mock.On call
+//   - ctx context.Context
+//   - fromTimestamp int
+//   - toTimestamp int
+//   - filterExpr []string
+func (_e *MockCmdable_Expecter) TSMRange(ctx interface{}, fromTimestamp interface{}, toTimestamp interface{}, filterExpr interface{}) *MockCmdable_TSMRange_Call {
+	return &MockCmdable_TSMRange_Call{Call: _e.mock.On("TSMRange", ctx, fromTimestamp, toTimestamp, filterExpr)}
+}
+
+func (_c *MockCmdable_TSMRange_Call) Run(run func(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string)) *MockCmdable_TSMRange_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(int), args[2].(int), args[3].([]string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSMRange_Call) Return(_a0 *redis.MapStringSliceInterfaceCmd) *MockCmdable_TSMRange_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSMRange_Call) RunAndReturn(run func(context.Context, int, int, []string) *redis.MapStringSliceInterfaceCmd) *MockCmdable_TSMRange_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSMRangeWithArgs provides a mock function with given fields: ctx, fromTimestamp, toTimestamp, filterExpr, options
+func (_m *MockCmdable) TSMRangeWithArgs(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string, options *redis.TSMRangeOptions) *redis.MapStringSliceInterfaceCmd {
+	ret := _m.Called(ctx, fromTimestamp, toTimestamp, filterExpr, options)
+
+	var r0 *redis.MapStringSliceInterfaceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, int, int, []string, *redis.TSMRangeOptions) *redis.MapStringSliceInterfaceCmd); ok {
+		r0 = rf(ctx, fromTimestamp, toTimestamp, filterExpr, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.MapStringSliceInterfaceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSMRangeWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSMRangeWithArgs'
+type MockCmdable_TSMRangeWithArgs_Call struct {
+	*mock.Call
+}
+
+// TSMRangeWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - fromTimestamp int
+//   - toTimestamp int
+//   - filterExpr []string
+//   - options *redis.TSMRangeOptions
+func (_e *MockCmdable_Expecter) TSMRangeWithArgs(ctx interface{}, fromTimestamp interface{}, toTimestamp interface{}, filterExpr interface{}, options interface{}) *MockCmdable_TSMRangeWithArgs_Call {
+	return &MockCmdable_TSMRangeWithArgs_Call{Call: _e.mock.On("TSMRangeWithArgs", ctx, fromTimestamp, toTimestamp, filterExpr, options)}
+}
+
+func (_c *MockCmdable_TSMRangeWithArgs_Call) Run(run func(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string, options *redis.TSMRangeOptions)) *MockCmdable_TSMRangeWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(int), args[2].(int), args[3].([]string), args[4].(*redis.TSMRangeOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSMRangeWithArgs_Call) Return(_a0 *redis.MapStringSliceInterfaceCmd) *MockCmdable_TSMRangeWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSMRangeWithArgs_Call) RunAndReturn(run func(context.Context, int, int, []string, *redis.TSMRangeOptions) *redis.MapStringSliceInterfaceCmd) *MockCmdable_TSMRangeWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSMRevRange provides a mock function with given fields: ctx, fromTimestamp, toTimestamp, filterExpr
+func (_m *MockCmdable) TSMRevRange(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string) *redis.MapStringSliceInterfaceCmd {
+	ret := _m.Called(ctx, fromTimestamp, toTimestamp, filterExpr)
+
+	var r0 *redis.MapStringSliceInterfaceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, int, int, []string) *redis.MapStringSliceInterfaceCmd); ok {
+		r0 = rf(ctx, fromTimestamp, toTimestamp, filterExpr)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.MapStringSliceInterfaceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSMRevRange_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSMRevRange'
+type MockCmdable_TSMRevRange_Call struct {
+	*mock.Call
+}
+
+// TSMRevRange is a helper method to define mock.On call
+//   - ctx context.Context
+//   - fromTimestamp int
+//   - toTimestamp int
+//   - filterExpr []string
+func (_e *MockCmdable_Expecter) TSMRevRange(ctx interface{}, fromTimestamp interface{}, toTimestamp interface{}, filterExpr interface{}) *MockCmdable_TSMRevRange_Call {
+	return &MockCmdable_TSMRevRange_Call{Call: _e.mock.On("TSMRevRange", ctx, fromTimestamp, toTimestamp, filterExpr)}
+}
+
+func (_c *MockCmdable_TSMRevRange_Call) Run(run func(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string)) *MockCmdable_TSMRevRange_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(int), args[2].(int), args[3].([]string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSMRevRange_Call) Return(_a0 *redis.MapStringSliceInterfaceCmd) *MockCmdable_TSMRevRange_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSMRevRange_Call) RunAndReturn(run func(context.Context, int, int, []string) *redis.MapStringSliceInterfaceCmd) *MockCmdable_TSMRevRange_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSMRevRangeWithArgs provides a mock function with given fields: ctx, fromTimestamp, toTimestamp, filterExpr, options
+func (_m *MockCmdable) TSMRevRangeWithArgs(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string, options *redis.TSMRevRangeOptions) *redis.MapStringSliceInterfaceCmd {
+	ret := _m.Called(ctx, fromTimestamp, toTimestamp, filterExpr, options)
+
+	var r0 *redis.MapStringSliceInterfaceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, int, int, []string, *redis.TSMRevRangeOptions) *redis.MapStringSliceInterfaceCmd); ok {
+		r0 = rf(ctx, fromTimestamp, toTimestamp, filterExpr, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.MapStringSliceInterfaceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSMRevRangeWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSMRevRangeWithArgs'
+type MockCmdable_TSMRevRangeWithArgs_Call struct {
+	*mock.Call
+}
+
+// TSMRevRangeWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - fromTimestamp int
+//   - toTimestamp int
+//   - filterExpr []string
+//   - options *redis.TSMRevRangeOptions
+func (_e *MockCmdable_Expecter) TSMRevRangeWithArgs(ctx interface{}, fromTimestamp interface{}, toTimestamp interface{}, filterExpr interface{}, options interface{}) *MockCmdable_TSMRevRangeWithArgs_Call {
+	return &MockCmdable_TSMRevRangeWithArgs_Call{Call: _e.mock.On("TSMRevRangeWithArgs", ctx, fromTimestamp, toTimestamp, filterExpr, options)}
+}
+
+func (_c *MockCmdable_TSMRevRangeWithArgs_Call) Run(run func(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string, options *redis.TSMRevRangeOptions)) *MockCmdable_TSMRevRangeWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(int), args[2].(int), args[3].([]string), args[4].(*redis.TSMRevRangeOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSMRevRangeWithArgs_Call) Return(_a0 *redis.MapStringSliceInterfaceCmd) *MockCmdable_TSMRevRangeWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSMRevRangeWithArgs_Call) RunAndReturn(run func(context.Context, int, int, []string, *redis.TSMRevRangeOptions) *redis.MapStringSliceInterfaceCmd) *MockCmdable_TSMRevRangeWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSQueryIndex provides a mock function with given fields: ctx, filterExpr
+func (_m *MockCmdable) TSQueryIndex(ctx context.Context, filterExpr []string) *redis.StringSliceCmd {
+	ret := _m.Called(ctx, filterExpr)
+
+	var r0 *redis.StringSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, []string) *redis.StringSliceCmd); ok {
+		r0 = rf(ctx, filterExpr)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSQueryIndex_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSQueryIndex'
+type MockCmdable_TSQueryIndex_Call struct {
+	*mock.Call
+}
+
+// TSQueryIndex is a helper method to define mock.On call
+//   - ctx context.Context
+//   - filterExpr []string
+func (_e *MockCmdable_Expecter) TSQueryIndex(ctx interface{}, filterExpr interface{}) *MockCmdable_TSQueryIndex_Call {
+	return &MockCmdable_TSQueryIndex_Call{Call: _e.mock.On("TSQueryIndex", ctx, filterExpr)}
+}
+
+func (_c *MockCmdable_TSQueryIndex_Call) Run(run func(ctx context.Context, filterExpr []string)) *MockCmdable_TSQueryIndex_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].([]string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSQueryIndex_Call) Return(_a0 *redis.StringSliceCmd) *MockCmdable_TSQueryIndex_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSQueryIndex_Call) RunAndReturn(run func(context.Context, []string) *redis.StringSliceCmd) *MockCmdable_TSQueryIndex_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSRange provides a mock function with given fields: ctx, key, fromTimestamp, toTimestamp
+func (_m *MockCmdable) TSRange(ctx context.Context, key string, fromTimestamp int, toTimestamp int) *redis.TSTimestampValueSliceCmd {
+	ret := _m.Called(ctx, key, fromTimestamp, toTimestamp)
+
+	var r0 *redis.TSTimestampValueSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, int, int) *redis.TSTimestampValueSliceCmd); ok {
+		r0 = rf(ctx, key, fromTimestamp, toTimestamp)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.TSTimestampValueSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSRange_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSRange'
+type MockCmdable_TSRange_Call struct {
+	*mock.Call
+}
+
+// TSRange is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - fromTimestamp int
+//   - toTimestamp int
+func (_e *MockCmdable_Expecter) TSRange(ctx interface{}, key interface{}, fromTimestamp interface{}, toTimestamp interface{}) *MockCmdable_TSRange_Call {
+	return &MockCmdable_TSRange_Call{Call: _e.mock.On("TSRange", ctx, key, fromTimestamp, toTimestamp)}
+}
+
+func (_c *MockCmdable_TSRange_Call) Run(run func(ctx context.Context, key string, fromTimestamp int, toTimestamp int)) *MockCmdable_TSRange_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(int), args[3].(int))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSRange_Call) Return(_a0 *redis.TSTimestampValueSliceCmd) *MockCmdable_TSRange_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSRange_Call) RunAndReturn(run func(context.Context, string, int, int) *redis.TSTimestampValueSliceCmd) *MockCmdable_TSRange_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSRangeWithArgs provides a mock function with given fields: ctx, key, fromTimestamp, toTimestamp, options
+func (_m *MockCmdable) TSRangeWithArgs(ctx context.Context, key string, fromTimestamp int, toTimestamp int, options *redis.TSRangeOptions) *redis.TSTimestampValueSliceCmd {
+	ret := _m.Called(ctx, key, fromTimestamp, toTimestamp, options)
+
+	var r0 *redis.TSTimestampValueSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, int, int, *redis.TSRangeOptions) *redis.TSTimestampValueSliceCmd); ok {
+		r0 = rf(ctx, key, fromTimestamp, toTimestamp, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.TSTimestampValueSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSRangeWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSRangeWithArgs'
+type MockCmdable_TSRangeWithArgs_Call struct {
+	*mock.Call
+}
+
+// TSRangeWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - fromTimestamp int
+//   - toTimestamp int
+//   - options *redis.TSRangeOptions
+func (_e *MockCmdable_Expecter) TSRangeWithArgs(ctx interface{}, key interface{}, fromTimestamp interface{}, toTimestamp interface{}, options interface{}) *MockCmdable_TSRangeWithArgs_Call {
+	return &MockCmdable_TSRangeWithArgs_Call{Call: _e.mock.On("TSRangeWithArgs", ctx, key, fromTimestamp, toTimestamp, options)}
+}
+
+func (_c *MockCmdable_TSRangeWithArgs_Call) Run(run func(ctx context.Context, key string, fromTimestamp int, toTimestamp int, options *redis.TSRangeOptions)) *MockCmdable_TSRangeWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(int), args[3].(int), args[4].(*redis.TSRangeOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSRangeWithArgs_Call) Return(_a0 *redis.TSTimestampValueSliceCmd) *MockCmdable_TSRangeWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSRangeWithArgs_Call) RunAndReturn(run func(context.Context, string, int, int, *redis.TSRangeOptions) *redis.TSTimestampValueSliceCmd) *MockCmdable_TSRangeWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSRevRange provides a mock function with given fields: ctx, key, fromTimestamp, toTimestamp
+func (_m *MockCmdable) TSRevRange(ctx context.Context, key string, fromTimestamp int, toTimestamp int) *redis.TSTimestampValueSliceCmd {
+	ret := _m.Called(ctx, key, fromTimestamp, toTimestamp)
+
+	var r0 *redis.TSTimestampValueSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, int, int) *redis.TSTimestampValueSliceCmd); ok {
+		r0 = rf(ctx, key, fromTimestamp, toTimestamp)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.TSTimestampValueSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSRevRange_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSRevRange'
+type MockCmdable_TSRevRange_Call struct {
+	*mock.Call
+}
+
+// TSRevRange is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - fromTimestamp int
+//   - toTimestamp int
+func (_e *MockCmdable_Expecter) TSRevRange(ctx interface{}, key interface{}, fromTimestamp interface{}, toTimestamp interface{}) *MockCmdable_TSRevRange_Call {
+	return &MockCmdable_TSRevRange_Call{Call: _e.mock.On("TSRevRange", ctx, key, fromTimestamp, toTimestamp)}
+}
+
+func (_c *MockCmdable_TSRevRange_Call) Run(run func(ctx context.Context, key string, fromTimestamp int, toTimestamp int)) *MockCmdable_TSRevRange_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(int), args[3].(int))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSRevRange_Call) Return(_a0 *redis.TSTimestampValueSliceCmd) *MockCmdable_TSRevRange_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSRevRange_Call) RunAndReturn(run func(context.Context, string, int, int) *redis.TSTimestampValueSliceCmd) *MockCmdable_TSRevRange_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// TSRevRangeWithArgs provides a mock function with given fields: ctx, key, fromTimestamp, toTimestamp, options
+func (_m *MockCmdable) TSRevRangeWithArgs(ctx context.Context, key string, fromTimestamp int, toTimestamp int, options *redis.TSRevRangeOptions) *redis.TSTimestampValueSliceCmd {
+	ret := _m.Called(ctx, key, fromTimestamp, toTimestamp, options)
+
+	var r0 *redis.TSTimestampValueSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, int, int, *redis.TSRevRangeOptions) *redis.TSTimestampValueSliceCmd); ok {
+		r0 = rf(ctx, key, fromTimestamp, toTimestamp, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.TSTimestampValueSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_TSRevRangeWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TSRevRangeWithArgs'
+type MockCmdable_TSRevRangeWithArgs_Call struct {
+	*mock.Call
+}
+
+// TSRevRangeWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - fromTimestamp int
+//   - toTimestamp int
+//   - options *redis.TSRevRangeOptions
+func (_e *MockCmdable_Expecter) TSRevRangeWithArgs(ctx interface{}, key interface{}, fromTimestamp interface{}, toTimestamp interface{}, options interface{}) *MockCmdable_TSRevRangeWithArgs_Call {
+	return &MockCmdable_TSRevRangeWithArgs_Call{Call: _e.mock.On("TSRevRangeWithArgs", ctx, key, fromTimestamp, toTimestamp, options)}
+}
+
+func (_c *MockCmdable_TSRevRangeWithArgs_Call) Run(run func(ctx context.Context, key string, fromTimestamp int, toTimestamp int, options *redis.TSRevRangeOptions)) *MockCmdable_TSRevRangeWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(int), args[3].(int), args[4].(*redis.TSRevRangeOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_TSRevRangeWithArgs_Call) Return(_a0 *redis.TSTimestampValueSliceCmd) *MockCmdable_TSRevRangeWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_TSRevRangeWithArgs_Call) RunAndReturn(run func(context.Context, string, int, int, *redis.TSRevRangeOptions) *redis.TSTimestampValueSliceCmd) *MockCmdable_TSRevRangeWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // TTL provides a mock function with given fields: ctx, key
 func (_m *MockCmdable) TTL(ctx context.Context, key string) *redis.DurationCmd {
 	ret := _m.Called(ctx, key)
@@ -15806,1476 +16626,6 @@ func (_c *MockCmdable_Unlink_Call) Return(_a0 *redis.IntCmd) *MockCmdable_Unlink
 }
 
 func (_c *MockCmdable_Unlink_Call) RunAndReturn(run func(context.Context, ...string) *redis.IntCmd) *MockCmdable_Unlink_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XAck provides a mock function with given fields: ctx, stream, group, ids
-func (_m *MockCmdable) XAck(ctx context.Context, stream string, group string, ids ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(ids))
-	for _i := range ids {
-		_va[_i] = ids[_i]
-	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, stream, group)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
-
-	var r0 *redis.IntCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, string, ...string) *redis.IntCmd); ok {
-		r0 = rf(ctx, stream, group, ids...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XAck_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XAck'
-type MockCmdable_XAck_Call struct {
-	*mock.Call
-}
-
-// XAck is a helper method to define mock.On call
-//   - ctx context.Context
-//   - stream string
-//   - group string
-//   - ids ...string
-func (_e *MockCmdable_Expecter) XAck(ctx interface{}, stream interface{}, group interface{}, ids ...interface{}) *MockCmdable_XAck_Call {
-	return &MockCmdable_XAck_Call{Call: _e.mock.On("XAck",
-		append([]interface{}{ctx, stream, group}, ids...)...)}
-}
-
-func (_c *MockCmdable_XAck_Call) Run(run func(ctx context.Context, stream string, group string, ids ...string)) *MockCmdable_XAck_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
-		run(args[0].(context.Context), args[1].(string), args[2].(string), variadicArgs...)
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XAck_Call) Return(_a0 *redis.IntCmd) *MockCmdable_XAck_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XAck_Call) RunAndReturn(run func(context.Context, string, string, ...string) *redis.IntCmd) *MockCmdable_XAck_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XAdd provides a mock function with given fields: ctx, a
-func (_m *MockCmdable) XAdd(ctx context.Context, a *redis.XAddArgs) *redis.StringCmd {
-	ret := _m.Called(ctx, a)
-
-	var r0 *redis.StringCmd
-	if rf, ok := ret.Get(0).(func(context.Context, *redis.XAddArgs) *redis.StringCmd); ok {
-		r0 = rf(ctx, a)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.StringCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XAdd_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XAdd'
-type MockCmdable_XAdd_Call struct {
-	*mock.Call
-}
-
-// XAdd is a helper method to define mock.On call
-//   - ctx context.Context
-//   - a *redis.XAddArgs
-func (_e *MockCmdable_Expecter) XAdd(ctx interface{}, a interface{}) *MockCmdable_XAdd_Call {
-	return &MockCmdable_XAdd_Call{Call: _e.mock.On("XAdd", ctx, a)}
-}
-
-func (_c *MockCmdable_XAdd_Call) Run(run func(ctx context.Context, a *redis.XAddArgs)) *MockCmdable_XAdd_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XAddArgs))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XAdd_Call) Return(_a0 *redis.StringCmd) *MockCmdable_XAdd_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XAdd_Call) RunAndReturn(run func(context.Context, *redis.XAddArgs) *redis.StringCmd) *MockCmdable_XAdd_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XAutoClaim provides a mock function with given fields: ctx, a
-func (_m *MockCmdable) XAutoClaim(ctx context.Context, a *redis.XAutoClaimArgs) *redis.XAutoClaimCmd {
-	ret := _m.Called(ctx, a)
-
-	var r0 *redis.XAutoClaimCmd
-	if rf, ok := ret.Get(0).(func(context.Context, *redis.XAutoClaimArgs) *redis.XAutoClaimCmd); ok {
-		r0 = rf(ctx, a)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.XAutoClaimCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XAutoClaim_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XAutoClaim'
-type MockCmdable_XAutoClaim_Call struct {
-	*mock.Call
-}
-
-// XAutoClaim is a helper method to define mock.On call
-//   - ctx context.Context
-//   - a *redis.XAutoClaimArgs
-func (_e *MockCmdable_Expecter) XAutoClaim(ctx interface{}, a interface{}) *MockCmdable_XAutoClaim_Call {
-	return &MockCmdable_XAutoClaim_Call{Call: _e.mock.On("XAutoClaim", ctx, a)}
-}
-
-func (_c *MockCmdable_XAutoClaim_Call) Run(run func(ctx context.Context, a *redis.XAutoClaimArgs)) *MockCmdable_XAutoClaim_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XAutoClaimArgs))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XAutoClaim_Call) Return(_a0 *redis.XAutoClaimCmd) *MockCmdable_XAutoClaim_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XAutoClaim_Call) RunAndReturn(run func(context.Context, *redis.XAutoClaimArgs) *redis.XAutoClaimCmd) *MockCmdable_XAutoClaim_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XAutoClaimJustID provides a mock function with given fields: ctx, a
-func (_m *MockCmdable) XAutoClaimJustID(ctx context.Context, a *redis.XAutoClaimArgs) *redis.XAutoClaimJustIDCmd {
-	ret := _m.Called(ctx, a)
-
-	var r0 *redis.XAutoClaimJustIDCmd
-	if rf, ok := ret.Get(0).(func(context.Context, *redis.XAutoClaimArgs) *redis.XAutoClaimJustIDCmd); ok {
-		r0 = rf(ctx, a)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.XAutoClaimJustIDCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XAutoClaimJustID_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XAutoClaimJustID'
-type MockCmdable_XAutoClaimJustID_Call struct {
-	*mock.Call
-}
-
-// XAutoClaimJustID is a helper method to define mock.On call
-//   - ctx context.Context
-//   - a *redis.XAutoClaimArgs
-func (_e *MockCmdable_Expecter) XAutoClaimJustID(ctx interface{}, a interface{}) *MockCmdable_XAutoClaimJustID_Call {
-	return &MockCmdable_XAutoClaimJustID_Call{Call: _e.mock.On("XAutoClaimJustID", ctx, a)}
-}
-
-func (_c *MockCmdable_XAutoClaimJustID_Call) Run(run func(ctx context.Context, a *redis.XAutoClaimArgs)) *MockCmdable_XAutoClaimJustID_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XAutoClaimArgs))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XAutoClaimJustID_Call) Return(_a0 *redis.XAutoClaimJustIDCmd) *MockCmdable_XAutoClaimJustID_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XAutoClaimJustID_Call) RunAndReturn(run func(context.Context, *redis.XAutoClaimArgs) *redis.XAutoClaimJustIDCmd) *MockCmdable_XAutoClaimJustID_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XClaim provides a mock function with given fields: ctx, a
-func (_m *MockCmdable) XClaim(ctx context.Context, a *redis.XClaimArgs) *redis.XMessageSliceCmd {
-	ret := _m.Called(ctx, a)
-
-	var r0 *redis.XMessageSliceCmd
-	if rf, ok := ret.Get(0).(func(context.Context, *redis.XClaimArgs) *redis.XMessageSliceCmd); ok {
-		r0 = rf(ctx, a)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.XMessageSliceCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XClaim_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XClaim'
-type MockCmdable_XClaim_Call struct {
-	*mock.Call
-}
-
-// XClaim is a helper method to define mock.On call
-//   - ctx context.Context
-//   - a *redis.XClaimArgs
-func (_e *MockCmdable_Expecter) XClaim(ctx interface{}, a interface{}) *MockCmdable_XClaim_Call {
-	return &MockCmdable_XClaim_Call{Call: _e.mock.On("XClaim", ctx, a)}
-}
-
-func (_c *MockCmdable_XClaim_Call) Run(run func(ctx context.Context, a *redis.XClaimArgs)) *MockCmdable_XClaim_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XClaimArgs))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XClaim_Call) Return(_a0 *redis.XMessageSliceCmd) *MockCmdable_XClaim_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XClaim_Call) RunAndReturn(run func(context.Context, *redis.XClaimArgs) *redis.XMessageSliceCmd) *MockCmdable_XClaim_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XClaimJustID provides a mock function with given fields: ctx, a
-func (_m *MockCmdable) XClaimJustID(ctx context.Context, a *redis.XClaimArgs) *redis.StringSliceCmd {
-	ret := _m.Called(ctx, a)
-
-	var r0 *redis.StringSliceCmd
-	if rf, ok := ret.Get(0).(func(context.Context, *redis.XClaimArgs) *redis.StringSliceCmd); ok {
-		r0 = rf(ctx, a)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.StringSliceCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XClaimJustID_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XClaimJustID'
-type MockCmdable_XClaimJustID_Call struct {
-	*mock.Call
-}
-
-// XClaimJustID is a helper method to define mock.On call
-//   - ctx context.Context
-//   - a *redis.XClaimArgs
-func (_e *MockCmdable_Expecter) XClaimJustID(ctx interface{}, a interface{}) *MockCmdable_XClaimJustID_Call {
-	return &MockCmdable_XClaimJustID_Call{Call: _e.mock.On("XClaimJustID", ctx, a)}
-}
-
-func (_c *MockCmdable_XClaimJustID_Call) Run(run func(ctx context.Context, a *redis.XClaimArgs)) *MockCmdable_XClaimJustID_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XClaimArgs))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XClaimJustID_Call) Return(_a0 *redis.StringSliceCmd) *MockCmdable_XClaimJustID_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XClaimJustID_Call) RunAndReturn(run func(context.Context, *redis.XClaimArgs) *redis.StringSliceCmd) *MockCmdable_XClaimJustID_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XDel provides a mock function with given fields: ctx, stream, ids
-func (_m *MockCmdable) XDel(ctx context.Context, stream string, ids ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(ids))
-	for _i := range ids {
-		_va[_i] = ids[_i]
-	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, stream)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
-
-	var r0 *redis.IntCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
-		r0 = rf(ctx, stream, ids...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XDel_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XDel'
-type MockCmdable_XDel_Call struct {
-	*mock.Call
-}
-
-// XDel is a helper method to define mock.On call
-//   - ctx context.Context
-//   - stream string
-//   - ids ...string
-func (_e *MockCmdable_Expecter) XDel(ctx interface{}, stream interface{}, ids ...interface{}) *MockCmdable_XDel_Call {
-	return &MockCmdable_XDel_Call{Call: _e.mock.On("XDel",
-		append([]interface{}{ctx, stream}, ids...)...)}
-}
-
-func (_c *MockCmdable_XDel_Call) Run(run func(ctx context.Context, stream string, ids ...string)) *MockCmdable_XDel_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XDel_Call) Return(_a0 *redis.IntCmd) *MockCmdable_XDel_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XDel_Call) RunAndReturn(run func(context.Context, string, ...string) *redis.IntCmd) *MockCmdable_XDel_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XGroupCreate provides a mock function with given fields: ctx, stream, group, start
-func (_m *MockCmdable) XGroupCreate(ctx context.Context, stream string, group string, start string) *redis.StatusCmd {
-	ret := _m.Called(ctx, stream, group, start)
-
-	var r0 *redis.StatusCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.StatusCmd); ok {
-		r0 = rf(ctx, stream, group, start)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.StatusCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XGroupCreate_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XGroupCreate'
-type MockCmdable_XGroupCreate_Call struct {
-	*mock.Call
-}
-
-// XGroupCreate is a helper method to define mock.On call
-//   - ctx context.Context
-//   - stream string
-//   - group string
-//   - start string
-func (_e *MockCmdable_Expecter) XGroupCreate(ctx interface{}, stream interface{}, group interface{}, start interface{}) *MockCmdable_XGroupCreate_Call {
-	return &MockCmdable_XGroupCreate_Call{Call: _e.mock.On("XGroupCreate", ctx, stream, group, start)}
-}
-
-func (_c *MockCmdable_XGroupCreate_Call) Run(run func(ctx context.Context, stream string, group string, start string)) *MockCmdable_XGroupCreate_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XGroupCreate_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_XGroupCreate_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XGroupCreate_Call) RunAndReturn(run func(context.Context, string, string, string) *redis.StatusCmd) *MockCmdable_XGroupCreate_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XGroupCreateConsumer provides a mock function with given fields: ctx, stream, group, consumer
-func (_m *MockCmdable) XGroupCreateConsumer(ctx context.Context, stream string, group string, consumer string) *redis.IntCmd {
-	ret := _m.Called(ctx, stream, group, consumer)
-
-	var r0 *redis.IntCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.IntCmd); ok {
-		r0 = rf(ctx, stream, group, consumer)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XGroupCreateConsumer_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XGroupCreateConsumer'
-type MockCmdable_XGroupCreateConsumer_Call struct {
-	*mock.Call
-}
-
-// XGroupCreateConsumer is a helper method to define mock.On call
-//   - ctx context.Context
-//   - stream string
-//   - group string
-//   - consumer string
-func (_e *MockCmdable_Expecter) XGroupCreateConsumer(ctx interface{}, stream interface{}, group interface{}, consumer interface{}) *MockCmdable_XGroupCreateConsumer_Call {
-	return &MockCmdable_XGroupCreateConsumer_Call{Call: _e.mock.On("XGroupCreateConsumer", ctx, stream, group, consumer)}
-}
-
-func (_c *MockCmdable_XGroupCreateConsumer_Call) Run(run func(ctx context.Context, stream string, group string, consumer string)) *MockCmdable_XGroupCreateConsumer_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XGroupCreateConsumer_Call) Return(_a0 *redis.IntCmd) *MockCmdable_XGroupCreateConsumer_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XGroupCreateConsumer_Call) RunAndReturn(run func(context.Context, string, string, string) *redis.IntCmd) *MockCmdable_XGroupCreateConsumer_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XGroupCreateMkStream provides a mock function with given fields: ctx, stream, group, start
-func (_m *MockCmdable) XGroupCreateMkStream(ctx context.Context, stream string, group string, start string) *redis.StatusCmd {
-	ret := _m.Called(ctx, stream, group, start)
-
-	var r0 *redis.StatusCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.StatusCmd); ok {
-		r0 = rf(ctx, stream, group, start)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.StatusCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XGroupCreateMkStream_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XGroupCreateMkStream'
-type MockCmdable_XGroupCreateMkStream_Call struct {
-	*mock.Call
-}
-
-// XGroupCreateMkStream is a helper method to define mock.On call
-//   - ctx context.Context
-//   - stream string
-//   - group string
-//   - start string
-func (_e *MockCmdable_Expecter) XGroupCreateMkStream(ctx interface{}, stream interface{}, group interface{}, start interface{}) *MockCmdable_XGroupCreateMkStream_Call {
-	return &MockCmdable_XGroupCreateMkStream_Call{Call: _e.mock.On("XGroupCreateMkStream", ctx, stream, group, start)}
-}
-
-func (_c *MockCmdable_XGroupCreateMkStream_Call) Run(run func(ctx context.Context, stream string, group string, start string)) *MockCmdable_XGroupCreateMkStream_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XGroupCreateMkStream_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_XGroupCreateMkStream_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XGroupCreateMkStream_Call) RunAndReturn(run func(context.Context, string, string, string) *redis.StatusCmd) *MockCmdable_XGroupCreateMkStream_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XGroupDelConsumer provides a mock function with given fields: ctx, stream, group, consumer
-func (_m *MockCmdable) XGroupDelConsumer(ctx context.Context, stream string, group string, consumer string) *redis.IntCmd {
-	ret := _m.Called(ctx, stream, group, consumer)
-
-	var r0 *redis.IntCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.IntCmd); ok {
-		r0 = rf(ctx, stream, group, consumer)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XGroupDelConsumer_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XGroupDelConsumer'
-type MockCmdable_XGroupDelConsumer_Call struct {
-	*mock.Call
-}
-
-// XGroupDelConsumer is a helper method to define mock.On call
-//   - ctx context.Context
-//   - stream string
-//   - group string
-//   - consumer string
-func (_e *MockCmdable_Expecter) XGroupDelConsumer(ctx interface{}, stream interface{}, group interface{}, consumer interface{}) *MockCmdable_XGroupDelConsumer_Call {
-	return &MockCmdable_XGroupDelConsumer_Call{Call: _e.mock.On("XGroupDelConsumer", ctx, stream, group, consumer)}
-}
-
-func (_c *MockCmdable_XGroupDelConsumer_Call) Run(run func(ctx context.Context, stream string, group string, consumer string)) *MockCmdable_XGroupDelConsumer_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XGroupDelConsumer_Call) Return(_a0 *redis.IntCmd) *MockCmdable_XGroupDelConsumer_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XGroupDelConsumer_Call) RunAndReturn(run func(context.Context, string, string, string) *redis.IntCmd) *MockCmdable_XGroupDelConsumer_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XGroupDestroy provides a mock function with given fields: ctx, stream, group
-func (_m *MockCmdable) XGroupDestroy(ctx context.Context, stream string, group string) *redis.IntCmd {
-	ret := _m.Called(ctx, stream, group)
-
-	var r0 *redis.IntCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
-		r0 = rf(ctx, stream, group)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XGroupDestroy_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XGroupDestroy'
-type MockCmdable_XGroupDestroy_Call struct {
-	*mock.Call
-}
-
-// XGroupDestroy is a helper method to define mock.On call
-//   - ctx context.Context
-//   - stream string
-//   - group string
-func (_e *MockCmdable_Expecter) XGroupDestroy(ctx interface{}, stream interface{}, group interface{}) *MockCmdable_XGroupDestroy_Call {
-	return &MockCmdable_XGroupDestroy_Call{Call: _e.mock.On("XGroupDestroy", ctx, stream, group)}
-}
-
-func (_c *MockCmdable_XGroupDestroy_Call) Run(run func(ctx context.Context, stream string, group string)) *MockCmdable_XGroupDestroy_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XGroupDestroy_Call) Return(_a0 *redis.IntCmd) *MockCmdable_XGroupDestroy_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XGroupDestroy_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntCmd) *MockCmdable_XGroupDestroy_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XGroupSetID provides a mock function with given fields: ctx, stream, group, start
-func (_m *MockCmdable) XGroupSetID(ctx context.Context, stream string, group string, start string) *redis.StatusCmd {
-	ret := _m.Called(ctx, stream, group, start)
-
-	var r0 *redis.StatusCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.StatusCmd); ok {
-		r0 = rf(ctx, stream, group, start)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.StatusCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XGroupSetID_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XGroupSetID'
-type MockCmdable_XGroupSetID_Call struct {
-	*mock.Call
-}
-
-// XGroupSetID is a helper method to define mock.On call
-//   - ctx context.Context
-//   - stream string
-//   - group string
-//   - start string
-func (_e *MockCmdable_Expecter) XGroupSetID(ctx interface{}, stream interface{}, group interface{}, start interface{}) *MockCmdable_XGroupSetID_Call {
-	return &MockCmdable_XGroupSetID_Call{Call: _e.mock.On("XGroupSetID", ctx, stream, group, start)}
-}
-
-func (_c *MockCmdable_XGroupSetID_Call) Run(run func(ctx context.Context, stream string, group string, start string)) *MockCmdable_XGroupSetID_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XGroupSetID_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_XGroupSetID_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XGroupSetID_Call) RunAndReturn(run func(context.Context, string, string, string) *redis.StatusCmd) *MockCmdable_XGroupSetID_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XInfoConsumers provides a mock function with given fields: ctx, key, group
-func (_m *MockCmdable) XInfoConsumers(ctx context.Context, key string, group string) *redis.XInfoConsumersCmd {
-	ret := _m.Called(ctx, key, group)
-
-	var r0 *redis.XInfoConsumersCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.XInfoConsumersCmd); ok {
-		r0 = rf(ctx, key, group)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.XInfoConsumersCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XInfoConsumers_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XInfoConsumers'
-type MockCmdable_XInfoConsumers_Call struct {
-	*mock.Call
-}
-
-// XInfoConsumers is a helper method to define mock.On call
-//   - ctx context.Context
-//   - key string
-//   - group string
-func (_e *MockCmdable_Expecter) XInfoConsumers(ctx interface{}, key interface{}, group interface{}) *MockCmdable_XInfoConsumers_Call {
-	return &MockCmdable_XInfoConsumers_Call{Call: _e.mock.On("XInfoConsumers", ctx, key, group)}
-}
-
-func (_c *MockCmdable_XInfoConsumers_Call) Run(run func(ctx context.Context, key string, group string)) *MockCmdable_XInfoConsumers_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XInfoConsumers_Call) Return(_a0 *redis.XInfoConsumersCmd) *MockCmdable_XInfoConsumers_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XInfoConsumers_Call) RunAndReturn(run func(context.Context, string, string) *redis.XInfoConsumersCmd) *MockCmdable_XInfoConsumers_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XInfoGroups provides a mock function with given fields: ctx, key
-func (_m *MockCmdable) XInfoGroups(ctx context.Context, key string) *redis.XInfoGroupsCmd {
-	ret := _m.Called(ctx, key)
-
-	var r0 *redis.XInfoGroupsCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.XInfoGroupsCmd); ok {
-		r0 = rf(ctx, key)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.XInfoGroupsCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XInfoGroups_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XInfoGroups'
-type MockCmdable_XInfoGroups_Call struct {
-	*mock.Call
-}
-
-// XInfoGroups is a helper method to define mock.On call
-//   - ctx context.Context
-//   - key string
-func (_e *MockCmdable_Expecter) XInfoGroups(ctx interface{}, key interface{}) *MockCmdable_XInfoGroups_Call {
-	return &MockCmdable_XInfoGroups_Call{Call: _e.mock.On("XInfoGroups", ctx, key)}
-}
-
-func (_c *MockCmdable_XInfoGroups_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_XInfoGroups_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XInfoGroups_Call) Return(_a0 *redis.XInfoGroupsCmd) *MockCmdable_XInfoGroups_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XInfoGroups_Call) RunAndReturn(run func(context.Context, string) *redis.XInfoGroupsCmd) *MockCmdable_XInfoGroups_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XInfoStream provides a mock function with given fields: ctx, key
-func (_m *MockCmdable) XInfoStream(ctx context.Context, key string) *redis.XInfoStreamCmd {
-	ret := _m.Called(ctx, key)
-
-	var r0 *redis.XInfoStreamCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.XInfoStreamCmd); ok {
-		r0 = rf(ctx, key)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.XInfoStreamCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XInfoStream_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XInfoStream'
-type MockCmdable_XInfoStream_Call struct {
-	*mock.Call
-}
-
-// XInfoStream is a helper method to define mock.On call
-//   - ctx context.Context
-//   - key string
-func (_e *MockCmdable_Expecter) XInfoStream(ctx interface{}, key interface{}) *MockCmdable_XInfoStream_Call {
-	return &MockCmdable_XInfoStream_Call{Call: _e.mock.On("XInfoStream", ctx, key)}
-}
-
-func (_c *MockCmdable_XInfoStream_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_XInfoStream_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XInfoStream_Call) Return(_a0 *redis.XInfoStreamCmd) *MockCmdable_XInfoStream_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XInfoStream_Call) RunAndReturn(run func(context.Context, string) *redis.XInfoStreamCmd) *MockCmdable_XInfoStream_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XInfoStreamFull provides a mock function with given fields: ctx, key, count
-func (_m *MockCmdable) XInfoStreamFull(ctx context.Context, key string, count int) *redis.XInfoStreamFullCmd {
-	ret := _m.Called(ctx, key, count)
-
-	var r0 *redis.XInfoStreamFullCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, int) *redis.XInfoStreamFullCmd); ok {
-		r0 = rf(ctx, key, count)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.XInfoStreamFullCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XInfoStreamFull_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XInfoStreamFull'
-type MockCmdable_XInfoStreamFull_Call struct {
-	*mock.Call
-}
-
-// XInfoStreamFull is a helper method to define mock.On call
-//   - ctx context.Context
-//   - key string
-//   - count int
-func (_e *MockCmdable_Expecter) XInfoStreamFull(ctx interface{}, key interface{}, count interface{}) *MockCmdable_XInfoStreamFull_Call {
-	return &MockCmdable_XInfoStreamFull_Call{Call: _e.mock.On("XInfoStreamFull", ctx, key, count)}
-}
-
-func (_c *MockCmdable_XInfoStreamFull_Call) Run(run func(ctx context.Context, key string, count int)) *MockCmdable_XInfoStreamFull_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XInfoStreamFull_Call) Return(_a0 *redis.XInfoStreamFullCmd) *MockCmdable_XInfoStreamFull_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XInfoStreamFull_Call) RunAndReturn(run func(context.Context, string, int) *redis.XInfoStreamFullCmd) *MockCmdable_XInfoStreamFull_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XLen provides a mock function with given fields: ctx, stream
-func (_m *MockCmdable) XLen(ctx context.Context, stream string) *redis.IntCmd {
-	ret := _m.Called(ctx, stream)
-
-	var r0 *redis.IntCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
-		r0 = rf(ctx, stream)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XLen_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XLen'
-type MockCmdable_XLen_Call struct {
-	*mock.Call
-}
-
-// XLen is a helper method to define mock.On call
-//   - ctx context.Context
-//   - stream string
-func (_e *MockCmdable_Expecter) XLen(ctx interface{}, stream interface{}) *MockCmdable_XLen_Call {
-	return &MockCmdable_XLen_Call{Call: _e.mock.On("XLen", ctx, stream)}
-}
-
-func (_c *MockCmdable_XLen_Call) Run(run func(ctx context.Context, stream string)) *MockCmdable_XLen_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XLen_Call) Return(_a0 *redis.IntCmd) *MockCmdable_XLen_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XLen_Call) RunAndReturn(run func(context.Context, string) *redis.IntCmd) *MockCmdable_XLen_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XPending provides a mock function with given fields: ctx, stream, group
-func (_m *MockCmdable) XPending(ctx context.Context, stream string, group string) *redis.XPendingCmd {
-	ret := _m.Called(ctx, stream, group)
-
-	var r0 *redis.XPendingCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.XPendingCmd); ok {
-		r0 = rf(ctx, stream, group)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.XPendingCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XPending_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XPending'
-type MockCmdable_XPending_Call struct {
-	*mock.Call
-}
-
-// XPending is a helper method to define mock.On call
-//   - ctx context.Context
-//   - stream string
-//   - group string
-func (_e *MockCmdable_Expecter) XPending(ctx interface{}, stream interface{}, group interface{}) *MockCmdable_XPending_Call {
-	return &MockCmdable_XPending_Call{Call: _e.mock.On("XPending", ctx, stream, group)}
-}
-
-func (_c *MockCmdable_XPending_Call) Run(run func(ctx context.Context, stream string, group string)) *MockCmdable_XPending_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XPending_Call) Return(_a0 *redis.XPendingCmd) *MockCmdable_XPending_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XPending_Call) RunAndReturn(run func(context.Context, string, string) *redis.XPendingCmd) *MockCmdable_XPending_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XPendingExt provides a mock function with given fields: ctx, a
-func (_m *MockCmdable) XPendingExt(ctx context.Context, a *redis.XPendingExtArgs) *redis.XPendingExtCmd {
-	ret := _m.Called(ctx, a)
-
-	var r0 *redis.XPendingExtCmd
-	if rf, ok := ret.Get(0).(func(context.Context, *redis.XPendingExtArgs) *redis.XPendingExtCmd); ok {
-		r0 = rf(ctx, a)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.XPendingExtCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XPendingExt_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XPendingExt'
-type MockCmdable_XPendingExt_Call struct {
-	*mock.Call
-}
-
-// XPendingExt is a helper method to define mock.On call
-//   - ctx context.Context
-//   - a *redis.XPendingExtArgs
-func (_e *MockCmdable_Expecter) XPendingExt(ctx interface{}, a interface{}) *MockCmdable_XPendingExt_Call {
-	return &MockCmdable_XPendingExt_Call{Call: _e.mock.On("XPendingExt", ctx, a)}
-}
-
-func (_c *MockCmdable_XPendingExt_Call) Run(run func(ctx context.Context, a *redis.XPendingExtArgs)) *MockCmdable_XPendingExt_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XPendingExtArgs))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XPendingExt_Call) Return(_a0 *redis.XPendingExtCmd) *MockCmdable_XPendingExt_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XPendingExt_Call) RunAndReturn(run func(context.Context, *redis.XPendingExtArgs) *redis.XPendingExtCmd) *MockCmdable_XPendingExt_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XRange provides a mock function with given fields: ctx, stream, start, stop
-func (_m *MockCmdable) XRange(ctx context.Context, stream string, start string, stop string) *redis.XMessageSliceCmd {
-	ret := _m.Called(ctx, stream, start, stop)
-
-	var r0 *redis.XMessageSliceCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.XMessageSliceCmd); ok {
-		r0 = rf(ctx, stream, start, stop)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.XMessageSliceCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XRange_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XRange'
-type MockCmdable_XRange_Call struct {
-	*mock.Call
-}
-
-// XRange is a helper method to define mock.On call
-//   - ctx context.Context
-//   - stream string
-//   - start string
-//   - stop string
-func (_e *MockCmdable_Expecter) XRange(ctx interface{}, stream interface{}, start interface{}, stop interface{}) *MockCmdable_XRange_Call {
-	return &MockCmdable_XRange_Call{Call: _e.mock.On("XRange", ctx, stream, start, stop)}
-}
-
-func (_c *MockCmdable_XRange_Call) Run(run func(ctx context.Context, stream string, start string, stop string)) *MockCmdable_XRange_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XRange_Call) Return(_a0 *redis.XMessageSliceCmd) *MockCmdable_XRange_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XRange_Call) RunAndReturn(run func(context.Context, string, string, string) *redis.XMessageSliceCmd) *MockCmdable_XRange_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XRangeN provides a mock function with given fields: ctx, stream, start, stop, count
-func (_m *MockCmdable) XRangeN(ctx context.Context, stream string, start string, stop string, count int64) *redis.XMessageSliceCmd {
-	ret := _m.Called(ctx, stream, start, stop, count)
-
-	var r0 *redis.XMessageSliceCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, string, string, int64) *redis.XMessageSliceCmd); ok {
-		r0 = rf(ctx, stream, start, stop, count)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.XMessageSliceCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XRangeN_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XRangeN'
-type MockCmdable_XRangeN_Call struct {
-	*mock.Call
-}
-
-// XRangeN is a helper method to define mock.On call
-//   - ctx context.Context
-//   - stream string
-//   - start string
-//   - stop string
-//   - count int64
-func (_e *MockCmdable_Expecter) XRangeN(ctx interface{}, stream interface{}, start interface{}, stop interface{}, count interface{}) *MockCmdable_XRangeN_Call {
-	return &MockCmdable_XRangeN_Call{Call: _e.mock.On("XRangeN", ctx, stream, start, stop, count)}
-}
-
-func (_c *MockCmdable_XRangeN_Call) Run(run func(ctx context.Context, stream string, start string, stop string, count int64)) *MockCmdable_XRangeN_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string), args[4].(int64))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XRangeN_Call) Return(_a0 *redis.XMessageSliceCmd) *MockCmdable_XRangeN_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XRangeN_Call) RunAndReturn(run func(context.Context, string, string, string, int64) *redis.XMessageSliceCmd) *MockCmdable_XRangeN_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XRead provides a mock function with given fields: ctx, a
-func (_m *MockCmdable) XRead(ctx context.Context, a *redis.XReadArgs) *redis.XStreamSliceCmd {
-	ret := _m.Called(ctx, a)
-
-	var r0 *redis.XStreamSliceCmd
-	if rf, ok := ret.Get(0).(func(context.Context, *redis.XReadArgs) *redis.XStreamSliceCmd); ok {
-		r0 = rf(ctx, a)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.XStreamSliceCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XRead_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XRead'
-type MockCmdable_XRead_Call struct {
-	*mock.Call
-}
-
-// XRead is a helper method to define mock.On call
-//   - ctx context.Context
-//   - a *redis.XReadArgs
-func (_e *MockCmdable_Expecter) XRead(ctx interface{}, a interface{}) *MockCmdable_XRead_Call {
-	return &MockCmdable_XRead_Call{Call: _e.mock.On("XRead", ctx, a)}
-}
-
-func (_c *MockCmdable_XRead_Call) Run(run func(ctx context.Context, a *redis.XReadArgs)) *MockCmdable_XRead_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XReadArgs))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XRead_Call) Return(_a0 *redis.XStreamSliceCmd) *MockCmdable_XRead_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XRead_Call) RunAndReturn(run func(context.Context, *redis.XReadArgs) *redis.XStreamSliceCmd) *MockCmdable_XRead_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XReadGroup provides a mock function with given fields: ctx, a
-func (_m *MockCmdable) XReadGroup(ctx context.Context, a *redis.XReadGroupArgs) *redis.XStreamSliceCmd {
-	ret := _m.Called(ctx, a)
-
-	var r0 *redis.XStreamSliceCmd
-	if rf, ok := ret.Get(0).(func(context.Context, *redis.XReadGroupArgs) *redis.XStreamSliceCmd); ok {
-		r0 = rf(ctx, a)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.XStreamSliceCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XReadGroup_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XReadGroup'
-type MockCmdable_XReadGroup_Call struct {
-	*mock.Call
-}
-
-// XReadGroup is a helper method to define mock.On call
-//   - ctx context.Context
-//   - a *redis.XReadGroupArgs
-func (_e *MockCmdable_Expecter) XReadGroup(ctx interface{}, a interface{}) *MockCmdable_XReadGroup_Call {
-	return &MockCmdable_XReadGroup_Call{Call: _e.mock.On("XReadGroup", ctx, a)}
-}
-
-func (_c *MockCmdable_XReadGroup_Call) Run(run func(ctx context.Context, a *redis.XReadGroupArgs)) *MockCmdable_XReadGroup_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XReadGroupArgs))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XReadGroup_Call) Return(_a0 *redis.XStreamSliceCmd) *MockCmdable_XReadGroup_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XReadGroup_Call) RunAndReturn(run func(context.Context, *redis.XReadGroupArgs) *redis.XStreamSliceCmd) *MockCmdable_XReadGroup_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XReadStreams provides a mock function with given fields: ctx, streams
-func (_m *MockCmdable) XReadStreams(ctx context.Context, streams ...string) *redis.XStreamSliceCmd {
-	_va := make([]interface{}, len(streams))
-	for _i := range streams {
-		_va[_i] = streams[_i]
-	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
-
-	var r0 *redis.XStreamSliceCmd
-	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.XStreamSliceCmd); ok {
-		r0 = rf(ctx, streams...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.XStreamSliceCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XReadStreams_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XReadStreams'
-type MockCmdable_XReadStreams_Call struct {
-	*mock.Call
-}
-
-// XReadStreams is a helper method to define mock.On call
-//   - ctx context.Context
-//   - streams ...string
-func (_e *MockCmdable_Expecter) XReadStreams(ctx interface{}, streams ...interface{}) *MockCmdable_XReadStreams_Call {
-	return &MockCmdable_XReadStreams_Call{Call: _e.mock.On("XReadStreams",
-		append([]interface{}{ctx}, streams...)...)}
-}
-
-func (_c *MockCmdable_XReadStreams_Call) Run(run func(ctx context.Context, streams ...string)) *MockCmdable_XReadStreams_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
-		run(args[0].(context.Context), variadicArgs...)
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XReadStreams_Call) Return(_a0 *redis.XStreamSliceCmd) *MockCmdable_XReadStreams_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XReadStreams_Call) RunAndReturn(run func(context.Context, ...string) *redis.XStreamSliceCmd) *MockCmdable_XReadStreams_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XRevRange provides a mock function with given fields: ctx, stream, start, stop
-func (_m *MockCmdable) XRevRange(ctx context.Context, stream string, start string, stop string) *redis.XMessageSliceCmd {
-	ret := _m.Called(ctx, stream, start, stop)
-
-	var r0 *redis.XMessageSliceCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.XMessageSliceCmd); ok {
-		r0 = rf(ctx, stream, start, stop)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.XMessageSliceCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XRevRange_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XRevRange'
-type MockCmdable_XRevRange_Call struct {
-	*mock.Call
-}
-
-// XRevRange is a helper method to define mock.On call
-//   - ctx context.Context
-//   - stream string
-//   - start string
-//   - stop string
-func (_e *MockCmdable_Expecter) XRevRange(ctx interface{}, stream interface{}, start interface{}, stop interface{}) *MockCmdable_XRevRange_Call {
-	return &MockCmdable_XRevRange_Call{Call: _e.mock.On("XRevRange", ctx, stream, start, stop)}
-}
-
-func (_c *MockCmdable_XRevRange_Call) Run(run func(ctx context.Context, stream string, start string, stop string)) *MockCmdable_XRevRange_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XRevRange_Call) Return(_a0 *redis.XMessageSliceCmd) *MockCmdable_XRevRange_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XRevRange_Call) RunAndReturn(run func(context.Context, string, string, string) *redis.XMessageSliceCmd) *MockCmdable_XRevRange_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XRevRangeN provides a mock function with given fields: ctx, stream, start, stop, count
-func (_m *MockCmdable) XRevRangeN(ctx context.Context, stream string, start string, stop string, count int64) *redis.XMessageSliceCmd {
-	ret := _m.Called(ctx, stream, start, stop, count)
-
-	var r0 *redis.XMessageSliceCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, string, string, int64) *redis.XMessageSliceCmd); ok {
-		r0 = rf(ctx, stream, start, stop, count)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.XMessageSliceCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XRevRangeN_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XRevRangeN'
-type MockCmdable_XRevRangeN_Call struct {
-	*mock.Call
-}
-
-// XRevRangeN is a helper method to define mock.On call
-//   - ctx context.Context
-//   - stream string
-//   - start string
-//   - stop string
-//   - count int64
-func (_e *MockCmdable_Expecter) XRevRangeN(ctx interface{}, stream interface{}, start interface{}, stop interface{}, count interface{}) *MockCmdable_XRevRangeN_Call {
-	return &MockCmdable_XRevRangeN_Call{Call: _e.mock.On("XRevRangeN", ctx, stream, start, stop, count)}
-}
-
-func (_c *MockCmdable_XRevRangeN_Call) Run(run func(ctx context.Context, stream string, start string, stop string, count int64)) *MockCmdable_XRevRangeN_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string), args[4].(int64))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XRevRangeN_Call) Return(_a0 *redis.XMessageSliceCmd) *MockCmdable_XRevRangeN_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XRevRangeN_Call) RunAndReturn(run func(context.Context, string, string, string, int64) *redis.XMessageSliceCmd) *MockCmdable_XRevRangeN_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XTrimMaxLen provides a mock function with given fields: ctx, key, maxLen
-func (_m *MockCmdable) XTrimMaxLen(ctx context.Context, key string, maxLen int64) *redis.IntCmd {
-	ret := _m.Called(ctx, key, maxLen)
-
-	var r0 *redis.IntCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, int64) *redis.IntCmd); ok {
-		r0 = rf(ctx, key, maxLen)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XTrimMaxLen_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XTrimMaxLen'
-type MockCmdable_XTrimMaxLen_Call struct {
-	*mock.Call
-}
-
-// XTrimMaxLen is a helper method to define mock.On call
-//   - ctx context.Context
-//   - key string
-//   - maxLen int64
-func (_e *MockCmdable_Expecter) XTrimMaxLen(ctx interface{}, key interface{}, maxLen interface{}) *MockCmdable_XTrimMaxLen_Call {
-	return &MockCmdable_XTrimMaxLen_Call{Call: _e.mock.On("XTrimMaxLen", ctx, key, maxLen)}
-}
-
-func (_c *MockCmdable_XTrimMaxLen_Call) Run(run func(ctx context.Context, key string, maxLen int64)) *MockCmdable_XTrimMaxLen_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XTrimMaxLen_Call) Return(_a0 *redis.IntCmd) *MockCmdable_XTrimMaxLen_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XTrimMaxLen_Call) RunAndReturn(run func(context.Context, string, int64) *redis.IntCmd) *MockCmdable_XTrimMaxLen_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XTrimMaxLenApprox provides a mock function with given fields: ctx, key, maxLen, limit
-func (_m *MockCmdable) XTrimMaxLenApprox(ctx context.Context, key string, maxLen int64, limit int64) *redis.IntCmd {
-	ret := _m.Called(ctx, key, maxLen, limit)
-
-	var r0 *redis.IntCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int64) *redis.IntCmd); ok {
-		r0 = rf(ctx, key, maxLen, limit)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XTrimMaxLenApprox_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XTrimMaxLenApprox'
-type MockCmdable_XTrimMaxLenApprox_Call struct {
-	*mock.Call
-}
-
-// XTrimMaxLenApprox is a helper method to define mock.On call
-//   - ctx context.Context
-//   - key string
-//   - maxLen int64
-//   - limit int64
-func (_e *MockCmdable_Expecter) XTrimMaxLenApprox(ctx interface{}, key interface{}, maxLen interface{}, limit interface{}) *MockCmdable_XTrimMaxLenApprox_Call {
-	return &MockCmdable_XTrimMaxLenApprox_Call{Call: _e.mock.On("XTrimMaxLenApprox", ctx, key, maxLen, limit)}
-}
-
-func (_c *MockCmdable_XTrimMaxLenApprox_Call) Run(run func(ctx context.Context, key string, maxLen int64, limit int64)) *MockCmdable_XTrimMaxLenApprox_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XTrimMaxLenApprox_Call) Return(_a0 *redis.IntCmd) *MockCmdable_XTrimMaxLenApprox_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XTrimMaxLenApprox_Call) RunAndReturn(run func(context.Context, string, int64, int64) *redis.IntCmd) *MockCmdable_XTrimMaxLenApprox_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XTrimMinID provides a mock function with given fields: ctx, key, minID
-func (_m *MockCmdable) XTrimMinID(ctx context.Context, key string, minID string) *redis.IntCmd {
-	ret := _m.Called(ctx, key, minID)
-
-	var r0 *redis.IntCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
-		r0 = rf(ctx, key, minID)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XTrimMinID_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XTrimMinID'
-type MockCmdable_XTrimMinID_Call struct {
-	*mock.Call
-}
-
-// XTrimMinID is a helper method to define mock.On call
-//   - ctx context.Context
-//   - key string
-//   - minID string
-func (_e *MockCmdable_Expecter) XTrimMinID(ctx interface{}, key interface{}, minID interface{}) *MockCmdable_XTrimMinID_Call {
-	return &MockCmdable_XTrimMinID_Call{Call: _e.mock.On("XTrimMinID", ctx, key, minID)}
-}
-
-func (_c *MockCmdable_XTrimMinID_Call) Run(run func(ctx context.Context, key string, minID string)) *MockCmdable_XTrimMinID_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XTrimMinID_Call) Return(_a0 *redis.IntCmd) *MockCmdable_XTrimMinID_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XTrimMinID_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntCmd) *MockCmdable_XTrimMinID_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// XTrimMinIDApprox provides a mock function with given fields: ctx, key, minID, limit
-func (_m *MockCmdable) XTrimMinIDApprox(ctx context.Context, key string, minID string, limit int64) *redis.IntCmd {
-	ret := _m.Called(ctx, key, minID, limit)
-
-	var r0 *redis.IntCmd
-	if rf, ok := ret.Get(0).(func(context.Context, string, string, int64) *redis.IntCmd); ok {
-		r0 = rf(ctx, key, minID, limit)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.IntCmd)
-		}
-	}
-
-	return r0
-}
-
-// MockCmdable_XTrimMinIDApprox_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XTrimMinIDApprox'
-type MockCmdable_XTrimMinIDApprox_Call struct {
-	*mock.Call
-}
-
-// XTrimMinIDApprox is a helper method to define mock.On call
-//   - ctx context.Context
-//   - key string
-//   - minID string
-//   - limit int64
-func (_e *MockCmdable_Expecter) XTrimMinIDApprox(ctx interface{}, key interface{}, minID interface{}, limit interface{}) *MockCmdable_XTrimMinIDApprox_Call {
-	return &MockCmdable_XTrimMinIDApprox_Call{Call: _e.mock.On("XTrimMinIDApprox", ctx, key, minID, limit)}
-}
-
-func (_c *MockCmdable_XTrimMinIDApprox_Call) Run(run func(ctx context.Context, key string, minID string, limit int64)) *MockCmdable_XTrimMinIDApprox_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int64))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_XTrimMinIDApprox_Call) Return(_a0 *redis.IntCmd) *MockCmdable_XTrimMinIDApprox_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockCmdable_XTrimMinIDApprox_Call) RunAndReturn(run func(context.Context, string, string, int64) *redis.IntCmd) *MockCmdable_XTrimMinIDApprox_Call {
 	_c.Call.Return(run)
 	return _c
 }
