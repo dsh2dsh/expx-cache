@@ -33,7 +33,9 @@ func New() *Cache {
 		defaultTTL: defaultTTL,
 		marshal:    marshal,
 		unmarshal:  unmarshal,
-		stats:      new(Stats),
+
+		stats: new(Stats),
+		group: &singleflight.Group{},
 	}
 
 	return c
@@ -46,11 +48,17 @@ type Cache struct {
 	defaultTTL time.Duration
 	marshal    MarshalFunc
 	unmarshal  UnmarshalFunc
+	keyWrapper func(keys string) string
 
 	stats        *Stats
 	statsEnabled bool
 
-	group singleflight.Group
+	group *singleflight.Group
+}
+
+func (self *Cache) New() *Cache {
+	c := *self
+	return &c
 }
 
 func (self *Cache) WithLocalCache(client LocalCache) *Cache {
@@ -121,4 +129,18 @@ func (self *Cache) ItemTTL(item *Item) time.Duration {
 		return time.Second
 	}
 	return item.TTL
+}
+
+// --------------------------------------------------
+
+func (self *Cache) WithKeyWrapper(fn func(key string) string) *Cache {
+	self.keyWrapper = fn
+	return self
+}
+
+func (self *Cache) WrapKey(key string) string {
+	if self.keyWrapper != nil {
+		return self.keyWrapper(key)
+	}
+	return key
 }

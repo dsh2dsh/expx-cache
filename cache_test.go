@@ -176,6 +176,133 @@ func (self *CacheTestSuite) TestGetSet_bytesAsIs() {
 
 // --------------------------------------------------
 
+func (self *CacheTestSuite) TestWithKeyWrapper() {
+	const keyPrefix = "baz:"
+	wantKey := keyPrefix + testKey
+
+	cache := self.cache.New().WithKeyWrapper(func(key string) string {
+		return keyPrefix + self.cache.WrapKey(key)
+	})
+
+	ctx := context.Background()
+	self.Require().NoError(cache.Set(&Item{
+		Ctx:   ctx,
+		Key:   testKey,
+		Value: self.CacheableValue(),
+	}))
+	self.True(keyExists(self.T(), cache, wantKey))
+	self.True(keyNotExists(self.T(), cache, testKey))
+
+	tests := []struct {
+		name   string
+		assert func(t *testing.T)
+	}{
+		{
+			name: "Exists",
+			assert: func(t *testing.T) {
+				assert.True(t, valueNoError[bool](t)(cache.Exists(ctx, testKey)))
+			},
+		},
+		{
+			name: "Get",
+			assert: func(t *testing.T) {
+				got := new(CacheableObject)
+				assert.True(t, valueNoError[bool](t)(cache.Get(ctx, testKey, got)))
+				assert.Equal(t, self.CacheableValue(), got)
+			},
+		},
+		{
+			name: "Once",
+			assert: func(t *testing.T) {
+				got := new(CacheableObject)
+				require.NoError(t, cache.Once(&Item{
+					Ctx:   ctx,
+					Key:   testKey,
+					Value: got,
+				}))
+				assert.Equal(t, self.CacheableValue(), got)
+			},
+		},
+		{
+			name: "Delete",
+			assert: func(t *testing.T) {
+				require.NoError(t, cache.Delete(ctx, testKey))
+				assert.True(t, keyNotExists(t, cache, wantKey))
+			},
+		},
+		{
+			name: "Once after Delete",
+			assert: func(t *testing.T) {
+				got := new(CacheableObject)
+				require.NoError(t, cache.Once(&Item{
+					Ctx:   ctx,
+					Key:   testKey,
+					Value: got,
+					Do: func(*Item) (any, error) {
+						return self.CacheableValue(), nil
+					},
+				}))
+				assert.Equal(t, self.CacheableValue(), got)
+			},
+		},
+		{
+			name: "Once with Unmarshal error",
+			assert: func(t *testing.T) {
+				var got bool
+				require.NoError(t, cache.Once(&Item{
+					Ctx:   ctx,
+					Key:   testKey,
+					Value: &got,
+					Do: func(*Item) (any, error) {
+						return true, nil
+					},
+				}), "did Once() delete wrong cache key after Unmarshal() error?")
+				assert.True(t, got)
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		self.T().Run(tt.name, tt.assert)
+	}
+}
+
+func keyExists(t *testing.T, c *Cache, key string) bool {
+	if c.localCache != nil {
+		if c.localCache.Get(key) == nil {
+			return false
+		}
+	}
+
+	if c.redis != nil {
+		b := valueNoError[[]byte](t)(c.redis.Get(context.Background(), key))
+		if b == nil {
+			return false
+		}
+	}
+
+	return true
+}
+
+func keyNotExists(t *testing.T, c *Cache, key string) bool {
+	if c.localCache != nil {
+		if c.localCache.Get(key) != nil {
+			return false
+		}
+	}
+
+	if c.redis != nil {
+		b := valueNoError[[]byte](t)(c.redis.Get(context.Background(), key))
+		if b != nil {
+			return false
+		}
+	}
+
+	return true
+}
+
+// --------------------------------------------------
+
 func NewRedisClient() (*redis.Client, error) {
 	cfg := struct {
 		WithRedis string `env:"WITH_REDIS"`
@@ -482,6 +609,57 @@ func TestCache_ItemTTL(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			assert.Equal(t, tt.wantTTL, cache.ItemTTL(&Item{TTL: tt.TTL}))
+		})
+	}
+}
+
+func TestCache_New(t *testing.T) {
+	cache := New()
+	require.NotNil(t, cache)
+	assert.NotSame(t, cache, cache.New())
+}
+
+func TestCache_WithKeyWrapper(t *testing.T) {
+	const foobar = "foobar"
+	tests := []struct {
+		name   string
+		expect string
+		before func(c *Cache) *Cache
+	}{
+		{
+			name:   "default",
+			expect: foobar,
+			before: func(c *Cache) *Cache {
+				return c
+			},
+		},
+		{
+			name:   "1level",
+			expect: "1level:" + foobar,
+			before: func(c *Cache) *Cache {
+				return c.New().WithKeyWrapper(func(key string) string {
+					return "1level:" + c.WrapKey(key)
+				})
+			},
+		},
+		{
+			name:   "2level",
+			expect: "2level:1level:" + foobar,
+			before: func(c *Cache) *Cache {
+				return c.New().WithKeyWrapper(func(key string) string {
+					return "2level:" + c.WrapKey(key)
+				})
+			},
+		},
+	}
+
+	cache := New()
+	require.NotNil(t, cache)
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			cache = tt.before(cache)
+			assert.Equal(t, tt.expect, cache.WrapKey(foobar))
 		})
 	}
 }

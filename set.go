@@ -21,16 +21,17 @@ func (self *Cache) set(item *Item) ([]byte, error) {
 	ttl := self.ItemTTL(item)
 	useRedis := self.redis != nil && ttl != 0
 
+	key := self.WrapKey(item.Key)
 	switch {
 	case useLocalCache && useRedis:
 		done := make(chan error)
 		go func() {
 			done <- self.redisSet(item, b, ttl)
 		}()
-		self.localCache.Set(item.Key, b)
+		self.localCache.Set(key, b)
 		err = <-done
 	case useLocalCache:
-		self.localCache.Set(item.Key, b)
+		self.localCache.Set(key, b)
 	case useRedis:
 		err = self.redisSet(item, b, ttl)
 	}
@@ -56,7 +57,7 @@ func (self *Cache) marshalItem(item *Item) ([]byte, error) {
 }
 
 func (self *Cache) redisSet(item *Item, b []byte, ttl time.Duration) error {
-	if err := self.redis.Set(item.Context(), item.Key, b, ttl); err != nil {
+	if err := self.redis.Set(item.Context(), self.WrapKey(item.Key), b, ttl); err != nil {
 		return fmt.Errorf("redis set: %w", err)
 	}
 	return nil

@@ -24,14 +24,18 @@ func (self *Cache) Delete(ctx context.Context, keys ...string) error {
 func (self *Cache) DeleteFromLocalCache(keys ...string) {
 	if self.localCache != nil {
 		for _, key := range keys {
-			self.localCache.Del(key)
+			self.localCache.Del(self.WrapKey(key))
 		}
 	}
 }
 
 func (self *Cache) DeleteFromRedis(ctx context.Context, keys ...string) error {
 	if self.redis != nil {
-		if err := self.redis.Del(ctx, keys...); err != nil {
+		handledKeys := make([]string, len(keys))
+		for i, k := range keys {
+			handledKeys[i] = self.WrapKey(k)
+		}
+		if err := self.redis.Del(ctx, handledKeys...); err != nil {
 			return fmt.Errorf("redis delete: %w", err)
 		}
 	}

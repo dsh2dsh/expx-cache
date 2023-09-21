@@ -10,6 +10,10 @@ import (
 // comes in, the duplicate caller waits for the original to complete and
 // receives the same results.
 func (self *Cache) Once(item *Item) error {
+	return self.once(item, true)
+}
+
+func (self *Cache) once(item *Item, autoFix bool) error {
 	b, fromCache, err := self.getSetItemBytesOnce(item)
 	if err != nil {
 		return err
@@ -18,11 +22,11 @@ func (self *Cache) Once(item *Item) error {
 	}
 
 	if err := self.Unmarshal(b, item.Value); err != nil {
-		if fromCache {
+		if fromCache && autoFix {
 			if err := self.Delete(item.Context(), item.Key); err != nil {
 				return err
 			}
-			return self.Once(item)
+			return self.once(item, false)
 		}
 		return err
 	}
@@ -31,8 +35,10 @@ func (self *Cache) Once(item *Item) error {
 }
 
 func (self *Cache) getSetItemBytesOnce(item *Item) ([]byte, bool, error) {
+	key := self.WrapKey(item.Key)
+
 	if self.localCache != nil {
-		b := self.localCache.Get(item.Key)
+		b := self.localCache.Get(key)
 		if b != nil {
 			self.addLocalHit()
 			return b, true, nil
@@ -41,7 +47,7 @@ func (self *Cache) getSetItemBytesOnce(item *Item) ([]byte, bool, error) {
 	}
 
 	fromCache, localHit := false, true
-	v, err, _ := self.group.Do(item.Key, func() (any, error) {
+	v, err, _ := self.group.Do(key, func() (any, error) {
 		localHit = false
 		b, err := self.getBytes(item.Context(), item.Key, item.SkipLocalCache)
 		if err == nil && b != nil {

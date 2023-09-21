@@ -133,3 +133,59 @@ func TestCache_Delete_withoutKeys(t *testing.T) {
 	require.NotNil(t, cache)
 	assert.NoError(t, cache.Delete(context.Background()))
 }
+
+func TestCache_Delete_withKeyWrapper(t *testing.T) {
+	ctx := context.Background()
+	const keyPrefix = "baz:"
+	wantKey := keyPrefix + testKey
+
+	tests := []struct {
+		name     string
+		expecter func(t *testing.T, c *Cache) *Cache
+	}{
+		{
+			name: "WithLocalCache",
+			expecter: func(t *testing.T, c *Cache) *Cache {
+				localCache := mocks.NewMockLocalCache(t)
+				localCache.EXPECT().Del(wantKey)
+				return c.WithLocalCache(localCache)
+			},
+		},
+		{
+			name: "WithRedisCache",
+			expecter: func(t *testing.T, c *Cache) *Cache {
+				redisCache := mocks.NewMockRedisClient(t)
+				redisCache.EXPECT().Del(ctx, wantKey).Return(nil)
+				return c.WithRedisCache(redisCache)
+			},
+		},
+		{
+			name: "with both",
+			expecter: func(t *testing.T, c *Cache) *Cache {
+				localCache := mocks.NewMockLocalCache(t)
+				localCache.EXPECT().Del(wantKey)
+
+				redisCache := mocks.NewMockRedisClient(t)
+				redisCache.EXPECT().Del(ctx, mock.Anything).RunAndReturn(
+					func(ctx context.Context, keys ...string) error {
+						assert.Equal(t, []string{wantKey}, keys)
+						return nil
+					})
+
+				return c.WithLocalCache(localCache).WithRedisCache(redisCache)
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			cache := New().
+				WithKeyWrapper(func(key string) string {
+					return keyPrefix + key
+				})
+			require.NotNil(t, cache)
+			cache = tt.expecter(t, cache)
+			assert.NoError(t, cache.Delete(ctx, testKey))
+		})
+	}
+}

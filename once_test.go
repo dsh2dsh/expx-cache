@@ -354,3 +354,44 @@ func TestOnce_withoutCache(t *testing.T) {
 	assert.Equal(t, 1, callCount)
 	assert.True(t, got)
 }
+
+func TestCache_Once_withKeyWrapper(t *testing.T) {
+	if testing.Short() {
+		t.Skip("skipping in short mode")
+	}
+	t.Parallel()
+
+	const keyPrefix = "baz:"
+	wantKey := keyPrefix + testKey
+
+	cache := New().WithKeyWrapper(func(key string) string {
+		return keyPrefix + key
+	})
+
+	onceSlipping := make(chan struct{})
+	onceErr := make(chan error)
+	var got bool
+
+	go func() {
+		onceErr <- cache.Once(&Item{
+			Ctx:   context.Background(),
+			Key:   testKey,
+			Value: &got,
+			Do: func(*Item) (any, error) {
+				onceSlipping <- struct{}{}
+				time.Sleep(100 * time.Millisecond)
+				return true, nil
+			},
+		})
+	}()
+
+	<-onceSlipping
+	_, err, shared := cache.group.Do(wantKey, func() (any, error) {
+		return false, io.EOF
+	})
+	require.NoError(t, <-onceErr)
+	assert.True(t, got)
+
+	require.NoError(t, err, "Once() uses wrong key for Do()")
+	assert.True(t, shared)
+}
