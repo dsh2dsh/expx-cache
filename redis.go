@@ -74,11 +74,11 @@ func (self *StdRedis) MGet(ctx context.Context, keys ...string) ([][]byte, error
 		return nil, fmt.Errorf("pipelined: %w", err)
 	}
 
-	values := make([][]byte, len(cmds))
+	blobs := make([][]byte, len(cmds))
 	for i, cmd := range cmds {
 		if strCmd, ok := cmd.(interface{ Bytes() ([]byte, error) }); ok {
 			if b, err := strCmd.Bytes(); err == nil {
-				values[i] = b
+				blobs[i] = b
 			} else if !errors.Is(err, redis.Nil) {
 				return nil, fmt.Errorf("pipelined bytes %q: %w", cmd.Name(), err)
 			}
@@ -89,7 +89,7 @@ func (self *StdRedis) MGet(ctx context.Context, keys ...string) ([][]byte, error
 		}
 	}
 
-	return values, nil
+	return blobs, nil
 }
 
 // --------------------------------------------------
