@@ -37,11 +37,13 @@ func (self *StdRedis) WithBatchSize(size int) *StdRedis {
 var defaultRedisGetter RedisGetter = func(ctx context.Context,
 	rdb redis.Cmdable, key string,
 ) ([]byte, error) {
-	if b, err := rdb.Get(ctx, key).Bytes(); err == nil {
-		return b, nil
-	} else {
+	b, err := rdb.Get(ctx, key).Bytes()
+	if err != nil && errors.Is(err, redis.Nil) {
+		return nil, nil
+	} else if err != nil {
 		return nil, fmt.Errorf("redis get: %w", err)
 	}
+	return b, nil
 }
 
 func (self *StdRedis) WithGetter(getter RedisGetter) *StdRedis {
@@ -51,12 +53,43 @@ func (self *StdRedis) WithGetter(getter RedisGetter) *StdRedis {
 
 func (self *StdRedis) Get(ctx context.Context, key string) ([]byte, error) {
 	b, err := self.getter(ctx, self.rdb, key)
-	if errors.Is(err, redis.Nil) {
+	if err != nil && errors.Is(err, redis.Nil) {
 		return nil, nil
 	} else if err != nil {
 		return nil, fmt.Errorf("getter get: %w", err)
 	}
 	return b, nil
+}
+
+func (self *StdRedis) MGet(ctx context.Context, keys ...string) ([][]byte, error) {
+	cmds, err := self.rdb.Pipelined(ctx, func(pipe redis.Pipeliner) error {
+		for _, key := range keys {
+			if _, err := self.getter(ctx, pipe, key); err != nil {
+				return fmt.Errorf("getter get: %w", err)
+			}
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, fmt.Errorf("pipelined: %w", err)
+	}
+
+	values := make([][]byte, len(cmds))
+	for i, cmd := range cmds {
+		if strCmd, ok := cmd.(interface{ Bytes() ([]byte, error) }); ok {
+			if b, err := strCmd.Bytes(); err == nil {
+				values[i] = b
+			} else if !errors.Is(err, redis.Nil) {
+				return nil, fmt.Errorf("pipelined bytes %q: %w", cmd.Name(), err)
+			}
+		} else if cmd.Err() != nil {
+			return nil, fmt.Errorf("pipelined cmd %q: %w", cmd.Name(), cmd.Err())
+		} else {
+			return nil, fmt.Errorf("pipelined: unexpected type=%T for Bytes()", cmd)
+		}
+	}
+
+	return values, nil
 }
 
 // --------------------------------------------------

@@ -3,6 +3,7 @@ package cache
 import (
 	"context"
 	"io"
+	"strings"
 	"testing"
 	"time"
 
@@ -11,7 +12,7 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 
-	redisMocks "github.com/dsh2dsh/expx-cache/mocks/redis"
+	mocks "github.com/dsh2dsh/expx-cache/mocks/redis"
 )
 
 func TestNewRefreshRedis(t *testing.T) {
@@ -29,12 +30,13 @@ func TestNewStdRedis(t *testing.T) {
 }
 
 func TestRedisClient_errors(t *testing.T) {
+	ctx := context.Background()
+	ttl := time.Minute
 	expectErr := io.EOF
 
 	clients := []struct {
-		name              string
-		makeClient        func(rdb redis.Cmdable) RedisClient
-		overrideConfigure func(testName string, rdb *redisMocks.MockCmdable) bool
+		name       string
+		makeClient func(rdb redis.Cmdable) RedisClient
 	}{
 		{
 			name: "StdRedis",
@@ -45,55 +47,141 @@ func TestRedisClient_errors(t *testing.T) {
 		{
 			name: "RefreshRedis",
 			makeClient: func(rdb redis.Cmdable) RedisClient {
-				return NewRefreshRedis(rdb, time.Minute)
-			},
-			overrideConfigure: func(testName string, rdb *redisMocks.MockCmdable) bool {
-				if testName == "Get" {
-					rdb.EXPECT().GetEx(mock.Anything, mock.Anything, time.Minute).
-						Return(redis.NewStringResult("", expectErr))
-					return true
-				}
-				return false
+				return NewRefreshRedis(rdb, ttl)
 			},
 		},
 	}
 
 	tests := []struct {
 		name      string
-		configure func(rdb *redisMocks.MockCmdable)
+		configure func(t *testing.T, rdb *mocks.MockCmdable)
 		do        func(t *testing.T, redisClient RedisClient) error
+		assertErr func(t *testing.T, err error)
 	}{
 		{
 			name: "Get",
-			configure: func(rdb *redisMocks.MockCmdable) {
-				rdb.EXPECT().Get(mock.Anything, mock.Anything).
-					Return(redis.NewStringResult("", expectErr))
+			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
+				if strings.Contains(t.Name(), "/RefreshRedis/") {
+					rdb.EXPECT().GetEx(ctx, mock.Anything, ttl).Return(
+						redis.NewStringResult("", expectErr))
+				} else {
+					rdb.EXPECT().Get(ctx, testKey).Return(
+						redis.NewStringResult("", expectErr))
+				}
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
-				b, err := redisClient.Get(context.Background(), testKey)
+				b, err := redisClient.Get(ctx, testKey)
 				assert.Nil(t, b)
 				return err //nolint:wrapcheck
 			},
 		},
 		{
 			name: "Del",
-			configure: func(rdb *redisMocks.MockCmdable) {
-				rdb.EXPECT().Del(mock.Anything, mock.Anything).
-					Return(redis.NewIntResult(0, expectErr))
+			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
+				rdb.EXPECT().Del(ctx, testKey).Return(redis.NewIntResult(0, expectErr))
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
-				return redisClient.Del(context.Background(), testKey) //nolint:wrapcheck
+				return redisClient.Del(ctx, testKey) //nolint:wrapcheck
 			},
 		},
 		{
 			name: "Set",
-			configure: func(rdb *redisMocks.MockCmdable) {
-				rdb.EXPECT().Set(mock.Anything, mock.Anything, mock.Anything, mock.Anything).
+			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
+				rdb.EXPECT().Set(ctx, testKey, mock.Anything, ttl).
 					Return(redis.NewStatusResult("", expectErr))
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
 				//nolint:wrapcheck
-				return redisClient.Set(context.Background(), testKey, "", time.Minute)
+				return redisClient.Set(ctx, testKey, "", ttl)
+			},
+		},
+		{
+			name: "MGet error from Pipelined",
+			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
+				rdb.EXPECT().Pipelined(ctx, mock.Anything).RunAndReturn(
+					func(ctx context.Context,
+						fn func(redis.Pipeliner) error,
+					) ([]redis.Cmder, error) {
+						return nil, expectErr
+					})
+			},
+			do: func(t *testing.T, redisClient RedisClient) error {
+				_, err := redisClient.MGet(ctx, "key1", "key2", "key3")
+				return err //nolint:wrapcheck
+			},
+		},
+		{
+			name: "MGet error from getter",
+			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
+				rdb.EXPECT().Pipelined(ctx, mock.Anything).RunAndReturn(
+					func(
+						ctx context.Context, fn func(redis.Pipeliner) error,
+					) ([]redis.Cmder, error) {
+						pipe := mocks.NewMockPipeliner(t)
+						if strings.Contains(t.Name(), "/RefreshRedis/") {
+							pipe.EXPECT().GetEx(ctx, testKey, ttl).Return(
+								redis.NewStringResult("", expectErr))
+						} else {
+							pipe.EXPECT().Get(ctx, testKey).Return(
+								redis.NewStringResult("", expectErr))
+						}
+						return nil, fn(pipe)
+					})
+			},
+			do: func(t *testing.T, redisClient RedisClient) error {
+				_, err := redisClient.MGet(ctx, testKey, "key2", "key3")
+				return err //nolint:wrapcheck
+			},
+		},
+		{
+			name: "MGet error from StringCmd",
+			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
+				rdb.EXPECT().Pipelined(ctx, mock.Anything).RunAndReturn(
+					func(
+						ctx context.Context, fn func(redis.Pipeliner) error,
+					) ([]redis.Cmder, error) {
+						cmds := []redis.Cmder{redis.NewStringResult("", io.EOF)}
+						return cmds, nil
+					})
+			},
+			do: func(t *testing.T, redisClient RedisClient) error {
+				_, err := redisClient.MGet(ctx, testKey, "key2", "key3")
+				return err //nolint:wrapcheck
+			},
+		},
+		{
+			name: "MGet error from BoolCmd",
+			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
+				rdb.EXPECT().Pipelined(ctx, mock.Anything).RunAndReturn(
+					func(
+						ctx context.Context, fn func(redis.Pipeliner) error,
+					) ([]redis.Cmder, error) {
+						cmds := []redis.Cmder{redis.NewBoolResult(false, io.EOF)}
+						return cmds, nil
+					})
+			},
+			do: func(t *testing.T, redisClient RedisClient) error {
+				_, err := redisClient.MGet(ctx, testKey, "key2", "key3")
+				return err //nolint:wrapcheck
+			},
+		},
+		{
+			name: "MGet unexpected type",
+			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
+				rdb.EXPECT().Pipelined(ctx, mock.Anything).RunAndReturn(
+					func(
+						ctx context.Context, fn func(redis.Pipeliner) error,
+					) ([]redis.Cmder, error) {
+						cmds := []redis.Cmder{redis.NewBoolResult(false, nil)}
+						return cmds, nil
+					})
+			},
+			do: func(t *testing.T, redisClient RedisClient) error {
+				_, err := redisClient.MGet(ctx, testKey, "key2", "key3")
+				return err //nolint:wrapcheck
+			},
+			assertErr: func(t *testing.T, err error) {
+				assert.ErrorContains(t, err, "pipelined: unexpected type=")
 			},
 		},
 	}
@@ -102,12 +190,15 @@ func TestRedisClient_errors(t *testing.T) {
 		t.Run(client.name, func(t *testing.T) {
 			for _, tt := range tests {
 				t.Run(tt.name, func(t *testing.T) {
-					rdb := redisMocks.NewMockCmdable(t)
-					if client.overrideConfigure == nil || !client.overrideConfigure(tt.name, rdb) {
-						tt.configure(rdb)
-					}
+					rdb := mocks.NewMockCmdable(t)
 					redisClient := client.makeClient(rdb)
-					assert.ErrorIs(t, tt.do(t, redisClient), expectErr)
+					tt.configure(t, rdb)
+					err := tt.do(t, redisClient)
+					if tt.assertErr != nil {
+						tt.assertErr(t, err)
+					} else {
+						assert.ErrorIs(t, err, expectErr)
+					}
 				})
 			}
 		})

@@ -134,6 +134,75 @@ func (_c *MockRedisClient_Get_Call) RunAndReturn(run func(context.Context, strin
 	return _c
 }
 
+// MGet provides a mock function with given fields: ctx, keys
+func (_m *MockRedisClient) MGet(ctx context.Context, keys ...string) ([][]byte, error) {
+	_va := make([]interface{}, len(keys))
+	for _i := range keys {
+		_va[_i] = keys[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 [][]byte
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, ...string) ([][]byte, error)); ok {
+		return rf(ctx, keys...)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, ...string) [][]byte); ok {
+		r0 = rf(ctx, keys...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).([][]byte)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, ...string) error); ok {
+		r1 = rf(ctx, keys...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// MockRedisClient_MGet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'MGet'
+type MockRedisClient_MGet_Call struct {
+	*mock.Call
+}
+
+// MGet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - keys ...string
+func (_e *MockRedisClient_Expecter) MGet(ctx interface{}, keys ...interface{}) *MockRedisClient_MGet_Call {
+	return &MockRedisClient_MGet_Call{Call: _e.mock.On("MGet",
+		append([]interface{}{ctx}, keys...)...)}
+}
+
+func (_c *MockRedisClient_MGet_Call) Run(run func(ctx context.Context, keys ...string)) *MockRedisClient_MGet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]string, len(args)-1)
+		for i, a := range args[1:] {
+			if a != nil {
+				variadicArgs[i] = a.(string)
+			}
+		}
+		run(args[0].(context.Context), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockRedisClient_MGet_Call) Return(_a0 [][]byte, _a1 error) *MockRedisClient_MGet_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *MockRedisClient_MGet_Call) RunAndReturn(run func(context.Context, ...string) ([][]byte, error)) *MockRedisClient_MGet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Set provides a mock function with given fields: ctx, key, value, ttl
 func (_m *MockRedisClient) Set(ctx context.Context, key string, value interface{}, ttl time.Duration) error {
 	ret := _m.Called(ctx, key, value, ttl)

@@ -21,6 +21,8 @@ type RedisClient interface {
 	Get(ctx context.Context, key string) ([]byte, error)
 	Del(ctx context.Context, keys ...string) error
 	Set(ctx context.Context, key string, value any, ttl time.Duration) error
+
+	MGet(ctx context.Context, keys ...string) ([][]byte, error)
 }
 
 type (
