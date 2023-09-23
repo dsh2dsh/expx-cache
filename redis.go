@@ -129,6 +129,46 @@ func (self *StdRedis) Set(ctx context.Context, key string, value any,
 
 // --------------------------------------------------
 
+func (self *StdRedis) MSet(
+	ctx context.Context, keys []string, blobs [][]byte, ttls []time.Duration,
+) error {
+	for low := 0; low < len(keys); low += self.batchSize {
+		high := min(len(keys), low+self.batchSize)
+		if err := self.msetBatch(
+			ctx, keys[low:high], blobs[low:high], ttls[low:high],
+		); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (self *StdRedis) msetBatch(
+	ctx context.Context, keys []string, blobs [][]byte, ttls []time.Duration,
+) error {
+	cmds, err := self.rdb.Pipelined(ctx, func(pipe redis.Pipeliner) error {
+		for i, key := range keys {
+			if err := pipe.Set(ctx, key, blobs[i], ttls[i]).Err(); err != nil {
+				return fmt.Errorf("set: %w", err)
+			}
+		}
+		return nil
+	})
+	if err != nil {
+		return fmt.Errorf("pipelined: %w", err)
+	}
+
+	for _, cmd := range cmds {
+		if cmd.Err() != nil {
+			return fmt.Errorf("pipelined cmd %q: %w", cmd.Name(), cmd.Err())
+		}
+	}
+
+	return nil
+}
+
+// --------------------------------------------------
+
 func NewRefreshRedis(rdb redis.Cmdable, ttl time.Duration) *StdRedis {
 	return NewStdRedis(rdb).WithGetter(refreshRedisGet(ttl).Get)
 }

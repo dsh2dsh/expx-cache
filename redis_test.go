@@ -184,6 +184,58 @@ func TestRedisClient_errors(t *testing.T) {
 				assert.ErrorContains(t, err, "pipelined: unexpected type=")
 			},
 		},
+		{
+			name: "MSet error from Pipelined",
+			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
+				rdb.EXPECT().Pipelined(ctx, mock.Anything).RunAndReturn(
+					func(ctx context.Context,
+						fn func(redis.Pipeliner) error,
+					) ([]redis.Cmder, error) {
+						return nil, expectErr
+					})
+			},
+			do: func(t *testing.T, redisClient RedisClient) error {
+				err := redisClient.MSet(ctx, []string{testKey, "key2", "key3"},
+					make([][]byte, 3), []time.Duration{ttl, ttl, ttl})
+				return err //nolint:wrapcheck
+			},
+		},
+		{
+			name: "MSet error from SET",
+			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
+				rdb.EXPECT().Pipelined(ctx, mock.Anything).RunAndReturn(
+					func(
+						ctx context.Context, fn func(redis.Pipeliner) error,
+					) ([]redis.Cmder, error) {
+						pipe := mocks.NewMockPipeliner(t)
+						pipe.EXPECT().Set(ctx, testKey, []byte(nil), ttl).Return(
+							redis.NewStatusResult("", expectErr))
+						return nil, fn(pipe)
+					})
+			},
+			do: func(t *testing.T, redisClient RedisClient) error {
+				err := redisClient.MSet(ctx, []string{testKey, "key2", "key3"},
+					make([][]byte, 3), []time.Duration{ttl, ttl, ttl})
+				return err //nolint:wrapcheck
+			},
+		},
+		{
+			name: "MGet error from StatusCmd",
+			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
+				rdb.EXPECT().Pipelined(ctx, mock.Anything).RunAndReturn(
+					func(
+						ctx context.Context, fn func(redis.Pipeliner) error,
+					) ([]redis.Cmder, error) {
+						cmds := []redis.Cmder{redis.NewStatusResult("", io.EOF)}
+						return cmds, nil
+					})
+			},
+			do: func(t *testing.T, redisClient RedisClient) error {
+				err := redisClient.MSet(ctx, []string{testKey, "key2", "key3"},
+					make([][]byte, 3), []time.Duration{ttl, ttl, ttl})
+				return err //nolint:wrapcheck
+			},
+		},
 	}
 
 	for _, client := range clients {

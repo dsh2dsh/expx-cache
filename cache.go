@@ -23,6 +23,7 @@ type RedisClient interface {
 	Set(ctx context.Context, key string, value any, ttl time.Duration) error
 
 	MGet(ctx context.Context, keys ...string) ([][]byte, error)
+	MSet(ctx context.Context, keys []string, blobs [][]byte, ttls []time.Duration) error
 }
 
 type (
