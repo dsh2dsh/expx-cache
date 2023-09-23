@@ -118,10 +118,10 @@ func (self *StdRedis) Del(ctx context.Context, keys ...string) error {
 	return nil
 }
 
-func (self *StdRedis) Set(ctx context.Context, key string, value any,
+func (self *StdRedis) Set(ctx context.Context, key string, blob []byte,
 	ttl time.Duration,
 ) error {
-	if err := self.rdb.Set(ctx, key, value, ttl).Err(); err != nil {
+	if err := self.rdb.Set(ctx, key, blob, ttl).Err(); err != nil {
 		return fmt.Errorf("redis set %q: %w", key, err)
 	}
 	return nil

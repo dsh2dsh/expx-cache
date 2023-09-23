@@ -92,7 +92,7 @@ func TestRedisClient_errors(t *testing.T) {
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
 				//nolint:wrapcheck
-				return redisClient.Set(ctx, testKey, "", ttl)
+				return redisClient.Set(ctx, testKey, []byte(""), ttl)
 			},
 		},
 		{

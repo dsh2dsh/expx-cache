@@ -248,13 +248,13 @@ func (_c *MockRedisClient_MSet_Call) RunAndReturn(run func(context.Context, []st
 	return _c
 }
 
-// Set provides a mock function with given fields: ctx, key, value, ttl
-func (_m *MockRedisClient) Set(ctx context.Context, key string, value interface{}, ttl time.Duration) error {
-	ret := _m.Called(ctx, key, value, ttl)
+// Set provides a mock function with given fields: ctx, key, blob, ttl
+func (_m *MockRedisClient) Set(ctx context.Context, key string, blob []byte, ttl time.Duration) error {
+	ret := _m.Called(ctx, key, blob, ttl)
 
 	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, time.Duration) error); ok {
-		r0 = rf(ctx, key, value, ttl)
+	if rf, ok := ret.Get(0).(func(context.Context, string, []byte, time.Duration) error); ok {
+		r0 = rf(ctx, key, blob, ttl)
 	} else {
 		r0 = ret.Error(0)
 	}
@@ -270,15 +270,15 @@ type MockRedisClient_Set_Call struct {
 // Set is a helper method to define mock.On call
 //   - ctx context.Context
 //   - key string
-//   - value interface{}
+//   - blob []byte
 //   - ttl time.Duration
-func (_e *MockRedisClient_Expecter) Set(ctx interface{}, key interface{}, value interface{}, ttl interface{}) *MockRedisClient_Set_Call {
-	return &MockRedisClient_Set_Call{Call: _e.mock.On("Set", ctx, key, value, ttl)}
+func (_e *MockRedisClient_Expecter) Set(ctx interface{}, key interface{}, blob interface{}, ttl interface{}) *MockRedisClient_Set_Call {
+	return &MockRedisClient_Set_Call{Call: _e.mock.On("Set", ctx, key, blob, ttl)}
 }
 
-func (_c *MockRedisClient_Set_Call) Run(run func(ctx context.Context, key string, value interface{}, ttl time.Duration)) *MockRedisClient_Set_Call {
+func (_c *MockRedisClient_Set_Call) Run(run func(ctx context.Context, key string, blob []byte, ttl time.Duration)) *MockRedisClient_Set_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(time.Duration))
+		run(args[0].(context.Context), args[1].(string), args[2].([]byte), args[3].(time.Duration))
 	})
 	return _c
 }
@@ -288,7 +288,7 @@ func (_c *MockRedisClient_Set_Call) Return(_a0 error) *MockRedisClient_Set_Call 
 	return _c
 }
 
-func (_c *MockRedisClient_Set_Call) RunAndReturn(run func(context.Context, string, interface{}, time.Duration) error) *MockRedisClient_Set_Call {
+func (_c *MockRedisClient_Set_Call) RunAndReturn(run func(context.Context, string, []byte, time.Duration) error) *MockRedisClient_Set_Call {
 	_c.Call.Return(run)
 	return _c
 }
