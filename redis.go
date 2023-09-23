@@ -61,7 +61,20 @@ func (self *StdRedis) Get(ctx context.Context, key string) ([]byte, error) {
 	return b, nil
 }
 
+// --------------------------------------------------
+
 func (self *StdRedis) MGet(ctx context.Context, keys ...string) ([][]byte, error) {
+	blobs := make([][]byte, 0, len(keys))
+	for low := 0; low < len(keys); low += self.batchSize {
+		high := min(len(keys), low+self.batchSize)
+		if err := self.mgetBatch(ctx, keys[low:high], blobs[low:high]); err != nil {
+			return nil, err
+		}
+	}
+	return blobs, nil
+}
+
+func (self *StdRedis) mgetBatch(ctx context.Context, keys []string, blobs [][]byte) error {
 	cmds, err := self.rdb.Pipelined(ctx, func(pipe redis.Pipeliner) error {
 		for _, key := range keys {
 			if _, err := self.getter(ctx, pipe, key); err != nil {
@@ -71,25 +84,26 @@ func (self *StdRedis) MGet(ctx context.Context, keys ...string) ([][]byte, error
 		return nil
 	})
 	if err != nil {
-		return nil, fmt.Errorf("pipelined: %w", err)
+		return fmt.Errorf("pipelined: %w", err)
 	}
 
-	blobs := make([][]byte, len(cmds))
 	for i, cmd := range cmds {
 		if strCmd, ok := cmd.(interface{ Bytes() ([]byte, error) }); ok {
 			if b, err := strCmd.Bytes(); err == nil {
 				blobs[i] = b
-			} else if !errors.Is(err, redis.Nil) {
-				return nil, fmt.Errorf("pipelined bytes %q: %w", cmd.Name(), err)
+			} else if errors.Is(err, redis.Nil) {
+				blobs[i] = nil
+			} else {
+				return fmt.Errorf("pipelined bytes %q: %w", cmd.Name(), err)
 			}
 		} else if cmd.Err() != nil {
-			return nil, fmt.Errorf("pipelined cmd %q: %w", cmd.Name(), cmd.Err())
+			return fmt.Errorf("pipelined cmd %q: %w", cmd.Name(), cmd.Err())
 		} else {
-			return nil, fmt.Errorf("pipelined: unexpected type=%T for Bytes()", cmd)
+			return fmt.Errorf("pipelined: unexpected type=%T for Bytes()", cmd)
 		}
 	}
 
-	return blobs, nil
+	return nil
 }
 
 // --------------------------------------------------
