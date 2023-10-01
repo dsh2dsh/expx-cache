@@ -17175,6 +17175,1476 @@ func (_c *MockPipeliner_Unlink_Call) RunAndReturn(run func(context.Context, ...s
 	return _c
 }
 
+// XAck provides a mock function with given fields: ctx, stream, group, ids
+func (_m *MockPipeliner) XAck(ctx context.Context, stream string, group string, ids ...string) *redis.IntCmd {
+	_va := make([]interface{}, len(ids))
+	for _i := range ids {
+		_va[_i] = ids[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, stream, group)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, ...string) *redis.IntCmd); ok {
+		r0 = rf(ctx, stream, group, ids...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XAck_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XAck'
+type MockPipeliner_XAck_Call struct {
+	*mock.Call
+}
+
+// XAck is a helper method to define mock.On call
+//   - ctx context.Context
+//   - stream string
+//   - group string
+//   - ids ...string
+func (_e *MockPipeliner_Expecter) XAck(ctx interface{}, stream interface{}, group interface{}, ids ...interface{}) *MockPipeliner_XAck_Call {
+	return &MockPipeliner_XAck_Call{Call: _e.mock.On("XAck",
+		append([]interface{}{ctx, stream, group}, ids...)...)}
+}
+
+func (_c *MockPipeliner_XAck_Call) Run(run func(ctx context.Context, stream string, group string, ids ...string)) *MockPipeliner_XAck_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]string, len(args)-3)
+		for i, a := range args[3:] {
+			if a != nil {
+				variadicArgs[i] = a.(string)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), args[2].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XAck_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_XAck_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XAck_Call) RunAndReturn(run func(context.Context, string, string, ...string) *redis.IntCmd) *MockPipeliner_XAck_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XAdd provides a mock function with given fields: ctx, a
+func (_m *MockPipeliner) XAdd(ctx context.Context, a *redis.XAddArgs) *redis.StringCmd {
+	ret := _m.Called(ctx, a)
+
+	var r0 *redis.StringCmd
+	if rf, ok := ret.Get(0).(func(context.Context, *redis.XAddArgs) *redis.StringCmd); ok {
+		r0 = rf(ctx, a)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XAdd_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XAdd'
+type MockPipeliner_XAdd_Call struct {
+	*mock.Call
+}
+
+// XAdd is a helper method to define mock.On call
+//   - ctx context.Context
+//   - a *redis.XAddArgs
+func (_e *MockPipeliner_Expecter) XAdd(ctx interface{}, a interface{}) *MockPipeliner_XAdd_Call {
+	return &MockPipeliner_XAdd_Call{Call: _e.mock.On("XAdd", ctx, a)}
+}
+
+func (_c *MockPipeliner_XAdd_Call) Run(run func(ctx context.Context, a *redis.XAddArgs)) *MockPipeliner_XAdd_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(*redis.XAddArgs))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XAdd_Call) Return(_a0 *redis.StringCmd) *MockPipeliner_XAdd_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XAdd_Call) RunAndReturn(run func(context.Context, *redis.XAddArgs) *redis.StringCmd) *MockPipeliner_XAdd_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XAutoClaim provides a mock function with given fields: ctx, a
+func (_m *MockPipeliner) XAutoClaim(ctx context.Context, a *redis.XAutoClaimArgs) *redis.XAutoClaimCmd {
+	ret := _m.Called(ctx, a)
+
+	var r0 *redis.XAutoClaimCmd
+	if rf, ok := ret.Get(0).(func(context.Context, *redis.XAutoClaimArgs) *redis.XAutoClaimCmd); ok {
+		r0 = rf(ctx, a)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.XAutoClaimCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XAutoClaim_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XAutoClaim'
+type MockPipeliner_XAutoClaim_Call struct {
+	*mock.Call
+}
+
+// XAutoClaim is a helper method to define mock.On call
+//   - ctx context.Context
+//   - a *redis.XAutoClaimArgs
+func (_e *MockPipeliner_Expecter) XAutoClaim(ctx interface{}, a interface{}) *MockPipeliner_XAutoClaim_Call {
+	return &MockPipeliner_XAutoClaim_Call{Call: _e.mock.On("XAutoClaim", ctx, a)}
+}
+
+func (_c *MockPipeliner_XAutoClaim_Call) Run(run func(ctx context.Context, a *redis.XAutoClaimArgs)) *MockPipeliner_XAutoClaim_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(*redis.XAutoClaimArgs))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XAutoClaim_Call) Return(_a0 *redis.XAutoClaimCmd) *MockPipeliner_XAutoClaim_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XAutoClaim_Call) RunAndReturn(run func(context.Context, *redis.XAutoClaimArgs) *redis.XAutoClaimCmd) *MockPipeliner_XAutoClaim_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XAutoClaimJustID provides a mock function with given fields: ctx, a
+func (_m *MockPipeliner) XAutoClaimJustID(ctx context.Context, a *redis.XAutoClaimArgs) *redis.XAutoClaimJustIDCmd {
+	ret := _m.Called(ctx, a)
+
+	var r0 *redis.XAutoClaimJustIDCmd
+	if rf, ok := ret.Get(0).(func(context.Context, *redis.XAutoClaimArgs) *redis.XAutoClaimJustIDCmd); ok {
+		r0 = rf(ctx, a)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.XAutoClaimJustIDCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XAutoClaimJustID_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XAutoClaimJustID'
+type MockPipeliner_XAutoClaimJustID_Call struct {
+	*mock.Call
+}
+
+// XAutoClaimJustID is a helper method to define mock.On call
+//   - ctx context.Context
+//   - a *redis.XAutoClaimArgs
+func (_e *MockPipeliner_Expecter) XAutoClaimJustID(ctx interface{}, a interface{}) *MockPipeliner_XAutoClaimJustID_Call {
+	return &MockPipeliner_XAutoClaimJustID_Call{Call: _e.mock.On("XAutoClaimJustID", ctx, a)}
+}
+
+func (_c *MockPipeliner_XAutoClaimJustID_Call) Run(run func(ctx context.Context, a *redis.XAutoClaimArgs)) *MockPipeliner_XAutoClaimJustID_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(*redis.XAutoClaimArgs))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XAutoClaimJustID_Call) Return(_a0 *redis.XAutoClaimJustIDCmd) *MockPipeliner_XAutoClaimJustID_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XAutoClaimJustID_Call) RunAndReturn(run func(context.Context, *redis.XAutoClaimArgs) *redis.XAutoClaimJustIDCmd) *MockPipeliner_XAutoClaimJustID_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XClaim provides a mock function with given fields: ctx, a
+func (_m *MockPipeliner) XClaim(ctx context.Context, a *redis.XClaimArgs) *redis.XMessageSliceCmd {
+	ret := _m.Called(ctx, a)
+
+	var r0 *redis.XMessageSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, *redis.XClaimArgs) *redis.XMessageSliceCmd); ok {
+		r0 = rf(ctx, a)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.XMessageSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XClaim_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XClaim'
+type MockPipeliner_XClaim_Call struct {
+	*mock.Call
+}
+
+// XClaim is a helper method to define mock.On call
+//   - ctx context.Context
+//   - a *redis.XClaimArgs
+func (_e *MockPipeliner_Expecter) XClaim(ctx interface{}, a interface{}) *MockPipeliner_XClaim_Call {
+	return &MockPipeliner_XClaim_Call{Call: _e.mock.On("XClaim", ctx, a)}
+}
+
+func (_c *MockPipeliner_XClaim_Call) Run(run func(ctx context.Context, a *redis.XClaimArgs)) *MockPipeliner_XClaim_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(*redis.XClaimArgs))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XClaim_Call) Return(_a0 *redis.XMessageSliceCmd) *MockPipeliner_XClaim_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XClaim_Call) RunAndReturn(run func(context.Context, *redis.XClaimArgs) *redis.XMessageSliceCmd) *MockPipeliner_XClaim_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XClaimJustID provides a mock function with given fields: ctx, a
+func (_m *MockPipeliner) XClaimJustID(ctx context.Context, a *redis.XClaimArgs) *redis.StringSliceCmd {
+	ret := _m.Called(ctx, a)
+
+	var r0 *redis.StringSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, *redis.XClaimArgs) *redis.StringSliceCmd); ok {
+		r0 = rf(ctx, a)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XClaimJustID_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XClaimJustID'
+type MockPipeliner_XClaimJustID_Call struct {
+	*mock.Call
+}
+
+// XClaimJustID is a helper method to define mock.On call
+//   - ctx context.Context
+//   - a *redis.XClaimArgs
+func (_e *MockPipeliner_Expecter) XClaimJustID(ctx interface{}, a interface{}) *MockPipeliner_XClaimJustID_Call {
+	return &MockPipeliner_XClaimJustID_Call{Call: _e.mock.On("XClaimJustID", ctx, a)}
+}
+
+func (_c *MockPipeliner_XClaimJustID_Call) Run(run func(ctx context.Context, a *redis.XClaimArgs)) *MockPipeliner_XClaimJustID_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(*redis.XClaimArgs))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XClaimJustID_Call) Return(_a0 *redis.StringSliceCmd) *MockPipeliner_XClaimJustID_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XClaimJustID_Call) RunAndReturn(run func(context.Context, *redis.XClaimArgs) *redis.StringSliceCmd) *MockPipeliner_XClaimJustID_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XDel provides a mock function with given fields: ctx, stream, ids
+func (_m *MockPipeliner) XDel(ctx context.Context, stream string, ids ...string) *redis.IntCmd {
+	_va := make([]interface{}, len(ids))
+	for _i := range ids {
+		_va[_i] = ids[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, stream)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
+		r0 = rf(ctx, stream, ids...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XDel_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XDel'
+type MockPipeliner_XDel_Call struct {
+	*mock.Call
+}
+
+// XDel is a helper method to define mock.On call
+//   - ctx context.Context
+//   - stream string
+//   - ids ...string
+func (_e *MockPipeliner_Expecter) XDel(ctx interface{}, stream interface{}, ids ...interface{}) *MockPipeliner_XDel_Call {
+	return &MockPipeliner_XDel_Call{Call: _e.mock.On("XDel",
+		append([]interface{}{ctx, stream}, ids...)...)}
+}
+
+func (_c *MockPipeliner_XDel_Call) Run(run func(ctx context.Context, stream string, ids ...string)) *MockPipeliner_XDel_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]string, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(string)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XDel_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_XDel_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XDel_Call) RunAndReturn(run func(context.Context, string, ...string) *redis.IntCmd) *MockPipeliner_XDel_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XGroupCreate provides a mock function with given fields: ctx, stream, group, start
+func (_m *MockPipeliner) XGroupCreate(ctx context.Context, stream string, group string, start string) *redis.StatusCmd {
+	ret := _m.Called(ctx, stream, group, start)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.StatusCmd); ok {
+		r0 = rf(ctx, stream, group, start)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XGroupCreate_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XGroupCreate'
+type MockPipeliner_XGroupCreate_Call struct {
+	*mock.Call
+}
+
+// XGroupCreate is a helper method to define mock.On call
+//   - ctx context.Context
+//   - stream string
+//   - group string
+//   - start string
+func (_e *MockPipeliner_Expecter) XGroupCreate(ctx interface{}, stream interface{}, group interface{}, start interface{}) *MockPipeliner_XGroupCreate_Call {
+	return &MockPipeliner_XGroupCreate_Call{Call: _e.mock.On("XGroupCreate", ctx, stream, group, start)}
+}
+
+func (_c *MockPipeliner_XGroupCreate_Call) Run(run func(ctx context.Context, stream string, group string, start string)) *MockPipeliner_XGroupCreate_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XGroupCreate_Call) Return(_a0 *redis.StatusCmd) *MockPipeliner_XGroupCreate_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XGroupCreate_Call) RunAndReturn(run func(context.Context, string, string, string) *redis.StatusCmd) *MockPipeliner_XGroupCreate_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XGroupCreateConsumer provides a mock function with given fields: ctx, stream, group, consumer
+func (_m *MockPipeliner) XGroupCreateConsumer(ctx context.Context, stream string, group string, consumer string) *redis.IntCmd {
+	ret := _m.Called(ctx, stream, group, consumer)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.IntCmd); ok {
+		r0 = rf(ctx, stream, group, consumer)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XGroupCreateConsumer_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XGroupCreateConsumer'
+type MockPipeliner_XGroupCreateConsumer_Call struct {
+	*mock.Call
+}
+
+// XGroupCreateConsumer is a helper method to define mock.On call
+//   - ctx context.Context
+//   - stream string
+//   - group string
+//   - consumer string
+func (_e *MockPipeliner_Expecter) XGroupCreateConsumer(ctx interface{}, stream interface{}, group interface{}, consumer interface{}) *MockPipeliner_XGroupCreateConsumer_Call {
+	return &MockPipeliner_XGroupCreateConsumer_Call{Call: _e.mock.On("XGroupCreateConsumer", ctx, stream, group, consumer)}
+}
+
+func (_c *MockPipeliner_XGroupCreateConsumer_Call) Run(run func(ctx context.Context, stream string, group string, consumer string)) *MockPipeliner_XGroupCreateConsumer_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XGroupCreateConsumer_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_XGroupCreateConsumer_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XGroupCreateConsumer_Call) RunAndReturn(run func(context.Context, string, string, string) *redis.IntCmd) *MockPipeliner_XGroupCreateConsumer_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XGroupCreateMkStream provides a mock function with given fields: ctx, stream, group, start
+func (_m *MockPipeliner) XGroupCreateMkStream(ctx context.Context, stream string, group string, start string) *redis.StatusCmd {
+	ret := _m.Called(ctx, stream, group, start)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.StatusCmd); ok {
+		r0 = rf(ctx, stream, group, start)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XGroupCreateMkStream_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XGroupCreateMkStream'
+type MockPipeliner_XGroupCreateMkStream_Call struct {
+	*mock.Call
+}
+
+// XGroupCreateMkStream is a helper method to define mock.On call
+//   - ctx context.Context
+//   - stream string
+//   - group string
+//   - start string
+func (_e *MockPipeliner_Expecter) XGroupCreateMkStream(ctx interface{}, stream interface{}, group interface{}, start interface{}) *MockPipeliner_XGroupCreateMkStream_Call {
+	return &MockPipeliner_XGroupCreateMkStream_Call{Call: _e.mock.On("XGroupCreateMkStream", ctx, stream, group, start)}
+}
+
+func (_c *MockPipeliner_XGroupCreateMkStream_Call) Run(run func(ctx context.Context, stream string, group string, start string)) *MockPipeliner_XGroupCreateMkStream_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XGroupCreateMkStream_Call) Return(_a0 *redis.StatusCmd) *MockPipeliner_XGroupCreateMkStream_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XGroupCreateMkStream_Call) RunAndReturn(run func(context.Context, string, string, string) *redis.StatusCmd) *MockPipeliner_XGroupCreateMkStream_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XGroupDelConsumer provides a mock function with given fields: ctx, stream, group, consumer
+func (_m *MockPipeliner) XGroupDelConsumer(ctx context.Context, stream string, group string, consumer string) *redis.IntCmd {
+	ret := _m.Called(ctx, stream, group, consumer)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.IntCmd); ok {
+		r0 = rf(ctx, stream, group, consumer)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XGroupDelConsumer_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XGroupDelConsumer'
+type MockPipeliner_XGroupDelConsumer_Call struct {
+	*mock.Call
+}
+
+// XGroupDelConsumer is a helper method to define mock.On call
+//   - ctx context.Context
+//   - stream string
+//   - group string
+//   - consumer string
+func (_e *MockPipeliner_Expecter) XGroupDelConsumer(ctx interface{}, stream interface{}, group interface{}, consumer interface{}) *MockPipeliner_XGroupDelConsumer_Call {
+	return &MockPipeliner_XGroupDelConsumer_Call{Call: _e.mock.On("XGroupDelConsumer", ctx, stream, group, consumer)}
+}
+
+func (_c *MockPipeliner_XGroupDelConsumer_Call) Run(run func(ctx context.Context, stream string, group string, consumer string)) *MockPipeliner_XGroupDelConsumer_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XGroupDelConsumer_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_XGroupDelConsumer_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XGroupDelConsumer_Call) RunAndReturn(run func(context.Context, string, string, string) *redis.IntCmd) *MockPipeliner_XGroupDelConsumer_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XGroupDestroy provides a mock function with given fields: ctx, stream, group
+func (_m *MockPipeliner) XGroupDestroy(ctx context.Context, stream string, group string) *redis.IntCmd {
+	ret := _m.Called(ctx, stream, group)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
+		r0 = rf(ctx, stream, group)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XGroupDestroy_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XGroupDestroy'
+type MockPipeliner_XGroupDestroy_Call struct {
+	*mock.Call
+}
+
+// XGroupDestroy is a helper method to define mock.On call
+//   - ctx context.Context
+//   - stream string
+//   - group string
+func (_e *MockPipeliner_Expecter) XGroupDestroy(ctx interface{}, stream interface{}, group interface{}) *MockPipeliner_XGroupDestroy_Call {
+	return &MockPipeliner_XGroupDestroy_Call{Call: _e.mock.On("XGroupDestroy", ctx, stream, group)}
+}
+
+func (_c *MockPipeliner_XGroupDestroy_Call) Run(run func(ctx context.Context, stream string, group string)) *MockPipeliner_XGroupDestroy_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XGroupDestroy_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_XGroupDestroy_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XGroupDestroy_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntCmd) *MockPipeliner_XGroupDestroy_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XGroupSetID provides a mock function with given fields: ctx, stream, group, start
+func (_m *MockPipeliner) XGroupSetID(ctx context.Context, stream string, group string, start string) *redis.StatusCmd {
+	ret := _m.Called(ctx, stream, group, start)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.StatusCmd); ok {
+		r0 = rf(ctx, stream, group, start)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XGroupSetID_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XGroupSetID'
+type MockPipeliner_XGroupSetID_Call struct {
+	*mock.Call
+}
+
+// XGroupSetID is a helper method to define mock.On call
+//   - ctx context.Context
+//   - stream string
+//   - group string
+//   - start string
+func (_e *MockPipeliner_Expecter) XGroupSetID(ctx interface{}, stream interface{}, group interface{}, start interface{}) *MockPipeliner_XGroupSetID_Call {
+	return &MockPipeliner_XGroupSetID_Call{Call: _e.mock.On("XGroupSetID", ctx, stream, group, start)}
+}
+
+func (_c *MockPipeliner_XGroupSetID_Call) Run(run func(ctx context.Context, stream string, group string, start string)) *MockPipeliner_XGroupSetID_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XGroupSetID_Call) Return(_a0 *redis.StatusCmd) *MockPipeliner_XGroupSetID_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XGroupSetID_Call) RunAndReturn(run func(context.Context, string, string, string) *redis.StatusCmd) *MockPipeliner_XGroupSetID_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XInfoConsumers provides a mock function with given fields: ctx, key, group
+func (_m *MockPipeliner) XInfoConsumers(ctx context.Context, key string, group string) *redis.XInfoConsumersCmd {
+	ret := _m.Called(ctx, key, group)
+
+	var r0 *redis.XInfoConsumersCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.XInfoConsumersCmd); ok {
+		r0 = rf(ctx, key, group)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.XInfoConsumersCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XInfoConsumers_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XInfoConsumers'
+type MockPipeliner_XInfoConsumers_Call struct {
+	*mock.Call
+}
+
+// XInfoConsumers is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - group string
+func (_e *MockPipeliner_Expecter) XInfoConsumers(ctx interface{}, key interface{}, group interface{}) *MockPipeliner_XInfoConsumers_Call {
+	return &MockPipeliner_XInfoConsumers_Call{Call: _e.mock.On("XInfoConsumers", ctx, key, group)}
+}
+
+func (_c *MockPipeliner_XInfoConsumers_Call) Run(run func(ctx context.Context, key string, group string)) *MockPipeliner_XInfoConsumers_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XInfoConsumers_Call) Return(_a0 *redis.XInfoConsumersCmd) *MockPipeliner_XInfoConsumers_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XInfoConsumers_Call) RunAndReturn(run func(context.Context, string, string) *redis.XInfoConsumersCmd) *MockPipeliner_XInfoConsumers_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XInfoGroups provides a mock function with given fields: ctx, key
+func (_m *MockPipeliner) XInfoGroups(ctx context.Context, key string) *redis.XInfoGroupsCmd {
+	ret := _m.Called(ctx, key)
+
+	var r0 *redis.XInfoGroupsCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.XInfoGroupsCmd); ok {
+		r0 = rf(ctx, key)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.XInfoGroupsCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XInfoGroups_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XInfoGroups'
+type MockPipeliner_XInfoGroups_Call struct {
+	*mock.Call
+}
+
+// XInfoGroups is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+func (_e *MockPipeliner_Expecter) XInfoGroups(ctx interface{}, key interface{}) *MockPipeliner_XInfoGroups_Call {
+	return &MockPipeliner_XInfoGroups_Call{Call: _e.mock.On("XInfoGroups", ctx, key)}
+}
+
+func (_c *MockPipeliner_XInfoGroups_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_XInfoGroups_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XInfoGroups_Call) Return(_a0 *redis.XInfoGroupsCmd) *MockPipeliner_XInfoGroups_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XInfoGroups_Call) RunAndReturn(run func(context.Context, string) *redis.XInfoGroupsCmd) *MockPipeliner_XInfoGroups_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XInfoStream provides a mock function with given fields: ctx, key
+func (_m *MockPipeliner) XInfoStream(ctx context.Context, key string) *redis.XInfoStreamCmd {
+	ret := _m.Called(ctx, key)
+
+	var r0 *redis.XInfoStreamCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.XInfoStreamCmd); ok {
+		r0 = rf(ctx, key)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.XInfoStreamCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XInfoStream_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XInfoStream'
+type MockPipeliner_XInfoStream_Call struct {
+	*mock.Call
+}
+
+// XInfoStream is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+func (_e *MockPipeliner_Expecter) XInfoStream(ctx interface{}, key interface{}) *MockPipeliner_XInfoStream_Call {
+	return &MockPipeliner_XInfoStream_Call{Call: _e.mock.On("XInfoStream", ctx, key)}
+}
+
+func (_c *MockPipeliner_XInfoStream_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_XInfoStream_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XInfoStream_Call) Return(_a0 *redis.XInfoStreamCmd) *MockPipeliner_XInfoStream_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XInfoStream_Call) RunAndReturn(run func(context.Context, string) *redis.XInfoStreamCmd) *MockPipeliner_XInfoStream_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XInfoStreamFull provides a mock function with given fields: ctx, key, count
+func (_m *MockPipeliner) XInfoStreamFull(ctx context.Context, key string, count int) *redis.XInfoStreamFullCmd {
+	ret := _m.Called(ctx, key, count)
+
+	var r0 *redis.XInfoStreamFullCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, int) *redis.XInfoStreamFullCmd); ok {
+		r0 = rf(ctx, key, count)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.XInfoStreamFullCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XInfoStreamFull_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XInfoStreamFull'
+type MockPipeliner_XInfoStreamFull_Call struct {
+	*mock.Call
+}
+
+// XInfoStreamFull is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - count int
+func (_e *MockPipeliner_Expecter) XInfoStreamFull(ctx interface{}, key interface{}, count interface{}) *MockPipeliner_XInfoStreamFull_Call {
+	return &MockPipeliner_XInfoStreamFull_Call{Call: _e.mock.On("XInfoStreamFull", ctx, key, count)}
+}
+
+func (_c *MockPipeliner_XInfoStreamFull_Call) Run(run func(ctx context.Context, key string, count int)) *MockPipeliner_XInfoStreamFull_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(int))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XInfoStreamFull_Call) Return(_a0 *redis.XInfoStreamFullCmd) *MockPipeliner_XInfoStreamFull_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XInfoStreamFull_Call) RunAndReturn(run func(context.Context, string, int) *redis.XInfoStreamFullCmd) *MockPipeliner_XInfoStreamFull_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XLen provides a mock function with given fields: ctx, stream
+func (_m *MockPipeliner) XLen(ctx context.Context, stream string) *redis.IntCmd {
+	ret := _m.Called(ctx, stream)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
+		r0 = rf(ctx, stream)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XLen_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XLen'
+type MockPipeliner_XLen_Call struct {
+	*mock.Call
+}
+
+// XLen is a helper method to define mock.On call
+//   - ctx context.Context
+//   - stream string
+func (_e *MockPipeliner_Expecter) XLen(ctx interface{}, stream interface{}) *MockPipeliner_XLen_Call {
+	return &MockPipeliner_XLen_Call{Call: _e.mock.On("XLen", ctx, stream)}
+}
+
+func (_c *MockPipeliner_XLen_Call) Run(run func(ctx context.Context, stream string)) *MockPipeliner_XLen_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XLen_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_XLen_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XLen_Call) RunAndReturn(run func(context.Context, string) *redis.IntCmd) *MockPipeliner_XLen_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XPending provides a mock function with given fields: ctx, stream, group
+func (_m *MockPipeliner) XPending(ctx context.Context, stream string, group string) *redis.XPendingCmd {
+	ret := _m.Called(ctx, stream, group)
+
+	var r0 *redis.XPendingCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.XPendingCmd); ok {
+		r0 = rf(ctx, stream, group)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.XPendingCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XPending_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XPending'
+type MockPipeliner_XPending_Call struct {
+	*mock.Call
+}
+
+// XPending is a helper method to define mock.On call
+//   - ctx context.Context
+//   - stream string
+//   - group string
+func (_e *MockPipeliner_Expecter) XPending(ctx interface{}, stream interface{}, group interface{}) *MockPipeliner_XPending_Call {
+	return &MockPipeliner_XPending_Call{Call: _e.mock.On("XPending", ctx, stream, group)}
+}
+
+func (_c *MockPipeliner_XPending_Call) Run(run func(ctx context.Context, stream string, group string)) *MockPipeliner_XPending_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XPending_Call) Return(_a0 *redis.XPendingCmd) *MockPipeliner_XPending_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XPending_Call) RunAndReturn(run func(context.Context, string, string) *redis.XPendingCmd) *MockPipeliner_XPending_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XPendingExt provides a mock function with given fields: ctx, a
+func (_m *MockPipeliner) XPendingExt(ctx context.Context, a *redis.XPendingExtArgs) *redis.XPendingExtCmd {
+	ret := _m.Called(ctx, a)
+
+	var r0 *redis.XPendingExtCmd
+	if rf, ok := ret.Get(0).(func(context.Context, *redis.XPendingExtArgs) *redis.XPendingExtCmd); ok {
+		r0 = rf(ctx, a)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.XPendingExtCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XPendingExt_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XPendingExt'
+type MockPipeliner_XPendingExt_Call struct {
+	*mock.Call
+}
+
+// XPendingExt is a helper method to define mock.On call
+//   - ctx context.Context
+//   - a *redis.XPendingExtArgs
+func (_e *MockPipeliner_Expecter) XPendingExt(ctx interface{}, a interface{}) *MockPipeliner_XPendingExt_Call {
+	return &MockPipeliner_XPendingExt_Call{Call: _e.mock.On("XPendingExt", ctx, a)}
+}
+
+func (_c *MockPipeliner_XPendingExt_Call) Run(run func(ctx context.Context, a *redis.XPendingExtArgs)) *MockPipeliner_XPendingExt_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(*redis.XPendingExtArgs))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XPendingExt_Call) Return(_a0 *redis.XPendingExtCmd) *MockPipeliner_XPendingExt_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XPendingExt_Call) RunAndReturn(run func(context.Context, *redis.XPendingExtArgs) *redis.XPendingExtCmd) *MockPipeliner_XPendingExt_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XRange provides a mock function with given fields: ctx, stream, start, stop
+func (_m *MockPipeliner) XRange(ctx context.Context, stream string, start string, stop string) *redis.XMessageSliceCmd {
+	ret := _m.Called(ctx, stream, start, stop)
+
+	var r0 *redis.XMessageSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.XMessageSliceCmd); ok {
+		r0 = rf(ctx, stream, start, stop)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.XMessageSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XRange_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XRange'
+type MockPipeliner_XRange_Call struct {
+	*mock.Call
+}
+
+// XRange is a helper method to define mock.On call
+//   - ctx context.Context
+//   - stream string
+//   - start string
+//   - stop string
+func (_e *MockPipeliner_Expecter) XRange(ctx interface{}, stream interface{}, start interface{}, stop interface{}) *MockPipeliner_XRange_Call {
+	return &MockPipeliner_XRange_Call{Call: _e.mock.On("XRange", ctx, stream, start, stop)}
+}
+
+func (_c *MockPipeliner_XRange_Call) Run(run func(ctx context.Context, stream string, start string, stop string)) *MockPipeliner_XRange_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XRange_Call) Return(_a0 *redis.XMessageSliceCmd) *MockPipeliner_XRange_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XRange_Call) RunAndReturn(run func(context.Context, string, string, string) *redis.XMessageSliceCmd) *MockPipeliner_XRange_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XRangeN provides a mock function with given fields: ctx, stream, start, stop, count
+func (_m *MockPipeliner) XRangeN(ctx context.Context, stream string, start string, stop string, count int64) *redis.XMessageSliceCmd {
+	ret := _m.Called(ctx, stream, start, stop, count)
+
+	var r0 *redis.XMessageSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, string, int64) *redis.XMessageSliceCmd); ok {
+		r0 = rf(ctx, stream, start, stop, count)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.XMessageSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XRangeN_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XRangeN'
+type MockPipeliner_XRangeN_Call struct {
+	*mock.Call
+}
+
+// XRangeN is a helper method to define mock.On call
+//   - ctx context.Context
+//   - stream string
+//   - start string
+//   - stop string
+//   - count int64
+func (_e *MockPipeliner_Expecter) XRangeN(ctx interface{}, stream interface{}, start interface{}, stop interface{}, count interface{}) *MockPipeliner_XRangeN_Call {
+	return &MockPipeliner_XRangeN_Call{Call: _e.mock.On("XRangeN", ctx, stream, start, stop, count)}
+}
+
+func (_c *MockPipeliner_XRangeN_Call) Run(run func(ctx context.Context, stream string, start string, stop string, count int64)) *MockPipeliner_XRangeN_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string), args[4].(int64))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XRangeN_Call) Return(_a0 *redis.XMessageSliceCmd) *MockPipeliner_XRangeN_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XRangeN_Call) RunAndReturn(run func(context.Context, string, string, string, int64) *redis.XMessageSliceCmd) *MockPipeliner_XRangeN_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XRead provides a mock function with given fields: ctx, a
+func (_m *MockPipeliner) XRead(ctx context.Context, a *redis.XReadArgs) *redis.XStreamSliceCmd {
+	ret := _m.Called(ctx, a)
+
+	var r0 *redis.XStreamSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, *redis.XReadArgs) *redis.XStreamSliceCmd); ok {
+		r0 = rf(ctx, a)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.XStreamSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XRead_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XRead'
+type MockPipeliner_XRead_Call struct {
+	*mock.Call
+}
+
+// XRead is a helper method to define mock.On call
+//   - ctx context.Context
+//   - a *redis.XReadArgs
+func (_e *MockPipeliner_Expecter) XRead(ctx interface{}, a interface{}) *MockPipeliner_XRead_Call {
+	return &MockPipeliner_XRead_Call{Call: _e.mock.On("XRead", ctx, a)}
+}
+
+func (_c *MockPipeliner_XRead_Call) Run(run func(ctx context.Context, a *redis.XReadArgs)) *MockPipeliner_XRead_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(*redis.XReadArgs))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XRead_Call) Return(_a0 *redis.XStreamSliceCmd) *MockPipeliner_XRead_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XRead_Call) RunAndReturn(run func(context.Context, *redis.XReadArgs) *redis.XStreamSliceCmd) *MockPipeliner_XRead_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XReadGroup provides a mock function with given fields: ctx, a
+func (_m *MockPipeliner) XReadGroup(ctx context.Context, a *redis.XReadGroupArgs) *redis.XStreamSliceCmd {
+	ret := _m.Called(ctx, a)
+
+	var r0 *redis.XStreamSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, *redis.XReadGroupArgs) *redis.XStreamSliceCmd); ok {
+		r0 = rf(ctx, a)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.XStreamSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XReadGroup_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XReadGroup'
+type MockPipeliner_XReadGroup_Call struct {
+	*mock.Call
+}
+
+// XReadGroup is a helper method to define mock.On call
+//   - ctx context.Context
+//   - a *redis.XReadGroupArgs
+func (_e *MockPipeliner_Expecter) XReadGroup(ctx interface{}, a interface{}) *MockPipeliner_XReadGroup_Call {
+	return &MockPipeliner_XReadGroup_Call{Call: _e.mock.On("XReadGroup", ctx, a)}
+}
+
+func (_c *MockPipeliner_XReadGroup_Call) Run(run func(ctx context.Context, a *redis.XReadGroupArgs)) *MockPipeliner_XReadGroup_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(*redis.XReadGroupArgs))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XReadGroup_Call) Return(_a0 *redis.XStreamSliceCmd) *MockPipeliner_XReadGroup_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XReadGroup_Call) RunAndReturn(run func(context.Context, *redis.XReadGroupArgs) *redis.XStreamSliceCmd) *MockPipeliner_XReadGroup_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XReadStreams provides a mock function with given fields: ctx, streams
+func (_m *MockPipeliner) XReadStreams(ctx context.Context, streams ...string) *redis.XStreamSliceCmd {
+	_va := make([]interface{}, len(streams))
+	for _i := range streams {
+		_va[_i] = streams[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *redis.XStreamSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.XStreamSliceCmd); ok {
+		r0 = rf(ctx, streams...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.XStreamSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XReadStreams_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XReadStreams'
+type MockPipeliner_XReadStreams_Call struct {
+	*mock.Call
+}
+
+// XReadStreams is a helper method to define mock.On call
+//   - ctx context.Context
+//   - streams ...string
+func (_e *MockPipeliner_Expecter) XReadStreams(ctx interface{}, streams ...interface{}) *MockPipeliner_XReadStreams_Call {
+	return &MockPipeliner_XReadStreams_Call{Call: _e.mock.On("XReadStreams",
+		append([]interface{}{ctx}, streams...)...)}
+}
+
+func (_c *MockPipeliner_XReadStreams_Call) Run(run func(ctx context.Context, streams ...string)) *MockPipeliner_XReadStreams_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]string, len(args)-1)
+		for i, a := range args[1:] {
+			if a != nil {
+				variadicArgs[i] = a.(string)
+			}
+		}
+		run(args[0].(context.Context), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XReadStreams_Call) Return(_a0 *redis.XStreamSliceCmd) *MockPipeliner_XReadStreams_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XReadStreams_Call) RunAndReturn(run func(context.Context, ...string) *redis.XStreamSliceCmd) *MockPipeliner_XReadStreams_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XRevRange provides a mock function with given fields: ctx, stream, start, stop
+func (_m *MockPipeliner) XRevRange(ctx context.Context, stream string, start string, stop string) *redis.XMessageSliceCmd {
+	ret := _m.Called(ctx, stream, start, stop)
+
+	var r0 *redis.XMessageSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.XMessageSliceCmd); ok {
+		r0 = rf(ctx, stream, start, stop)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.XMessageSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XRevRange_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XRevRange'
+type MockPipeliner_XRevRange_Call struct {
+	*mock.Call
+}
+
+// XRevRange is a helper method to define mock.On call
+//   - ctx context.Context
+//   - stream string
+//   - start string
+//   - stop string
+func (_e *MockPipeliner_Expecter) XRevRange(ctx interface{}, stream interface{}, start interface{}, stop interface{}) *MockPipeliner_XRevRange_Call {
+	return &MockPipeliner_XRevRange_Call{Call: _e.mock.On("XRevRange", ctx, stream, start, stop)}
+}
+
+func (_c *MockPipeliner_XRevRange_Call) Run(run func(ctx context.Context, stream string, start string, stop string)) *MockPipeliner_XRevRange_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XRevRange_Call) Return(_a0 *redis.XMessageSliceCmd) *MockPipeliner_XRevRange_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XRevRange_Call) RunAndReturn(run func(context.Context, string, string, string) *redis.XMessageSliceCmd) *MockPipeliner_XRevRange_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XRevRangeN provides a mock function with given fields: ctx, stream, start, stop, count
+func (_m *MockPipeliner) XRevRangeN(ctx context.Context, stream string, start string, stop string, count int64) *redis.XMessageSliceCmd {
+	ret := _m.Called(ctx, stream, start, stop, count)
+
+	var r0 *redis.XMessageSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, string, int64) *redis.XMessageSliceCmd); ok {
+		r0 = rf(ctx, stream, start, stop, count)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.XMessageSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XRevRangeN_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XRevRangeN'
+type MockPipeliner_XRevRangeN_Call struct {
+	*mock.Call
+}
+
+// XRevRangeN is a helper method to define mock.On call
+//   - ctx context.Context
+//   - stream string
+//   - start string
+//   - stop string
+//   - count int64
+func (_e *MockPipeliner_Expecter) XRevRangeN(ctx interface{}, stream interface{}, start interface{}, stop interface{}, count interface{}) *MockPipeliner_XRevRangeN_Call {
+	return &MockPipeliner_XRevRangeN_Call{Call: _e.mock.On("XRevRangeN", ctx, stream, start, stop, count)}
+}
+
+func (_c *MockPipeliner_XRevRangeN_Call) Run(run func(ctx context.Context, stream string, start string, stop string, count int64)) *MockPipeliner_XRevRangeN_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string), args[4].(int64))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XRevRangeN_Call) Return(_a0 *redis.XMessageSliceCmd) *MockPipeliner_XRevRangeN_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XRevRangeN_Call) RunAndReturn(run func(context.Context, string, string, string, int64) *redis.XMessageSliceCmd) *MockPipeliner_XRevRangeN_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XTrimMaxLen provides a mock function with given fields: ctx, key, maxLen
+func (_m *MockPipeliner) XTrimMaxLen(ctx context.Context, key string, maxLen int64) *redis.IntCmd {
+	ret := _m.Called(ctx, key, maxLen)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, int64) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, maxLen)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XTrimMaxLen_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XTrimMaxLen'
+type MockPipeliner_XTrimMaxLen_Call struct {
+	*mock.Call
+}
+
+// XTrimMaxLen is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - maxLen int64
+func (_e *MockPipeliner_Expecter) XTrimMaxLen(ctx interface{}, key interface{}, maxLen interface{}) *MockPipeliner_XTrimMaxLen_Call {
+	return &MockPipeliner_XTrimMaxLen_Call{Call: _e.mock.On("XTrimMaxLen", ctx, key, maxLen)}
+}
+
+func (_c *MockPipeliner_XTrimMaxLen_Call) Run(run func(ctx context.Context, key string, maxLen int64)) *MockPipeliner_XTrimMaxLen_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XTrimMaxLen_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_XTrimMaxLen_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XTrimMaxLen_Call) RunAndReturn(run func(context.Context, string, int64) *redis.IntCmd) *MockPipeliner_XTrimMaxLen_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XTrimMaxLenApprox provides a mock function with given fields: ctx, key, maxLen, limit
+func (_m *MockPipeliner) XTrimMaxLenApprox(ctx context.Context, key string, maxLen int64, limit int64) *redis.IntCmd {
+	ret := _m.Called(ctx, key, maxLen, limit)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int64) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, maxLen, limit)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XTrimMaxLenApprox_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XTrimMaxLenApprox'
+type MockPipeliner_XTrimMaxLenApprox_Call struct {
+	*mock.Call
+}
+
+// XTrimMaxLenApprox is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - maxLen int64
+//   - limit int64
+func (_e *MockPipeliner_Expecter) XTrimMaxLenApprox(ctx interface{}, key interface{}, maxLen interface{}, limit interface{}) *MockPipeliner_XTrimMaxLenApprox_Call {
+	return &MockPipeliner_XTrimMaxLenApprox_Call{Call: _e.mock.On("XTrimMaxLenApprox", ctx, key, maxLen, limit)}
+}
+
+func (_c *MockPipeliner_XTrimMaxLenApprox_Call) Run(run func(ctx context.Context, key string, maxLen int64, limit int64)) *MockPipeliner_XTrimMaxLenApprox_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XTrimMaxLenApprox_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_XTrimMaxLenApprox_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XTrimMaxLenApprox_Call) RunAndReturn(run func(context.Context, string, int64, int64) *redis.IntCmd) *MockPipeliner_XTrimMaxLenApprox_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XTrimMinID provides a mock function with given fields: ctx, key, minID
+func (_m *MockPipeliner) XTrimMinID(ctx context.Context, key string, minID string) *redis.IntCmd {
+	ret := _m.Called(ctx, key, minID)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, minID)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XTrimMinID_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XTrimMinID'
+type MockPipeliner_XTrimMinID_Call struct {
+	*mock.Call
+}
+
+// XTrimMinID is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - minID string
+func (_e *MockPipeliner_Expecter) XTrimMinID(ctx interface{}, key interface{}, minID interface{}) *MockPipeliner_XTrimMinID_Call {
+	return &MockPipeliner_XTrimMinID_Call{Call: _e.mock.On("XTrimMinID", ctx, key, minID)}
+}
+
+func (_c *MockPipeliner_XTrimMinID_Call) Run(run func(ctx context.Context, key string, minID string)) *MockPipeliner_XTrimMinID_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XTrimMinID_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_XTrimMinID_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XTrimMinID_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntCmd) *MockPipeliner_XTrimMinID_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// XTrimMinIDApprox provides a mock function with given fields: ctx, key, minID, limit
+func (_m *MockPipeliner) XTrimMinIDApprox(ctx context.Context, key string, minID string, limit int64) *redis.IntCmd {
+	ret := _m.Called(ctx, key, minID, limit)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, int64) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, minID, limit)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_XTrimMinIDApprox_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XTrimMinIDApprox'
+type MockPipeliner_XTrimMinIDApprox_Call struct {
+	*mock.Call
+}
+
+// XTrimMinIDApprox is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - minID string
+//   - limit int64
+func (_e *MockPipeliner_Expecter) XTrimMinIDApprox(ctx interface{}, key interface{}, minID interface{}, limit interface{}) *MockPipeliner_XTrimMinIDApprox_Call {
+	return &MockPipeliner_XTrimMinIDApprox_Call{Call: _e.mock.On("XTrimMinIDApprox", ctx, key, minID, limit)}
+}
+
+func (_c *MockPipeliner_XTrimMinIDApprox_Call) Run(run func(ctx context.Context, key string, minID string, limit int64)) *MockPipeliner_XTrimMinIDApprox_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int64))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XTrimMinIDApprox_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_XTrimMinIDApprox_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_XTrimMinIDApprox_Call) RunAndReturn(run func(context.Context, string, string, int64) *redis.IntCmd) *MockPipeliner_XTrimMinIDApprox_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // ZAdd provides a mock function with given fields: ctx, key, members
 func (_m *MockPipeliner) ZAdd(ctx context.Context, key string, members ...redis.Z) *redis.IntCmd {
 	_va := make([]interface{}, len(members))
