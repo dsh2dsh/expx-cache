@@ -30,9 +30,7 @@ func TestNewStdRedis(t *testing.T) {
 }
 
 func TestRedisClient_errors(t *testing.T) {
-	ctx := context.Background()
 	ttl := time.Minute
-	expectErr := io.EOF
 
 	clients := []struct {
 		name       string
@@ -51,6 +49,10 @@ func TestRedisClient_errors(t *testing.T) {
 			},
 		},
 	}
+
+	ctx := context.Background()
+	ttls := []time.Duration{ttl}
+	expectErr := io.EOF
 
 	tests := []struct {
 		name      string
@@ -92,7 +94,7 @@ func TestRedisClient_errors(t *testing.T) {
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
 				//nolint:wrapcheck
-				return redisClient.Set(ctx, testKey, []byte(""), ttl)
+				return redisClient.Set(ctx, testKey, []byte("abc"), ttl)
 			},
 		},
 		{
@@ -106,7 +108,7 @@ func TestRedisClient_errors(t *testing.T) {
 					})
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
-				_, err := redisClient.MGet(ctx, "key1", "key2", "key3")
+				_, err := redisClient.MGet(ctx, []string{"key1", "key2", "key3"})
 				return err //nolint:wrapcheck
 			},
 		},
@@ -129,7 +131,7 @@ func TestRedisClient_errors(t *testing.T) {
 					})
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
-				_, err := redisClient.MGet(ctx, testKey, "key2", "key3")
+				_, err := redisClient.MGet(ctx, []string{testKey, "key2", "key3"})
 				return err //nolint:wrapcheck
 			},
 		},
@@ -145,7 +147,7 @@ func TestRedisClient_errors(t *testing.T) {
 					})
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
-				_, err := redisClient.MGet(ctx, testKey, "key2", "key3")
+				_, err := redisClient.MGet(ctx, []string{testKey, "key2", "key3"})
 				return err //nolint:wrapcheck
 			},
 		},
@@ -161,7 +163,7 @@ func TestRedisClient_errors(t *testing.T) {
 					})
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
-				_, err := redisClient.MGet(ctx, testKey, "key2", "key3")
+				_, err := redisClient.MGet(ctx, []string{testKey, "key2", "key3"})
 				return err //nolint:wrapcheck
 			},
 		},
@@ -177,62 +179,63 @@ func TestRedisClient_errors(t *testing.T) {
 					})
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
-				_, err := redisClient.MGet(ctx, testKey, "key2", "key3")
+				_, err := redisClient.MGet(ctx, []string{testKey, "key2", "key3"})
 				return err //nolint:wrapcheck
 			},
 			assertErr: func(t *testing.T, err error) {
-				assert.ErrorContains(t, err, "pipelined: unexpected type=")
-			},
-		},
-		{
-			name: "MSet error from Pipelined",
-			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
-				rdb.EXPECT().Pipelined(ctx, mock.Anything).RunAndReturn(
-					func(ctx context.Context,
-						fn func(redis.Pipeliner) error,
-					) ([]redis.Cmder, error) {
-						return nil, expectErr
-					})
-			},
-			do: func(t *testing.T, redisClient RedisClient) error {
-				err := redisClient.MSet(ctx, []string{testKey, "key2", "key3"},
-					make([][]byte, 3), []time.Duration{ttl, ttl, ttl})
-				return err //nolint:wrapcheck
+				assert.ErrorContains(t, err, "unexpected type=")
 			},
 		},
 		{
 			name: "MSet error from SET",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
-				rdb.EXPECT().Pipelined(ctx, mock.Anything).RunAndReturn(
-					func(
-						ctx context.Context, fn func(redis.Pipeliner) error,
-					) ([]redis.Cmder, error) {
-						pipe := mocks.NewMockPipeliner(t)
-						pipe.EXPECT().Set(ctx, testKey, []byte(nil), ttl).Return(
-							redis.NewStatusResult("", expectErr))
-						return nil, fn(pipe)
-					})
+				pipe := mocks.NewMockPipeliner(t)
+				pipe.EXPECT().Set(ctx, testKey, mock.Anything, ttl).Return(
+					redis.NewStatusResult("", expectErr))
+				rdb.EXPECT().Pipeline().Return(pipe)
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
-				err := redisClient.MSet(ctx, []string{testKey, "key2", "key3"},
-					make([][]byte, 3), []time.Duration{ttl, ttl, ttl})
+				err := redisClient.MSet(ctx,
+					msetIter([]string{testKey}, [][]byte{[]byte("abc")}, ttls))
 				return err //nolint:wrapcheck
 			},
 		},
 		{
-			name: "MGet error from StatusCmd",
+			name: "MSet error from Exec",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
-				rdb.EXPECT().Pipelined(ctx, mock.Anything).RunAndReturn(
-					func(
-						ctx context.Context, fn func(redis.Pipeliner) error,
-					) ([]redis.Cmder, error) {
+				pipe := mocks.NewMockPipeliner(t)
+				pipe.EXPECT().Set(ctx, testKey, mock.Anything, ttl).Return(
+					redis.NewStatusResult("", nil))
+				pipe.EXPECT().Len().Return(1)
+				pipe.EXPECT().Exec(ctx).RunAndReturn(
+					func(ctx context.Context) ([]redis.Cmder, error) {
+						return nil, expectErr
+					})
+				rdb.EXPECT().Pipeline().Return(pipe)
+			},
+			do: func(t *testing.T, redisClient RedisClient) error {
+				err := redisClient.MSet(ctx,
+					msetIter([]string{testKey}, [][]byte{[]byte("abc")}, ttls))
+				return err //nolint:wrapcheck
+			},
+		},
+		{
+			name: "MSet error from StatusCmd",
+			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
+				pipe := mocks.NewMockPipeliner(t)
+				pipe.EXPECT().Set(ctx, testKey, mock.Anything, ttl).Return(
+					redis.NewStatusResult("", nil))
+				pipe.EXPECT().Len().Return(1)
+				pipe.EXPECT().Exec(ctx).RunAndReturn(
+					func(ctx context.Context) ([]redis.Cmder, error) {
 						cmds := []redis.Cmder{redis.NewStatusResult("", io.EOF)}
 						return cmds, nil
 					})
+				rdb.EXPECT().Pipeline().Return(pipe)
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
-				err := redisClient.MSet(ctx, []string{testKey, "key2", "key3"},
-					make([][]byte, 3), []time.Duration{ttl, ttl, ttl})
+				err := redisClient.MSet(ctx,
+					msetIter([]string{testKey}, [][]byte{[]byte("abc")}, ttls))
 				return err //nolint:wrapcheck
 			},
 		},
@@ -254,6 +257,19 @@ func TestRedisClient_errors(t *testing.T) {
 				})
 			}
 		})
+	}
+}
+
+func msetIter(
+	keys []string, blobs [][]byte, times []time.Duration,
+) func() (key string, b []byte, ttl time.Duration, ok bool) {
+	i := 0
+	return func() (key string, b []byte, ttl time.Duration, ok bool) {
+		if i < len(keys) {
+			key, b, ttl, ok = keys[i], blobs[i], times[i], true
+			i++
+		}
+		return
 	}
 }
 

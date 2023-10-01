@@ -9,7 +9,9 @@ func (self *Cache) Delete(ctx context.Context, keys ...string) error {
 	if self.redis == nil {
 		self.DeleteFromLocalCache(keys...)
 		return nil
-	} else if self.localCache == nil {
+	}
+
+	if self.localCache == nil {
 		return self.DeleteFromRedis(ctx, keys...)
 	}
 
@@ -18,6 +20,7 @@ func (self *Cache) Delete(ctx context.Context, keys ...string) error {
 		done <- self.DeleteFromRedis(ctx, keys...)
 	}()
 	self.DeleteFromLocalCache(keys...)
+
 	return <-done
 }
 
@@ -31,11 +34,11 @@ func (self *Cache) DeleteFromLocalCache(keys ...string) {
 
 func (self *Cache) DeleteFromRedis(ctx context.Context, keys ...string) error {
 	if self.redis != nil {
-		handledKeys := make([]string, len(keys))
+		wrappedKeys := make([]string, len(keys))
 		for i, k := range keys {
-			handledKeys[i] = self.WrapKey(k)
+			wrappedKeys[i] = self.WrapKey(k)
 		}
-		if err := self.redis.Del(ctx, handledKeys...); err != nil {
+		if err := self.redis.Del(ctx, wrappedKeys...); err != nil {
 			return fmt.Errorf("redis delete: %w", err)
 		}
 	}

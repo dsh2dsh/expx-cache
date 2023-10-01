@@ -22,8 +22,11 @@ type RedisClient interface {
 	Del(ctx context.Context, keys ...string) error
 	Set(ctx context.Context, key string, blob []byte, ttl time.Duration) error
 
-	MGet(ctx context.Context, keys ...string) ([][]byte, error)
-	MSet(ctx context.Context, keys []string, blobs [][]byte, ttls []time.Duration) error
+	MGet(ctx context.Context, keys []string) ([][]byte, error)
+	MSet(
+		ctx context.Context,
+		iter func() (key string, b []byte, ttl time.Duration, ok bool),
+	) error
 }
 
 type (
@@ -146,4 +149,22 @@ func (self *Cache) WrapKey(key string) string {
 		return self.keyWrapper(key)
 	}
 	return key
+}
+
+// --------------------------------------------------
+
+func (self *Cache) Multi() *MultiCache {
+	return NewMultiCache(self)
+}
+
+func (self *Cache) MGet(ctx context.Context, items []*Item) ([]*Item, error) {
+	return self.Multi().Get(ctx, items)
+}
+
+func (self *Cache) MSet(ctx context.Context, items []*Item) error {
+	return self.Multi().Set(ctx, items)
+}
+
+func (self *Cache) MOnce(ctx context.Context, items []*Item) error {
+	return self.Multi().Once(ctx, items)
 }

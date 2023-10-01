@@ -43,7 +43,7 @@ func (self *TinyLFU) UseRandomizedTTL(offset time.Duration) {
 }
 
 func (self *TinyLFU) Set(key string, b []byte) {
-	if b == nil {
+	if len(b) == 0 {
 		return
 	}
 

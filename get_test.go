@@ -7,6 +7,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
+	"github.com/stretchr/testify/require"
 
 	mocks "github.com/dsh2dsh/expx-cache/mocks/cache"
 )
@@ -56,4 +57,12 @@ func TestExists_withError(t *testing.T) {
 	hit, err := cache.Exists(context.Background(), testKey)
 	assert.ErrorIs(t, err, io.EOF)
 	assert.False(t, hit)
+}
+
+func TestCache_Multi(t *testing.T) {
+	cache := New()
+	require.NotNil(t, cache)
+	multi := cache.Multi()
+	require.NotNil(t, multi)
+	assert.Same(t, cache, multi.cache)
 }

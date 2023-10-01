@@ -27,10 +27,7 @@ func (self *Cache) GetSkippingLocalCache(
 }
 
 func (self *Cache) get(
-	ctx context.Context,
-	key string,
-	value any,
-	skipLocalCache bool,
+	ctx context.Context, key string, value any, skipLocalCache bool,
 ) (bool, error) {
 	b, err := self.getBytes(ctx, key, skipLocalCache)
 	if err != nil {
