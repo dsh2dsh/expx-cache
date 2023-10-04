@@ -142,7 +142,7 @@ func (self *Cache) ItemTTL(item *Item) time.Duration {
 // --------------------------------------------------
 
 func (self *Cache) WithNamespace(namespace string) *Cache {
-	self.namespace += namespace
+	self.namespace = namespace
 	return self
 }
 

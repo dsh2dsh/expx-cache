@@ -718,7 +718,6 @@ func TestCache_WithNamespace(t *testing.T) {
 	assert.Equal(t, "abc", cache.WrapKey("abc"))
 	assert.Equal(t, foobar+"abc", cache.resolveKey("abc"))
 
-	cache.namespace = ""
 	assert.Equal(t, "abc-"+foobar,
 		cache.WithNamespace("test/").WithKeyWrapper(func(key string) string {
 			return "abc-" + key
@@ -726,7 +725,8 @@ func TestCache_WithNamespace(t *testing.T) {
 	assert.Equal(t, "test/abc-"+foobar, cache.resolveKey(foobar))
 
 	assert.Equal(t, "test/test2/abc-def-"+foobar,
-		cache.New().WithNamespace("test2/").WithKeyWrapper(func(key string) string {
-			return cache.WrapKey("def-" + key)
-		}).resolveKey(foobar))
+		cache.New().WithNamespace(cache.Namespace()+"test2/").
+			WithKeyWrapper(func(key string) string {
+				return cache.WrapKey("def-" + key)
+			}).resolveKey(foobar))
 }
