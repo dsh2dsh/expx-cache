@@ -174,6 +174,47 @@ func (self *CacheTestSuite) TestGetSet_bytesAsIs() {
 	self.assertStats()
 }
 
+func (self *CacheTestSuite) TestGetSet_many() {
+	if testing.Short() {
+		self.T().Skip("skipping in short mode")
+	}
+
+	maxItems := 21
+	allKeys := make([]string, maxItems)
+	allValues := make([]CacheableObject, maxItems)
+
+	allItems := make([]*Item, maxItems)
+	for i := 0; i < maxItems; i++ {
+		key := fmt.Sprintf("key-%00d", i)
+		allKeys[i] = key
+		allValues[i].Str = key
+		allValues[i].Num = i
+		allItems[i] = &Item{
+			Key:   key,
+			Value: &allValues[i],
+		}
+	}
+
+	ctx := context.Background()
+	self.NoError(self.cache.MSet(ctx, allItems))
+
+	gotValues := make([]CacheableObject, maxItems)
+	for i, item := range allItems {
+		item.Value = &gotValues[i]
+	}
+	missed := valueNoError[[]*Item](self.T())(self.cache.MGet(ctx, allItems))
+	self.Equal(allValues, gotValues)
+	self.Nil(missed)
+
+	self.NoError(self.cache.Delete(ctx, allKeys...))
+
+	clear(gotValues)
+	expectedValues := make([]CacheableObject, maxItems)
+	missed = valueNoError[[]*Item](self.T())(self.cache.MGet(ctx, allItems))
+	self.Equal(expectedValues, gotValues)
+	self.Equal(allItems, missed)
+}
+
 // --------------------------------------------------
 
 func (self *CacheTestSuite) TestWithKeyWrapper() {

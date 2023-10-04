@@ -20,12 +20,14 @@ func (self *MultiCache) Get(ctx context.Context, items []*Item) ([]*Item, error)
 		self.localSet(hit[len(localHit):])
 	}
 
-	if len(miss) == 0 {
-		return nil, nil
-	} else if len(hit) > 0 {
+	if len(hit) > 0 {
 		if err := self.unmarshalItems(ctx, hit); err != nil {
 			return nil, err
 		}
+	}
+
+	if len(miss) == 0 {
+		return nil, nil
 	}
 
 	missedItems := make([]*Item, len(miss))

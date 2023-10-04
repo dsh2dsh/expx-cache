@@ -111,7 +111,7 @@ func (self *StdRedis) mgetPipeExec(
 	ctx context.Context, pipe redis.Pipeliner, blobs [][]byte,
 ) ([][]byte, error) {
 	cmds, err := pipe.Exec(ctx)
-	if err != nil {
+	if err != nil && !errors.Is(err, redis.Nil) {
 		return nil, fmt.Errorf("pipeline: %w", err)
 	}
 
