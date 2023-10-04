@@ -45,7 +45,7 @@ func (self *MultiCache) marshalItems(
 		i, item := i, item
 		g.Go(item, func(b []byte) {
 			blobs[i] = blobItem{
-				Key:   self.cache.WrapKey(item.Key),
+				Key:   self.cache.resolveKey(item.Key),
 				Value: b,
 				Item:  item,
 			}

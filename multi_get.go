@@ -43,7 +43,7 @@ func (self *MultiCache) localGet(items []*Item) (hit []blobItem, miss []blobItem
 	skipLocalCache := self.cache.localCache == nil || self.skipLocalCache
 
 	for _, item := range items {
-		blob := blobItem{Key: self.cache.WrapKey(item.Key), Item: item}
+		blob := blobItem{Key: self.cache.resolveKey(item.Key), Item: item}
 		if skipLocalCache || item.SkipLocalCache {
 			miss = append(miss, blob)
 		} else if b := self.cache.localCache.Get(blob.Key); len(b) == 0 {

@@ -663,3 +663,29 @@ func TestCache_WithKeyWrapper(t *testing.T) {
 		})
 	}
 }
+
+func TestCache_WithNamespace(t *testing.T) {
+	cache := New()
+	require.NotNil(t, cache)
+
+	assert.Equal(t, "", cache.namespace)
+	assert.Equal(t, cache.namespace, cache.Namespace())
+
+	const foobar = "foobar"
+	assert.Same(t, cache, cache.WithNamespace(foobar))
+	assert.Equal(t, foobar, cache.Namespace())
+	assert.Equal(t, "abc", cache.WrapKey("abc"))
+	assert.Equal(t, foobar+"abc", cache.resolveKey("abc"))
+
+	cache.namespace = ""
+	assert.Equal(t, "abc-"+foobar,
+		cache.WithNamespace("test/").WithKeyWrapper(func(key string) string {
+			return "abc-" + key
+		}).WrapKey(foobar))
+	assert.Equal(t, "test/abc-"+foobar, cache.resolveKey(foobar))
+
+	assert.Equal(t, "test/test2/abc-def-"+foobar,
+		cache.New().WithNamespace("test2/").WithKeyWrapper(func(key string) string {
+			return cache.WrapKey("def-" + key)
+		}).resolveKey(foobar))
+}

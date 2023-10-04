@@ -52,6 +52,8 @@ type Cache struct {
 	localCache LocalCache
 
 	defaultTTL time.Duration
+	namespace  string
+
 	marshal    MarshalFunc
 	unmarshal  UnmarshalFunc
 	keyWrapper func(keys string) string
@@ -139,6 +141,15 @@ func (self *Cache) ItemTTL(item *Item) time.Duration {
 
 // --------------------------------------------------
 
+func (self *Cache) WithNamespace(namespace string) *Cache {
+	self.namespace += namespace
+	return self
+}
+
+func (self *Cache) Namespace() string {
+	return self.namespace
+}
+
 func (self *Cache) WithKeyWrapper(fn func(key string) string) *Cache {
 	self.keyWrapper = fn
 	return self
@@ -146,9 +157,13 @@ func (self *Cache) WithKeyWrapper(fn func(key string) string) *Cache {
 
 func (self *Cache) WrapKey(key string) string {
 	if self.keyWrapper != nil {
-		return self.keyWrapper(key)
+		key = self.keyWrapper(key)
 	}
 	return key
+}
+
+func (self *Cache) resolveKey(key string) string {
+	return self.Namespace() + self.WrapKey(key)
 }
 
 // --------------------------------------------------

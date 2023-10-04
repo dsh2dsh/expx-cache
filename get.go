@@ -39,7 +39,7 @@ func (self *Cache) get(
 func (self *Cache) getBytes(
 	ctx context.Context, key string, skipLocalCache bool,
 ) ([]byte, error) {
-	key = self.WrapKey(key)
+	key = self.resolveKey(key)
 
 	if !skipLocalCache && self.localCache != nil {
 		b := self.localCache.Get(key)
