@@ -98,36 +98,42 @@ func TestRedisClient_errors(t *testing.T) {
 			},
 		},
 		{
-			name: "MGet error from Pipelined",
+			name: "MGet error from getter",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
-				rdb.EXPECT().Pipelined(ctx, mock.Anything).RunAndReturn(
-					func(ctx context.Context,
-						fn func(redis.Pipeliner) error,
-					) ([]redis.Cmder, error) {
-						return nil, expectErr
-					})
+				pipe := mocks.NewMockPipeliner(t)
+				if strings.Contains(t.Name(), "/RefreshRedis/") {
+					pipe.EXPECT().GetEx(ctx, testKey, ttl).Return(
+						redis.NewStringResult("", expectErr))
+				} else {
+					pipe.EXPECT().Get(ctx, testKey).Return(
+						redis.NewStringResult("", expectErr))
+				}
+				rdb.EXPECT().Pipeline().Return(pipe)
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
-				_, err := redisClient.MGet(ctx, []string{"key1", "key2", "key3"})
+				_, err := redisClient.MGet(ctx, []string{testKey, "key2", "key3"})
 				return err //nolint:wrapcheck
 			},
 		},
 		{
-			name: "MGet error from getter",
+			name: "MGet error from Exec",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
-				rdb.EXPECT().Pipelined(ctx, mock.Anything).RunAndReturn(
-					func(
-						ctx context.Context, fn func(redis.Pipeliner) error,
-					) ([]redis.Cmder, error) {
-						pipe := mocks.NewMockPipeliner(t)
-						if strings.Contains(t.Name(), "/RefreshRedis/") {
-							pipe.EXPECT().GetEx(ctx, testKey, ttl).Return(
-								redis.NewStringResult("", expectErr))
-						} else {
-							pipe.EXPECT().Get(ctx, testKey).Return(
-								redis.NewStringResult("", expectErr))
-						}
-						return nil, fn(pipe)
+				pipe := mocks.NewMockPipeliner(t)
+				rdb.EXPECT().Pipeline().Return(pipe)
+				expectedKeys := []string{testKey, "key2", "key3"}
+				for _, expectedKey := range expectedKeys {
+					if strings.Contains(t.Name(), "/RefreshRedis/") {
+						pipe.EXPECT().GetEx(ctx, expectedKey, ttl).Return(
+							redis.NewStringResult("", nil))
+					} else {
+						pipe.EXPECT().Get(ctx, expectedKey).Return(
+							redis.NewStringResult("", nil))
+					}
+				}
+				pipe.EXPECT().Len().Return(len(expectedKeys))
+				pipe.EXPECT().Exec(ctx).RunAndReturn(
+					func(ctx context.Context) ([]redis.Cmder, error) {
+						return nil, expectErr
 					})
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
@@ -138,10 +144,21 @@ func TestRedisClient_errors(t *testing.T) {
 		{
 			name: "MGet error from StringCmd",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
-				rdb.EXPECT().Pipelined(ctx, mock.Anything).RunAndReturn(
-					func(
-						ctx context.Context, fn func(redis.Pipeliner) error,
-					) ([]redis.Cmder, error) {
+				pipe := mocks.NewMockPipeliner(t)
+				rdb.EXPECT().Pipeline().Return(pipe)
+				expectedKeys := []string{testKey, "key2", "key3"}
+				for _, expectedKey := range expectedKeys {
+					if strings.Contains(t.Name(), "/RefreshRedis/") {
+						pipe.EXPECT().GetEx(ctx, expectedKey, ttl).Return(
+							redis.NewStringResult("", nil))
+					} else {
+						pipe.EXPECT().Get(ctx, expectedKey).Return(
+							redis.NewStringResult("", nil))
+					}
+				}
+				pipe.EXPECT().Len().Return(len(expectedKeys))
+				pipe.EXPECT().Exec(ctx).RunAndReturn(
+					func(ctx context.Context) ([]redis.Cmder, error) {
 						cmds := []redis.Cmder{redis.NewStringResult("", io.EOF)}
 						return cmds, nil
 					})
@@ -154,10 +171,21 @@ func TestRedisClient_errors(t *testing.T) {
 		{
 			name: "MGet error from BoolCmd",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
-				rdb.EXPECT().Pipelined(ctx, mock.Anything).RunAndReturn(
-					func(
-						ctx context.Context, fn func(redis.Pipeliner) error,
-					) ([]redis.Cmder, error) {
+				pipe := mocks.NewMockPipeliner(t)
+				rdb.EXPECT().Pipeline().Return(pipe)
+				expectedKeys := []string{testKey, "key2", "key3"}
+				for _, expectedKey := range expectedKeys {
+					if strings.Contains(t.Name(), "/RefreshRedis/") {
+						pipe.EXPECT().GetEx(ctx, expectedKey, ttl).Return(
+							redis.NewStringResult("", nil))
+					} else {
+						pipe.EXPECT().Get(ctx, expectedKey).Return(
+							redis.NewStringResult("", nil))
+					}
+				}
+				pipe.EXPECT().Len().Return(len(expectedKeys))
+				pipe.EXPECT().Exec(ctx).RunAndReturn(
+					func(ctx context.Context) ([]redis.Cmder, error) {
 						cmds := []redis.Cmder{redis.NewBoolResult(false, io.EOF)}
 						return cmds, nil
 					})
@@ -170,10 +198,21 @@ func TestRedisClient_errors(t *testing.T) {
 		{
 			name: "MGet unexpected type",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
-				rdb.EXPECT().Pipelined(ctx, mock.Anything).RunAndReturn(
-					func(
-						ctx context.Context, fn func(redis.Pipeliner) error,
-					) ([]redis.Cmder, error) {
+				pipe := mocks.NewMockPipeliner(t)
+				rdb.EXPECT().Pipeline().Return(pipe)
+				expectedKeys := []string{testKey, "key2", "key3"}
+				for _, expectedKey := range expectedKeys {
+					if strings.Contains(t.Name(), "/RefreshRedis/") {
+						pipe.EXPECT().GetEx(ctx, expectedKey, ttl).Return(
+							redis.NewStringResult("", nil))
+					} else {
+						pipe.EXPECT().Get(ctx, expectedKey).Return(
+							redis.NewStringResult("", nil))
+					}
+				}
+				pipe.EXPECT().Len().Return(len(expectedKeys))
+				pipe.EXPECT().Exec(ctx).RunAndReturn(
+					func(ctx context.Context) ([]redis.Cmder, error) {
 						cmds := []redis.Cmder{redis.NewBoolResult(false, nil)}
 						return cmds, nil
 					})
