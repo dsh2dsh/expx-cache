@@ -47,9 +47,11 @@ func (self *MultiCache) localGet(items []*Item) (hit []blobItem, miss []blobItem
 			miss = append(miss, blob)
 		} else if b := self.cache.localCache.Get(blob.Key); len(b) == 0 {
 			miss = append(miss, blob)
+			self.cache.addLocalMiss()
 		} else {
 			blob.Value = b
 			hit = append(hit, blob)
+			self.cache.addLocalHit()
 		}
 	}
 
@@ -76,9 +78,11 @@ func (self *MultiCache) redisGet(
 	for i := range items {
 		if len(blobs[i]) == 0 {
 			miss = append(miss, items[i])
+			self.cache.addMiss()
 		} else {
 			items[i].Value = blobs[i]
 			hit = append(hit, items[i])
+			self.cache.addHit()
 		}
 	}
 

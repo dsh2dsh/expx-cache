@@ -201,8 +201,12 @@ func (self *CacheTestSuite) TestGetSet_many() {
 	gotValues := make([]CacheableObject, maxItems)
 	for i, item := range allItems {
 		item.Value = &gotValues[i]
+		self.cacheHit()
 	}
 	missed := valueNoError[[]*Item](self.T())(self.cache.MGet(ctx, allItems))
+	for range missed {
+		self.cacheMiss()
+	}
 	self.Equal(allValues, gotValues)
 	self.Nil(missed)
 
@@ -211,8 +215,13 @@ func (self *CacheTestSuite) TestGetSet_many() {
 	clear(gotValues)
 	expectedValues := make([]CacheableObject, maxItems)
 	missed = valueNoError[[]*Item](self.T())(self.cache.MGet(ctx, allItems))
+	for range missed {
+		self.cacheMiss()
+	}
 	self.Equal(expectedValues, gotValues)
 	self.Equal(allItems, missed)
+
+	self.assertStats()
 }
 
 // --------------------------------------------------
