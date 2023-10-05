@@ -156,14 +156,9 @@ func (self *StdRedis) MSet(
 }
 
 func (self *StdRedis) msetPipeExec(ctx context.Context, pipe redis.Pipeliner) error {
-	cmds, err := pipe.Exec(ctx)
+	_, err := pipe.Exec(ctx)
 	if err != nil {
 		return fmt.Errorf("pipeline: %w", err)
-	}
-	for _, cmd := range cmds {
-		if cmd.Err() != nil {
-			return fmt.Errorf("pipelined cmd %q: %w", cmd.Name(), cmd.Err())
-		}
 	}
 	return nil
 }

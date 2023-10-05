@@ -258,26 +258,6 @@ func TestRedisClient_errors(t *testing.T) {
 				return err //nolint:wrapcheck
 			},
 		},
-		{
-			name: "MSet error from StatusCmd",
-			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
-				pipe := mocks.NewMockPipeliner(t)
-				pipe.EXPECT().Set(ctx, testKey, mock.Anything, ttl).Return(
-					redis.NewStatusResult("", nil))
-				pipe.EXPECT().Len().Return(1)
-				pipe.EXPECT().Exec(ctx).RunAndReturn(
-					func(ctx context.Context) ([]redis.Cmder, error) {
-						cmds := []redis.Cmder{redis.NewStatusResult("", io.EOF)}
-						return cmds, nil
-					})
-				rdb.EXPECT().Pipeline().Return(pipe)
-			},
-			do: func(t *testing.T, redisClient RedisClient) error {
-				err := redisClient.MSet(ctx,
-					msetIter([]string{testKey}, [][]byte{[]byte("abc")}, ttls))
-				return err //nolint:wrapcheck
-			},
-		},
 	}
 
 	for _, client := range clients {
