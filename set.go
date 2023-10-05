@@ -57,7 +57,8 @@ func (self *Cache) marshalItem(item *Item) ([]byte, error) {
 }
 
 func (self *Cache) redisSet(item *Item, b []byte, ttl time.Duration) error {
-	if err := self.redis.Set(item.Context(), self.resolveKey(item.Key), b, ttl); err != nil {
+	err := self.redis.Set(item.Context(), self.resolveKey(item.Key), b, ttl)
+	if err != nil {
 		return fmt.Errorf("redis set: %w", err)
 	}
 	return nil
