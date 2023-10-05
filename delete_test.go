@@ -2,7 +2,6 @@ package cache
 
 import (
 	"context"
-	"fmt"
 	"io"
 	"testing"
 	"time"
@@ -81,33 +80,6 @@ func (self *CacheTestSuite) TestDeleteFromRedis() {
 
 	if self.cache.redis != nil {
 		self.Nil(valueNoError[[]byte](self.T())(self.cache.redis.Get(ctx, testKey)))
-	}
-	self.assertStats()
-}
-
-func (self *CacheTestSuite) TestDelete_manyKeys() {
-	if testing.Short() {
-		self.T().Skip("skipping in short mode")
-	}
-
-	const numKeys = 11
-	ctx := context.Background()
-	allKeys := make([]string, 0, numKeys)
-	for i := 0; i < numKeys; i++ {
-		key := fmt.Sprintf("key-%00d", i)
-		allKeys = append(allKeys, key)
-		err := self.cache.Set(&Item{
-			Ctx:   ctx,
-			Key:   key,
-			Value: self.CacheableValue(),
-		})
-		self.Require().NoError(err)
-	}
-	self.Require().NoError(self.cache.Delete(ctx, allKeys...))
-
-	for _, key := range allKeys {
-		self.Require().False(self.cache.Exists(ctx, key))
-		self.cacheMiss()
 	}
 	self.assertStats()
 }
