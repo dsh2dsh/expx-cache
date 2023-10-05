@@ -11,8 +11,8 @@ func NewMultiCache(cache *Cache) *MultiCache {
 type MultiCache struct {
 	cache *Cache
 
-	// doProcs sets num of goroutines we'll use for calling Do of items.
-	doProcs int
+	// groupLimit sets num of goroutines we'll use for calling Do of items.
+	groupLimit int
 
 	// skipLocalCache skips local cache as if it is not set.
 	skipLocalCache bool
@@ -26,8 +26,8 @@ func (self *MultiCache) WithSkipLocalCache(v bool) *MultiCache {
 	return self
 }
 
-func (self *MultiCache) WithDoProcs(n int) *MultiCache {
-	self.doProcs = n
+func (self *MultiCache) WithGroupDo(n int) *MultiCache {
+	self.groupLimit = n
 	return self
 }
 

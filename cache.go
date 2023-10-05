@@ -3,9 +3,11 @@ package cache
 
 import (
 	"context"
+	"runtime"
 	"time"
 
 	"github.com/redis/go-redis/v9"
+	"golang.org/x/sync/semaphore"
 	"golang.org/x/sync/singleflight"
 )
 
@@ -40,8 +42,9 @@ func New() *Cache {
 		marshal:    marshal,
 		unmarshal:  unmarshal,
 
-		stats: new(Stats),
-		group: &singleflight.Group{},
+		stats:   new(Stats),
+		group:   &singleflight.Group{},
+		workers: semaphore.NewWeighted(int64(runtime.GOMAXPROCS(0))),
 	}
 
 	return c
@@ -61,7 +64,8 @@ type Cache struct {
 	stats        *Stats
 	statsEnabled bool
 
-	group *singleflight.Group
+	group   *singleflight.Group
+	workers *semaphore.Weighted
 }
 
 func (self *Cache) New() *Cache {

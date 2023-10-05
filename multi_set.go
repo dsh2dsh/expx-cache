@@ -35,7 +35,7 @@ func (self *MultiCache) Set(ctx context.Context, items []*Item) error {
 func (self *MultiCache) marshalItems(
 	ctx context.Context, items []*Item,
 ) ([]blobItem, error) {
-	g := newMarshalGroup(ctx, self.cache).SetLimit(self.doProcs)
+	g := newMarshalGroup(ctx, self.cache).SetLimit(self.groupLimit)
 
 	blobs := make([]blobItem, len(items))
 	for i, item := range items {
@@ -43,7 +43,7 @@ func (self *MultiCache) marshalItems(
 			break
 		}
 		i, item := i, item
-		g.Go(item, func(b []byte) {
+		g.GoMarshal(item, func(b []byte) {
 			blobs[i] = blobItem{
 				Key:   self.cache.resolveKey(item.Key),
 				Value: b,
@@ -54,6 +54,8 @@ func (self *MultiCache) marshalItems(
 
 	if err := g.Wait(); err != nil {
 		return nil, err
+	} else if ctx.Err() != nil {
+		return nil, fmt.Errorf("cache: context cancelled: %w", context.Cause(ctx))
 	}
 
 	return blobs, nil

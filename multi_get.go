@@ -3,9 +3,6 @@ package cache
 import (
 	"context"
 	"fmt"
-	"runtime"
-
-	"golang.org/x/sync/errgroup"
 )
 
 func (self *MultiCache) Get(ctx context.Context, items []*Item) ([]*Item, error) {
@@ -89,24 +86,19 @@ func (self *MultiCache) redisGet(
 }
 
 func (self *MultiCache) unmarshalItems(ctx context.Context, items []blobItem) error {
-	g, ctx := errgroup.WithContext(ctx)
-	g.SetLimit(runtime.GOMAXPROCS(0))
-
+	g := newMarshalGroup(ctx, self.cache)
 	for i := range items {
-		if ctx.Err() != nil {
+		if g.Context().Err() != nil {
 			break
 		}
 		item := &items[i]
-		g.Go(func() error {
-			if err := self.cache.Unmarshal(item.Value, item.Item.Value); err != nil {
-				return fmt.Errorf("unmarshal item %q: %w", item.Key, err)
-			}
-			return nil
-		})
+		g.GoUnmarshal(item.Value, item.Item)
 	}
 
 	if err := g.Wait(); err != nil {
-		return fmt.Errorf("errgroup: %w", err)
+		return err
+	} else if ctx.Err() != nil {
+		return fmt.Errorf("cache: context cancelled: %w", context.Cause(ctx))
 	}
 
 	return nil
