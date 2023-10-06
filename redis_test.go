@@ -2,6 +2,7 @@ package cache
 
 import (
 	"context"
+	"fmt"
 	"io"
 	"strings"
 	"testing"
@@ -301,4 +302,148 @@ func TestStdRedis_WithBatchSize(t *testing.T) {
 	batchSize := redisCache.batchSize * 2
 	assert.Same(t, redisCache, redisCache.WithBatchSize(batchSize))
 	assert.Equal(t, batchSize, redisCache.batchSize)
+}
+
+func TestStdRedis_MGetSet_WithBatchSize(t *testing.T) {
+	batchSize := 3
+	maxKeys := 8
+
+	keys := make([]string, maxKeys)
+	blobs := make([][]byte, len(keys))
+	times := make([]time.Duration, len(keys))
+
+	blob := []byte("foobar")
+	ttl := time.Minute
+	ctx := context.Background()
+
+	tests := []struct {
+		name    string
+		pipeOp  func(pipe *mocks.MockPipeliner, fn func())
+		cacheOp func(t *testing.T, redisCache *StdRedis, nKeys int)
+	}{
+		{
+			name: "MGet",
+			pipeOp: func(pipe *mocks.MockPipeliner, fn func()) {
+				pipe.EXPECT().Get(ctx, mock.Anything).RunAndReturn(
+					func(ctx context.Context, key string) *redis.StringCmd {
+						fn()
+						return redis.NewStringResult("", nil)
+					})
+			},
+			cacheOp: func(t *testing.T, redisCache *StdRedis, nKeys int) {
+				blobs := valueNoError[[][]byte](t)(redisCache.MGet(ctx, keys[:nKeys]))
+				assert.Equal(t, [][]byte{}, blobs)
+			},
+		},
+		{
+			name: "MSet",
+			pipeOp: func(pipe *mocks.MockPipeliner, fn func()) {
+				pipe.EXPECT().Set(ctx, mock.Anything, blob, ttl).RunAndReturn(
+					func(
+						ctx context.Context, key string, v any, ttl time.Duration,
+					) *redis.StatusCmd {
+						fn()
+						return redis.NewStatusResult("", nil)
+					},
+				)
+			},
+			cacheOp: func(t *testing.T, redisCache *StdRedis, nKeys int) {
+				iter := msetIter(keys[:nKeys], blobs[:nKeys], times[:nKeys])
+				require.NoError(t, redisCache.MSet(ctx, iter))
+			},
+		},
+	}
+
+	for i := 0; i < len(keys); i++ {
+		keys[i] = fmt.Sprintf("key-%00d", i)
+		blobs[i] = blob
+		times[i] = ttl
+	}
+
+	for _, tt := range tests {
+		for nKeys := 0; nKeys <= len(keys); nKeys++ {
+			t.Run(fmt.Sprintf("%s with %d keys", tt.name, nKeys), func(t *testing.T) {
+				rdb := mocks.NewMockCmdable(t)
+				redisCache := NewStdRedis(rdb)
+				require.NotNil(t, redisCache)
+				redisCache.WithBatchSize(batchSize)
+
+				var expect []int
+				nExec := nKeys / redisCache.batchSize
+				for i := 0; i < nExec; i++ {
+					expect = append(expect, redisCache.batchSize)
+				}
+				expect = append(expect, nKeys%redisCache.batchSize)
+
+				pipe := mocks.NewMockPipeliner(t)
+				rdb.EXPECT().Pipeline().Return(pipe)
+
+				opCnt := 0
+				if nKeys > 0 {
+					tt.pipeOp(pipe, func() {
+						opCnt++
+					})
+					pipe.EXPECT().Len().RunAndReturn(func() int {
+						return opCnt
+					})
+				}
+
+				var got []int
+				pipe.EXPECT().Exec(ctx).RunAndReturn(
+					func(ctx context.Context) ([]redis.Cmder, error) {
+						got = append(got, opCnt)
+						opCnt = 0
+						return nil, nil
+					}).Times(len(expect))
+
+				tt.cacheOp(t, redisCache, nKeys)
+				assert.Equal(t, expect, got)
+			})
+		}
+	}
+}
+
+func TestStdRedis_Del_WithBatchSize(t *testing.T) {
+	batchSize := 3
+	maxKeys := 8
+
+	keys := make([]string, maxKeys)
+	for i := 0; i < len(keys); i++ {
+		keys[i] = fmt.Sprintf("key-%00d", i)
+	}
+	ctx := context.Background()
+
+	for nKeys := 0; nKeys <= len(keys); nKeys++ {
+		t.Run(fmt.Sprintf("with %d keys", nKeys), func(t *testing.T) {
+			rdb := mocks.NewMockCmdable(t)
+			redisCache := NewStdRedis(rdb)
+			require.NotNil(t, redisCache)
+			redisCache.WithBatchSize(batchSize)
+
+			var wantKeys [][]string
+			nDel := nKeys / redisCache.batchSize
+			for i := 0; i < nDel; i++ {
+				low := i * redisCache.batchSize
+				high := low + redisCache.batchSize
+				wantKeys = append(wantKeys, keys[low:high])
+			}
+			if nKeys%redisCache.batchSize > 0 {
+				low := nDel * redisCache.batchSize
+				high := low + nKeys%redisCache.batchSize
+				wantKeys = append(wantKeys, keys[low:high])
+			}
+
+			var gotKeys [][]string
+			for i := range wantKeys {
+				rdb.EXPECT().Del(ctx, wantKeys[i]).RunAndReturn(
+					func(ctx context.Context, keys ...string) *redis.IntCmd {
+						gotKeys = append(gotKeys, keys)
+						return redis.NewIntResult(int64(len(keys)), nil)
+					})
+			}
+
+			require.NoError(t, redisCache.Del(ctx, keys[:nKeys]...))
+			assert.Equal(t, wantKeys, gotKeys)
+		})
+	}
 }

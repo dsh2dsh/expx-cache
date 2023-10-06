@@ -10,4 +10,6 @@ packages:
   github.com/redis/go-redis/v9:
     interfaces:
       Cmdable:
+        config:
+          unroll-variadic: False
       Pipeliner:

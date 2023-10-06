@@ -26,10 +26,13 @@ func (_m *MockCmdable) EXPECT() *MockCmdable_Expecter {
 
 // ACLDryRun provides a mock function with given fields: ctx, username, command
 func (_m *MockCmdable) ACLDryRun(ctx context.Context, username string, command ...interface{}) *redis.StringCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, username)
-	_ca = append(_ca, command...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(command) > 0 {
+		tmpRet = _m.Called(ctx, username, command)
+	} else {
+		tmpRet = _m.Called(ctx, username)
+	}
+	ret := tmpRet
 
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.StringCmd); ok {
@@ -670,10 +673,13 @@ func (_c *MockCmdable_BFInfoSize_Call) RunAndReturn(run func(context.Context, st
 
 // BFInsert provides a mock function with given fields: ctx, key, options, elements
 func (_m *MockCmdable) BFInsert(ctx context.Context, key string, options *redis.BFInsertOptions, elements ...interface{}) *redis.BoolSliceCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key, options)
-	_ca = append(_ca, elements...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(elements) > 0 {
+		tmpRet = _m.Called(ctx, key, options, elements)
+	} else {
+		tmpRet = _m.Called(ctx, key, options)
+	}
+	ret := tmpRet
 
 	var r0 *redis.BoolSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.BFInsertOptions, ...interface{}) *redis.BoolSliceCmd); ok {
@@ -774,10 +780,13 @@ func (_c *MockCmdable_BFLoadChunk_Call) RunAndReturn(run func(context.Context, s
 
 // BFMAdd provides a mock function with given fields: ctx, key, elements
 func (_m *MockCmdable) BFMAdd(ctx context.Context, key string, elements ...interface{}) *redis.BoolSliceCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, elements...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(elements) > 0 {
+		tmpRet = _m.Called(ctx, key, elements)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.BoolSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.BoolSliceCmd); ok {
@@ -830,10 +839,13 @@ func (_c *MockCmdable_BFMAdd_Call) RunAndReturn(run func(context.Context, string
 
 // BFMExists provides a mock function with given fields: ctx, key, elements
 func (_m *MockCmdable) BFMExists(ctx context.Context, key string, elements ...interface{}) *redis.BoolSliceCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, elements...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(elements) > 0 {
+		tmpRet = _m.Called(ctx, key, elements)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.BoolSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.BoolSliceCmd); ok {
@@ -1120,14 +1132,13 @@ func (_c *MockCmdable_BFScanDump_Call) RunAndReturn(run func(context.Context, st
 
 // BLMPop provides a mock function with given fields: ctx, timeout, direction, count, keys
 func (_m *MockCmdable) BLMPop(ctx context.Context, timeout time.Duration, direction string, count int64, keys ...string) *redis.KeyValuesCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, timeout, direction, count, keys)
+	} else {
+		tmpRet = _m.Called(ctx, timeout, direction, count)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, timeout, direction, count)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.KeyValuesCmd
 	if rf, ok := ret.Get(0).(func(context.Context, time.Duration, string, int64, ...string) *redis.KeyValuesCmd); ok {
@@ -1231,14 +1242,13 @@ func (_c *MockCmdable_BLMove_Call) RunAndReturn(run func(context.Context, string
 
 // BLPop provides a mock function with given fields: ctx, timeout, keys
 func (_m *MockCmdable) BLPop(ctx context.Context, timeout time.Duration, keys ...string) *redis.StringSliceCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, timeout, keys)
+	} else {
+		tmpRet = _m.Called(ctx, timeout)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, timeout)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, time.Duration, ...string) *redis.StringSliceCmd); ok {
@@ -1291,14 +1301,13 @@ func (_c *MockCmdable_BLPop_Call) RunAndReturn(run func(context.Context, time.Du
 
 // BRPop provides a mock function with given fields: ctx, timeout, keys
 func (_m *MockCmdable) BRPop(ctx context.Context, timeout time.Duration, keys ...string) *redis.StringSliceCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, timeout, keys)
+	} else {
+		tmpRet = _m.Called(ctx, timeout)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, timeout)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, time.Duration, ...string) *redis.StringSliceCmd); ok {
@@ -1398,14 +1407,13 @@ func (_c *MockCmdable_BRPopLPush_Call) RunAndReturn(run func(context.Context, st
 
 // BZMPop provides a mock function with given fields: ctx, timeout, order, count, keys
 func (_m *MockCmdable) BZMPop(ctx context.Context, timeout time.Duration, order string, count int64, keys ...string) *redis.ZSliceWithKeyCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, timeout, order, count, keys)
+	} else {
+		tmpRet = _m.Called(ctx, timeout, order, count)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, timeout, order, count)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.ZSliceWithKeyCmd
 	if rf, ok := ret.Get(0).(func(context.Context, time.Duration, string, int64, ...string) *redis.ZSliceWithKeyCmd); ok {
@@ -1460,14 +1468,13 @@ func (_c *MockCmdable_BZMPop_Call) RunAndReturn(run func(context.Context, time.D
 
 // BZPopMax provides a mock function with given fields: ctx, timeout, keys
 func (_m *MockCmdable) BZPopMax(ctx context.Context, timeout time.Duration, keys ...string) *redis.ZWithKeyCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, timeout, keys)
+	} else {
+		tmpRet = _m.Called(ctx, timeout)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, timeout)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.ZWithKeyCmd
 	if rf, ok := ret.Get(0).(func(context.Context, time.Duration, ...string) *redis.ZWithKeyCmd); ok {
@@ -1520,14 +1527,13 @@ func (_c *MockCmdable_BZPopMax_Call) RunAndReturn(run func(context.Context, time
 
 // BZPopMin provides a mock function with given fields: ctx, timeout, keys
 func (_m *MockCmdable) BZPopMin(ctx context.Context, timeout time.Duration, keys ...string) *redis.ZWithKeyCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, timeout, keys)
+	} else {
+		tmpRet = _m.Called(ctx, timeout)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, timeout)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.ZWithKeyCmd
 	if rf, ok := ret.Get(0).(func(context.Context, time.Duration, ...string) *redis.ZWithKeyCmd); ok {
@@ -1943,10 +1949,13 @@ func (_c *MockCmdable_CFInfo_Call) RunAndReturn(run func(context.Context, string
 
 // CFInsert provides a mock function with given fields: ctx, key, options, elements
 func (_m *MockCmdable) CFInsert(ctx context.Context, key string, options *redis.CFInsertOptions, elements ...interface{}) *redis.BoolSliceCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key, options)
-	_ca = append(_ca, elements...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(elements) > 0 {
+		tmpRet = _m.Called(ctx, key, options, elements)
+	} else {
+		tmpRet = _m.Called(ctx, key, options)
+	}
+	ret := tmpRet
 
 	var r0 *redis.BoolSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.CFInsertOptions, ...interface{}) *redis.BoolSliceCmd); ok {
@@ -2000,10 +2009,13 @@ func (_c *MockCmdable_CFInsert_Call) RunAndReturn(run func(context.Context, stri
 
 // CFInsertNX provides a mock function with given fields: ctx, key, options, elements
 func (_m *MockCmdable) CFInsertNX(ctx context.Context, key string, options *redis.CFInsertOptions, elements ...interface{}) *redis.IntSliceCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key, options)
-	_ca = append(_ca, elements...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(elements) > 0 {
+		tmpRet = _m.Called(ctx, key, options, elements)
+	} else {
+		tmpRet = _m.Called(ctx, key, options)
+	}
+	ret := tmpRet
 
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.CFInsertOptions, ...interface{}) *redis.IntSliceCmd); ok {
@@ -2104,10 +2116,13 @@ func (_c *MockCmdable_CFLoadChunk_Call) RunAndReturn(run func(context.Context, s
 
 // CFMExists provides a mock function with given fields: ctx, key, elements
 func (_m *MockCmdable) CFMExists(ctx context.Context, key string, elements ...interface{}) *redis.BoolSliceCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, elements...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(elements) > 0 {
+		tmpRet = _m.Called(ctx, key, elements)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.BoolSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.BoolSliceCmd); ok {
@@ -2439,10 +2454,13 @@ func (_c *MockCmdable_CFScanDump_Call) RunAndReturn(run func(context.Context, st
 
 // CMSIncrBy provides a mock function with given fields: ctx, key, elements
 func (_m *MockCmdable) CMSIncrBy(ctx context.Context, key string, elements ...interface{}) *redis.IntSliceCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, elements...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(elements) > 0 {
+		tmpRet = _m.Called(ctx, key, elements)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntSliceCmd); ok {
@@ -2634,14 +2652,13 @@ func (_c *MockCmdable_CMSInitByProb_Call) RunAndReturn(run func(context.Context,
 
 // CMSMerge provides a mock function with given fields: ctx, destKey, sourceKeys
 func (_m *MockCmdable) CMSMerge(ctx context.Context, destKey string, sourceKeys ...string) *redis.StatusCmd {
-	_va := make([]interface{}, len(sourceKeys))
-	for _i := range sourceKeys {
-		_va[_i] = sourceKeys[_i]
+	var tmpRet mock.Arguments
+	if len(sourceKeys) > 0 {
+		tmpRet = _m.Called(ctx, destKey, sourceKeys)
+	} else {
+		tmpRet = _m.Called(ctx, destKey)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, destKey)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.StatusCmd); ok {
@@ -2740,10 +2757,13 @@ func (_c *MockCmdable_CMSMergeWithWeight_Call) RunAndReturn(run func(context.Con
 
 // CMSQuery provides a mock function with given fields: ctx, key, elements
 func (_m *MockCmdable) CMSQuery(ctx context.Context, key string, elements ...interface{}) *redis.IntSliceCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, elements...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(elements) > 0 {
+		tmpRet = _m.Called(ctx, key, elements)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntSliceCmd); ok {
@@ -2973,14 +2993,13 @@ func (_c *MockCmdable_ClientKill_Call) RunAndReturn(run func(context.Context, st
 
 // ClientKillByFilter provides a mock function with given fields: ctx, keys
 func (_m *MockCmdable) ClientKillByFilter(ctx context.Context, keys ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, keys)
+	} else {
+		tmpRet = _m.Called(ctx)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.IntCmd); ok {
@@ -3255,14 +3274,13 @@ func (_c *MockCmdable_ClientUnpause_Call) RunAndReturn(run func(context.Context)
 
 // ClusterAddSlots provides a mock function with given fields: ctx, slots
 func (_m *MockCmdable) ClusterAddSlots(ctx context.Context, slots ...int) *redis.StatusCmd {
-	_va := make([]interface{}, len(slots))
-	for _i := range slots {
-		_va[_i] = slots[_i]
+	var tmpRet mock.Arguments
+	if len(slots) > 0 {
+		tmpRet = _m.Called(ctx, slots)
+	} else {
+		tmpRet = _m.Called(ctx)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...int) *redis.StatusCmd); ok {
@@ -3450,14 +3468,13 @@ func (_c *MockCmdable_ClusterCountKeysInSlot_Call) RunAndReturn(run func(context
 
 // ClusterDelSlots provides a mock function with given fields: ctx, slots
 func (_m *MockCmdable) ClusterDelSlots(ctx context.Context, slots ...int) *redis.StatusCmd {
-	_va := make([]interface{}, len(slots))
-	for _i := range slots {
-		_va[_i] = slots[_i]
+	var tmpRet mock.Arguments
+	if len(slots) > 0 {
+		tmpRet = _m.Called(ctx, slots)
+	} else {
+		tmpRet = _m.Called(ctx)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...int) *redis.StatusCmd); ok {
@@ -4311,10 +4328,13 @@ func (_c *MockCmdable_Command_Call) RunAndReturn(run func(context.Context) *redi
 
 // CommandGetKeys provides a mock function with given fields: ctx, commands
 func (_m *MockCmdable) CommandGetKeys(ctx context.Context, commands ...interface{}) *redis.StringSliceCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, commands...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(commands) > 0 {
+		tmpRet = _m.Called(ctx, commands)
+	} else {
+		tmpRet = _m.Called(ctx)
+	}
+	ret := tmpRet
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...interface{}) *redis.StringSliceCmd); ok {
@@ -4366,10 +4386,13 @@ func (_c *MockCmdable_CommandGetKeys_Call) RunAndReturn(run func(context.Context
 
 // CommandGetKeysAndFlags provides a mock function with given fields: ctx, commands
 func (_m *MockCmdable) CommandGetKeysAndFlags(ctx context.Context, commands ...interface{}) *redis.KeyFlagsCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, commands...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(commands) > 0 {
+		tmpRet = _m.Called(ctx, commands)
+	} else {
+		tmpRet = _m.Called(ctx)
+	}
+	ret := tmpRet
 
 	var r0 *redis.KeyFlagsCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...interface{}) *redis.KeyFlagsCmd); ok {
@@ -4873,14 +4896,13 @@ func (_c *MockCmdable_DecrBy_Call) RunAndReturn(run func(context.Context, string
 
 // Del provides a mock function with given fields: ctx, keys
 func (_m *MockCmdable) Del(ctx context.Context, keys ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, keys)
+	} else {
+		tmpRet = _m.Called(ctx)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.IntCmd); ok {
@@ -5022,10 +5044,13 @@ func (_c *MockCmdable_Echo_Call) RunAndReturn(run func(context.Context, interfac
 
 // Eval provides a mock function with given fields: ctx, script, keys, args
 func (_m *MockCmdable) Eval(ctx context.Context, script string, keys []string, args ...interface{}) *redis.Cmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, script, keys)
-	_ca = append(_ca, args...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(args) > 0 {
+		tmpRet = _m.Called(ctx, script, keys, args)
+	} else {
+		tmpRet = _m.Called(ctx, script, keys)
+	}
+	ret := tmpRet
 
 	var r0 *redis.Cmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, []string, ...interface{}) *redis.Cmd); ok {
@@ -5079,10 +5104,13 @@ func (_c *MockCmdable_Eval_Call) RunAndReturn(run func(context.Context, string, 
 
 // EvalRO provides a mock function with given fields: ctx, script, keys, args
 func (_m *MockCmdable) EvalRO(ctx context.Context, script string, keys []string, args ...interface{}) *redis.Cmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, script, keys)
-	_ca = append(_ca, args...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(args) > 0 {
+		tmpRet = _m.Called(ctx, script, keys, args)
+	} else {
+		tmpRet = _m.Called(ctx, script, keys)
+	}
+	ret := tmpRet
 
 	var r0 *redis.Cmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, []string, ...interface{}) *redis.Cmd); ok {
@@ -5136,10 +5164,13 @@ func (_c *MockCmdable_EvalRO_Call) RunAndReturn(run func(context.Context, string
 
 // EvalSha provides a mock function with given fields: ctx, sha1, keys, args
 func (_m *MockCmdable) EvalSha(ctx context.Context, sha1 string, keys []string, args ...interface{}) *redis.Cmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, sha1, keys)
-	_ca = append(_ca, args...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(args) > 0 {
+		tmpRet = _m.Called(ctx, sha1, keys, args)
+	} else {
+		tmpRet = _m.Called(ctx, sha1, keys)
+	}
+	ret := tmpRet
 
 	var r0 *redis.Cmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, []string, ...interface{}) *redis.Cmd); ok {
@@ -5193,10 +5224,13 @@ func (_c *MockCmdable_EvalSha_Call) RunAndReturn(run func(context.Context, strin
 
 // EvalShaRO provides a mock function with given fields: ctx, sha1, keys, args
 func (_m *MockCmdable) EvalShaRO(ctx context.Context, sha1 string, keys []string, args ...interface{}) *redis.Cmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, sha1, keys)
-	_ca = append(_ca, args...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(args) > 0 {
+		tmpRet = _m.Called(ctx, sha1, keys, args)
+	} else {
+		tmpRet = _m.Called(ctx, sha1, keys)
+	}
+	ret := tmpRet
 
 	var r0 *redis.Cmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, []string, ...interface{}) *redis.Cmd); ok {
@@ -5250,14 +5284,13 @@ func (_c *MockCmdable_EvalShaRO_Call) RunAndReturn(run func(context.Context, str
 
 // Exists provides a mock function with given fields: ctx, keys
 func (_m *MockCmdable) Exists(ctx context.Context, keys ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, keys)
+	} else {
+		tmpRet = _m.Called(ctx)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.IntCmd); ok {
@@ -5630,10 +5663,13 @@ func (_c *MockCmdable_ExpireXX_Call) RunAndReturn(run func(context.Context, stri
 
 // FCall provides a mock function with given fields: ctx, function, keys, args
 func (_m *MockCmdable) FCall(ctx context.Context, function string, keys []string, args ...interface{}) *redis.Cmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, function, keys)
-	_ca = append(_ca, args...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(args) > 0 {
+		tmpRet = _m.Called(ctx, function, keys, args)
+	} else {
+		tmpRet = _m.Called(ctx, function, keys)
+	}
+	ret := tmpRet
 
 	var r0 *redis.Cmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, []string, ...interface{}) *redis.Cmd); ok {
@@ -5687,10 +5723,13 @@ func (_c *MockCmdable_FCall_Call) RunAndReturn(run func(context.Context, string,
 
 // FCallRO provides a mock function with given fields: ctx, function, keys, args
 func (_m *MockCmdable) FCallRO(ctx context.Context, function string, keys []string, args ...interface{}) *redis.Cmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, function, keys)
-	_ca = append(_ca, args...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(args) > 0 {
+		tmpRet = _m.Called(ctx, function, keys, args)
+	} else {
+		tmpRet = _m.Called(ctx, function, keys)
+	}
+	ret := tmpRet
 
 	var r0 *redis.Cmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, []string, ...interface{}) *redis.Cmd); ok {
@@ -5744,10 +5783,13 @@ func (_c *MockCmdable_FCallRO_Call) RunAndReturn(run func(context.Context, strin
 
 // FCallRo provides a mock function with given fields: ctx, function, keys, args
 func (_m *MockCmdable) FCallRo(ctx context.Context, function string, keys []string, args ...interface{}) *redis.Cmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, function, keys)
-	_ca = append(_ca, args...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(args) > 0 {
+		tmpRet = _m.Called(ctx, function, keys, args)
+	} else {
+		tmpRet = _m.Called(ctx, function, keys)
+	}
+	ret := tmpRet
 
 	var r0 *redis.Cmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, []string, ...interface{}) *redis.Cmd); ok {
@@ -6422,14 +6464,13 @@ func (_c *MockCmdable_FunctionStats_Call) RunAndReturn(run func(context.Context)
 
 // GeoAdd provides a mock function with given fields: ctx, key, geoLocation
 func (_m *MockCmdable) GeoAdd(ctx context.Context, key string, geoLocation ...*redis.GeoLocation) *redis.IntCmd {
-	_va := make([]interface{}, len(geoLocation))
-	for _i := range geoLocation {
-		_va[_i] = geoLocation[_i]
+	var tmpRet mock.Arguments
+	if len(geoLocation) > 0 {
+		tmpRet = _m.Called(ctx, key, geoLocation)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...*redis.GeoLocation) *redis.IntCmd); ok {
@@ -6530,14 +6571,13 @@ func (_c *MockCmdable_GeoDist_Call) RunAndReturn(run func(context.Context, strin
 
 // GeoHash provides a mock function with given fields: ctx, key, members
 func (_m *MockCmdable) GeoHash(ctx context.Context, key string, members ...string) *redis.StringSliceCmd {
-	_va := make([]interface{}, len(members))
-	for _i := range members {
-		_va[_i] = members[_i]
+	var tmpRet mock.Arguments
+	if len(members) > 0 {
+		tmpRet = _m.Called(ctx, key, members)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.StringSliceCmd); ok {
@@ -6590,14 +6630,13 @@ func (_c *MockCmdable_GeoHash_Call) RunAndReturn(run func(context.Context, strin
 
 // GeoPos provides a mock function with given fields: ctx, key, members
 func (_m *MockCmdable) GeoPos(ctx context.Context, key string, members ...string) *redis.GeoPosCmd {
-	_va := make([]interface{}, len(members))
-	for _i := range members {
-		_va[_i] = members[_i]
+	var tmpRet mock.Arguments
+	if len(members) > 0 {
+		tmpRet = _m.Called(ctx, key, members)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.GeoPosCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.GeoPosCmd); ok {
@@ -7208,14 +7247,13 @@ func (_c *MockCmdable_GetSet_Call) RunAndReturn(run func(context.Context, string
 
 // HDel provides a mock function with given fields: ctx, key, fields
 func (_m *MockCmdable) HDel(ctx context.Context, key string, fields ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(fields))
-	for _i := range fields {
-		_va[_i] = fields[_i]
+	var tmpRet mock.Arguments
+	if len(fields) > 0 {
+		tmpRet = _m.Called(ctx, key, fields)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
@@ -7589,14 +7627,13 @@ func (_c *MockCmdable_HLen_Call) RunAndReturn(run func(context.Context, string) 
 
 // HMGet provides a mock function with given fields: ctx, key, fields
 func (_m *MockCmdable) HMGet(ctx context.Context, key string, fields ...string) *redis.SliceCmd {
-	_va := make([]interface{}, len(fields))
-	for _i := range fields {
-		_va[_i] = fields[_i]
+	var tmpRet mock.Arguments
+	if len(fields) > 0 {
+		tmpRet = _m.Called(ctx, key, fields)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.SliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.SliceCmd); ok {
@@ -7649,10 +7686,13 @@ func (_c *MockCmdable_HMGet_Call) RunAndReturn(run func(context.Context, string,
 
 // HMSet provides a mock function with given fields: ctx, key, values
 func (_m *MockCmdable) HMSet(ctx context.Context, key string, values ...interface{}) *redis.BoolCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, values...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(values) > 0 {
+		tmpRet = _m.Called(ctx, key, values)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.BoolCmd); ok {
@@ -7845,10 +7885,13 @@ func (_c *MockCmdable_HScan_Call) RunAndReturn(run func(context.Context, string,
 
 // HSet provides a mock function with given fields: ctx, key, values
 func (_m *MockCmdable) HSet(ctx context.Context, key string, values ...interface{}) *redis.IntCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, values...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(values) > 0 {
+		tmpRet = _m.Called(ctx, key, values)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
@@ -8130,14 +8173,13 @@ func (_c *MockCmdable_IncrByFloat_Call) RunAndReturn(run func(context.Context, s
 
 // Info provides a mock function with given fields: ctx, section
 func (_m *MockCmdable) Info(ctx context.Context, section ...string) *redis.StringCmd {
-	_va := make([]interface{}, len(section))
-	for _i := range section {
-		_va[_i] = section[_i]
+	var tmpRet mock.Arguments
+	if len(section) > 0 {
+		tmpRet = _m.Called(ctx, section)
+	} else {
+		tmpRet = _m.Called(ctx)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.StringCmd); ok {
@@ -8512,14 +8554,13 @@ func (_c *MockCmdable_LLen_Call) RunAndReturn(run func(context.Context, string) 
 
 // LMPop provides a mock function with given fields: ctx, direction, count, keys
 func (_m *MockCmdable) LMPop(ctx context.Context, direction string, count int64, keys ...string) *redis.KeyValuesCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, direction, count, keys)
+	} else {
+		tmpRet = _m.Called(ctx, direction, count)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, direction, count)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.KeyValuesCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, ...string) *redis.KeyValuesCmd); ok {
@@ -8807,10 +8848,13 @@ func (_c *MockCmdable_LPosCount_Call) RunAndReturn(run func(context.Context, str
 
 // LPush provides a mock function with given fields: ctx, key, values
 func (_m *MockCmdable) LPush(ctx context.Context, key string, values ...interface{}) *redis.IntCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, values...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(values) > 0 {
+		tmpRet = _m.Called(ctx, key, values)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
@@ -8863,10 +8907,13 @@ func (_c *MockCmdable_LPush_Call) RunAndReturn(run func(context.Context, string,
 
 // LPushX provides a mock function with given fields: ctx, key, values
 func (_m *MockCmdable) LPushX(ctx context.Context, key string, values ...interface{}) *redis.IntCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, values...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(values) > 0 {
+		tmpRet = _m.Called(ctx, key, values)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
@@ -9151,14 +9198,13 @@ func (_c *MockCmdable_LastSave_Call) RunAndReturn(run func(context.Context) *red
 
 // MGet provides a mock function with given fields: ctx, keys
 func (_m *MockCmdable) MGet(ctx context.Context, keys ...string) *redis.SliceCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, keys)
+	} else {
+		tmpRet = _m.Called(ctx)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.SliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.SliceCmd); ok {
@@ -9210,10 +9256,13 @@ func (_c *MockCmdable_MGet_Call) RunAndReturn(run func(context.Context, ...strin
 
 // MSet provides a mock function with given fields: ctx, values
 func (_m *MockCmdable) MSet(ctx context.Context, values ...interface{}) *redis.StatusCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, values...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(values) > 0 {
+		tmpRet = _m.Called(ctx, values)
+	} else {
+		tmpRet = _m.Called(ctx)
+	}
+	ret := tmpRet
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...interface{}) *redis.StatusCmd); ok {
@@ -9265,10 +9314,13 @@ func (_c *MockCmdable_MSet_Call) RunAndReturn(run func(context.Context, ...inter
 
 // MSetNX provides a mock function with given fields: ctx, values
 func (_m *MockCmdable) MSetNX(ctx context.Context, values ...interface{}) *redis.BoolCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, values...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(values) > 0 {
+		tmpRet = _m.Called(ctx, values)
+	} else {
+		tmpRet = _m.Called(ctx)
+	}
+	ret := tmpRet
 
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...interface{}) *redis.BoolCmd); ok {
@@ -9320,14 +9372,13 @@ func (_c *MockCmdable_MSetNX_Call) RunAndReturn(run func(context.Context, ...int
 
 // MemoryUsage provides a mock function with given fields: ctx, key, samples
 func (_m *MockCmdable) MemoryUsage(ctx context.Context, key string, samples ...int) *redis.IntCmd {
-	_va := make([]interface{}, len(samples))
-	for _i := range samples {
-		_va[_i] = samples[_i]
+	var tmpRet mock.Arguments
+	if len(samples) > 0 {
+		tmpRet = _m.Called(ctx, key, samples)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...int) *redis.IntCmd); ok {
@@ -9792,10 +9843,13 @@ func (_c *MockCmdable_PExpireTime_Call) RunAndReturn(run func(context.Context, s
 
 // PFAdd provides a mock function with given fields: ctx, key, els
 func (_m *MockCmdable) PFAdd(ctx context.Context, key string, els ...interface{}) *redis.IntCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, els...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(els) > 0 {
+		tmpRet = _m.Called(ctx, key, els)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
@@ -9848,14 +9902,13 @@ func (_c *MockCmdable_PFAdd_Call) RunAndReturn(run func(context.Context, string,
 
 // PFCount provides a mock function with given fields: ctx, keys
 func (_m *MockCmdable) PFCount(ctx context.Context, keys ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, keys)
+	} else {
+		tmpRet = _m.Called(ctx)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.IntCmd); ok {
@@ -9907,14 +9960,13 @@ func (_c *MockCmdable_PFCount_Call) RunAndReturn(run func(context.Context, ...st
 
 // PFMerge provides a mock function with given fields: ctx, dest, keys
 func (_m *MockCmdable) PFMerge(ctx context.Context, dest string, keys ...string) *redis.StatusCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, dest, keys)
+	} else {
+		tmpRet = _m.Called(ctx, dest)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, dest)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.StatusCmd); ok {
@@ -10288,14 +10340,13 @@ func (_c *MockCmdable_PubSubNumPat_Call) RunAndReturn(run func(context.Context) 
 
 // PubSubNumSub provides a mock function with given fields: ctx, channels
 func (_m *MockCmdable) PubSubNumSub(ctx context.Context, channels ...string) *redis.MapStringIntCmd {
-	_va := make([]interface{}, len(channels))
-	for _i := range channels {
-		_va[_i] = channels[_i]
+	var tmpRet mock.Arguments
+	if len(channels) > 0 {
+		tmpRet = _m.Called(ctx, channels)
+	} else {
+		tmpRet = _m.Called(ctx)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.MapStringIntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.MapStringIntCmd); ok {
@@ -10392,14 +10443,13 @@ func (_c *MockCmdable_PubSubShardChannels_Call) RunAndReturn(run func(context.Co
 
 // PubSubShardNumSub provides a mock function with given fields: ctx, channels
 func (_m *MockCmdable) PubSubShardNumSub(ctx context.Context, channels ...string) *redis.MapStringIntCmd {
-	_va := make([]interface{}, len(channels))
-	for _i := range channels {
-		_va[_i] = channels[_i]
+	var tmpRet mock.Arguments
+	if len(channels) > 0 {
+		tmpRet = _m.Called(ctx, channels)
+	} else {
+		tmpRet = _m.Called(ctx)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.MapStringIntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.MapStringIntCmd); ok {
@@ -10678,10 +10728,13 @@ func (_c *MockCmdable_RPopLPush_Call) RunAndReturn(run func(context.Context, str
 
 // RPush provides a mock function with given fields: ctx, key, values
 func (_m *MockCmdable) RPush(ctx context.Context, key string, values ...interface{}) *redis.IntCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, values...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(values) > 0 {
+		tmpRet = _m.Called(ctx, key, values)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
@@ -10734,10 +10787,13 @@ func (_c *MockCmdable_RPush_Call) RunAndReturn(run func(context.Context, string,
 
 // RPushX provides a mock function with given fields: ctx, key, values
 func (_m *MockCmdable) RPushX(ctx context.Context, key string, values ...interface{}) *redis.IntCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, values...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(values) > 0 {
+		tmpRet = _m.Called(ctx, key, values)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
@@ -11108,10 +11164,13 @@ func (_c *MockCmdable_RestoreReplace_Call) RunAndReturn(run func(context.Context
 
 // SAdd provides a mock function with given fields: ctx, key, members
 func (_m *MockCmdable) SAdd(ctx context.Context, key string, members ...interface{}) *redis.IntCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, members...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(members) > 0 {
+		tmpRet = _m.Called(ctx, key, members)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
@@ -11209,14 +11268,13 @@ func (_c *MockCmdable_SCard_Call) RunAndReturn(run func(context.Context, string)
 
 // SDiff provides a mock function with given fields: ctx, keys
 func (_m *MockCmdable) SDiff(ctx context.Context, keys ...string) *redis.StringSliceCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, keys)
+	} else {
+		tmpRet = _m.Called(ctx)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.StringSliceCmd); ok {
@@ -11268,14 +11326,13 @@ func (_c *MockCmdable_SDiff_Call) RunAndReturn(run func(context.Context, ...stri
 
 // SDiffStore provides a mock function with given fields: ctx, destination, keys
 func (_m *MockCmdable) SDiffStore(ctx context.Context, destination string, keys ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, destination, keys)
+	} else {
+		tmpRet = _m.Called(ctx, destination)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, destination)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
@@ -11328,14 +11385,13 @@ func (_c *MockCmdable_SDiffStore_Call) RunAndReturn(run func(context.Context, st
 
 // SInter provides a mock function with given fields: ctx, keys
 func (_m *MockCmdable) SInter(ctx context.Context, keys ...string) *redis.StringSliceCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, keys)
+	} else {
+		tmpRet = _m.Called(ctx)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.StringSliceCmd); ok {
@@ -11387,14 +11443,13 @@ func (_c *MockCmdable_SInter_Call) RunAndReturn(run func(context.Context, ...str
 
 // SInterCard provides a mock function with given fields: ctx, limit, keys
 func (_m *MockCmdable) SInterCard(ctx context.Context, limit int64, keys ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, limit, keys)
+	} else {
+		tmpRet = _m.Called(ctx, limit)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, limit)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, int64, ...string) *redis.IntCmd); ok {
@@ -11447,14 +11502,13 @@ func (_c *MockCmdable_SInterCard_Call) RunAndReturn(run func(context.Context, in
 
 // SInterStore provides a mock function with given fields: ctx, destination, keys
 func (_m *MockCmdable) SInterStore(ctx context.Context, destination string, keys ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, destination, keys)
+	} else {
+		tmpRet = _m.Called(ctx, destination)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, destination)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
@@ -11553,10 +11607,13 @@ func (_c *MockCmdable_SIsMember_Call) RunAndReturn(run func(context.Context, str
 
 // SMIsMember provides a mock function with given fields: ctx, key, members
 func (_m *MockCmdable) SMIsMember(ctx context.Context, key string, members ...interface{}) *redis.BoolSliceCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, members...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(members) > 0 {
+		tmpRet = _m.Called(ctx, key, members)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.BoolSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.BoolSliceCmd); ok {
@@ -11974,10 +12031,13 @@ func (_c *MockCmdable_SRandMemberN_Call) RunAndReturn(run func(context.Context, 
 
 // SRem provides a mock function with given fields: ctx, key, members
 func (_m *MockCmdable) SRem(ctx context.Context, key string, members ...interface{}) *redis.IntCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, members...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(members) > 0 {
+		tmpRet = _m.Called(ctx, key, members)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
@@ -12078,14 +12138,13 @@ func (_c *MockCmdable_SScan_Call) RunAndReturn(run func(context.Context, string,
 
 // SUnion provides a mock function with given fields: ctx, keys
 func (_m *MockCmdable) SUnion(ctx context.Context, keys ...string) *redis.StringSliceCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, keys)
+	} else {
+		tmpRet = _m.Called(ctx)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.StringSliceCmd); ok {
@@ -12137,14 +12196,13 @@ func (_c *MockCmdable_SUnion_Call) RunAndReturn(run func(context.Context, ...str
 
 // SUnionStore provides a mock function with given fields: ctx, destination, keys
 func (_m *MockCmdable) SUnionStore(ctx context.Context, destination string, keys ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, destination, keys)
+	} else {
+		tmpRet = _m.Called(ctx, destination)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, destination)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
@@ -12336,14 +12394,13 @@ func (_c *MockCmdable_ScanType_Call) RunAndReturn(run func(context.Context, uint
 
 // ScriptExists provides a mock function with given fields: ctx, hashes
 func (_m *MockCmdable) ScriptExists(ctx context.Context, hashes ...string) *redis.BoolSliceCmd {
-	_va := make([]interface{}, len(hashes))
-	for _i := range hashes {
-		_va[_i] = hashes[_i]
+	var tmpRet mock.Arguments
+	if len(hashes) > 0 {
+		tmpRet = _m.Called(ctx, hashes)
+	} else {
+		tmpRet = _m.Called(ctx)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.BoolSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.BoolSliceCmd); ok {
@@ -13263,14 +13320,13 @@ func (_c *MockCmdable_StrLen_Call) RunAndReturn(run func(context.Context, string
 
 // TDigestAdd provides a mock function with given fields: ctx, key, elements
 func (_m *MockCmdable) TDigestAdd(ctx context.Context, key string, elements ...float64) *redis.StatusCmd {
-	_va := make([]interface{}, len(elements))
-	for _i := range elements {
-		_va[_i] = elements[_i]
+	var tmpRet mock.Arguments
+	if len(elements) > 0 {
+		tmpRet = _m.Called(ctx, key, elements)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...float64) *redis.StatusCmd); ok {
@@ -13323,14 +13379,13 @@ func (_c *MockCmdable_TDigestAdd_Call) RunAndReturn(run func(context.Context, st
 
 // TDigestByRank provides a mock function with given fields: ctx, key, rank
 func (_m *MockCmdable) TDigestByRank(ctx context.Context, key string, rank ...uint64) *redis.FloatSliceCmd {
-	_va := make([]interface{}, len(rank))
-	for _i := range rank {
-		_va[_i] = rank[_i]
+	var tmpRet mock.Arguments
+	if len(rank) > 0 {
+		tmpRet = _m.Called(ctx, key, rank)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.FloatSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...uint64) *redis.FloatSliceCmd); ok {
@@ -13383,14 +13438,13 @@ func (_c *MockCmdable_TDigestByRank_Call) RunAndReturn(run func(context.Context,
 
 // TDigestByRevRank provides a mock function with given fields: ctx, key, rank
 func (_m *MockCmdable) TDigestByRevRank(ctx context.Context, key string, rank ...uint64) *redis.FloatSliceCmd {
-	_va := make([]interface{}, len(rank))
-	for _i := range rank {
-		_va[_i] = rank[_i]
+	var tmpRet mock.Arguments
+	if len(rank) > 0 {
+		tmpRet = _m.Called(ctx, key, rank)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.FloatSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...uint64) *redis.FloatSliceCmd); ok {
@@ -13443,14 +13497,13 @@ func (_c *MockCmdable_TDigestByRevRank_Call) RunAndReturn(run func(context.Conte
 
 // TDigestCDF provides a mock function with given fields: ctx, key, elements
 func (_m *MockCmdable) TDigestCDF(ctx context.Context, key string, elements ...float64) *redis.FloatSliceCmd {
-	_va := make([]interface{}, len(elements))
-	for _i := range elements {
-		_va[_i] = elements[_i]
+	var tmpRet mock.Arguments
+	if len(elements) > 0 {
+		tmpRet = _m.Called(ctx, key, elements)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.FloatSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...float64) *redis.FloatSliceCmd); ok {
@@ -13684,14 +13737,13 @@ func (_c *MockCmdable_TDigestMax_Call) RunAndReturn(run func(context.Context, st
 
 // TDigestMerge provides a mock function with given fields: ctx, destKey, options, sourceKeys
 func (_m *MockCmdable) TDigestMerge(ctx context.Context, destKey string, options *redis.TDigestMergeOptions, sourceKeys ...string) *redis.StatusCmd {
-	_va := make([]interface{}, len(sourceKeys))
-	for _i := range sourceKeys {
-		_va[_i] = sourceKeys[_i]
+	var tmpRet mock.Arguments
+	if len(sourceKeys) > 0 {
+		tmpRet = _m.Called(ctx, destKey, options, sourceKeys)
+	} else {
+		tmpRet = _m.Called(ctx, destKey, options)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, destKey, options)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.TDigestMergeOptions, ...string) *redis.StatusCmd); ok {
@@ -13790,14 +13842,13 @@ func (_c *MockCmdable_TDigestMin_Call) RunAndReturn(run func(context.Context, st
 
 // TDigestQuantile provides a mock function with given fields: ctx, key, elements
 func (_m *MockCmdable) TDigestQuantile(ctx context.Context, key string, elements ...float64) *redis.FloatSliceCmd {
-	_va := make([]interface{}, len(elements))
-	for _i := range elements {
-		_va[_i] = elements[_i]
+	var tmpRet mock.Arguments
+	if len(elements) > 0 {
+		tmpRet = _m.Called(ctx, key, elements)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.FloatSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...float64) *redis.FloatSliceCmd); ok {
@@ -13850,14 +13901,13 @@ func (_c *MockCmdable_TDigestQuantile_Call) RunAndReturn(run func(context.Contex
 
 // TDigestRank provides a mock function with given fields: ctx, key, values
 func (_m *MockCmdable) TDigestRank(ctx context.Context, key string, values ...float64) *redis.IntSliceCmd {
-	_va := make([]interface{}, len(values))
-	for _i := range values {
-		_va[_i] = values[_i]
+	var tmpRet mock.Arguments
+	if len(values) > 0 {
+		tmpRet = _m.Called(ctx, key, values)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...float64) *redis.IntSliceCmd); ok {
@@ -13955,14 +14005,13 @@ func (_c *MockCmdable_TDigestReset_Call) RunAndReturn(run func(context.Context, 
 
 // TDigestRevRank provides a mock function with given fields: ctx, key, values
 func (_m *MockCmdable) TDigestRevRank(ctx context.Context, key string, values ...float64) *redis.IntSliceCmd {
-	_va := make([]interface{}, len(values))
-	for _i := range values {
-		_va[_i] = values[_i]
+	var tmpRet mock.Arguments
+	if len(values) > 0 {
+		tmpRet = _m.Called(ctx, key, values)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...float64) *redis.IntSliceCmd); ok {
@@ -15917,10 +15966,13 @@ func (_c *MockCmdable_Time_Call) RunAndReturn(run func(context.Context) *redis.T
 
 // TopKAdd provides a mock function with given fields: ctx, key, elements
 func (_m *MockCmdable) TopKAdd(ctx context.Context, key string, elements ...interface{}) *redis.StringSliceCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, elements...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(elements) > 0 {
+		tmpRet = _m.Called(ctx, key, elements)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.StringSliceCmd); ok {
@@ -15973,10 +16025,13 @@ func (_c *MockCmdable_TopKAdd_Call) RunAndReturn(run func(context.Context, strin
 
 // TopKCount provides a mock function with given fields: ctx, key, elements
 func (_m *MockCmdable) TopKCount(ctx context.Context, key string, elements ...interface{}) *redis.IntSliceCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, elements...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(elements) > 0 {
+		tmpRet = _m.Called(ctx, key, elements)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntSliceCmd); ok {
@@ -16029,10 +16084,13 @@ func (_c *MockCmdable_TopKCount_Call) RunAndReturn(run func(context.Context, str
 
 // TopKIncrBy provides a mock function with given fields: ctx, key, elements
 func (_m *MockCmdable) TopKIncrBy(ctx context.Context, key string, elements ...interface{}) *redis.StringSliceCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, elements...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(elements) > 0 {
+		tmpRet = _m.Called(ctx, key, elements)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.StringSliceCmd); ok {
@@ -16220,10 +16278,13 @@ func (_c *MockCmdable_TopKListWithCount_Call) RunAndReturn(run func(context.Cont
 
 // TopKQuery provides a mock function with given fields: ctx, key, elements
 func (_m *MockCmdable) TopKQuery(ctx context.Context, key string, elements ...interface{}) *redis.BoolSliceCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, elements...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(elements) > 0 {
+		tmpRet = _m.Called(ctx, key, elements)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.BoolSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.BoolSliceCmd); ok {
@@ -16371,14 +16432,13 @@ func (_c *MockCmdable_TopKReserveWithOptions_Call) RunAndReturn(run func(context
 
 // Touch provides a mock function with given fields: ctx, keys
 func (_m *MockCmdable) Touch(ctx context.Context, keys ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, keys)
+	} else {
+		tmpRet = _m.Called(ctx)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.IntCmd); ok {
@@ -16573,14 +16633,13 @@ func (_c *MockCmdable_Type_Call) RunAndReturn(run func(context.Context, string) 
 
 // Unlink provides a mock function with given fields: ctx, keys
 func (_m *MockCmdable) Unlink(ctx context.Context, keys ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, keys)
+	} else {
+		tmpRet = _m.Called(ctx)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.IntCmd); ok {
@@ -16632,14 +16691,13 @@ func (_c *MockCmdable_Unlink_Call) RunAndReturn(run func(context.Context, ...str
 
 // XAck provides a mock function with given fields: ctx, stream, group, ids
 func (_m *MockCmdable) XAck(ctx context.Context, stream string, group string, ids ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(ids))
-	for _i := range ids {
-		_va[_i] = ids[_i]
+	var tmpRet mock.Arguments
+	if len(ids) > 0 {
+		tmpRet = _m.Called(ctx, stream, group, ids)
+	} else {
+		tmpRet = _m.Called(ctx, stream, group)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, stream, group)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, ...string) *redis.IntCmd); ok {
@@ -16918,14 +16976,13 @@ func (_c *MockCmdable_XClaimJustID_Call) RunAndReturn(run func(context.Context, 
 
 // XDel provides a mock function with given fields: ctx, stream, ids
 func (_m *MockCmdable) XDel(ctx context.Context, stream string, ids ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(ids))
-	for _i := range ids {
-		_va[_i] = ids[_i]
+	var tmpRet mock.Arguments
+	if len(ids) > 0 {
+		tmpRet = _m.Called(ctx, stream, ids)
+	} else {
+		tmpRet = _m.Called(ctx, stream)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, stream)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
@@ -17762,14 +17819,13 @@ func (_c *MockCmdable_XReadGroup_Call) RunAndReturn(run func(context.Context, *r
 
 // XReadStreams provides a mock function with given fields: ctx, streams
 func (_m *MockCmdable) XReadStreams(ctx context.Context, streams ...string) *redis.XStreamSliceCmd {
-	_va := make([]interface{}, len(streams))
-	for _i := range streams {
-		_va[_i] = streams[_i]
+	var tmpRet mock.Arguments
+	if len(streams) > 0 {
+		tmpRet = _m.Called(ctx, streams)
+	} else {
+		tmpRet = _m.Called(ctx)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.XStreamSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.XStreamSliceCmd); ok {
@@ -18102,14 +18158,13 @@ func (_c *MockCmdable_XTrimMinIDApprox_Call) RunAndReturn(run func(context.Conte
 
 // ZAdd provides a mock function with given fields: ctx, key, members
 func (_m *MockCmdable) ZAdd(ctx context.Context, key string, members ...redis.Z) *redis.IntCmd {
-	_va := make([]interface{}, len(members))
-	for _i := range members {
-		_va[_i] = members[_i]
+	var tmpRet mock.Arguments
+	if len(members) > 0 {
+		tmpRet = _m.Called(ctx, key, members)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...redis.Z) *redis.IntCmd); ok {
@@ -18254,14 +18309,13 @@ func (_c *MockCmdable_ZAddArgsIncr_Call) RunAndReturn(run func(context.Context, 
 
 // ZAddGT provides a mock function with given fields: ctx, key, members
 func (_m *MockCmdable) ZAddGT(ctx context.Context, key string, members ...redis.Z) *redis.IntCmd {
-	_va := make([]interface{}, len(members))
-	for _i := range members {
-		_va[_i] = members[_i]
+	var tmpRet mock.Arguments
+	if len(members) > 0 {
+		tmpRet = _m.Called(ctx, key, members)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...redis.Z) *redis.IntCmd); ok {
@@ -18314,14 +18368,13 @@ func (_c *MockCmdable_ZAddGT_Call) RunAndReturn(run func(context.Context, string
 
 // ZAddLT provides a mock function with given fields: ctx, key, members
 func (_m *MockCmdable) ZAddLT(ctx context.Context, key string, members ...redis.Z) *redis.IntCmd {
-	_va := make([]interface{}, len(members))
-	for _i := range members {
-		_va[_i] = members[_i]
+	var tmpRet mock.Arguments
+	if len(members) > 0 {
+		tmpRet = _m.Called(ctx, key, members)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...redis.Z) *redis.IntCmd); ok {
@@ -18374,14 +18427,13 @@ func (_c *MockCmdable_ZAddLT_Call) RunAndReturn(run func(context.Context, string
 
 // ZAddNX provides a mock function with given fields: ctx, key, members
 func (_m *MockCmdable) ZAddNX(ctx context.Context, key string, members ...redis.Z) *redis.IntCmd {
-	_va := make([]interface{}, len(members))
-	for _i := range members {
-		_va[_i] = members[_i]
+	var tmpRet mock.Arguments
+	if len(members) > 0 {
+		tmpRet = _m.Called(ctx, key, members)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...redis.Z) *redis.IntCmd); ok {
@@ -18434,14 +18486,13 @@ func (_c *MockCmdable_ZAddNX_Call) RunAndReturn(run func(context.Context, string
 
 // ZAddXX provides a mock function with given fields: ctx, key, members
 func (_m *MockCmdable) ZAddXX(ctx context.Context, key string, members ...redis.Z) *redis.IntCmd {
-	_va := make([]interface{}, len(members))
-	for _i := range members {
-		_va[_i] = members[_i]
+	var tmpRet mock.Arguments
+	if len(members) > 0 {
+		tmpRet = _m.Called(ctx, key, members)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...redis.Z) *redis.IntCmd); ok {
@@ -18586,14 +18637,13 @@ func (_c *MockCmdable_ZCount_Call) RunAndReturn(run func(context.Context, string
 
 // ZDiff provides a mock function with given fields: ctx, keys
 func (_m *MockCmdable) ZDiff(ctx context.Context, keys ...string) *redis.StringSliceCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, keys)
+	} else {
+		tmpRet = _m.Called(ctx)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.StringSliceCmd); ok {
@@ -18645,14 +18695,13 @@ func (_c *MockCmdable_ZDiff_Call) RunAndReturn(run func(context.Context, ...stri
 
 // ZDiffStore provides a mock function with given fields: ctx, destination, keys
 func (_m *MockCmdable) ZDiffStore(ctx context.Context, destination string, keys ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, destination, keys)
+	} else {
+		tmpRet = _m.Called(ctx, destination)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, destination)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
@@ -18705,14 +18754,13 @@ func (_c *MockCmdable_ZDiffStore_Call) RunAndReturn(run func(context.Context, st
 
 // ZDiffWithScores provides a mock function with given fields: ctx, keys
 func (_m *MockCmdable) ZDiffWithScores(ctx context.Context, keys ...string) *redis.ZSliceCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, keys)
+	} else {
+		tmpRet = _m.Called(ctx)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.ZSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.ZSliceCmd); ok {
@@ -18856,14 +18904,13 @@ func (_c *MockCmdable_ZInter_Call) RunAndReturn(run func(context.Context, *redis
 
 // ZInterCard provides a mock function with given fields: ctx, limit, keys
 func (_m *MockCmdable) ZInterCard(ctx context.Context, limit int64, keys ...string) *redis.IntCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, limit, keys)
+	} else {
+		tmpRet = _m.Called(ctx, limit)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, limit)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, int64, ...string) *redis.IntCmd); ok {
@@ -19054,14 +19101,13 @@ func (_c *MockCmdable_ZLexCount_Call) RunAndReturn(run func(context.Context, str
 
 // ZMPop provides a mock function with given fields: ctx, order, count, keys
 func (_m *MockCmdable) ZMPop(ctx context.Context, order string, count int64, keys ...string) *redis.ZSliceWithKeyCmd {
-	_va := make([]interface{}, len(keys))
-	for _i := range keys {
-		_va[_i] = keys[_i]
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, order, count, keys)
+	} else {
+		tmpRet = _m.Called(ctx, order, count)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, order, count)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.ZSliceWithKeyCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, ...string) *redis.ZSliceWithKeyCmd); ok {
@@ -19115,14 +19161,13 @@ func (_c *MockCmdable_ZMPop_Call) RunAndReturn(run func(context.Context, string,
 
 // ZMScore provides a mock function with given fields: ctx, key, members
 func (_m *MockCmdable) ZMScore(ctx context.Context, key string, members ...string) *redis.FloatSliceCmd {
-	_va := make([]interface{}, len(members))
-	for _i := range members {
-		_va[_i] = members[_i]
+	var tmpRet mock.Arguments
+	if len(members) > 0 {
+		tmpRet = _m.Called(ctx, key, members)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.FloatSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.FloatSliceCmd); ok {
@@ -19175,14 +19220,13 @@ func (_c *MockCmdable_ZMScore_Call) RunAndReturn(run func(context.Context, strin
 
 // ZPopMax provides a mock function with given fields: ctx, key, count
 func (_m *MockCmdable) ZPopMax(ctx context.Context, key string, count ...int64) *redis.ZSliceCmd {
-	_va := make([]interface{}, len(count))
-	for _i := range count {
-		_va[_i] = count[_i]
+	var tmpRet mock.Arguments
+	if len(count) > 0 {
+		tmpRet = _m.Called(ctx, key, count)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.ZSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...int64) *redis.ZSliceCmd); ok {
@@ -19235,14 +19279,13 @@ func (_c *MockCmdable_ZPopMax_Call) RunAndReturn(run func(context.Context, strin
 
 // ZPopMin provides a mock function with given fields: ctx, key, count
 func (_m *MockCmdable) ZPopMin(ctx context.Context, key string, count ...int64) *redis.ZSliceCmd {
-	_va := make([]interface{}, len(count))
-	for _i := range count {
-		_va[_i] = count[_i]
+	var tmpRet mock.Arguments
+	if len(count) > 0 {
+		tmpRet = _m.Called(ctx, key, count)
+	} else {
+		tmpRet = _m.Called(ctx, key)
 	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
+	ret := tmpRet
 
 	var r0 *redis.ZSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...int64) *redis.ZSliceCmd); ok {
@@ -19847,10 +19890,13 @@ func (_c *MockCmdable_ZRankWithScore_Call) RunAndReturn(run func(context.Context
 
 // ZRem provides a mock function with given fields: ctx, key, members
 func (_m *MockCmdable) ZRem(ctx context.Context, key string, members ...interface{}) *redis.IntCmd {
-	var _ca []interface{}
-	_ca = append(_ca, ctx, key)
-	_ca = append(_ca, members...)
-	ret := _m.Called(_ca...)
+	var tmpRet mock.Arguments
+	if len(members) > 0 {
+		tmpRet = _m.Called(ctx, key, members)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
