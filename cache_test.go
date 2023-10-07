@@ -725,17 +725,17 @@ func TestCache_WithNamespace(t *testing.T) {
 	assert.Same(t, cache, cache.WithNamespace(foobar))
 	assert.Equal(t, foobar, cache.Namespace())
 	assert.Equal(t, "abc", cache.WrapKey("abc"))
-	assert.Equal(t, foobar+"abc", cache.resolveKey("abc"))
+	assert.Equal(t, foobar+"abc", cache.ResolveKey("abc"))
 
 	assert.Equal(t, "abc-"+foobar,
 		cache.WithNamespace("test/").WithKeyWrapper(func(key string) string {
 			return "abc-" + key
 		}).WrapKey(foobar))
-	assert.Equal(t, "test/abc-"+foobar, cache.resolveKey(foobar))
+	assert.Equal(t, "test/abc-"+foobar, cache.ResolveKey(foobar))
 
 	assert.Equal(t, "test/test2/abc-def-"+foobar,
 		cache.New().WithNamespace(cache.Namespace()+"test2/").
 			WithKeyWrapper(func(key string) string {
 				return cache.WrapKey("def-" + key)
-			}).resolveKey(foobar))
+			}).ResolveKey(foobar))
 }

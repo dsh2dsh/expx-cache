@@ -166,7 +166,7 @@ func (self *Cache) WrapKey(key string) string {
 	return key
 }
 
-func (self *Cache) resolveKey(key string) string {
+func (self *Cache) ResolveKey(key string) string {
 	return self.Namespace() + self.WrapKey(key)
 }
 

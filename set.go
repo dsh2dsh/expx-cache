@@ -21,7 +21,7 @@ func (self *Cache) set(item *Item) ([]byte, error) {
 	ttl := self.ItemTTL(item)
 	useRedis := self.redis != nil && ttl != 0
 
-	key := self.resolveKey(item.Key)
+	key := self.ResolveKey(item.Key)
 	switch {
 	case useLocal && useRedis:
 		done := make(chan error)
@@ -57,7 +57,7 @@ func (self *Cache) marshalItem(item *Item) ([]byte, error) {
 }
 
 func (self *Cache) redisSet(item *Item, b []byte, ttl time.Duration) error {
-	err := self.redis.Set(item.Context(), self.resolveKey(item.Key), b, ttl)
+	err := self.redis.Set(item.Context(), self.ResolveKey(item.Key), b, ttl)
 	if err != nil {
 		return fmt.Errorf("redis set: %w", err)
 	}

@@ -35,7 +35,7 @@ func (self *Cache) once(item *Item, autoFix bool) error {
 }
 
 func (self *Cache) getSetItemBytesOnce(item *Item) ([]byte, bool, error) {
-	key := self.resolveKey(item.Key)
+	key := self.ResolveKey(item.Key)
 
 	if self.localCache != nil {
 		b := self.localCache.Get(key)
