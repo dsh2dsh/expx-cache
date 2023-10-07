@@ -1,8 +1,6 @@
 package cache
 
-import (
-	"context"
-)
+import "context"
 
 func NewMultiCache(cache *Cache) *MultiCache {
 	return &MultiCache{cache: cache}
@@ -36,13 +34,15 @@ func (self *MultiCache) WithSkipRedis(v bool) *MultiCache {
 	return self
 }
 
-func (self *MultiCache) Once(ctx context.Context, items []*Item) error {
-	return nil
-}
+// --------------------------------------------------
 
-type blobItem struct {
-	Key   string
-	Value []byte
+func (self *MultiCache) GetSet(ctx context.Context, items []*Item) error {
+	missedItems, err := self.Get(ctx, items)
+	if err != nil {
+		return err
+	} else if len(missedItems) == 0 {
+		return nil
+	}
 
-	*Item
+	return self.Set(ctx, missedItems)
 }

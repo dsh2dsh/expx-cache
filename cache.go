@@ -184,6 +184,6 @@ func (self *Cache) MSet(ctx context.Context, items []*Item) error {
 	return self.Multi().Set(ctx, items)
 }
 
-func (self *Cache) MOnce(ctx context.Context, items []*Item) error {
-	return self.Multi().Once(ctx, items)
+func (self *Cache) MGetSet(ctx context.Context, items []*Item) error {
+	return self.Multi().GetSet(ctx, items)
 }

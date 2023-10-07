@@ -5,6 +5,13 @@ import (
 	"fmt"
 )
 
+type blobItem struct {
+	Key   string
+	Value []byte
+
+	*Item
+}
+
 func (self *MultiCache) Get(ctx context.Context, items []*Item) ([]*Item, error) {
 	localHit, localMiss := self.localGet(items)
 	hit, miss, err := self.redisGet(ctx, localMiss, localHit)
