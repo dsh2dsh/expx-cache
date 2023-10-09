@@ -81,7 +81,8 @@ func TestRedisClient_errors(t *testing.T) {
 		{
 			name: "Del",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
-				rdb.EXPECT().Del(ctx, testKey).Return(redis.NewIntResult(0, expectErr))
+				rdb.EXPECT().Del(ctx, []string{testKey}).
+					Return(redis.NewIntResult(0, expectErr))
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
 				return redisClient.Del(ctx, testKey) //nolint:wrapcheck
