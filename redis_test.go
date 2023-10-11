@@ -31,6 +31,7 @@ func TestNewStdRedis(t *testing.T) {
 }
 
 func TestRedisClient_errors(t *testing.T) {
+	batchSize := 3
 	ttl := time.Minute
 
 	clients := []struct {
@@ -40,19 +41,19 @@ func TestRedisClient_errors(t *testing.T) {
 		{
 			name: "StdRedis",
 			makeClient: func(rdb redis.Cmdable) RedisClient {
-				return NewStdRedis(rdb)
+				return NewStdRedis(rdb).WithBatchSize(batchSize)
 			},
 		},
 		{
 			name: "RefreshRedis",
 			makeClient: func(rdb redis.Cmdable) RedisClient {
-				return NewRefreshRedis(rdb, ttl)
+				return NewRefreshRedis(rdb, ttl).WithBatchSize(batchSize)
 			},
 		},
 	}
 
 	ctx := context.Background()
-	ttls := []time.Duration{ttl}
+	ttls := []time.Duration{ttl, ttl, ttl}
 	expectErr := io.EOF
 
 	tests := []struct {
@@ -118,11 +119,46 @@ func TestRedisClient_errors(t *testing.T) {
 			},
 		},
 		{
-			name: "MGet error from Exec",
+			name: "MGet error from batchSize",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
 				pipe := mocks.NewMockPipeliner(t)
 				rdb.EXPECT().Pipeline().Return(pipe)
 				expectedKeys := []string{testKey, "key2", "key3"}
+				var pipeLen int
+				getResult := func(ctx context.Context, key string) *redis.StringCmd {
+					pipeLen++
+					return redis.NewStringResult("", nil)
+				}
+				getResultEx := func(
+					ctx context.Context, key string, ttl time.Duration,
+				) *redis.StringCmd {
+					pipeLen++
+					return redis.NewStringResult("", nil)
+				}
+				for _, expectedKey := range expectedKeys {
+					if strings.Contains(t.Name(), "/RefreshRedis/") {
+						pipe.EXPECT().GetEx(ctx, expectedKey, ttl).RunAndReturn(getResultEx)
+					} else {
+						pipe.EXPECT().Get(ctx, expectedKey).RunAndReturn(getResult)
+					}
+				}
+				pipe.EXPECT().Len().RunAndReturn(func() int { return pipeLen })
+				pipe.EXPECT().Exec(ctx).RunAndReturn(
+					func(ctx context.Context) ([]redis.Cmder, error) {
+						return nil, expectErr
+					})
+			},
+			do: func(t *testing.T, redisClient RedisClient) error {
+				_, err := redisClient.MGet(ctx, []string{testKey, "key2", "key3"})
+				return err //nolint:wrapcheck
+			},
+		},
+		{
+			name: "MGet error from Exec",
+			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
+				pipe := mocks.NewMockPipeliner(t)
+				rdb.EXPECT().Pipeline().Return(pipe)
+				expectedKeys := []string{testKey, "key2"}
 				for _, expectedKey := range expectedKeys {
 					if strings.Contains(t.Name(), "/RefreshRedis/") {
 						pipe.EXPECT().GetEx(ctx, expectedKey, ttl).Return(
@@ -139,7 +175,7 @@ func TestRedisClient_errors(t *testing.T) {
 					})
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
-				_, err := redisClient.MGet(ctx, []string{testKey, "key2", "key3"})
+				_, err := redisClient.MGet(ctx, []string{testKey, "key2"})
 				return err //nolint:wrapcheck
 			},
 		},
@@ -148,7 +184,7 @@ func TestRedisClient_errors(t *testing.T) {
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
 				pipe := mocks.NewMockPipeliner(t)
 				rdb.EXPECT().Pipeline().Return(pipe)
-				expectedKeys := []string{testKey, "key2", "key3"}
+				expectedKeys := []string{testKey, "key2"}
 				for _, expectedKey := range expectedKeys {
 					if strings.Contains(t.Name(), "/RefreshRedis/") {
 						pipe.EXPECT().GetEx(ctx, expectedKey, ttl).Return(
@@ -166,7 +202,7 @@ func TestRedisClient_errors(t *testing.T) {
 					})
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
-				_, err := redisClient.MGet(ctx, []string{testKey, "key2", "key3"})
+				_, err := redisClient.MGet(ctx, []string{testKey, "key2"})
 				return err //nolint:wrapcheck
 			},
 		},
@@ -175,7 +211,7 @@ func TestRedisClient_errors(t *testing.T) {
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
 				pipe := mocks.NewMockPipeliner(t)
 				rdb.EXPECT().Pipeline().Return(pipe)
-				expectedKeys := []string{testKey, "key2", "key3"}
+				expectedKeys := []string{testKey, "key2"}
 				for _, expectedKey := range expectedKeys {
 					if strings.Contains(t.Name(), "/RefreshRedis/") {
 						pipe.EXPECT().GetEx(ctx, expectedKey, ttl).Return(
@@ -193,7 +229,7 @@ func TestRedisClient_errors(t *testing.T) {
 					})
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
-				_, err := redisClient.MGet(ctx, []string{testKey, "key2", "key3"})
+				_, err := redisClient.MGet(ctx, []string{testKey, "key2"})
 				return err //nolint:wrapcheck
 			},
 		},
@@ -202,7 +238,7 @@ func TestRedisClient_errors(t *testing.T) {
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
 				pipe := mocks.NewMockPipeliner(t)
 				rdb.EXPECT().Pipeline().Return(pipe)
-				expectedKeys := []string{testKey, "key2", "key3"}
+				expectedKeys := []string{testKey, "key2"}
 				for _, expectedKey := range expectedKeys {
 					if strings.Contains(t.Name(), "/RefreshRedis/") {
 						pipe.EXPECT().GetEx(ctx, expectedKey, ttl).Return(
@@ -220,7 +256,7 @@ func TestRedisClient_errors(t *testing.T) {
 					})
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
-				_, err := redisClient.MGet(ctx, []string{testKey, "key2", "key3"})
+				_, err := redisClient.MGet(ctx, []string{testKey, "key2"})
 				return err //nolint:wrapcheck
 			},
 			assertErr: func(t *testing.T, err error) {
@@ -238,6 +274,32 @@ func TestRedisClient_errors(t *testing.T) {
 			do: func(t *testing.T, redisClient RedisClient) error {
 				err := redisClient.MSet(ctx,
 					msetIter([]string{testKey}, [][]byte{[]byte("abc")}, ttls))
+				return err //nolint:wrapcheck
+			},
+		},
+		{
+			name: "MSet error from batchSize",
+			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
+				pipe := mocks.NewMockPipeliner(t)
+				wantKeys := []string{testKey, "key2", "key3"}
+				var pipeLen int
+				for _, wantKey := range wantKeys {
+					pipe.EXPECT().Set(ctx, wantKey, mock.Anything, ttl).RunAndReturn(
+						func(
+							ctx context.Context, key string, v any, ttl time.Duration,
+						) *redis.StatusCmd {
+							pipeLen++
+							return redis.NewStatusResult("", nil)
+						})
+				}
+				pipe.EXPECT().Len().RunAndReturn(func() int { return pipeLen })
+				pipe.EXPECT().Exec(ctx).Return(nil, expectErr)
+				rdb.EXPECT().Pipeline().Return(pipe)
+			},
+			do: func(t *testing.T, redisClient RedisClient) error {
+				err := redisClient.MSet(ctx, msetIter(
+					[]string{testKey, "key2", "key3"},
+					[][]byte{[]byte("abc"), []byte("abc"), []byte("abc")}, ttls))
 				return err //nolint:wrapcheck
 			},
 		},

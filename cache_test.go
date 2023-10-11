@@ -3,6 +3,7 @@ package cache
 import (
 	"context"
 	"fmt"
+	"sync/atomic"
 	"testing"
 	"time"
 
@@ -234,43 +235,37 @@ func (self *CacheTestSuite) TestMGetSet() {
 	allValues := make([]CacheableObject, maxItems)
 
 	allItems := make([]*Item, maxItems)
+	var callCount uint64
 	for i := 0; i < maxItems; i++ {
 		key := fmt.Sprintf("key-%00d", i)
 		allKeys[i] = key
 		allValues[i].Str = key
 		allValues[i].Num = i
+		valueRef := &allValues[i]
 		allItems[i] = &Item{
 			Key:   key,
-			Value: &allValues[i],
+			Value: valueRef,
+			Do: func(*Item) (any, error) {
+				atomic.AddUint64(&callCount, 1)
+				return *valueRef, nil
+			},
 		}
 	}
 
 	ctx := context.Background()
 	self.NoError(self.cache.MGetSet(ctx, allItems))
+	self.Equal(uint64(maxItems), callCount)
 
+	callCount = 0
 	gotValues := make([]CacheableObject, maxItems)
 	for i, item := range allItems {
 		item.Value = &gotValues[i]
 		self.cacheMiss()
 		self.cacheHit()
 	}
-	missed := valueNoError[[]*Item](self.T())(self.cache.MGet(ctx, allItems))
-	for range missed {
-		self.cacheMiss()
-	}
+	self.Require().NoError(self.cache.MGetSet(ctx, allItems))
+	self.Equal(uint64(0), callCount)
 	self.Equal(allValues, gotValues)
-	self.Nil(missed)
-
-	self.NoError(self.cache.Delete(ctx, allKeys...))
-
-	clear(gotValues)
-	expectedValues := make([]CacheableObject, maxItems)
-	missed = valueNoError[[]*Item](self.T())(self.cache.MGet(ctx, allItems))
-	for range missed {
-		self.cacheMiss()
-	}
-	self.Equal(expectedValues, gotValues)
-	self.Equal(allItems, missed)
 
 	self.assertStats()
 }
