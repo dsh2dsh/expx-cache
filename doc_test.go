@@ -6,6 +6,8 @@ import (
 	"log"
 	"time"
 
+	"github.com/redis/go-redis/v9"
+
 	cache "github.com/dsh2dsh/expx-cache"
 )
 
@@ -14,11 +16,18 @@ type Object struct {
 	Num int
 }
 
-func Example_basicUsage() {
+func MustNewRedisCmdable() redis.Cmdable {
 	rdb, err := cache.NewRedisClient()
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
+	} else if rdb == nil {
+		return nil
 	}
+	return rdb
+}
+
+func Example_basicUsage() {
+	rdb := MustNewRedisCmdable()
 	mycache := cache.New().WithTinyLFU(1000, time.Minute).WithRedis(rdb)
 
 	ctx := context.Background()
@@ -49,14 +58,11 @@ func Example_basicUsage() {
 }
 
 func Example_advancedUsage() {
-	rdb, err := cache.NewRedisClient()
-	if err != nil {
-		log.Fatal(err)
-	}
+	rdb := MustNewRedisCmdable()
 	mycache := cache.New().WithTinyLFU(1000, time.Minute).WithRedis(rdb)
 
 	obj := new(Object)
-	if err = mycache.Once(&cache.Item{
+	if err := mycache.Once(&cache.Item{
 		Key:   "mykey",
 		Value: obj, // destination
 		Do: func(*cache.Item) (any, error) {
