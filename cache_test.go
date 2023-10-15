@@ -3,6 +3,7 @@ package cache
 import (
 	"context"
 	"fmt"
+	"os"
 	"sync/atomic"
 	"testing"
 	"time"
@@ -433,6 +434,7 @@ func TestCacheSuite(t *testing.T) {
 
 	var rdb *redis.Client
 	if !testing.Short() {
+		t.Logf("env WITH_REDIS: %q", os.Getenv("WITH_REDIS"))
 		rdb = valueNoError[*redis.Client](t)(NewRedisClient())
 	}
 
