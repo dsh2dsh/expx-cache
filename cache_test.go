@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/caarlos0/env/v9"
+	"github.com/caarlos0/env/v10"
 	dotenv "github.com/dsh2dsh/expx-dotenv"
 	"github.com/redis/go-redis/v9"
 	"github.com/stretchr/testify/assert"
