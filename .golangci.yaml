@@ -16,7 +16,9 @@ linters:
     - makezero
     - misspell
     - nolintlint
+    - perfsprint
     - prealloc
+    - testifylint
     - unconvert
     - usestdlibvars
     - wastedassign
