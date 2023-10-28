@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/caarlos0/env/v10 v10.0.0
-	github.com/dsh2dsh/expx-dotenv v1.3.0
+	github.com/dsh2dsh/expx-dotenv v1.3.1
 	github.com/dsh2dsh/go-tinylfu v1.0.1
 	github.com/klauspost/compress v1.17.2
 	github.com/redis/go-redis/v9 v9.2.1
