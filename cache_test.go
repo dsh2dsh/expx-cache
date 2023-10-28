@@ -8,6 +8,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/caarlos0/env/v9"
 	dotenv "github.com/dsh2dsh/expx-dotenv"
 	"github.com/redis/go-redis/v9"
 	"github.com/stretchr/testify/assert"
@@ -406,8 +407,11 @@ func NewRedisClient() (*redis.Client, error) {
 	}{
 		WithRedis: "skip", // "redis://localhost:6379/1",
 	}
-	envLoader := dotenv.New()
-	if err := envLoader.WithDepth(1).WithEnvSuffix("test").LoadTo(&cfg); err != nil {
+
+	err := dotenv.New().WithDepth(1).WithEnvSuffix("test").Load(func() error {
+		return env.Parse(&cfg) //nolint:wrapcheck
+	})
+	if err != nil {
 		return nil, fmt.Errorf("load .env: %w", err)
 	} else if cfg.WithRedis == "skip" {
 		return nil, nil
