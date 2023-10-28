@@ -773,11 +773,12 @@ func TestCache_WithNamespace(t *testing.T) {
 	assert.Equal(t, "", cache.namespace)
 	assert.Equal(t, cache.namespace, cache.Namespace())
 
+	const abc = "abc"
 	const foobar = "foobar"
 	assert.Same(t, cache, cache.WithNamespace(foobar))
 	assert.Equal(t, foobar, cache.Namespace())
-	assert.Equal(t, "abc", cache.WrapKey("abc"))
-	assert.Equal(t, foobar+"abc", cache.ResolveKey("abc"))
+	assert.Equal(t, abc, cache.WrapKey("abc"))
+	assert.Equal(t, foobar+abc, cache.ResolveKey(abc))
 
 	assert.Equal(t, "abc-"+foobar,
 		cache.WithNamespace("test/").WithKeyWrapper(func(key string) string {
