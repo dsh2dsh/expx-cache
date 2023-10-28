@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 
-	mocks "github.com/dsh2dsh/expx-cache/mocks/cache"
+	mocks "github.com/dsh2dsh/expx-cache/internal/mocks/cache"
 )
 
 func TestTinyLFU_Get_CorruptionOnExpiry(t *testing.T) {

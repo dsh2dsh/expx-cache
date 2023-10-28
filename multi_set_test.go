@@ -6,10 +6,11 @@ import (
 	"testing"
 	"time"
 
-	mocks "github.com/dsh2dsh/expx-cache/mocks/redis"
 	"github.com/redis/go-redis/v9"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
+
+	mocks "github.com/dsh2dsh/expx-cache/internal/mocks/redis"
 )
 
 func TestMultiCache_Set_errorCanceled(t *testing.T) {

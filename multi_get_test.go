@@ -11,8 +11,8 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 
-	cacheMocks "github.com/dsh2dsh/expx-cache/mocks/cache"
-	redisMocks "github.com/dsh2dsh/expx-cache/mocks/redis"
+	cacheMocks "github.com/dsh2dsh/expx-cache/internal/mocks/cache"
+	redisMocks "github.com/dsh2dsh/expx-cache/internal/mocks/redis"
 )
 
 func TestMultiCache_Get_errorCanceled(t *testing.T) {

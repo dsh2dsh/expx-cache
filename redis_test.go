@@ -13,7 +13,7 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 
-	mocks "github.com/dsh2dsh/expx-cache/mocks/redis"
+	mocks "github.com/dsh2dsh/expx-cache/internal/mocks/redis"
 )
 
 func TestNewRefreshRedis(t *testing.T) {

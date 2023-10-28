@@ -1,4 +1,4 @@
-dir: "mocks/{{.PackageName}}"
+dir: "internal/mocks/{{.PackageName}}"
 disable-version-string: True
 with-expecter: True
 packages:

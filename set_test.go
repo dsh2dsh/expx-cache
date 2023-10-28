@@ -9,8 +9,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 
-	cacheMocks "github.com/dsh2dsh/expx-cache/mocks/cache"
-	redisMocks "github.com/dsh2dsh/expx-cache/mocks/redis"
+	cacheMocks "github.com/dsh2dsh/expx-cache/internal/mocks/cache"
+	redisMocks "github.com/dsh2dsh/expx-cache/internal/mocks/redis"
 )
 
 func TestCache_Set_Marshall_error(t *testing.T) {
