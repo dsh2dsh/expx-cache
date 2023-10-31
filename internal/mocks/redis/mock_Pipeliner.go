@@ -1757,6 +1757,444 @@ func (_c *MockPipeliner_BgSave_Call) RunAndReturn(run func(context.Context) *red
 	return _c
 }
 
+// BitCount provides a mock function with given fields: ctx, key, bitCount
+func (_m *MockPipeliner) BitCount(ctx context.Context, key string, bitCount *redis.BitCount) *redis.IntCmd {
+	ret := _m.Called(ctx, key, bitCount)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.BitCount) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, bitCount)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_BitCount_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitCount'
+type MockPipeliner_BitCount_Call struct {
+	*mock.Call
+}
+
+// BitCount is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - bitCount *redis.BitCount
+func (_e *MockPipeliner_Expecter) BitCount(ctx interface{}, key interface{}, bitCount interface{}) *MockPipeliner_BitCount_Call {
+	return &MockPipeliner_BitCount_Call{Call: _e.mock.On("BitCount", ctx, key, bitCount)}
+}
+
+func (_c *MockPipeliner_BitCount_Call) Run(run func(ctx context.Context, key string, bitCount *redis.BitCount)) *MockPipeliner_BitCount_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(*redis.BitCount))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_BitCount_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_BitCount_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_BitCount_Call) RunAndReturn(run func(context.Context, string, *redis.BitCount) *redis.IntCmd) *MockPipeliner_BitCount_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// BitField provides a mock function with given fields: ctx, key, values
+func (_m *MockPipeliner) BitField(ctx context.Context, key string, values ...interface{}) *redis.IntSliceCmd {
+	var _ca []interface{}
+	_ca = append(_ca, ctx, key)
+	_ca = append(_ca, values...)
+	ret := _m.Called(_ca...)
+
+	var r0 *redis.IntSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntSliceCmd); ok {
+		r0 = rf(ctx, key, values...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_BitField_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitField'
+type MockPipeliner_BitField_Call struct {
+	*mock.Call
+}
+
+// BitField is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
+func (_e *MockPipeliner_Expecter) BitField(ctx interface{}, key interface{}, values ...interface{}) *MockPipeliner_BitField_Call {
+	return &MockPipeliner_BitField_Call{Call: _e.mock.On("BitField",
+		append([]interface{}{ctx, key}, values...)...)}
+}
+
+func (_c *MockPipeliner_BitField_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockPipeliner_BitField_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]interface{}, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(interface{})
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_BitField_Call) Return(_a0 *redis.IntSliceCmd) *MockPipeliner_BitField_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_BitField_Call) RunAndReturn(run func(context.Context, string, ...interface{}) *redis.IntSliceCmd) *MockPipeliner_BitField_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// BitOpAnd provides a mock function with given fields: ctx, destKey, keys
+func (_m *MockPipeliner) BitOpAnd(ctx context.Context, destKey string, keys ...string) *redis.IntCmd {
+	_va := make([]interface{}, len(keys))
+	for _i := range keys {
+		_va[_i] = keys[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, destKey)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
+		r0 = rf(ctx, destKey, keys...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_BitOpAnd_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitOpAnd'
+type MockPipeliner_BitOpAnd_Call struct {
+	*mock.Call
+}
+
+// BitOpAnd is a helper method to define mock.On call
+//   - ctx context.Context
+//   - destKey string
+//   - keys ...string
+func (_e *MockPipeliner_Expecter) BitOpAnd(ctx interface{}, destKey interface{}, keys ...interface{}) *MockPipeliner_BitOpAnd_Call {
+	return &MockPipeliner_BitOpAnd_Call{Call: _e.mock.On("BitOpAnd",
+		append([]interface{}{ctx, destKey}, keys...)...)}
+}
+
+func (_c *MockPipeliner_BitOpAnd_Call) Run(run func(ctx context.Context, destKey string, keys ...string)) *MockPipeliner_BitOpAnd_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]string, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(string)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_BitOpAnd_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_BitOpAnd_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_BitOpAnd_Call) RunAndReturn(run func(context.Context, string, ...string) *redis.IntCmd) *MockPipeliner_BitOpAnd_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// BitOpNot provides a mock function with given fields: ctx, destKey, key
+func (_m *MockPipeliner) BitOpNot(ctx context.Context, destKey string, key string) *redis.IntCmd {
+	ret := _m.Called(ctx, destKey, key)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
+		r0 = rf(ctx, destKey, key)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_BitOpNot_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitOpNot'
+type MockPipeliner_BitOpNot_Call struct {
+	*mock.Call
+}
+
+// BitOpNot is a helper method to define mock.On call
+//   - ctx context.Context
+//   - destKey string
+//   - key string
+func (_e *MockPipeliner_Expecter) BitOpNot(ctx interface{}, destKey interface{}, key interface{}) *MockPipeliner_BitOpNot_Call {
+	return &MockPipeliner_BitOpNot_Call{Call: _e.mock.On("BitOpNot", ctx, destKey, key)}
+}
+
+func (_c *MockPipeliner_BitOpNot_Call) Run(run func(ctx context.Context, destKey string, key string)) *MockPipeliner_BitOpNot_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_BitOpNot_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_BitOpNot_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_BitOpNot_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntCmd) *MockPipeliner_BitOpNot_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// BitOpOr provides a mock function with given fields: ctx, destKey, keys
+func (_m *MockPipeliner) BitOpOr(ctx context.Context, destKey string, keys ...string) *redis.IntCmd {
+	_va := make([]interface{}, len(keys))
+	for _i := range keys {
+		_va[_i] = keys[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, destKey)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
+		r0 = rf(ctx, destKey, keys...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_BitOpOr_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitOpOr'
+type MockPipeliner_BitOpOr_Call struct {
+	*mock.Call
+}
+
+// BitOpOr is a helper method to define mock.On call
+//   - ctx context.Context
+//   - destKey string
+//   - keys ...string
+func (_e *MockPipeliner_Expecter) BitOpOr(ctx interface{}, destKey interface{}, keys ...interface{}) *MockPipeliner_BitOpOr_Call {
+	return &MockPipeliner_BitOpOr_Call{Call: _e.mock.On("BitOpOr",
+		append([]interface{}{ctx, destKey}, keys...)...)}
+}
+
+func (_c *MockPipeliner_BitOpOr_Call) Run(run func(ctx context.Context, destKey string, keys ...string)) *MockPipeliner_BitOpOr_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]string, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(string)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_BitOpOr_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_BitOpOr_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_BitOpOr_Call) RunAndReturn(run func(context.Context, string, ...string) *redis.IntCmd) *MockPipeliner_BitOpOr_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// BitOpXor provides a mock function with given fields: ctx, destKey, keys
+func (_m *MockPipeliner) BitOpXor(ctx context.Context, destKey string, keys ...string) *redis.IntCmd {
+	_va := make([]interface{}, len(keys))
+	for _i := range keys {
+		_va[_i] = keys[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, destKey)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
+		r0 = rf(ctx, destKey, keys...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_BitOpXor_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitOpXor'
+type MockPipeliner_BitOpXor_Call struct {
+	*mock.Call
+}
+
+// BitOpXor is a helper method to define mock.On call
+//   - ctx context.Context
+//   - destKey string
+//   - keys ...string
+func (_e *MockPipeliner_Expecter) BitOpXor(ctx interface{}, destKey interface{}, keys ...interface{}) *MockPipeliner_BitOpXor_Call {
+	return &MockPipeliner_BitOpXor_Call{Call: _e.mock.On("BitOpXor",
+		append([]interface{}{ctx, destKey}, keys...)...)}
+}
+
+func (_c *MockPipeliner_BitOpXor_Call) Run(run func(ctx context.Context, destKey string, keys ...string)) *MockPipeliner_BitOpXor_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]string, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(string)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_BitOpXor_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_BitOpXor_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_BitOpXor_Call) RunAndReturn(run func(context.Context, string, ...string) *redis.IntCmd) *MockPipeliner_BitOpXor_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// BitPos provides a mock function with given fields: ctx, key, bit, pos
+func (_m *MockPipeliner) BitPos(ctx context.Context, key string, bit int64, pos ...int64) *redis.IntCmd {
+	_va := make([]interface{}, len(pos))
+	for _i := range pos {
+		_va[_i] = pos[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, key, bit)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, int64, ...int64) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, bit, pos...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_BitPos_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitPos'
+type MockPipeliner_BitPos_Call struct {
+	*mock.Call
+}
+
+// BitPos is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - bit int64
+//   - pos ...int64
+func (_e *MockPipeliner_Expecter) BitPos(ctx interface{}, key interface{}, bit interface{}, pos ...interface{}) *MockPipeliner_BitPos_Call {
+	return &MockPipeliner_BitPos_Call{Call: _e.mock.On("BitPos",
+		append([]interface{}{ctx, key, bit}, pos...)...)}
+}
+
+func (_c *MockPipeliner_BitPos_Call) Run(run func(ctx context.Context, key string, bit int64, pos ...int64)) *MockPipeliner_BitPos_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]int64, len(args)-3)
+		for i, a := range args[3:] {
+			if a != nil {
+				variadicArgs[i] = a.(int64)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), args[2].(int64), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_BitPos_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_BitPos_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_BitPos_Call) RunAndReturn(run func(context.Context, string, int64, ...int64) *redis.IntCmd) *MockPipeliner_BitPos_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// BitPosSpan provides a mock function with given fields: ctx, key, bit, start, end, span
+func (_m *MockPipeliner) BitPosSpan(ctx context.Context, key string, bit int8, start int64, end int64, span string) *redis.IntCmd {
+	ret := _m.Called(ctx, key, bit, start, end, span)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, int8, int64, int64, string) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, bit, start, end, span)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_BitPosSpan_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitPosSpan'
+type MockPipeliner_BitPosSpan_Call struct {
+	*mock.Call
+}
+
+// BitPosSpan is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - bit int8
+//   - start int64
+//   - end int64
+//   - span string
+func (_e *MockPipeliner_Expecter) BitPosSpan(ctx interface{}, key interface{}, bit interface{}, start interface{}, end interface{}, span interface{}) *MockPipeliner_BitPosSpan_Call {
+	return &MockPipeliner_BitPosSpan_Call{Call: _e.mock.On("BitPosSpan", ctx, key, bit, start, end, span)}
+}
+
+func (_c *MockPipeliner_BitPosSpan_Call) Run(run func(ctx context.Context, key string, bit int8, start int64, end int64, span string)) *MockPipeliner_BitPosSpan_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(int8), args[3].(int64), args[4].(int64), args[5].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_BitPosSpan_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_BitPosSpan_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_BitPosSpan_Call) RunAndReturn(run func(context.Context, string, int8, int64, int64, string) *redis.IntCmd) *MockPipeliner_BitPosSpan_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // CFAdd provides a mock function with given fields: ctx, key, element
 func (_m *MockPipeliner) CFAdd(ctx context.Context, key string, element interface{}) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, element)
@@ -7344,6 +7782,52 @@ func (_c *MockPipeliner_Get_Call) RunAndReturn(run func(context.Context, string)
 	return _c
 }
 
+// GetBit provides a mock function with given fields: ctx, key, offset
+func (_m *MockPipeliner) GetBit(ctx context.Context, key string, offset int64) *redis.IntCmd {
+	ret := _m.Called(ctx, key, offset)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, int64) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, offset)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_GetBit_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetBit'
+type MockPipeliner_GetBit_Call struct {
+	*mock.Call
+}
+
+// GetBit is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - offset int64
+func (_e *MockPipeliner_Expecter) GetBit(ctx interface{}, key interface{}, offset interface{}) *MockPipeliner_GetBit_Call {
+	return &MockPipeliner_GetBit_Call{Call: _e.mock.On("GetBit", ctx, key, offset)}
+}
+
+func (_c *MockPipeliner_GetBit_Call) Run(run func(ctx context.Context, key string, offset int64)) *MockPipeliner_GetBit_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_GetBit_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_GetBit_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_GetBit_Call) RunAndReturn(run func(context.Context, string, int64) *redis.IntCmd) *MockPipeliner_GetBit_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // GetDel provides a mock function with given fields: ctx, key
 func (_m *MockPipeliner) GetDel(ctx context.Context, key string) *redis.StringCmd {
 	ret := _m.Called(ctx, key)
@@ -8553,6 +9037,1353 @@ func (_c *MockPipeliner_Info_Call) Return(_a0 *redis.StringCmd) *MockPipeliner_I
 }
 
 func (_c *MockPipeliner_Info_Call) RunAndReturn(run func(context.Context, ...string) *redis.StringCmd) *MockPipeliner_Info_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONArrAppend provides a mock function with given fields: ctx, key, path, values
+func (_m *MockPipeliner) JSONArrAppend(ctx context.Context, key string, path string, values ...interface{}) *redis.IntSliceCmd {
+	var _ca []interface{}
+	_ca = append(_ca, ctx, key, path)
+	_ca = append(_ca, values...)
+	ret := _m.Called(_ca...)
+
+	var r0 *redis.IntSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, ...interface{}) *redis.IntSliceCmd); ok {
+		r0 = rf(ctx, key, path, values...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONArrAppend_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONArrAppend'
+type MockPipeliner_JSONArrAppend_Call struct {
+	*mock.Call
+}
+
+// JSONArrAppend is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - values ...interface{}
+func (_e *MockPipeliner_Expecter) JSONArrAppend(ctx interface{}, key interface{}, path interface{}, values ...interface{}) *MockPipeliner_JSONArrAppend_Call {
+	return &MockPipeliner_JSONArrAppend_Call{Call: _e.mock.On("JSONArrAppend",
+		append([]interface{}{ctx, key, path}, values...)...)}
+}
+
+func (_c *MockPipeliner_JSONArrAppend_Call) Run(run func(ctx context.Context, key string, path string, values ...interface{})) *MockPipeliner_JSONArrAppend_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]interface{}, len(args)-3)
+		for i, a := range args[3:] {
+			if a != nil {
+				variadicArgs[i] = a.(interface{})
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), args[2].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONArrAppend_Call) Return(_a0 *redis.IntSliceCmd) *MockPipeliner_JSONArrAppend_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONArrAppend_Call) RunAndReturn(run func(context.Context, string, string, ...interface{}) *redis.IntSliceCmd) *MockPipeliner_JSONArrAppend_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONArrIndex provides a mock function with given fields: ctx, key, path, value
+func (_m *MockPipeliner) JSONArrIndex(ctx context.Context, key string, path string, value ...interface{}) *redis.IntSliceCmd {
+	var _ca []interface{}
+	_ca = append(_ca, ctx, key, path)
+	_ca = append(_ca, value...)
+	ret := _m.Called(_ca...)
+
+	var r0 *redis.IntSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, ...interface{}) *redis.IntSliceCmd); ok {
+		r0 = rf(ctx, key, path, value...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONArrIndex_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONArrIndex'
+type MockPipeliner_JSONArrIndex_Call struct {
+	*mock.Call
+}
+
+// JSONArrIndex is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value ...interface{}
+func (_e *MockPipeliner_Expecter) JSONArrIndex(ctx interface{}, key interface{}, path interface{}, value ...interface{}) *MockPipeliner_JSONArrIndex_Call {
+	return &MockPipeliner_JSONArrIndex_Call{Call: _e.mock.On("JSONArrIndex",
+		append([]interface{}{ctx, key, path}, value...)...)}
+}
+
+func (_c *MockPipeliner_JSONArrIndex_Call) Run(run func(ctx context.Context, key string, path string, value ...interface{})) *MockPipeliner_JSONArrIndex_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]interface{}, len(args)-3)
+		for i, a := range args[3:] {
+			if a != nil {
+				variadicArgs[i] = a.(interface{})
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), args[2].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONArrIndex_Call) Return(_a0 *redis.IntSliceCmd) *MockPipeliner_JSONArrIndex_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONArrIndex_Call) RunAndReturn(run func(context.Context, string, string, ...interface{}) *redis.IntSliceCmd) *MockPipeliner_JSONArrIndex_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONArrIndexWithArgs provides a mock function with given fields: ctx, key, path, options, value
+func (_m *MockPipeliner) JSONArrIndexWithArgs(ctx context.Context, key string, path string, options *redis.JSONArrIndexArgs, value ...interface{}) *redis.IntSliceCmd {
+	var _ca []interface{}
+	_ca = append(_ca, ctx, key, path, options)
+	_ca = append(_ca, value...)
+	ret := _m.Called(_ca...)
+
+	var r0 *redis.IntSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, *redis.JSONArrIndexArgs, ...interface{}) *redis.IntSliceCmd); ok {
+		r0 = rf(ctx, key, path, options, value...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONArrIndexWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONArrIndexWithArgs'
+type MockPipeliner_JSONArrIndexWithArgs_Call struct {
+	*mock.Call
+}
+
+// JSONArrIndexWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - options *redis.JSONArrIndexArgs
+//   - value ...interface{}
+func (_e *MockPipeliner_Expecter) JSONArrIndexWithArgs(ctx interface{}, key interface{}, path interface{}, options interface{}, value ...interface{}) *MockPipeliner_JSONArrIndexWithArgs_Call {
+	return &MockPipeliner_JSONArrIndexWithArgs_Call{Call: _e.mock.On("JSONArrIndexWithArgs",
+		append([]interface{}{ctx, key, path, options}, value...)...)}
+}
+
+func (_c *MockPipeliner_JSONArrIndexWithArgs_Call) Run(run func(ctx context.Context, key string, path string, options *redis.JSONArrIndexArgs, value ...interface{})) *MockPipeliner_JSONArrIndexWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]interface{}, len(args)-4)
+		for i, a := range args[4:] {
+			if a != nil {
+				variadicArgs[i] = a.(interface{})
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.JSONArrIndexArgs), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONArrIndexWithArgs_Call) Return(_a0 *redis.IntSliceCmd) *MockPipeliner_JSONArrIndexWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONArrIndexWithArgs_Call) RunAndReturn(run func(context.Context, string, string, *redis.JSONArrIndexArgs, ...interface{}) *redis.IntSliceCmd) *MockPipeliner_JSONArrIndexWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONArrInsert provides a mock function with given fields: ctx, key, path, index, values
+func (_m *MockPipeliner) JSONArrInsert(ctx context.Context, key string, path string, index int64, values ...interface{}) *redis.IntSliceCmd {
+	var _ca []interface{}
+	_ca = append(_ca, ctx, key, path, index)
+	_ca = append(_ca, values...)
+	ret := _m.Called(_ca...)
+
+	var r0 *redis.IntSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, int64, ...interface{}) *redis.IntSliceCmd); ok {
+		r0 = rf(ctx, key, path, index, values...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONArrInsert_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONArrInsert'
+type MockPipeliner_JSONArrInsert_Call struct {
+	*mock.Call
+}
+
+// JSONArrInsert is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - index int64
+//   - values ...interface{}
+func (_e *MockPipeliner_Expecter) JSONArrInsert(ctx interface{}, key interface{}, path interface{}, index interface{}, values ...interface{}) *MockPipeliner_JSONArrInsert_Call {
+	return &MockPipeliner_JSONArrInsert_Call{Call: _e.mock.On("JSONArrInsert",
+		append([]interface{}{ctx, key, path, index}, values...)...)}
+}
+
+func (_c *MockPipeliner_JSONArrInsert_Call) Run(run func(ctx context.Context, key string, path string, index int64, values ...interface{})) *MockPipeliner_JSONArrInsert_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]interface{}, len(args)-4)
+		for i, a := range args[4:] {
+			if a != nil {
+				variadicArgs[i] = a.(interface{})
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int64), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONArrInsert_Call) Return(_a0 *redis.IntSliceCmd) *MockPipeliner_JSONArrInsert_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONArrInsert_Call) RunAndReturn(run func(context.Context, string, string, int64, ...interface{}) *redis.IntSliceCmd) *MockPipeliner_JSONArrInsert_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONArrLen provides a mock function with given fields: ctx, key, path
+func (_m *MockPipeliner) JSONArrLen(ctx context.Context, key string, path string) *redis.IntSliceCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.IntSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntSliceCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONArrLen_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONArrLen'
+type MockPipeliner_JSONArrLen_Call struct {
+	*mock.Call
+}
+
+// JSONArrLen is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockPipeliner_Expecter) JSONArrLen(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONArrLen_Call {
+	return &MockPipeliner_JSONArrLen_Call{Call: _e.mock.On("JSONArrLen", ctx, key, path)}
+}
+
+func (_c *MockPipeliner_JSONArrLen_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONArrLen_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONArrLen_Call) Return(_a0 *redis.IntSliceCmd) *MockPipeliner_JSONArrLen_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONArrLen_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntSliceCmd) *MockPipeliner_JSONArrLen_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONArrPop provides a mock function with given fields: ctx, key, path, index
+func (_m *MockPipeliner) JSONArrPop(ctx context.Context, key string, path string, index int) *redis.StringSliceCmd {
+	ret := _m.Called(ctx, key, path, index)
+
+	var r0 *redis.StringSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, int) *redis.StringSliceCmd); ok {
+		r0 = rf(ctx, key, path, index)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONArrPop_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONArrPop'
+type MockPipeliner_JSONArrPop_Call struct {
+	*mock.Call
+}
+
+// JSONArrPop is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - index int
+func (_e *MockPipeliner_Expecter) JSONArrPop(ctx interface{}, key interface{}, path interface{}, index interface{}) *MockPipeliner_JSONArrPop_Call {
+	return &MockPipeliner_JSONArrPop_Call{Call: _e.mock.On("JSONArrPop", ctx, key, path, index)}
+}
+
+func (_c *MockPipeliner_JSONArrPop_Call) Run(run func(ctx context.Context, key string, path string, index int)) *MockPipeliner_JSONArrPop_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONArrPop_Call) Return(_a0 *redis.StringSliceCmd) *MockPipeliner_JSONArrPop_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONArrPop_Call) RunAndReturn(run func(context.Context, string, string, int) *redis.StringSliceCmd) *MockPipeliner_JSONArrPop_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONArrTrim provides a mock function with given fields: ctx, key, path
+func (_m *MockPipeliner) JSONArrTrim(ctx context.Context, key string, path string) *redis.IntSliceCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.IntSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntSliceCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONArrTrim_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONArrTrim'
+type MockPipeliner_JSONArrTrim_Call struct {
+	*mock.Call
+}
+
+// JSONArrTrim is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockPipeliner_Expecter) JSONArrTrim(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONArrTrim_Call {
+	return &MockPipeliner_JSONArrTrim_Call{Call: _e.mock.On("JSONArrTrim", ctx, key, path)}
+}
+
+func (_c *MockPipeliner_JSONArrTrim_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONArrTrim_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONArrTrim_Call) Return(_a0 *redis.IntSliceCmd) *MockPipeliner_JSONArrTrim_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONArrTrim_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntSliceCmd) *MockPipeliner_JSONArrTrim_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONArrTrimWithArgs provides a mock function with given fields: ctx, key, path, options
+func (_m *MockPipeliner) JSONArrTrimWithArgs(ctx context.Context, key string, path string, options *redis.JSONArrTrimArgs) *redis.IntSliceCmd {
+	ret := _m.Called(ctx, key, path, options)
+
+	var r0 *redis.IntSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, *redis.JSONArrTrimArgs) *redis.IntSliceCmd); ok {
+		r0 = rf(ctx, key, path, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONArrTrimWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONArrTrimWithArgs'
+type MockPipeliner_JSONArrTrimWithArgs_Call struct {
+	*mock.Call
+}
+
+// JSONArrTrimWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - options *redis.JSONArrTrimArgs
+func (_e *MockPipeliner_Expecter) JSONArrTrimWithArgs(ctx interface{}, key interface{}, path interface{}, options interface{}) *MockPipeliner_JSONArrTrimWithArgs_Call {
+	return &MockPipeliner_JSONArrTrimWithArgs_Call{Call: _e.mock.On("JSONArrTrimWithArgs", ctx, key, path, options)}
+}
+
+func (_c *MockPipeliner_JSONArrTrimWithArgs_Call) Run(run func(ctx context.Context, key string, path string, options *redis.JSONArrTrimArgs)) *MockPipeliner_JSONArrTrimWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.JSONArrTrimArgs))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONArrTrimWithArgs_Call) Return(_a0 *redis.IntSliceCmd) *MockPipeliner_JSONArrTrimWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONArrTrimWithArgs_Call) RunAndReturn(run func(context.Context, string, string, *redis.JSONArrTrimArgs) *redis.IntSliceCmd) *MockPipeliner_JSONArrTrimWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONClear provides a mock function with given fields: ctx, key, path
+func (_m *MockPipeliner) JSONClear(ctx context.Context, key string, path string) *redis.IntCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONClear_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONClear'
+type MockPipeliner_JSONClear_Call struct {
+	*mock.Call
+}
+
+// JSONClear is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockPipeliner_Expecter) JSONClear(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONClear_Call {
+	return &MockPipeliner_JSONClear_Call{Call: _e.mock.On("JSONClear", ctx, key, path)}
+}
+
+func (_c *MockPipeliner_JSONClear_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONClear_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONClear_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_JSONClear_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONClear_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntCmd) *MockPipeliner_JSONClear_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONDebugMemory provides a mock function with given fields: ctx, key, path
+func (_m *MockPipeliner) JSONDebugMemory(ctx context.Context, key string, path string) *redis.IntCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONDebugMemory_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONDebugMemory'
+type MockPipeliner_JSONDebugMemory_Call struct {
+	*mock.Call
+}
+
+// JSONDebugMemory is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockPipeliner_Expecter) JSONDebugMemory(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONDebugMemory_Call {
+	return &MockPipeliner_JSONDebugMemory_Call{Call: _e.mock.On("JSONDebugMemory", ctx, key, path)}
+}
+
+func (_c *MockPipeliner_JSONDebugMemory_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONDebugMemory_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONDebugMemory_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_JSONDebugMemory_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONDebugMemory_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntCmd) *MockPipeliner_JSONDebugMemory_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONDel provides a mock function with given fields: ctx, key, path
+func (_m *MockPipeliner) JSONDel(ctx context.Context, key string, path string) *redis.IntCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONDel_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONDel'
+type MockPipeliner_JSONDel_Call struct {
+	*mock.Call
+}
+
+// JSONDel is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockPipeliner_Expecter) JSONDel(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONDel_Call {
+	return &MockPipeliner_JSONDel_Call{Call: _e.mock.On("JSONDel", ctx, key, path)}
+}
+
+func (_c *MockPipeliner_JSONDel_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONDel_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONDel_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_JSONDel_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONDel_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntCmd) *MockPipeliner_JSONDel_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONForget provides a mock function with given fields: ctx, key, path
+func (_m *MockPipeliner) JSONForget(ctx context.Context, key string, path string) *redis.IntCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONForget_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONForget'
+type MockPipeliner_JSONForget_Call struct {
+	*mock.Call
+}
+
+// JSONForget is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockPipeliner_Expecter) JSONForget(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONForget_Call {
+	return &MockPipeliner_JSONForget_Call{Call: _e.mock.On("JSONForget", ctx, key, path)}
+}
+
+func (_c *MockPipeliner_JSONForget_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONForget_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONForget_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_JSONForget_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONForget_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntCmd) *MockPipeliner_JSONForget_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONGet provides a mock function with given fields: ctx, key, paths
+func (_m *MockPipeliner) JSONGet(ctx context.Context, key string, paths ...string) *redis.JSONCmd {
+	_va := make([]interface{}, len(paths))
+	for _i := range paths {
+		_va[_i] = paths[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, key)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *redis.JSONCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.JSONCmd); ok {
+		r0 = rf(ctx, key, paths...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.JSONCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONGet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONGet'
+type MockPipeliner_JSONGet_Call struct {
+	*mock.Call
+}
+
+// JSONGet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - paths ...string
+func (_e *MockPipeliner_Expecter) JSONGet(ctx interface{}, key interface{}, paths ...interface{}) *MockPipeliner_JSONGet_Call {
+	return &MockPipeliner_JSONGet_Call{Call: _e.mock.On("JSONGet",
+		append([]interface{}{ctx, key}, paths...)...)}
+}
+
+func (_c *MockPipeliner_JSONGet_Call) Run(run func(ctx context.Context, key string, paths ...string)) *MockPipeliner_JSONGet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]string, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(string)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONGet_Call) Return(_a0 *redis.JSONCmd) *MockPipeliner_JSONGet_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONGet_Call) RunAndReturn(run func(context.Context, string, ...string) *redis.JSONCmd) *MockPipeliner_JSONGet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONGetWithArgs provides a mock function with given fields: ctx, key, options, paths
+func (_m *MockPipeliner) JSONGetWithArgs(ctx context.Context, key string, options *redis.JSONGetArgs, paths ...string) *redis.JSONCmd {
+	_va := make([]interface{}, len(paths))
+	for _i := range paths {
+		_va[_i] = paths[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, key, options)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *redis.JSONCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.JSONGetArgs, ...string) *redis.JSONCmd); ok {
+		r0 = rf(ctx, key, options, paths...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.JSONCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONGetWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONGetWithArgs'
+type MockPipeliner_JSONGetWithArgs_Call struct {
+	*mock.Call
+}
+
+// JSONGetWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - options *redis.JSONGetArgs
+//   - paths ...string
+func (_e *MockPipeliner_Expecter) JSONGetWithArgs(ctx interface{}, key interface{}, options interface{}, paths ...interface{}) *MockPipeliner_JSONGetWithArgs_Call {
+	return &MockPipeliner_JSONGetWithArgs_Call{Call: _e.mock.On("JSONGetWithArgs",
+		append([]interface{}{ctx, key, options}, paths...)...)}
+}
+
+func (_c *MockPipeliner_JSONGetWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.JSONGetArgs, paths ...string)) *MockPipeliner_JSONGetWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]string, len(args)-3)
+		for i, a := range args[3:] {
+			if a != nil {
+				variadicArgs[i] = a.(string)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), args[2].(*redis.JSONGetArgs), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONGetWithArgs_Call) Return(_a0 *redis.JSONCmd) *MockPipeliner_JSONGetWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONGetWithArgs_Call) RunAndReturn(run func(context.Context, string, *redis.JSONGetArgs, ...string) *redis.JSONCmd) *MockPipeliner_JSONGetWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONMGet provides a mock function with given fields: ctx, path, keys
+func (_m *MockPipeliner) JSONMGet(ctx context.Context, path string, keys ...string) *redis.JSONSliceCmd {
+	_va := make([]interface{}, len(keys))
+	for _i := range keys {
+		_va[_i] = keys[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, path)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *redis.JSONSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.JSONSliceCmd); ok {
+		r0 = rf(ctx, path, keys...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.JSONSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONMGet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONMGet'
+type MockPipeliner_JSONMGet_Call struct {
+	*mock.Call
+}
+
+// JSONMGet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - path string
+//   - keys ...string
+func (_e *MockPipeliner_Expecter) JSONMGet(ctx interface{}, path interface{}, keys ...interface{}) *MockPipeliner_JSONMGet_Call {
+	return &MockPipeliner_JSONMGet_Call{Call: _e.mock.On("JSONMGet",
+		append([]interface{}{ctx, path}, keys...)...)}
+}
+
+func (_c *MockPipeliner_JSONMGet_Call) Run(run func(ctx context.Context, path string, keys ...string)) *MockPipeliner_JSONMGet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]string, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(string)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONMGet_Call) Return(_a0 *redis.JSONSliceCmd) *MockPipeliner_JSONMGet_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONMGet_Call) RunAndReturn(run func(context.Context, string, ...string) *redis.JSONSliceCmd) *MockPipeliner_JSONMGet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONMSet provides a mock function with given fields: ctx, params
+func (_m *MockPipeliner) JSONMSet(ctx context.Context, params ...interface{}) *redis.StatusCmd {
+	var _ca []interface{}
+	_ca = append(_ca, ctx)
+	_ca = append(_ca, params...)
+	ret := _m.Called(_ca...)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, ...interface{}) *redis.StatusCmd); ok {
+		r0 = rf(ctx, params...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONMSet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONMSet'
+type MockPipeliner_JSONMSet_Call struct {
+	*mock.Call
+}
+
+// JSONMSet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - params ...interface{}
+func (_e *MockPipeliner_Expecter) JSONMSet(ctx interface{}, params ...interface{}) *MockPipeliner_JSONMSet_Call {
+	return &MockPipeliner_JSONMSet_Call{Call: _e.mock.On("JSONMSet",
+		append([]interface{}{ctx}, params...)...)}
+}
+
+func (_c *MockPipeliner_JSONMSet_Call) Run(run func(ctx context.Context, params ...interface{})) *MockPipeliner_JSONMSet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]interface{}, len(args)-1)
+		for i, a := range args[1:] {
+			if a != nil {
+				variadicArgs[i] = a.(interface{})
+			}
+		}
+		run(args[0].(context.Context), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONMSet_Call) Return(_a0 *redis.StatusCmd) *MockPipeliner_JSONMSet_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONMSet_Call) RunAndReturn(run func(context.Context, ...interface{}) *redis.StatusCmd) *MockPipeliner_JSONMSet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONMSetArgs provides a mock function with given fields: ctx, docs
+func (_m *MockPipeliner) JSONMSetArgs(ctx context.Context, docs []redis.JSONSetArgs) *redis.StatusCmd {
+	ret := _m.Called(ctx, docs)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, []redis.JSONSetArgs) *redis.StatusCmd); ok {
+		r0 = rf(ctx, docs)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONMSetArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONMSetArgs'
+type MockPipeliner_JSONMSetArgs_Call struct {
+	*mock.Call
+}
+
+// JSONMSetArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - docs []redis.JSONSetArgs
+func (_e *MockPipeliner_Expecter) JSONMSetArgs(ctx interface{}, docs interface{}) *MockPipeliner_JSONMSetArgs_Call {
+	return &MockPipeliner_JSONMSetArgs_Call{Call: _e.mock.On("JSONMSetArgs", ctx, docs)}
+}
+
+func (_c *MockPipeliner_JSONMSetArgs_Call) Run(run func(ctx context.Context, docs []redis.JSONSetArgs)) *MockPipeliner_JSONMSetArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].([]redis.JSONSetArgs))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONMSetArgs_Call) Return(_a0 *redis.StatusCmd) *MockPipeliner_JSONMSetArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONMSetArgs_Call) RunAndReturn(run func(context.Context, []redis.JSONSetArgs) *redis.StatusCmd) *MockPipeliner_JSONMSetArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONMerge provides a mock function with given fields: ctx, key, path, value
+func (_m *MockPipeliner) JSONMerge(ctx context.Context, key string, path string, value string) *redis.StatusCmd {
+	ret := _m.Called(ctx, key, path, value)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.StatusCmd); ok {
+		r0 = rf(ctx, key, path, value)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONMerge_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONMerge'
+type MockPipeliner_JSONMerge_Call struct {
+	*mock.Call
+}
+
+// JSONMerge is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value string
+func (_e *MockPipeliner_Expecter) JSONMerge(ctx interface{}, key interface{}, path interface{}, value interface{}) *MockPipeliner_JSONMerge_Call {
+	return &MockPipeliner_JSONMerge_Call{Call: _e.mock.On("JSONMerge", ctx, key, path, value)}
+}
+
+func (_c *MockPipeliner_JSONMerge_Call) Run(run func(ctx context.Context, key string, path string, value string)) *MockPipeliner_JSONMerge_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONMerge_Call) Return(_a0 *redis.StatusCmd) *MockPipeliner_JSONMerge_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONMerge_Call) RunAndReturn(run func(context.Context, string, string, string) *redis.StatusCmd) *MockPipeliner_JSONMerge_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONNumIncrBy provides a mock function with given fields: ctx, key, path, value
+func (_m *MockPipeliner) JSONNumIncrBy(ctx context.Context, key string, path string, value float64) *redis.JSONCmd {
+	ret := _m.Called(ctx, key, path, value)
+
+	var r0 *redis.JSONCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, float64) *redis.JSONCmd); ok {
+		r0 = rf(ctx, key, path, value)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.JSONCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONNumIncrBy_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONNumIncrBy'
+type MockPipeliner_JSONNumIncrBy_Call struct {
+	*mock.Call
+}
+
+// JSONNumIncrBy is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value float64
+func (_e *MockPipeliner_Expecter) JSONNumIncrBy(ctx interface{}, key interface{}, path interface{}, value interface{}) *MockPipeliner_JSONNumIncrBy_Call {
+	return &MockPipeliner_JSONNumIncrBy_Call{Call: _e.mock.On("JSONNumIncrBy", ctx, key, path, value)}
+}
+
+func (_c *MockPipeliner_JSONNumIncrBy_Call) Run(run func(ctx context.Context, key string, path string, value float64)) *MockPipeliner_JSONNumIncrBy_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(float64))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONNumIncrBy_Call) Return(_a0 *redis.JSONCmd) *MockPipeliner_JSONNumIncrBy_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONNumIncrBy_Call) RunAndReturn(run func(context.Context, string, string, float64) *redis.JSONCmd) *MockPipeliner_JSONNumIncrBy_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONObjKeys provides a mock function with given fields: ctx, key, path
+func (_m *MockPipeliner) JSONObjKeys(ctx context.Context, key string, path string) *redis.SliceCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.SliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.SliceCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.SliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONObjKeys_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONObjKeys'
+type MockPipeliner_JSONObjKeys_Call struct {
+	*mock.Call
+}
+
+// JSONObjKeys is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockPipeliner_Expecter) JSONObjKeys(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONObjKeys_Call {
+	return &MockPipeliner_JSONObjKeys_Call{Call: _e.mock.On("JSONObjKeys", ctx, key, path)}
+}
+
+func (_c *MockPipeliner_JSONObjKeys_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONObjKeys_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONObjKeys_Call) Return(_a0 *redis.SliceCmd) *MockPipeliner_JSONObjKeys_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONObjKeys_Call) RunAndReturn(run func(context.Context, string, string) *redis.SliceCmd) *MockPipeliner_JSONObjKeys_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONObjLen provides a mock function with given fields: ctx, key, path
+func (_m *MockPipeliner) JSONObjLen(ctx context.Context, key string, path string) *redis.IntPointerSliceCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.IntPointerSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntPointerSliceCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntPointerSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONObjLen_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONObjLen'
+type MockPipeliner_JSONObjLen_Call struct {
+	*mock.Call
+}
+
+// JSONObjLen is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockPipeliner_Expecter) JSONObjLen(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONObjLen_Call {
+	return &MockPipeliner_JSONObjLen_Call{Call: _e.mock.On("JSONObjLen", ctx, key, path)}
+}
+
+func (_c *MockPipeliner_JSONObjLen_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONObjLen_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONObjLen_Call) Return(_a0 *redis.IntPointerSliceCmd) *MockPipeliner_JSONObjLen_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONObjLen_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntPointerSliceCmd) *MockPipeliner_JSONObjLen_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONSet provides a mock function with given fields: ctx, key, path, value
+func (_m *MockPipeliner) JSONSet(ctx context.Context, key string, path string, value interface{}) *redis.StatusCmd {
+	ret := _m.Called(ctx, key, path, value)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, interface{}) *redis.StatusCmd); ok {
+		r0 = rf(ctx, key, path, value)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONSet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONSet'
+type MockPipeliner_JSONSet_Call struct {
+	*mock.Call
+}
+
+// JSONSet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value interface{}
+func (_e *MockPipeliner_Expecter) JSONSet(ctx interface{}, key interface{}, path interface{}, value interface{}) *MockPipeliner_JSONSet_Call {
+	return &MockPipeliner_JSONSet_Call{Call: _e.mock.On("JSONSet", ctx, key, path, value)}
+}
+
+func (_c *MockPipeliner_JSONSet_Call) Run(run func(ctx context.Context, key string, path string, value interface{})) *MockPipeliner_JSONSet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(interface{}))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONSet_Call) Return(_a0 *redis.StatusCmd) *MockPipeliner_JSONSet_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONSet_Call) RunAndReturn(run func(context.Context, string, string, interface{}) *redis.StatusCmd) *MockPipeliner_JSONSet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONSetMode provides a mock function with given fields: ctx, key, path, value, mode
+func (_m *MockPipeliner) JSONSetMode(ctx context.Context, key string, path string, value interface{}, mode string) *redis.StatusCmd {
+	ret := _m.Called(ctx, key, path, value, mode)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, interface{}, string) *redis.StatusCmd); ok {
+		r0 = rf(ctx, key, path, value, mode)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONSetMode_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONSetMode'
+type MockPipeliner_JSONSetMode_Call struct {
+	*mock.Call
+}
+
+// JSONSetMode is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value interface{}
+//   - mode string
+func (_e *MockPipeliner_Expecter) JSONSetMode(ctx interface{}, key interface{}, path interface{}, value interface{}, mode interface{}) *MockPipeliner_JSONSetMode_Call {
+	return &MockPipeliner_JSONSetMode_Call{Call: _e.mock.On("JSONSetMode", ctx, key, path, value, mode)}
+}
+
+func (_c *MockPipeliner_JSONSetMode_Call) Run(run func(ctx context.Context, key string, path string, value interface{}, mode string)) *MockPipeliner_JSONSetMode_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(interface{}), args[4].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONSetMode_Call) Return(_a0 *redis.StatusCmd) *MockPipeliner_JSONSetMode_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONSetMode_Call) RunAndReturn(run func(context.Context, string, string, interface{}, string) *redis.StatusCmd) *MockPipeliner_JSONSetMode_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONStrAppend provides a mock function with given fields: ctx, key, path, value
+func (_m *MockPipeliner) JSONStrAppend(ctx context.Context, key string, path string, value string) *redis.IntPointerSliceCmd {
+	ret := _m.Called(ctx, key, path, value)
+
+	var r0 *redis.IntPointerSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.IntPointerSliceCmd); ok {
+		r0 = rf(ctx, key, path, value)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntPointerSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONStrAppend_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONStrAppend'
+type MockPipeliner_JSONStrAppend_Call struct {
+	*mock.Call
+}
+
+// JSONStrAppend is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value string
+func (_e *MockPipeliner_Expecter) JSONStrAppend(ctx interface{}, key interface{}, path interface{}, value interface{}) *MockPipeliner_JSONStrAppend_Call {
+	return &MockPipeliner_JSONStrAppend_Call{Call: _e.mock.On("JSONStrAppend", ctx, key, path, value)}
+}
+
+func (_c *MockPipeliner_JSONStrAppend_Call) Run(run func(ctx context.Context, key string, path string, value string)) *MockPipeliner_JSONStrAppend_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONStrAppend_Call) Return(_a0 *redis.IntPointerSliceCmd) *MockPipeliner_JSONStrAppend_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONStrAppend_Call) RunAndReturn(run func(context.Context, string, string, string) *redis.IntPointerSliceCmd) *MockPipeliner_JSONStrAppend_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONStrLen provides a mock function with given fields: ctx, key, path
+func (_m *MockPipeliner) JSONStrLen(ctx context.Context, key string, path string) *redis.IntPointerSliceCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.IntPointerSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntPointerSliceCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntPointerSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONStrLen_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONStrLen'
+type MockPipeliner_JSONStrLen_Call struct {
+	*mock.Call
+}
+
+// JSONStrLen is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockPipeliner_Expecter) JSONStrLen(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONStrLen_Call {
+	return &MockPipeliner_JSONStrLen_Call{Call: _e.mock.On("JSONStrLen", ctx, key, path)}
+}
+
+func (_c *MockPipeliner_JSONStrLen_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONStrLen_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONStrLen_Call) Return(_a0 *redis.IntPointerSliceCmd) *MockPipeliner_JSONStrLen_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONStrLen_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntPointerSliceCmd) *MockPipeliner_JSONStrLen_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONToggle provides a mock function with given fields: ctx, key, path
+func (_m *MockPipeliner) JSONToggle(ctx context.Context, key string, path string) *redis.IntPointerSliceCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.IntPointerSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntPointerSliceCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntPointerSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONToggle_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONToggle'
+type MockPipeliner_JSONToggle_Call struct {
+	*mock.Call
+}
+
+// JSONToggle is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockPipeliner_Expecter) JSONToggle(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONToggle_Call {
+	return &MockPipeliner_JSONToggle_Call{Call: _e.mock.On("JSONToggle", ctx, key, path)}
+}
+
+func (_c *MockPipeliner_JSONToggle_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONToggle_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONToggle_Call) Return(_a0 *redis.IntPointerSliceCmd) *MockPipeliner_JSONToggle_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONToggle_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntPointerSliceCmd) *MockPipeliner_JSONToggle_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONType provides a mock function with given fields: ctx, key, path
+func (_m *MockPipeliner) JSONType(ctx context.Context, key string, path string) *redis.JSONSliceCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.JSONSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.JSONSliceCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.JSONSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_JSONType_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONType'
+type MockPipeliner_JSONType_Call struct {
+	*mock.Call
+}
+
+// JSONType is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockPipeliner_Expecter) JSONType(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONType_Call {
+	return &MockPipeliner_JSONType_Call{Call: _e.mock.On("JSONType", ctx, key, path)}
+}
+
+func (_c *MockPipeliner_JSONType_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONType_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_JSONType_Call) Return(_a0 *redis.JSONSliceCmd) *MockPipeliner_JSONType_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_JSONType_Call) RunAndReturn(run func(context.Context, string, string) *redis.JSONSliceCmd) *MockPipeliner_JSONType_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -13115,6 +14946,53 @@ func (_c *MockPipeliner_SetArgs_Call) Return(_a0 *redis.StatusCmd) *MockPipeline
 }
 
 func (_c *MockPipeliner_SetArgs_Call) RunAndReturn(run func(context.Context, string, interface{}, redis.SetArgs) *redis.StatusCmd) *MockPipeliner_SetArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SetBit provides a mock function with given fields: ctx, key, offset, value
+func (_m *MockPipeliner) SetBit(ctx context.Context, key string, offset int64, value int) *redis.IntCmd {
+	ret := _m.Called(ctx, key, offset, value)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, offset, value)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_SetBit_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetBit'
+type MockPipeliner_SetBit_Call struct {
+	*mock.Call
+}
+
+// SetBit is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - offset int64
+//   - value int
+func (_e *MockPipeliner_Expecter) SetBit(ctx interface{}, key interface{}, offset interface{}, value interface{}) *MockPipeliner_SetBit_Call {
+	return &MockPipeliner_SetBit_Call{Call: _e.mock.On("SetBit", ctx, key, offset, value)}
+}
+
+func (_c *MockPipeliner_SetBit_Call) Run(run func(ctx context.Context, key string, offset int64, value int)) *MockPipeliner_SetBit_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int))
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_SetBit_Call) Return(_a0 *redis.IntCmd) *MockPipeliner_SetBit_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_SetBit_Call) RunAndReturn(run func(context.Context, string, int64, int) *redis.IntCmd) *MockPipeliner_SetBit_Call {
 	_c.Call.Return(run)
 	return _c
 }

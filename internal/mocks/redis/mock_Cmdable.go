@@ -1672,6 +1672,443 @@ func (_c *MockCmdable_BgSave_Call) RunAndReturn(run func(context.Context) *redis
 	return _c
 }
 
+// BitCount provides a mock function with given fields: ctx, key, bitCount
+func (_m *MockCmdable) BitCount(ctx context.Context, key string, bitCount *redis.BitCount) *redis.IntCmd {
+	ret := _m.Called(ctx, key, bitCount)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.BitCount) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, bitCount)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_BitCount_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitCount'
+type MockCmdable_BitCount_Call struct {
+	*mock.Call
+}
+
+// BitCount is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - bitCount *redis.BitCount
+func (_e *MockCmdable_Expecter) BitCount(ctx interface{}, key interface{}, bitCount interface{}) *MockCmdable_BitCount_Call {
+	return &MockCmdable_BitCount_Call{Call: _e.mock.On("BitCount", ctx, key, bitCount)}
+}
+
+func (_c *MockCmdable_BitCount_Call) Run(run func(ctx context.Context, key string, bitCount *redis.BitCount)) *MockCmdable_BitCount_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(*redis.BitCount))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_BitCount_Call) Return(_a0 *redis.IntCmd) *MockCmdable_BitCount_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_BitCount_Call) RunAndReturn(run func(context.Context, string, *redis.BitCount) *redis.IntCmd) *MockCmdable_BitCount_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// BitField provides a mock function with given fields: ctx, key, values
+func (_m *MockCmdable) BitField(ctx context.Context, key string, values ...interface{}) *redis.IntSliceCmd {
+	var tmpRet mock.Arguments
+	if len(values) > 0 {
+		tmpRet = _m.Called(ctx, key, values)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
+
+	var r0 *redis.IntSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntSliceCmd); ok {
+		r0 = rf(ctx, key, values...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_BitField_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitField'
+type MockCmdable_BitField_Call struct {
+	*mock.Call
+}
+
+// BitField is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
+func (_e *MockCmdable_Expecter) BitField(ctx interface{}, key interface{}, values ...interface{}) *MockCmdable_BitField_Call {
+	return &MockCmdable_BitField_Call{Call: _e.mock.On("BitField",
+		append([]interface{}{ctx, key}, values...)...)}
+}
+
+func (_c *MockCmdable_BitField_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockCmdable_BitField_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]interface{}, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(interface{})
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_BitField_Call) Return(_a0 *redis.IntSliceCmd) *MockCmdable_BitField_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_BitField_Call) RunAndReturn(run func(context.Context, string, ...interface{}) *redis.IntSliceCmd) *MockCmdable_BitField_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// BitOpAnd provides a mock function with given fields: ctx, destKey, keys
+func (_m *MockCmdable) BitOpAnd(ctx context.Context, destKey string, keys ...string) *redis.IntCmd {
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, destKey, keys)
+	} else {
+		tmpRet = _m.Called(ctx, destKey)
+	}
+	ret := tmpRet
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
+		r0 = rf(ctx, destKey, keys...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_BitOpAnd_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitOpAnd'
+type MockCmdable_BitOpAnd_Call struct {
+	*mock.Call
+}
+
+// BitOpAnd is a helper method to define mock.On call
+//   - ctx context.Context
+//   - destKey string
+//   - keys ...string
+func (_e *MockCmdable_Expecter) BitOpAnd(ctx interface{}, destKey interface{}, keys ...interface{}) *MockCmdable_BitOpAnd_Call {
+	return &MockCmdable_BitOpAnd_Call{Call: _e.mock.On("BitOpAnd",
+		append([]interface{}{ctx, destKey}, keys...)...)}
+}
+
+func (_c *MockCmdable_BitOpAnd_Call) Run(run func(ctx context.Context, destKey string, keys ...string)) *MockCmdable_BitOpAnd_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]string, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(string)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_BitOpAnd_Call) Return(_a0 *redis.IntCmd) *MockCmdable_BitOpAnd_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_BitOpAnd_Call) RunAndReturn(run func(context.Context, string, ...string) *redis.IntCmd) *MockCmdable_BitOpAnd_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// BitOpNot provides a mock function with given fields: ctx, destKey, key
+func (_m *MockCmdable) BitOpNot(ctx context.Context, destKey string, key string) *redis.IntCmd {
+	ret := _m.Called(ctx, destKey, key)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
+		r0 = rf(ctx, destKey, key)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_BitOpNot_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitOpNot'
+type MockCmdable_BitOpNot_Call struct {
+	*mock.Call
+}
+
+// BitOpNot is a helper method to define mock.On call
+//   - ctx context.Context
+//   - destKey string
+//   - key string
+func (_e *MockCmdable_Expecter) BitOpNot(ctx interface{}, destKey interface{}, key interface{}) *MockCmdable_BitOpNot_Call {
+	return &MockCmdable_BitOpNot_Call{Call: _e.mock.On("BitOpNot", ctx, destKey, key)}
+}
+
+func (_c *MockCmdable_BitOpNot_Call) Run(run func(ctx context.Context, destKey string, key string)) *MockCmdable_BitOpNot_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_BitOpNot_Call) Return(_a0 *redis.IntCmd) *MockCmdable_BitOpNot_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_BitOpNot_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntCmd) *MockCmdable_BitOpNot_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// BitOpOr provides a mock function with given fields: ctx, destKey, keys
+func (_m *MockCmdable) BitOpOr(ctx context.Context, destKey string, keys ...string) *redis.IntCmd {
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, destKey, keys)
+	} else {
+		tmpRet = _m.Called(ctx, destKey)
+	}
+	ret := tmpRet
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
+		r0 = rf(ctx, destKey, keys...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_BitOpOr_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitOpOr'
+type MockCmdable_BitOpOr_Call struct {
+	*mock.Call
+}
+
+// BitOpOr is a helper method to define mock.On call
+//   - ctx context.Context
+//   - destKey string
+//   - keys ...string
+func (_e *MockCmdable_Expecter) BitOpOr(ctx interface{}, destKey interface{}, keys ...interface{}) *MockCmdable_BitOpOr_Call {
+	return &MockCmdable_BitOpOr_Call{Call: _e.mock.On("BitOpOr",
+		append([]interface{}{ctx, destKey}, keys...)...)}
+}
+
+func (_c *MockCmdable_BitOpOr_Call) Run(run func(ctx context.Context, destKey string, keys ...string)) *MockCmdable_BitOpOr_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]string, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(string)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_BitOpOr_Call) Return(_a0 *redis.IntCmd) *MockCmdable_BitOpOr_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_BitOpOr_Call) RunAndReturn(run func(context.Context, string, ...string) *redis.IntCmd) *MockCmdable_BitOpOr_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// BitOpXor provides a mock function with given fields: ctx, destKey, keys
+func (_m *MockCmdable) BitOpXor(ctx context.Context, destKey string, keys ...string) *redis.IntCmd {
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, destKey, keys)
+	} else {
+		tmpRet = _m.Called(ctx, destKey)
+	}
+	ret := tmpRet
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
+		r0 = rf(ctx, destKey, keys...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_BitOpXor_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitOpXor'
+type MockCmdable_BitOpXor_Call struct {
+	*mock.Call
+}
+
+// BitOpXor is a helper method to define mock.On call
+//   - ctx context.Context
+//   - destKey string
+//   - keys ...string
+func (_e *MockCmdable_Expecter) BitOpXor(ctx interface{}, destKey interface{}, keys ...interface{}) *MockCmdable_BitOpXor_Call {
+	return &MockCmdable_BitOpXor_Call{Call: _e.mock.On("BitOpXor",
+		append([]interface{}{ctx, destKey}, keys...)...)}
+}
+
+func (_c *MockCmdable_BitOpXor_Call) Run(run func(ctx context.Context, destKey string, keys ...string)) *MockCmdable_BitOpXor_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]string, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(string)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_BitOpXor_Call) Return(_a0 *redis.IntCmd) *MockCmdable_BitOpXor_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_BitOpXor_Call) RunAndReturn(run func(context.Context, string, ...string) *redis.IntCmd) *MockCmdable_BitOpXor_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// BitPos provides a mock function with given fields: ctx, key, bit, pos
+func (_m *MockCmdable) BitPos(ctx context.Context, key string, bit int64, pos ...int64) *redis.IntCmd {
+	var tmpRet mock.Arguments
+	if len(pos) > 0 {
+		tmpRet = _m.Called(ctx, key, bit, pos)
+	} else {
+		tmpRet = _m.Called(ctx, key, bit)
+	}
+	ret := tmpRet
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, int64, ...int64) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, bit, pos...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_BitPos_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitPos'
+type MockCmdable_BitPos_Call struct {
+	*mock.Call
+}
+
+// BitPos is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - bit int64
+//   - pos ...int64
+func (_e *MockCmdable_Expecter) BitPos(ctx interface{}, key interface{}, bit interface{}, pos ...interface{}) *MockCmdable_BitPos_Call {
+	return &MockCmdable_BitPos_Call{Call: _e.mock.On("BitPos",
+		append([]interface{}{ctx, key, bit}, pos...)...)}
+}
+
+func (_c *MockCmdable_BitPos_Call) Run(run func(ctx context.Context, key string, bit int64, pos ...int64)) *MockCmdable_BitPos_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]int64, len(args)-3)
+		for i, a := range args[3:] {
+			if a != nil {
+				variadicArgs[i] = a.(int64)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), args[2].(int64), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_BitPos_Call) Return(_a0 *redis.IntCmd) *MockCmdable_BitPos_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_BitPos_Call) RunAndReturn(run func(context.Context, string, int64, ...int64) *redis.IntCmd) *MockCmdable_BitPos_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// BitPosSpan provides a mock function with given fields: ctx, key, bit, start, end, span
+func (_m *MockCmdable) BitPosSpan(ctx context.Context, key string, bit int8, start int64, end int64, span string) *redis.IntCmd {
+	ret := _m.Called(ctx, key, bit, start, end, span)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, int8, int64, int64, string) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, bit, start, end, span)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_BitPosSpan_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitPosSpan'
+type MockCmdable_BitPosSpan_Call struct {
+	*mock.Call
+}
+
+// BitPosSpan is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - bit int8
+//   - start int64
+//   - end int64
+//   - span string
+func (_e *MockCmdable_Expecter) BitPosSpan(ctx interface{}, key interface{}, bit interface{}, start interface{}, end interface{}, span interface{}) *MockCmdable_BitPosSpan_Call {
+	return &MockCmdable_BitPosSpan_Call{Call: _e.mock.On("BitPosSpan", ctx, key, bit, start, end, span)}
+}
+
+func (_c *MockCmdable_BitPosSpan_Call) Run(run func(ctx context.Context, key string, bit int8, start int64, end int64, span string)) *MockCmdable_BitPosSpan_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(int8), args[3].(int64), args[4].(int64), args[5].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_BitPosSpan_Call) Return(_a0 *redis.IntCmd) *MockCmdable_BitPosSpan_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_BitPosSpan_Call) RunAndReturn(run func(context.Context, string, int8, int64, int64, string) *redis.IntCmd) *MockCmdable_BitPosSpan_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // CFAdd provides a mock function with given fields: ctx, key, element
 func (_m *MockCmdable) CFAdd(ctx context.Context, key string, element interface{}) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, element)
@@ -7061,6 +7498,52 @@ func (_c *MockCmdable_Get_Call) RunAndReturn(run func(context.Context, string) *
 	return _c
 }
 
+// GetBit provides a mock function with given fields: ctx, key, offset
+func (_m *MockCmdable) GetBit(ctx context.Context, key string, offset int64) *redis.IntCmd {
+	ret := _m.Called(ctx, key, offset)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, int64) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, offset)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_GetBit_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetBit'
+type MockCmdable_GetBit_Call struct {
+	*mock.Call
+}
+
+// GetBit is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - offset int64
+func (_e *MockCmdable_Expecter) GetBit(ctx interface{}, key interface{}, offset interface{}) *MockCmdable_GetBit_Call {
+	return &MockCmdable_GetBit_Call{Call: _e.mock.On("GetBit", ctx, key, offset)}
+}
+
+func (_c *MockCmdable_GetBit_Call) Run(run func(ctx context.Context, key string, offset int64)) *MockCmdable_GetBit_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_GetBit_Call) Return(_a0 *redis.IntCmd) *MockCmdable_GetBit_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_GetBit_Call) RunAndReturn(run func(context.Context, string, int64) *redis.IntCmd) *MockCmdable_GetBit_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // GetDel provides a mock function with given fields: ctx, key
 func (_m *MockCmdable) GetDel(ctx context.Context, key string) *redis.StringCmd {
 	ret := _m.Called(ctx, key)
@@ -8225,6 +8708,1365 @@ func (_c *MockCmdable_Info_Call) Return(_a0 *redis.StringCmd) *MockCmdable_Info_
 }
 
 func (_c *MockCmdable_Info_Call) RunAndReturn(run func(context.Context, ...string) *redis.StringCmd) *MockCmdable_Info_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONArrAppend provides a mock function with given fields: ctx, key, path, values
+func (_m *MockCmdable) JSONArrAppend(ctx context.Context, key string, path string, values ...interface{}) *redis.IntSliceCmd {
+	var tmpRet mock.Arguments
+	if len(values) > 0 {
+		tmpRet = _m.Called(ctx, key, path, values)
+	} else {
+		tmpRet = _m.Called(ctx, key, path)
+	}
+	ret := tmpRet
+
+	var r0 *redis.IntSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, ...interface{}) *redis.IntSliceCmd); ok {
+		r0 = rf(ctx, key, path, values...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONArrAppend_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONArrAppend'
+type MockCmdable_JSONArrAppend_Call struct {
+	*mock.Call
+}
+
+// JSONArrAppend is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - values ...interface{}
+func (_e *MockCmdable_Expecter) JSONArrAppend(ctx interface{}, key interface{}, path interface{}, values ...interface{}) *MockCmdable_JSONArrAppend_Call {
+	return &MockCmdable_JSONArrAppend_Call{Call: _e.mock.On("JSONArrAppend",
+		append([]interface{}{ctx, key, path}, values...)...)}
+}
+
+func (_c *MockCmdable_JSONArrAppend_Call) Run(run func(ctx context.Context, key string, path string, values ...interface{})) *MockCmdable_JSONArrAppend_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]interface{}, len(args)-3)
+		for i, a := range args[3:] {
+			if a != nil {
+				variadicArgs[i] = a.(interface{})
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), args[2].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONArrAppend_Call) Return(_a0 *redis.IntSliceCmd) *MockCmdable_JSONArrAppend_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONArrAppend_Call) RunAndReturn(run func(context.Context, string, string, ...interface{}) *redis.IntSliceCmd) *MockCmdable_JSONArrAppend_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONArrIndex provides a mock function with given fields: ctx, key, path, value
+func (_m *MockCmdable) JSONArrIndex(ctx context.Context, key string, path string, value ...interface{}) *redis.IntSliceCmd {
+	var tmpRet mock.Arguments
+	if len(value) > 0 {
+		tmpRet = _m.Called(ctx, key, path, value)
+	} else {
+		tmpRet = _m.Called(ctx, key, path)
+	}
+	ret := tmpRet
+
+	var r0 *redis.IntSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, ...interface{}) *redis.IntSliceCmd); ok {
+		r0 = rf(ctx, key, path, value...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONArrIndex_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONArrIndex'
+type MockCmdable_JSONArrIndex_Call struct {
+	*mock.Call
+}
+
+// JSONArrIndex is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value ...interface{}
+func (_e *MockCmdable_Expecter) JSONArrIndex(ctx interface{}, key interface{}, path interface{}, value ...interface{}) *MockCmdable_JSONArrIndex_Call {
+	return &MockCmdable_JSONArrIndex_Call{Call: _e.mock.On("JSONArrIndex",
+		append([]interface{}{ctx, key, path}, value...)...)}
+}
+
+func (_c *MockCmdable_JSONArrIndex_Call) Run(run func(ctx context.Context, key string, path string, value ...interface{})) *MockCmdable_JSONArrIndex_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]interface{}, len(args)-3)
+		for i, a := range args[3:] {
+			if a != nil {
+				variadicArgs[i] = a.(interface{})
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), args[2].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONArrIndex_Call) Return(_a0 *redis.IntSliceCmd) *MockCmdable_JSONArrIndex_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONArrIndex_Call) RunAndReturn(run func(context.Context, string, string, ...interface{}) *redis.IntSliceCmd) *MockCmdable_JSONArrIndex_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONArrIndexWithArgs provides a mock function with given fields: ctx, key, path, options, value
+func (_m *MockCmdable) JSONArrIndexWithArgs(ctx context.Context, key string, path string, options *redis.JSONArrIndexArgs, value ...interface{}) *redis.IntSliceCmd {
+	var tmpRet mock.Arguments
+	if len(value) > 0 {
+		tmpRet = _m.Called(ctx, key, path, options, value)
+	} else {
+		tmpRet = _m.Called(ctx, key, path, options)
+	}
+	ret := tmpRet
+
+	var r0 *redis.IntSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, *redis.JSONArrIndexArgs, ...interface{}) *redis.IntSliceCmd); ok {
+		r0 = rf(ctx, key, path, options, value...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONArrIndexWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONArrIndexWithArgs'
+type MockCmdable_JSONArrIndexWithArgs_Call struct {
+	*mock.Call
+}
+
+// JSONArrIndexWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - options *redis.JSONArrIndexArgs
+//   - value ...interface{}
+func (_e *MockCmdable_Expecter) JSONArrIndexWithArgs(ctx interface{}, key interface{}, path interface{}, options interface{}, value ...interface{}) *MockCmdable_JSONArrIndexWithArgs_Call {
+	return &MockCmdable_JSONArrIndexWithArgs_Call{Call: _e.mock.On("JSONArrIndexWithArgs",
+		append([]interface{}{ctx, key, path, options}, value...)...)}
+}
+
+func (_c *MockCmdable_JSONArrIndexWithArgs_Call) Run(run func(ctx context.Context, key string, path string, options *redis.JSONArrIndexArgs, value ...interface{})) *MockCmdable_JSONArrIndexWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]interface{}, len(args)-4)
+		for i, a := range args[4:] {
+			if a != nil {
+				variadicArgs[i] = a.(interface{})
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.JSONArrIndexArgs), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONArrIndexWithArgs_Call) Return(_a0 *redis.IntSliceCmd) *MockCmdable_JSONArrIndexWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONArrIndexWithArgs_Call) RunAndReturn(run func(context.Context, string, string, *redis.JSONArrIndexArgs, ...interface{}) *redis.IntSliceCmd) *MockCmdable_JSONArrIndexWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONArrInsert provides a mock function with given fields: ctx, key, path, index, values
+func (_m *MockCmdable) JSONArrInsert(ctx context.Context, key string, path string, index int64, values ...interface{}) *redis.IntSliceCmd {
+	var tmpRet mock.Arguments
+	if len(values) > 0 {
+		tmpRet = _m.Called(ctx, key, path, index, values)
+	} else {
+		tmpRet = _m.Called(ctx, key, path, index)
+	}
+	ret := tmpRet
+
+	var r0 *redis.IntSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, int64, ...interface{}) *redis.IntSliceCmd); ok {
+		r0 = rf(ctx, key, path, index, values...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONArrInsert_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONArrInsert'
+type MockCmdable_JSONArrInsert_Call struct {
+	*mock.Call
+}
+
+// JSONArrInsert is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - index int64
+//   - values ...interface{}
+func (_e *MockCmdable_Expecter) JSONArrInsert(ctx interface{}, key interface{}, path interface{}, index interface{}, values ...interface{}) *MockCmdable_JSONArrInsert_Call {
+	return &MockCmdable_JSONArrInsert_Call{Call: _e.mock.On("JSONArrInsert",
+		append([]interface{}{ctx, key, path, index}, values...)...)}
+}
+
+func (_c *MockCmdable_JSONArrInsert_Call) Run(run func(ctx context.Context, key string, path string, index int64, values ...interface{})) *MockCmdable_JSONArrInsert_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]interface{}, len(args)-4)
+		for i, a := range args[4:] {
+			if a != nil {
+				variadicArgs[i] = a.(interface{})
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int64), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONArrInsert_Call) Return(_a0 *redis.IntSliceCmd) *MockCmdable_JSONArrInsert_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONArrInsert_Call) RunAndReturn(run func(context.Context, string, string, int64, ...interface{}) *redis.IntSliceCmd) *MockCmdable_JSONArrInsert_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONArrLen provides a mock function with given fields: ctx, key, path
+func (_m *MockCmdable) JSONArrLen(ctx context.Context, key string, path string) *redis.IntSliceCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.IntSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntSliceCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONArrLen_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONArrLen'
+type MockCmdable_JSONArrLen_Call struct {
+	*mock.Call
+}
+
+// JSONArrLen is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockCmdable_Expecter) JSONArrLen(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONArrLen_Call {
+	return &MockCmdable_JSONArrLen_Call{Call: _e.mock.On("JSONArrLen", ctx, key, path)}
+}
+
+func (_c *MockCmdable_JSONArrLen_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONArrLen_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONArrLen_Call) Return(_a0 *redis.IntSliceCmd) *MockCmdable_JSONArrLen_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONArrLen_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntSliceCmd) *MockCmdable_JSONArrLen_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONArrPop provides a mock function with given fields: ctx, key, path, index
+func (_m *MockCmdable) JSONArrPop(ctx context.Context, key string, path string, index int) *redis.StringSliceCmd {
+	ret := _m.Called(ctx, key, path, index)
+
+	var r0 *redis.StringSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, int) *redis.StringSliceCmd); ok {
+		r0 = rf(ctx, key, path, index)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONArrPop_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONArrPop'
+type MockCmdable_JSONArrPop_Call struct {
+	*mock.Call
+}
+
+// JSONArrPop is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - index int
+func (_e *MockCmdable_Expecter) JSONArrPop(ctx interface{}, key interface{}, path interface{}, index interface{}) *MockCmdable_JSONArrPop_Call {
+	return &MockCmdable_JSONArrPop_Call{Call: _e.mock.On("JSONArrPop", ctx, key, path, index)}
+}
+
+func (_c *MockCmdable_JSONArrPop_Call) Run(run func(ctx context.Context, key string, path string, index int)) *MockCmdable_JSONArrPop_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONArrPop_Call) Return(_a0 *redis.StringSliceCmd) *MockCmdable_JSONArrPop_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONArrPop_Call) RunAndReturn(run func(context.Context, string, string, int) *redis.StringSliceCmd) *MockCmdable_JSONArrPop_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONArrTrim provides a mock function with given fields: ctx, key, path
+func (_m *MockCmdable) JSONArrTrim(ctx context.Context, key string, path string) *redis.IntSliceCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.IntSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntSliceCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONArrTrim_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONArrTrim'
+type MockCmdable_JSONArrTrim_Call struct {
+	*mock.Call
+}
+
+// JSONArrTrim is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockCmdable_Expecter) JSONArrTrim(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONArrTrim_Call {
+	return &MockCmdable_JSONArrTrim_Call{Call: _e.mock.On("JSONArrTrim", ctx, key, path)}
+}
+
+func (_c *MockCmdable_JSONArrTrim_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONArrTrim_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONArrTrim_Call) Return(_a0 *redis.IntSliceCmd) *MockCmdable_JSONArrTrim_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONArrTrim_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntSliceCmd) *MockCmdable_JSONArrTrim_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONArrTrimWithArgs provides a mock function with given fields: ctx, key, path, options
+func (_m *MockCmdable) JSONArrTrimWithArgs(ctx context.Context, key string, path string, options *redis.JSONArrTrimArgs) *redis.IntSliceCmd {
+	ret := _m.Called(ctx, key, path, options)
+
+	var r0 *redis.IntSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, *redis.JSONArrTrimArgs) *redis.IntSliceCmd); ok {
+		r0 = rf(ctx, key, path, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONArrTrimWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONArrTrimWithArgs'
+type MockCmdable_JSONArrTrimWithArgs_Call struct {
+	*mock.Call
+}
+
+// JSONArrTrimWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - options *redis.JSONArrTrimArgs
+func (_e *MockCmdable_Expecter) JSONArrTrimWithArgs(ctx interface{}, key interface{}, path interface{}, options interface{}) *MockCmdable_JSONArrTrimWithArgs_Call {
+	return &MockCmdable_JSONArrTrimWithArgs_Call{Call: _e.mock.On("JSONArrTrimWithArgs", ctx, key, path, options)}
+}
+
+func (_c *MockCmdable_JSONArrTrimWithArgs_Call) Run(run func(ctx context.Context, key string, path string, options *redis.JSONArrTrimArgs)) *MockCmdable_JSONArrTrimWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.JSONArrTrimArgs))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONArrTrimWithArgs_Call) Return(_a0 *redis.IntSliceCmd) *MockCmdable_JSONArrTrimWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONArrTrimWithArgs_Call) RunAndReturn(run func(context.Context, string, string, *redis.JSONArrTrimArgs) *redis.IntSliceCmd) *MockCmdable_JSONArrTrimWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONClear provides a mock function with given fields: ctx, key, path
+func (_m *MockCmdable) JSONClear(ctx context.Context, key string, path string) *redis.IntCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONClear_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONClear'
+type MockCmdable_JSONClear_Call struct {
+	*mock.Call
+}
+
+// JSONClear is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockCmdable_Expecter) JSONClear(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONClear_Call {
+	return &MockCmdable_JSONClear_Call{Call: _e.mock.On("JSONClear", ctx, key, path)}
+}
+
+func (_c *MockCmdable_JSONClear_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONClear_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONClear_Call) Return(_a0 *redis.IntCmd) *MockCmdable_JSONClear_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONClear_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntCmd) *MockCmdable_JSONClear_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONDebugMemory provides a mock function with given fields: ctx, key, path
+func (_m *MockCmdable) JSONDebugMemory(ctx context.Context, key string, path string) *redis.IntCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONDebugMemory_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONDebugMemory'
+type MockCmdable_JSONDebugMemory_Call struct {
+	*mock.Call
+}
+
+// JSONDebugMemory is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockCmdable_Expecter) JSONDebugMemory(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONDebugMemory_Call {
+	return &MockCmdable_JSONDebugMemory_Call{Call: _e.mock.On("JSONDebugMemory", ctx, key, path)}
+}
+
+func (_c *MockCmdable_JSONDebugMemory_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONDebugMemory_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONDebugMemory_Call) Return(_a0 *redis.IntCmd) *MockCmdable_JSONDebugMemory_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONDebugMemory_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntCmd) *MockCmdable_JSONDebugMemory_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONDel provides a mock function with given fields: ctx, key, path
+func (_m *MockCmdable) JSONDel(ctx context.Context, key string, path string) *redis.IntCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONDel_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONDel'
+type MockCmdable_JSONDel_Call struct {
+	*mock.Call
+}
+
+// JSONDel is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockCmdable_Expecter) JSONDel(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONDel_Call {
+	return &MockCmdable_JSONDel_Call{Call: _e.mock.On("JSONDel", ctx, key, path)}
+}
+
+func (_c *MockCmdable_JSONDel_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONDel_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONDel_Call) Return(_a0 *redis.IntCmd) *MockCmdable_JSONDel_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONDel_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntCmd) *MockCmdable_JSONDel_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONForget provides a mock function with given fields: ctx, key, path
+func (_m *MockCmdable) JSONForget(ctx context.Context, key string, path string) *redis.IntCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONForget_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONForget'
+type MockCmdable_JSONForget_Call struct {
+	*mock.Call
+}
+
+// JSONForget is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockCmdable_Expecter) JSONForget(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONForget_Call {
+	return &MockCmdable_JSONForget_Call{Call: _e.mock.On("JSONForget", ctx, key, path)}
+}
+
+func (_c *MockCmdable_JSONForget_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONForget_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONForget_Call) Return(_a0 *redis.IntCmd) *MockCmdable_JSONForget_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONForget_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntCmd) *MockCmdable_JSONForget_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONGet provides a mock function with given fields: ctx, key, paths
+func (_m *MockCmdable) JSONGet(ctx context.Context, key string, paths ...string) *redis.JSONCmd {
+	var tmpRet mock.Arguments
+	if len(paths) > 0 {
+		tmpRet = _m.Called(ctx, key, paths)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
+
+	var r0 *redis.JSONCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.JSONCmd); ok {
+		r0 = rf(ctx, key, paths...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.JSONCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONGet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONGet'
+type MockCmdable_JSONGet_Call struct {
+	*mock.Call
+}
+
+// JSONGet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - paths ...string
+func (_e *MockCmdable_Expecter) JSONGet(ctx interface{}, key interface{}, paths ...interface{}) *MockCmdable_JSONGet_Call {
+	return &MockCmdable_JSONGet_Call{Call: _e.mock.On("JSONGet",
+		append([]interface{}{ctx, key}, paths...)...)}
+}
+
+func (_c *MockCmdable_JSONGet_Call) Run(run func(ctx context.Context, key string, paths ...string)) *MockCmdable_JSONGet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]string, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(string)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONGet_Call) Return(_a0 *redis.JSONCmd) *MockCmdable_JSONGet_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONGet_Call) RunAndReturn(run func(context.Context, string, ...string) *redis.JSONCmd) *MockCmdable_JSONGet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONGetWithArgs provides a mock function with given fields: ctx, key, options, paths
+func (_m *MockCmdable) JSONGetWithArgs(ctx context.Context, key string, options *redis.JSONGetArgs, paths ...string) *redis.JSONCmd {
+	var tmpRet mock.Arguments
+	if len(paths) > 0 {
+		tmpRet = _m.Called(ctx, key, options, paths)
+	} else {
+		tmpRet = _m.Called(ctx, key, options)
+	}
+	ret := tmpRet
+
+	var r0 *redis.JSONCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.JSONGetArgs, ...string) *redis.JSONCmd); ok {
+		r0 = rf(ctx, key, options, paths...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.JSONCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONGetWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONGetWithArgs'
+type MockCmdable_JSONGetWithArgs_Call struct {
+	*mock.Call
+}
+
+// JSONGetWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - options *redis.JSONGetArgs
+//   - paths ...string
+func (_e *MockCmdable_Expecter) JSONGetWithArgs(ctx interface{}, key interface{}, options interface{}, paths ...interface{}) *MockCmdable_JSONGetWithArgs_Call {
+	return &MockCmdable_JSONGetWithArgs_Call{Call: _e.mock.On("JSONGetWithArgs",
+		append([]interface{}{ctx, key, options}, paths...)...)}
+}
+
+func (_c *MockCmdable_JSONGetWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.JSONGetArgs, paths ...string)) *MockCmdable_JSONGetWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]string, len(args)-3)
+		for i, a := range args[3:] {
+			if a != nil {
+				variadicArgs[i] = a.(string)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), args[2].(*redis.JSONGetArgs), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONGetWithArgs_Call) Return(_a0 *redis.JSONCmd) *MockCmdable_JSONGetWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONGetWithArgs_Call) RunAndReturn(run func(context.Context, string, *redis.JSONGetArgs, ...string) *redis.JSONCmd) *MockCmdable_JSONGetWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONMGet provides a mock function with given fields: ctx, path, keys
+func (_m *MockCmdable) JSONMGet(ctx context.Context, path string, keys ...string) *redis.JSONSliceCmd {
+	var tmpRet mock.Arguments
+	if len(keys) > 0 {
+		tmpRet = _m.Called(ctx, path, keys)
+	} else {
+		tmpRet = _m.Called(ctx, path)
+	}
+	ret := tmpRet
+
+	var r0 *redis.JSONSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.JSONSliceCmd); ok {
+		r0 = rf(ctx, path, keys...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.JSONSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONMGet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONMGet'
+type MockCmdable_JSONMGet_Call struct {
+	*mock.Call
+}
+
+// JSONMGet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - path string
+//   - keys ...string
+func (_e *MockCmdable_Expecter) JSONMGet(ctx interface{}, path interface{}, keys ...interface{}) *MockCmdable_JSONMGet_Call {
+	return &MockCmdable_JSONMGet_Call{Call: _e.mock.On("JSONMGet",
+		append([]interface{}{ctx, path}, keys...)...)}
+}
+
+func (_c *MockCmdable_JSONMGet_Call) Run(run func(ctx context.Context, path string, keys ...string)) *MockCmdable_JSONMGet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]string, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(string)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONMGet_Call) Return(_a0 *redis.JSONSliceCmd) *MockCmdable_JSONMGet_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONMGet_Call) RunAndReturn(run func(context.Context, string, ...string) *redis.JSONSliceCmd) *MockCmdable_JSONMGet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONMSet provides a mock function with given fields: ctx, params
+func (_m *MockCmdable) JSONMSet(ctx context.Context, params ...interface{}) *redis.StatusCmd {
+	var tmpRet mock.Arguments
+	if len(params) > 0 {
+		tmpRet = _m.Called(ctx, params)
+	} else {
+		tmpRet = _m.Called(ctx)
+	}
+	ret := tmpRet
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, ...interface{}) *redis.StatusCmd); ok {
+		r0 = rf(ctx, params...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONMSet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONMSet'
+type MockCmdable_JSONMSet_Call struct {
+	*mock.Call
+}
+
+// JSONMSet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - params ...interface{}
+func (_e *MockCmdable_Expecter) JSONMSet(ctx interface{}, params ...interface{}) *MockCmdable_JSONMSet_Call {
+	return &MockCmdable_JSONMSet_Call{Call: _e.mock.On("JSONMSet",
+		append([]interface{}{ctx}, params...)...)}
+}
+
+func (_c *MockCmdable_JSONMSet_Call) Run(run func(ctx context.Context, params ...interface{})) *MockCmdable_JSONMSet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]interface{}, len(args)-1)
+		for i, a := range args[1:] {
+			if a != nil {
+				variadicArgs[i] = a.(interface{})
+			}
+		}
+		run(args[0].(context.Context), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONMSet_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_JSONMSet_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONMSet_Call) RunAndReturn(run func(context.Context, ...interface{}) *redis.StatusCmd) *MockCmdable_JSONMSet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONMSetArgs provides a mock function with given fields: ctx, docs
+func (_m *MockCmdable) JSONMSetArgs(ctx context.Context, docs []redis.JSONSetArgs) *redis.StatusCmd {
+	ret := _m.Called(ctx, docs)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, []redis.JSONSetArgs) *redis.StatusCmd); ok {
+		r0 = rf(ctx, docs)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONMSetArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONMSetArgs'
+type MockCmdable_JSONMSetArgs_Call struct {
+	*mock.Call
+}
+
+// JSONMSetArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - docs []redis.JSONSetArgs
+func (_e *MockCmdable_Expecter) JSONMSetArgs(ctx interface{}, docs interface{}) *MockCmdable_JSONMSetArgs_Call {
+	return &MockCmdable_JSONMSetArgs_Call{Call: _e.mock.On("JSONMSetArgs", ctx, docs)}
+}
+
+func (_c *MockCmdable_JSONMSetArgs_Call) Run(run func(ctx context.Context, docs []redis.JSONSetArgs)) *MockCmdable_JSONMSetArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].([]redis.JSONSetArgs))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONMSetArgs_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_JSONMSetArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONMSetArgs_Call) RunAndReturn(run func(context.Context, []redis.JSONSetArgs) *redis.StatusCmd) *MockCmdable_JSONMSetArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONMerge provides a mock function with given fields: ctx, key, path, value
+func (_m *MockCmdable) JSONMerge(ctx context.Context, key string, path string, value string) *redis.StatusCmd {
+	ret := _m.Called(ctx, key, path, value)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.StatusCmd); ok {
+		r0 = rf(ctx, key, path, value)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONMerge_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONMerge'
+type MockCmdable_JSONMerge_Call struct {
+	*mock.Call
+}
+
+// JSONMerge is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value string
+func (_e *MockCmdable_Expecter) JSONMerge(ctx interface{}, key interface{}, path interface{}, value interface{}) *MockCmdable_JSONMerge_Call {
+	return &MockCmdable_JSONMerge_Call{Call: _e.mock.On("JSONMerge", ctx, key, path, value)}
+}
+
+func (_c *MockCmdable_JSONMerge_Call) Run(run func(ctx context.Context, key string, path string, value string)) *MockCmdable_JSONMerge_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONMerge_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_JSONMerge_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONMerge_Call) RunAndReturn(run func(context.Context, string, string, string) *redis.StatusCmd) *MockCmdable_JSONMerge_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONNumIncrBy provides a mock function with given fields: ctx, key, path, value
+func (_m *MockCmdable) JSONNumIncrBy(ctx context.Context, key string, path string, value float64) *redis.JSONCmd {
+	ret := _m.Called(ctx, key, path, value)
+
+	var r0 *redis.JSONCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, float64) *redis.JSONCmd); ok {
+		r0 = rf(ctx, key, path, value)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.JSONCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONNumIncrBy_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONNumIncrBy'
+type MockCmdable_JSONNumIncrBy_Call struct {
+	*mock.Call
+}
+
+// JSONNumIncrBy is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value float64
+func (_e *MockCmdable_Expecter) JSONNumIncrBy(ctx interface{}, key interface{}, path interface{}, value interface{}) *MockCmdable_JSONNumIncrBy_Call {
+	return &MockCmdable_JSONNumIncrBy_Call{Call: _e.mock.On("JSONNumIncrBy", ctx, key, path, value)}
+}
+
+func (_c *MockCmdable_JSONNumIncrBy_Call) Run(run func(ctx context.Context, key string, path string, value float64)) *MockCmdable_JSONNumIncrBy_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(float64))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONNumIncrBy_Call) Return(_a0 *redis.JSONCmd) *MockCmdable_JSONNumIncrBy_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONNumIncrBy_Call) RunAndReturn(run func(context.Context, string, string, float64) *redis.JSONCmd) *MockCmdable_JSONNumIncrBy_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONObjKeys provides a mock function with given fields: ctx, key, path
+func (_m *MockCmdable) JSONObjKeys(ctx context.Context, key string, path string) *redis.SliceCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.SliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.SliceCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.SliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONObjKeys_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONObjKeys'
+type MockCmdable_JSONObjKeys_Call struct {
+	*mock.Call
+}
+
+// JSONObjKeys is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockCmdable_Expecter) JSONObjKeys(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONObjKeys_Call {
+	return &MockCmdable_JSONObjKeys_Call{Call: _e.mock.On("JSONObjKeys", ctx, key, path)}
+}
+
+func (_c *MockCmdable_JSONObjKeys_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONObjKeys_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONObjKeys_Call) Return(_a0 *redis.SliceCmd) *MockCmdable_JSONObjKeys_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONObjKeys_Call) RunAndReturn(run func(context.Context, string, string) *redis.SliceCmd) *MockCmdable_JSONObjKeys_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONObjLen provides a mock function with given fields: ctx, key, path
+func (_m *MockCmdable) JSONObjLen(ctx context.Context, key string, path string) *redis.IntPointerSliceCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.IntPointerSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntPointerSliceCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntPointerSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONObjLen_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONObjLen'
+type MockCmdable_JSONObjLen_Call struct {
+	*mock.Call
+}
+
+// JSONObjLen is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockCmdable_Expecter) JSONObjLen(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONObjLen_Call {
+	return &MockCmdable_JSONObjLen_Call{Call: _e.mock.On("JSONObjLen", ctx, key, path)}
+}
+
+func (_c *MockCmdable_JSONObjLen_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONObjLen_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONObjLen_Call) Return(_a0 *redis.IntPointerSliceCmd) *MockCmdable_JSONObjLen_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONObjLen_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntPointerSliceCmd) *MockCmdable_JSONObjLen_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONSet provides a mock function with given fields: ctx, key, path, value
+func (_m *MockCmdable) JSONSet(ctx context.Context, key string, path string, value interface{}) *redis.StatusCmd {
+	ret := _m.Called(ctx, key, path, value)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, interface{}) *redis.StatusCmd); ok {
+		r0 = rf(ctx, key, path, value)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONSet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONSet'
+type MockCmdable_JSONSet_Call struct {
+	*mock.Call
+}
+
+// JSONSet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value interface{}
+func (_e *MockCmdable_Expecter) JSONSet(ctx interface{}, key interface{}, path interface{}, value interface{}) *MockCmdable_JSONSet_Call {
+	return &MockCmdable_JSONSet_Call{Call: _e.mock.On("JSONSet", ctx, key, path, value)}
+}
+
+func (_c *MockCmdable_JSONSet_Call) Run(run func(ctx context.Context, key string, path string, value interface{})) *MockCmdable_JSONSet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(interface{}))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONSet_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_JSONSet_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONSet_Call) RunAndReturn(run func(context.Context, string, string, interface{}) *redis.StatusCmd) *MockCmdable_JSONSet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONSetMode provides a mock function with given fields: ctx, key, path, value, mode
+func (_m *MockCmdable) JSONSetMode(ctx context.Context, key string, path string, value interface{}, mode string) *redis.StatusCmd {
+	ret := _m.Called(ctx, key, path, value, mode)
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, interface{}, string) *redis.StatusCmd); ok {
+		r0 = rf(ctx, key, path, value, mode)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONSetMode_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONSetMode'
+type MockCmdable_JSONSetMode_Call struct {
+	*mock.Call
+}
+
+// JSONSetMode is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value interface{}
+//   - mode string
+func (_e *MockCmdable_Expecter) JSONSetMode(ctx interface{}, key interface{}, path interface{}, value interface{}, mode interface{}) *MockCmdable_JSONSetMode_Call {
+	return &MockCmdable_JSONSetMode_Call{Call: _e.mock.On("JSONSetMode", ctx, key, path, value, mode)}
+}
+
+func (_c *MockCmdable_JSONSetMode_Call) Run(run func(ctx context.Context, key string, path string, value interface{}, mode string)) *MockCmdable_JSONSetMode_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(interface{}), args[4].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONSetMode_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_JSONSetMode_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONSetMode_Call) RunAndReturn(run func(context.Context, string, string, interface{}, string) *redis.StatusCmd) *MockCmdable_JSONSetMode_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONStrAppend provides a mock function with given fields: ctx, key, path, value
+func (_m *MockCmdable) JSONStrAppend(ctx context.Context, key string, path string, value string) *redis.IntPointerSliceCmd {
+	ret := _m.Called(ctx, key, path, value)
+
+	var r0 *redis.IntPointerSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.IntPointerSliceCmd); ok {
+		r0 = rf(ctx, key, path, value)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntPointerSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONStrAppend_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONStrAppend'
+type MockCmdable_JSONStrAppend_Call struct {
+	*mock.Call
+}
+
+// JSONStrAppend is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value string
+func (_e *MockCmdable_Expecter) JSONStrAppend(ctx interface{}, key interface{}, path interface{}, value interface{}) *MockCmdable_JSONStrAppend_Call {
+	return &MockCmdable_JSONStrAppend_Call{Call: _e.mock.On("JSONStrAppend", ctx, key, path, value)}
+}
+
+func (_c *MockCmdable_JSONStrAppend_Call) Run(run func(ctx context.Context, key string, path string, value string)) *MockCmdable_JSONStrAppend_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONStrAppend_Call) Return(_a0 *redis.IntPointerSliceCmd) *MockCmdable_JSONStrAppend_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONStrAppend_Call) RunAndReturn(run func(context.Context, string, string, string) *redis.IntPointerSliceCmd) *MockCmdable_JSONStrAppend_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONStrLen provides a mock function with given fields: ctx, key, path
+func (_m *MockCmdable) JSONStrLen(ctx context.Context, key string, path string) *redis.IntPointerSliceCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.IntPointerSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntPointerSliceCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntPointerSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONStrLen_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONStrLen'
+type MockCmdable_JSONStrLen_Call struct {
+	*mock.Call
+}
+
+// JSONStrLen is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockCmdable_Expecter) JSONStrLen(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONStrLen_Call {
+	return &MockCmdable_JSONStrLen_Call{Call: _e.mock.On("JSONStrLen", ctx, key, path)}
+}
+
+func (_c *MockCmdable_JSONStrLen_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONStrLen_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONStrLen_Call) Return(_a0 *redis.IntPointerSliceCmd) *MockCmdable_JSONStrLen_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONStrLen_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntPointerSliceCmd) *MockCmdable_JSONStrLen_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONToggle provides a mock function with given fields: ctx, key, path
+func (_m *MockCmdable) JSONToggle(ctx context.Context, key string, path string) *redis.IntPointerSliceCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.IntPointerSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntPointerSliceCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntPointerSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONToggle_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONToggle'
+type MockCmdable_JSONToggle_Call struct {
+	*mock.Call
+}
+
+// JSONToggle is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockCmdable_Expecter) JSONToggle(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONToggle_Call {
+	return &MockCmdable_JSONToggle_Call{Call: _e.mock.On("JSONToggle", ctx, key, path)}
+}
+
+func (_c *MockCmdable_JSONToggle_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONToggle_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONToggle_Call) Return(_a0 *redis.IntPointerSliceCmd) *MockCmdable_JSONToggle_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONToggle_Call) RunAndReturn(run func(context.Context, string, string) *redis.IntPointerSliceCmd) *MockCmdable_JSONToggle_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// JSONType provides a mock function with given fields: ctx, key, path
+func (_m *MockCmdable) JSONType(ctx context.Context, key string, path string) *redis.JSONSliceCmd {
+	ret := _m.Called(ctx, key, path)
+
+	var r0 *redis.JSONSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.JSONSliceCmd); ok {
+		r0 = rf(ctx, key, path)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.JSONSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_JSONType_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'JSONType'
+type MockCmdable_JSONType_Call struct {
+	*mock.Call
+}
+
+// JSONType is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - path string
+func (_e *MockCmdable_Expecter) JSONType(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONType_Call {
+	return &MockCmdable_JSONType_Call{Call: _e.mock.On("JSONType", ctx, key, path)}
+}
+
+func (_c *MockCmdable_JSONType_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONType_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_JSONType_Call) Return(_a0 *redis.JSONSliceCmd) *MockCmdable_JSONType_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_JSONType_Call) RunAndReturn(run func(context.Context, string, string) *redis.JSONSliceCmd) *MockCmdable_JSONType_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -12673,6 +14515,53 @@ func (_c *MockCmdable_SetArgs_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_Se
 }
 
 func (_c *MockCmdable_SetArgs_Call) RunAndReturn(run func(context.Context, string, interface{}, redis.SetArgs) *redis.StatusCmd) *MockCmdable_SetArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SetBit provides a mock function with given fields: ctx, key, offset, value
+func (_m *MockCmdable) SetBit(ctx context.Context, key string, offset int64, value int) *redis.IntCmd {
+	ret := _m.Called(ctx, key, offset, value)
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int) *redis.IntCmd); ok {
+		r0 = rf(ctx, key, offset, value)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_SetBit_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetBit'
+type MockCmdable_SetBit_Call struct {
+	*mock.Call
+}
+
+// SetBit is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - offset int64
+//   - value int
+func (_e *MockCmdable_Expecter) SetBit(ctx interface{}, key interface{}, offset interface{}, value interface{}) *MockCmdable_SetBit_Call {
+	return &MockCmdable_SetBit_Call{Call: _e.mock.On("SetBit", ctx, key, offset, value)}
+}
+
+func (_c *MockCmdable_SetBit_Call) Run(run func(ctx context.Context, key string, offset int64, value int)) *MockCmdable_SetBit_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_SetBit_Call) Return(_a0 *redis.IntCmd) *MockCmdable_SetBit_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_SetBit_Call) RunAndReturn(run func(context.Context, string, int64, int) *redis.IntCmd) *MockCmdable_SetBit_Call {
 	_c.Call.Return(run)
 	return _c
 }
