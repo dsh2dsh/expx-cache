@@ -37,7 +37,7 @@ func TestMultiCache_Get_errorCanceled(t *testing.T) {
 
 	cancel()
 	missed, err := m.Get(ctx, []*Item{&item})
-	assert.ErrorIs(t, err, context.Canceled)
+	require.ErrorIs(t, err, context.Canceled)
 	assert.Nil(t, missed)
 }
 
@@ -62,7 +62,7 @@ func TestMultiCache_Get_errorWait(t *testing.T) {
 	var got bool
 	item.Value = &got
 	missed, err := m.Get(ctx, []*Item{&item})
-	assert.Error(t, err)
+	require.Error(t, err)
 	assert.Nil(t, missed)
 }
 

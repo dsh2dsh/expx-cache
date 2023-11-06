@@ -224,7 +224,7 @@ func (self *CacheTestSuite) TestOnce_withoutValueAndErr() {
 				return nil, errStub
 			},
 		})
-		self.ErrorIs(err, errStub)
+		self.Require().ErrorIs(err, errStub)
 	})
 	self.Equal(uint64(1), callCount)
 	self.assertStats()
@@ -262,13 +262,13 @@ func (self *CacheTestSuite) TestOnce_doesntCacheErr() {
 
 	perform(100, func(int) {
 		n, err := do(100 * time.Millisecond)
-		self.ErrorIs(err, errStub)
+		self.Require().ErrorIs(err, errStub)
 		self.Equal(0, n)
 	})
 
 	perform(100, func(int) {
 		n, err := do(0)
-		self.NoError(err)
+		self.Require().NoError(err)
 		self.Equal(42, n)
 	})
 

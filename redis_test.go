@@ -260,7 +260,7 @@ func TestRedisClient_errors(t *testing.T) {
 				return err //nolint:wrapcheck
 			},
 			assertErr: func(t *testing.T, err error) {
-				assert.ErrorContains(t, err, "unexpected type=")
+				require.ErrorContains(t, err, "unexpected type=")
 			},
 		},
 		{
@@ -335,7 +335,7 @@ func TestRedisClient_errors(t *testing.T) {
 					if tt.assertErr != nil {
 						tt.assertErr(t, err)
 					} else {
-						assert.ErrorIs(t, err, expectErr)
+						require.ErrorIs(t, err, expectErr)
 					}
 				})
 			}

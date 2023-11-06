@@ -199,7 +199,7 @@ func (self *CacheTestSuite) TestGetSet_many() {
 	}
 
 	ctx := context.Background()
-	self.NoError(self.cache.MSet(ctx, allItems))
+	self.Require().NoError(self.cache.MSet(ctx, allItems))
 
 	gotValues := make([]CacheableObject, maxItems)
 	for i, item := range allItems {
@@ -213,7 +213,7 @@ func (self *CacheTestSuite) TestGetSet_many() {
 	self.Equal(allValues, gotValues)
 	self.Nil(missed)
 
-	self.NoError(self.cache.Delete(ctx, allKeys...))
+	self.Require().NoError(self.cache.Delete(ctx, allKeys...))
 
 	clear(gotValues)
 	expectedValues := make([]CacheableObject, maxItems)
@@ -255,7 +255,7 @@ func (self *CacheTestSuite) TestMGetSet() {
 	}
 
 	ctx := context.Background()
-	self.NoError(self.cache.MGetSet(ctx, allItems))
+	self.Require().NoError(self.cache.MGetSet(ctx, allItems))
 	self.Equal(uint64(maxItems), callCount)
 
 	callCount = 0

@@ -6,8 +6,8 @@ import (
 	"testing"
 
 	"github.com/redis/go-redis/v9"
-	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
+	"github.com/stretchr/testify/require"
 
 	cacheMocks "github.com/dsh2dsh/expx-cache/internal/mocks/cache"
 	redisMocks "github.com/dsh2dsh/expx-cache/internal/mocks/redis"
@@ -25,12 +25,12 @@ func TestCache_Set_Marshall_error(t *testing.T) {
 		Key:   testKey,
 		Value: "foobar",
 	})
-	assert.ErrorIs(t, err, io.EOF)
+	require.ErrorIs(t, err, io.EOF)
 }
 
 func TestCache_Set_withoutCache(t *testing.T) {
 	cache := New()
-	assert.NoError(t, cache.Set(&Item{
+	require.NoError(t, cache.Set(&Item{
 		Ctx:   context.Background(),
 		Key:   testKey,
 		Value: "foobar",
@@ -49,5 +49,5 @@ func TestCache_Set_redisErr(t *testing.T) {
 		Key:   testKey,
 		Value: "foobar",
 	})
-	assert.ErrorIs(t, err, io.EOF)
+	require.ErrorIs(t, err, io.EOF)
 }

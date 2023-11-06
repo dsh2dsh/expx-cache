@@ -15,7 +15,7 @@ import (
 func TestGet_withoutCache(t *testing.T) {
 	cache := New()
 	hit, err := cache.Get(context.Background(), testKey, nil)
-	assert.NoError(t, err)
+	require.NoError(t, err)
 	assert.False(t, hit)
 }
 
@@ -25,7 +25,7 @@ func TestGet_redisErrAddsMiss(t *testing.T) {
 
 	cache := New().WithStats(true).WithRedisCache(redisClient)
 	hit, err := cache.Get(context.Background(), testKey, nil)
-	assert.ErrorIs(t, err, io.EOF)
+	require.ErrorIs(t, err, io.EOF)
 	assert.False(t, hit)
 	assert.Equal(t, uint64(1), cache.Stats().Misses)
 }
@@ -45,7 +45,7 @@ func TestGetSkippingLocalCache(t *testing.T) {
 func TestExists_withoutCache(t *testing.T) {
 	cache := New()
 	hit, err := cache.Exists(context.Background(), testKey)
-	assert.NoError(t, err)
+	require.NoError(t, err)
 	assert.False(t, hit)
 }
 
@@ -55,7 +55,7 @@ func TestExists_withError(t *testing.T) {
 
 	cache := New().WithRedisCache(redisCache)
 	hit, err := cache.Exists(context.Background(), testKey)
-	assert.ErrorIs(t, err, io.EOF)
+	require.ErrorIs(t, err, io.EOF)
 	assert.False(t, hit)
 }
 

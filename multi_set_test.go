@@ -9,6 +9,7 @@ import (
 	"github.com/redis/go-redis/v9"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
+	"github.com/stretchr/testify/require"
 
 	mocks "github.com/dsh2dsh/expx-cache/internal/mocks/redis"
 )
@@ -29,7 +30,7 @@ func TestMultiCache_Set_errorCanceled(t *testing.T) {
 	}
 	ctx, cancel := context.WithCancel(context.Background())
 	cancel()
-	assert.ErrorIs(t, m.Set(ctx, []*Item{&item}), context.Canceled)
+	require.ErrorIs(t, m.Set(ctx, []*Item{&item}), context.Canceled)
 }
 
 func TestMultiCache_Set_errorWait(t *testing.T) {
@@ -45,7 +46,7 @@ func TestMultiCache_Set_errorWait(t *testing.T) {
 			return nil, io.EOF
 		},
 	}
-	assert.ErrorIs(t, m.Set(context.Background(), []*Item{&item}), io.EOF)
+	require.ErrorIs(t, m.Set(context.Background(), []*Item{&item}), io.EOF)
 }
 
 func TestMultiCache_Set_errorRedis(t *testing.T) {
@@ -70,5 +71,5 @@ func TestMultiCache_Set_errorRedis(t *testing.T) {
 		Value: "foobar",
 		TTL:   ttl,
 	}
-	assert.ErrorIs(t, m.Set(ctx, []*Item{&item}), io.EOF)
+	require.ErrorIs(t, m.Set(ctx, []*Item{&item}), io.EOF)
 }

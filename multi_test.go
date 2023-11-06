@@ -71,5 +71,5 @@ func TestMultiCache_GetSet_errorGet(t *testing.T) {
 	require.NoError(t, cache.Set(&item))
 
 	cancel()
-	assert.ErrorIs(t, cache.MGetSet(ctx, []*Item{&item}), context.Canceled)
+	require.ErrorIs(t, cache.MGetSet(ctx, []*Item{&item}), context.Canceled)
 }

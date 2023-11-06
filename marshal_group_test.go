@@ -106,7 +106,7 @@ func TestMarshalGroup_errorAcquire(t *testing.T) {
 			item := tt.item
 			sig <- struct{}{}
 			tt.assert(t, g, &item)
-			assert.NoError(t, g.Wait())
+			require.NoError(t, g.Wait())
 		})
 	}
 }
@@ -181,7 +181,7 @@ func TestMarshalGroup_errorMarshal(t *testing.T) {
 
 			item := tt.item
 			tt.assert(t, g, &item)
-			assert.ErrorIs(t, g.Wait(), io.EOF)
+			require.ErrorIs(t, g.Wait(), io.EOF)
 		})
 	}
 }
@@ -205,7 +205,7 @@ func TestMarshalGroup_GoMarshal_marshalCancelled(t *testing.T) {
 	g.GoMarshal(&item, func(b []byte) {
 		atomic.AddUint64(&marshalCount, 1)
 	})
-	assert.NoError(t, g.Wait())
+	require.NoError(t, g.Wait())
 	assert.Equal(t, uint64(1), doCount)
 	assert.Equal(t, uint64(0), marshalCount)
 }

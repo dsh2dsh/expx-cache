@@ -93,7 +93,7 @@ func TestCache_Marshal_msgpackErr(t *testing.T) {
 	require.NotNil(t, cache)
 
 	b, err := cache.Marshal(&msgpackErrItem{"bar"})
-	assert.Error(t, err)
+	require.Error(t, err)
 	assert.Nil(t, b)
 }
 
@@ -101,8 +101,8 @@ func TestCache_Unmarshal_nil(t *testing.T) {
 	cache := New().WithTinyLFU(1000, time.Minute)
 	require.NotNil(t, cache)
 
-	assert.NoError(t, cache.Unmarshal([]byte{}, nil))
-	assert.NoError(t, cache.Unmarshal([]byte("foobar"), nil))
+	require.NoError(t, cache.Unmarshal([]byte{}, nil))
+	require.NoError(t, cache.Unmarshal([]byte("foobar"), nil))
 }
 
 func TestCache_Unmarshal_compression(t *testing.T) {
@@ -120,12 +120,12 @@ func TestCache_Unmarshal_compression(t *testing.T) {
 	assert.Equal(t, s2Compression, int(b[len(b)-1]))
 
 	gotItem := fooItem{}
-	assert.NoError(t, cache.Unmarshal(b, &gotItem))
+	require.NoError(t, cache.Unmarshal(b, &gotItem))
 	assert.Equal(t, item, gotItem)
 
-	assert.ErrorContains(t, cache.Unmarshal([]byte{0x0, 0xff}, &gotItem),
+	require.ErrorContains(t, cache.Unmarshal([]byte{0x0, 0xff}, &gotItem),
 		"unknown compression method")
 
-	assert.ErrorContains(t, cache.Unmarshal([]byte{0x1, s2Compression}, &gotItem),
+	require.ErrorContains(t, cache.Unmarshal([]byte{0x1, s2Compression}, &gotItem),
 		"unmarshal: decompress error")
 }
