@@ -561,12 +561,6 @@ func subTestsWithRedis(rdb redis.Cmdable) cacheSubTest {
 					return c.WithRedis(rdb)
 				},
 			},
-			{
-				name: "with RefreshRedis",
-				withRedis: func(c *Cache) *Cache {
-					return c.WithRedisCache(NewRefreshRedis(rdb, time.Minute))
-				},
-			},
 		}
 
 		for _, tt := range tests {

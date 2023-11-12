@@ -11,20 +11,17 @@ import (
 
 const defaultBatchSize = 1000
 
-type RedisGetter func(ctx context.Context, rdb redis.Cmdable, key string) ([]byte, error)
-
 func NewStdRedis(rdb redis.Cmdable) *StdRedis {
 	return &StdRedis{
 		rdb:       rdb,
-		getter:    defaultRedisGetter,
 		batchSize: defaultBatchSize,
 	}
 }
 
 type StdRedis struct {
-	rdb       redis.Cmdable
-	getter    RedisGetter
-	batchSize int
+	rdb        redis.Cmdable
+	batchSize  int
+	refreshTTL time.Duration
 }
 
 func (self *StdRedis) WithBatchSize(size int) *StdRedis {
@@ -32,24 +29,12 @@ func (self *StdRedis) WithBatchSize(size int) *StdRedis {
 	return self
 }
 
-// --------------------------------------------------
-
-var defaultRedisGetter RedisGetter = func(
-	ctx context.Context, rdb redis.Cmdable, key string,
-) ([]byte, error) {
-	b, err := rdb.Get(ctx, key).Bytes()
-	if err != nil && errors.Is(err, redis.Nil) {
-		return nil, nil
-	} else if err != nil {
-		return nil, fmt.Errorf("redis get %q: %w", key, err)
-	}
-	return b, nil
-}
-
-func (self *StdRedis) WithGetter(getter RedisGetter) *StdRedis {
-	self.getter = getter
+func (self *StdRedis) WithGetRefreshTTL(ttl time.Duration) *StdRedis {
+	self.refreshTTL = ttl
 	return self
 }
+
+// --------------------------------------------------
 
 func (self *StdRedis) Get(ctx context.Context, key string) ([]byte, error) {
 	b, err := self.getter(ctx, self.rdb, key)
@@ -59,6 +44,16 @@ func (self *StdRedis) Get(ctx context.Context, key string) ([]byte, error) {
 		return nil, fmt.Errorf("getter get: %w", err)
 	}
 	return b, nil
+}
+
+//nolint:wrapcheck // wrap it later
+func (self *StdRedis) getter(
+	ctx context.Context, rdb redis.Cmdable, key string,
+) ([]byte, error) {
+	if self.refreshTTL > 0 {
+		return rdb.GetEx(ctx, key, self.refreshTTL).Bytes()
+	}
+	return rdb.Get(ctx, key).Bytes()
 }
 
 func (self *StdRedis) Del(ctx context.Context, keys ...string) error {
@@ -161,22 +156,4 @@ func (self *StdRedis) msetPipeExec(ctx context.Context, pipe redis.Pipeliner) er
 		return fmt.Errorf("pipeline: %w", err)
 	}
 	return nil
-}
-
-// --------------------------------------------------
-
-func NewRefreshRedis(rdb redis.Cmdable, ttl time.Duration) *StdRedis {
-	return NewStdRedis(rdb).WithGetter(refreshRedisGet(ttl).Get)
-}
-
-type refreshRedisGet time.Duration
-
-func (self refreshRedisGet) Get(
-	ctx context.Context, rdb redis.Cmdable, key string,
-) ([]byte, error) {
-	if b, err := rdb.GetEx(ctx, key, time.Duration(self)).Bytes(); err == nil {
-		return b, nil
-	} else {
-		return nil, fmt.Errorf("redis getex %q: %w", key, err)
-	}
 }
