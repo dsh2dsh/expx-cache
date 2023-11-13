@@ -132,18 +132,20 @@ func (self *StdRedis) mgetPipeExec(
 // --------------------------------------------------
 
 func (self *StdRedis) MSet(
-	ctx context.Context,
-	iter func() (key string, b []byte, ttl time.Duration, ok bool),
+	ctx context.Context, maxItems int,
+	iter func(itemIdx int) (key string, b []byte, ttl time.Duration),
 ) error {
 	pipe := self.rdb.Pipeline()
-	for key, b, ttl, ok := iter(); ok; key, b, ttl, ok = iter() {
-		if len(b) > 0 && ttl > 0 {
-			if err := pipe.Set(ctx, key, b, ttl).Err(); err != nil {
-				return fmt.Errorf("pipelined set: %w", err)
-			} else if pipe.Len() == self.batchSize {
-				if err := self.msetPipeExec(ctx, pipe); err != nil {
-					return err
-				}
+	for i := 0; i < maxItems; i++ {
+		key, b, ttl := iter(i)
+		if len(b) == 0 || ttl <= 0 {
+			continue
+		}
+		if err := pipe.Set(ctx, key, b, ttl).Err(); err != nil {
+			return fmt.Errorf("pipelined set: %w", err)
+		} else if pipe.Len() == self.batchSize {
+			if err := self.msetPipeExec(ctx, pipe); err != nil {
+				return err
 			}
 		}
 	}

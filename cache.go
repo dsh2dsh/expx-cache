@@ -25,10 +25,8 @@ type RedisClient interface {
 	Set(ctx context.Context, key string, blob []byte, ttl time.Duration) error
 
 	MGet(ctx context.Context, keys []string) ([][]byte, error)
-	MSet(
-		ctx context.Context,
-		iter func() (key string, b []byte, ttl time.Duration, ok bool),
-	) error
+	MSet(ctx context.Context, maxItems int,
+		iter func(itemIdx int) (key string, b []byte, ttl time.Duration)) error
 }
 
 type (

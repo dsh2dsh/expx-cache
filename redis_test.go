@@ -213,8 +213,9 @@ func TestRedisClient_errors(t *testing.T) {
 				rdb.EXPECT().Pipeline().Return(pipe)
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
-				err := redisClient.MSet(ctx,
-					msetIter([]string{testKey}, [][]byte{[]byte("abc")}, ttls))
+				maxItems, iter := msetIter2([]string{testKey}, [][]byte{[]byte("abc")},
+					ttls)
+				err := redisClient.MSet(ctx, maxItems, iter)
 				return err //nolint:wrapcheck
 			},
 		},
@@ -238,9 +239,9 @@ func TestRedisClient_errors(t *testing.T) {
 				rdb.EXPECT().Pipeline().Return(pipe)
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
-				err := redisClient.MSet(ctx, msetIter(
-					[]string{testKey, "key2", "key3"},
-					[][]byte{[]byte("abc"), []byte("abc"), []byte("abc")}, ttls))
+				maxItems, iter := msetIter2([]string{testKey, "key2", "key3"},
+					[][]byte{[]byte("abc"), []byte("abc"), []byte("abc")}, ttls)
+				err := redisClient.MSet(ctx, maxItems, iter)
 				return err //nolint:wrapcheck
 			},
 		},
@@ -258,8 +259,9 @@ func TestRedisClient_errors(t *testing.T) {
 				rdb.EXPECT().Pipeline().Return(pipe)
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
-				err := redisClient.MSet(ctx,
-					msetIter([]string{testKey}, [][]byte{[]byte("abc")}, ttls))
+				maxItems, iter := msetIter2([]string{testKey}, [][]byte{[]byte("abc")},
+					ttls)
+				err := redisClient.MSet(ctx, maxItems, iter)
 				return err //nolint:wrapcheck
 			},
 		},
@@ -284,17 +286,13 @@ func TestRedisClient_errors(t *testing.T) {
 	}
 }
 
-func msetIter(
+func msetIter2(
 	keys []string, blobs [][]byte, times []time.Duration,
-) func() (key string, b []byte, ttl time.Duration, ok bool) {
-	i := 0
-	return func() (key string, b []byte, ttl time.Duration, ok bool) {
-		if i < len(keys) {
-			key, b, ttl, ok = keys[i], blobs[i], times[i], true
-			i++
+) (int, func(itemIdx int) (key string, b []byte, ttl time.Duration)) {
+	return len(keys),
+		func(itemIdx int) (key string, b []byte, ttl time.Duration) {
+			return keys[itemIdx], blobs[itemIdx], times[itemIdx]
 		}
-		return
-	}
 }
 
 func TestStdRedis_WithBatchSize(t *testing.T) {
@@ -352,8 +350,8 @@ func TestStdRedis_MGetSet_WithBatchSize(t *testing.T) {
 				)
 			},
 			cacheOp: func(t *testing.T, redisCache *StdRedis, nKeys int) {
-				iter := msetIter(keys[:nKeys], blobs[:nKeys], times[:nKeys])
-				require.NoError(t, redisCache.MSet(ctx, iter))
+				maxItems, iter := msetIter2(keys[:nKeys], blobs[:nKeys], times[:nKeys])
+				require.NoError(t, redisCache.MSet(ctx, maxItems, iter))
 			},
 		},
 	}
