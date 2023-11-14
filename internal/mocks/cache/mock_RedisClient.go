@@ -134,25 +134,25 @@ func (_c *MockRedisClient_Get_Call) RunAndReturn(run func(context.Context, strin
 	return _c
 }
 
-// MGet provides a mock function with given fields: ctx, keys
-func (_m *MockRedisClient) MGet(ctx context.Context, keys []string) ([][]byte, error) {
-	ret := _m.Called(ctx, keys)
+// MGet provides a mock function with given fields: ctx, maxItems, keyIter
+func (_m *MockRedisClient) MGet(ctx context.Context, maxItems int, keyIter func(int) string) (func() ([]byte, bool), error) {
+	ret := _m.Called(ctx, maxItems, keyIter)
 
-	var r0 [][]byte
+	var r0 func() ([]byte, bool)
 	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, []string) ([][]byte, error)); ok {
-		return rf(ctx, keys)
+	if rf, ok := ret.Get(0).(func(context.Context, int, func(int) string) (func() ([]byte, bool), error)); ok {
+		return rf(ctx, maxItems, keyIter)
 	}
-	if rf, ok := ret.Get(0).(func(context.Context, []string) [][]byte); ok {
-		r0 = rf(ctx, keys)
+	if rf, ok := ret.Get(0).(func(context.Context, int, func(int) string) func() ([]byte, bool)); ok {
+		r0 = rf(ctx, maxItems, keyIter)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([][]byte)
+			r0 = ret.Get(0).(func() ([]byte, bool))
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context, []string) error); ok {
-		r1 = rf(ctx, keys)
+	if rf, ok := ret.Get(1).(func(context.Context, int, func(int) string) error); ok {
+		r1 = rf(ctx, maxItems, keyIter)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -167,24 +167,25 @@ type MockRedisClient_MGet_Call struct {
 
 // MGet is a helper method to define mock.On call
 //   - ctx context.Context
-//   - keys []string
-func (_e *MockRedisClient_Expecter) MGet(ctx interface{}, keys interface{}) *MockRedisClient_MGet_Call {
-	return &MockRedisClient_MGet_Call{Call: _e.mock.On("MGet", ctx, keys)}
+//   - maxItems int
+//   - keyIter func(int) string
+func (_e *MockRedisClient_Expecter) MGet(ctx interface{}, maxItems interface{}, keyIter interface{}) *MockRedisClient_MGet_Call {
+	return &MockRedisClient_MGet_Call{Call: _e.mock.On("MGet", ctx, maxItems, keyIter)}
 }
 
-func (_c *MockRedisClient_MGet_Call) Run(run func(ctx context.Context, keys []string)) *MockRedisClient_MGet_Call {
+func (_c *MockRedisClient_MGet_Call) Run(run func(ctx context.Context, maxItems int, keyIter func(int) string)) *MockRedisClient_MGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].([]string))
+		run(args[0].(context.Context), args[1].(int), args[2].(func(int) string))
 	})
 	return _c
 }
 
-func (_c *MockRedisClient_MGet_Call) Return(_a0 [][]byte, _a1 error) *MockRedisClient_MGet_Call {
+func (_c *MockRedisClient_MGet_Call) Return(_a0 func() ([]byte, bool), _a1 error) *MockRedisClient_MGet_Call {
 	_c.Call.Return(_a0, _a1)
 	return _c
 }
 
-func (_c *MockRedisClient_MGet_Call) RunAndReturn(run func(context.Context, []string) ([][]byte, error)) *MockRedisClient_MGet_Call {
+func (_c *MockRedisClient_MGet_Call) RunAndReturn(run func(context.Context, int, func(int) string) (func() ([]byte, bool), error)) *MockRedisClient_MGet_Call {
 	_c.Call.Return(run)
 	return _c
 }

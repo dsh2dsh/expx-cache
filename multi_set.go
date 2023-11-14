@@ -72,7 +72,7 @@ func (self *MultiCache) localSet(items []blobItem) {
 
 func (self *MultiCache) redisSet(ctx context.Context, items []blobItem) error {
 	err := self.cache.redis.MSet(ctx, len(items),
-		func(itemIdx int) (key string, b []byte, ttl time.Duration) {
+		func(itemIdx int) (string, []byte, time.Duration) {
 			item := &items[itemIdx]
 			return item.Key, item.Value, self.cache.ItemTTL(item.Item)
 		})

@@ -79,10 +79,14 @@ func (self *StdRedis) Set(
 
 // --------------------------------------------------
 
-func (self *StdRedis) MGet(ctx context.Context, keys []string) ([][]byte, error) {
+func (self *StdRedis) MGet(ctx context.Context, maxItems int,
+	keyIter func(itemIdx int) (key string),
+) (func() ([]byte, bool), error) {
 	pipe := self.rdb.Pipeline()
-	blobs := make([][]byte, 0, len(keys))
-	for _, key := range keys {
+	blobs := make([][]byte, 0, maxItems)
+
+	for i := 0; i < maxItems; i++ {
+		key := keyIter(i)
 		_, err := self.getter(ctx, pipe, key)
 		if err != nil {
 			return nil, fmt.Errorf("getter get %q: %w", key, err)
@@ -99,7 +103,7 @@ func (self *StdRedis) MGet(ctx context.Context, keys []string) ([][]byte, error)
 		return nil, err
 	}
 
-	return blobs, nil
+	return blobsIter(blobs), nil
 }
 
 func (self *StdRedis) mgetPipeExec(
@@ -127,6 +131,17 @@ func (self *StdRedis) mgetPipeExec(
 	}
 
 	return blobs, nil
+}
+
+func blobsIter(blobs [][]byte) func() ([]byte, bool) {
+	var nextItem int
+	return func() (b []byte, ok bool) {
+		if nextItem < len(blobs) {
+			b, ok = blobs[nextItem], true
+			nextItem++
+		}
+		return
+	}
 }
 
 // --------------------------------------------------

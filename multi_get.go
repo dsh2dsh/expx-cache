@@ -72,25 +72,26 @@ func (self *MultiCache) redisGet(
 		return hit, items, nil
 	}
 
-	keys := make([]string, len(items))
-	for i := range items {
-		keys[i] = items[i].Key
-	}
-	blobs, err := self.cache.redis.MGet(ctx, keys)
+	bytesIter, err := self.cache.redis.MGet(ctx, len(items),
+		func(itemIdx int) string {
+			return items[itemIdx].Key
+		})
 	if err != nil {
 		return nil, nil, fmt.Errorf("cache: mget: %w", err)
 	}
 
 	miss := items[:0]
-	for i := range items {
-		if len(blobs[i]) == 0 {
-			miss = append(miss, items[i])
+	var nextItem int
+	for b, ok := bytesIter(); ok; b, ok = bytesIter() {
+		if len(b) == 0 {
+			miss = append(miss, items[nextItem])
 			self.cache.addMiss()
 		} else {
-			items[i].Value = blobs[i]
-			hit = append(hit, items[i])
+			items[nextItem].Value = b
+			hit = append(hit, items[nextItem])
 			self.cache.addHit()
 		}
+		nextItem++
 	}
 
 	return hit, miss, nil
