@@ -544,3 +544,34 @@ func bytesFromIter(iter func() ([]byte, bool)) []byte {
 	b, _ := iter()
 	return b
 }
+
+func TestStdRedis_MSet_skipEmptyItems(t *testing.T) {
+	ctx := context.Background()
+	foobar := []byte("foobar")
+	ttl := time.Minute
+
+	pipe := mocks.NewMockPipeliner(t)
+	cmds := make([]redis.Cmder, 0, 1)
+	pipe.EXPECT().Set(ctx, testKey, foobar, ttl).RunAndReturn(
+		func(context.Context, string, any, time.Duration) *redis.StatusCmd {
+			cmd := redis.NewStatusResult("", nil)
+			cmds = append(cmds, cmd)
+			return cmd
+		})
+	pipe.EXPECT().Len().Return(len(cmds))
+	pipe.EXPECT().Exec(ctx).RunAndReturn(
+		func(ctx context.Context) ([]redis.Cmder, error) {
+			return cmds, nil
+		})
+
+	rdb := mocks.NewMockCmdable(t)
+	rdb.EXPECT().Pipeline().Return(pipe)
+
+	redisCache := NewStdRedis(rdb)
+	require.NotNil(t, redisCache)
+	require.NoError(t, redisCache.MSet(
+		msetIter3(ctx,
+			[]string{testKey, testKey, testKey, testKey},
+			[][]byte{{}, foobar, foobar, foobar},
+			[]time.Duration{ttl, 0, -1, ttl})))
+}
