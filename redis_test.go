@@ -41,7 +41,7 @@ func TestNewStdRedis(t *testing.T) {
 	sr := NewStdRedis(nil)
 	require.IsType(t, new(StdRedis), sr)
 	assert.Nil(t, sr.rdb)
-	assert.Implements(t, (*RedisClient)(nil), new(StdRedis))
+	assert.Implements(t, (*RedisCache)(nil), new(StdRedis))
 }
 
 //nolint:wrapcheck
@@ -49,11 +49,11 @@ func TestRedisClient_errors(t *testing.T) {
 	batchSize := 3
 	clients := []struct {
 		name       string
-		makeClient func(rdb redis.Cmdable) RedisClient
+		makeClient func(rdb redis.Cmdable) RedisCache
 	}{
 		{
 			name: "StdRedis",
-			makeClient: func(rdb redis.Cmdable) RedisClient {
+			makeClient: func(rdb redis.Cmdable) RedisCache {
 				return NewStdRedis(rdb).WithBatchSize(batchSize)
 			},
 		},
@@ -68,7 +68,7 @@ func TestRedisClient_errors(t *testing.T) {
 	tests := []struct {
 		name      string
 		configure func(t *testing.T, rdb *mocks.MockCmdable)
-		do        func(t *testing.T, redisClient RedisClient) error
+		do        func(t *testing.T, redisClient RedisCache) error
 		assertErr func(t *testing.T, err error)
 	}{
 		{
@@ -77,7 +77,7 @@ func TestRedisClient_errors(t *testing.T) {
 				rdb.EXPECT().Del(ctx, []string{testKey}).
 					Return(redis.NewIntResult(0, wantErr))
 			},
-			do: func(t *testing.T, redisClient RedisClient) error {
+			do: func(t *testing.T, redisClient RedisCache) error {
 				return redisClient.Del(ctx, testKey)
 			},
 		},
@@ -89,7 +89,7 @@ func TestRedisClient_errors(t *testing.T) {
 					redis.NewStringResult("", wantErr))
 				rdb.EXPECT().Pipeline().Return(pipe)
 			},
-			do: func(t *testing.T, redisClient RedisClient) error {
+			do: func(t *testing.T, redisClient RedisCache) error {
 				_, err := redisClient.MGet(
 					mgetIter3(ctx, []string{testKey, "key2", "key3"}))
 				return err
@@ -115,7 +115,7 @@ func TestRedisClient_errors(t *testing.T) {
 						return nil, wantErr
 					})
 			},
-			do: func(t *testing.T, redisClient RedisClient) error {
+			do: func(t *testing.T, redisClient RedisCache) error {
 				_, err := redisClient.MGet(
 					mgetIter3(ctx, []string{testKey, "key2", "key3"}))
 				return err
@@ -136,7 +136,7 @@ func TestRedisClient_errors(t *testing.T) {
 						return nil, wantErr
 					})
 			},
-			do: func(t *testing.T, redisClient RedisClient) error {
+			do: func(t *testing.T, redisClient RedisCache) error {
 				_, err := redisClient.MGet(mgetIter3(ctx, []string{testKey, "key2"}))
 				return err
 			},
@@ -157,7 +157,7 @@ func TestRedisClient_errors(t *testing.T) {
 						return cmds, nil
 					})
 			},
-			do: func(t *testing.T, redisClient RedisClient) error {
+			do: func(t *testing.T, redisClient RedisCache) error {
 				_, err := redisClient.MGet(mgetIter3(ctx, []string{testKey, "key2"}))
 				return err
 			},
@@ -178,7 +178,7 @@ func TestRedisClient_errors(t *testing.T) {
 						return cmds, nil
 					})
 			},
-			do: func(t *testing.T, redisClient RedisClient) error {
+			do: func(t *testing.T, redisClient RedisCache) error {
 				_, err := redisClient.MGet(mgetIter3(ctx, []string{testKey, "key2"}))
 				return err
 			},
@@ -199,7 +199,7 @@ func TestRedisClient_errors(t *testing.T) {
 						return cmds, nil
 					})
 			},
-			do: func(t *testing.T, redisClient RedisClient) error {
+			do: func(t *testing.T, redisClient RedisCache) error {
 				_, err := redisClient.MGet(mgetIter3(ctx, []string{testKey, "key2"}))
 				return err
 			},
@@ -215,7 +215,7 @@ func TestRedisClient_errors(t *testing.T) {
 					redis.NewStatusResult("", wantErr))
 				rdb.EXPECT().Pipeline().Return(pipe)
 			},
-			do: func(t *testing.T, redisClient RedisClient) error {
+			do: func(t *testing.T, redisClient RedisCache) error {
 				err := redisClient.MSet(
 					msetIter3(ctx, []string{testKey}, [][]byte{[]byte("abc")}, ttls))
 				return err
@@ -240,7 +240,7 @@ func TestRedisClient_errors(t *testing.T) {
 				pipe.EXPECT().Exec(ctx).Return(nil, wantErr)
 				rdb.EXPECT().Pipeline().Return(pipe)
 			},
-			do: func(t *testing.T, redisClient RedisClient) error {
+			do: func(t *testing.T, redisClient RedisCache) error {
 				err := redisClient.MSet(
 					msetIter3(ctx, []string{testKey, "key2", "key3"},
 						[][]byte{[]byte("abc"), []byte("abc"), []byte("abc")}, ttls))
@@ -260,7 +260,7 @@ func TestRedisClient_errors(t *testing.T) {
 					})
 				rdb.EXPECT().Pipeline().Return(pipe)
 			},
-			do: func(t *testing.T, redisClient RedisClient) error {
+			do: func(t *testing.T, redisClient RedisCache) error {
 				err := redisClient.MSet(
 					msetIter3(ctx, []string{testKey}, [][]byte{[]byte("abc")}, ttls))
 				return err

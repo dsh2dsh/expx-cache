@@ -19,7 +19,7 @@ type LocalCache interface {
 	Del(key string)
 }
 
-type RedisClient interface {
+type RedisCache interface {
 	Del(ctx context.Context, keys ...string) error
 	MGet(ctx context.Context, maxItems int,
 		keyIter func(itemIdx int) string) (func() ([]byte, bool), error)
@@ -47,7 +47,7 @@ func New() *Cache {
 }
 
 type Cache struct {
-	redis      RedisClient
+	redis      RedisCache
 	localCache LocalCache
 
 	defaultTTL time.Duration
@@ -88,7 +88,7 @@ func (self *Cache) WithRedis(rdb redis.Cmdable) *Cache {
 	return self
 }
 
-func (self *Cache) WithRedisCache(client RedisClient) *Cache {
+func (self *Cache) WithRedisCache(client RedisCache) *Cache {
 	self.redis = client
 	return self
 }

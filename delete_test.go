@@ -97,7 +97,7 @@ func TestDeleteFromLocalCache_noCache(t *testing.T) {
 }
 
 func TestDelete_errFromRedis(t *testing.T) {
-	redisClient := mocks.NewMockRedisClient(t)
+	redisClient := mocks.NewMockRedisCache(t)
 	redisClient.EXPECT().Del(mock.Anything, mock.Anything).Return(io.EOF)
 	cache := New().WithRedisCache(redisClient)
 	require.Error(t, cache.Delete(context.Background(), testKey))
@@ -129,7 +129,7 @@ func TestCache_Delete_withKeyWrapper(t *testing.T) {
 		{
 			name: "WithRedisCache",
 			expecter: func(t *testing.T, c *Cache) *Cache {
-				redisCache := mocks.NewMockRedisClient(t)
+				redisCache := mocks.NewMockRedisCache(t)
 				redisCache.EXPECT().Del(ctx, wantKey).Return(nil)
 				return c.WithRedisCache(redisCache)
 			},
@@ -140,7 +140,7 @@ func TestCache_Delete_withKeyWrapper(t *testing.T) {
 				localCache := mocks.NewMockLocalCache(t)
 				localCache.EXPECT().Del(wantKey)
 
-				redisCache := mocks.NewMockRedisClient(t)
+				redisCache := mocks.NewMockRedisCache(t)
 				redisCache.EXPECT().Del(ctx, mock.Anything).RunAndReturn(
 					func(ctx context.Context, keys ...string) error {
 						assert.Equal(t, []string{wantKey}, keys)

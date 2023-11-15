@@ -6,7 +6,7 @@ packages:
     interfaces:
       LFU:
       LocalCache:
-      RedisClient:
+      RedisCache:
   github.com/redis/go-redis/v9:
     interfaces:
       Cmdable:

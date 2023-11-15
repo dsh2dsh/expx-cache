@@ -23,7 +23,7 @@ func TestGet_redisErrAddsMiss(t *testing.T) {
 	ctx := context.Background()
 	wantErr := errors.New("test error")
 
-	redisCache := mocks.NewMockRedisClient(t)
+	redisCache := mocks.NewMockRedisCache(t)
 	redisCache.EXPECT().MGet(ctx, 1, mock.Anything).Return(nil, wantErr)
 
 	cache := New().WithStats(true).WithRedisCache(redisCache)
@@ -37,7 +37,7 @@ func TestGetSkippingLocalCache(t *testing.T) {
 	ctx := context.Background()
 
 	localCache := mocks.NewMockLocalCache(t)
-	redisCache := mocks.NewMockRedisClient(t)
+	redisCache := mocks.NewMockRedisCache(t)
 	redisCache.EXPECT().MGet(ctx, 1, mock.Anything).RunAndReturn(
 		func(
 			ctx context.Context, maxItems int, keyIter func(itemIdx int) (key string),
@@ -61,7 +61,7 @@ func TestExists_withError(t *testing.T) {
 	ctx := context.Background()
 	wantErr := errors.New("test error")
 
-	redisCache := mocks.NewMockRedisClient(t)
+	redisCache := mocks.NewMockRedisCache(t)
 	redisCache.EXPECT().MGet(ctx, 1, mock.Anything).Return(nil, wantErr)
 
 	cache := New().WithRedisCache(redisCache)

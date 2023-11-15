@@ -94,7 +94,7 @@ func TestMultiCache_Get_errorRedis(t *testing.T) {
 
 func TestMultiCache_Get_localSet(t *testing.T) {
 	localCache := cacheMocks.NewMockLocalCache(t)
-	redisCache := cacheMocks.NewMockRedisClient(t)
+	redisCache := cacheMocks.NewMockRedisCache(t)
 
 	cache := New().WithLocalCache(localCache).WithRedisCache(redisCache)
 	assert.NotNil(t, cache)
