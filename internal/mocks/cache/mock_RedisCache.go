@@ -79,8 +79,8 @@ func (_c *MockRedisCache_Del_Call) RunAndReturn(run func(context.Context, ...str
 	return _c
 }
 
-// MGet provides a mock function with given fields: ctx, maxItems, keyIter
-func (_m *MockRedisCache) MGet(ctx context.Context, maxItems int, keyIter func(int) string) (func() ([]byte, bool), error) {
+// Get provides a mock function with given fields: ctx, maxItems, keyIter
+func (_m *MockRedisCache) Get(ctx context.Context, maxItems int, keyIter func(int) string) (func() ([]byte, bool), error) {
 	ret := _m.Called(ctx, maxItems, keyIter)
 
 	var r0 func() ([]byte, bool)
@@ -105,32 +105,32 @@ func (_m *MockRedisCache) MGet(ctx context.Context, maxItems int, keyIter func(i
 	return r0, r1
 }
 
-// MockRedisCache_MGet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'MGet'
-type MockRedisCache_MGet_Call struct {
+// MockRedisCache_Get_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Get'
+type MockRedisCache_Get_Call struct {
 	*mock.Call
 }
 
-// MGet is a helper method to define mock.On call
+// Get is a helper method to define mock.On call
 //   - ctx context.Context
 //   - maxItems int
 //   - keyIter func(int) string
-func (_e *MockRedisCache_Expecter) MGet(ctx interface{}, maxItems interface{}, keyIter interface{}) *MockRedisCache_MGet_Call {
-	return &MockRedisCache_MGet_Call{Call: _e.mock.On("MGet", ctx, maxItems, keyIter)}
+func (_e *MockRedisCache_Expecter) Get(ctx interface{}, maxItems interface{}, keyIter interface{}) *MockRedisCache_Get_Call {
+	return &MockRedisCache_Get_Call{Call: _e.mock.On("Get", ctx, maxItems, keyIter)}
 }
 
-func (_c *MockRedisCache_MGet_Call) Run(run func(ctx context.Context, maxItems int, keyIter func(int) string)) *MockRedisCache_MGet_Call {
+func (_c *MockRedisCache_Get_Call) Run(run func(ctx context.Context, maxItems int, keyIter func(int) string)) *MockRedisCache_Get_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		run(args[0].(context.Context), args[1].(int), args[2].(func(int) string))
 	})
 	return _c
 }
 
-func (_c *MockRedisCache_MGet_Call) Return(_a0 func() ([]byte, bool), _a1 error) *MockRedisCache_MGet_Call {
+func (_c *MockRedisCache_Get_Call) Return(_a0 func() ([]byte, bool), _a1 error) *MockRedisCache_Get_Call {
 	_c.Call.Return(_a0, _a1)
 	return _c
 }
 
-func (_c *MockRedisCache_MGet_Call) RunAndReturn(run func(context.Context, int, func(int) string) (func() ([]byte, bool), error)) *MockRedisCache_MGet_Call {
+func (_c *MockRedisCache_Get_Call) RunAndReturn(run func(context.Context, int, func(int) string) (func() ([]byte, bool), error)) *MockRedisCache_Get_Call {
 	_c.Call.Return(run)
 	return _c
 }

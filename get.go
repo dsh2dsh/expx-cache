@@ -54,7 +54,7 @@ func (self *Cache) getBytes(
 		return nil, nil
 	}
 
-	bytesIter, err := self.redis.MGet(ctx, 1, func(int) string { return key })
+	bytesIter, err := self.redis.Get(ctx, 1, func(int) string { return key })
 	if err != nil {
 		self.addMiss()
 		return nil, fmt.Errorf("get %q from redis: %w", key, err)

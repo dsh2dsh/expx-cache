@@ -48,7 +48,7 @@ func (self *StdRedis) Del(ctx context.Context, keys ...string) error {
 
 // --------------------------------------------------
 
-func (self *StdRedis) MGet(ctx context.Context, maxItems int,
+func (self *StdRedis) Get(ctx context.Context, maxItems int,
 	keyIter func(itemIdx int) (key string),
 ) (func() ([]byte, bool), error) {
 	pipe := self.rdb.Pipeline()

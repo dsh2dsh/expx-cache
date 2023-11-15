@@ -82,7 +82,7 @@ func TestRedisClient_errors(t *testing.T) {
 			},
 		},
 		{
-			name: "MGet error from getter",
+			name: "Get error from getter",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
 				pipe := mocks.NewMockPipeliner(t)
 				pipe.EXPECT().Get(ctx, testKey).Return(
@@ -90,13 +90,13 @@ func TestRedisClient_errors(t *testing.T) {
 				rdb.EXPECT().Pipeline().Return(pipe)
 			},
 			do: func(t *testing.T, redisClient RedisCache) error {
-				_, err := redisClient.MGet(
+				_, err := redisClient.Get(
 					mgetIter3(ctx, []string{testKey, "key2", "key3"}))
 				return err
 			},
 		},
 		{
-			name: "MGet error from batchSize",
+			name: "Get error from batchSize",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
 				pipe := mocks.NewMockPipeliner(t)
 				rdb.EXPECT().Pipeline().Return(pipe)
@@ -116,13 +116,13 @@ func TestRedisClient_errors(t *testing.T) {
 					})
 			},
 			do: func(t *testing.T, redisClient RedisCache) error {
-				_, err := redisClient.MGet(
+				_, err := redisClient.Get(
 					mgetIter3(ctx, []string{testKey, "key2", "key3"}))
 				return err
 			},
 		},
 		{
-			name: "MGet error from Exec",
+			name: "Get error from Exec",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
 				pipe := mocks.NewMockPipeliner(t)
 				rdb.EXPECT().Pipeline().Return(pipe)
@@ -137,12 +137,12 @@ func TestRedisClient_errors(t *testing.T) {
 					})
 			},
 			do: func(t *testing.T, redisClient RedisCache) error {
-				_, err := redisClient.MGet(mgetIter3(ctx, []string{testKey, "key2"}))
+				_, err := redisClient.Get(mgetIter3(ctx, []string{testKey, "key2"}))
 				return err
 			},
 		},
 		{
-			name: "MGet error from StringCmd",
+			name: "Get error from StringCmd",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
 				pipe := mocks.NewMockPipeliner(t)
 				rdb.EXPECT().Pipeline().Return(pipe)
@@ -158,12 +158,12 @@ func TestRedisClient_errors(t *testing.T) {
 					})
 			},
 			do: func(t *testing.T, redisClient RedisCache) error {
-				_, err := redisClient.MGet(mgetIter3(ctx, []string{testKey, "key2"}))
+				_, err := redisClient.Get(mgetIter3(ctx, []string{testKey, "key2"}))
 				return err
 			},
 		},
 		{
-			name: "MGet error from BoolCmd",
+			name: "Get error from BoolCmd",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
 				pipe := mocks.NewMockPipeliner(t)
 				rdb.EXPECT().Pipeline().Return(pipe)
@@ -179,12 +179,12 @@ func TestRedisClient_errors(t *testing.T) {
 					})
 			},
 			do: func(t *testing.T, redisClient RedisCache) error {
-				_, err := redisClient.MGet(mgetIter3(ctx, []string{testKey, "key2"}))
+				_, err := redisClient.Get(mgetIter3(ctx, []string{testKey, "key2"}))
 				return err
 			},
 		},
 		{
-			name: "MGet unexpected type",
+			name: "Get unexpected type",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
 				pipe := mocks.NewMockPipeliner(t)
 				rdb.EXPECT().Pipeline().Return(pipe)
@@ -200,7 +200,7 @@ func TestRedisClient_errors(t *testing.T) {
 					})
 			},
 			do: func(t *testing.T, redisClient RedisCache) error {
-				_, err := redisClient.MGet(mgetIter3(ctx, []string{testKey, "key2"}))
+				_, err := redisClient.Get(mgetIter3(ctx, []string{testKey, "key2"}))
 				return err
 			},
 			assertErr: func(t *testing.T, err error) {
@@ -316,7 +316,7 @@ func TestStdRedis_MGetSet_WithBatchSize(t *testing.T) {
 		cacheOp func(t *testing.T, redisCache *StdRedis, nKeys int)
 	}{
 		{
-			name: "MGet",
+			name: "Get",
 			pipeOp: func(pipe *mocks.MockPipeliner, fn func()) {
 				pipe.EXPECT().Get(ctx, mock.Anything).RunAndReturn(
 					func(ctx context.Context, key string) *redis.StringCmd {
@@ -326,7 +326,7 @@ func TestStdRedis_MGetSet_WithBatchSize(t *testing.T) {
 			},
 			cacheOp: func(t *testing.T, redisCache *StdRedis, nKeys int) {
 				bytesIter := valueNoError[func() ([]byte, bool)](t)(
-					redisCache.MGet(mgetIter3(ctx, keys[:nKeys])))
+					redisCache.Get(mgetIter3(ctx, keys[:nKeys])))
 				for b, ok := bytesIter(); ok; b, ok = bytesIter() {
 					assert.Equal(t, []byte{}, b)
 				}
@@ -466,7 +466,7 @@ func TestStdRedis_respectRefreshTTL(t *testing.T) {
 		expect func(redisCache *StdRedis, rdb *mocks.MockCmdable) ([]byte, error)
 	}{
 		{
-			name: "MGet without refreshTTL",
+			name: "Get without refreshTTL",
 			expect: func(redisCache *StdRedis, rdb *mocks.MockCmdable) ([]byte, error) {
 				pipe := mocks.NewMockPipeliner(t)
 				pipe.EXPECT().Len().Return(1)
@@ -476,12 +476,12 @@ func TestStdRedis_respectRefreshTTL(t *testing.T) {
 					})
 				pipe.EXPECT().Get(ctx, testKey).Return(strResult)
 				rdb.EXPECT().Pipeline().Return(pipe)
-				bytesIter, err := redisCache.MGet(mgetIter3(ctx, []string{testKey}))
+				bytesIter, err := redisCache.Get(mgetIter3(ctx, []string{testKey}))
 				return bytesFromIter(bytesIter), err
 			},
 		},
 		{
-			name: "MGet with refreshTTL",
+			name: "Get with refreshTTL",
 			expect: func(redisCache *StdRedis, rdb *mocks.MockCmdable) ([]byte, error) {
 				redisCache.WithGetRefreshTTL(ttl)
 				pipe := mocks.NewMockPipeliner(t)
@@ -492,7 +492,7 @@ func TestStdRedis_respectRefreshTTL(t *testing.T) {
 					})
 				pipe.EXPECT().GetEx(ctx, testKey, ttl).Return(strResult)
 				rdb.EXPECT().Pipeline().Return(pipe)
-				bytesIter, err := redisCache.MGet(mgetIter3(ctx, []string{testKey}))
+				bytesIter, err := redisCache.Get(mgetIter3(ctx, []string{testKey}))
 				return bytesFromIter(bytesIter), err
 			},
 		},

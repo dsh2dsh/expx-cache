@@ -72,7 +72,7 @@ func (self *MultiCache) redisGet(
 		return hit, items, nil
 	}
 
-	bytesIter, err := self.cache.redis.MGet(ctx, len(items),
+	bytesIter, err := self.cache.redis.Get(ctx, len(items),
 		func(itemIdx int) string {
 			return items[itemIdx].Key
 		})

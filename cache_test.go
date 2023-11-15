@@ -374,7 +374,7 @@ func keyExists(t *testing.T, c *Cache, key string) bool {
 
 	if c.redis != nil {
 		bytesIter := valueNoError[func() ([]byte, bool)](t)(
-			c.redis.MGet(mgetIter3(context.Background(), []string{key})))
+			c.redis.Get(mgetIter3(context.Background(), []string{key})))
 		b, _ := bytesIter()
 		if b == nil {
 			return false
@@ -393,7 +393,7 @@ func keyNotExists(t *testing.T, c *Cache, key string) bool {
 
 	if c.redis != nil {
 		bytesIter := valueNoError[func() ([]byte, bool)](t)(
-			c.redis.MGet(mgetIter3(context.Background(), []string{key})))
+			c.redis.Get(mgetIter3(context.Background(), []string{key})))
 		b, _ := bytesIter()
 		if b != nil {
 			return false

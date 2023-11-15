@@ -125,7 +125,7 @@ func TestMultiCache_Get_localSet(t *testing.T) {
 
 	item.SkipLocalCache = false
 	localCache.EXPECT().Get(testKey).Return(nil)
-	redisCache.EXPECT().MGet(ctx, 1, mock.Anything).RunAndReturn(
+	redisCache.EXPECT().Get(ctx, 1, mock.Anything).RunAndReturn(
 		func(
 			ctx context.Context, maxItems int, keyIter func(int) string,
 		) (func() ([]byte, bool), error) {

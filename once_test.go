@@ -324,7 +324,7 @@ func TestOnce_errDelete(t *testing.T) {
 	wantErr := errors.New("test error")
 
 	redisCache := mocks.NewMockRedisCache(t)
-	redisCache.EXPECT().MGet(ctx, 1, mock.Anything).Return(
+	redisCache.EXPECT().Get(ctx, 1, mock.Anything).Return(
 		makeBytesIter([][]byte{{0x1}}), nil)
 	redisCache.EXPECT().Del(mock.Anything, mock.Anything).Return(wantErr)
 
