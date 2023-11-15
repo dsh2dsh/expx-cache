@@ -43,16 +43,13 @@ func TestCache_Set_redisErr(t *testing.T) {
 	ctx := context.Background()
 	wantErr := errors.New("test error")
 
-	pipe := redisMocks.NewMockPipeliner(t)
-	pipe.EXPECT().Set(ctx, testKey, mock.Anything, mock.Anything).RunAndReturn(
+	rdb := redisMocks.NewMockCmdable(t)
+	rdb.EXPECT().Set(ctx, testKey, mock.Anything, mock.Anything).RunAndReturn(
 		func(context.Context, string, any, time.Duration) *redis.StatusCmd {
 			return redis.NewStatusResult("", wantErr)
 		})
 
-	rdb := redisMocks.NewMockCmdable(t)
-	rdb.EXPECT().Pipeline().Return(pipe)
 	cache := New().WithRedis(rdb)
-
 	err := cache.Set(&Item{
 		Ctx:   ctx,
 		Key:   testKey,

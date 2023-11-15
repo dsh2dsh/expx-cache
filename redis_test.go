@@ -45,20 +45,7 @@ func TestNewStdRedis(t *testing.T) {
 }
 
 //nolint:wrapcheck
-func TestRedisClient_errors(t *testing.T) {
-	batchSize := 3
-	clients := []struct {
-		name       string
-		makeClient func(rdb redis.Cmdable) RedisCache
-	}{
-		{
-			name: "StdRedis",
-			makeClient: func(rdb redis.Cmdable) RedisCache {
-				return NewStdRedis(rdb).WithBatchSize(batchSize)
-			},
-		},
-	}
-
+func TestStdRedis_errors(t *testing.T) {
 	ctx := context.Background()
 	ttl := time.Minute
 	ttls := []time.Duration{ttl, ttl, ttl}
@@ -208,16 +195,32 @@ func TestRedisClient_errors(t *testing.T) {
 			},
 		},
 		{
-			name: "Set error from SET",
+			name: "Set error from SET 1",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
-				pipe := mocks.NewMockPipeliner(t)
-				pipe.EXPECT().Set(ctx, testKey, mock.Anything, ttl).Return(
+				rdb.EXPECT().Set(ctx, testKey, mock.Anything, ttl).Return(
 					redis.NewStatusResult("", wantErr))
-				rdb.EXPECT().Pipeline().Return(pipe)
 			},
 			do: func(t *testing.T, redisClient RedisCache) error {
 				err := redisClient.Set(
 					msetIter3(ctx, []string{testKey}, [][]byte{[]byte("abc")}, ttls))
+				return err
+			},
+		},
+		{
+			name: "Set error from SET 2",
+			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
+				pipe := mocks.NewMockPipeliner(t)
+				rdb.EXPECT().Pipeline().Return(pipe)
+				pipe.EXPECT().Set(ctx, testKey, mock.Anything, ttl).Return(
+					redis.NewStatusResult("", nil))
+				pipe.EXPECT().Len().Return(1)
+				pipe.EXPECT().Set(ctx, "key2", mock.Anything, ttl).Return(
+					redis.NewStatusResult("", wantErr))
+			},
+			do: func(t *testing.T, redisClient RedisCache) error {
+				err := redisClient.Set(
+					msetIter3(ctx, []string{testKey, "key2"},
+						[][]byte{[]byte("abc"), []byte("abc")}, ttls))
 				return err
 			},
 		},
@@ -253,35 +256,31 @@ func TestRedisClient_errors(t *testing.T) {
 				pipe := mocks.NewMockPipeliner(t)
 				pipe.EXPECT().Set(ctx, testKey, mock.Anything, ttl).Return(
 					redis.NewStatusResult("", nil))
-				pipe.EXPECT().Len().Return(1)
-				pipe.EXPECT().Exec(ctx).RunAndReturn(
-					func(ctx context.Context) ([]redis.Cmder, error) {
-						return nil, wantErr
-					})
+				pipe.EXPECT().Set(ctx, testKey, mock.Anything, ttl).Return(
+					redis.NewStatusResult("", nil))
+				pipe.EXPECT().Len().Return(2)
+				pipe.EXPECT().Exec(ctx).Return(nil, wantErr)
 				rdb.EXPECT().Pipeline().Return(pipe)
 			},
 			do: func(t *testing.T, redisClient RedisCache) error {
 				err := redisClient.Set(
-					msetIter3(ctx, []string{testKey}, [][]byte{[]byte("abc")}, ttls))
+					msetIter3(ctx, []string{testKey, testKey},
+						[][]byte{[]byte("abc"), []byte("abc")}, ttls))
 				return err
 			},
 		},
 	}
 
-	for _, client := range clients {
-		t.Run(client.name, func(t *testing.T) {
-			for _, tt := range tests {
-				t.Run(tt.name, func(t *testing.T) {
-					rdb := mocks.NewMockCmdable(t)
-					redisClient := client.makeClient(rdb)
-					tt.configure(t, rdb)
-					err := tt.do(t, redisClient)
-					if tt.assertErr != nil {
-						tt.assertErr(t, err)
-					} else {
-						require.ErrorIs(t, err, wantErr)
-					}
-				})
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			rdb := mocks.NewMockCmdable(t)
+			redisCache := NewStdRedis(rdb).WithBatchSize(3)
+			tt.configure(t, rdb)
+			err := tt.do(t, redisCache)
+			if tt.assertErr != nil {
+				tt.assertErr(t, err)
+			} else {
+				require.ErrorIs(t, err, wantErr)
 			}
 		})
 	}
@@ -311,9 +310,10 @@ func TestStdRedis_MGetSet_WithBatchSize(t *testing.T) {
 	ctx := context.Background()
 
 	tests := []struct {
-		name    string
-		pipeOp  func(pipe *mocks.MockPipeliner, fn func())
-		cacheOp func(t *testing.T, redisCache *StdRedis, nKeys int)
+		name     string
+		singleOp func(rdb *mocks.MockCmdable)
+		pipeOp   func(pipe *mocks.MockPipeliner, fn func())
+		cacheOp  func(t *testing.T, redisCache *StdRedis, nKeys int)
 	}{
 		{
 			name: "Get",
@@ -334,6 +334,10 @@ func TestStdRedis_MGetSet_WithBatchSize(t *testing.T) {
 		},
 		{
 			name: "Set",
+			singleOp: func(rdb *mocks.MockCmdable) {
+				rdb.EXPECT().Set(ctx, mock.Anything, blob, ttl).Return(
+					redis.NewStatusResult("", nil))
+			},
 			pipeOp: func(pipe *mocks.MockPipeliner, fn func()) {
 				pipe.EXPECT().Set(ctx, mock.Anything, blob, ttl).RunAndReturn(
 					func(
@@ -365,6 +369,12 @@ func TestStdRedis_MGetSet_WithBatchSize(t *testing.T) {
 				require.NotNil(t, redisCache)
 				redisCache.WithBatchSize(batchSize)
 
+				if nKeys == 1 && tt.singleOp != nil {
+					tt.singleOp(rdb)
+					tt.cacheOp(t, redisCache, nKeys)
+					return
+				}
+
 				var expect []int
 				nExec := nKeys / redisCache.batchSize
 				for i := 0; i < nExec; i++ {
@@ -377,12 +387,8 @@ func TestStdRedis_MGetSet_WithBatchSize(t *testing.T) {
 
 				opCnt := 0
 				if nKeys > 0 {
-					tt.pipeOp(pipe, func() {
-						opCnt++
-					})
-					pipe.EXPECT().Len().RunAndReturn(func() int {
-						return opCnt
-					})
+					tt.pipeOp(pipe, func() { opCnt++ })
+					pipe.EXPECT().Len().RunAndReturn(func() int { return opCnt })
 				}
 
 				var got []int
