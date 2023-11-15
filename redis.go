@@ -89,27 +89,36 @@ func (self *StdRedis) mgetPipeExec(
 	ctx context.Context, pipe redis.Pipeliner, blobs [][]byte,
 ) ([][]byte, error) {
 	cmds, err := pipe.Exec(ctx)
-	if err != nil && !errors.Is(err, redis.Nil) {
+	if err != nil && !keyNotFound(err) {
 		return nil, fmt.Errorf("pipeline: %w", err)
 	}
 
 	for _, cmd := range cmds {
-		if strCmd, ok := cmd.(interface{ Bytes() ([]byte, error) }); ok {
-			if b, err := strCmd.Bytes(); err == nil {
-				blobs = append(blobs, b)
-			} else if errors.Is(err, redis.Nil) {
-				blobs = append(blobs, nil)
-			} else {
-				return nil, fmt.Errorf("pipelined bytes %q: %w", cmd.Name(), err)
-			}
-		} else if cmd.Err() != nil {
-			return nil, fmt.Errorf("pipelined cmd %q: %w", cmd.Name(), cmd.Err())
+		if b, err := cmdBytes(cmd); err != nil {
+			return nil, fmt.Errorf("pipelined: %w", err)
 		} else {
-			return nil, fmt.Errorf("pipelined: unexpected type=%T for Bytes()", cmd)
+			blobs = append(blobs, b)
 		}
 	}
 
 	return blobs, nil
+}
+
+func cmdBytes(cmd redis.Cmder) ([]byte, error) {
+	if strCmd, ok := cmd.(interface{ Bytes() ([]byte, error) }); ok {
+		if b, err := strCmd.Bytes(); err == nil {
+			return b, nil
+		} else if !keyNotFound(err) {
+			return nil, fmt.Errorf("bytes %q: %w", cmd.Name(), err)
+		}
+		return nil, nil
+	}
+
+	return nil, fmt.Errorf("bytes %q: unexpected type=%T", cmd.Name(), cmd)
+}
+
+func keyNotFound(err error) bool {
+	return err != nil && errors.Is(err, redis.Nil)
 }
 
 func makeBytesIter(blobs [][]byte) func() ([]byte, bool) {

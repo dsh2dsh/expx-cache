@@ -175,7 +175,7 @@ func TestRedisClient_errors(t *testing.T) {
 				pipe.EXPECT().Exec(ctx).RunAndReturn(
 					func(ctx context.Context) ([]redis.Cmder, error) {
 						cmds := []redis.Cmder{redis.NewBoolResult(false, wantErr)}
-						return cmds, nil
+						return cmds, wantErr
 					})
 			},
 			do: func(t *testing.T, redisClient RedisCache) error {
