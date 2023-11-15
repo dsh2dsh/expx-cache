@@ -56,7 +56,7 @@ func (self *StdRedis) Get(ctx context.Context, maxItems int,
 
 	for i := 0; i < maxItems; i++ {
 		key := keyIter(i)
-		_, err := self.getter(ctx, pipe, key)
+		err := self.getter(ctx, pipe, key)
 		if err != nil {
 			return nil, fmt.Errorf("getter get %q: %w", key, err)
 		}
@@ -78,11 +78,11 @@ func (self *StdRedis) Get(ctx context.Context, maxItems int,
 //nolint:wrapcheck // wrap it later
 func (self *StdRedis) getter(
 	ctx context.Context, rdb redis.Cmdable, key string,
-) ([]byte, error) {
+) error {
 	if self.refreshTTL > 0 {
-		return rdb.GetEx(ctx, key, self.refreshTTL).Bytes()
+		return rdb.GetEx(ctx, key, self.refreshTTL).Err()
 	}
-	return rdb.Get(ctx, key).Bytes()
+	return rdb.Get(ctx, key).Err()
 }
 
 func (self *StdRedis) mgetPipeExec(
@@ -146,7 +146,9 @@ func (self *StdRedis) Set(
 	return self.msetPipeExec(ctx, pipe)
 }
 
-func (self *StdRedis) msetPipeExec(ctx context.Context, pipe redis.Pipeliner) error {
+func (self *StdRedis) msetPipeExec(
+	ctx context.Context, pipe redis.Pipeliner,
+) error {
 	_, err := pipe.Exec(ctx)
 	if err != nil {
 		return fmt.Errorf("pipeline: %w", err)
