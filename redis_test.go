@@ -208,7 +208,7 @@ func TestRedisClient_errors(t *testing.T) {
 			},
 		},
 		{
-			name: "MSet error from SET",
+			name: "Set error from SET",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
 				pipe := mocks.NewMockPipeliner(t)
 				pipe.EXPECT().Set(ctx, testKey, mock.Anything, ttl).Return(
@@ -216,13 +216,13 @@ func TestRedisClient_errors(t *testing.T) {
 				rdb.EXPECT().Pipeline().Return(pipe)
 			},
 			do: func(t *testing.T, redisClient RedisCache) error {
-				err := redisClient.MSet(
+				err := redisClient.Set(
 					msetIter3(ctx, []string{testKey}, [][]byte{[]byte("abc")}, ttls))
 				return err
 			},
 		},
 		{
-			name: "MSet error from batchSize",
+			name: "Set error from batchSize",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
 				pipe := mocks.NewMockPipeliner(t)
 				wantKeys := []string{testKey, "key2", "key3"}
@@ -241,14 +241,14 @@ func TestRedisClient_errors(t *testing.T) {
 				rdb.EXPECT().Pipeline().Return(pipe)
 			},
 			do: func(t *testing.T, redisClient RedisCache) error {
-				err := redisClient.MSet(
+				err := redisClient.Set(
 					msetIter3(ctx, []string{testKey, "key2", "key3"},
 						[][]byte{[]byte("abc"), []byte("abc"), []byte("abc")}, ttls))
 				return err
 			},
 		},
 		{
-			name: "MSet error from Exec",
+			name: "Set error from Exec",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
 				pipe := mocks.NewMockPipeliner(t)
 				pipe.EXPECT().Set(ctx, testKey, mock.Anything, ttl).Return(
@@ -261,7 +261,7 @@ func TestRedisClient_errors(t *testing.T) {
 				rdb.EXPECT().Pipeline().Return(pipe)
 			},
 			do: func(t *testing.T, redisClient RedisCache) error {
-				err := redisClient.MSet(
+				err := redisClient.Set(
 					msetIter3(ctx, []string{testKey}, [][]byte{[]byte("abc")}, ttls))
 				return err
 			},
@@ -333,7 +333,7 @@ func TestStdRedis_MGetSet_WithBatchSize(t *testing.T) {
 			},
 		},
 		{
-			name: "MSet",
+			name: "Set",
 			pipeOp: func(pipe *mocks.MockPipeliner, fn func()) {
 				pipe.EXPECT().Set(ctx, mock.Anything, blob, ttl).RunAndReturn(
 					func(
@@ -345,7 +345,7 @@ func TestStdRedis_MGetSet_WithBatchSize(t *testing.T) {
 				)
 			},
 			cacheOp: func(t *testing.T, redisCache *StdRedis, nKeys int) {
-				require.NoError(t, redisCache.MSet(
+				require.NoError(t, redisCache.Set(
 					msetIter3(ctx, keys[:nKeys], blobs[:nKeys], times[:nKeys])))
 			},
 		},
@@ -509,7 +509,7 @@ func TestStdRedis_respectRefreshTTL(t *testing.T) {
 	}
 }
 
-func TestStdRedis_MSet_skipEmptyItems(t *testing.T) {
+func TestStdRedis_Set_skipEmptyItems(t *testing.T) {
 	ctx := context.Background()
 	foobar := []byte("foobar")
 	ttl := time.Minute
@@ -533,7 +533,7 @@ func TestStdRedis_MSet_skipEmptyItems(t *testing.T) {
 
 	redisCache := NewStdRedis(rdb)
 	require.NotNil(t, redisCache)
-	require.NoError(t, redisCache.MSet(
+	require.NoError(t, redisCache.Set(
 		msetIter3(ctx,
 			[]string{testKey, testKey, testKey, testKey},
 			[][]byte{{}, foobar, foobar, foobar},

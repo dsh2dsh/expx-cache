@@ -111,7 +111,7 @@ func TestMultiCache_Get_localSet(t *testing.T) {
 	}
 
 	var blob []byte
-	redisCache.EXPECT().MSet(ctx, 1, mock.Anything).RunAndReturn(
+	redisCache.EXPECT().Set(ctx, 1, mock.Anything).RunAndReturn(
 		func(ctx context.Context, maxItems int,
 			iter func(itemIdx int) (key string, b []byte, ttl time.Duration),
 		) error {

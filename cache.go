@@ -23,7 +23,7 @@ type RedisCache interface {
 	Del(ctx context.Context, keys ...string) error
 	Get(ctx context.Context, maxItems int,
 		keyIter func(itemIdx int) string) (func() ([]byte, bool), error)
-	MSet(ctx context.Context, maxItems int,
+	Set(ctx context.Context, maxItems int,
 		iter func(itemIdx int) (key string, b []byte, ttl time.Duration)) error
 }
 

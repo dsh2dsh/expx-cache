@@ -125,7 +125,7 @@ func makeBytesIter(blobs [][]byte) func() ([]byte, bool) {
 
 // --------------------------------------------------
 
-func (self *StdRedis) MSet(
+func (self *StdRedis) Set(
 	ctx context.Context, maxItems int,
 	iter func(itemIdx int) (key string, b []byte, ttl time.Duration),
 ) error {

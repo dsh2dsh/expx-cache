@@ -135,8 +135,8 @@ func (_c *MockRedisCache_Get_Call) RunAndReturn(run func(context.Context, int, f
 	return _c
 }
 
-// MSet provides a mock function with given fields: ctx, maxItems, iter
-func (_m *MockRedisCache) MSet(ctx context.Context, maxItems int, iter func(int) (string, []byte, time.Duration)) error {
+// Set provides a mock function with given fields: ctx, maxItems, iter
+func (_m *MockRedisCache) Set(ctx context.Context, maxItems int, iter func(int) (string, []byte, time.Duration)) error {
 	ret := _m.Called(ctx, maxItems, iter)
 
 	var r0 error
@@ -149,32 +149,32 @@ func (_m *MockRedisCache) MSet(ctx context.Context, maxItems int, iter func(int)
 	return r0
 }
 
-// MockRedisCache_MSet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'MSet'
-type MockRedisCache_MSet_Call struct {
+// MockRedisCache_Set_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Set'
+type MockRedisCache_Set_Call struct {
 	*mock.Call
 }
 
-// MSet is a helper method to define mock.On call
+// Set is a helper method to define mock.On call
 //   - ctx context.Context
 //   - maxItems int
 //   - iter func(int)(string , []byte , time.Duration)
-func (_e *MockRedisCache_Expecter) MSet(ctx interface{}, maxItems interface{}, iter interface{}) *MockRedisCache_MSet_Call {
-	return &MockRedisCache_MSet_Call{Call: _e.mock.On("MSet", ctx, maxItems, iter)}
+func (_e *MockRedisCache_Expecter) Set(ctx interface{}, maxItems interface{}, iter interface{}) *MockRedisCache_Set_Call {
+	return &MockRedisCache_Set_Call{Call: _e.mock.On("Set", ctx, maxItems, iter)}
 }
 
-func (_c *MockRedisCache_MSet_Call) Run(run func(ctx context.Context, maxItems int, iter func(int) (string, []byte, time.Duration))) *MockRedisCache_MSet_Call {
+func (_c *MockRedisCache_Set_Call) Run(run func(ctx context.Context, maxItems int, iter func(int) (string, []byte, time.Duration))) *MockRedisCache_Set_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		run(args[0].(context.Context), args[1].(int), args[2].(func(int) (string, []byte, time.Duration)))
 	})
 	return _c
 }
 
-func (_c *MockRedisCache_MSet_Call) Return(_a0 error) *MockRedisCache_MSet_Call {
+func (_c *MockRedisCache_Set_Call) Return(_a0 error) *MockRedisCache_Set_Call {
 	_c.Call.Return(_a0)
 	return _c
 }
 
-func (_c *MockRedisCache_MSet_Call) RunAndReturn(run func(context.Context, int, func(int) (string, []byte, time.Duration)) error) *MockRedisCache_MSet_Call {
+func (_c *MockRedisCache_Set_Call) RunAndReturn(run func(context.Context, int, func(int) (string, []byte, time.Duration)) error) *MockRedisCache_Set_Call {
 	_c.Call.Return(run)
 	return _c
 }
