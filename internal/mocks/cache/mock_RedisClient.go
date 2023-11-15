@@ -79,61 +79,6 @@ func (_c *MockRedisClient_Del_Call) RunAndReturn(run func(context.Context, ...st
 	return _c
 }
 
-// Get provides a mock function with given fields: ctx, key
-func (_m *MockRedisClient) Get(ctx context.Context, key string) ([]byte, error) {
-	ret := _m.Called(ctx, key)
-
-	var r0 []byte
-	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, string) ([]byte, error)); ok {
-		return rf(ctx, key)
-	}
-	if rf, ok := ret.Get(0).(func(context.Context, string) []byte); ok {
-		r0 = rf(ctx, key)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([]byte)
-		}
-	}
-
-	if rf, ok := ret.Get(1).(func(context.Context, string) error); ok {
-		r1 = rf(ctx, key)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
-}
-
-// MockRedisClient_Get_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Get'
-type MockRedisClient_Get_Call struct {
-	*mock.Call
-}
-
-// Get is a helper method to define mock.On call
-//   - ctx context.Context
-//   - key string
-func (_e *MockRedisClient_Expecter) Get(ctx interface{}, key interface{}) *MockRedisClient_Get_Call {
-	return &MockRedisClient_Get_Call{Call: _e.mock.On("Get", ctx, key)}
-}
-
-func (_c *MockRedisClient_Get_Call) Run(run func(ctx context.Context, key string)) *MockRedisClient_Get_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
-	})
-	return _c
-}
-
-func (_c *MockRedisClient_Get_Call) Return(_a0 []byte, _a1 error) *MockRedisClient_Get_Call {
-	_c.Call.Return(_a0, _a1)
-	return _c
-}
-
-func (_c *MockRedisClient_Get_Call) RunAndReturn(run func(context.Context, string) ([]byte, error)) *MockRedisClient_Get_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // MGet provides a mock function with given fields: ctx, maxItems, keyIter
 func (_m *MockRedisClient) MGet(ctx context.Context, maxItems int, keyIter func(int) string) (func() ([]byte, bool), error) {
 	ret := _m.Called(ctx, maxItems, keyIter)
@@ -230,51 +175,6 @@ func (_c *MockRedisClient_MSet_Call) Return(_a0 error) *MockRedisClient_MSet_Cal
 }
 
 func (_c *MockRedisClient_MSet_Call) RunAndReturn(run func(context.Context, int, func(int) (string, []byte, time.Duration)) error) *MockRedisClient_MSet_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// Set provides a mock function with given fields: ctx, key, blob, ttl
-func (_m *MockRedisClient) Set(ctx context.Context, key string, blob []byte, ttl time.Duration) error {
-	ret := _m.Called(ctx, key, blob, ttl)
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, string, []byte, time.Duration) error); ok {
-		r0 = rf(ctx, key, blob, ttl)
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
-}
-
-// MockRedisClient_Set_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Set'
-type MockRedisClient_Set_Call struct {
-	*mock.Call
-}
-
-// Set is a helper method to define mock.On call
-//   - ctx context.Context
-//   - key string
-//   - blob []byte
-//   - ttl time.Duration
-func (_e *MockRedisClient_Expecter) Set(ctx interface{}, key interface{}, blob interface{}, ttl interface{}) *MockRedisClient_Set_Call {
-	return &MockRedisClient_Set_Call{Call: _e.mock.On("Set", ctx, key, blob, ttl)}
-}
-
-func (_c *MockRedisClient_Set_Call) Run(run func(ctx context.Context, key string, blob []byte, ttl time.Duration)) *MockRedisClient_Set_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].([]byte), args[3].(time.Duration))
-	})
-	return _c
-}
-
-func (_c *MockRedisClient_Set_Call) Return(_a0 error) *MockRedisClient_Set_Call {
-	_c.Call.Return(_a0)
-	return _c
-}
-
-func (_c *MockRedisClient_Set_Call) RunAndReturn(run func(context.Context, string, []byte, time.Duration) error) *MockRedisClient_Set_Call {
 	_c.Call.Return(run)
 	return _c
 }

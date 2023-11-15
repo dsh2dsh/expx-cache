@@ -2,7 +2,7 @@ package cache
 
 import (
 	"context"
-	"io"
+	"errors"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -20,25 +20,33 @@ func TestGet_withoutCache(t *testing.T) {
 }
 
 func TestGet_redisErrAddsMiss(t *testing.T) {
-	redisClient := mocks.NewMockRedisClient(t)
-	redisClient.EXPECT().Get(mock.Anything, mock.Anything).Return(nil, io.EOF)
+	ctx := context.Background()
+	wantErr := errors.New("test error")
 
-	cache := New().WithStats(true).WithRedisCache(redisClient)
-	hit, err := cache.Get(context.Background(), testKey, nil)
-	require.ErrorIs(t, err, io.EOF)
+	redisCache := mocks.NewMockRedisClient(t)
+	redisCache.EXPECT().MGet(ctx, 1, mock.Anything).Return(nil, wantErr)
+
+	cache := New().WithStats(true).WithRedisCache(redisCache)
+	hit, err := cache.Get(ctx, testKey, nil)
+	require.ErrorIs(t, err, wantErr)
 	assert.False(t, hit)
 	assert.Equal(t, uint64(1), cache.Stats().Misses)
 }
 
 func TestGetSkippingLocalCache(t *testing.T) {
+	ctx := context.Background()
+
 	localCache := mocks.NewMockLocalCache(t)
+	redisCache := mocks.NewMockRedisClient(t)
+	redisCache.EXPECT().MGet(ctx, 1, mock.Anything).RunAndReturn(
+		func(
+			ctx context.Context, maxItems int, keyIter func(itemIdx int) (key string),
+		) (func() ([]byte, bool), error) {
+			return makeBytesIter([][]byte{nil}), nil
+		})
 
-	redisClient := mocks.NewMockRedisClient(t)
-	redisClient.EXPECT().Get(mock.Anything, mock.Anything).Return(nil, nil)
-
-	cache := New().WithLocalCache(localCache).WithRedisCache(redisClient)
-	hit := valueNoError[bool](t)(
-		cache.GetSkippingLocalCache(context.Background(), testKey, nil))
+	cache := New().WithLocalCache(localCache).WithRedisCache(redisCache)
+	hit := valueNoError[bool](t)(cache.GetSkippingLocalCache(ctx, testKey, nil))
 	assert.False(t, hit)
 }
 
@@ -50,12 +58,15 @@ func TestExists_withoutCache(t *testing.T) {
 }
 
 func TestExists_withError(t *testing.T) {
+	ctx := context.Background()
+	wantErr := errors.New("test error")
+
 	redisCache := mocks.NewMockRedisClient(t)
-	redisCache.EXPECT().Get(context.Background(), testKey).Return(nil, io.EOF)
+	redisCache.EXPECT().MGet(ctx, 1, mock.Anything).Return(nil, wantErr)
 
 	cache := New().WithRedisCache(redisCache)
-	hit, err := cache.Exists(context.Background(), testKey)
-	require.ErrorIs(t, err, io.EOF)
+	hit, err := cache.Exists(ctx, testKey)
+	require.ErrorIs(t, err, wantErr)
 	assert.False(t, hit)
 }
 

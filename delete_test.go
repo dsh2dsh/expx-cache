@@ -79,7 +79,10 @@ func (self *CacheTestSuite) TestDeleteFromRedis() {
 	}
 
 	if self.cache.redis != nil {
-		self.Nil(valueNoError[[]byte](self.T())(self.cache.redis.Get(ctx, testKey)))
+		bytesIter := valueNoError[func() ([]byte, bool)](self.T())(
+			self.cache.redis.MGet(mgetIter3(context.Background(), []string{testKey})))
+		b, _ := bytesIter()
+		self.Nil(b)
 	}
 	self.assertStats()
 }

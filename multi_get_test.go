@@ -111,11 +111,16 @@ func TestMultiCache_Get_localSet(t *testing.T) {
 	}
 
 	var blob []byte
-	redisCache.EXPECT().Set(ctx, testKey, mock.Anything, ttl).RunAndReturn(
-		func(ctx context.Context, key string, b []byte, ttl time.Duration) error {
-			blob = b
+	redisCache.EXPECT().MSet(ctx, 1, mock.Anything).RunAndReturn(
+		func(ctx context.Context, maxItems int,
+			iter func(itemIdx int) (key string, b []byte, ttl time.Duration),
+		) error {
+			for i := 0; i < maxItems; i++ {
+				_, blob, _ = iter(i)
+			}
 			return nil
-		})
+		},
+	)
 	require.NoError(t, cache.Set(&item))
 
 	item.SkipLocalCache = false
@@ -124,20 +129,9 @@ func TestMultiCache_Get_localSet(t *testing.T) {
 		func(
 			ctx context.Context, maxItems int, keyIter func(int) string,
 		) (func() ([]byte, bool), error) {
-			return bytesIter([][]byte{blob}), nil
+			return makeBytesIter([][]byte{blob}), nil
 		})
 	localCache.EXPECT().Set(testKey, blob)
 	missed := valueNoError[[]*Item](t)(cache.MGet(ctx, []*Item{&item}))
 	assert.Nil(t, missed)
-}
-
-func bytesIter(blobs [][]byte) func() ([]byte, bool) {
-	var nextItem int
-	return func() (b []byte, ok bool) {
-		if nextItem < len(blobs) {
-			b, ok = blobs[nextItem], true
-		}
-		nextItem++
-		return
-	}
 }

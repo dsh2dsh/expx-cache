@@ -320,21 +320,25 @@ func TestOnce_errUnmarshal(t *testing.T) {
 }
 
 func TestOnce_errDelete(t *testing.T) {
-	redisClient := mocks.NewMockRedisClient(t)
-	redisClient.EXPECT().Get(mock.Anything, mock.Anything).Return([]byte{0x1}, nil)
-	redisClient.EXPECT().Del(mock.Anything, mock.Anything).Return(io.EOF)
+	ctx := context.Background()
+	wantErr := errors.New("test error")
 
-	cache := New().WithRedisCache(redisClient)
+	redisCache := mocks.NewMockRedisClient(t)
+	redisCache.EXPECT().MGet(ctx, 1, mock.Anything).Return(
+		makeBytesIter([][]byte{{0x1}}), nil)
+	redisCache.EXPECT().Del(mock.Anything, mock.Anything).Return(wantErr)
+
+	cache := New().WithRedisCache(redisCache)
 	var got bool
 	err := cache.Once(&Item{
-		Ctx:   context.Background(),
+		Ctx:   ctx,
 		Key:   testKey,
 		Value: &got,
 		Do: func(*Item) (any, error) {
 			return int64(0), nil
 		},
 	})
-	require.ErrorIs(t, err, io.EOF)
+	require.ErrorIs(t, err, wantErr)
 	assert.False(t, got)
 }
 

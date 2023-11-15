@@ -36,42 +36,11 @@ func (self *StdRedis) WithGetRefreshTTL(ttl time.Duration) *StdRedis {
 
 // --------------------------------------------------
 
-func (self *StdRedis) Get(ctx context.Context, key string) ([]byte, error) {
-	b, err := self.getter(ctx, self.rdb, key)
-	if err != nil && errors.Is(err, redis.Nil) {
-		return nil, nil
-	} else if err != nil {
-		return nil, fmt.Errorf("getter get: %w", err)
-	}
-	return b, nil
-}
-
-//nolint:wrapcheck // wrap it later
-func (self *StdRedis) getter(
-	ctx context.Context, rdb redis.Cmdable, key string,
-) ([]byte, error) {
-	if self.refreshTTL > 0 {
-		return rdb.GetEx(ctx, key, self.refreshTTL).Bytes()
-	}
-	return rdb.Get(ctx, key).Bytes()
-}
-
 func (self *StdRedis) Del(ctx context.Context, keys ...string) error {
 	for low := 0; low < len(keys); low += self.batchSize {
 		high := min(len(keys), low+self.batchSize)
 		if err := self.rdb.Del(ctx, keys[low:high]...).Err(); err != nil {
 			return fmt.Errorf("redis del: %w", err)
-		}
-	}
-	return nil
-}
-
-func (self *StdRedis) Set(
-	ctx context.Context, key string, blob []byte, ttl time.Duration,
-) error {
-	if len(blob) > 0 && ttl > 0 {
-		if err := self.rdb.Set(ctx, key, blob, ttl).Err(); err != nil {
-			return fmt.Errorf("redis set %q: %w", key, err)
 		}
 	}
 	return nil
@@ -103,7 +72,17 @@ func (self *StdRedis) MGet(ctx context.Context, maxItems int,
 		return nil, err
 	}
 
-	return blobsIter(blobs), nil
+	return makeBytesIter(blobs), nil
+}
+
+//nolint:wrapcheck // wrap it later
+func (self *StdRedis) getter(
+	ctx context.Context, rdb redis.Cmdable, key string,
+) ([]byte, error) {
+	if self.refreshTTL > 0 {
+		return rdb.GetEx(ctx, key, self.refreshTTL).Bytes()
+	}
+	return rdb.Get(ctx, key).Bytes()
 }
 
 func (self *StdRedis) mgetPipeExec(
@@ -133,7 +112,7 @@ func (self *StdRedis) mgetPipeExec(
 	return blobs, nil
 }
 
-func blobsIter(blobs [][]byte) func() ([]byte, bool) {
+func makeBytesIter(blobs [][]byte) func() ([]byte, bool) {
 	var nextItem int
 	return func() (b []byte, ok bool) {
 		if nextItem < len(blobs) {

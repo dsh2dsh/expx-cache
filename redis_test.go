@@ -32,6 +32,11 @@ func mgetIter3(
 	}
 }
 
+func bytesFromIter(iter func() ([]byte, bool)) []byte {
+	b, _ := iter()
+	return b
+}
+
 func TestNewStdRedis(t *testing.T) {
 	sr := NewStdRedis(nil)
 	require.IsType(t, new(StdRedis), sr)
@@ -67,17 +72,6 @@ func TestRedisClient_errors(t *testing.T) {
 		assertErr func(t *testing.T, err error)
 	}{
 		{
-			name: "Get",
-			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
-				rdb.EXPECT().Get(ctx, testKey).Return(redis.NewStringResult("", wantErr))
-			},
-			do: func(t *testing.T, redisClient RedisClient) error {
-				b, err := redisClient.Get(ctx, testKey)
-				assert.Nil(t, b)
-				return err
-			},
-		},
-		{
 			name: "Del",
 			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
 				rdb.EXPECT().Del(ctx, []string{testKey}).
@@ -85,16 +79,6 @@ func TestRedisClient_errors(t *testing.T) {
 			},
 			do: func(t *testing.T, redisClient RedisClient) error {
 				return redisClient.Del(ctx, testKey)
-			},
-		},
-		{
-			name: "Set",
-			configure: func(t *testing.T, rdb *mocks.MockCmdable) {
-				rdb.EXPECT().Set(ctx, testKey, mock.Anything, ttl).
-					Return(redis.NewStatusResult("", wantErr))
-			},
-			do: func(t *testing.T, redisClient RedisClient) error {
-				return redisClient.Set(ctx, testKey, []byte("abc"), ttl)
 			},
 		},
 		{
@@ -482,21 +466,6 @@ func TestStdRedis_respectRefreshTTL(t *testing.T) {
 		expect func(redisCache *StdRedis, rdb *mocks.MockCmdable) ([]byte, error)
 	}{
 		{
-			name: "Get without refreshTTL",
-			expect: func(redisCache *StdRedis, rdb *mocks.MockCmdable) ([]byte, error) {
-				rdb.EXPECT().Get(ctx, testKey).Return(strResult)
-				return redisCache.Get(ctx, testKey)
-			},
-		},
-		{
-			name: "Get with refreshTTL",
-			expect: func(redisCache *StdRedis, rdb *mocks.MockCmdable) ([]byte, error) {
-				redisCache.WithGetRefreshTTL(ttl)
-				rdb.EXPECT().GetEx(ctx, testKey, ttl).Return(strResult)
-				return redisCache.Get(ctx, testKey)
-			},
-		},
-		{
 			name: "MGet without refreshTTL",
 			expect: func(redisCache *StdRedis, rdb *mocks.MockCmdable) ([]byte, error) {
 				pipe := mocks.NewMockPipeliner(t)
@@ -538,11 +507,6 @@ func TestStdRedis_respectRefreshTTL(t *testing.T) {
 			assert.Nil(t, b)
 		})
 	}
-}
-
-func bytesFromIter(iter func() ([]byte, bool)) []byte {
-	b, _ := iter()
-	return b
 }
 
 func TestStdRedis_MSet_skipEmptyItems(t *testing.T) {

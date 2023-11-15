@@ -2,8 +2,10 @@ package cache
 
 import (
 	"context"
+	"errors"
 	"io"
 	"testing"
+	"time"
 
 	"github.com/redis/go-redis/v9"
 	"github.com/stretchr/testify/mock"
@@ -38,16 +40,23 @@ func TestCache_Set_withoutCache(t *testing.T) {
 }
 
 func TestCache_Set_redisErr(t *testing.T) {
-	rdb := redisMocks.NewMockCmdable(t)
-	rdb.EXPECT().Set(mock.Anything, mock.Anything, mock.Anything, mock.Anything).
-		Return(redis.NewStatusResult("", io.EOF))
+	ctx := context.Background()
+	wantErr := errors.New("test error")
 
+	pipe := redisMocks.NewMockPipeliner(t)
+	pipe.EXPECT().Set(ctx, testKey, mock.Anything, mock.Anything).RunAndReturn(
+		func(context.Context, string, any, time.Duration) *redis.StatusCmd {
+			return redis.NewStatusResult("", wantErr)
+		})
+
+	rdb := redisMocks.NewMockCmdable(t)
+	rdb.EXPECT().Pipeline().Return(pipe)
 	cache := New().WithRedis(rdb)
 
 	err := cache.Set(&Item{
-		Ctx:   context.Background(),
+		Ctx:   ctx,
 		Key:   testKey,
 		Value: "foobar",
 	})
-	require.ErrorIs(t, err, io.EOF)
+	require.ErrorIs(t, err, wantErr)
 }
