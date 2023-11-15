@@ -23,7 +23,6 @@ func NewTinyLFU(size int, ttl time.Duration) *TinyLFU {
 	}
 
 	return &TinyLFU{
-		rand:   rand.New(rand.NewSource(time.Now().UnixNano())), //nolint:gosec // weak rnd is ok for us
 		lfu:    tinylfu.New(size, 100000),
 		ttl:    ttl,
 		offset: offset,
@@ -32,7 +31,6 @@ func NewTinyLFU(size int, ttl time.Duration) *TinyLFU {
 
 type TinyLFU struct {
 	mu     sync.RWMutex
-	rand   *rand.Rand
 	lfu    LFU
 	ttl    time.Duration
 	offset time.Duration
@@ -48,8 +46,9 @@ func (self *TinyLFU) Set(key string, b []byte) {
 	}
 
 	ttl := self.ttl
+	//nolint:gosec // I think weak rand is ok here
 	if self.offset > 0 {
-		ttl += time.Duration(self.rand.Int63n(int64(self.offset)))
+		ttl += time.Duration(rand.Int63n(int64(self.offset)))
 	}
 
 	self.mu.Lock()
