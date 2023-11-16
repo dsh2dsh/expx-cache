@@ -34,8 +34,6 @@ func (self *StdRedis) WithGetRefreshTTL(ttl time.Duration) *StdRedis {
 	return self
 }
 
-// --------------------------------------------------
-
 func (self *StdRedis) Del(ctx context.Context, keys ...string) error {
 	for low := 0; low < len(keys); low += self.batchSize {
 		high := min(len(keys), low+self.batchSize)
@@ -51,12 +49,16 @@ func (self *StdRedis) Del(ctx context.Context, keys ...string) error {
 func (self *StdRedis) Get(ctx context.Context, maxItems int,
 	keyIter func(itemIdx int) (key string),
 ) (func() ([]byte, bool), error) {
-	pipe := self.rdb.Pipeline()
+	if maxItems == 1 {
+		return self.singleGet(ctx, keyIter(0))
+	}
+
 	blobs := make([][]byte, 0, maxItems)
+	pipe := self.rdb.Pipeline()
 
 	for i := 0; i < maxItems; i++ {
 		key := keyIter(i)
-		err := self.getter(ctx, pipe, key)
+		_, err := self.getter(ctx, pipe, key)
 		if err != nil {
 			return nil, fmt.Errorf("getter get %q: %w", key, err)
 		}
@@ -75,14 +77,31 @@ func (self *StdRedis) Get(ctx context.Context, maxItems int,
 	return makeBytesIter(blobs), nil
 }
 
+func (self *StdRedis) singleGet(
+	ctx context.Context, key string,
+) (func() ([]byte, bool), error) {
+	blob, err := self.getter(ctx, self.rdb, key)
+	if err != nil && !keyNotFound(err) {
+		return nil, fmt.Errorf("getter get %q: %w", key, err)
+	}
+
+	var done bool
+	return func() (b []byte, ok bool) {
+		if !done {
+			b, ok, done = blob, true, true
+		}
+		return
+	}, nil
+}
+
 //nolint:wrapcheck // wrap it later
 func (self *StdRedis) getter(
 	ctx context.Context, rdb redis.Cmdable, key string,
-) error {
+) ([]byte, error) {
 	if self.refreshTTL > 0 {
-		return rdb.GetEx(ctx, key, self.refreshTTL).Err()
+		return rdb.GetEx(ctx, key, self.refreshTTL).Bytes()
 	}
-	return rdb.Get(ctx, key).Err()
+	return rdb.Get(ctx, key).Bytes()
 }
 
 func (self *StdRedis) mgetPipeExec(

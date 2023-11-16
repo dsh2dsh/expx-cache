@@ -317,6 +317,10 @@ func TestStdRedis_MGetSet_WithBatchSize(t *testing.T) {
 	}{
 		{
 			name: "Get",
+			singleOp: func(rdb *mocks.MockCmdable) {
+				rdb.EXPECT().Get(ctx, mock.Anything).Return(
+					redis.NewStringResult("", nil))
+			},
 			pipeOp: func(pipe *mocks.MockPipeliner, fn func()) {
 				pipe.EXPECT().Get(ctx, mock.Anything).RunAndReturn(
 					func(ctx context.Context, key string) *redis.StringCmd {
@@ -328,7 +332,7 @@ func TestStdRedis_MGetSet_WithBatchSize(t *testing.T) {
 				bytesIter := valueNoError[func() ([]byte, bool)](t)(
 					redisCache.Get(mgetIter3(ctx, keys[:nKeys])))
 				for b, ok := bytesIter(); ok; b, ok = bytesIter() {
-					assert.Equal(t, []byte{}, b)
+					assert.Nil(t, b)
 				}
 			},
 		},
@@ -474,14 +478,7 @@ func TestStdRedis_respectRefreshTTL(t *testing.T) {
 		{
 			name: "Get without refreshTTL",
 			expect: func(redisCache *StdRedis, rdb *mocks.MockCmdable) ([]byte, error) {
-				pipe := mocks.NewMockPipeliner(t)
-				pipe.EXPECT().Len().Return(1)
-				pipe.EXPECT().Exec(ctx).RunAndReturn(
-					func(ctx context.Context) ([]redis.Cmder, error) {
-						return []redis.Cmder{strResult}, nil
-					})
-				pipe.EXPECT().Get(ctx, testKey).Return(strResult)
-				rdb.EXPECT().Pipeline().Return(pipe)
+				rdb.EXPECT().Get(ctx, testKey).Return(strResult)
 				bytesIter, err := redisCache.Get(mgetIter3(ctx, []string{testKey}))
 				return bytesFromIter(bytesIter), err
 			},
@@ -490,14 +487,7 @@ func TestStdRedis_respectRefreshTTL(t *testing.T) {
 			name: "Get with refreshTTL",
 			expect: func(redisCache *StdRedis, rdb *mocks.MockCmdable) ([]byte, error) {
 				redisCache.WithGetRefreshTTL(ttl)
-				pipe := mocks.NewMockPipeliner(t)
-				pipe.EXPECT().Len().Return(1)
-				pipe.EXPECT().Exec(ctx).RunAndReturn(
-					func(ctx context.Context) ([]redis.Cmder, error) {
-						return []redis.Cmder{strResult}, nil
-					})
-				pipe.EXPECT().GetEx(ctx, testKey, ttl).Return(strResult)
-				rdb.EXPECT().Pipeline().Return(pipe)
+				rdb.EXPECT().GetEx(ctx, testKey, ttl).Return(strResult)
 				bytesIter, err := redisCache.Get(mgetIter3(ctx, []string{testKey}))
 				return bytesFromIter(bytesIter), err
 			},

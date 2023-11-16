@@ -2,7 +2,7 @@ package cache
 
 import (
 	"context"
-	"io"
+	"errors"
 	"testing"
 	"time"
 
@@ -68,16 +68,13 @@ func TestMultiCache_Get_errorWait(t *testing.T) {
 
 func TestMultiCache_Get_errorRedis(t *testing.T) {
 	ctx := context.Background()
-
-	pipe := redisMocks.NewMockPipeliner(t)
-	pipe.EXPECT().Get(ctx, testKey).Return(redis.NewStringResult("", io.EOF))
+	wantErr := errors.New("test error")
 
 	rdb := redisMocks.NewMockCmdable(t)
-	rdb.EXPECT().Pipeline().Return(pipe)
+	rdb.EXPECT().Get(ctx, testKey).Return(redis.NewStringResult("", wantErr))
 
 	cache := New().WithRedis(rdb)
 	assert.NotNil(t, cache)
-
 	m := NewMultiCache(cache)
 	assert.NotNil(t, m)
 
@@ -88,7 +85,7 @@ func TestMultiCache_Get_errorRedis(t *testing.T) {
 	}
 
 	missed, err := m.Get(ctx, []*Item{&item})
-	require.ErrorIs(t, err, io.EOF)
+	require.ErrorIs(t, err, wantErr)
 	assert.Nil(t, missed)
 }
 
