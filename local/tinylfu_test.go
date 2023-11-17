@@ -1,4 +1,4 @@
-package cache
+package local
 
 import (
 	"context"
@@ -14,6 +14,8 @@ import (
 
 	mocks "github.com/dsh2dsh/expx-cache/internal/mocks/cache"
 )
+
+const testKey = "mykey"
 
 func TestTinyLFU_Get_CorruptionOnExpiry(t *testing.T) {
 	if testing.Short() {

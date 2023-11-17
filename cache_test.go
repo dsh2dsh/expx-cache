@@ -14,6 +14,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
+
+	"github.com/dsh2dsh/expx-cache/local"
+	"github.com/dsh2dsh/expx-cache/redis/classic"
 )
 
 const testKey = "mykey"
@@ -22,6 +25,23 @@ func valueNoError[V any](t *testing.T) func(val V, err error) V {
 	return func(val V, err error) V {
 		require.NoError(t, err)
 		return val
+	}
+}
+
+func mgetIter3(
+	ctx context.Context, keys []string,
+) (context.Context, int, func(itemIdx int) string) {
+	return ctx, len(keys), func(itemIdx int) string { return keys[itemIdx] }
+}
+
+func makeBytesIter(blobs [][]byte) func() ([]byte, bool) {
+	var nextItem int
+	return func() (b []byte, ok bool) {
+		if nextItem < len(blobs) {
+			b, ok = blobs[nextItem], true
+			nextItem++
+		}
+		return
 	}
 }
 
@@ -412,8 +432,9 @@ func NewRedisClient() (*redis.Client, error) {
 		WithRedis: "skip", // "redis://localhost:6379/1",
 	}
 
+	//nolint:wrapcheck
 	err := dotenv.New().WithDepth(1).WithEnvSuffix("test").Load(func() error {
-		return env.Parse(&cfg) //nolint:wrapcheck
+		return env.Parse(&cfg)
 	})
 	if err != nil {
 		return nil, fmt.Errorf("load .env: %w", err)
@@ -453,7 +474,7 @@ func TestCacheSuite(t *testing.T) {
 		subTests   func(rdb redis.Cmdable) []cacheSubTest
 	}{
 		{
-			name:       "with LocalCache",
+			name:       "LocalCache and RedisCache",
 			needsLocal: true,
 			needsRedis: true,
 			subTests: func(rdb redis.Cmdable) []cacheSubTest {
@@ -461,14 +482,14 @@ func TestCacheSuite(t *testing.T) {
 			},
 		},
 		{
-			name:       "without LocalCache",
+			name:       "RedisCache",
 			needsRedis: true,
 			subTests: func(rdb redis.Cmdable) []cacheSubTest {
 				return []cacheSubTest{subTestsWithRedis(rdb), subTestsWithStats}
 			},
 		},
 		{
-			name:       "without Redis",
+			name:       "LocalCache",
 			needsLocal: true,
 			subTests: func(rdb redis.Cmdable) []cacheSubTest {
 				return []cacheSubTest{subTestsWithStats}
@@ -560,7 +581,7 @@ func subTestsWithRedis(rdb redis.Cmdable) cacheSubTest {
 			withRedis func(c *Cache) *Cache
 		}{
 			{
-				name: "with StdRedis",
+				name: "Classic",
 				withRedis: func(c *Cache) *Cache {
 					return c.WithRedis(rdb)
 				},
@@ -571,9 +592,13 @@ func subTestsWithRedis(rdb redis.Cmdable) cacheSubTest {
 			cfg := func(c *Cache) *Cache {
 				return tt.withRedis(parentCfg(c))
 			}
-			t.Run(tt.name, func(t *testing.T) {
+			if len(tests) > 1 {
+				t.Run(tt.name, func(t *testing.T) {
+					runCacheSubTests(t, cfg, suiteRun, subTests)
+				})
+			} else {
 				runCacheSubTests(t, cfg, suiteRun, subTests)
-			})
+			}
 		}
 	}
 }
@@ -598,9 +623,13 @@ func subTestsWithStats(t *testing.T, parentCfg func(*Cache) *Cache,
 		cfg := func(c *Cache) *Cache {
 			return parentCfg(c).WithStats(tt.withStats)
 		}
-		t.Run(tt.name, func(t *testing.T) {
+		if tt.withStats {
+			t.Run(tt.name, func(t *testing.T) {
+				runCacheSubTests(t, cfg, suiteRun, subTests)
+			})
+		} else {
 			runCacheSubTests(t, cfg, suiteRun, subTests)
-		})
+		}
 	}
 }
 
@@ -611,7 +640,7 @@ func TestWithLocalCache(t *testing.T) {
 	require.NotNil(t, cache)
 	assert.Nil(t, cache.localCache)
 
-	localCache := NewTinyLFU(1000, time.Minute)
+	localCache := local.NewTinyLFU(1000, time.Minute)
 	assert.Same(t, cache, cache.WithLocalCache(localCache))
 	assert.NotNil(t, cache.localCache)
 	assert.Same(t, localCache, cache.localCache)
@@ -638,7 +667,7 @@ func TestWithRedisCache(t *testing.T) {
 	require.NotNil(t, cache)
 	assert.Nil(t, cache.redis)
 
-	redisCache := NewStdRedis(nil)
+	redisCache := classic.New(nil)
 	assert.Same(t, cache, cache.WithRedisCache(redisCache))
 	assert.NotNil(t, cache.redis)
 	assert.Same(t, cache.redis, redisCache)
