@@ -6,7 +6,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 
@@ -130,7 +129,7 @@ func TestCache_Delete_withKeyWrapper(t *testing.T) {
 			name: "WithRedisCache",
 			expecter: func(t *testing.T, c *Cache) *Cache {
 				redisCache := mocks.NewMockRedisCache(t)
-				redisCache.EXPECT().Del(ctx, wantKey).Return(nil)
+				redisCache.EXPECT().Del(ctx, []string{wantKey}).Return(nil)
 				return c.WithRedisCache(redisCache)
 			},
 		},
@@ -141,11 +140,7 @@ func TestCache_Delete_withKeyWrapper(t *testing.T) {
 				localCache.EXPECT().Del(wantKey)
 
 				redisCache := mocks.NewMockRedisCache(t)
-				redisCache.EXPECT().Del(ctx, mock.Anything).RunAndReturn(
-					func(ctx context.Context, keys ...string) error {
-						assert.Equal(t, []string{wantKey}, keys)
-						return nil
-					})
+				redisCache.EXPECT().Del(ctx, []string{wantKey}).Return(nil)
 
 				return c.WithLocalCache(localCache).WithRedisCache(redisCache)
 			},
@@ -154,10 +149,9 @@ func TestCache_Delete_withKeyWrapper(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			cache := New().
-				WithKeyWrapper(func(key string) string {
-					return keyPrefix + key
-				})
+			cache := New().WithKeyWrapper(func(key string) string {
+				return keyPrefix + key
+			})
 			require.NotNil(t, cache)
 			cache = tt.expecter(t, cache)
 			require.NoError(t, cache.Delete(ctx, testKey))

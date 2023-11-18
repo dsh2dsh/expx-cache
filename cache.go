@@ -23,7 +23,7 @@ type LocalCache interface {
 }
 
 type RedisCache interface {
-	Del(ctx context.Context, keys ...string) error
+	Del(ctx context.Context, keys []string) error
 	Get(ctx context.Context, maxItems int,
 		keyIter func(itemIdx int) string) (func() ([]byte, bool), error)
 	Set(ctx context.Context, maxItems int,
