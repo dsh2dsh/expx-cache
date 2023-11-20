@@ -30,7 +30,7 @@ func NewTinyLFU(size int, ttl time.Duration) *TinyLFU {
 }
 
 type TinyLFU struct {
-	mu     sync.RWMutex
+	mu     sync.Mutex
 	lfu    LFU
 	ttl    time.Duration
 	offset time.Duration
@@ -62,8 +62,8 @@ func (self *TinyLFU) Set(key string, b []byte) {
 }
 
 func (self *TinyLFU) Get(key string) []byte {
-	self.mu.RLock()
-	defer self.mu.RUnlock()
+	self.mu.Lock()
+	defer self.mu.Unlock()
 
 	val, ok := self.lfu.Get(key)
 	if !ok {
