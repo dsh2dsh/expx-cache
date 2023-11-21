@@ -17,6 +17,22 @@ import (
 
 const testKey = "mykey"
 
+func TestTinyLFU(t *testing.T) {
+	localCache := NewTinyLFU(1000, time.Minute)
+	require.NotNil(t, localCache)
+
+	const key = "key1"
+	value := []byte("value1")
+
+	localCache.Set(key, value)
+	b := localCache.Get(key)
+	assert.Equal(t, value, b)
+
+	localCache.Del(key)
+	b = localCache.Get(key)
+	assert.Nil(t, b)
+}
+
 func TestTinyLFU_Get_CorruptionOnExpiry(t *testing.T) {
 	if testing.Short() {
 		t.Skip("skipping in short mode")
@@ -87,29 +103,29 @@ func TestNewTinyLFU_offset(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.ttl.String(), func(t *testing.T) {
-			tlfu := NewTinyLFU(1000, tt.ttl)
-			require.NotNil(t, tlfu)
-			assert.Equal(t, tt.expected, tlfu.offset)
+			localCache := NewTinyLFU(1000, tt.ttl)
+			require.NotNil(t, localCache)
+			assert.Equal(t, tt.expected, localCache.offset)
 		})
 	}
 }
 
 func TestTinyLFU_UseRandomizedTTL(t *testing.T) {
-	tlfu := NewTinyLFU(1000, 1000*time.Second)
-	require.NotNil(t, tlfu)
-	assert.Equal(t, 10*time.Second, tlfu.offset)
+	localCache := NewTinyLFU(1000, 1000*time.Second)
+	require.NotNil(t, localCache)
+	assert.Equal(t, 10*time.Second, localCache.offset)
 
-	tlfu.UseRandomizedTTL(10 * time.Hour)
-	assert.Equal(t, 10*time.Hour, tlfu.offset)
+	localCache.UseRandomizedTTL(10 * time.Hour)
+	assert.Equal(t, 10*time.Hour, localCache.offset)
 }
 
-func TestTinyLFU_Set(t *testing.T) {
+func TestTinyLFU_Set_offset(t *testing.T) {
 	ttl := 10 * time.Second
-	tlfu := NewTinyLFU(1000, ttl)
-	require.NotNil(t, tlfu)
+	localCache := NewTinyLFU(1000, ttl)
+	require.NotNil(t, localCache)
 
 	lfu := mocks.NewMockLFU(t)
-	tlfu.lfu = lfu
+	localCache.lfu = lfu
 
 	start := time.Now().Add(ttl)
 	var expireAt time.Time
@@ -117,13 +133,13 @@ func TestTinyLFU_Set(t *testing.T) {
 		expireAt = item.ExpireAt
 	})
 
-	tlfu.Set(testKey, []byte("a string"))
-	assert.WithinRange(t, expireAt, start, time.Now().Add(ttl+tlfu.offset))
+	localCache.Set(testKey, []byte("a string"))
+	assert.WithinRange(t, expireAt, start, time.Now().Add(ttl+localCache.offset))
 }
 
 func TestTinyLFU_Set_nil(t *testing.T) {
-	tlfu := NewTinyLFU(1000, 10*time.Second)
-	require.NotNil(t, tlfu)
-	tlfu.lfu = mocks.NewMockLFU(t)
-	tlfu.Set(testKey, nil)
+	localCache := NewTinyLFU(1000, 10*time.Second)
+	require.NotNil(t, localCache)
+	localCache.lfu = mocks.NewMockLFU(t)
+	localCache.Set(testKey, nil)
 }
