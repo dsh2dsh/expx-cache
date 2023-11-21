@@ -465,6 +465,9 @@ func TestCacheSuite(t *testing.T) {
 	if !testing.Short() {
 		t.Logf("env WITH_REDIS: %q", os.Getenv("WITH_REDIS"))
 		rdb = valueNoError[*redis.Client](t)(NewRedisClient())
+		if rdb != nil {
+			t.Cleanup(func() { require.NoError(t, rdb.Close()) })
+		}
 	}
 
 	tests := []struct {
