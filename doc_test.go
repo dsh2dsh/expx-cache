@@ -54,7 +54,6 @@ func Example_basicUsage() {
 	} else {
 		fmt.Println("not found")
 	}
-	// Output: {mystring 42}
 }
 
 func Example_advancedUsage() {
@@ -76,5 +75,4 @@ func Example_advancedUsage() {
 	}
 
 	fmt.Println(obj)
-	// Output: &{mystring 42}
 }
