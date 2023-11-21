@@ -16,6 +16,7 @@ import (
 	"github.com/stretchr/testify/suite"
 
 	"github.com/dsh2dsh/expx-cache/local"
+	"github.com/dsh2dsh/expx-cache/redis/autopipe"
 	"github.com/dsh2dsh/expx-cache/redis/classic"
 )
 
@@ -455,7 +456,7 @@ func NewRedisClient() (*redis.Client, error) {
 	return rdb, nil
 }
 
-type cacheSubTest func(t *testing.T, cfg func(*Cache) *Cache,
+type cacheSubTest func(t *testing.T, cfg func(*testing.T, *Cache) *Cache,
 	suiteRun cacheSubTest, subTests []cacheSubTest)
 
 func TestCacheSuite(t *testing.T) {
@@ -518,7 +519,7 @@ func TestCacheSuite(t *testing.T) {
 				curDB++
 				r = cn
 			}
-			cfg := func(c *Cache) *Cache {
+			cfg := func(t *testing.T, c *Cache) *Cache {
 				if tt.needsLocal {
 					return c.WithTinyLFU(1000, time.Minute)
 				}
@@ -548,24 +549,24 @@ func skipRedisTests(t *testing.T, name string, needsRedis, hasRedis bool) {
 	}
 }
 
-func suiteRunSubTests(t *testing.T, rdb redis.Cmdable, cfg func(*Cache) *Cache,
-	subTests []cacheSubTest,
+func suiteRunSubTests(t *testing.T, rdb redis.Cmdable,
+	cfg func(*testing.T, *Cache) *Cache, subTests []cacheSubTest,
 ) {
 	t.Parallel()
 	runCacheSubTests(t, cfg,
-		func(t *testing.T, cfg func(*Cache) *Cache, _ cacheSubTest,
+		func(t *testing.T, cfg func(*testing.T, *Cache) *Cache, _ cacheSubTest,
 			subTests []cacheSubTest,
 		) {
 			suite.Run(t, &CacheTestSuite{
 				rdb: rdb,
 				newCache: func() *Cache {
-					return cfg(New())
+					return cfg(t, New())
 				},
 			})
 		}, subTests)
 }
 
-func runCacheSubTests(t *testing.T, cfg func(*Cache) *Cache,
+func runCacheSubTests(t *testing.T, cfg func(*testing.T, *Cache) *Cache,
 	suiteRun cacheSubTest, subTests []cacheSubTest,
 ) {
 	if len(subTests) > 0 {
@@ -576,24 +577,37 @@ func runCacheSubTests(t *testing.T, cfg func(*Cache) *Cache,
 }
 
 func subTestsWithRedis(rdb redis.Cmdable) cacheSubTest {
-	return func(t *testing.T, parentCfg func(*Cache) *Cache,
+	return func(t *testing.T, parentCfg func(*testing.T, *Cache) *Cache,
 		suiteRun cacheSubTest, subTests []cacheSubTest,
 	) {
 		tests := []struct {
 			name      string
-			withRedis func(c *Cache) *Cache
+			withRedis func(t *testing.T, c *Cache) *Cache
 		}{
 			{
 				name: "Classic",
-				withRedis: func(c *Cache) *Cache {
+				withRedis: func(t *testing.T, c *Cache) *Cache {
 					return c.WithRedis(rdb)
+				},
+			},
+			{
+				name: "AutoPipe",
+				withRedis: func(t *testing.T, c *Cache) *Cache {
+					redisCache := autopipe.New(rdb)
+					ctx, cancel := context.WithCancel(context.Background())
+					redisCache.Go(ctx)
+					t.Cleanup(func() {
+						cancel()
+						redisCache.Wait()
+					})
+					return c.WithRedisCache(redisCache)
 				},
 			},
 		}
 
 		for _, tt := range tests {
-			cfg := func(c *Cache) *Cache {
-				return tt.withRedis(parentCfg(c))
+			cfg := func(t *testing.T, c *Cache) *Cache {
+				return tt.withRedis(t, parentCfg(t, c))
 			}
 			if len(tests) > 1 {
 				t.Run(tt.name, func(t *testing.T) {
@@ -606,7 +620,7 @@ func subTestsWithRedis(rdb redis.Cmdable) cacheSubTest {
 	}
 }
 
-func subTestsWithStats(t *testing.T, parentCfg func(*Cache) *Cache,
+func subTestsWithStats(t *testing.T, parentCfg func(*testing.T, *Cache) *Cache,
 	suiteRun cacheSubTest, subTests []cacheSubTest,
 ) {
 	tests := []struct {
@@ -623,8 +637,8 @@ func subTestsWithStats(t *testing.T, parentCfg func(*Cache) *Cache,
 	}
 
 	for _, tt := range tests {
-		cfg := func(c *Cache) *Cache {
-			return parentCfg(c).WithStats(tt.withStats)
+		cfg := func(t *testing.T, c *Cache) *Cache {
+			return parentCfg(t, c).WithStats(tt.withStats)
 		}
 		if tt.withStats {
 			t.Run(tt.name, func(t *testing.T) {
