@@ -26,11 +26,10 @@ func TestMultiCache_Get_errorCanceled(t *testing.T) {
 
 	ctx, cancel := context.WithCancel(context.Background())
 	item := Item{
-		Ctx:   ctx,
 		Key:   testKey,
 		Value: &obj,
 	}
-	require.NoError(t, cache.Set(&item))
+	require.NoError(t, cache.Set(ctx, &item))
 
 	m := NewMultiCache(cache)
 	assert.NotNil(t, m)
@@ -47,14 +46,13 @@ func TestMultiCache_Get_errorWait(t *testing.T) {
 
 	ctx := context.Background()
 	item := Item{
-		Ctx: ctx,
 		Key: testKey,
 		Value: CacheableObject{
 			Str: "mystring",
 			Num: 42,
 		},
 	}
-	require.NoError(t, cache.Set(&item))
+	require.NoError(t, cache.Set(ctx, &item))
 
 	m := NewMultiCache(cache)
 	assert.NotNil(t, m)
@@ -100,7 +98,6 @@ func TestMultiCache_Get_localSet(t *testing.T) {
 	ttl := time.Minute
 	obj := CacheableObject{}
 	item := Item{
-		Ctx:            ctx,
 		Key:            testKey,
 		Value:          &obj,
 		TTL:            ttl,
@@ -118,7 +115,7 @@ func TestMultiCache_Get_localSet(t *testing.T) {
 			return nil
 		},
 	)
-	require.NoError(t, cache.Set(&item))
+	require.NoError(t, cache.Set(ctx, &item))
 
 	item.SkipLocalCache = false
 	localCache.EXPECT().Get(testKey).Return(nil)

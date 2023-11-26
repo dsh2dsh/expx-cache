@@ -64,11 +64,10 @@ func TestMultiCache_GetSet_errorGet(t *testing.T) {
 
 	ctx, cancel := context.WithCancel(context.Background())
 	item := Item{
-		Ctx:   ctx,
 		Key:   testKey,
 		Value: &obj,
 	}
-	require.NoError(t, cache.Set(&item))
+	require.NoError(t, cache.Set(ctx, &item))
 
 	cancel()
 	require.ErrorIs(t, cache.MGetSet(ctx, []*Item{&item}), context.Canceled)

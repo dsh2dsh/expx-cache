@@ -14,8 +14,7 @@ import (
 
 func (self *CacheTestSuite) TestDelete() {
 	ctx := context.Background()
-	err := self.cache.Set(&Item{
-		Ctx:   ctx,
+	err := self.cache.Set(ctx, &Item{
 		Key:   testKey,
 		Value: self.CacheableValue(),
 		TTL:   time.Hour,
@@ -35,8 +34,7 @@ func (self *CacheTestSuite) TestDelete() {
 
 func (self *CacheTestSuite) TestDeleteFromLocalCache() {
 	ctx := context.Background()
-	err := self.cache.Set(&Item{
-		Ctx:   ctx,
+	err := self.cache.Set(ctx, &Item{
 		Key:   testKey,
 		Value: self.CacheableValue(),
 		TTL:   time.Hour,
@@ -61,8 +59,7 @@ func (self *CacheTestSuite) TestDeleteFromLocalCache() {
 
 func (self *CacheTestSuite) TestDeleteFromRedis() {
 	ctx := context.Background()
-	err := self.cache.Set(&Item{
-		Ctx:   ctx,
+	err := self.cache.Set(ctx, &Item{
 		Key:   testKey,
 		Value: self.CacheableValue(),
 	})

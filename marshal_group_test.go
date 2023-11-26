@@ -31,7 +31,7 @@ func TestMarshalGroup_errorAcquire(t *testing.T) {
 	t.Parallel()
 
 	const foobar = "foobar"
-	foobarDo := func(item *Item) (any, error) {
+	foobarDo := func(ctx context.Context) (any, error) {
 		return foobar, nil
 	}
 
@@ -113,7 +113,7 @@ func TestMarshalGroup_errorAcquire(t *testing.T) {
 
 func TestMarshalGroup_errorMarshal(t *testing.T) {
 	const foobar = "foobar"
-	foobarDo := func(item *Item) (any, error) {
+	foobarDo := func(ctx context.Context) (any, error) {
 		return foobar, nil
 	}
 
@@ -195,7 +195,7 @@ func TestMarshalGroup_GoMarshal_marshalCancelled(t *testing.T) {
 	require.NotNil(t, g)
 
 	var doCount uint64
-	item := Item{Key: testKey, Do: func(item *Item) (any, error) {
+	item := Item{Key: testKey, Do: func(ctx context.Context) (any, error) {
 		atomic.AddUint64(&doCount, 1)
 		cancel()
 		return "foobar", nil

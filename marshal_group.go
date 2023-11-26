@@ -74,8 +74,7 @@ func (self *marshalGroup) marshalDo(item *Item, cb func(b []byte)) {
 			defer self.cache.workers.Release(1)
 		}
 
-		item.Ctx = self.ctx
-		v, err := item.value()
+		v, err := item.value(self.ctx)
 		if err != nil {
 			return fmt.Errorf("item value %q: %w", item.Key, err)
 		}

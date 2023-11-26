@@ -37,8 +37,7 @@ func Example_basicUsage() {
 		Num: 42,
 	}
 
-	if err := mycache.Set(&cache.Item{
-		Ctx:   ctx,
+	if err := mycache.Set(ctx, &cache.Item{
 		Key:   key,
 		Value: obj,
 		TTL:   time.Hour,
@@ -61,10 +60,10 @@ func Example_advancedUsage() {
 	mycache := cache.New().WithTinyLFU(1000, time.Minute).WithRedis(rdb)
 
 	obj := new(Object)
-	if err := mycache.Once(&cache.Item{
+	if err := mycache.Once(context.Background(), &cache.Item{
 		Key:   "mykey",
 		Value: obj, // destination
-		Do: func(*cache.Item) (any, error) {
+		Do: func(ctx context.Context) (any, error) {
 			return &Object{
 				Str: "mystring",
 				Num: 42,

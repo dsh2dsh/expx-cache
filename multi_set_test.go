@@ -43,7 +43,7 @@ func TestMultiCache_Set_errorWait(t *testing.T) {
 
 	item := Item{
 		Key: testKey,
-		Do: func(*Item) (any, error) {
+		Do: func(ctx context.Context) (any, error) {
 			return nil, io.EOF
 		},
 	}

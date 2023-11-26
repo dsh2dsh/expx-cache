@@ -24,8 +24,7 @@ func TestCache_WithMarshal(t *testing.T) {
 
 	ctx := context.Background()
 	value := "abc"
-	require.NoError(t, cache.Set(&Item{
-		Ctx:   ctx,
+	require.NoError(t, cache.Set(ctx, &Item{
 		Key:   testKey,
 		Value: value,
 	}))
@@ -39,8 +38,7 @@ func TestCache_WithUnmarshal(t *testing.T) {
 
 	ctx := context.Background()
 	value := "abc"
-	require.NoError(t, cache.Set(&Item{
-		Ctx:   ctx,
+	require.NoError(t, cache.Set(ctx, &Item{
 		Key:   testKey,
 		Value: value,
 	}))

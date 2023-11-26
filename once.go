@@ -1,6 +1,7 @@
 package cache
 
 import (
+	"context"
 	"fmt"
 )
 
@@ -9,12 +10,12 @@ import (
 // one execution is in-flight for a given item.Key at a time. If a duplicate
 // comes in, the duplicate caller waits for the original to complete and
 // receives the same results.
-func (self *Cache) Once(item *Item) error {
-	return self.once(item, true)
+func (self *Cache) Once(ctx context.Context, item *Item) error {
+	return self.once(ctx, item, true)
 }
 
-func (self *Cache) once(item *Item, autoFix bool) error {
-	b, fromCache, err := self.getSetItemBytesOnce(item)
+func (self *Cache) once(ctx context.Context, item *Item, autoFix bool) error {
+	b, fromCache, err := self.getSetItemBytesOnce(ctx, item)
 	if err != nil {
 		return err
 	} else if len(b) == 0 {
@@ -23,10 +24,10 @@ func (self *Cache) once(item *Item, autoFix bool) error {
 
 	if err := self.Unmarshal(b, item.Value); err != nil {
 		if fromCache && autoFix {
-			if err := self.Delete(item.Context(), item.Key); err != nil {
+			if err := self.Delete(ctx, item.Key); err != nil {
 				return err
 			}
-			return self.once(item, false)
+			return self.once(ctx, item, false)
 		}
 		return err
 	}
@@ -34,7 +35,9 @@ func (self *Cache) once(item *Item, autoFix bool) error {
 	return nil
 }
 
-func (self *Cache) getSetItemBytesOnce(item *Item) ([]byte, bool, error) {
+func (self *Cache) getSetItemBytesOnce(
+	ctx context.Context, item *Item,
+) ([]byte, bool, error) {
 	key := self.ResolveKey(item.Key)
 
 	if self.localCache != nil {
@@ -49,13 +52,13 @@ func (self *Cache) getSetItemBytesOnce(item *Item) ([]byte, bool, error) {
 	fromCache, localHit := false, true
 	v, err, _ := self.group.Do(key, func() (any, error) {
 		localHit = false
-		b, err := self.getBytes(item.Context(), item.Key, item.SkipLocalCache)
+		b, err := self.getBytes(ctx, item.Key, item.SkipLocalCache)
 		if err == nil && b != nil {
 			fromCache = true
 			return b, nil
 		}
 
-		b, err = self.set(item)
+		b, err = self.set(ctx, item)
 		if err != nil {
 			return nil, err
 		}

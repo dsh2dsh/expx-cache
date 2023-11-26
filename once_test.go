@@ -18,8 +18,7 @@ import (
 
 func (self *CacheTestSuite) TestOnce_cacheFails() {
 	ctx := context.Background()
-	err := self.cache.Set(&Item{
-		Ctx:   ctx,
+	err := self.cache.Set(ctx, &Item{
 		Key:   testKey,
 		Value: int64(0),
 	})
@@ -30,11 +29,10 @@ func (self *CacheTestSuite) TestOnce_cacheFails() {
 	self.Require().ErrorContains(err, "msgpack: invalid code=d3 decoding bool")
 	self.cacheHit()
 
-	err = self.cache.Once(&Item{
-		Ctx:   ctx,
+	err = self.cache.Once(ctx, &Item{
 		Key:   testKey,
 		Value: &got,
-		Do: func(*Item) (any, error) {
+		Do: func(ctx context.Context) (any, error) {
 			return true, nil
 		},
 	})
@@ -55,11 +53,10 @@ func (self *CacheTestSuite) TestOnce_funcFails() {
 	ctx := context.Background()
 	perform(100, func(i int) {
 		var got bool
-		err := self.cache.Once(&Item{
-			Ctx:   ctx,
+		err := self.cache.Once(ctx, &Item{
 			Key:   testKey,
 			Value: &got,
-			Do: func(*Item) (any, error) {
+			Do: func(ctx context.Context) (any, error) {
 				self.cacheMiss()
 				return nil, io.EOF
 			},
@@ -72,11 +69,10 @@ func (self *CacheTestSuite) TestOnce_funcFails() {
 	self.False(valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, &got)))
 	self.cacheMiss()
 
-	err := self.cache.Once(&Item{
-		Ctx:   ctx,
+	err := self.cache.Once(ctx, &Item{
 		Key:   testKey,
 		Value: &got,
-		Do: func(*Item) (any, error) {
+		Do: func(ctx context.Context) (any, error) {
 			return true, nil
 		},
 	})
@@ -108,11 +104,10 @@ func (self *CacheTestSuite) TestOnce_withValue() {
 	perform(100, func(int) {
 		got := new(CacheableObject)
 		hit := true
-		err := self.cache.Once(&Item{
-			Ctx:   ctx,
+		err := self.cache.Once(ctx, &Item{
 			Key:   testKey,
 			Value: got,
-			Do: func(*Item) (any, error) {
+			Do: func(ctx context.Context) (any, error) {
 				atomic.AddUint64(&callCount, 1)
 				self.cacheMiss()
 				hit = false
@@ -136,11 +131,10 @@ func (self *CacheTestSuite) TestOnce_withPtrNonPtr() {
 	perform(100, func(int) {
 		got := new(CacheableObject)
 		hit := true
-		err := self.cache.Once(&Item{
-			Ctx:   ctx,
+		err := self.cache.Once(ctx, &Item{
 			Key:   testKey,
 			Value: got,
-			Do: func(*Item) (any, error) {
+			Do: func(ctx context.Context) (any, error) {
 				atomic.AddUint64(&callCount, 1)
 				self.cacheMiss()
 				hit = false
@@ -163,11 +157,10 @@ func (self *CacheTestSuite) TestOnce_withBool() {
 	perform(100, func(int) {
 		var got bool
 		hit := true
-		err := self.cache.Once(&Item{
-			Ctx:   ctx,
+		err := self.cache.Once(ctx, &Item{
 			Key:   testKey,
 			Value: &got,
-			Do: func(*Item) (any, error) {
+			Do: func(ctx context.Context) (any, error) {
 				atomic.AddUint64(&callCount, 1)
 				self.cacheMiss()
 				hit = false
@@ -189,10 +182,9 @@ func (self *CacheTestSuite) TestOnce_withoutValueAndNil() {
 	ctx := context.Background()
 	perform(100, func(int) {
 		hit := true
-		err := self.cache.Once(&Item{
-			Ctx: ctx,
+		err := self.cache.Once(ctx, &Item{
 			Key: testKey,
-			Do: func(*Item) (any, error) {
+			Do: func(ctx context.Context) (any, error) {
 				time.Sleep(100 * time.Millisecond)
 				atomic.AddUint64(&callCount, 1)
 				self.cacheMiss()
@@ -214,10 +206,9 @@ func (self *CacheTestSuite) TestOnce_withoutValueAndErr() {
 	ctx := context.Background()
 	errStub := errors.New("error stub")
 	perform(100, func(int) {
-		err := self.cache.Once(&Item{
-			Ctx: ctx,
+		err := self.cache.Once(ctx, &Item{
 			Key: testKey,
-			Do: func(*Item) (any, error) {
+			Do: func(ctx context.Context) (any, error) {
 				time.Sleep(100 * time.Millisecond)
 				atomic.AddUint64(&callCount, 1)
 				self.cacheMiss()
@@ -237,11 +228,10 @@ func (self *CacheTestSuite) TestOnce_doesntCacheErr() {
 	do := func(sleep time.Duration) (int, error) {
 		var n int
 		hit := true
-		err := self.cache.Once(&Item{
-			Ctx:   ctx,
+		err := self.cache.Once(ctx, &Item{
 			Key:   testKey,
 			Value: &n,
-			Do: func(*Item) (any, error) {
+			Do: func(ctx context.Context) (any, error) {
 				time.Sleep(sleep)
 				self.cacheMiss()
 				hit = false
@@ -281,17 +271,16 @@ func (self *CacheTestSuite) TestOnce_skipSetTTLNeg() {
 	ctx := context.Background()
 
 	var value string
-	self.Require().NoError(self.cache.Once(&Item{
-		Ctx:   ctx,
+	self.Require().NoError(self.cache.Once(ctx, &Item{
 		Key:   key,
 		Value: &value,
-		Do: func(item *Item) (any, error) {
-			item.TTL = -1
-			self.cacheMiss()
+		TTL:   -1,
+		Do: func(ctx context.Context) (any, error) {
 			return "hello", nil
 		},
 	}))
 	self.Equal("hello", value)
+	self.cacheMiss()
 
 	if self.rdb != nil {
 		exists := valueNoError[int64](self.T())(self.rdb.Exists(ctx, key).Result())
@@ -307,11 +296,10 @@ func TestOnce_errUnmarshal(t *testing.T) {
 
 	cache := New().WithLocalCache(localCache)
 	var got bool
-	err := cache.Once(&Item{
-		Ctx:   context.Background(),
+	err := cache.Once(context.Background(), &Item{
 		Key:   testKey,
 		Value: &got,
-		Do: func(*Item) (any, error) {
+		Do: func(ctx context.Context) (any, error) {
 			return int64(0), nil
 		},
 	})
@@ -330,11 +318,10 @@ func TestOnce_errDelete(t *testing.T) {
 
 	cache := New().WithRedisCache(redisCache)
 	var got bool
-	err := cache.Once(&Item{
-		Ctx:   ctx,
+	err := cache.Once(ctx, &Item{
 		Key:   testKey,
 		Value: &got,
-		Do: func(*Item) (any, error) {
+		Do: func(ctx context.Context) (any, error) {
 			return int64(0), nil
 		},
 	})
@@ -346,11 +333,10 @@ func TestOnce_withoutCache(t *testing.T) {
 	cache := New()
 	callCount := 0
 	got := false
-	require.NoError(t, cache.Once(&Item{
-		Ctx:   context.Background(),
+	require.NoError(t, cache.Once(context.Background(), &Item{
 		Key:   testKey,
 		Value: &got,
-		Do: func(*Item) (any, error) {
+		Do: func(ctx context.Context) (any, error) {
 			callCount++
 			return true, nil
 		},
@@ -377,11 +363,10 @@ func TestCache_Once_withKeyWrapper(t *testing.T) {
 	var got bool
 
 	go func() {
-		onceErr <- cache.Once(&Item{
-			Ctx:   context.Background(),
+		onceErr <- cache.Once(context.Background(), &Item{
 			Key:   testKey,
 			Value: &got,
-			Do: func(*Item) (any, error) {
+			Do: func(ctx context.Context) (any, error) {
 				onceSlipping <- struct{}{}
 				time.Sleep(100 * time.Millisecond)
 				return true, nil

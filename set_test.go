@@ -22,8 +22,7 @@ func TestCache_Set_Marshall_error(t *testing.T) {
 			return nil, io.EOF
 		})
 
-	err := cache.Set(&Item{
-		Ctx:   context.Background(),
+	err := cache.Set(context.Background(), &Item{
 		Key:   testKey,
 		Value: "foobar",
 	})
@@ -32,8 +31,7 @@ func TestCache_Set_Marshall_error(t *testing.T) {
 
 func TestCache_Set_withoutCache(t *testing.T) {
 	cache := New()
-	require.NoError(t, cache.Set(&Item{
-		Ctx:   context.Background(),
+	require.NoError(t, cache.Set(context.Background(), &Item{
 		Key:   testKey,
 		Value: "foobar",
 	}))
@@ -50,8 +48,7 @@ func TestCache_Set_redisErr(t *testing.T) {
 		})
 
 	cache := New().WithRedis(rdb)
-	err := cache.Set(&Item{
-		Ctx:   ctx,
+	err := cache.Set(ctx, &Item{
 		Key:   testKey,
 		Value: "foobar",
 	})

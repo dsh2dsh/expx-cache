@@ -126,13 +126,14 @@ func (self *CacheTestSuite) assertStats() {
 // --------------------------------------------------
 
 func (self *CacheTestSuite) TestGetSet_nil() {
-	err := self.cache.Set(&Item{
+	ctx := context.Background()
+
+	err := self.cache.Set(ctx, &Item{
 		Key: testKey,
 		TTL: time.Hour,
 	})
 	self.Require().NoError(err)
 
-	ctx := context.Background()
 	self.False(valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, nil)))
 	self.cacheMiss()
 	self.False(valueNoError[bool](self.T())(self.cache.Exists(ctx, testKey)),
@@ -144,8 +145,7 @@ func (self *CacheTestSuite) TestGetSet_nil() {
 func (self *CacheTestSuite) TestGetSet_data() {
 	ctx := context.Background()
 	val := self.CacheableValue()
-	err := self.cache.Set(&Item{
-		Ctx:   ctx,
+	err := self.cache.Set(ctx, &Item{
 		Key:   testKey,
 		Value: val,
 		TTL:   time.Hour,
@@ -165,8 +165,7 @@ func (self *CacheTestSuite) TestGetSet_data() {
 func (self *CacheTestSuite) TestGetSet_stringAsIs() {
 	ctx := context.Background()
 	value := "str_value"
-	err := self.cache.Set(&Item{
-		Ctx:   ctx,
+	err := self.cache.Set(ctx, &Item{
 		Key:   testKey,
 		Value: value,
 	})
@@ -183,8 +182,7 @@ func (self *CacheTestSuite) TestGetSet_stringAsIs() {
 func (self *CacheTestSuite) TestGetSet_bytesAsIs() {
 	ctx := context.Background()
 	value := []byte("str_value")
-	err := self.cache.Set(&Item{
-		Ctx:   ctx,
+	err := self.cache.Set(ctx, &Item{
 		Key:   testKey,
 		Value: value,
 	})
@@ -268,7 +266,7 @@ func (self *CacheTestSuite) TestMGetSet() {
 		allItems[i] = &Item{
 			Key:   key,
 			Value: valueRef,
-			Do: func(*Item) (any, error) {
+			Do: func(ctx context.Context) (any, error) {
 				atomic.AddUint64(&callCount, 1)
 				return *valueRef, nil
 			},
@@ -304,8 +302,7 @@ func (self *CacheTestSuite) TestWithKeyWrapper() {
 	})
 
 	ctx := context.Background()
-	self.Require().NoError(cache.Set(&Item{
-		Ctx:   ctx,
+	self.Require().NoError(cache.Set(ctx, &Item{
 		Key:   testKey,
 		Value: self.CacheableValue(),
 	}))
@@ -334,8 +331,7 @@ func (self *CacheTestSuite) TestWithKeyWrapper() {
 			name: "Once",
 			assert: func(t *testing.T) {
 				got := new(CacheableObject)
-				require.NoError(t, cache.Once(&Item{
-					Ctx:   ctx,
+				require.NoError(t, cache.Once(ctx, &Item{
 					Key:   testKey,
 					Value: got,
 				}))
@@ -353,11 +349,10 @@ func (self *CacheTestSuite) TestWithKeyWrapper() {
 			name: "Once after Delete",
 			assert: func(t *testing.T) {
 				got := new(CacheableObject)
-				require.NoError(t, cache.Once(&Item{
-					Ctx:   ctx,
+				require.NoError(t, cache.Once(ctx, &Item{
 					Key:   testKey,
 					Value: got,
-					Do: func(*Item) (any, error) {
+					Do: func(ctx context.Context) (any, error) {
 						return self.CacheableValue(), nil
 					},
 				}))
@@ -368,11 +363,10 @@ func (self *CacheTestSuite) TestWithKeyWrapper() {
 			name: "Once with Unmarshal error",
 			assert: func(t *testing.T) {
 				var got bool
-				require.NoError(t, cache.Once(&Item{
-					Ctx:   ctx,
+				require.NoError(t, cache.Once(ctx, &Item{
 					Key:   testKey,
 					Value: &got,
-					Do: func(*Item) (any, error) {
+					Do: func(ctx context.Context) (any, error) {
 						return true, nil
 					},
 				}), "did Once() delete wrong cache key after Unmarshal() error?")
