@@ -728,12 +728,17 @@ func TestCache_ItemTTL(t *testing.T) {
 		{
 			name:    "too small",
 			TTL:     time.Millisecond,
-			wantTTL: time.Second,
+			wantTTL: time.Millisecond,
 		},
 		{
 			name:    "negative",
 			TTL:     -time.Second,
-			wantTTL: time.Duration(0),
+			wantTTL: cache.DefaultTTL(),
+		},
+		{
+			name:    "zero",
+			TTL:     0,
+			wantTTL: cache.DefaultTTL(),
 		},
 		{
 			name:    "ok",
@@ -748,7 +753,8 @@ func TestCache_ItemTTL(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.wantTTL, cache.ItemTTL(&Item{TTL: tt.TTL}))
+			item := Item{TTL: tt.TTL}
+			assert.Equal(t, tt.wantTTL, item.ttl(cache.DefaultTTL()))
 		})
 	}
 }

@@ -130,18 +130,6 @@ func (self *Cache) DefaultTTL() time.Duration {
 	return self.defaultTTL
 }
 
-func (self *Cache) ItemTTL(item *Item) time.Duration {
-	switch {
-	case item.TTL < 0:
-		return 0
-	case item.TTL == 0:
-		return self.DefaultTTL()
-	case item.TTL < time.Second:
-		return time.Second
-	}
-	return item.TTL
-}
-
 // --------------------------------------------------
 
 func (self *Cache) WithNamespace(namespace string) *Cache {

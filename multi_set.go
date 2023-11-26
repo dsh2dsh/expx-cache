@@ -74,7 +74,7 @@ func (self *MultiCache) redisSet(ctx context.Context, items []blobItem) error {
 	err := self.cache.redis.Set(ctx, len(items),
 		func(itemIdx int) (string, []byte, time.Duration) {
 			item := &items[itemIdx]
-			return item.Key, item.Value, self.cache.ItemTTL(item.Item)
+			return item.Key, item.Value, item.Item.ttl(self.cache.DefaultTTL())
 		})
 	if err != nil {
 		return fmt.Errorf("cache: %w", err)

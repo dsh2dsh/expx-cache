@@ -26,3 +26,10 @@ func (self *Item) value(ctx context.Context) (any, error) {
 	}
 	return self.Value, nil
 }
+
+func (self *Item) ttl(def time.Duration) time.Duration {
+	if self.TTL > 0 {
+		return self.TTL
+	}
+	return def
+}
