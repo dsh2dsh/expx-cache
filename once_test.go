@@ -266,7 +266,7 @@ func (self *CacheTestSuite) TestOnce_doesntCacheErr() {
 	self.assertStats()
 }
 
-func (self *CacheTestSuite) TestOnce_skipSetTTLNeg() {
+func (self *CacheTestSuite) TestOnce_withNegTTL() {
 	key := "skip-set"
 	ctx := context.Background()
 
@@ -283,8 +283,8 @@ func (self *CacheTestSuite) TestOnce_skipSetTTLNeg() {
 	self.cacheMiss()
 
 	if self.rdb != nil {
-		exists := valueNoError[int64](self.T())(self.rdb.Exists(ctx, key).Result())
-		self.Equal(int64(0), exists)
+		ttl := valueNoError[time.Duration](self.T())(self.rdb.TTL(ctx, key).Result())
+		self.Equal(self.cache.DefaultTTL(), ttl)
 	}
 	self.assertStats()
 }
