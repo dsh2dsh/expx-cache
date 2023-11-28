@@ -93,7 +93,7 @@ func TestMarshalGroup_errorAcquire(t *testing.T) {
 				g = tt.configure(t, g)
 				require.NotNil(t, g)
 			}
-			for cache.workers.TryAcquire(1) {
+			for cache.marshalers.TryAcquire(1) {
 			}
 
 			sig := make(chan struct{})

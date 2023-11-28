@@ -41,9 +41,9 @@ func New() *Cache {
 		marshal:    marshal,
 		unmarshal:  unmarshal,
 
-		stats:   new(Stats),
-		group:   &singleflight.Group{},
-		workers: semaphore.NewWeighted(int64(runtime.GOMAXPROCS(0))),
+		stats:      new(Stats),
+		group:      &singleflight.Group{},
+		marshalers: semaphore.NewWeighted(int64(runtime.GOMAXPROCS(0))),
 	}
 
 	return c
@@ -63,8 +63,8 @@ type Cache struct {
 	stats        *Stats
 	statsEnabled bool
 
-	group   *singleflight.Group
-	workers *semaphore.Weighted
+	group      *singleflight.Group
+	marshalers *semaphore.Weighted
 }
 
 func (self *Cache) New() *Cache {

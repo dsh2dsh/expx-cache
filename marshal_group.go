@@ -45,12 +45,12 @@ func (self *marshalGroup) GoMarshal(item *Item, cb func(b []byte)) {
 }
 
 func (self *marshalGroup) marshalValue(item *Item, cb func(b []byte)) {
-	if err := self.cache.workers.Acquire(self.ctx, 1); err != nil {
+	if err := self.cache.marshalers.Acquire(self.ctx, 1); err != nil {
 		return
 	}
 
 	self.g.Go(func() error {
-		defer self.cache.workers.Release(1)
+		defer self.cache.marshalers.Release(1)
 		b, err := self.cache.Marshal(item.Value)
 		if err != nil {
 			return fmt.Errorf("marshal item %q: %w", item.Key, err)
@@ -63,7 +63,7 @@ func (self *marshalGroup) marshalValue(item *Item, cb func(b []byte)) {
 func (self *marshalGroup) marshalDo(item *Item, cb func(b []byte)) {
 	acquired := false
 	if !self.groupDo {
-		if err := self.cache.workers.Acquire(self.ctx, 1); err != nil {
+		if err := self.cache.marshalers.Acquire(self.ctx, 1); err != nil {
 			return
 		}
 		acquired = true
@@ -71,7 +71,7 @@ func (self *marshalGroup) marshalDo(item *Item, cb func(b []byte)) {
 
 	self.g.Go(func() error {
 		if acquired {
-			defer self.cache.workers.Release(1)
+			defer self.cache.marshalers.Release(1)
 		}
 
 		v, err := item.value(self.ctx)
@@ -82,10 +82,10 @@ func (self *marshalGroup) marshalDo(item *Item, cb func(b []byte)) {
 		if self.ctx.Err() != nil {
 			return nil
 		} else if !acquired {
-			if err := self.cache.workers.Acquire(self.ctx, 1); err != nil {
+			if err := self.cache.marshalers.Acquire(self.ctx, 1); err != nil {
 				return nil
 			}
-			defer self.cache.workers.Release(1)
+			defer self.cache.marshalers.Release(1)
 		}
 
 		b, err := self.cache.Marshal(v)
@@ -98,12 +98,12 @@ func (self *marshalGroup) marshalDo(item *Item, cb func(b []byte)) {
 }
 
 func (self *marshalGroup) GoUnmarshal(b []byte, item *Item) {
-	if err := self.cache.workers.Acquire(self.ctx, 1); err != nil {
+	if err := self.cache.marshalers.Acquire(self.ctx, 1); err != nil {
 		return
 	}
 
 	self.g.Go(func() error {
-		defer self.cache.workers.Release(1)
+		defer self.cache.marshalers.Release(1)
 		if err := self.cache.Unmarshal(b, item.Value); err != nil {
 			return fmt.Errorf("unmarshal item %q: %w", item.Key, err)
 		}
