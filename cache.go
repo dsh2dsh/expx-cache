@@ -31,22 +31,35 @@ type RedisCache interface {
 }
 
 type (
+	Option        func(c *Cache)
 	MarshalFunc   func(any) ([]byte, error)
 	UnmarshalFunc func([]byte, any) error
 )
 
-func New() *Cache {
+func New(opts ...Option) *Cache {
 	c := &Cache{
 		defaultTTL: defaultTTL,
 		marshal:    marshal,
 		unmarshal:  unmarshal,
 
-		stats:      new(Stats),
-		group:      &singleflight.Group{},
-		marshalers: semaphore.NewWeighted(int64(runtime.GOMAXPROCS(0))),
+		stats: new(Stats),
+		group: new(singleflight.Group),
 	}
+	return c.applyOptions(opts...)
+}
 
-	return c
+func WithMarshalMaxProcs(n int) Option {
+	return func(c *Cache) {
+		if n < 1 {
+			c.marshalers = semaphore.NewWeighted(int64(runtime.GOMAXPROCS(0)))
+		} else {
+			c.marshalers = semaphore.NewWeighted(int64(n))
+		}
+	}
+}
+
+func WithItemMaxProcs(n int) Option {
+	return func(c *Cache) { c.valueProcs = n }
 }
 
 type Cache struct {
@@ -65,11 +78,24 @@ type Cache struct {
 
 	group      *singleflight.Group
 	marshalers *semaphore.Weighted
+	valueProcs int
 }
 
-func (self *Cache) New() *Cache {
+func (self *Cache) applyOptions(opts ...Option) *Cache {
+	for _, fn := range opts {
+		fn(self)
+	}
+
+	if self.marshalers == nil {
+		self.marshalers = semaphore.NewWeighted(int64(runtime.GOMAXPROCS(0)))
+	}
+
+	return self
+}
+
+func (self *Cache) New(opts ...Option) *Cache {
 	c := *self
-	return &c
+	return c.applyOptions(opts...)
 }
 
 func (self *Cache) WithLocalCache(client LocalCache) *Cache {
@@ -116,21 +142,9 @@ func (self *Cache) WithDefaultTTL(ttl time.Duration) *Cache {
 	return self
 }
 
-// --------------------------------------------------
-
-func (self *Cache) Marshal(value any) ([]byte, error) {
-	return self.marshal(value)
-}
-
-func (self *Cache) Unmarshal(b []byte, value any) error {
-	return self.unmarshal(b, value)
-}
-
 func (self *Cache) DefaultTTL() time.Duration {
 	return self.defaultTTL
 }
-
-// --------------------------------------------------
 
 func (self *Cache) WithNamespace(namespace string) *Cache {
 	self.namespace = namespace
@@ -157,20 +171,8 @@ func (self *Cache) ResolveKey(key string) string {
 	return self.Namespace() + self.WrapKey(key)
 }
 
-// --------------------------------------------------
-
-func (self *Cache) Multi() *MultiCache {
-	return NewMultiCache(self)
-}
-
-func (self *Cache) MGet(ctx context.Context, items []*Item) ([]*Item, error) {
-	return self.Multi().Get(ctx, items)
-}
-
-func (self *Cache) MSet(ctx context.Context, items []*Item) error {
-	return self.Multi().Set(ctx, items)
-}
-
-func (self *Cache) MGetSet(ctx context.Context, items []*Item) error {
-	return self.Multi().GetSet(ctx, items)
+func (self *Cache) WithItemMaxProcs(n int) *Cache {
+	c := self.New()
+	c.valueProcs = n
+	return c
 }

@@ -12,19 +12,16 @@ import (
 	mocks "github.com/dsh2dsh/expx-cache/internal/mocks/cache"
 )
 
-func (self *CacheTestSuite) TestDelete() {
+func (self *CacheTestSuite) TestCache_Delete() {
 	ctx := context.Background()
-	err := self.cache.Set(ctx, &Item{
-		Key:   testKey,
-		Value: self.CacheableValue(),
-		TTL:   time.Hour,
-	})
-	self.Require().NoError(err)
-	self.True(self.cache.Exists(ctx, testKey))
+	item := Item{Key: testKey, Value: self.CacheableValue()}
+	self.Require().NoError(self.cache.Set(ctx, &item))
+	self.True(self.cache.Exists(ctx, item.Key))
 	self.cacheHit()
 
-	self.Require().NoError(self.cache.Delete(ctx, testKey))
-	self.False(valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, nil)))
+	self.Require().NoError(self.cache.Delete(ctx, item.Key))
+	self.Equal([]*Item{&item},
+		valueNoError[[]*Item](self.T())(self.cache.Get(ctx, &item)))
 	self.cacheMiss()
 	self.False(self.cache.Exists(ctx, testKey))
 	self.cacheMiss()

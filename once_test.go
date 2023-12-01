@@ -18,31 +18,24 @@ import (
 
 func (self *CacheTestSuite) TestOnce_cacheFails() {
 	ctx := context.Background()
-	err := self.cache.Set(ctx, &Item{
-		Key:   testKey,
-		Value: int64(0),
-	})
-	self.Require().NoError(err)
+	item := Item{Key: testKey, Value: int64(0)}
+	self.Require().NoError(self.cache.Set(ctx, &item))
 
 	var got bool
-	_, err = self.cache.Get(ctx, testKey, &got)
+	item.Value = &got
+	_, err := self.cache.Get(ctx, &item)
 	self.Require().ErrorContains(err, "msgpack: invalid code=d3 decoding bool")
 	self.cacheHit()
 
-	err = self.cache.Once(ctx, &Item{
-		Key:   testKey,
-		Value: &got,
-		Do: func(ctx context.Context) (any, error) {
-			return true, nil
-		},
-	})
-	self.Require().NoError(err)
+	item.Do = func(ctx context.Context) (any, error) { return true, nil }
+	self.Require().NoError(self.cache.Once(ctx, &item))
 	self.True(got)
 	self.cacheHit()
 	self.cacheMiss()
 
 	got = false
-	self.True(valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, &got)))
+	item.Do = nil
+	self.Empty(valueNoError[[]*Item](self.T())(self.cache.Get(ctx, &item)))
 	self.True(got)
 	self.cacheHit()
 
@@ -51,6 +44,7 @@ func (self *CacheTestSuite) TestOnce_cacheFails() {
 
 func (self *CacheTestSuite) TestOnce_funcFails() {
 	ctx := context.Background()
+	wantErr := errors.New("expected error")
 	perform(100, func(i int) {
 		var got bool
 		err := self.cache.Once(ctx, &Item{
@@ -58,15 +52,17 @@ func (self *CacheTestSuite) TestOnce_funcFails() {
 			Value: &got,
 			Do: func(ctx context.Context) (any, error) {
 				self.cacheMiss()
-				return nil, io.EOF
+				return nil, wantErr
 			},
 		})
-		self.Require().ErrorIs(err, io.EOF)
+		self.Require().ErrorIs(err, wantErr)
 		self.False(got)
 	})
 
 	var got bool
-	self.False(valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, &got)))
+	item := Item{Key: testKey, Value: &got}
+	self.Equal([]*Item{&item},
+		valueNoError[[]*Item](self.T())(self.cache.Get(ctx, &item)))
 	self.cacheMiss()
 
 	err := self.cache.Once(ctx, &Item{

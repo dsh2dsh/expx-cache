@@ -22,7 +22,7 @@ func (self *Cache) once(ctx context.Context, item *Item, autoFix bool) error {
 		return nil
 	}
 
-	if err := self.Unmarshal(b, item.Value); err != nil {
+	if err := self.unmarshal(b, item.Value); err != nil {
 		if fromCache && autoFix {
 			if err := self.Delete(ctx, item.Key); err != nil {
 				return err
@@ -42,7 +42,7 @@ func (self *Cache) getSetItemBytesOnce(
 
 	if self.localCache != nil {
 		b := self.localCache.Get(key)
-		if b != nil {
+		if len(b) > 0 {
 			self.addLocalHit()
 			return b, true, nil
 		}
@@ -53,7 +53,7 @@ func (self *Cache) getSetItemBytesOnce(
 	v, err, _ := self.group.Do(key, func() (any, error) {
 		localHit = false
 		b, err := self.getBytes(ctx, item.Key, item.SkipLocalCache)
-		if err == nil && b != nil {
+		if err == nil && len(b) > 0 {
 			fromCache = true
 			return b, nil
 		}

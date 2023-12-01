@@ -37,18 +37,16 @@ func Example_basicUsage() {
 		Num: 42,
 	}
 
-	if err := mycache.Set(ctx, &cache.Item{
-		Key:   key,
-		Value: obj,
-		TTL:   time.Hour,
-	}); err != nil {
+	item := cache.Item{Key: key, Value: obj, TTL: time.Hour}
+	if err := mycache.Set(ctx, &item); err != nil {
 		log.Fatal(err)
 	}
 
 	var wanted Object
-	if hit, err := mycache.Get(ctx, key, &wanted); err != nil {
+	item.Value = &wanted
+	if missed, err := mycache.Get(ctx, &item); err != nil {
 		log.Fatal(err)
-	} else if hit {
+	} else if len(missed) == 0 {
 		fmt.Println(wanted)
 	} else {
 		fmt.Println("not found")

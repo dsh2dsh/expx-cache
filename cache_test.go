@@ -4,6 +4,8 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"runtime"
+	"sync"
 	"sync/atomic"
 	"testing"
 	"time"
@@ -125,118 +127,103 @@ func (self *CacheTestSuite) assertStats() {
 
 // --------------------------------------------------
 
-func (self *CacheTestSuite) TestGetSet_nil() {
+func (self *CacheTestSuite) TestCache_GetSet_nil() {
 	ctx := context.Background()
+	item := Item{Key: testKey}
+	self.Require().NoError(self.cache.Set(ctx, &item))
 
-	err := self.cache.Set(ctx, &Item{
-		Key: testKey,
-		TTL: time.Hour,
-	})
-	self.Require().NoError(err)
-
-	self.False(valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, nil)))
+	self.Equal([]*Item{&item},
+		valueNoError[[]*Item](self.T())(self.cache.Get(ctx, &item)))
 	self.cacheMiss()
-	self.False(valueNoError[bool](self.T())(self.cache.Exists(ctx, testKey)),
+
+	self.False(valueNoError[bool](self.T())(self.cache.Exists(ctx, item.Key)),
 		"nil value shouldn't be cached")
 	self.cacheMiss()
+
 	self.assertStats()
 }
 
-func (self *CacheTestSuite) TestGetSet_data() {
+func (self *CacheTestSuite) TestCache_GetSet_data() {
 	ctx := context.Background()
 	val := self.CacheableValue()
-	err := self.cache.Set(ctx, &Item{
-		Key:   testKey,
-		Value: val,
-		TTL:   time.Hour,
-	})
-	self.Require().NoError(err)
+	item := Item{Key: testKey, Value: val}
+	self.Require().NoError(self.cache.Set(ctx, &item))
 
-	gotValue := self.CacheableValue()
-	self.Require().True(
-		valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, gotValue)))
+	var gotValue CacheableObject
+	item.Value = &gotValue
+	self.Require().Empty(
+		valueNoError[[]*Item](self.T())(self.cache.Get(ctx, &item)))
 	self.cacheHit()
-	self.Equal(val, gotValue)
+	self.Equal(val, &gotValue)
+
 	self.True(self.cache.Exists(ctx, testKey))
 	self.cacheHit()
 	self.assertStats()
 }
 
-func (self *CacheTestSuite) TestGetSet_stringAsIs() {
+func (self *CacheTestSuite) TestCache_GetSet_stringAsIs() {
 	ctx := context.Background()
 	value := "str_value"
-	err := self.cache.Set(ctx, &Item{
-		Key:   testKey,
-		Value: value,
-	})
-	self.Require().NoError(err)
+	item := Item{Key: testKey, Value: value}
+	self.Require().NoError(self.cache.Set(ctx, &item))
 
 	var gotValue string
-	self.Require().True(
-		valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, &gotValue)))
+	item.Value = &gotValue
+	self.Require().Empty(
+		valueNoError[[]*Item](self.T())(self.cache.Get(ctx, &item)))
 	self.cacheHit()
 	self.Equal(value, gotValue)
 	self.assertStats()
 }
 
-func (self *CacheTestSuite) TestGetSet_bytesAsIs() {
+func (self *CacheTestSuite) TestCache_GetSet_bytesAsIs() {
 	ctx := context.Background()
 	value := []byte("str_value")
-	err := self.cache.Set(ctx, &Item{
-		Key:   testKey,
-		Value: value,
-	})
-	self.Require().NoError(err)
+	item := Item{Key: testKey, Value: value}
+	self.Require().NoError(self.cache.Set(ctx, &item))
 
 	var gotValue []byte
-	self.Require().True(
-		valueNoError[bool](self.T())(self.cache.Get(ctx, testKey, &gotValue)))
+	item.Value = &gotValue
+	self.Require().Empty(
+		valueNoError[[]*Item](self.T())(self.cache.Get(ctx, &item)))
 	self.cacheHit()
 	self.Equal(value, gotValue)
 	self.assertStats()
 }
 
-func (self *CacheTestSuite) TestGetSet_many() {
-	if testing.Short() {
-		self.T().Skip("skipping in short mode")
-	}
-
-	maxItems := 21
+func (self *CacheTestSuite) TestCache_setGetItems() {
+	const maxItems = 21
 	allKeys := make([]string, maxItems)
 	allValues := make([]CacheableObject, maxItems)
-
 	allItems := make([]*Item, maxItems)
+
 	for i := 0; i < maxItems; i++ {
 		key := fmt.Sprintf("key-%00d", i)
 		allKeys[i] = key
-		allValues[i].Str = key
-		allValues[i].Num = i
-		allItems[i] = &Item{
-			Key:   key,
-			Value: &allValues[i],
-		}
+		allValues[i] = CacheableObject{Str: key, Num: i}
+		allItems[i] = &Item{Key: key, Value: &allValues[i]}
 	}
 
 	ctx := context.Background()
-	self.Require().NoError(self.cache.MSet(ctx, allItems))
+	self.Require().NoError(self.cache.Set(ctx, allItems...))
 
 	gotValues := make([]CacheableObject, maxItems)
 	for i, item := range allItems {
 		item.Value = &gotValues[i]
 		self.cacheHit()
 	}
-	missed := valueNoError[[]*Item](self.T())(self.cache.MGet(ctx, allItems))
+	missed := valueNoError[[]*Item](self.T())(self.cache.Get(ctx, allItems...))
 	for range missed {
 		self.cacheMiss()
 	}
 	self.Equal(allValues, gotValues)
-	self.Nil(missed)
+	self.Empty(missed)
 
 	self.Require().NoError(self.cache.Delete(ctx, allKeys...))
 
 	clear(gotValues)
 	expectedValues := make([]CacheableObject, maxItems)
-	missed = valueNoError[[]*Item](self.T())(self.cache.MGet(ctx, allItems))
+	missed = valueNoError[[]*Item](self.T())(self.cache.Get(ctx, allItems...))
 	for range missed {
 		self.cacheMiss()
 	}
@@ -246,7 +233,7 @@ func (self *CacheTestSuite) TestGetSet_many() {
 	self.assertStats()
 }
 
-func (self *CacheTestSuite) TestMGetSet() {
+func (self *CacheTestSuite) TestCache_GetSet() {
 	if testing.Short() {
 		self.T().Skip("skipping in short mode")
 	}
@@ -274,7 +261,7 @@ func (self *CacheTestSuite) TestMGetSet() {
 	}
 
 	ctx := context.Background()
-	self.Require().NoError(self.cache.MGetSet(ctx, allItems))
+	self.Require().NoError(self.cache.GetSet(ctx, allItems...))
 	self.Equal(uint64(maxItems), callCount)
 
 	callCount = 0
@@ -284,7 +271,7 @@ func (self *CacheTestSuite) TestMGetSet() {
 		self.cacheMiss()
 		self.cacheHit()
 	}
-	self.Require().NoError(self.cache.MGetSet(ctx, allItems))
+	self.Require().NoError(self.cache.GetSet(ctx, allItems...))
 	self.Equal(uint64(0), callCount)
 	self.Equal(allValues, gotValues)
 
@@ -293,7 +280,7 @@ func (self *CacheTestSuite) TestMGetSet() {
 
 // --------------------------------------------------
 
-func (self *CacheTestSuite) TestWithKeyWrapper() {
+func (self *CacheTestSuite) TestCache_WithKeyWrapper() {
 	const keyPrefix = "baz:"
 	wantKey := keyPrefix + testKey
 
@@ -320,11 +307,24 @@ func (self *CacheTestSuite) TestWithKeyWrapper() {
 			},
 		},
 		{
-			name: "Get",
+			name: "Get 1",
 			assert: func(t *testing.T) {
 				got := new(CacheableObject)
-				assert.True(t, valueNoError[bool](t)(cache.Get(ctx, testKey, got)))
+				item := Item{Key: testKey, Value: got}
+				assert.Empty(t, valueNoError[[]*Item](t)(cache.Get(ctx, &item)))
 				assert.Equal(t, self.CacheableValue(), got)
+			},
+		},
+		{
+			name: "Get 2",
+			assert: func(t *testing.T) {
+				got1 := CacheableObject{}
+				got2 := CacheableObject{}
+				item1 := Item{Key: testKey, Value: &got1}
+				item2 := Item{Key: testKey, Value: &got2}
+				assert.Empty(t, valueNoError[[]*Item](t)(cache.Get(ctx, &item1, &item2)))
+				assert.Equal(t, self.CacheableValue(), &got1)
+				assert.Equal(t, self.CacheableValue(), &got2)
 			},
 		},
 		{
@@ -835,4 +835,50 @@ func TestCache_WithNamespace(t *testing.T) {
 			WithKeyWrapper(func(key string) string {
 				return cache.WrapKey("def-" + key)
 			}).ResolveKey(foobar))
+}
+
+func TestWithMarshalMaxProcs(t *testing.T) {
+	tests := []struct {
+		name      string
+		makeCache func(t *testing.T) *Cache
+		callCount uint64
+	}{
+		{
+			name:      "default",
+			makeCache: func(t *testing.T) *Cache { return New() },
+			callCount: uint64(runtime.GOMAXPROCS(0)),
+		},
+		{
+			name:      "limit 0",
+			makeCache: func(t *testing.T) *Cache { return New(WithMarshalMaxProcs(0)) },
+			callCount: uint64(runtime.GOMAXPROCS(0)),
+		},
+		{
+			name:      "limit 1",
+			makeCache: func(t *testing.T) *Cache { return New(WithMarshalMaxProcs(1)) },
+			callCount: 1,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			cache := tt.makeCache(t)
+			ctx, cancel := context.WithCancel(context.Background())
+
+			var callCount uint64
+			var wg sync.WaitGroup
+			for cache.marshalers.TryAcquire(1) {
+				wg.Add(1)
+				go func() {
+					defer wg.Done()
+					atomic.AddUint64(&callCount, 1)
+					<-ctx.Done()
+				}()
+			}
+			cancel()
+
+			wg.Wait()
+			assert.Equal(t, tt.callCount, callCount)
+		})
+	}
 }

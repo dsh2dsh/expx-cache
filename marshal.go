@@ -1,10 +1,13 @@
 package cache
 
 import (
+	"context"
 	"fmt"
+	"runtime"
 
 	"github.com/klauspost/compress/s2"
 	"github.com/vmihailenco/msgpack/v5"
+	"golang.org/x/sync/errgroup"
 )
 
 const (
@@ -12,6 +15,86 @@ const (
 	noCompression        = 0x0
 	s2Compression        = 0x1
 )
+
+func (self *Cache) Marshal(value any) ([]byte, error) {
+	return self.marshal(value)
+}
+
+func (self *Cache) Unmarshal(b []byte, value any) error {
+	return self.unmarshal(b, value)
+}
+
+func (self *Cache) marshalItems(
+	parentCtx context.Context, items []*Item,
+) ([][]byte, error) {
+	g, ctx := self.valueGroup(parentCtx)
+	bytes := make([][]byte, len(items))
+
+	for i, item := range items {
+		if ctx.Err() != nil {
+			break
+		}
+		i, item := i, item
+		g.Go(func() error {
+			b, err := item.marshal(ctx, func(v any) ([]byte, error) {
+				return self.acquireMarshal(ctx, v)
+			})
+			if err != nil {
+				return err
+			}
+			bytes[i] = b
+			return nil
+		})
+	}
+
+	if err := g.Wait(); err != nil {
+		return nil, fmt.Errorf("failed marshal items: %w", err)
+	} else if parentCtx.Err() != nil {
+		return nil, fmt.Errorf("failed marshal items: %w", context.Cause(ctx))
+	}
+
+	return bytes, nil
+}
+
+func (self *Cache) valueGroup(ctx context.Context) (*errgroup.Group, context.Context) {
+	g, ctx := errgroup.WithContext(ctx)
+	if self.valueProcs < 1 {
+		g.SetLimit(runtime.GOMAXPROCS(0))
+	} else {
+		g.SetLimit(self.valueProcs)
+	}
+	return g, ctx
+}
+
+func (self *Cache) acquireMarshal(ctx context.Context, v any) ([]byte, error) {
+	if err := self.marshalers.Acquire(ctx, 1); err != nil {
+		return nil, fmt.Errorf("acquire: %w", err)
+	}
+	defer self.marshalers.Release(1)
+	b, err := self.marshal(v)
+	if err != nil {
+		return nil, err
+	}
+	return b, nil
+}
+
+func (self *Cache) acquireUnmarshal(
+	ctx context.Context, g *errgroup.Group, b []byte, v any,
+) error {
+	if err := self.marshalers.Acquire(ctx, 1); err != nil {
+		return fmt.Errorf("acquire: %w", err)
+	}
+	g.Go(func() error {
+		defer self.marshalers.Release(1)
+		if err := self.unmarshal(b, v); err != nil {
+			return err
+		}
+		return nil
+	})
+	return nil
+}
+
+// --------------------------------------------------
 
 func marshal(value any) ([]byte, error) {
 	switch value := value.(type) {
