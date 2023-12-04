@@ -6,7 +6,7 @@ require (
 	github.com/caarlos0/env/v10 v10.0.0
 	github.com/dsh2dsh/expx-dotenv v1.3.1
 	github.com/dsh2dsh/go-tinylfu v1.0.1
-	github.com/klauspost/compress v1.17.3
+	github.com/klauspost/compress v1.17.4
 	github.com/redis/go-redis/v9 v9.3.0
 	github.com/stretchr/testify v1.8.4
 	github.com/vmihailenco/msgpack/v5 v5.4.1
