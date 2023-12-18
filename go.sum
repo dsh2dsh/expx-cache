@@ -11,8 +11,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f h1:lO4WD4F/rVNCu3HqELle0jiPLLBs70cWOduZpkS1E78=
 github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f/go.mod h1:cuUVRXasLTGF7a8hSLbxyZXjz+1KgoB3wDUb6vlszIc=
-github.com/dsh2dsh/expx-dotenv v1.3.1 h1:Em8tTXdgHIWmBTdptTOJHY5KoTOrIXj7wg1dBVXYMNQ=
-github.com/dsh2dsh/expx-dotenv v1.3.1/go.mod h1:1ZSxKIu7yDvnGgdez8QhYGKuCufudPy021AMxQQ9U9s=
+github.com/dsh2dsh/expx-dotenv v1.3.2 h1:67Ji7sCZb+vyUMPs4cZMk6WZEeESPaspUCI5zEIB94Q=
+github.com/dsh2dsh/expx-dotenv v1.3.2/go.mod h1:1ZSxKIu7yDvnGgdez8QhYGKuCufudPy021AMxQQ9U9s=
 github.com/dsh2dsh/go-tinylfu v1.0.1 h1:D1Bv/yKkjXnMH102KOGdF8t73yBhegSwFZtuu7kjBqE=
 github.com/dsh2dsh/go-tinylfu v1.0.1/go.mod h1:eMt2rEBZpiiI+LLJBA0hDdtPpDWSPB6jM6ZqV5FgObk=
 github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
