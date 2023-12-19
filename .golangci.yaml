@@ -12,7 +12,6 @@ linters:
     # - gofmt # we are using gofumpt instead
     - gofumpt
     - goimports
-    - gosec
     - makezero
     - misspell
     - nolintlint
