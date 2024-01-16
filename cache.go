@@ -31,7 +31,6 @@ type RedisCache interface {
 }
 
 type (
-	Option        func(c *Cache)
 	MarshalFunc   func(any) ([]byte, error)
 	UnmarshalFunc func([]byte, any) error
 )
@@ -46,20 +45,6 @@ func New(opts ...Option) *Cache {
 		group: new(singleflight.Group),
 	}
 	return c.applyOptions(opts...)
-}
-
-func WithMarshalMaxProcs(n int) Option {
-	return func(c *Cache) {
-		if n < 1 {
-			c.marshalers = semaphore.NewWeighted(int64(runtime.GOMAXPROCS(0)))
-		} else {
-			c.marshalers = semaphore.NewWeighted(int64(n))
-		}
-	}
-}
-
-func WithItemMaxProcs(n int) Option {
-	return func(c *Cache) { c.valueProcs = n }
 }
 
 type Cache struct {
