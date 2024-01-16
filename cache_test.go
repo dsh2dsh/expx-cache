@@ -427,7 +427,6 @@ func NewRedisClient() (*redis.Client, error) {
 		WithRedis: "skip", // "redis://localhost:6379/1",
 	}
 
-	//nolint:wrapcheck
 	err := dotenv.New().WithDepth(1).WithEnvSuffix("test").Load(func() error {
 		return env.Parse(&cfg)
 	})
