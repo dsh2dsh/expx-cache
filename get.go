@@ -53,7 +53,8 @@ func (self *Cache) getBytes(
 	return b, nil
 }
 
-func (self *Cache) Get(parentCtx context.Context, items ...*Item) ([]*Item, error) {
+func (self *Cache) Get(parentCtx context.Context, items ...Item,
+) ([]Item, error) {
 	if len(items) == 1 {
 		return self.getOneItems(parentCtx, items)
 	}
@@ -80,8 +81,9 @@ func (self *Cache) Get(parentCtx context.Context, items ...*Item) ([]*Item, erro
 	return missed, nil
 }
 
-func (self *Cache) getOneItems(ctx context.Context, items []*Item) ([]*Item, error) {
-	item := items[0]
+func (self *Cache) getOneItems(ctx context.Context, items []Item,
+) ([]Item, error) {
+	item := &items[0]
 	b, err := self.getBytes(ctx, item.Key, item.SkipLocalCache)
 	if err != nil {
 		return nil, err
@@ -91,20 +93,21 @@ func (self *Cache) getOneItems(ctx context.Context, items []*Item) ([]*Item, err
 	return nil, self.unmarshal(b, item.Value)
 }
 
-func (self *Cache) localGetItems(
-	ctx context.Context, g *errgroup.Group, items []*Item,
-) ([]*Item, error) {
+func (self *Cache) localGetItems(ctx context.Context, g *errgroup.Group,
+	items []Item,
+) ([]Item, error) {
 	if self.localCache == nil {
 		return items, nil
 	}
 	missed := items[:0]
 
-	for _, item := range items {
+	for i := range items {
+		item := &items[i]
 		if item.SkipLocalCache {
-			missed = append(missed, item)
+			missed = append(missed, items[i])
 			self.addLocalMiss()
 		} else if b := self.localCache.Get(self.ResolveKey(item.Key)); len(b) == 0 {
-			missed = append(missed, item)
+			missed = append(missed, items[i])
 			self.addLocalMiss()
 		} else {
 			self.addLocalHit()
@@ -117,9 +120,9 @@ func (self *Cache) localGetItems(
 	return missed, nil
 }
 
-func (self *Cache) redisGetItems(
-	ctx context.Context, g *errgroup.Group, items []*Item,
-) ([]*Item, error) {
+func (self *Cache) redisGetItems(ctx context.Context, g *errgroup.Group,
+	items []Item,
+) ([]Item, error) {
 	if self.redis == nil {
 		return items, nil
 	}
@@ -134,12 +137,12 @@ func (self *Cache) redisGetItems(
 
 	var nextItem int
 	for b, ok := bytesIter(); ok; b, ok = bytesIter() {
-		item := items[nextItem]
 		if len(b) == 0 {
-			missed = append(missed, item)
+			missed = append(missed, items[nextItem])
 			self.addMiss()
 		} else {
 			self.addHit()
+			item := &items[nextItem]
 			if self.localCache != nil && !item.SkipLocalCache {
 				self.localCache.Set(self.ResolveKey(item.Key), b)
 			}
@@ -153,7 +156,7 @@ func (self *Cache) redisGetItems(
 	return missed, nil
 }
 
-func (self *Cache) GetSet(ctx context.Context, items ...*Item) error {
+func (self *Cache) GetSet(ctx context.Context, items ...Item) error {
 	missed, err := self.Get(ctx, items...)
 	if err != nil {
 		return err

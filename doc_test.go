@@ -32,19 +32,19 @@ func Example_basicUsage() {
 
 	ctx := context.Background()
 	key := "mykey"
-	obj := &Object{
+	obj := Object{
 		Str: "mystring",
 		Num: 42,
 	}
 
-	item := cache.Item{Key: key, Value: obj, TTL: time.Hour}
-	if err := mycache.Set(ctx, &item); err != nil {
+	item := cache.Item{Key: key, Value: &obj, TTL: time.Hour}
+	if err := mycache.Set(ctx, item); err != nil {
 		log.Fatal(err)
 	}
 
 	var wanted Object
 	item.Value = &wanted
-	if missed, err := mycache.Get(ctx, &item); err != nil {
+	if missed, err := mycache.Get(ctx, item); err != nil {
 		log.Fatal(err)
 	} else if len(missed) == 0 {
 		fmt.Println(wanted)
@@ -58,11 +58,11 @@ func Example_advancedUsage() {
 	mycache := cache.New().WithTinyLFU(1000, time.Minute).WithRedis(rdb)
 
 	obj := new(Object)
-	if err := mycache.Once(context.Background(), &cache.Item{
+	if err := mycache.Once(context.Background(), cache.Item{
 		Key:   "mykey",
 		Value: obj, // destination
 		Do: func(ctx context.Context) (any, error) {
-			return &Object{
+			return Object{
 				Str: "mystring",
 				Num: 42,
 			}, nil

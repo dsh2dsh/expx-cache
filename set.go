@@ -7,9 +7,9 @@ import (
 )
 
 // Set caches the item.
-func (self *Cache) Set(ctx context.Context, items ...*Item) error {
+func (self *Cache) Set(ctx context.Context, items ...Item) error {
 	if len(items) == 1 {
-		_, err := self.set(ctx, items[0])
+		_, err := self.set(ctx, &items[0])
 		return err
 	}
 	return self.setItems(ctx, items)
@@ -57,7 +57,7 @@ func (self *Cache) redisSet(ctx context.Context, item *Item, b []byte,
 	return nil
 }
 
-func (self *Cache) setItems(ctx context.Context, items []*Item) error {
+func (self *Cache) setItems(ctx context.Context, items []Item) error {
 	bytes, err := self.marshalItems(ctx, items)
 	if err != nil {
 		return err
@@ -83,8 +83,9 @@ func (self *Cache) setItems(ctx context.Context, items []*Item) error {
 	return err
 }
 
-func (self *Cache) localSetItems(items []*Item, bytes [][]byte) {
-	for i, item := range items {
+func (self *Cache) localSetItems(items []Item, bytes [][]byte) {
+	for i := range items {
+		item := &items[i]
 		b := bytes[i]
 		if !item.SkipLocalCache && len(b) > 0 {
 			self.localCache.Set(self.ResolveKey(item.Key), b)
@@ -92,12 +93,12 @@ func (self *Cache) localSetItems(items []*Item, bytes [][]byte) {
 	}
 }
 
-func (self *Cache) redisSetItems(
-	ctx context.Context, items []*Item, bytes [][]byte,
+func (self *Cache) redisSetItems(ctx context.Context, items []Item,
+	bytes [][]byte,
 ) error {
 	err := self.redis.Set(ctx, len(items),
 		func(i int) (string, []byte, time.Duration) {
-			item := items[i]
+			item := &items[i]
 			return self.ResolveKey(item.Key), bytes[i], item.ttl(self.DefaultTTL())
 		})
 	if err != nil {

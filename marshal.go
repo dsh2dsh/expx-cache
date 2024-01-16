@@ -24,17 +24,16 @@ func (self *Cache) Unmarshal(b []byte, value any) error {
 	return self.unmarshal(b, value)
 }
 
-func (self *Cache) marshalItems(
-	parentCtx context.Context, items []*Item,
+func (self *Cache) marshalItems(parentCtx context.Context, items []Item,
 ) ([][]byte, error) {
 	g, ctx := self.valueGroup(parentCtx)
 	bytes := make([][]byte, len(items))
 
-	for i, item := range items {
+	for i := range items {
 		if ctx.Err() != nil {
 			break
 		}
-		i, item := i, item
+		i, item := i, &items[i]
 		g.Go(func() error {
 			b, err := item.marshal(ctx, func(v any) ([]byte, error) {
 				return self.acquireMarshal(ctx, v)
@@ -78,8 +77,8 @@ func (self *Cache) acquireMarshal(ctx context.Context, v any) ([]byte, error) {
 	return b, nil
 }
 
-func (self *Cache) acquireUnmarshal(
-	ctx context.Context, g *errgroup.Group, b []byte, v any,
+func (self *Cache) acquireUnmarshal(ctx context.Context, g *errgroup.Group,
+	b []byte, v any,
 ) error {
 	if err := self.marshalers.Acquire(ctx, 1); err != nil {
 		return fmt.Errorf("acquire: %w", err)

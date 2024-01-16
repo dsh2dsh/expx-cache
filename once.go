@@ -10,8 +10,8 @@ import (
 // one execution is in-flight for a given item.Key at a time. If a duplicate
 // comes in, the duplicate caller waits for the original to complete and
 // receives the same results.
-func (self *Cache) Once(ctx context.Context, item *Item) error {
-	return self.once(ctx, item, true)
+func (self *Cache) Once(ctx context.Context, item Item) error {
+	return self.once(ctx, &item, true)
 }
 
 func (self *Cache) once(ctx context.Context, item *Item, autoFix bool) error {

@@ -18,9 +18,9 @@ import (
 func TestCache_Get_withoutCache(t *testing.T) {
 	cache := New()
 	item := Item{Key: testKey}
-	missed, err := cache.Get(context.Background(), &item)
+	missed, err := cache.Get(context.Background(), item)
 	require.NoError(t, err)
-	assert.Equal(t, []*Item{&item}, missed)
+	assert.Equal(t, []Item{item}, missed)
 }
 
 func TestGet_redisErrAddsMiss(t *testing.T) {
@@ -32,7 +32,7 @@ func TestGet_redisErrAddsMiss(t *testing.T) {
 
 	cache := New().WithStats(true).WithRedisCache(redisCache)
 	item := Item{Key: testKey}
-	missed, err := cache.Get(ctx, &item)
+	missed, err := cache.Get(ctx, item)
 	require.ErrorIs(t, err, wantErr)
 	assert.Nil(t, missed)
 	assert.Equal(t, uint64(1), cache.Stats().Misses)
@@ -48,13 +48,13 @@ func TestCache_Get_SkipLocalCache(t *testing.T) {
 
 	cache := New().WithLocalCache(localCache).WithRedisCache(redisCache)
 	item := Item{Key: testKey, SkipLocalCache: true}
-	missed := valueNoError[[]*Item](t)(cache.Get(ctx, &item))
-	assert.Equal(t, []*Item{&item}, missed)
+	missed := valueNoError[[]Item](t)(cache.Get(ctx, item))
+	assert.Equal(t, []Item{item}, missed)
 
 	redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).Return(
 		makeBytesIter([][]byte{nil, nil}), nil)
-	missed = valueNoError[[]*Item](t)(cache.Get(ctx, &item, &item))
-	assert.Equal(t, []*Item{&item, &item}, missed)
+	missed = valueNoError[[]Item](t)(cache.Get(ctx, item, item))
+	assert.Equal(t, []Item{item, item}, missed)
 }
 
 func TestExists_withoutCache(t *testing.T) {
@@ -84,10 +84,10 @@ func TestCache_Get_errorCanceled(t *testing.T) {
 	obj := CacheableObject{Str: "mystring", Num: 42}
 	ctx, cancel := context.WithCancel(context.Background())
 	item := Item{Key: testKey, Value: &obj}
-	require.NoError(t, cache.Set(ctx, &item))
+	require.NoError(t, cache.Set(ctx, item))
 
 	cancel()
-	missed, err := cache.Get(ctx, &item, &item)
+	missed, err := cache.Get(ctx, item, item)
 	require.ErrorIs(t, err, context.Canceled)
 	assert.Nil(t, missed)
 }
@@ -101,11 +101,11 @@ func TestCache_Get_errorWait(t *testing.T) {
 		Key:   testKey,
 		Value: CacheableObject{Str: "mystring", Num: 42},
 	}
-	require.NoError(t, cache.Set(ctx, &item))
+	require.NoError(t, cache.Set(ctx, item))
 
 	var got bool
 	item.Value = &got
-	missed, err := cache.Get(ctx, &item, &item)
+	missed, err := cache.Get(ctx, item, item)
 	require.Error(t, err)
 	assert.Nil(t, missed)
 }
@@ -138,7 +138,7 @@ func TestCache_Get_errorRedis(t *testing.T) {
 	obj := CacheableObject{}
 	item := Item{Key: testKey, Value: &obj}
 
-	missed, err := cache.Get(ctx, &item, &item)
+	missed, err := cache.Get(ctx, item, item)
 	require.ErrorIs(t, err, wantErr)
 	assert.Nil(t, missed)
 }
@@ -160,7 +160,7 @@ func TestCache_Get_localSet(t *testing.T) {
 		makeBytesIter([][]byte{blob, blob}), nil)
 	localCache.EXPECT().Set(item.Key, blob)
 
-	missed := valueNoError[[]*Item](t)(cache.Get(ctx, &item, &item))
+	missed := valueNoError[[]Item](t)(cache.Get(ctx, item, item))
 	assert.Empty(t, missed)
 }
 
@@ -172,10 +172,10 @@ func TestCache_GetSet_errorGetCanceled(t *testing.T) {
 	item := Item{Key: testKey, Value: &obj}
 
 	ctx, cancel := context.WithCancel(context.Background())
-	require.NoError(t, cache.Set(ctx, &item))
+	require.NoError(t, cache.Set(ctx, item))
 
 	cancel()
-	require.ErrorIs(t, cache.GetSet(ctx, &item, &item), context.Canceled)
+	require.ErrorIs(t, cache.GetSet(ctx, item, item), context.Canceled)
 }
 
 func TestCache_Get_errorRedisCanceled(t *testing.T) {
@@ -205,7 +205,7 @@ func TestCache_Get_errorRedisCanceled(t *testing.T) {
 	got := CacheableObject{}
 	item := Item{Key: testKey, Value: &got}
 	close(sig)
-	missed, err := cache.Get(ctx, &item, &item)
+	missed, err := cache.Get(ctx, item, item)
 	require.ErrorIs(t, err, context.Canceled)
 	assert.Nil(t, missed)
 }

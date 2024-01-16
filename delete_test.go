@@ -15,13 +15,13 @@ import (
 func (self *CacheTestSuite) TestCache_Delete() {
 	ctx := context.Background()
 	item := Item{Key: testKey, Value: self.CacheableValue()}
-	self.Require().NoError(self.cache.Set(ctx, &item))
+	self.Require().NoError(self.cache.Set(ctx, item))
 	self.True(self.cache.Exists(ctx, item.Key))
 	self.cacheHit()
 
 	self.Require().NoError(self.cache.Delete(ctx, item.Key))
-	self.Equal([]*Item{&item},
-		valueNoError[[]*Item](self.T())(self.cache.Get(ctx, &item)))
+	self.Equal([]Item{item},
+		valueNoError[[]Item](self.T())(self.cache.Get(ctx, item)))
 	self.cacheMiss()
 	self.False(self.cache.Exists(ctx, testKey))
 	self.cacheMiss()
@@ -31,7 +31,7 @@ func (self *CacheTestSuite) TestCache_Delete() {
 
 func (self *CacheTestSuite) TestDeleteFromLocalCache() {
 	ctx := context.Background()
-	err := self.cache.Set(ctx, &Item{
+	err := self.cache.Set(ctx, Item{
 		Key:   testKey,
 		Value: self.CacheableValue(),
 		TTL:   time.Hour,
@@ -56,7 +56,7 @@ func (self *CacheTestSuite) TestDeleteFromLocalCache() {
 
 func (self *CacheTestSuite) TestDeleteFromRedis() {
 	ctx := context.Background()
-	err := self.cache.Set(ctx, &Item{
+	err := self.cache.Set(ctx, Item{
 		Key:   testKey,
 		Value: self.CacheableValue(),
 	})

@@ -78,8 +78,8 @@ func (self *CacheTestSuite) TearDownTest() {
 	}
 }
 
-func (self *CacheTestSuite) CacheableValue() *CacheableObject {
-	return &CacheableObject{
+func (self *CacheTestSuite) CacheableValue() CacheableObject {
+	return CacheableObject{
 		Str: "mystring",
 		Num: 42,
 	}
@@ -128,10 +128,10 @@ func (self *CacheTestSuite) assertStats() {
 func (self *CacheTestSuite) TestCache_GetSet_nil() {
 	ctx := context.Background()
 	item := Item{Key: testKey}
-	self.Require().NoError(self.cache.Set(ctx, &item))
+	self.Require().NoError(self.cache.Set(ctx, item))
 
-	self.Equal([]*Item{&item},
-		valueNoError[[]*Item](self.T())(self.cache.Get(ctx, &item)))
+	self.Equal([]Item{item}, valueNoError[[]Item](self.T())(
+		self.cache.Get(ctx, item)))
 	self.cacheMiss()
 
 	self.False(valueNoError[bool](self.T())(self.cache.Exists(ctx, item.Key)),
@@ -144,15 +144,14 @@ func (self *CacheTestSuite) TestCache_GetSet_nil() {
 func (self *CacheTestSuite) TestCache_GetSet_data() {
 	ctx := context.Background()
 	val := self.CacheableValue()
-	item := Item{Key: testKey, Value: val}
-	self.Require().NoError(self.cache.Set(ctx, &item))
+	item := Item{Key: testKey, Value: &val}
+	self.Require().NoError(self.cache.Set(ctx, item))
 
 	var gotValue CacheableObject
 	item.Value = &gotValue
-	self.Require().Empty(
-		valueNoError[[]*Item](self.T())(self.cache.Get(ctx, &item)))
+	self.Require().Empty(valueNoError[[]Item](self.T())(self.cache.Get(ctx, item)))
 	self.cacheHit()
-	self.Equal(val, &gotValue)
+	self.Equal(&val, &gotValue)
 
 	self.True(self.cache.Exists(ctx, testKey))
 	self.cacheHit()
@@ -163,12 +162,11 @@ func (self *CacheTestSuite) TestCache_GetSet_stringAsIs() {
 	ctx := context.Background()
 	value := "str_value"
 	item := Item{Key: testKey, Value: value}
-	self.Require().NoError(self.cache.Set(ctx, &item))
+	self.Require().NoError(self.cache.Set(ctx, item))
 
 	var gotValue string
 	item.Value = &gotValue
-	self.Require().Empty(
-		valueNoError[[]*Item](self.T())(self.cache.Get(ctx, &item)))
+	self.Require().Empty(valueNoError[[]Item](self.T())(self.cache.Get(ctx, item)))
 	self.cacheHit()
 	self.Equal(value, gotValue)
 	self.assertStats()
@@ -178,12 +176,11 @@ func (self *CacheTestSuite) TestCache_GetSet_bytesAsIs() {
 	ctx := context.Background()
 	value := []byte("str_value")
 	item := Item{Key: testKey, Value: value}
-	self.Require().NoError(self.cache.Set(ctx, &item))
+	self.Require().NoError(self.cache.Set(ctx, item))
 
 	var gotValue []byte
 	item.Value = &gotValue
-	self.Require().Empty(
-		valueNoError[[]*Item](self.T())(self.cache.Get(ctx, &item)))
+	self.Require().Empty(valueNoError[[]Item](self.T())(self.cache.Get(ctx, item)))
 	self.cacheHit()
 	self.Equal(value, gotValue)
 	self.assertStats()
@@ -193,24 +190,25 @@ func (self *CacheTestSuite) TestCache_setGetItems() {
 	const maxItems = 21
 	allKeys := make([]string, maxItems)
 	allValues := make([]CacheableObject, maxItems)
-	allItems := make([]*Item, maxItems)
+	allItems := make([]Item, maxItems)
 
 	for i := 0; i < maxItems; i++ {
 		key := fmt.Sprintf("key-%00d", i)
 		allKeys[i] = key
 		allValues[i] = CacheableObject{Str: key, Num: i}
-		allItems[i] = &Item{Key: key, Value: &allValues[i]}
+		allItems[i] = Item{Key: key, Value: &allValues[i]}
 	}
 
 	ctx := context.Background()
 	self.Require().NoError(self.cache.Set(ctx, allItems...))
 
 	gotValues := make([]CacheableObject, maxItems)
-	for i, item := range allItems {
+	for i := range allItems {
+		item := &allItems[i]
 		item.Value = &gotValues[i]
 		self.cacheHit()
 	}
-	missed := valueNoError[[]*Item](self.T())(self.cache.Get(ctx, allItems...))
+	missed := valueNoError[[]Item](self.T())(self.cache.Get(ctx, allItems...))
 	for range missed {
 		self.cacheMiss()
 	}
@@ -221,7 +219,7 @@ func (self *CacheTestSuite) TestCache_setGetItems() {
 
 	clear(gotValues)
 	expectedValues := make([]CacheableObject, maxItems)
-	missed = valueNoError[[]*Item](self.T())(self.cache.Get(ctx, allItems...))
+	missed = valueNoError[[]Item](self.T())(self.cache.Get(ctx, allItems...))
 	for range missed {
 		self.cacheMiss()
 	}
@@ -240,20 +238,19 @@ func (self *CacheTestSuite) TestCache_GetSet() {
 	allKeys := make([]string, maxItems)
 	allValues := make([]CacheableObject, maxItems)
 
-	allItems := make([]*Item, maxItems)
+	allItems := make([]Item, maxItems)
 	var callCount uint64
 	for i := 0; i < maxItems; i++ {
+		i := i
 		key := fmt.Sprintf("key-%00d", i)
 		allKeys[i] = key
-		allValues[i].Str = key
-		allValues[i].Num = i
-		valueRef := &allValues[i]
-		allItems[i] = &Item{
+		allValues[i] = CacheableObject{Str: key, Num: i}
+		allItems[i] = Item{
 			Key:   key,
-			Value: valueRef,
+			Value: &allValues[i],
 			Do: func(ctx context.Context) (any, error) {
 				atomic.AddUint64(&callCount, 1)
-				return *valueRef, nil
+				return &allValues[i], nil
 			},
 		}
 	}
@@ -264,7 +261,8 @@ func (self *CacheTestSuite) TestCache_GetSet() {
 
 	callCount = 0
 	gotValues := make([]CacheableObject, maxItems)
-	for i, item := range allItems {
+	for i := range allItems {
+		item := &allItems[i]
 		item.Value = &gotValues[i]
 		self.cacheMiss()
 		self.cacheHit()
@@ -287,7 +285,7 @@ func (self *CacheTestSuite) TestCache_WithKeyWrapper() {
 	})
 
 	ctx := context.Background()
-	self.Require().NoError(cache.Set(ctx, &Item{
+	self.Require().NoError(cache.Set(ctx, Item{
 		Key:   testKey,
 		Value: self.CacheableValue(),
 	}))
@@ -307,9 +305,9 @@ func (self *CacheTestSuite) TestCache_WithKeyWrapper() {
 		{
 			name: "Get 1",
 			assert: func(t *testing.T) {
-				got := new(CacheableObject)
-				item := Item{Key: testKey, Value: got}
-				assert.Empty(t, valueNoError[[]*Item](t)(cache.Get(ctx, &item)))
+				got := CacheableObject{}
+				item := Item{Key: testKey, Value: &got}
+				assert.Empty(t, valueNoError[[]Item](t)(cache.Get(ctx, item)))
 				assert.Equal(t, self.CacheableValue(), got)
 			},
 		},
@@ -320,18 +318,18 @@ func (self *CacheTestSuite) TestCache_WithKeyWrapper() {
 				got2 := CacheableObject{}
 				item1 := Item{Key: testKey, Value: &got1}
 				item2 := Item{Key: testKey, Value: &got2}
-				assert.Empty(t, valueNoError[[]*Item](t)(cache.Get(ctx, &item1, &item2)))
-				assert.Equal(t, self.CacheableValue(), &got1)
-				assert.Equal(t, self.CacheableValue(), &got2)
+				assert.Empty(t, valueNoError[[]Item](t)(cache.Get(ctx, item1, item2)))
+				assert.Equal(t, self.CacheableValue(), got1)
+				assert.Equal(t, self.CacheableValue(), got2)
 			},
 		},
 		{
 			name: "Once",
 			assert: func(t *testing.T) {
-				got := new(CacheableObject)
-				require.NoError(t, cache.Once(ctx, &Item{
+				got := CacheableObject{}
+				require.NoError(t, cache.Once(ctx, Item{
 					Key:   testKey,
-					Value: got,
+					Value: &got,
 				}))
 				assert.Equal(t, self.CacheableValue(), got)
 			},
@@ -346,10 +344,10 @@ func (self *CacheTestSuite) TestCache_WithKeyWrapper() {
 		{
 			name: "Once after Delete",
 			assert: func(t *testing.T) {
-				got := new(CacheableObject)
-				require.NoError(t, cache.Once(ctx, &Item{
+				got := CacheableObject{}
+				require.NoError(t, cache.Once(ctx, Item{
 					Key:   testKey,
-					Value: got,
+					Value: &got,
 					Do: func(ctx context.Context) (any, error) {
 						return self.CacheableValue(), nil
 					},
@@ -361,7 +359,7 @@ func (self *CacheTestSuite) TestCache_WithKeyWrapper() {
 			name: "Once with Unmarshal error",
 			assert: func(t *testing.T) {
 				var got bool
-				require.NoError(t, cache.Once(ctx, &Item{
+				require.NoError(t, cache.Once(ctx, Item{
 					Key:   testKey,
 					Value: &got,
 					Do: func(ctx context.Context) (any, error) {
@@ -493,21 +491,22 @@ func TestCacheSuite(t *testing.T) {
 	}
 
 	cfgDB := clientDB(t, rdb)
-	curDB := cfgDB
+	ctx := context.Background()
 
-	for _, tt := range tests {
-		tt := tt
+	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(tt.name, func(t *testing.T) {
 			skipRedisTests(t, tt.name, tt.needsRedis, rdb != nil)
+			t.Parallel()
+			nextDB := cfgDB + i
 			var r redis.Cmdable
 			if tt.needsRedis && rdb != nil {
 				cn := rdb.Conn()
 				t.Cleanup(func() {
-					require.NoError(t, cn.Select(context.Background(), cfgDB).Err())
+					require.NoError(t, cn.Select(ctx, cfgDB).Err())
 					require.NoError(t, cn.Close())
 				})
-				require.NoError(t, cn.Select(context.Background(), curDB).Err())
-				curDB++
+				require.NoError(t, cn.Select(ctx, nextDB).Err())
 				r = cn
 			}
 			cfg := func(t *testing.T, c *Cache) *Cache {
@@ -523,8 +522,8 @@ func TestCacheSuite(t *testing.T) {
 
 func clientDB(t *testing.T, rdb *redis.Client) int {
 	if rdb != nil {
-		info := valueNoError[*redis.ClientInfo](t)(
-			rdb.ClientInfo(context.Background()).Result())
+		info := valueNoError[*redis.ClientInfo](t)(rdb.ClientInfo(
+			context.Background()).Result())
 		return info.DB
 	}
 	return 0
@@ -543,7 +542,6 @@ func skipRedisTests(t *testing.T, name string, needsRedis, hasRedis bool) {
 func suiteRunSubTests(t *testing.T, rdb redis.Cmdable,
 	cfg func(*testing.T, *Cache) *Cache, subTests []cacheSubTest,
 ) {
-	t.Parallel()
 	runCacheSubTests(t, cfg,
 		func(t *testing.T, cfg func(*testing.T, *Cache) *Cache, _ cacheSubTest,
 			subTests []cacheSubTest,

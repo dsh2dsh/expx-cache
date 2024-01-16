@@ -19,23 +19,23 @@ import (
 func (self *CacheTestSuite) TestOnce_cacheFails() {
 	ctx := context.Background()
 	item := Item{Key: testKey, Value: int64(0)}
-	self.Require().NoError(self.cache.Set(ctx, &item))
+	self.Require().NoError(self.cache.Set(ctx, item))
 
 	var got bool
 	item.Value = &got
-	_, err := self.cache.Get(ctx, &item)
+	_, err := self.cache.Get(ctx, item)
 	self.Require().ErrorContains(err, "msgpack: invalid code=d3 decoding bool")
 	self.cacheHit()
 
 	item.Do = func(ctx context.Context) (any, error) { return true, nil }
-	self.Require().NoError(self.cache.Once(ctx, &item))
+	self.Require().NoError(self.cache.Once(ctx, item))
 	self.True(got)
 	self.cacheHit()
 	self.cacheMiss()
 
 	got = false
 	item.Do = nil
-	self.Empty(valueNoError[[]*Item](self.T())(self.cache.Get(ctx, &item)))
+	self.Empty(valueNoError[[]Item](self.T())(self.cache.Get(ctx, item)))
 	self.True(got)
 	self.cacheHit()
 
@@ -47,7 +47,7 @@ func (self *CacheTestSuite) TestOnce_funcFails() {
 	wantErr := errors.New("expected error")
 	perform(100, func(i int) {
 		var got bool
-		err := self.cache.Once(ctx, &Item{
+		err := self.cache.Once(ctx, Item{
 			Key:   testKey,
 			Value: &got,
 			Do: func(ctx context.Context) (any, error) {
@@ -61,11 +61,11 @@ func (self *CacheTestSuite) TestOnce_funcFails() {
 
 	var got bool
 	item := Item{Key: testKey, Value: &got}
-	self.Equal([]*Item{&item},
-		valueNoError[[]*Item](self.T())(self.cache.Get(ctx, &item)))
+	self.Equal([]Item{item},
+		valueNoError[[]Item](self.T())(self.cache.Get(ctx, item)))
 	self.cacheMiss()
 
-	err := self.cache.Once(ctx, &Item{
+	err := self.cache.Once(ctx, Item{
 		Key:   testKey,
 		Value: &got,
 		Do: func(ctx context.Context) (any, error) {
@@ -100,7 +100,7 @@ func (self *CacheTestSuite) TestOnce_withValue() {
 	perform(100, func(int) {
 		got := new(CacheableObject)
 		hit := true
-		err := self.cache.Once(ctx, &Item{
+		err := self.cache.Once(ctx, Item{
 			Key:   testKey,
 			Value: got,
 			Do: func(ctx context.Context) (any, error) {
@@ -111,7 +111,7 @@ func (self *CacheTestSuite) TestOnce_withValue() {
 			},
 		})
 		self.Require().NoError(err)
-		self.Equal(obj, got)
+		self.Equal(&obj, got)
 		if hit && self.cache.statsEnabled {
 			self.stats.localHit()
 		}
@@ -127,18 +127,18 @@ func (self *CacheTestSuite) TestOnce_withPtrNonPtr() {
 	perform(100, func(int) {
 		got := new(CacheableObject)
 		hit := true
-		err := self.cache.Once(ctx, &Item{
+		err := self.cache.Once(ctx, Item{
 			Key:   testKey,
 			Value: got,
 			Do: func(ctx context.Context) (any, error) {
 				atomic.AddUint64(&callCount, 1)
 				self.cacheMiss()
 				hit = false
-				return *obj, nil
+				return obj, nil
 			},
 		})
 		self.Require().NoError(err)
-		self.Equal(obj, got)
+		self.Equal(&obj, got)
 		if hit && self.cache.statsEnabled {
 			self.stats.localHit()
 		}
@@ -153,7 +153,7 @@ func (self *CacheTestSuite) TestOnce_withBool() {
 	perform(100, func(int) {
 		var got bool
 		hit := true
-		err := self.cache.Once(ctx, &Item{
+		err := self.cache.Once(ctx, Item{
 			Key:   testKey,
 			Value: &got,
 			Do: func(ctx context.Context) (any, error) {
@@ -178,7 +178,7 @@ func (self *CacheTestSuite) TestOnce_withoutValueAndNil() {
 	ctx := context.Background()
 	perform(100, func(int) {
 		hit := true
-		err := self.cache.Once(ctx, &Item{
+		err := self.cache.Once(ctx, Item{
 			Key: testKey,
 			Do: func(ctx context.Context) (any, error) {
 				time.Sleep(100 * time.Millisecond)
@@ -202,7 +202,7 @@ func (self *CacheTestSuite) TestOnce_withoutValueAndErr() {
 	ctx := context.Background()
 	errStub := errors.New("error stub")
 	perform(100, func(int) {
-		err := self.cache.Once(ctx, &Item{
+		err := self.cache.Once(ctx, Item{
 			Key: testKey,
 			Do: func(ctx context.Context) (any, error) {
 				time.Sleep(100 * time.Millisecond)
@@ -224,7 +224,7 @@ func (self *CacheTestSuite) TestOnce_doesntCacheErr() {
 	do := func(sleep time.Duration) (int, error) {
 		var n int
 		hit := true
-		err := self.cache.Once(ctx, &Item{
+		err := self.cache.Once(ctx, Item{
 			Key:   testKey,
 			Value: &n,
 			Do: func(ctx context.Context) (any, error) {
@@ -267,7 +267,7 @@ func (self *CacheTestSuite) TestOnce_withNegTTL() {
 	ctx := context.Background()
 
 	var value string
-	self.Require().NoError(self.cache.Once(ctx, &Item{
+	self.Require().NoError(self.cache.Once(ctx, Item{
 		Key:   key,
 		Value: &value,
 		TTL:   -1,
@@ -292,7 +292,7 @@ func TestOnce_errUnmarshal(t *testing.T) {
 
 	cache := New().WithLocalCache(localCache)
 	var got bool
-	err := cache.Once(context.Background(), &Item{
+	err := cache.Once(context.Background(), Item{
 		Key:   testKey,
 		Value: &got,
 		Do: func(ctx context.Context) (any, error) {
@@ -314,7 +314,7 @@ func TestOnce_errDelete(t *testing.T) {
 
 	cache := New().WithRedisCache(redisCache)
 	var got bool
-	err := cache.Once(ctx, &Item{
+	err := cache.Once(ctx, Item{
 		Key:   testKey,
 		Value: &got,
 		Do: func(ctx context.Context) (any, error) {
@@ -329,7 +329,7 @@ func TestOnce_withoutCache(t *testing.T) {
 	cache := New()
 	callCount := 0
 	got := false
-	require.NoError(t, cache.Once(context.Background(), &Item{
+	require.NoError(t, cache.Once(context.Background(), Item{
 		Key:   testKey,
 		Value: &got,
 		Do: func(ctx context.Context) (any, error) {
@@ -359,7 +359,7 @@ func TestCache_Once_withKeyWrapper(t *testing.T) {
 	var got bool
 
 	go func() {
-		onceErr <- cache.Once(context.Background(), &Item{
+		onceErr <- cache.Once(context.Background(), Item{
 			Key:   testKey,
 			Value: &got,
 			Do: func(ctx context.Context) (any, error) {

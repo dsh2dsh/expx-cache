@@ -27,7 +27,7 @@ func TestCache_WithMarshal(t *testing.T) {
 
 	ctx := context.Background()
 	value := "abc"
-	require.NoError(t, cache.Set(ctx, &Item{Key: testKey, Value: value}))
+	require.NoError(t, cache.Set(ctx, Item{Key: testKey, Value: &value}))
 
 	assert.True(t, called, "custom marshall func wasn't called")
 }
@@ -38,8 +38,8 @@ func TestCache_WithUnmarshal(t *testing.T) {
 
 	ctx := context.Background()
 	value := "abc"
-	item := Item{Key: testKey, Value: value}
-	require.NoError(t, cache.Set(ctx, &item))
+	item := Item{Key: testKey, Value: &value}
+	require.NoError(t, cache.Set(ctx, item))
 
 	var called bool
 	cache.WithUnmarshal(func(b []byte, v any) error {
@@ -47,7 +47,7 @@ func TestCache_WithUnmarshal(t *testing.T) {
 		return unmarshal(b, v)
 	})
 	item.Value = &value
-	assert.Empty(t, valueNoError[[]*Item](t)(cache.Get(ctx, &item)))
+	assert.Empty(t, valueNoError[[]Item](t)(cache.Get(ctx, item)))
 	assert.True(t, called, "custom unmarshall func wasn't called")
 }
 
@@ -133,13 +133,13 @@ func TestCache_marshalersAcquireCanceled(t *testing.T) {
 	t.Parallel()
 
 	const foobar = "foobar"
-	marshalAssert := func(ctx context.Context, t *testing.T, c *Cache, item *Item) {
+	marshalAssert := func(ctx context.Context, t *testing.T, c *Cache, item Item) {
 		var callCount uint64
 		c.WithMarshal(func(v any) ([]byte, error) {
 			atomic.AddUint64(&callCount, 1)
 			return nil, nil
 		})
-		b, err := c.marshalItems(ctx, []*Item{item})
+		b, err := c.marshalItems(ctx, []Item{item})
 		require.ErrorIs(t, err, context.Canceled)
 		assert.Nil(t, b)
 		assert.Equal(t, uint64(0), callCount)
@@ -148,7 +148,7 @@ func TestCache_marshalersAcquireCanceled(t *testing.T) {
 	tests := []struct {
 		name   string
 		item   Item
-		assert func(ctx context.Context, t *testing.T, c *Cache, item *Item)
+		assert func(ctx context.Context, t *testing.T, c *Cache, item Item)
 	}{
 		{
 			name:   "marshalItems with Value",
@@ -165,7 +165,7 @@ func TestCache_marshalersAcquireCanceled(t *testing.T) {
 		{
 			name: "acquireUnmarshal",
 			item: Item{Key: testKey},
-			assert: func(ctx context.Context, t *testing.T, c *Cache, item *Item) {
+			assert: func(ctx context.Context, t *testing.T, c *Cache, item Item) {
 				var callCount uint64
 				c.WithUnmarshal(func(b []byte, v any) error {
 					atomic.AddUint64(&callCount, 1)
@@ -178,7 +178,7 @@ func TestCache_marshalersAcquireCanceled(t *testing.T) {
 		{
 			name: "Get",
 			item: Item{Key: testKey, Value: foobar},
-			assert: func(ctx context.Context, t *testing.T, c *Cache, item *Item) {
+			assert: func(ctx context.Context, t *testing.T, c *Cache, item Item) {
 				require.NoError(t, c.Set(ctx, item))
 				b, err := c.Get(ctx, item, item)
 				require.ErrorIs(t, err, context.Canceled)
@@ -204,9 +204,8 @@ func TestCache_marshalersAcquireCanceled(t *testing.T) {
 				cancel()
 			}()
 
-			item := tt.item
 			close(sig)
-			tt.assert(ctx, t, cache, &item)
+			tt.assert(ctx, t, cache, tt.item)
 		})
 	}
 }
@@ -215,11 +214,11 @@ func TestCache_marshalErrGroup(t *testing.T) {
 	const foobar = "foobar"
 	wantErr := errors.New("expected error")
 
-	marshalAssert := func(ctx context.Context, t *testing.T, c *Cache, item *Item) {
+	marshalAssert := func(ctx context.Context, t *testing.T, c *Cache, item Item) {
 		c.WithMarshal(func(v any) ([]byte, error) {
 			return nil, wantErr
 		})
-		b, err := c.marshalItems(ctx, []*Item{item})
+		b, err := c.marshalItems(ctx, []Item{item})
 		require.ErrorIs(t, err, wantErr)
 		assert.Nil(t, b)
 	}
@@ -227,7 +226,7 @@ func TestCache_marshalErrGroup(t *testing.T) {
 	tests := []struct {
 		name   string
 		item   Item
-		assert func(ctx context.Context, t *testing.T, c *Cache, item *Item)
+		assert func(ctx context.Context, t *testing.T, c *Cache, item Item)
 	}{
 		{
 			name:   "marshalItems with Value",
@@ -244,7 +243,7 @@ func TestCache_marshalErrGroup(t *testing.T) {
 		{
 			name: "acquireUnmarshal",
 			item: Item{Key: testKey},
-			assert: func(ctx context.Context, t *testing.T, c *Cache, item *Item) {
+			assert: func(ctx context.Context, t *testing.T, c *Cache, item Item) {
 				c.WithUnmarshal(func(b []byte, v any) error {
 					return wantErr
 				})
@@ -262,8 +261,7 @@ func TestCache_marshalErrGroup(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			cache := New()
 			require.NotNil(t, cache)
-			item := tt.item
-			tt.assert(ctx, t, cache, &item)
+			tt.assert(ctx, t, cache, tt.item)
 		})
 	}
 }
@@ -291,9 +289,9 @@ func TestCache_marshalItems_canceled(t *testing.T) {
 			const foobar = "foobar"
 			var doCount uint64
 
-			items := make([]*Item, tt.items)
+			items := make([]Item, tt.items)
 			for i := range items {
-				items[i] = &Item{
+				items[i] = Item{
 					Key: testKey,
 					Do: func(ctx context.Context) (any, error) {
 						n := atomic.AddUint64(&doCount, 1)

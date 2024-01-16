@@ -24,8 +24,8 @@ func TestCache_Set_errorMarshal(t *testing.T) {
 	ctx := context.Background()
 	item := Item{Key: testKey, Value: "foobar"}
 
-	require.ErrorIs(t, cache.Set(ctx, &item), wantErr)
-	require.ErrorIs(t, cache.Set(ctx, &item, &item), wantErr)
+	require.ErrorIs(t, cache.Set(ctx, item), wantErr)
+	require.ErrorIs(t, cache.Set(ctx, item, item), wantErr)
 }
 
 func TestCache_Set_withoutCache(t *testing.T) {
@@ -34,8 +34,8 @@ func TestCache_Set_withoutCache(t *testing.T) {
 	ctx := context.Background()
 	item := Item{Key: testKey, Value: "foobar"}
 
-	require.NoError(t, cache.Set(ctx, &item))
-	require.NoError(t, cache.Set(ctx, &item, &item))
+	require.NoError(t, cache.Set(ctx, item))
+	require.NoError(t, cache.Set(ctx, item, item))
 }
 
 func TestCache_Set_redisErr(t *testing.T) {
@@ -48,7 +48,7 @@ func TestCache_Set_redisErr(t *testing.T) {
 
 	cache := New().WithRedis(rdb)
 	item := Item{Key: testKey, Value: "foobar"}
-	require.ErrorIs(t, cache.Set(ctx, &item), wantErr)
+	require.ErrorIs(t, cache.Set(ctx, item), wantErr)
 
 	pipe := redisMocks.NewMockPipeliner(t)
 	var cmds []redis.Cmder
@@ -67,7 +67,7 @@ func TestCache_Set_redisErr(t *testing.T) {
 	)
 	rdb.EXPECT().Pipeline().Return(pipe)
 
-	require.ErrorIs(t, cache.Set(ctx, &item, &item), wantErr)
+	require.ErrorIs(t, cache.Set(ctx, item, item), wantErr)
 }
 
 func TestCache_Set_errorCanceled(t *testing.T) {
@@ -82,7 +82,7 @@ func TestCache_Set_errorCanceled(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	cancel()
 
-	require.ErrorIs(t, cache.Set(ctx, &item, &item), context.Canceled)
+	require.ErrorIs(t, cache.Set(ctx, item, item), context.Canceled)
 }
 
 func TestCache_Set_errorWait(t *testing.T) {
@@ -97,5 +97,5 @@ func TestCache_Set_errorWait(t *testing.T) {
 		},
 	}
 
-	require.ErrorIs(t, cache.Set(context.Background(), &item, &item), wantErr)
+	require.ErrorIs(t, cache.Set(context.Background(), item, item), wantErr)
 }
