@@ -19,7 +19,10 @@ import (
 	"github.com/dsh2dsh/expx-cache/redis/classic"
 )
 
-const testKey = "mykey"
+const (
+	rdbOffset = 1
+	testKey   = "mykey"
+)
 
 func valueNoError[V any](t *testing.T) func(val V, err error) V {
 	return func(val V, err error) V {
@@ -433,6 +436,7 @@ func NewRedisClient() (*redis.Client, error) {
 	if err != nil {
 		return nil, fmt.Errorf("parse redis URL %q: %w", cfg.WithRedis, err)
 	}
+	opt.DB += rdbOffset
 
 	rdb := redis.NewClient(opt)
 	if err := rdb.Ping(context.Background()).Err(); err != nil {
@@ -503,6 +507,7 @@ func TestCacheSuite(t *testing.T) {
 					require.NoError(t, cn.Select(ctx, cfgDB).Err())
 					require.NoError(t, cn.Close())
 				})
+				t.Logf("use redis DB %v", nextDB)
 				require.NoError(t, cn.Select(ctx, nextDB).Err())
 				r = cn
 			}
