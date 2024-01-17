@@ -31,6 +31,10 @@ func (_m *MockPipeliner) ACLDryRun(ctx context.Context, username string, command
 	_ca = append(_ca, command...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ACLDryRun")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.StringCmd); ok {
 		r0 = rf(ctx, username, command...)
@@ -84,6 +88,10 @@ func (_c *MockPipeliner_ACLDryRun_Call) RunAndReturn(run func(context.Context, s
 func (_m *MockPipeliner) ACLLog(ctx context.Context, count int64) *redis.ACLLogCmd {
 	ret := _m.Called(ctx, count)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ACLLog")
+	}
+
 	var r0 *redis.ACLLogCmd
 	if rf, ok := ret.Get(0).(func(context.Context, int64) *redis.ACLLogCmd); ok {
 		r0 = rf(ctx, count)
@@ -129,6 +137,10 @@ func (_c *MockPipeliner_ACLLog_Call) RunAndReturn(run func(context.Context, int6
 func (_m *MockPipeliner) ACLLogReset(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ACLLogReset")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
 		r0 = rf(ctx)
@@ -172,6 +184,10 @@ func (_c *MockPipeliner_ACLLogReset_Call) RunAndReturn(run func(context.Context)
 // Append provides a mock function with given fields: ctx, key, value
 func (_m *MockPipeliner) Append(ctx context.Context, key string, value string) *redis.IntCmd {
 	ret := _m.Called(ctx, key, value)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Append")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
@@ -219,6 +235,10 @@ func (_c *MockPipeliner_Append_Call) RunAndReturn(run func(context.Context, stri
 func (_m *MockPipeliner) Auth(ctx context.Context, password string) *redis.StatusCmd {
 	ret := _m.Called(ctx, password)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Auth")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StatusCmd); ok {
 		r0 = rf(ctx, password)
@@ -263,6 +283,10 @@ func (_c *MockPipeliner_Auth_Call) RunAndReturn(run func(context.Context, string
 // AuthACL provides a mock function with given fields: ctx, username, password
 func (_m *MockPipeliner) AuthACL(ctx context.Context, username string, password string) *redis.StatusCmd {
 	ret := _m.Called(ctx, username, password)
+
+	if len(ret) == 0 {
+		panic("no return value specified for AuthACL")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.StatusCmd); ok {
@@ -310,6 +334,10 @@ func (_c *MockPipeliner_AuthACL_Call) RunAndReturn(run func(context.Context, str
 func (_m *MockPipeliner) BFAdd(ctx context.Context, key string, element interface{}) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, element)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BFAdd")
+	}
+
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}) *redis.BoolCmd); ok {
 		r0 = rf(ctx, key, element)
@@ -356,6 +384,10 @@ func (_c *MockPipeliner_BFAdd_Call) RunAndReturn(run func(context.Context, strin
 func (_m *MockPipeliner) BFCard(ctx context.Context, key string) *redis.IntCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BFCard")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, key)
@@ -400,6 +432,10 @@ func (_c *MockPipeliner_BFCard_Call) RunAndReturn(run func(context.Context, stri
 // BFExists provides a mock function with given fields: ctx, key, element
 func (_m *MockPipeliner) BFExists(ctx context.Context, key string, element interface{}) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, element)
+
+	if len(ret) == 0 {
+		panic("no return value specified for BFExists")
+	}
 
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}) *redis.BoolCmd); ok {
@@ -447,6 +483,10 @@ func (_c *MockPipeliner_BFExists_Call) RunAndReturn(run func(context.Context, st
 func (_m *MockPipeliner) BFInfo(ctx context.Context, key string) *redis.BFInfoCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BFInfo")
+	}
+
 	var r0 *redis.BFInfoCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.BFInfoCmd); ok {
 		r0 = rf(ctx, key)
@@ -491,6 +531,10 @@ func (_c *MockPipeliner_BFInfo_Call) RunAndReturn(run func(context.Context, stri
 // BFInfoArg provides a mock function with given fields: ctx, key, option
 func (_m *MockPipeliner) BFInfoArg(ctx context.Context, key string, option string) *redis.BFInfoCmd {
 	ret := _m.Called(ctx, key, option)
+
+	if len(ret) == 0 {
+		panic("no return value specified for BFInfoArg")
+	}
 
 	var r0 *redis.BFInfoCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.BFInfoCmd); ok {
@@ -538,6 +582,10 @@ func (_c *MockPipeliner_BFInfoArg_Call) RunAndReturn(run func(context.Context, s
 func (_m *MockPipeliner) BFInfoCapacity(ctx context.Context, key string) *redis.BFInfoCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BFInfoCapacity")
+	}
+
 	var r0 *redis.BFInfoCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.BFInfoCmd); ok {
 		r0 = rf(ctx, key)
@@ -582,6 +630,10 @@ func (_c *MockPipeliner_BFInfoCapacity_Call) RunAndReturn(run func(context.Conte
 // BFInfoExpansion provides a mock function with given fields: ctx, key
 func (_m *MockPipeliner) BFInfoExpansion(ctx context.Context, key string) *redis.BFInfoCmd {
 	ret := _m.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for BFInfoExpansion")
+	}
 
 	var r0 *redis.BFInfoCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.BFInfoCmd); ok {
@@ -628,6 +680,10 @@ func (_c *MockPipeliner_BFInfoExpansion_Call) RunAndReturn(run func(context.Cont
 func (_m *MockPipeliner) BFInfoFilters(ctx context.Context, key string) *redis.BFInfoCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BFInfoFilters")
+	}
+
 	var r0 *redis.BFInfoCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.BFInfoCmd); ok {
 		r0 = rf(ctx, key)
@@ -673,6 +729,10 @@ func (_c *MockPipeliner_BFInfoFilters_Call) RunAndReturn(run func(context.Contex
 func (_m *MockPipeliner) BFInfoItems(ctx context.Context, key string) *redis.BFInfoCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BFInfoItems")
+	}
+
 	var r0 *redis.BFInfoCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.BFInfoCmd); ok {
 		r0 = rf(ctx, key)
@@ -717,6 +777,10 @@ func (_c *MockPipeliner_BFInfoItems_Call) RunAndReturn(run func(context.Context,
 // BFInfoSize provides a mock function with given fields: ctx, key
 func (_m *MockPipeliner) BFInfoSize(ctx context.Context, key string) *redis.BFInfoCmd {
 	ret := _m.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for BFInfoSize")
+	}
 
 	var r0 *redis.BFInfoCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.BFInfoCmd); ok {
@@ -765,6 +829,10 @@ func (_m *MockPipeliner) BFInsert(ctx context.Context, key string, options *redi
 	_ca = append(_ca, ctx, key, options)
 	_ca = append(_ca, elements...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for BFInsert")
+	}
 
 	var r0 *redis.BoolSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.BFInsertOptions, ...interface{}) *redis.BoolSliceCmd); ok {
@@ -820,6 +888,10 @@ func (_c *MockPipeliner_BFInsert_Call) RunAndReturn(run func(context.Context, st
 func (_m *MockPipeliner) BFLoadChunk(ctx context.Context, key string, iterator int64, data interface{}) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, iterator, data)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BFLoadChunk")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, interface{}) *redis.StatusCmd); ok {
 		r0 = rf(ctx, key, iterator, data)
@@ -869,6 +941,10 @@ func (_m *MockPipeliner) BFMAdd(ctx context.Context, key string, elements ...int
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, elements...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for BFMAdd")
+	}
 
 	var r0 *redis.BoolSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.BoolSliceCmd); ok {
@@ -926,6 +1002,10 @@ func (_m *MockPipeliner) BFMExists(ctx context.Context, key string, elements ...
 	_ca = append(_ca, elements...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BFMExists")
+	}
+
 	var r0 *redis.BoolSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.BoolSliceCmd); ok {
 		r0 = rf(ctx, key, elements...)
@@ -979,6 +1059,10 @@ func (_c *MockPipeliner_BFMExists_Call) RunAndReturn(run func(context.Context, s
 func (_m *MockPipeliner) BFReserve(ctx context.Context, key string, errorRate float64, capacity int64) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, errorRate, capacity)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BFReserve")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, float64, int64) *redis.StatusCmd); ok {
 		r0 = rf(ctx, key, errorRate, capacity)
@@ -1025,6 +1109,10 @@ func (_c *MockPipeliner_BFReserve_Call) RunAndReturn(run func(context.Context, s
 // BFReserveExpansion provides a mock function with given fields: ctx, key, errorRate, capacity, expansion
 func (_m *MockPipeliner) BFReserveExpansion(ctx context.Context, key string, errorRate float64, capacity int64, expansion int64) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, errorRate, capacity, expansion)
+
+	if len(ret) == 0 {
+		panic("no return value specified for BFReserveExpansion")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, float64, int64, int64) *redis.StatusCmd); ok {
@@ -1074,6 +1162,10 @@ func (_c *MockPipeliner_BFReserveExpansion_Call) RunAndReturn(run func(context.C
 func (_m *MockPipeliner) BFReserveNonScaling(ctx context.Context, key string, errorRate float64, capacity int64) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, errorRate, capacity)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BFReserveNonScaling")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, float64, int64) *redis.StatusCmd); ok {
 		r0 = rf(ctx, key, errorRate, capacity)
@@ -1121,6 +1213,10 @@ func (_c *MockPipeliner_BFReserveNonScaling_Call) RunAndReturn(run func(context.
 func (_m *MockPipeliner) BFReserveWithArgs(ctx context.Context, key string, options *redis.BFReserveOptions) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, options)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BFReserveWithArgs")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.BFReserveOptions) *redis.StatusCmd); ok {
 		r0 = rf(ctx, key, options)
@@ -1166,6 +1262,10 @@ func (_c *MockPipeliner_BFReserveWithArgs_Call) RunAndReturn(run func(context.Co
 // BFScanDump provides a mock function with given fields: ctx, key, iterator
 func (_m *MockPipeliner) BFScanDump(ctx context.Context, key string, iterator int64) *redis.ScanDumpCmd {
 	ret := _m.Called(ctx, key, iterator)
+
+	if len(ret) == 0 {
+		panic("no return value specified for BFScanDump")
+	}
 
 	var r0 *redis.ScanDumpCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64) *redis.ScanDumpCmd); ok {
@@ -1219,6 +1319,10 @@ func (_m *MockPipeliner) BLMPop(ctx context.Context, timeout time.Duration, dire
 	_ca = append(_ca, ctx, timeout, direction, count)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for BLMPop")
+	}
 
 	var r0 *redis.KeyValuesCmd
 	if rf, ok := ret.Get(0).(func(context.Context, time.Duration, string, int64, ...string) *redis.KeyValuesCmd); ok {
@@ -1275,6 +1379,10 @@ func (_c *MockPipeliner_BLMPop_Call) RunAndReturn(run func(context.Context, time
 func (_m *MockPipeliner) BLMove(ctx context.Context, source string, destination string, srcpos string, destpos string, timeout time.Duration) *redis.StringCmd {
 	ret := _m.Called(ctx, source, destination, srcpos, destpos, timeout)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BLMove")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, string, string, time.Duration) *redis.StringCmd); ok {
 		r0 = rf(ctx, source, destination, srcpos, destpos, timeout)
@@ -1330,6 +1438,10 @@ func (_m *MockPipeliner) BLPop(ctx context.Context, timeout time.Duration, keys 
 	_ca = append(_ca, ctx, timeout)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for BLPop")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, time.Duration, ...string) *redis.StringSliceCmd); ok {
@@ -1391,6 +1503,10 @@ func (_m *MockPipeliner) BRPop(ctx context.Context, timeout time.Duration, keys 
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BRPop")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, time.Duration, ...string) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, timeout, keys...)
@@ -1443,6 +1559,10 @@ func (_c *MockPipeliner_BRPop_Call) RunAndReturn(run func(context.Context, time.
 // BRPopLPush provides a mock function with given fields: ctx, source, destination, timeout
 func (_m *MockPipeliner) BRPopLPush(ctx context.Context, source string, destination string, timeout time.Duration) *redis.StringCmd {
 	ret := _m.Called(ctx, source, destination, timeout)
+
+	if len(ret) == 0 {
+		panic("no return value specified for BRPopLPush")
+	}
 
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, time.Duration) *redis.StringCmd); ok {
@@ -1497,6 +1617,10 @@ func (_m *MockPipeliner) BZMPop(ctx context.Context, timeout time.Duration, orde
 	_ca = append(_ca, ctx, timeout, order, count)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for BZMPop")
+	}
 
 	var r0 *redis.ZSliceWithKeyCmd
 	if rf, ok := ret.Get(0).(func(context.Context, time.Duration, string, int64, ...string) *redis.ZSliceWithKeyCmd); ok {
@@ -1560,6 +1684,10 @@ func (_m *MockPipeliner) BZPopMax(ctx context.Context, timeout time.Duration, ke
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BZPopMax")
+	}
+
 	var r0 *redis.ZWithKeyCmd
 	if rf, ok := ret.Get(0).(func(context.Context, time.Duration, ...string) *redis.ZWithKeyCmd); ok {
 		r0 = rf(ctx, timeout, keys...)
@@ -1620,6 +1748,10 @@ func (_m *MockPipeliner) BZPopMin(ctx context.Context, timeout time.Duration, ke
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BZPopMin")
+	}
+
 	var r0 *redis.ZWithKeyCmd
 	if rf, ok := ret.Get(0).(func(context.Context, time.Duration, ...string) *redis.ZWithKeyCmd); ok {
 		r0 = rf(ctx, timeout, keys...)
@@ -1673,6 +1805,10 @@ func (_c *MockPipeliner_BZPopMin_Call) RunAndReturn(run func(context.Context, ti
 func (_m *MockPipeliner) BgRewriteAOF(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BgRewriteAOF")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
 		r0 = rf(ctx)
@@ -1717,6 +1853,10 @@ func (_c *MockPipeliner_BgRewriteAOF_Call) RunAndReturn(run func(context.Context
 func (_m *MockPipeliner) BgSave(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BgSave")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
 		r0 = rf(ctx)
@@ -1760,6 +1900,10 @@ func (_c *MockPipeliner_BgSave_Call) RunAndReturn(run func(context.Context) *red
 // BitCount provides a mock function with given fields: ctx, key, bitCount
 func (_m *MockPipeliner) BitCount(ctx context.Context, key string, bitCount *redis.BitCount) *redis.IntCmd {
 	ret := _m.Called(ctx, key, bitCount)
+
+	if len(ret) == 0 {
+		panic("no return value specified for BitCount")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.BitCount) *redis.IntCmd); ok {
@@ -1809,6 +1953,10 @@ func (_m *MockPipeliner) BitField(ctx context.Context, key string, values ...int
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, values...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for BitField")
+	}
 
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntSliceCmd); ok {
@@ -1870,6 +2018,10 @@ func (_m *MockPipeliner) BitOpAnd(ctx context.Context, destKey string, keys ...s
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BitOpAnd")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
 		r0 = rf(ctx, destKey, keys...)
@@ -1923,6 +2075,10 @@ func (_c *MockPipeliner_BitOpAnd_Call) RunAndReturn(run func(context.Context, st
 func (_m *MockPipeliner) BitOpNot(ctx context.Context, destKey string, key string) *redis.IntCmd {
 	ret := _m.Called(ctx, destKey, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BitOpNot")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, destKey, key)
@@ -1975,6 +2131,10 @@ func (_m *MockPipeliner) BitOpOr(ctx context.Context, destKey string, keys ...st
 	_ca = append(_ca, ctx, destKey)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for BitOpOr")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
@@ -2036,6 +2196,10 @@ func (_m *MockPipeliner) BitOpXor(ctx context.Context, destKey string, keys ...s
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BitOpXor")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
 		r0 = rf(ctx, destKey, keys...)
@@ -2096,6 +2260,10 @@ func (_m *MockPipeliner) BitPos(ctx context.Context, key string, bit int64, pos 
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BitPos")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, ...int64) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, bit, pos...)
@@ -2150,6 +2318,10 @@ func (_c *MockPipeliner_BitPos_Call) RunAndReturn(run func(context.Context, stri
 func (_m *MockPipeliner) BitPosSpan(ctx context.Context, key string, bit int8, start int64, end int64, span string) *redis.IntCmd {
 	ret := _m.Called(ctx, key, bit, start, end, span)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BitPosSpan")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int8, int64, int64, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, bit, start, end, span)
@@ -2199,6 +2371,10 @@ func (_c *MockPipeliner_BitPosSpan_Call) RunAndReturn(run func(context.Context, 
 func (_m *MockPipeliner) CFAdd(ctx context.Context, key string, element interface{}) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, element)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CFAdd")
+	}
+
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}) *redis.BoolCmd); ok {
 		r0 = rf(ctx, key, element)
@@ -2244,6 +2420,10 @@ func (_c *MockPipeliner_CFAdd_Call) RunAndReturn(run func(context.Context, strin
 // CFAddNX provides a mock function with given fields: ctx, key, element
 func (_m *MockPipeliner) CFAddNX(ctx context.Context, key string, element interface{}) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, element)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CFAddNX")
+	}
 
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}) *redis.BoolCmd); ok {
@@ -2291,6 +2471,10 @@ func (_c *MockPipeliner_CFAddNX_Call) RunAndReturn(run func(context.Context, str
 func (_m *MockPipeliner) CFCount(ctx context.Context, key string, element interface{}) *redis.IntCmd {
 	ret := _m.Called(ctx, key, element)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CFCount")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, element)
@@ -2336,6 +2520,10 @@ func (_c *MockPipeliner_CFCount_Call) RunAndReturn(run func(context.Context, str
 // CFDel provides a mock function with given fields: ctx, key, element
 func (_m *MockPipeliner) CFDel(ctx context.Context, key string, element interface{}) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, element)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CFDel")
+	}
 
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}) *redis.BoolCmd); ok {
@@ -2383,6 +2571,10 @@ func (_c *MockPipeliner_CFDel_Call) RunAndReturn(run func(context.Context, strin
 func (_m *MockPipeliner) CFExists(ctx context.Context, key string, element interface{}) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, element)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CFExists")
+	}
+
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}) *redis.BoolCmd); ok {
 		r0 = rf(ctx, key, element)
@@ -2428,6 +2620,10 @@ func (_c *MockPipeliner_CFExists_Call) RunAndReturn(run func(context.Context, st
 // CFInfo provides a mock function with given fields: ctx, key
 func (_m *MockPipeliner) CFInfo(ctx context.Context, key string) *redis.CFInfoCmd {
 	ret := _m.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CFInfo")
+	}
 
 	var r0 *redis.CFInfoCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.CFInfoCmd); ok {
@@ -2476,6 +2672,10 @@ func (_m *MockPipeliner) CFInsert(ctx context.Context, key string, options *redi
 	_ca = append(_ca, ctx, key, options)
 	_ca = append(_ca, elements...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CFInsert")
+	}
 
 	var r0 *redis.BoolSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.CFInsertOptions, ...interface{}) *redis.BoolSliceCmd); ok {
@@ -2534,6 +2734,10 @@ func (_m *MockPipeliner) CFInsertNX(ctx context.Context, key string, options *re
 	_ca = append(_ca, elements...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CFInsertNX")
+	}
+
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.CFInsertOptions, ...interface{}) *redis.IntSliceCmd); ok {
 		r0 = rf(ctx, key, options, elements...)
@@ -2588,6 +2792,10 @@ func (_c *MockPipeliner_CFInsertNX_Call) RunAndReturn(run func(context.Context, 
 func (_m *MockPipeliner) CFLoadChunk(ctx context.Context, key string, iterator int64, data interface{}) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, iterator, data)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CFLoadChunk")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, interface{}) *redis.StatusCmd); ok {
 		r0 = rf(ctx, key, iterator, data)
@@ -2637,6 +2845,10 @@ func (_m *MockPipeliner) CFMExists(ctx context.Context, key string, elements ...
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, elements...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CFMExists")
+	}
 
 	var r0 *redis.BoolSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.BoolSliceCmd); ok {
@@ -2691,6 +2903,10 @@ func (_c *MockPipeliner_CFMExists_Call) RunAndReturn(run func(context.Context, s
 func (_m *MockPipeliner) CFReserve(ctx context.Context, key string, capacity int64) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, capacity)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CFReserve")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64) *redis.StatusCmd); ok {
 		r0 = rf(ctx, key, capacity)
@@ -2736,6 +2952,10 @@ func (_c *MockPipeliner_CFReserve_Call) RunAndReturn(run func(context.Context, s
 // CFReserveBucketSize provides a mock function with given fields: ctx, key, capacity, bucketsize
 func (_m *MockPipeliner) CFReserveBucketSize(ctx context.Context, key string, capacity int64, bucketsize int64) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, capacity, bucketsize)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CFReserveBucketSize")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int64) *redis.StatusCmd); ok {
@@ -2784,6 +3004,10 @@ func (_c *MockPipeliner_CFReserveBucketSize_Call) RunAndReturn(run func(context.
 func (_m *MockPipeliner) CFReserveExpansion(ctx context.Context, key string, capacity int64, expansion int64) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, capacity, expansion)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CFReserveExpansion")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int64) *redis.StatusCmd); ok {
 		r0 = rf(ctx, key, capacity, expansion)
@@ -2830,6 +3054,10 @@ func (_c *MockPipeliner_CFReserveExpansion_Call) RunAndReturn(run func(context.C
 // CFReserveMaxIterations provides a mock function with given fields: ctx, key, capacity, maxiterations
 func (_m *MockPipeliner) CFReserveMaxIterations(ctx context.Context, key string, capacity int64, maxiterations int64) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, capacity, maxiterations)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CFReserveMaxIterations")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int64) *redis.StatusCmd); ok {
@@ -2878,6 +3106,10 @@ func (_c *MockPipeliner_CFReserveMaxIterations_Call) RunAndReturn(run func(conte
 func (_m *MockPipeliner) CFReserveWithArgs(ctx context.Context, key string, options *redis.CFReserveOptions) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, options)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CFReserveWithArgs")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.CFReserveOptions) *redis.StatusCmd); ok {
 		r0 = rf(ctx, key, options)
@@ -2923,6 +3155,10 @@ func (_c *MockPipeliner_CFReserveWithArgs_Call) RunAndReturn(run func(context.Co
 // CFScanDump provides a mock function with given fields: ctx, key, iterator
 func (_m *MockPipeliner) CFScanDump(ctx context.Context, key string, iterator int64) *redis.ScanDumpCmd {
 	ret := _m.Called(ctx, key, iterator)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CFScanDump")
+	}
 
 	var r0 *redis.ScanDumpCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64) *redis.ScanDumpCmd); ok {
@@ -2972,6 +3208,10 @@ func (_m *MockPipeliner) CMSIncrBy(ctx context.Context, key string, elements ...
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, elements...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CMSIncrBy")
+	}
 
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntSliceCmd); ok {
@@ -3026,6 +3266,10 @@ func (_c *MockPipeliner_CMSIncrBy_Call) RunAndReturn(run func(context.Context, s
 func (_m *MockPipeliner) CMSInfo(ctx context.Context, key string) *redis.CMSInfoCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CMSInfo")
+	}
+
 	var r0 *redis.CMSInfoCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.CMSInfoCmd); ok {
 		r0 = rf(ctx, key)
@@ -3070,6 +3314,10 @@ func (_c *MockPipeliner_CMSInfo_Call) RunAndReturn(run func(context.Context, str
 // CMSInitByDim provides a mock function with given fields: ctx, key, width, height
 func (_m *MockPipeliner) CMSInitByDim(ctx context.Context, key string, width int64, height int64) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, width, height)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CMSInitByDim")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int64) *redis.StatusCmd); ok {
@@ -3117,6 +3365,10 @@ func (_c *MockPipeliner_CMSInitByDim_Call) RunAndReturn(run func(context.Context
 // CMSInitByProb provides a mock function with given fields: ctx, key, errorRate, probability
 func (_m *MockPipeliner) CMSInitByProb(ctx context.Context, key string, errorRate float64, probability float64) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, errorRate, probability)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CMSInitByProb")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, float64, float64) *redis.StatusCmd); ok {
@@ -3172,6 +3424,10 @@ func (_m *MockPipeliner) CMSMerge(ctx context.Context, destKey string, sourceKey
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CMSMerge")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.StatusCmd); ok {
 		r0 = rf(ctx, destKey, sourceKeys...)
@@ -3225,6 +3481,10 @@ func (_c *MockPipeliner_CMSMerge_Call) RunAndReturn(run func(context.Context, st
 func (_m *MockPipeliner) CMSMergeWithWeight(ctx context.Context, destKey string, sourceKeys map[string]int64) *redis.StatusCmd {
 	ret := _m.Called(ctx, destKey, sourceKeys)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CMSMergeWithWeight")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, map[string]int64) *redis.StatusCmd); ok {
 		r0 = rf(ctx, destKey, sourceKeys)
@@ -3273,6 +3533,10 @@ func (_m *MockPipeliner) CMSQuery(ctx context.Context, key string, elements ...i
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, elements...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CMSQuery")
+	}
 
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntSliceCmd); ok {
@@ -3327,6 +3591,10 @@ func (_c *MockPipeliner_CMSQuery_Call) RunAndReturn(run func(context.Context, st
 func (_m *MockPipeliner) ClientGetName(ctx context.Context) *redis.StringCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClientGetName")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StringCmd); ok {
 		r0 = rf(ctx)
@@ -3370,6 +3638,10 @@ func (_c *MockPipeliner_ClientGetName_Call) RunAndReturn(run func(context.Contex
 // ClientID provides a mock function with given fields: ctx
 func (_m *MockPipeliner) ClientID(ctx context.Context) *redis.IntCmd {
 	ret := _m.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ClientID")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.IntCmd); ok {
@@ -3415,6 +3687,10 @@ func (_c *MockPipeliner_ClientID_Call) RunAndReturn(run func(context.Context) *r
 func (_m *MockPipeliner) ClientInfo(ctx context.Context) *redis.ClientInfoCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClientInfo")
+	}
+
 	var r0 *redis.ClientInfoCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.ClientInfoCmd); ok {
 		r0 = rf(ctx)
@@ -3458,6 +3734,10 @@ func (_c *MockPipeliner_ClientInfo_Call) RunAndReturn(run func(context.Context) 
 // ClientKill provides a mock function with given fields: ctx, ipPort
 func (_m *MockPipeliner) ClientKill(ctx context.Context, ipPort string) *redis.StatusCmd {
 	ret := _m.Called(ctx, ipPort)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ClientKill")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StatusCmd); ok {
@@ -3511,6 +3791,10 @@ func (_m *MockPipeliner) ClientKillByFilter(ctx context.Context, keys ...string)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClientKillByFilter")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.IntCmd); ok {
 		r0 = rf(ctx, keys...)
@@ -3563,6 +3847,10 @@ func (_c *MockPipeliner_ClientKillByFilter_Call) RunAndReturn(run func(context.C
 func (_m *MockPipeliner) ClientList(ctx context.Context) *redis.StringCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClientList")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StringCmd); ok {
 		r0 = rf(ctx)
@@ -3606,6 +3894,10 @@ func (_c *MockPipeliner_ClientList_Call) RunAndReturn(run func(context.Context) 
 // ClientPause provides a mock function with given fields: ctx, dur
 func (_m *MockPipeliner) ClientPause(ctx context.Context, dur time.Duration) *redis.BoolCmd {
 	ret := _m.Called(ctx, dur)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ClientPause")
+	}
 
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, time.Duration) *redis.BoolCmd); ok {
@@ -3652,6 +3944,10 @@ func (_c *MockPipeliner_ClientPause_Call) RunAndReturn(run func(context.Context,
 func (_m *MockPipeliner) ClientSetInfo(ctx context.Context, info redis.LibraryInfo) *redis.StatusCmd {
 	ret := _m.Called(ctx, info)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClientSetInfo")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, redis.LibraryInfo) *redis.StatusCmd); ok {
 		r0 = rf(ctx, info)
@@ -3696,6 +3992,10 @@ func (_c *MockPipeliner_ClientSetInfo_Call) RunAndReturn(run func(context.Contex
 // ClientSetName provides a mock function with given fields: ctx, name
 func (_m *MockPipeliner) ClientSetName(ctx context.Context, name string) *redis.BoolCmd {
 	ret := _m.Called(ctx, name)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ClientSetName")
+	}
 
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.BoolCmd); ok {
@@ -3742,6 +4042,10 @@ func (_c *MockPipeliner_ClientSetName_Call) RunAndReturn(run func(context.Contex
 func (_m *MockPipeliner) ClientUnblock(ctx context.Context, id int64) *redis.IntCmd {
 	ret := _m.Called(ctx, id)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClientUnblock")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, int64) *redis.IntCmd); ok {
 		r0 = rf(ctx, id)
@@ -3787,6 +4091,10 @@ func (_c *MockPipeliner_ClientUnblock_Call) RunAndReturn(run func(context.Contex
 func (_m *MockPipeliner) ClientUnblockWithError(ctx context.Context, id int64) *redis.IntCmd {
 	ret := _m.Called(ctx, id)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClientUnblockWithError")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, int64) *redis.IntCmd); ok {
 		r0 = rf(ctx, id)
@@ -3831,6 +4139,10 @@ func (_c *MockPipeliner_ClientUnblockWithError_Call) RunAndReturn(run func(conte
 // ClientUnpause provides a mock function with given fields: ctx
 func (_m *MockPipeliner) ClientUnpause(ctx context.Context) *redis.BoolCmd {
 	ret := _m.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ClientUnpause")
+	}
 
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.BoolCmd); ok {
@@ -3882,6 +4194,10 @@ func (_m *MockPipeliner) ClusterAddSlots(ctx context.Context, slots ...int) *red
 	_ca = append(_ca, ctx)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterAddSlots")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...int) *redis.StatusCmd); ok {
@@ -3935,6 +4251,10 @@ func (_c *MockPipeliner_ClusterAddSlots_Call) RunAndReturn(run func(context.Cont
 func (_m *MockPipeliner) ClusterAddSlotsRange(ctx context.Context, min int, max int) *redis.StatusCmd {
 	ret := _m.Called(ctx, min, max)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterAddSlotsRange")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, int, int) *redis.StatusCmd); ok {
 		r0 = rf(ctx, min, max)
@@ -3981,6 +4301,10 @@ func (_c *MockPipeliner_ClusterAddSlotsRange_Call) RunAndReturn(run func(context
 func (_m *MockPipeliner) ClusterCountFailureReports(ctx context.Context, nodeID string) *redis.IntCmd {
 	ret := _m.Called(ctx, nodeID)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterCountFailureReports")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, nodeID)
@@ -4025,6 +4349,10 @@ func (_c *MockPipeliner_ClusterCountFailureReports_Call) RunAndReturn(run func(c
 // ClusterCountKeysInSlot provides a mock function with given fields: ctx, slot
 func (_m *MockPipeliner) ClusterCountKeysInSlot(ctx context.Context, slot int) *redis.IntCmd {
 	ret := _m.Called(ctx, slot)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterCountKeysInSlot")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, int) *redis.IntCmd); ok {
@@ -4078,6 +4406,10 @@ func (_m *MockPipeliner) ClusterDelSlots(ctx context.Context, slots ...int) *red
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterDelSlots")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...int) *redis.StatusCmd); ok {
 		r0 = rf(ctx, slots...)
@@ -4130,6 +4462,10 @@ func (_c *MockPipeliner_ClusterDelSlots_Call) RunAndReturn(run func(context.Cont
 func (_m *MockPipeliner) ClusterDelSlotsRange(ctx context.Context, min int, max int) *redis.StatusCmd {
 	ret := _m.Called(ctx, min, max)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterDelSlotsRange")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, int, int) *redis.StatusCmd); ok {
 		r0 = rf(ctx, min, max)
@@ -4176,6 +4512,10 @@ func (_c *MockPipeliner_ClusterDelSlotsRange_Call) RunAndReturn(run func(context
 func (_m *MockPipeliner) ClusterFailover(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterFailover")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
 		r0 = rf(ctx)
@@ -4219,6 +4559,10 @@ func (_c *MockPipeliner_ClusterFailover_Call) RunAndReturn(run func(context.Cont
 // ClusterForget provides a mock function with given fields: ctx, nodeID
 func (_m *MockPipeliner) ClusterForget(ctx context.Context, nodeID string) *redis.StatusCmd {
 	ret := _m.Called(ctx, nodeID)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterForget")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StatusCmd); ok {
@@ -4264,6 +4608,10 @@ func (_c *MockPipeliner_ClusterForget_Call) RunAndReturn(run func(context.Contex
 // ClusterGetKeysInSlot provides a mock function with given fields: ctx, slot, count
 func (_m *MockPipeliner) ClusterGetKeysInSlot(ctx context.Context, slot int, count int) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, slot, count)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterGetKeysInSlot")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, int, int) *redis.StringSliceCmd); ok {
@@ -4311,6 +4659,10 @@ func (_c *MockPipeliner_ClusterGetKeysInSlot_Call) RunAndReturn(run func(context
 func (_m *MockPipeliner) ClusterInfo(ctx context.Context) *redis.StringCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterInfo")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StringCmd); ok {
 		r0 = rf(ctx)
@@ -4354,6 +4706,10 @@ func (_c *MockPipeliner_ClusterInfo_Call) RunAndReturn(run func(context.Context)
 // ClusterKeySlot provides a mock function with given fields: ctx, key
 func (_m *MockPipeliner) ClusterKeySlot(ctx context.Context, key string) *redis.IntCmd {
 	ret := _m.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterKeySlot")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
@@ -4400,6 +4756,10 @@ func (_c *MockPipeliner_ClusterKeySlot_Call) RunAndReturn(run func(context.Conte
 func (_m *MockPipeliner) ClusterLinks(ctx context.Context) *redis.ClusterLinksCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterLinks")
+	}
+
 	var r0 *redis.ClusterLinksCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.ClusterLinksCmd); ok {
 		r0 = rf(ctx)
@@ -4443,6 +4803,10 @@ func (_c *MockPipeliner_ClusterLinks_Call) RunAndReturn(run func(context.Context
 // ClusterMeet provides a mock function with given fields: ctx, host, port
 func (_m *MockPipeliner) ClusterMeet(ctx context.Context, host string, port string) *redis.StatusCmd {
 	ret := _m.Called(ctx, host, port)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterMeet")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.StatusCmd); ok {
@@ -4490,6 +4854,10 @@ func (_c *MockPipeliner_ClusterMeet_Call) RunAndReturn(run func(context.Context,
 func (_m *MockPipeliner) ClusterMyShardID(ctx context.Context) *redis.StringCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterMyShardID")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StringCmd); ok {
 		r0 = rf(ctx)
@@ -4534,6 +4902,10 @@ func (_c *MockPipeliner_ClusterMyShardID_Call) RunAndReturn(run func(context.Con
 func (_m *MockPipeliner) ClusterNodes(ctx context.Context) *redis.StringCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterNodes")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StringCmd); ok {
 		r0 = rf(ctx)
@@ -4577,6 +4949,10 @@ func (_c *MockPipeliner_ClusterNodes_Call) RunAndReturn(run func(context.Context
 // ClusterReplicate provides a mock function with given fields: ctx, nodeID
 func (_m *MockPipeliner) ClusterReplicate(ctx context.Context, nodeID string) *redis.StatusCmd {
 	ret := _m.Called(ctx, nodeID)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterReplicate")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StatusCmd); ok {
@@ -4623,6 +4999,10 @@ func (_c *MockPipeliner_ClusterReplicate_Call) RunAndReturn(run func(context.Con
 func (_m *MockPipeliner) ClusterResetHard(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterResetHard")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
 		r0 = rf(ctx)
@@ -4666,6 +5046,10 @@ func (_c *MockPipeliner_ClusterResetHard_Call) RunAndReturn(run func(context.Con
 // ClusterResetSoft provides a mock function with given fields: ctx
 func (_m *MockPipeliner) ClusterResetSoft(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterResetSoft")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
@@ -4711,6 +5095,10 @@ func (_c *MockPipeliner_ClusterResetSoft_Call) RunAndReturn(run func(context.Con
 func (_m *MockPipeliner) ClusterSaveConfig(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterSaveConfig")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
 		r0 = rf(ctx)
@@ -4755,6 +5143,10 @@ func (_c *MockPipeliner_ClusterSaveConfig_Call) RunAndReturn(run func(context.Co
 func (_m *MockPipeliner) ClusterShards(ctx context.Context) *redis.ClusterShardsCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterShards")
+	}
+
 	var r0 *redis.ClusterShardsCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.ClusterShardsCmd); ok {
 		r0 = rf(ctx)
@@ -4798,6 +5190,10 @@ func (_c *MockPipeliner_ClusterShards_Call) RunAndReturn(run func(context.Contex
 // ClusterSlaves provides a mock function with given fields: ctx, nodeID
 func (_m *MockPipeliner) ClusterSlaves(ctx context.Context, nodeID string) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, nodeID)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterSlaves")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringSliceCmd); ok {
@@ -4844,6 +5240,10 @@ func (_c *MockPipeliner_ClusterSlaves_Call) RunAndReturn(run func(context.Contex
 func (_m *MockPipeliner) ClusterSlots(ctx context.Context) *redis.ClusterSlotsCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterSlots")
+	}
+
 	var r0 *redis.ClusterSlotsCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.ClusterSlotsCmd); ok {
 		r0 = rf(ctx)
@@ -4887,6 +5287,10 @@ func (_c *MockPipeliner_ClusterSlots_Call) RunAndReturn(run func(context.Context
 // Command provides a mock function with given fields: ctx
 func (_m *MockPipeliner) Command(ctx context.Context) *redis.CommandsInfoCmd {
 	ret := _m.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Command")
+	}
 
 	var r0 *redis.CommandsInfoCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.CommandsInfoCmd); ok {
@@ -4934,6 +5338,10 @@ func (_m *MockPipeliner) CommandGetKeys(ctx context.Context, commands ...interfa
 	_ca = append(_ca, ctx)
 	_ca = append(_ca, commands...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CommandGetKeys")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...interface{}) *redis.StringSliceCmd); ok {
@@ -4990,6 +5398,10 @@ func (_m *MockPipeliner) CommandGetKeysAndFlags(ctx context.Context, commands ..
 	_ca = append(_ca, commands...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CommandGetKeysAndFlags")
+	}
+
 	var r0 *redis.KeyFlagsCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...interface{}) *redis.KeyFlagsCmd); ok {
 		r0 = rf(ctx, commands...)
@@ -5042,6 +5454,10 @@ func (_c *MockPipeliner_CommandGetKeysAndFlags_Call) RunAndReturn(run func(conte
 func (_m *MockPipeliner) CommandList(ctx context.Context, filter *redis.FilterBy) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, filter)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CommandList")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, *redis.FilterBy) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, filter)
@@ -5086,6 +5502,10 @@ func (_c *MockPipeliner_CommandList_Call) RunAndReturn(run func(context.Context,
 // ConfigGet provides a mock function with given fields: ctx, parameter
 func (_m *MockPipeliner) ConfigGet(ctx context.Context, parameter string) *redis.MapStringStringCmd {
 	ret := _m.Called(ctx, parameter)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ConfigGet")
+	}
 
 	var r0 *redis.MapStringStringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.MapStringStringCmd); ok {
@@ -5132,6 +5552,10 @@ func (_c *MockPipeliner_ConfigGet_Call) RunAndReturn(run func(context.Context, s
 func (_m *MockPipeliner) ConfigResetStat(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ConfigResetStat")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
 		r0 = rf(ctx)
@@ -5176,6 +5600,10 @@ func (_c *MockPipeliner_ConfigResetStat_Call) RunAndReturn(run func(context.Cont
 func (_m *MockPipeliner) ConfigRewrite(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ConfigRewrite")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
 		r0 = rf(ctx)
@@ -5219,6 +5647,10 @@ func (_c *MockPipeliner_ConfigRewrite_Call) RunAndReturn(run func(context.Contex
 // ConfigSet provides a mock function with given fields: ctx, parameter, value
 func (_m *MockPipeliner) ConfigSet(ctx context.Context, parameter string, value string) *redis.StatusCmd {
 	ret := _m.Called(ctx, parameter, value)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ConfigSet")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.StatusCmd); ok {
@@ -5265,6 +5697,10 @@ func (_c *MockPipeliner_ConfigSet_Call) RunAndReturn(run func(context.Context, s
 // Copy provides a mock function with given fields: ctx, sourceKey, destKey, db, replace
 func (_m *MockPipeliner) Copy(ctx context.Context, sourceKey string, destKey string, db int, replace bool) *redis.IntCmd {
 	ret := _m.Called(ctx, sourceKey, destKey, db, replace)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Copy")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, int, bool) *redis.IntCmd); ok {
@@ -5314,6 +5750,10 @@ func (_c *MockPipeliner_Copy_Call) RunAndReturn(run func(context.Context, string
 func (_m *MockPipeliner) DBSize(ctx context.Context) *redis.IntCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for DBSize")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.IntCmd); ok {
 		r0 = rf(ctx)
@@ -5357,6 +5797,10 @@ func (_c *MockPipeliner_DBSize_Call) RunAndReturn(run func(context.Context) *red
 // DebugObject provides a mock function with given fields: ctx, key
 func (_m *MockPipeliner) DebugObject(ctx context.Context, key string) *redis.StringCmd {
 	ret := _m.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for DebugObject")
+	}
 
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringCmd); ok {
@@ -5403,6 +5847,10 @@ func (_c *MockPipeliner_DebugObject_Call) RunAndReturn(run func(context.Context,
 func (_m *MockPipeliner) Decr(ctx context.Context, key string) *redis.IntCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Decr")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, key)
@@ -5447,6 +5895,10 @@ func (_c *MockPipeliner_Decr_Call) RunAndReturn(run func(context.Context, string
 // DecrBy provides a mock function with given fields: ctx, key, decrement
 func (_m *MockPipeliner) DecrBy(ctx context.Context, key string, decrement int64) *redis.IntCmd {
 	ret := _m.Called(ctx, key, decrement)
+
+	if len(ret) == 0 {
+		panic("no return value specified for DecrBy")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64) *redis.IntCmd); ok {
@@ -5500,6 +5952,10 @@ func (_m *MockPipeliner) Del(ctx context.Context, keys ...string) *redis.IntCmd 
 	_ca = append(_ca, ctx)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Del")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.IntCmd); ok {
@@ -5588,6 +6044,10 @@ func (_m *MockPipeliner) Do(ctx context.Context, args ...interface{}) *redis.Cmd
 	_ca = append(_ca, args...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Do")
+	}
+
 	var r0 *redis.Cmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...interface{}) *redis.Cmd); ok {
 		r0 = rf(ctx, args...)
@@ -5640,6 +6100,10 @@ func (_c *MockPipeliner_Do_Call) RunAndReturn(run func(context.Context, ...inter
 func (_m *MockPipeliner) Dump(ctx context.Context, key string) *redis.StringCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Dump")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringCmd); ok {
 		r0 = rf(ctx, key)
@@ -5684,6 +6148,10 @@ func (_c *MockPipeliner_Dump_Call) RunAndReturn(run func(context.Context, string
 // Echo provides a mock function with given fields: ctx, message
 func (_m *MockPipeliner) Echo(ctx context.Context, message interface{}) *redis.StringCmd {
 	ret := _m.Called(ctx, message)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Echo")
+	}
 
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}) *redis.StringCmd); ok {
@@ -5732,6 +6200,10 @@ func (_m *MockPipeliner) Eval(ctx context.Context, script string, keys []string,
 	_ca = append(_ca, ctx, script, keys)
 	_ca = append(_ca, args...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Eval")
+	}
 
 	var r0 *redis.Cmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, []string, ...interface{}) *redis.Cmd); ok {
@@ -5790,6 +6262,10 @@ func (_m *MockPipeliner) EvalRO(ctx context.Context, script string, keys []strin
 	_ca = append(_ca, args...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for EvalRO")
+	}
+
 	var r0 *redis.Cmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, []string, ...interface{}) *redis.Cmd); ok {
 		r0 = rf(ctx, script, keys, args...)
@@ -5846,6 +6322,10 @@ func (_m *MockPipeliner) EvalSha(ctx context.Context, sha1 string, keys []string
 	_ca = append(_ca, ctx, sha1, keys)
 	_ca = append(_ca, args...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for EvalSha")
+	}
 
 	var r0 *redis.Cmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, []string, ...interface{}) *redis.Cmd); ok {
@@ -5904,6 +6384,10 @@ func (_m *MockPipeliner) EvalShaRO(ctx context.Context, sha1 string, keys []stri
 	_ca = append(_ca, args...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for EvalShaRO")
+	}
+
 	var r0 *redis.Cmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, []string, ...interface{}) *redis.Cmd); ok {
 		r0 = rf(ctx, sha1, keys, args...)
@@ -5957,6 +6441,10 @@ func (_c *MockPipeliner_EvalShaRO_Call) RunAndReturn(run func(context.Context, s
 // Exec provides a mock function with given fields: ctx
 func (_m *MockPipeliner) Exec(ctx context.Context) ([]redis.Cmder, error) {
 	ret := _m.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Exec")
+	}
 
 	var r0 []redis.Cmder
 	var r1 error
@@ -6019,6 +6507,10 @@ func (_m *MockPipeliner) Exists(ctx context.Context, keys ...string) *redis.IntC
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Exists")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.IntCmd); ok {
 		r0 = rf(ctx, keys...)
@@ -6071,6 +6563,10 @@ func (_c *MockPipeliner_Exists_Call) RunAndReturn(run func(context.Context, ...s
 func (_m *MockPipeliner) Expire(ctx context.Context, key string, expiration time.Duration) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, expiration)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Expire")
+	}
+
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, time.Duration) *redis.BoolCmd); ok {
 		r0 = rf(ctx, key, expiration)
@@ -6116,6 +6612,10 @@ func (_c *MockPipeliner_Expire_Call) RunAndReturn(run func(context.Context, stri
 // ExpireAt provides a mock function with given fields: ctx, key, tm
 func (_m *MockPipeliner) ExpireAt(ctx context.Context, key string, tm time.Time) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, tm)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ExpireAt")
+	}
 
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, time.Time) *redis.BoolCmd); ok {
@@ -6163,6 +6663,10 @@ func (_c *MockPipeliner_ExpireAt_Call) RunAndReturn(run func(context.Context, st
 func (_m *MockPipeliner) ExpireGT(ctx context.Context, key string, expiration time.Duration) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, expiration)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ExpireGT")
+	}
+
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, time.Duration) *redis.BoolCmd); ok {
 		r0 = rf(ctx, key, expiration)
@@ -6208,6 +6712,10 @@ func (_c *MockPipeliner_ExpireGT_Call) RunAndReturn(run func(context.Context, st
 // ExpireLT provides a mock function with given fields: ctx, key, expiration
 func (_m *MockPipeliner) ExpireLT(ctx context.Context, key string, expiration time.Duration) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ExpireLT")
+	}
 
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, time.Duration) *redis.BoolCmd); ok {
@@ -6255,6 +6763,10 @@ func (_c *MockPipeliner_ExpireLT_Call) RunAndReturn(run func(context.Context, st
 func (_m *MockPipeliner) ExpireNX(ctx context.Context, key string, expiration time.Duration) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, expiration)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ExpireNX")
+	}
+
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, time.Duration) *redis.BoolCmd); ok {
 		r0 = rf(ctx, key, expiration)
@@ -6301,6 +6813,10 @@ func (_c *MockPipeliner_ExpireNX_Call) RunAndReturn(run func(context.Context, st
 func (_m *MockPipeliner) ExpireTime(ctx context.Context, key string) *redis.DurationCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ExpireTime")
+	}
+
 	var r0 *redis.DurationCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.DurationCmd); ok {
 		r0 = rf(ctx, key)
@@ -6345,6 +6861,10 @@ func (_c *MockPipeliner_ExpireTime_Call) RunAndReturn(run func(context.Context, 
 // ExpireXX provides a mock function with given fields: ctx, key, expiration
 func (_m *MockPipeliner) ExpireXX(ctx context.Context, key string, expiration time.Duration) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ExpireXX")
+	}
 
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, time.Duration) *redis.BoolCmd); ok {
@@ -6394,6 +6914,10 @@ func (_m *MockPipeliner) FCall(ctx context.Context, function string, keys []stri
 	_ca = append(_ca, ctx, function, keys)
 	_ca = append(_ca, args...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FCall")
+	}
 
 	var r0 *redis.Cmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, []string, ...interface{}) *redis.Cmd); ok {
@@ -6452,6 +6976,10 @@ func (_m *MockPipeliner) FCallRO(ctx context.Context, function string, keys []st
 	_ca = append(_ca, args...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for FCallRO")
+	}
+
 	var r0 *redis.Cmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, []string, ...interface{}) *redis.Cmd); ok {
 		r0 = rf(ctx, function, keys, args...)
@@ -6509,6 +7037,10 @@ func (_m *MockPipeliner) FCallRo(ctx context.Context, function string, keys []st
 	_ca = append(_ca, args...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for FCallRo")
+	}
+
 	var r0 *redis.Cmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, []string, ...interface{}) *redis.Cmd); ok {
 		r0 = rf(ctx, function, keys, args...)
@@ -6563,6 +7095,10 @@ func (_c *MockPipeliner_FCallRo_Call) RunAndReturn(run func(context.Context, str
 func (_m *MockPipeliner) FlushAll(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for FlushAll")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
 		r0 = rf(ctx)
@@ -6606,6 +7142,10 @@ func (_c *MockPipeliner_FlushAll_Call) RunAndReturn(run func(context.Context) *r
 // FlushAllAsync provides a mock function with given fields: ctx
 func (_m *MockPipeliner) FlushAllAsync(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FlushAllAsync")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
@@ -6651,6 +7191,10 @@ func (_c *MockPipeliner_FlushAllAsync_Call) RunAndReturn(run func(context.Contex
 func (_m *MockPipeliner) FlushDB(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for FlushDB")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
 		r0 = rf(ctx)
@@ -6695,6 +7239,10 @@ func (_c *MockPipeliner_FlushDB_Call) RunAndReturn(run func(context.Context) *re
 func (_m *MockPipeliner) FlushDBAsync(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for FlushDBAsync")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
 		r0 = rf(ctx)
@@ -6738,6 +7286,10 @@ func (_c *MockPipeliner_FlushDBAsync_Call) RunAndReturn(run func(context.Context
 // FunctionDelete provides a mock function with given fields: ctx, libName
 func (_m *MockPipeliner) FunctionDelete(ctx context.Context, libName string) *redis.StringCmd {
 	ret := _m.Called(ctx, libName)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FunctionDelete")
+	}
 
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringCmd); ok {
@@ -6784,6 +7336,10 @@ func (_c *MockPipeliner_FunctionDelete_Call) RunAndReturn(run func(context.Conte
 func (_m *MockPipeliner) FunctionDump(ctx context.Context) *redis.StringCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for FunctionDump")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StringCmd); ok {
 		r0 = rf(ctx)
@@ -6827,6 +7383,10 @@ func (_c *MockPipeliner_FunctionDump_Call) RunAndReturn(run func(context.Context
 // FunctionFlush provides a mock function with given fields: ctx
 func (_m *MockPipeliner) FunctionFlush(ctx context.Context) *redis.StringCmd {
 	ret := _m.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FunctionFlush")
+	}
 
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StringCmd); ok {
@@ -6872,6 +7432,10 @@ func (_c *MockPipeliner_FunctionFlush_Call) RunAndReturn(run func(context.Contex
 func (_m *MockPipeliner) FunctionFlushAsync(ctx context.Context) *redis.StringCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for FunctionFlushAsync")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StringCmd); ok {
 		r0 = rf(ctx)
@@ -6916,6 +7480,10 @@ func (_c *MockPipeliner_FunctionFlushAsync_Call) RunAndReturn(run func(context.C
 func (_m *MockPipeliner) FunctionKill(ctx context.Context) *redis.StringCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for FunctionKill")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StringCmd); ok {
 		r0 = rf(ctx)
@@ -6959,6 +7527,10 @@ func (_c *MockPipeliner_FunctionKill_Call) RunAndReturn(run func(context.Context
 // FunctionList provides a mock function with given fields: ctx, q
 func (_m *MockPipeliner) FunctionList(ctx context.Context, q redis.FunctionListQuery) *redis.FunctionListCmd {
 	ret := _m.Called(ctx, q)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FunctionList")
+	}
 
 	var r0 *redis.FunctionListCmd
 	if rf, ok := ret.Get(0).(func(context.Context, redis.FunctionListQuery) *redis.FunctionListCmd); ok {
@@ -7005,6 +7577,10 @@ func (_c *MockPipeliner_FunctionList_Call) RunAndReturn(run func(context.Context
 func (_m *MockPipeliner) FunctionLoad(ctx context.Context, code string) *redis.StringCmd {
 	ret := _m.Called(ctx, code)
 
+	if len(ret) == 0 {
+		panic("no return value specified for FunctionLoad")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringCmd); ok {
 		r0 = rf(ctx, code)
@@ -7049,6 +7625,10 @@ func (_c *MockPipeliner_FunctionLoad_Call) RunAndReturn(run func(context.Context
 // FunctionLoadReplace provides a mock function with given fields: ctx, code
 func (_m *MockPipeliner) FunctionLoadReplace(ctx context.Context, code string) *redis.StringCmd {
 	ret := _m.Called(ctx, code)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FunctionLoadReplace")
+	}
 
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringCmd); ok {
@@ -7095,6 +7675,10 @@ func (_c *MockPipeliner_FunctionLoadReplace_Call) RunAndReturn(run func(context.
 func (_m *MockPipeliner) FunctionRestore(ctx context.Context, libDump string) *redis.StringCmd {
 	ret := _m.Called(ctx, libDump)
 
+	if len(ret) == 0 {
+		panic("no return value specified for FunctionRestore")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringCmd); ok {
 		r0 = rf(ctx, libDump)
@@ -7139,6 +7723,10 @@ func (_c *MockPipeliner_FunctionRestore_Call) RunAndReturn(run func(context.Cont
 // FunctionStats provides a mock function with given fields: ctx
 func (_m *MockPipeliner) FunctionStats(ctx context.Context) *redis.FunctionStatsCmd {
 	ret := _m.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FunctionStats")
+	}
 
 	var r0 *redis.FunctionStatsCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.FunctionStatsCmd); ok {
@@ -7190,6 +7778,10 @@ func (_m *MockPipeliner) GeoAdd(ctx context.Context, key string, geoLocation ...
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for GeoAdd")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...*redis.GeoLocation) *redis.IntCmd); ok {
@@ -7243,6 +7835,10 @@ func (_c *MockPipeliner_GeoAdd_Call) RunAndReturn(run func(context.Context, stri
 // GeoDist provides a mock function with given fields: ctx, key, member1, member2, unit
 func (_m *MockPipeliner) GeoDist(ctx context.Context, key string, member1 string, member2 string, unit string) *redis.FloatCmd {
 	ret := _m.Called(ctx, key, member1, member2, unit)
+
+	if len(ret) == 0 {
+		panic("no return value specified for GeoDist")
+	}
 
 	var r0 *redis.FloatCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, string, string) *redis.FloatCmd); ok {
@@ -7298,6 +7894,10 @@ func (_m *MockPipeliner) GeoHash(ctx context.Context, key string, members ...str
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for GeoHash")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.StringSliceCmd); ok {
@@ -7359,6 +7959,10 @@ func (_m *MockPipeliner) GeoPos(ctx context.Context, key string, members ...stri
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for GeoPos")
+	}
+
 	var r0 *redis.GeoPosCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.GeoPosCmd); ok {
 		r0 = rf(ctx, key, members...)
@@ -7412,6 +8016,10 @@ func (_c *MockPipeliner_GeoPos_Call) RunAndReturn(run func(context.Context, stri
 func (_m *MockPipeliner) GeoRadius(ctx context.Context, key string, longitude float64, latitude float64, query *redis.GeoRadiusQuery) *redis.GeoLocationCmd {
 	ret := _m.Called(ctx, key, longitude, latitude, query)
 
+	if len(ret) == 0 {
+		panic("no return value specified for GeoRadius")
+	}
+
 	var r0 *redis.GeoLocationCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, float64, float64, *redis.GeoRadiusQuery) *redis.GeoLocationCmd); ok {
 		r0 = rf(ctx, key, longitude, latitude, query)
@@ -7460,6 +8068,10 @@ func (_c *MockPipeliner_GeoRadius_Call) RunAndReturn(run func(context.Context, s
 func (_m *MockPipeliner) GeoRadiusByMember(ctx context.Context, key string, member string, query *redis.GeoRadiusQuery) *redis.GeoLocationCmd {
 	ret := _m.Called(ctx, key, member, query)
 
+	if len(ret) == 0 {
+		panic("no return value specified for GeoRadiusByMember")
+	}
+
 	var r0 *redis.GeoLocationCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, *redis.GeoRadiusQuery) *redis.GeoLocationCmd); ok {
 		r0 = rf(ctx, key, member, query)
@@ -7507,6 +8119,10 @@ func (_c *MockPipeliner_GeoRadiusByMember_Call) RunAndReturn(run func(context.Co
 func (_m *MockPipeliner) GeoRadiusByMemberStore(ctx context.Context, key string, member string, query *redis.GeoRadiusQuery) *redis.IntCmd {
 	ret := _m.Called(ctx, key, member, query)
 
+	if len(ret) == 0 {
+		panic("no return value specified for GeoRadiusByMemberStore")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, *redis.GeoRadiusQuery) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, member, query)
@@ -7553,6 +8169,10 @@ func (_c *MockPipeliner_GeoRadiusByMemberStore_Call) RunAndReturn(run func(conte
 // GeoRadiusStore provides a mock function with given fields: ctx, key, longitude, latitude, query
 func (_m *MockPipeliner) GeoRadiusStore(ctx context.Context, key string, longitude float64, latitude float64, query *redis.GeoRadiusQuery) *redis.IntCmd {
 	ret := _m.Called(ctx, key, longitude, latitude, query)
+
+	if len(ret) == 0 {
+		panic("no return value specified for GeoRadiusStore")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, float64, float64, *redis.GeoRadiusQuery) *redis.IntCmd); ok {
@@ -7602,6 +8222,10 @@ func (_c *MockPipeliner_GeoRadiusStore_Call) RunAndReturn(run func(context.Conte
 func (_m *MockPipeliner) GeoSearch(ctx context.Context, key string, q *redis.GeoSearchQuery) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key, q)
 
+	if len(ret) == 0 {
+		panic("no return value specified for GeoSearch")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.GeoSearchQuery) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, key, q)
@@ -7648,6 +8272,10 @@ func (_c *MockPipeliner_GeoSearch_Call) RunAndReturn(run func(context.Context, s
 func (_m *MockPipeliner) GeoSearchLocation(ctx context.Context, key string, q *redis.GeoSearchLocationQuery) *redis.GeoSearchLocationCmd {
 	ret := _m.Called(ctx, key, q)
 
+	if len(ret) == 0 {
+		panic("no return value specified for GeoSearchLocation")
+	}
+
 	var r0 *redis.GeoSearchLocationCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.GeoSearchLocationQuery) *redis.GeoSearchLocationCmd); ok {
 		r0 = rf(ctx, key, q)
@@ -7693,6 +8321,10 @@ func (_c *MockPipeliner_GeoSearchLocation_Call) RunAndReturn(run func(context.Co
 // GeoSearchStore provides a mock function with given fields: ctx, key, store, q
 func (_m *MockPipeliner) GeoSearchStore(ctx context.Context, key string, store string, q *redis.GeoSearchStoreQuery) *redis.IntCmd {
 	ret := _m.Called(ctx, key, store, q)
+
+	if len(ret) == 0 {
+		panic("no return value specified for GeoSearchStore")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, *redis.GeoSearchStoreQuery) *redis.IntCmd); ok {
@@ -7741,6 +8373,10 @@ func (_c *MockPipeliner_GeoSearchStore_Call) RunAndReturn(run func(context.Conte
 func (_m *MockPipeliner) Get(ctx context.Context, key string) *redis.StringCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Get")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringCmd); ok {
 		r0 = rf(ctx, key)
@@ -7785,6 +8421,10 @@ func (_c *MockPipeliner_Get_Call) RunAndReturn(run func(context.Context, string)
 // GetBit provides a mock function with given fields: ctx, key, offset
 func (_m *MockPipeliner) GetBit(ctx context.Context, key string, offset int64) *redis.IntCmd {
 	ret := _m.Called(ctx, key, offset)
+
+	if len(ret) == 0 {
+		panic("no return value specified for GetBit")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64) *redis.IntCmd); ok {
@@ -7832,6 +8472,10 @@ func (_c *MockPipeliner_GetBit_Call) RunAndReturn(run func(context.Context, stri
 func (_m *MockPipeliner) GetDel(ctx context.Context, key string) *redis.StringCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for GetDel")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringCmd); ok {
 		r0 = rf(ctx, key)
@@ -7876,6 +8520,10 @@ func (_c *MockPipeliner_GetDel_Call) RunAndReturn(run func(context.Context, stri
 // GetEx provides a mock function with given fields: ctx, key, expiration
 func (_m *MockPipeliner) GetEx(ctx context.Context, key string, expiration time.Duration) *redis.StringCmd {
 	ret := _m.Called(ctx, key, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for GetEx")
+	}
 
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, time.Duration) *redis.StringCmd); ok {
@@ -7923,6 +8571,10 @@ func (_c *MockPipeliner_GetEx_Call) RunAndReturn(run func(context.Context, strin
 func (_m *MockPipeliner) GetRange(ctx context.Context, key string, start int64, end int64) *redis.StringCmd {
 	ret := _m.Called(ctx, key, start, end)
 
+	if len(ret) == 0 {
+		panic("no return value specified for GetRange")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int64) *redis.StringCmd); ok {
 		r0 = rf(ctx, key, start, end)
@@ -7969,6 +8621,10 @@ func (_c *MockPipeliner_GetRange_Call) RunAndReturn(run func(context.Context, st
 // GetSet provides a mock function with given fields: ctx, key, value
 func (_m *MockPipeliner) GetSet(ctx context.Context, key string, value interface{}) *redis.StringCmd {
 	ret := _m.Called(ctx, key, value)
+
+	if len(ret) == 0 {
+		panic("no return value specified for GetSet")
+	}
 
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}) *redis.StringCmd); ok {
@@ -8023,6 +8679,10 @@ func (_m *MockPipeliner) HDel(ctx context.Context, key string, fields ...string)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for HDel")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, fields...)
@@ -8076,6 +8736,10 @@ func (_c *MockPipeliner_HDel_Call) RunAndReturn(run func(context.Context, string
 func (_m *MockPipeliner) HExists(ctx context.Context, key string, field string) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, field)
 
+	if len(ret) == 0 {
+		panic("no return value specified for HExists")
+	}
+
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.BoolCmd); ok {
 		r0 = rf(ctx, key, field)
@@ -8121,6 +8785,10 @@ func (_c *MockPipeliner_HExists_Call) RunAndReturn(run func(context.Context, str
 // HGet provides a mock function with given fields: ctx, key, field
 func (_m *MockPipeliner) HGet(ctx context.Context, key string, field string) *redis.StringCmd {
 	ret := _m.Called(ctx, key, field)
+
+	if len(ret) == 0 {
+		panic("no return value specified for HGet")
+	}
 
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.StringCmd); ok {
@@ -8168,6 +8836,10 @@ func (_c *MockPipeliner_HGet_Call) RunAndReturn(run func(context.Context, string
 func (_m *MockPipeliner) HGetAll(ctx context.Context, key string) *redis.MapStringStringCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for HGetAll")
+	}
+
 	var r0 *redis.MapStringStringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.MapStringStringCmd); ok {
 		r0 = rf(ctx, key)
@@ -8212,6 +8884,10 @@ func (_c *MockPipeliner_HGetAll_Call) RunAndReturn(run func(context.Context, str
 // HIncrBy provides a mock function with given fields: ctx, key, field, incr
 func (_m *MockPipeliner) HIncrBy(ctx context.Context, key string, field string, incr int64) *redis.IntCmd {
 	ret := _m.Called(ctx, key, field, incr)
+
+	if len(ret) == 0 {
+		panic("no return value specified for HIncrBy")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, int64) *redis.IntCmd); ok {
@@ -8260,6 +8936,10 @@ func (_c *MockPipeliner_HIncrBy_Call) RunAndReturn(run func(context.Context, str
 func (_m *MockPipeliner) HIncrByFloat(ctx context.Context, key string, field string, incr float64) *redis.FloatCmd {
 	ret := _m.Called(ctx, key, field, incr)
 
+	if len(ret) == 0 {
+		panic("no return value specified for HIncrByFloat")
+	}
+
 	var r0 *redis.FloatCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, float64) *redis.FloatCmd); ok {
 		r0 = rf(ctx, key, field, incr)
@@ -8307,6 +8987,10 @@ func (_c *MockPipeliner_HIncrByFloat_Call) RunAndReturn(run func(context.Context
 func (_m *MockPipeliner) HKeys(ctx context.Context, key string) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for HKeys")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, key)
@@ -8351,6 +9035,10 @@ func (_c *MockPipeliner_HKeys_Call) RunAndReturn(run func(context.Context, strin
 // HLen provides a mock function with given fields: ctx, key
 func (_m *MockPipeliner) HLen(ctx context.Context, key string) *redis.IntCmd {
 	ret := _m.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for HLen")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
@@ -8403,6 +9091,10 @@ func (_m *MockPipeliner) HMGet(ctx context.Context, key string, fields ...string
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for HMGet")
+	}
 
 	var r0 *redis.SliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.SliceCmd); ok {
@@ -8460,6 +9152,10 @@ func (_m *MockPipeliner) HMSet(ctx context.Context, key string, values ...interf
 	_ca = append(_ca, values...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for HMSet")
+	}
+
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.BoolCmd); ok {
 		r0 = rf(ctx, key, values...)
@@ -8513,6 +9209,10 @@ func (_c *MockPipeliner_HMSet_Call) RunAndReturn(run func(context.Context, strin
 func (_m *MockPipeliner) HRandField(ctx context.Context, key string, count int) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key, count)
 
+	if len(ret) == 0 {
+		panic("no return value specified for HRandField")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, key, count)
@@ -8559,6 +9259,10 @@ func (_c *MockPipeliner_HRandField_Call) RunAndReturn(run func(context.Context, 
 func (_m *MockPipeliner) HRandFieldWithValues(ctx context.Context, key string, count int) *redis.KeyValueSliceCmd {
 	ret := _m.Called(ctx, key, count)
 
+	if len(ret) == 0 {
+		panic("no return value specified for HRandFieldWithValues")
+	}
+
 	var r0 *redis.KeyValueSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int) *redis.KeyValueSliceCmd); ok {
 		r0 = rf(ctx, key, count)
@@ -8604,6 +9308,10 @@ func (_c *MockPipeliner_HRandFieldWithValues_Call) RunAndReturn(run func(context
 // HScan provides a mock function with given fields: ctx, key, cursor, match, count
 func (_m *MockPipeliner) HScan(ctx context.Context, key string, cursor uint64, match string, count int64) *redis.ScanCmd {
 	ret := _m.Called(ctx, key, cursor, match, count)
+
+	if len(ret) == 0 {
+		panic("no return value specified for HScan")
+	}
 
 	var r0 *redis.ScanCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, uint64, string, int64) *redis.ScanCmd); ok {
@@ -8655,6 +9363,10 @@ func (_m *MockPipeliner) HSet(ctx context.Context, key string, values ...interfa
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, values...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for HSet")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
@@ -8709,6 +9421,10 @@ func (_c *MockPipeliner_HSet_Call) RunAndReturn(run func(context.Context, string
 func (_m *MockPipeliner) HSetNX(ctx context.Context, key string, field string, value interface{}) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, field, value)
 
+	if len(ret) == 0 {
+		panic("no return value specified for HSetNX")
+	}
+
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, interface{}) *redis.BoolCmd); ok {
 		r0 = rf(ctx, key, field, value)
@@ -8756,6 +9472,10 @@ func (_c *MockPipeliner_HSetNX_Call) RunAndReturn(run func(context.Context, stri
 func (_m *MockPipeliner) HVals(ctx context.Context, key string) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for HVals")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, key)
@@ -8800,6 +9520,10 @@ func (_c *MockPipeliner_HVals_Call) RunAndReturn(run func(context.Context, strin
 // Hello provides a mock function with given fields: ctx, ver, username, password, clientName
 func (_m *MockPipeliner) Hello(ctx context.Context, ver int, username string, password string, clientName string) *redis.MapStringInterfaceCmd {
 	ret := _m.Called(ctx, ver, username, password, clientName)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Hello")
+	}
 
 	var r0 *redis.MapStringInterfaceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, int, string, string, string) *redis.MapStringInterfaceCmd); ok {
@@ -8849,6 +9573,10 @@ func (_c *MockPipeliner_Hello_Call) RunAndReturn(run func(context.Context, int, 
 func (_m *MockPipeliner) Incr(ctx context.Context, key string) *redis.IntCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Incr")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, key)
@@ -8893,6 +9621,10 @@ func (_c *MockPipeliner_Incr_Call) RunAndReturn(run func(context.Context, string
 // IncrBy provides a mock function with given fields: ctx, key, value
 func (_m *MockPipeliner) IncrBy(ctx context.Context, key string, value int64) *redis.IntCmd {
 	ret := _m.Called(ctx, key, value)
+
+	if len(ret) == 0 {
+		panic("no return value specified for IncrBy")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64) *redis.IntCmd); ok {
@@ -8939,6 +9671,10 @@ func (_c *MockPipeliner_IncrBy_Call) RunAndReturn(run func(context.Context, stri
 // IncrByFloat provides a mock function with given fields: ctx, key, value
 func (_m *MockPipeliner) IncrByFloat(ctx context.Context, key string, value float64) *redis.FloatCmd {
 	ret := _m.Called(ctx, key, value)
+
+	if len(ret) == 0 {
+		panic("no return value specified for IncrByFloat")
+	}
 
 	var r0 *redis.FloatCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, float64) *redis.FloatCmd); ok {
@@ -8992,6 +9728,10 @@ func (_m *MockPipeliner) Info(ctx context.Context, section ...string) *redis.Str
 	_ca = append(_ca, ctx)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Info")
+	}
 
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.StringCmd); ok {
@@ -9047,6 +9787,10 @@ func (_m *MockPipeliner) JSONArrAppend(ctx context.Context, key string, path str
 	_ca = append(_ca, ctx, key, path)
 	_ca = append(_ca, values...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for JSONArrAppend")
+	}
 
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, ...interface{}) *redis.IntSliceCmd); ok {
@@ -9105,6 +9849,10 @@ func (_m *MockPipeliner) JSONArrIndex(ctx context.Context, key string, path stri
 	_ca = append(_ca, value...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for JSONArrIndex")
+	}
+
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, ...interface{}) *redis.IntSliceCmd); ok {
 		r0 = rf(ctx, key, path, value...)
@@ -9161,6 +9909,10 @@ func (_m *MockPipeliner) JSONArrIndexWithArgs(ctx context.Context, key string, p
 	_ca = append(_ca, ctx, key, path, options)
 	_ca = append(_ca, value...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for JSONArrIndexWithArgs")
+	}
 
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, *redis.JSONArrIndexArgs, ...interface{}) *redis.IntSliceCmd); ok {
@@ -9220,6 +9972,10 @@ func (_m *MockPipeliner) JSONArrInsert(ctx context.Context, key string, path str
 	_ca = append(_ca, values...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for JSONArrInsert")
+	}
+
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, int64, ...interface{}) *redis.IntSliceCmd); ok {
 		r0 = rf(ctx, key, path, index, values...)
@@ -9275,6 +10031,10 @@ func (_c *MockPipeliner_JSONArrInsert_Call) RunAndReturn(run func(context.Contex
 func (_m *MockPipeliner) JSONArrLen(ctx context.Context, key string, path string) *redis.IntSliceCmd {
 	ret := _m.Called(ctx, key, path)
 
+	if len(ret) == 0 {
+		panic("no return value specified for JSONArrLen")
+	}
+
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntSliceCmd); ok {
 		r0 = rf(ctx, key, path)
@@ -9320,6 +10080,10 @@ func (_c *MockPipeliner_JSONArrLen_Call) RunAndReturn(run func(context.Context, 
 // JSONArrPop provides a mock function with given fields: ctx, key, path, index
 func (_m *MockPipeliner) JSONArrPop(ctx context.Context, key string, path string, index int) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key, path, index)
+
+	if len(ret) == 0 {
+		panic("no return value specified for JSONArrPop")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, int) *redis.StringSliceCmd); ok {
@@ -9368,6 +10132,10 @@ func (_c *MockPipeliner_JSONArrPop_Call) RunAndReturn(run func(context.Context, 
 func (_m *MockPipeliner) JSONArrTrim(ctx context.Context, key string, path string) *redis.IntSliceCmd {
 	ret := _m.Called(ctx, key, path)
 
+	if len(ret) == 0 {
+		panic("no return value specified for JSONArrTrim")
+	}
+
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntSliceCmd); ok {
 		r0 = rf(ctx, key, path)
@@ -9413,6 +10181,10 @@ func (_c *MockPipeliner_JSONArrTrim_Call) RunAndReturn(run func(context.Context,
 // JSONArrTrimWithArgs provides a mock function with given fields: ctx, key, path, options
 func (_m *MockPipeliner) JSONArrTrimWithArgs(ctx context.Context, key string, path string, options *redis.JSONArrTrimArgs) *redis.IntSliceCmd {
 	ret := _m.Called(ctx, key, path, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for JSONArrTrimWithArgs")
+	}
 
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, *redis.JSONArrTrimArgs) *redis.IntSliceCmd); ok {
@@ -9461,6 +10233,10 @@ func (_c *MockPipeliner_JSONArrTrimWithArgs_Call) RunAndReturn(run func(context.
 func (_m *MockPipeliner) JSONClear(ctx context.Context, key string, path string) *redis.IntCmd {
 	ret := _m.Called(ctx, key, path)
 
+	if len(ret) == 0 {
+		panic("no return value specified for JSONClear")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, path)
@@ -9506,6 +10282,10 @@ func (_c *MockPipeliner_JSONClear_Call) RunAndReturn(run func(context.Context, s
 // JSONDebugMemory provides a mock function with given fields: ctx, key, path
 func (_m *MockPipeliner) JSONDebugMemory(ctx context.Context, key string, path string) *redis.IntCmd {
 	ret := _m.Called(ctx, key, path)
+
+	if len(ret) == 0 {
+		panic("no return value specified for JSONDebugMemory")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
@@ -9553,6 +10333,10 @@ func (_c *MockPipeliner_JSONDebugMemory_Call) RunAndReturn(run func(context.Cont
 func (_m *MockPipeliner) JSONDel(ctx context.Context, key string, path string) *redis.IntCmd {
 	ret := _m.Called(ctx, key, path)
 
+	if len(ret) == 0 {
+		panic("no return value specified for JSONDel")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, path)
@@ -9598,6 +10382,10 @@ func (_c *MockPipeliner_JSONDel_Call) RunAndReturn(run func(context.Context, str
 // JSONForget provides a mock function with given fields: ctx, key, path
 func (_m *MockPipeliner) JSONForget(ctx context.Context, key string, path string) *redis.IntCmd {
 	ret := _m.Called(ctx, key, path)
+
+	if len(ret) == 0 {
+		panic("no return value specified for JSONForget")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
@@ -9651,6 +10439,10 @@ func (_m *MockPipeliner) JSONGet(ctx context.Context, key string, paths ...strin
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for JSONGet")
+	}
 
 	var r0 *redis.JSONCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.JSONCmd); ok {
@@ -9711,6 +10503,10 @@ func (_m *MockPipeliner) JSONGetWithArgs(ctx context.Context, key string, option
 	_ca = append(_ca, ctx, key, options)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for JSONGetWithArgs")
+	}
 
 	var r0 *redis.JSONCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.JSONGetArgs, ...string) *redis.JSONCmd); ok {
@@ -9773,6 +10569,10 @@ func (_m *MockPipeliner) JSONMGet(ctx context.Context, path string, keys ...stri
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for JSONMGet")
+	}
+
 	var r0 *redis.JSONSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.JSONSliceCmd); ok {
 		r0 = rf(ctx, path, keys...)
@@ -9829,6 +10629,10 @@ func (_m *MockPipeliner) JSONMSet(ctx context.Context, params ...interface{}) *r
 	_ca = append(_ca, params...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for JSONMSet")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...interface{}) *redis.StatusCmd); ok {
 		r0 = rf(ctx, params...)
@@ -9881,6 +10685,10 @@ func (_c *MockPipeliner_JSONMSet_Call) RunAndReturn(run func(context.Context, ..
 func (_m *MockPipeliner) JSONMSetArgs(ctx context.Context, docs []redis.JSONSetArgs) *redis.StatusCmd {
 	ret := _m.Called(ctx, docs)
 
+	if len(ret) == 0 {
+		panic("no return value specified for JSONMSetArgs")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, []redis.JSONSetArgs) *redis.StatusCmd); ok {
 		r0 = rf(ctx, docs)
@@ -9925,6 +10733,10 @@ func (_c *MockPipeliner_JSONMSetArgs_Call) RunAndReturn(run func(context.Context
 // JSONMerge provides a mock function with given fields: ctx, key, path, value
 func (_m *MockPipeliner) JSONMerge(ctx context.Context, key string, path string, value string) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, path, value)
+
+	if len(ret) == 0 {
+		panic("no return value specified for JSONMerge")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.StatusCmd); ok {
@@ -9973,6 +10785,10 @@ func (_c *MockPipeliner_JSONMerge_Call) RunAndReturn(run func(context.Context, s
 func (_m *MockPipeliner) JSONNumIncrBy(ctx context.Context, key string, path string, value float64) *redis.JSONCmd {
 	ret := _m.Called(ctx, key, path, value)
 
+	if len(ret) == 0 {
+		panic("no return value specified for JSONNumIncrBy")
+	}
+
 	var r0 *redis.JSONCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, float64) *redis.JSONCmd); ok {
 		r0 = rf(ctx, key, path, value)
@@ -10020,6 +10836,10 @@ func (_c *MockPipeliner_JSONNumIncrBy_Call) RunAndReturn(run func(context.Contex
 func (_m *MockPipeliner) JSONObjKeys(ctx context.Context, key string, path string) *redis.SliceCmd {
 	ret := _m.Called(ctx, key, path)
 
+	if len(ret) == 0 {
+		panic("no return value specified for JSONObjKeys")
+	}
+
 	var r0 *redis.SliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.SliceCmd); ok {
 		r0 = rf(ctx, key, path)
@@ -10065,6 +10885,10 @@ func (_c *MockPipeliner_JSONObjKeys_Call) RunAndReturn(run func(context.Context,
 // JSONObjLen provides a mock function with given fields: ctx, key, path
 func (_m *MockPipeliner) JSONObjLen(ctx context.Context, key string, path string) *redis.IntPointerSliceCmd {
 	ret := _m.Called(ctx, key, path)
+
+	if len(ret) == 0 {
+		panic("no return value specified for JSONObjLen")
+	}
 
 	var r0 *redis.IntPointerSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntPointerSliceCmd); ok {
@@ -10112,6 +10936,10 @@ func (_c *MockPipeliner_JSONObjLen_Call) RunAndReturn(run func(context.Context, 
 func (_m *MockPipeliner) JSONSet(ctx context.Context, key string, path string, value interface{}) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, path, value)
 
+	if len(ret) == 0 {
+		panic("no return value specified for JSONSet")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, interface{}) *redis.StatusCmd); ok {
 		r0 = rf(ctx, key, path, value)
@@ -10158,6 +10986,10 @@ func (_c *MockPipeliner_JSONSet_Call) RunAndReturn(run func(context.Context, str
 // JSONSetMode provides a mock function with given fields: ctx, key, path, value, mode
 func (_m *MockPipeliner) JSONSetMode(ctx context.Context, key string, path string, value interface{}, mode string) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, path, value, mode)
+
+	if len(ret) == 0 {
+		panic("no return value specified for JSONSetMode")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, interface{}, string) *redis.StatusCmd); ok {
@@ -10207,6 +11039,10 @@ func (_c *MockPipeliner_JSONSetMode_Call) RunAndReturn(run func(context.Context,
 func (_m *MockPipeliner) JSONStrAppend(ctx context.Context, key string, path string, value string) *redis.IntPointerSliceCmd {
 	ret := _m.Called(ctx, key, path, value)
 
+	if len(ret) == 0 {
+		panic("no return value specified for JSONStrAppend")
+	}
+
 	var r0 *redis.IntPointerSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.IntPointerSliceCmd); ok {
 		r0 = rf(ctx, key, path, value)
@@ -10254,6 +11090,10 @@ func (_c *MockPipeliner_JSONStrAppend_Call) RunAndReturn(run func(context.Contex
 func (_m *MockPipeliner) JSONStrLen(ctx context.Context, key string, path string) *redis.IntPointerSliceCmd {
 	ret := _m.Called(ctx, key, path)
 
+	if len(ret) == 0 {
+		panic("no return value specified for JSONStrLen")
+	}
+
 	var r0 *redis.IntPointerSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntPointerSliceCmd); ok {
 		r0 = rf(ctx, key, path)
@@ -10299,6 +11139,10 @@ func (_c *MockPipeliner_JSONStrLen_Call) RunAndReturn(run func(context.Context, 
 // JSONToggle provides a mock function with given fields: ctx, key, path
 func (_m *MockPipeliner) JSONToggle(ctx context.Context, key string, path string) *redis.IntPointerSliceCmd {
 	ret := _m.Called(ctx, key, path)
+
+	if len(ret) == 0 {
+		panic("no return value specified for JSONToggle")
+	}
 
 	var r0 *redis.IntPointerSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntPointerSliceCmd); ok {
@@ -10346,6 +11190,10 @@ func (_c *MockPipeliner_JSONToggle_Call) RunAndReturn(run func(context.Context, 
 func (_m *MockPipeliner) JSONType(ctx context.Context, key string, path string) *redis.JSONSliceCmd {
 	ret := _m.Called(ctx, key, path)
 
+	if len(ret) == 0 {
+		panic("no return value specified for JSONType")
+	}
+
 	var r0 *redis.JSONSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.JSONSliceCmd); ok {
 		r0 = rf(ctx, key, path)
@@ -10392,6 +11240,10 @@ func (_c *MockPipeliner_JSONType_Call) RunAndReturn(run func(context.Context, st
 func (_m *MockPipeliner) Keys(ctx context.Context, pattern string) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, pattern)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Keys")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, pattern)
@@ -10436,6 +11288,10 @@ func (_c *MockPipeliner_Keys_Call) RunAndReturn(run func(context.Context, string
 // LCS provides a mock function with given fields: ctx, q
 func (_m *MockPipeliner) LCS(ctx context.Context, q *redis.LCSQuery) *redis.LCSCmd {
 	ret := _m.Called(ctx, q)
+
+	if len(ret) == 0 {
+		panic("no return value specified for LCS")
+	}
 
 	var r0 *redis.LCSCmd
 	if rf, ok := ret.Get(0).(func(context.Context, *redis.LCSQuery) *redis.LCSCmd); ok {
@@ -10482,6 +11338,10 @@ func (_c *MockPipeliner_LCS_Call) RunAndReturn(run func(context.Context, *redis.
 func (_m *MockPipeliner) LIndex(ctx context.Context, key string, index int64) *redis.StringCmd {
 	ret := _m.Called(ctx, key, index)
 
+	if len(ret) == 0 {
+		panic("no return value specified for LIndex")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64) *redis.StringCmd); ok {
 		r0 = rf(ctx, key, index)
@@ -10527,6 +11387,10 @@ func (_c *MockPipeliner_LIndex_Call) RunAndReturn(run func(context.Context, stri
 // LInsert provides a mock function with given fields: ctx, key, op, pivot, value
 func (_m *MockPipeliner) LInsert(ctx context.Context, key string, op string, pivot interface{}, value interface{}) *redis.IntCmd {
 	ret := _m.Called(ctx, key, op, pivot, value)
+
+	if len(ret) == 0 {
+		panic("no return value specified for LInsert")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, interface{}, interface{}) *redis.IntCmd); ok {
@@ -10576,6 +11440,10 @@ func (_c *MockPipeliner_LInsert_Call) RunAndReturn(run func(context.Context, str
 func (_m *MockPipeliner) LInsertAfter(ctx context.Context, key string, pivot interface{}, value interface{}) *redis.IntCmd {
 	ret := _m.Called(ctx, key, pivot, value)
 
+	if len(ret) == 0 {
+		panic("no return value specified for LInsertAfter")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, interface{}) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, pivot, value)
@@ -10623,6 +11491,10 @@ func (_c *MockPipeliner_LInsertAfter_Call) RunAndReturn(run func(context.Context
 func (_m *MockPipeliner) LInsertBefore(ctx context.Context, key string, pivot interface{}, value interface{}) *redis.IntCmd {
 	ret := _m.Called(ctx, key, pivot, value)
 
+	if len(ret) == 0 {
+		panic("no return value specified for LInsertBefore")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, interface{}) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, pivot, value)
@@ -10669,6 +11541,10 @@ func (_c *MockPipeliner_LInsertBefore_Call) RunAndReturn(run func(context.Contex
 // LLen provides a mock function with given fields: ctx, key
 func (_m *MockPipeliner) LLen(ctx context.Context, key string) *redis.IntCmd {
 	ret := _m.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for LLen")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
@@ -10721,6 +11597,10 @@ func (_m *MockPipeliner) LMPop(ctx context.Context, direction string, count int6
 	_ca = append(_ca, ctx, direction, count)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for LMPop")
+	}
 
 	var r0 *redis.KeyValuesCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, ...string) *redis.KeyValuesCmd); ok {
@@ -10776,6 +11656,10 @@ func (_c *MockPipeliner_LMPop_Call) RunAndReturn(run func(context.Context, strin
 func (_m *MockPipeliner) LMove(ctx context.Context, source string, destination string, srcpos string, destpos string) *redis.StringCmd {
 	ret := _m.Called(ctx, source, destination, srcpos, destpos)
 
+	if len(ret) == 0 {
+		panic("no return value specified for LMove")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, string, string) *redis.StringCmd); ok {
 		r0 = rf(ctx, source, destination, srcpos, destpos)
@@ -10824,6 +11708,10 @@ func (_c *MockPipeliner_LMove_Call) RunAndReturn(run func(context.Context, strin
 func (_m *MockPipeliner) LPop(ctx context.Context, key string) *redis.StringCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for LPop")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringCmd); ok {
 		r0 = rf(ctx, key)
@@ -10868,6 +11756,10 @@ func (_c *MockPipeliner_LPop_Call) RunAndReturn(run func(context.Context, string
 // LPopCount provides a mock function with given fields: ctx, key, count
 func (_m *MockPipeliner) LPopCount(ctx context.Context, key string, count int) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key, count)
+
+	if len(ret) == 0 {
+		panic("no return value specified for LPopCount")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int) *redis.StringSliceCmd); ok {
@@ -10915,6 +11807,10 @@ func (_c *MockPipeliner_LPopCount_Call) RunAndReturn(run func(context.Context, s
 func (_m *MockPipeliner) LPos(ctx context.Context, key string, value string, args redis.LPosArgs) *redis.IntCmd {
 	ret := _m.Called(ctx, key, value, args)
 
+	if len(ret) == 0 {
+		panic("no return value specified for LPos")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, redis.LPosArgs) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, value, args)
@@ -10961,6 +11857,10 @@ func (_c *MockPipeliner_LPos_Call) RunAndReturn(run func(context.Context, string
 // LPosCount provides a mock function with given fields: ctx, key, value, count, args
 func (_m *MockPipeliner) LPosCount(ctx context.Context, key string, value string, count int64, args redis.LPosArgs) *redis.IntSliceCmd {
 	ret := _m.Called(ctx, key, value, count, args)
+
+	if len(ret) == 0 {
+		panic("no return value specified for LPosCount")
+	}
 
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, int64, redis.LPosArgs) *redis.IntSliceCmd); ok {
@@ -11012,6 +11912,10 @@ func (_m *MockPipeliner) LPush(ctx context.Context, key string, values ...interf
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, values...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for LPush")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
@@ -11069,6 +11973,10 @@ func (_m *MockPipeliner) LPushX(ctx context.Context, key string, values ...inter
 	_ca = append(_ca, values...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for LPushX")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, values...)
@@ -11122,6 +12030,10 @@ func (_c *MockPipeliner_LPushX_Call) RunAndReturn(run func(context.Context, stri
 func (_m *MockPipeliner) LRange(ctx context.Context, key string, start int64, stop int64) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key, start, stop)
 
+	if len(ret) == 0 {
+		panic("no return value specified for LRange")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int64) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, key, start, stop)
@@ -11168,6 +12080,10 @@ func (_c *MockPipeliner_LRange_Call) RunAndReturn(run func(context.Context, stri
 // LRem provides a mock function with given fields: ctx, key, count, value
 func (_m *MockPipeliner) LRem(ctx context.Context, key string, count int64, value interface{}) *redis.IntCmd {
 	ret := _m.Called(ctx, key, count, value)
+
+	if len(ret) == 0 {
+		panic("no return value specified for LRem")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, interface{}) *redis.IntCmd); ok {
@@ -11216,6 +12132,10 @@ func (_c *MockPipeliner_LRem_Call) RunAndReturn(run func(context.Context, string
 func (_m *MockPipeliner) LSet(ctx context.Context, key string, index int64, value interface{}) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, index, value)
 
+	if len(ret) == 0 {
+		panic("no return value specified for LSet")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, interface{}) *redis.StatusCmd); ok {
 		r0 = rf(ctx, key, index, value)
@@ -11262,6 +12182,10 @@ func (_c *MockPipeliner_LSet_Call) RunAndReturn(run func(context.Context, string
 // LTrim provides a mock function with given fields: ctx, key, start, stop
 func (_m *MockPipeliner) LTrim(ctx context.Context, key string, start int64, stop int64) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, start, stop)
+
+	if len(ret) == 0 {
+		panic("no return value specified for LTrim")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int64) *redis.StatusCmd); ok {
@@ -11310,6 +12234,10 @@ func (_c *MockPipeliner_LTrim_Call) RunAndReturn(run func(context.Context, strin
 func (_m *MockPipeliner) LastSave(ctx context.Context) *redis.IntCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for LastSave")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.IntCmd); ok {
 		r0 = rf(ctx)
@@ -11353,6 +12281,10 @@ func (_c *MockPipeliner_LastSave_Call) RunAndReturn(run func(context.Context) *r
 // Len provides a mock function with given fields:
 func (_m *MockPipeliner) Len() int {
 	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for Len")
+	}
 
 	var r0 int
 	if rf, ok := ret.Get(0).(func() int); ok {
@@ -11401,6 +12333,10 @@ func (_m *MockPipeliner) MGet(ctx context.Context, keys ...string) *redis.SliceC
 	_ca = append(_ca, ctx)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for MGet")
+	}
 
 	var r0 *redis.SliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.SliceCmd); ok {
@@ -11457,6 +12393,10 @@ func (_m *MockPipeliner) MSet(ctx context.Context, values ...interface{}) *redis
 	_ca = append(_ca, values...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for MSet")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...interface{}) *redis.StatusCmd); ok {
 		r0 = rf(ctx, values...)
@@ -11511,6 +12451,10 @@ func (_m *MockPipeliner) MSetNX(ctx context.Context, values ...interface{}) *red
 	_ca = append(_ca, ctx)
 	_ca = append(_ca, values...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for MSetNX")
+	}
 
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...interface{}) *redis.BoolCmd); ok {
@@ -11571,6 +12515,10 @@ func (_m *MockPipeliner) MemoryUsage(ctx context.Context, key string, samples ..
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for MemoryUsage")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...int) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, samples...)
@@ -11624,6 +12572,10 @@ func (_c *MockPipeliner_MemoryUsage_Call) RunAndReturn(run func(context.Context,
 func (_m *MockPipeliner) Migrate(ctx context.Context, host string, port string, key string, db int, timeout time.Duration) *redis.StatusCmd {
 	ret := _m.Called(ctx, host, port, key, db, timeout)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Migrate")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, string, int, time.Duration) *redis.StatusCmd); ok {
 		r0 = rf(ctx, host, port, key, db, timeout)
@@ -11673,6 +12625,10 @@ func (_c *MockPipeliner_Migrate_Call) RunAndReturn(run func(context.Context, str
 func (_m *MockPipeliner) ModuleLoadex(ctx context.Context, conf *redis.ModuleLoadexConfig) *redis.StringCmd {
 	ret := _m.Called(ctx, conf)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ModuleLoadex")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, *redis.ModuleLoadexConfig) *redis.StringCmd); ok {
 		r0 = rf(ctx, conf)
@@ -11717,6 +12673,10 @@ func (_c *MockPipeliner_ModuleLoadex_Call) RunAndReturn(run func(context.Context
 // Move provides a mock function with given fields: ctx, key, db
 func (_m *MockPipeliner) Move(ctx context.Context, key string, db int) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, db)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Move")
+	}
 
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int) *redis.BoolCmd); ok {
@@ -11764,6 +12724,10 @@ func (_c *MockPipeliner_Move_Call) RunAndReturn(run func(context.Context, string
 func (_m *MockPipeliner) ObjectEncoding(ctx context.Context, key string) *redis.StringCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ObjectEncoding")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringCmd); ok {
 		r0 = rf(ctx, key)
@@ -11808,6 +12772,10 @@ func (_c *MockPipeliner_ObjectEncoding_Call) RunAndReturn(run func(context.Conte
 // ObjectIdleTime provides a mock function with given fields: ctx, key
 func (_m *MockPipeliner) ObjectIdleTime(ctx context.Context, key string) *redis.DurationCmd {
 	ret := _m.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ObjectIdleTime")
+	}
 
 	var r0 *redis.DurationCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.DurationCmd); ok {
@@ -11854,6 +12822,10 @@ func (_c *MockPipeliner_ObjectIdleTime_Call) RunAndReturn(run func(context.Conte
 func (_m *MockPipeliner) ObjectRefCount(ctx context.Context, key string) *redis.IntCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ObjectRefCount")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, key)
@@ -11898,6 +12870,10 @@ func (_c *MockPipeliner_ObjectRefCount_Call) RunAndReturn(run func(context.Conte
 // PExpire provides a mock function with given fields: ctx, key, expiration
 func (_m *MockPipeliner) PExpire(ctx context.Context, key string, expiration time.Duration) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for PExpire")
+	}
 
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, time.Duration) *redis.BoolCmd); ok {
@@ -11945,6 +12921,10 @@ func (_c *MockPipeliner_PExpire_Call) RunAndReturn(run func(context.Context, str
 func (_m *MockPipeliner) PExpireAt(ctx context.Context, key string, tm time.Time) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, tm)
 
+	if len(ret) == 0 {
+		panic("no return value specified for PExpireAt")
+	}
+
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, time.Time) *redis.BoolCmd); ok {
 		r0 = rf(ctx, key, tm)
@@ -11990,6 +12970,10 @@ func (_c *MockPipeliner_PExpireAt_Call) RunAndReturn(run func(context.Context, s
 // PExpireTime provides a mock function with given fields: ctx, key
 func (_m *MockPipeliner) PExpireTime(ctx context.Context, key string) *redis.DurationCmd {
 	ret := _m.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for PExpireTime")
+	}
 
 	var r0 *redis.DurationCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.DurationCmd); ok {
@@ -12038,6 +13022,10 @@ func (_m *MockPipeliner) PFAdd(ctx context.Context, key string, els ...interface
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, els...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for PFAdd")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
@@ -12099,6 +13087,10 @@ func (_m *MockPipeliner) PFCount(ctx context.Context, keys ...string) *redis.Int
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for PFCount")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.IntCmd); ok {
 		r0 = rf(ctx, keys...)
@@ -12158,6 +13150,10 @@ func (_m *MockPipeliner) PFMerge(ctx context.Context, dest string, keys ...strin
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for PFMerge")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.StatusCmd); ok {
 		r0 = rf(ctx, dest, keys...)
@@ -12211,6 +13207,10 @@ func (_c *MockPipeliner_PFMerge_Call) RunAndReturn(run func(context.Context, str
 func (_m *MockPipeliner) PTTL(ctx context.Context, key string) *redis.DurationCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for PTTL")
+	}
+
 	var r0 *redis.DurationCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.DurationCmd); ok {
 		r0 = rf(ctx, key)
@@ -12255,6 +13255,10 @@ func (_c *MockPipeliner_PTTL_Call) RunAndReturn(run func(context.Context, string
 // Persist provides a mock function with given fields: ctx, key
 func (_m *MockPipeliner) Persist(ctx context.Context, key string) *redis.BoolCmd {
 	ret := _m.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Persist")
+	}
 
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.BoolCmd); ok {
@@ -12301,6 +13305,10 @@ func (_c *MockPipeliner_Persist_Call) RunAndReturn(run func(context.Context, str
 func (_m *MockPipeliner) Ping(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Ping")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
 		r0 = rf(ctx)
@@ -12345,6 +13353,10 @@ func (_c *MockPipeliner_Ping_Call) RunAndReturn(run func(context.Context) *redis
 func (_m *MockPipeliner) Pipeline() redis.Pipeliner {
 	ret := _m.Called()
 
+	if len(ret) == 0 {
+		panic("no return value specified for Pipeline")
+	}
+
 	var r0 redis.Pipeliner
 	if rf, ok := ret.Get(0).(func() redis.Pipeliner); ok {
 		r0 = rf()
@@ -12387,6 +13399,10 @@ func (_c *MockPipeliner_Pipeline_Call) RunAndReturn(run func() redis.Pipeliner) 
 // Pipelined provides a mock function with given fields: ctx, fn
 func (_m *MockPipeliner) Pipelined(ctx context.Context, fn func(redis.Pipeliner) error) ([]redis.Cmder, error) {
 	ret := _m.Called(ctx, fn)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Pipelined")
+	}
 
 	var r0 []redis.Cmder
 	var r1 error
@@ -12443,6 +13459,10 @@ func (_c *MockPipeliner_Pipelined_Call) RunAndReturn(run func(context.Context, f
 func (_m *MockPipeliner) Process(ctx context.Context, cmd redis.Cmder) error {
 	ret := _m.Called(ctx, cmd)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Process")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, redis.Cmder) error); ok {
 		r0 = rf(ctx, cmd)
@@ -12485,6 +13505,10 @@ func (_c *MockPipeliner_Process_Call) RunAndReturn(run func(context.Context, red
 // PubSubChannels provides a mock function with given fields: ctx, pattern
 func (_m *MockPipeliner) PubSubChannels(ctx context.Context, pattern string) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, pattern)
+
+	if len(ret) == 0 {
+		panic("no return value specified for PubSubChannels")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringSliceCmd); ok {
@@ -12530,6 +13554,10 @@ func (_c *MockPipeliner_PubSubChannels_Call) RunAndReturn(run func(context.Conte
 // PubSubNumPat provides a mock function with given fields: ctx
 func (_m *MockPipeliner) PubSubNumPat(ctx context.Context) *redis.IntCmd {
 	ret := _m.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for PubSubNumPat")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.IntCmd); ok {
@@ -12581,6 +13609,10 @@ func (_m *MockPipeliner) PubSubNumSub(ctx context.Context, channels ...string) *
 	_ca = append(_ca, ctx)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for PubSubNumSub")
+	}
 
 	var r0 *redis.MapStringIntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.MapStringIntCmd); ok {
@@ -12634,6 +13666,10 @@ func (_c *MockPipeliner_PubSubNumSub_Call) RunAndReturn(run func(context.Context
 func (_m *MockPipeliner) PubSubShardChannels(ctx context.Context, pattern string) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, pattern)
 
+	if len(ret) == 0 {
+		panic("no return value specified for PubSubShardChannels")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, pattern)
@@ -12685,6 +13721,10 @@ func (_m *MockPipeliner) PubSubShardNumSub(ctx context.Context, channels ...stri
 	_ca = append(_ca, ctx)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for PubSubShardNumSub")
+	}
 
 	var r0 *redis.MapStringIntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.MapStringIntCmd); ok {
@@ -12738,6 +13778,10 @@ func (_c *MockPipeliner_PubSubShardNumSub_Call) RunAndReturn(run func(context.Co
 func (_m *MockPipeliner) Publish(ctx context.Context, channel string, message interface{}) *redis.IntCmd {
 	ret := _m.Called(ctx, channel, message)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Publish")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}) *redis.IntCmd); ok {
 		r0 = rf(ctx, channel, message)
@@ -12784,6 +13828,10 @@ func (_c *MockPipeliner_Publish_Call) RunAndReturn(run func(context.Context, str
 func (_m *MockPipeliner) Quit(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Quit")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
 		r0 = rf(ctx)
@@ -12827,6 +13875,10 @@ func (_c *MockPipeliner_Quit_Call) RunAndReturn(run func(context.Context) *redis
 // RPop provides a mock function with given fields: ctx, key
 func (_m *MockPipeliner) RPop(ctx context.Context, key string) *redis.StringCmd {
 	ret := _m.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for RPop")
+	}
 
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringCmd); ok {
@@ -12873,6 +13925,10 @@ func (_c *MockPipeliner_RPop_Call) RunAndReturn(run func(context.Context, string
 func (_m *MockPipeliner) RPopCount(ctx context.Context, key string, count int) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key, count)
 
+	if len(ret) == 0 {
+		panic("no return value specified for RPopCount")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, key, count)
@@ -12918,6 +13974,10 @@ func (_c *MockPipeliner_RPopCount_Call) RunAndReturn(run func(context.Context, s
 // RPopLPush provides a mock function with given fields: ctx, source, destination
 func (_m *MockPipeliner) RPopLPush(ctx context.Context, source string, destination string) *redis.StringCmd {
 	ret := _m.Called(ctx, source, destination)
+
+	if len(ret) == 0 {
+		panic("no return value specified for RPopLPush")
+	}
 
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.StringCmd); ok {
@@ -12967,6 +14027,10 @@ func (_m *MockPipeliner) RPush(ctx context.Context, key string, values ...interf
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, values...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for RPush")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
@@ -13024,6 +14088,10 @@ func (_m *MockPipeliner) RPushX(ctx context.Context, key string, values ...inter
 	_ca = append(_ca, values...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for RPushX")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, values...)
@@ -13077,6 +14145,10 @@ func (_c *MockPipeliner_RPushX_Call) RunAndReturn(run func(context.Context, stri
 func (_m *MockPipeliner) RandomKey(ctx context.Context) *redis.StringCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for RandomKey")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StringCmd); ok {
 		r0 = rf(ctx)
@@ -13120,6 +14192,10 @@ func (_c *MockPipeliner_RandomKey_Call) RunAndReturn(run func(context.Context) *
 // ReadOnly provides a mock function with given fields: ctx
 func (_m *MockPipeliner) ReadOnly(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ReadOnly")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
@@ -13165,6 +14241,10 @@ func (_c *MockPipeliner_ReadOnly_Call) RunAndReturn(run func(context.Context) *r
 func (_m *MockPipeliner) ReadWrite(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ReadWrite")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
 		r0 = rf(ctx)
@@ -13208,6 +14288,10 @@ func (_c *MockPipeliner_ReadWrite_Call) RunAndReturn(run func(context.Context) *
 // Rename provides a mock function with given fields: ctx, key, newkey
 func (_m *MockPipeliner) Rename(ctx context.Context, key string, newkey string) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, newkey)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Rename")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.StatusCmd); ok {
@@ -13255,6 +14339,10 @@ func (_c *MockPipeliner_Rename_Call) RunAndReturn(run func(context.Context, stri
 func (_m *MockPipeliner) RenameNX(ctx context.Context, key string, newkey string) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, newkey)
 
+	if len(ret) == 0 {
+		panic("no return value specified for RenameNX")
+	}
+
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.BoolCmd); ok {
 		r0 = rf(ctx, key, newkey)
@@ -13300,6 +14388,10 @@ func (_c *MockPipeliner_RenameNX_Call) RunAndReturn(run func(context.Context, st
 // Restore provides a mock function with given fields: ctx, key, ttl, value
 func (_m *MockPipeliner) Restore(ctx context.Context, key string, ttl time.Duration, value string) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, ttl, value)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Restore")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, time.Duration, string) *redis.StatusCmd); ok {
@@ -13347,6 +14439,10 @@ func (_c *MockPipeliner_Restore_Call) RunAndReturn(run func(context.Context, str
 // RestoreReplace provides a mock function with given fields: ctx, key, ttl, value
 func (_m *MockPipeliner) RestoreReplace(ctx context.Context, key string, ttl time.Duration, value string) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, ttl, value)
+
+	if len(ret) == 0 {
+		panic("no return value specified for RestoreReplace")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, time.Duration, string) *redis.StatusCmd); ok {
@@ -13397,6 +14493,10 @@ func (_m *MockPipeliner) SAdd(ctx context.Context, key string, members ...interf
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, members...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SAdd")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
@@ -13451,6 +14551,10 @@ func (_c *MockPipeliner_SAdd_Call) RunAndReturn(run func(context.Context, string
 func (_m *MockPipeliner) SCard(ctx context.Context, key string) *redis.IntCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for SCard")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, key)
@@ -13502,6 +14606,10 @@ func (_m *MockPipeliner) SDiff(ctx context.Context, keys ...string) *redis.Strin
 	_ca = append(_ca, ctx)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SDiff")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.StringSliceCmd); ok {
@@ -13561,6 +14669,10 @@ func (_m *MockPipeliner) SDiffStore(ctx context.Context, destination string, key
 	_ca = append(_ca, ctx, destination)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SDiffStore")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
@@ -13622,6 +14734,10 @@ func (_m *MockPipeliner) SInter(ctx context.Context, keys ...string) *redis.Stri
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for SInter")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, keys...)
@@ -13680,6 +14796,10 @@ func (_m *MockPipeliner) SInterCard(ctx context.Context, limit int64, keys ...st
 	_ca = append(_ca, ctx, limit)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SInterCard")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, int64, ...string) *redis.IntCmd); ok {
@@ -13741,6 +14861,10 @@ func (_m *MockPipeliner) SInterStore(ctx context.Context, destination string, ke
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for SInterStore")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
 		r0 = rf(ctx, destination, keys...)
@@ -13794,6 +14918,10 @@ func (_c *MockPipeliner_SInterStore_Call) RunAndReturn(run func(context.Context,
 func (_m *MockPipeliner) SIsMember(ctx context.Context, key string, member interface{}) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, member)
 
+	if len(ret) == 0 {
+		panic("no return value specified for SIsMember")
+	}
+
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}) *redis.BoolCmd); ok {
 		r0 = rf(ctx, key, member)
@@ -13842,6 +14970,10 @@ func (_m *MockPipeliner) SMIsMember(ctx context.Context, key string, members ...
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, members...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SMIsMember")
+	}
 
 	var r0 *redis.BoolSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.BoolSliceCmd); ok {
@@ -13896,6 +15028,10 @@ func (_c *MockPipeliner_SMIsMember_Call) RunAndReturn(run func(context.Context, 
 func (_m *MockPipeliner) SMembers(ctx context.Context, key string) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for SMembers")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, key)
@@ -13941,6 +15077,10 @@ func (_c *MockPipeliner_SMembers_Call) RunAndReturn(run func(context.Context, st
 func (_m *MockPipeliner) SMembersMap(ctx context.Context, key string) *redis.StringStructMapCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for SMembersMap")
+	}
+
 	var r0 *redis.StringStructMapCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringStructMapCmd); ok {
 		r0 = rf(ctx, key)
@@ -13985,6 +15125,10 @@ func (_c *MockPipeliner_SMembersMap_Call) RunAndReturn(run func(context.Context,
 // SMove provides a mock function with given fields: ctx, source, destination, member
 func (_m *MockPipeliner) SMove(ctx context.Context, source string, destination string, member interface{}) *redis.BoolCmd {
 	ret := _m.Called(ctx, source, destination, member)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SMove")
+	}
 
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, interface{}) *redis.BoolCmd); ok {
@@ -14033,6 +15177,10 @@ func (_c *MockPipeliner_SMove_Call) RunAndReturn(run func(context.Context, strin
 func (_m *MockPipeliner) SPop(ctx context.Context, key string) *redis.StringCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for SPop")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringCmd); ok {
 		r0 = rf(ctx, key)
@@ -14077,6 +15225,10 @@ func (_c *MockPipeliner_SPop_Call) RunAndReturn(run func(context.Context, string
 // SPopN provides a mock function with given fields: ctx, key, count
 func (_m *MockPipeliner) SPopN(ctx context.Context, key string, count int64) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key, count)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SPopN")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64) *redis.StringSliceCmd); ok {
@@ -14124,6 +15276,10 @@ func (_c *MockPipeliner_SPopN_Call) RunAndReturn(run func(context.Context, strin
 func (_m *MockPipeliner) SPublish(ctx context.Context, channel string, message interface{}) *redis.IntCmd {
 	ret := _m.Called(ctx, channel, message)
 
+	if len(ret) == 0 {
+		panic("no return value specified for SPublish")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}) *redis.IntCmd); ok {
 		r0 = rf(ctx, channel, message)
@@ -14170,6 +15326,10 @@ func (_c *MockPipeliner_SPublish_Call) RunAndReturn(run func(context.Context, st
 func (_m *MockPipeliner) SRandMember(ctx context.Context, key string) *redis.StringCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for SRandMember")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringCmd); ok {
 		r0 = rf(ctx, key)
@@ -14214,6 +15374,10 @@ func (_c *MockPipeliner_SRandMember_Call) RunAndReturn(run func(context.Context,
 // SRandMemberN provides a mock function with given fields: ctx, key, count
 func (_m *MockPipeliner) SRandMemberN(ctx context.Context, key string, count int64) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key, count)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SRandMemberN")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64) *redis.StringSliceCmd); ok {
@@ -14263,6 +15427,10 @@ func (_m *MockPipeliner) SRem(ctx context.Context, key string, members ...interf
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, members...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SRem")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
@@ -14316,6 +15484,10 @@ func (_c *MockPipeliner_SRem_Call) RunAndReturn(run func(context.Context, string
 // SScan provides a mock function with given fields: ctx, key, cursor, match, count
 func (_m *MockPipeliner) SScan(ctx context.Context, key string, cursor uint64, match string, count int64) *redis.ScanCmd {
 	ret := _m.Called(ctx, key, cursor, match, count)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SScan")
+	}
 
 	var r0 *redis.ScanCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, uint64, string, int64) *redis.ScanCmd); ok {
@@ -14371,6 +15543,10 @@ func (_m *MockPipeliner) SUnion(ctx context.Context, keys ...string) *redis.Stri
 	_ca = append(_ca, ctx)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SUnion")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.StringSliceCmd); ok {
@@ -14431,6 +15607,10 @@ func (_m *MockPipeliner) SUnionStore(ctx context.Context, destination string, ke
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for SUnionStore")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
 		r0 = rf(ctx, destination, keys...)
@@ -14484,6 +15664,10 @@ func (_c *MockPipeliner_SUnionStore_Call) RunAndReturn(run func(context.Context,
 func (_m *MockPipeliner) Save(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Save")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
 		r0 = rf(ctx)
@@ -14527,6 +15711,10 @@ func (_c *MockPipeliner_Save_Call) RunAndReturn(run func(context.Context) *redis
 // Scan provides a mock function with given fields: ctx, cursor, match, count
 func (_m *MockPipeliner) Scan(ctx context.Context, cursor uint64, match string, count int64) *redis.ScanCmd {
 	ret := _m.Called(ctx, cursor, match, count)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Scan")
+	}
 
 	var r0 *redis.ScanCmd
 	if rf, ok := ret.Get(0).(func(context.Context, uint64, string, int64) *redis.ScanCmd); ok {
@@ -14574,6 +15762,10 @@ func (_c *MockPipeliner_Scan_Call) RunAndReturn(run func(context.Context, uint64
 // ScanType provides a mock function with given fields: ctx, cursor, match, count, keyType
 func (_m *MockPipeliner) ScanType(ctx context.Context, cursor uint64, match string, count int64, keyType string) *redis.ScanCmd {
 	ret := _m.Called(ctx, cursor, match, count, keyType)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ScanType")
+	}
 
 	var r0 *redis.ScanCmd
 	if rf, ok := ret.Get(0).(func(context.Context, uint64, string, int64, string) *redis.ScanCmd); ok {
@@ -14630,6 +15822,10 @@ func (_m *MockPipeliner) ScriptExists(ctx context.Context, hashes ...string) *re
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ScriptExists")
+	}
+
 	var r0 *redis.BoolSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.BoolSliceCmd); ok {
 		r0 = rf(ctx, hashes...)
@@ -14682,6 +15878,10 @@ func (_c *MockPipeliner_ScriptExists_Call) RunAndReturn(run func(context.Context
 func (_m *MockPipeliner) ScriptFlush(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ScriptFlush")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
 		r0 = rf(ctx)
@@ -14726,6 +15926,10 @@ func (_c *MockPipeliner_ScriptFlush_Call) RunAndReturn(run func(context.Context)
 func (_m *MockPipeliner) ScriptKill(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ScriptKill")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
 		r0 = rf(ctx)
@@ -14769,6 +15973,10 @@ func (_c *MockPipeliner_ScriptKill_Call) RunAndReturn(run func(context.Context) 
 // ScriptLoad provides a mock function with given fields: ctx, script
 func (_m *MockPipeliner) ScriptLoad(ctx context.Context, script string) *redis.StringCmd {
 	ret := _m.Called(ctx, script)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ScriptLoad")
+	}
 
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringCmd); ok {
@@ -14815,6 +16023,10 @@ func (_c *MockPipeliner_ScriptLoad_Call) RunAndReturn(run func(context.Context, 
 func (_m *MockPipeliner) Select(ctx context.Context, index int) *redis.StatusCmd {
 	ret := _m.Called(ctx, index)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Select")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, int) *redis.StatusCmd); ok {
 		r0 = rf(ctx, index)
@@ -14859,6 +16071,10 @@ func (_c *MockPipeliner_Select_Call) RunAndReturn(run func(context.Context, int)
 // Set provides a mock function with given fields: ctx, key, value, expiration
 func (_m *MockPipeliner) Set(ctx context.Context, key string, value interface{}, expiration time.Duration) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, value, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Set")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, time.Duration) *redis.StatusCmd); ok {
@@ -14907,6 +16123,10 @@ func (_c *MockPipeliner_Set_Call) RunAndReturn(run func(context.Context, string,
 func (_m *MockPipeliner) SetArgs(ctx context.Context, key string, value interface{}, a redis.SetArgs) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, value, a)
 
+	if len(ret) == 0 {
+		panic("no return value specified for SetArgs")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, redis.SetArgs) *redis.StatusCmd); ok {
 		r0 = rf(ctx, key, value, a)
@@ -14953,6 +16173,10 @@ func (_c *MockPipeliner_SetArgs_Call) RunAndReturn(run func(context.Context, str
 // SetBit provides a mock function with given fields: ctx, key, offset, value
 func (_m *MockPipeliner) SetBit(ctx context.Context, key string, offset int64, value int) *redis.IntCmd {
 	ret := _m.Called(ctx, key, offset, value)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetBit")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int) *redis.IntCmd); ok {
@@ -15001,6 +16225,10 @@ func (_c *MockPipeliner_SetBit_Call) RunAndReturn(run func(context.Context, stri
 func (_m *MockPipeliner) SetEx(ctx context.Context, key string, value interface{}, expiration time.Duration) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, value, expiration)
 
+	if len(ret) == 0 {
+		panic("no return value specified for SetEx")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, time.Duration) *redis.StatusCmd); ok {
 		r0 = rf(ctx, key, value, expiration)
@@ -15047,6 +16275,10 @@ func (_c *MockPipeliner_SetEx_Call) RunAndReturn(run func(context.Context, strin
 // SetNX provides a mock function with given fields: ctx, key, value, expiration
 func (_m *MockPipeliner) SetNX(ctx context.Context, key string, value interface{}, expiration time.Duration) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, value, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetNX")
+	}
 
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, time.Duration) *redis.BoolCmd); ok {
@@ -15095,6 +16327,10 @@ func (_c *MockPipeliner_SetNX_Call) RunAndReturn(run func(context.Context, strin
 func (_m *MockPipeliner) SetRange(ctx context.Context, key string, offset int64, value string) *redis.IntCmd {
 	ret := _m.Called(ctx, key, offset, value)
 
+	if len(ret) == 0 {
+		panic("no return value specified for SetRange")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, offset, value)
@@ -15141,6 +16377,10 @@ func (_c *MockPipeliner_SetRange_Call) RunAndReturn(run func(context.Context, st
 // SetXX provides a mock function with given fields: ctx, key, value, expiration
 func (_m *MockPipeliner) SetXX(ctx context.Context, key string, value interface{}, expiration time.Duration) *redis.BoolCmd {
 	ret := _m.Called(ctx, key, value, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetXX")
+	}
 
 	var r0 *redis.BoolCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, time.Duration) *redis.BoolCmd); ok {
@@ -15189,6 +16429,10 @@ func (_c *MockPipeliner_SetXX_Call) RunAndReturn(run func(context.Context, strin
 func (_m *MockPipeliner) Shutdown(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Shutdown")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
 		r0 = rf(ctx)
@@ -15232,6 +16476,10 @@ func (_c *MockPipeliner_Shutdown_Call) RunAndReturn(run func(context.Context) *r
 // ShutdownNoSave provides a mock function with given fields: ctx
 func (_m *MockPipeliner) ShutdownNoSave(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ShutdownNoSave")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
@@ -15277,6 +16525,10 @@ func (_c *MockPipeliner_ShutdownNoSave_Call) RunAndReturn(run func(context.Conte
 func (_m *MockPipeliner) ShutdownSave(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ShutdownSave")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
 		r0 = rf(ctx)
@@ -15320,6 +16572,10 @@ func (_c *MockPipeliner_ShutdownSave_Call) RunAndReturn(run func(context.Context
 // SlaveOf provides a mock function with given fields: ctx, host, port
 func (_m *MockPipeliner) SlaveOf(ctx context.Context, host string, port string) *redis.StatusCmd {
 	ret := _m.Called(ctx, host, port)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SlaveOf")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.StatusCmd); ok {
@@ -15367,6 +16623,10 @@ func (_c *MockPipeliner_SlaveOf_Call) RunAndReturn(run func(context.Context, str
 func (_m *MockPipeliner) SlowLogGet(ctx context.Context, num int64) *redis.SlowLogCmd {
 	ret := _m.Called(ctx, num)
 
+	if len(ret) == 0 {
+		panic("no return value specified for SlowLogGet")
+	}
+
 	var r0 *redis.SlowLogCmd
 	if rf, ok := ret.Get(0).(func(context.Context, int64) *redis.SlowLogCmd); ok {
 		r0 = rf(ctx, num)
@@ -15411,6 +16671,10 @@ func (_c *MockPipeliner_SlowLogGet_Call) RunAndReturn(run func(context.Context, 
 // Sort provides a mock function with given fields: ctx, key, sort
 func (_m *MockPipeliner) Sort(ctx context.Context, key string, sort *redis.Sort) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key, sort)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Sort")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.Sort) *redis.StringSliceCmd); ok {
@@ -15458,6 +16722,10 @@ func (_c *MockPipeliner_Sort_Call) RunAndReturn(run func(context.Context, string
 func (_m *MockPipeliner) SortInterfaces(ctx context.Context, key string, sort *redis.Sort) *redis.SliceCmd {
 	ret := _m.Called(ctx, key, sort)
 
+	if len(ret) == 0 {
+		panic("no return value specified for SortInterfaces")
+	}
+
 	var r0 *redis.SliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.Sort) *redis.SliceCmd); ok {
 		r0 = rf(ctx, key, sort)
@@ -15504,6 +16772,10 @@ func (_c *MockPipeliner_SortInterfaces_Call) RunAndReturn(run func(context.Conte
 func (_m *MockPipeliner) SortRO(ctx context.Context, key string, sort *redis.Sort) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key, sort)
 
+	if len(ret) == 0 {
+		panic("no return value specified for SortRO")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.Sort) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, key, sort)
@@ -15549,6 +16821,10 @@ func (_c *MockPipeliner_SortRO_Call) RunAndReturn(run func(context.Context, stri
 // SortStore provides a mock function with given fields: ctx, key, store, sort
 func (_m *MockPipeliner) SortStore(ctx context.Context, key string, store string, sort *redis.Sort) *redis.IntCmd {
 	ret := _m.Called(ctx, key, store, sort)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SortStore")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, *redis.Sort) *redis.IntCmd); ok {
@@ -15597,6 +16873,10 @@ func (_c *MockPipeliner_SortStore_Call) RunAndReturn(run func(context.Context, s
 func (_m *MockPipeliner) StrLen(ctx context.Context, key string) *redis.IntCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for StrLen")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, key)
@@ -15641,6 +16921,10 @@ func (_c *MockPipeliner_StrLen_Call) RunAndReturn(run func(context.Context, stri
 // SwapDB provides a mock function with given fields: ctx, index1, index2
 func (_m *MockPipeliner) SwapDB(ctx context.Context, index1 int, index2 int) *redis.StatusCmd {
 	ret := _m.Called(ctx, index1, index2)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SwapDB")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, int, int) *redis.StatusCmd); ok {
@@ -15694,6 +16978,10 @@ func (_m *MockPipeliner) TDigestAdd(ctx context.Context, key string, elements ..
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TDigestAdd")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...float64) *redis.StatusCmd); ok {
@@ -15755,6 +17043,10 @@ func (_m *MockPipeliner) TDigestByRank(ctx context.Context, key string, rank ...
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TDigestByRank")
+	}
+
 	var r0 *redis.FloatSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...uint64) *redis.FloatSliceCmd); ok {
 		r0 = rf(ctx, key, rank...)
@@ -15814,6 +17106,10 @@ func (_m *MockPipeliner) TDigestByRevRank(ctx context.Context, key string, rank 
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TDigestByRevRank")
+	}
 
 	var r0 *redis.FloatSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...uint64) *redis.FloatSliceCmd); ok {
@@ -15875,6 +17171,10 @@ func (_m *MockPipeliner) TDigestCDF(ctx context.Context, key string, elements ..
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TDigestCDF")
+	}
+
 	var r0 *redis.FloatSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...float64) *redis.FloatSliceCmd); ok {
 		r0 = rf(ctx, key, elements...)
@@ -15928,6 +17228,10 @@ func (_c *MockPipeliner_TDigestCDF_Call) RunAndReturn(run func(context.Context, 
 func (_m *MockPipeliner) TDigestCreate(ctx context.Context, key string) *redis.StatusCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TDigestCreate")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StatusCmd); ok {
 		r0 = rf(ctx, key)
@@ -15972,6 +17276,10 @@ func (_c *MockPipeliner_TDigestCreate_Call) RunAndReturn(run func(context.Contex
 // TDigestCreateWithCompression provides a mock function with given fields: ctx, key, compression
 func (_m *MockPipeliner) TDigestCreateWithCompression(ctx context.Context, key string, compression int64) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, compression)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TDigestCreateWithCompression")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64) *redis.StatusCmd); ok {
@@ -16019,6 +17327,10 @@ func (_c *MockPipeliner_TDigestCreateWithCompression_Call) RunAndReturn(run func
 func (_m *MockPipeliner) TDigestInfo(ctx context.Context, key string) *redis.TDigestInfoCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TDigestInfo")
+	}
+
 	var r0 *redis.TDigestInfoCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.TDigestInfoCmd); ok {
 		r0 = rf(ctx, key)
@@ -16063,6 +17375,10 @@ func (_c *MockPipeliner_TDigestInfo_Call) RunAndReturn(run func(context.Context,
 // TDigestMax provides a mock function with given fields: ctx, key
 func (_m *MockPipeliner) TDigestMax(ctx context.Context, key string) *redis.FloatCmd {
 	ret := _m.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TDigestMax")
+	}
 
 	var r0 *redis.FloatCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.FloatCmd); ok {
@@ -16115,6 +17431,10 @@ func (_m *MockPipeliner) TDigestMerge(ctx context.Context, destKey string, optio
 	_ca = append(_ca, ctx, destKey, options)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TDigestMerge")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.TDigestMergeOptions, ...string) *redis.StatusCmd); ok {
@@ -16170,6 +17490,10 @@ func (_c *MockPipeliner_TDigestMerge_Call) RunAndReturn(run func(context.Context
 func (_m *MockPipeliner) TDigestMin(ctx context.Context, key string) *redis.FloatCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TDigestMin")
+	}
+
 	var r0 *redis.FloatCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.FloatCmd); ok {
 		r0 = rf(ctx, key)
@@ -16221,6 +17545,10 @@ func (_m *MockPipeliner) TDigestQuantile(ctx context.Context, key string, elemen
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TDigestQuantile")
+	}
 
 	var r0 *redis.FloatSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...float64) *redis.FloatSliceCmd); ok {
@@ -16282,6 +17610,10 @@ func (_m *MockPipeliner) TDigestRank(ctx context.Context, key string, values ...
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TDigestRank")
+	}
+
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...float64) *redis.IntSliceCmd); ok {
 		r0 = rf(ctx, key, values...)
@@ -16335,6 +17667,10 @@ func (_c *MockPipeliner_TDigestRank_Call) RunAndReturn(run func(context.Context,
 func (_m *MockPipeliner) TDigestReset(ctx context.Context, key string) *redis.StatusCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TDigestReset")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StatusCmd); ok {
 		r0 = rf(ctx, key)
@@ -16386,6 +17722,10 @@ func (_m *MockPipeliner) TDigestRevRank(ctx context.Context, key string, values 
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TDigestRevRank")
+	}
 
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...float64) *redis.IntSliceCmd); ok {
@@ -16440,6 +17780,10 @@ func (_c *MockPipeliner_TDigestRevRank_Call) RunAndReturn(run func(context.Conte
 func (_m *MockPipeliner) TDigestTrimmedMean(ctx context.Context, key string, lowCutQuantile float64, highCutQuantile float64) *redis.FloatCmd {
 	ret := _m.Called(ctx, key, lowCutQuantile, highCutQuantile)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TDigestTrimmedMean")
+	}
+
 	var r0 *redis.FloatCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, float64, float64) *redis.FloatCmd); ok {
 		r0 = rf(ctx, key, lowCutQuantile, highCutQuantile)
@@ -16486,6 +17830,10 @@ func (_c *MockPipeliner_TDigestTrimmedMean_Call) RunAndReturn(run func(context.C
 // TFCall provides a mock function with given fields: ctx, libName, funcName, numKeys
 func (_m *MockPipeliner) TFCall(ctx context.Context, libName string, funcName string, numKeys int) *redis.Cmd {
 	ret := _m.Called(ctx, libName, funcName, numKeys)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TFCall")
+	}
 
 	var r0 *redis.Cmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, int) *redis.Cmd); ok {
@@ -16534,6 +17882,10 @@ func (_c *MockPipeliner_TFCall_Call) RunAndReturn(run func(context.Context, stri
 func (_m *MockPipeliner) TFCallASYNC(ctx context.Context, libName string, funcName string, numKeys int) *redis.Cmd {
 	ret := _m.Called(ctx, libName, funcName, numKeys)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TFCallASYNC")
+	}
+
 	var r0 *redis.Cmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, int) *redis.Cmd); ok {
 		r0 = rf(ctx, libName, funcName, numKeys)
@@ -16580,6 +17932,10 @@ func (_c *MockPipeliner_TFCallASYNC_Call) RunAndReturn(run func(context.Context,
 // TFCallASYNCArgs provides a mock function with given fields: ctx, libName, funcName, numKeys, options
 func (_m *MockPipeliner) TFCallASYNCArgs(ctx context.Context, libName string, funcName string, numKeys int, options *redis.TFCallOptions) *redis.Cmd {
 	ret := _m.Called(ctx, libName, funcName, numKeys, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TFCallASYNCArgs")
+	}
 
 	var r0 *redis.Cmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, int, *redis.TFCallOptions) *redis.Cmd); ok {
@@ -16629,6 +17985,10 @@ func (_c *MockPipeliner_TFCallASYNCArgs_Call) RunAndReturn(run func(context.Cont
 func (_m *MockPipeliner) TFCallArgs(ctx context.Context, libName string, funcName string, numKeys int, options *redis.TFCallOptions) *redis.Cmd {
 	ret := _m.Called(ctx, libName, funcName, numKeys, options)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TFCallArgs")
+	}
+
 	var r0 *redis.Cmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, int, *redis.TFCallOptions) *redis.Cmd); ok {
 		r0 = rf(ctx, libName, funcName, numKeys, options)
@@ -16677,6 +18037,10 @@ func (_c *MockPipeliner_TFCallArgs_Call) RunAndReturn(run func(context.Context, 
 func (_m *MockPipeliner) TFunctionDelete(ctx context.Context, libName string) *redis.StatusCmd {
 	ret := _m.Called(ctx, libName)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TFunctionDelete")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StatusCmd); ok {
 		r0 = rf(ctx, libName)
@@ -16722,6 +18086,10 @@ func (_c *MockPipeliner_TFunctionDelete_Call) RunAndReturn(run func(context.Cont
 func (_m *MockPipeliner) TFunctionList(ctx context.Context) *redis.MapStringInterfaceSliceCmd {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TFunctionList")
+	}
+
 	var r0 *redis.MapStringInterfaceSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.MapStringInterfaceSliceCmd); ok {
 		r0 = rf(ctx)
@@ -16765,6 +18133,10 @@ func (_c *MockPipeliner_TFunctionList_Call) RunAndReturn(run func(context.Contex
 // TFunctionListArgs provides a mock function with given fields: ctx, options
 func (_m *MockPipeliner) TFunctionListArgs(ctx context.Context, options *redis.TFunctionListOptions) *redis.MapStringInterfaceSliceCmd {
 	ret := _m.Called(ctx, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TFunctionListArgs")
+	}
 
 	var r0 *redis.MapStringInterfaceSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, *redis.TFunctionListOptions) *redis.MapStringInterfaceSliceCmd); ok {
@@ -16811,6 +18183,10 @@ func (_c *MockPipeliner_TFunctionListArgs_Call) RunAndReturn(run func(context.Co
 func (_m *MockPipeliner) TFunctionLoad(ctx context.Context, lib string) *redis.StatusCmd {
 	ret := _m.Called(ctx, lib)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TFunctionLoad")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StatusCmd); ok {
 		r0 = rf(ctx, lib)
@@ -16855,6 +18231,10 @@ func (_c *MockPipeliner_TFunctionLoad_Call) RunAndReturn(run func(context.Contex
 // TFunctionLoadArgs provides a mock function with given fields: ctx, lib, options
 func (_m *MockPipeliner) TFunctionLoadArgs(ctx context.Context, lib string, options *redis.TFunctionLoadOptions) *redis.StatusCmd {
 	ret := _m.Called(ctx, lib, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TFunctionLoadArgs")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.TFunctionLoadOptions) *redis.StatusCmd); ok {
@@ -16902,6 +18282,10 @@ func (_c *MockPipeliner_TFunctionLoadArgs_Call) RunAndReturn(run func(context.Co
 func (_m *MockPipeliner) TSAdd(ctx context.Context, key string, timestamp interface{}, value float64) *redis.IntCmd {
 	ret := _m.Called(ctx, key, timestamp, value)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TSAdd")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, float64) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, timestamp, value)
@@ -16948,6 +18332,10 @@ func (_c *MockPipeliner_TSAdd_Call) RunAndReturn(run func(context.Context, strin
 // TSAddWithArgs provides a mock function with given fields: ctx, key, timestamp, value, options
 func (_m *MockPipeliner) TSAddWithArgs(ctx context.Context, key string, timestamp interface{}, value float64, options *redis.TSOptions) *redis.IntCmd {
 	ret := _m.Called(ctx, key, timestamp, value, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TSAddWithArgs")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, float64, *redis.TSOptions) *redis.IntCmd); ok {
@@ -16997,6 +18385,10 @@ func (_c *MockPipeliner_TSAddWithArgs_Call) RunAndReturn(run func(context.Contex
 func (_m *MockPipeliner) TSAlter(ctx context.Context, key string, options *redis.TSAlterOptions) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, options)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TSAlter")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.TSAlterOptions) *redis.StatusCmd); ok {
 		r0 = rf(ctx, key, options)
@@ -17043,6 +18435,10 @@ func (_c *MockPipeliner_TSAlter_Call) RunAndReturn(run func(context.Context, str
 func (_m *MockPipeliner) TSCreate(ctx context.Context, key string) *redis.StatusCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TSCreate")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StatusCmd); ok {
 		r0 = rf(ctx, key)
@@ -17087,6 +18483,10 @@ func (_c *MockPipeliner_TSCreate_Call) RunAndReturn(run func(context.Context, st
 // TSCreateRule provides a mock function with given fields: ctx, sourceKey, destKey, aggregator, bucketDuration
 func (_m *MockPipeliner) TSCreateRule(ctx context.Context, sourceKey string, destKey string, aggregator redis.Aggregator, bucketDuration int) *redis.StatusCmd {
 	ret := _m.Called(ctx, sourceKey, destKey, aggregator, bucketDuration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TSCreateRule")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, redis.Aggregator, int) *redis.StatusCmd); ok {
@@ -17135,6 +18535,10 @@ func (_c *MockPipeliner_TSCreateRule_Call) RunAndReturn(run func(context.Context
 // TSCreateRuleWithArgs provides a mock function with given fields: ctx, sourceKey, destKey, aggregator, bucketDuration, options
 func (_m *MockPipeliner) TSCreateRuleWithArgs(ctx context.Context, sourceKey string, destKey string, aggregator redis.Aggregator, bucketDuration int, options *redis.TSCreateRuleOptions) *redis.StatusCmd {
 	ret := _m.Called(ctx, sourceKey, destKey, aggregator, bucketDuration, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TSCreateRuleWithArgs")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, redis.Aggregator, int, *redis.TSCreateRuleOptions) *redis.StatusCmd); ok {
@@ -17185,6 +18589,10 @@ func (_c *MockPipeliner_TSCreateRuleWithArgs_Call) RunAndReturn(run func(context
 func (_m *MockPipeliner) TSCreateWithArgs(ctx context.Context, key string, options *redis.TSOptions) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, options)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TSCreateWithArgs")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.TSOptions) *redis.StatusCmd); ok {
 		r0 = rf(ctx, key, options)
@@ -17231,6 +18639,10 @@ func (_c *MockPipeliner_TSCreateWithArgs_Call) RunAndReturn(run func(context.Con
 func (_m *MockPipeliner) TSDecrBy(ctx context.Context, Key string, timestamp float64) *redis.IntCmd {
 	ret := _m.Called(ctx, Key, timestamp)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TSDecrBy")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, float64) *redis.IntCmd); ok {
 		r0 = rf(ctx, Key, timestamp)
@@ -17276,6 +18688,10 @@ func (_c *MockPipeliner_TSDecrBy_Call) RunAndReturn(run func(context.Context, st
 // TSDecrByWithArgs provides a mock function with given fields: ctx, key, timestamp, options
 func (_m *MockPipeliner) TSDecrByWithArgs(ctx context.Context, key string, timestamp float64, options *redis.TSIncrDecrOptions) *redis.IntCmd {
 	ret := _m.Called(ctx, key, timestamp, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TSDecrByWithArgs")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, float64, *redis.TSIncrDecrOptions) *redis.IntCmd); ok {
@@ -17324,6 +18740,10 @@ func (_c *MockPipeliner_TSDecrByWithArgs_Call) RunAndReturn(run func(context.Con
 func (_m *MockPipeliner) TSDel(ctx context.Context, Key string, fromTimestamp int, toTimestamp int) *redis.IntCmd {
 	ret := _m.Called(ctx, Key, fromTimestamp, toTimestamp)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TSDel")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int, int) *redis.IntCmd); ok {
 		r0 = rf(ctx, Key, fromTimestamp, toTimestamp)
@@ -17371,6 +18791,10 @@ func (_c *MockPipeliner_TSDel_Call) RunAndReturn(run func(context.Context, strin
 func (_m *MockPipeliner) TSDeleteRule(ctx context.Context, sourceKey string, destKey string) *redis.StatusCmd {
 	ret := _m.Called(ctx, sourceKey, destKey)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TSDeleteRule")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.StatusCmd); ok {
 		r0 = rf(ctx, sourceKey, destKey)
@@ -17417,6 +18841,10 @@ func (_c *MockPipeliner_TSDeleteRule_Call) RunAndReturn(run func(context.Context
 func (_m *MockPipeliner) TSGet(ctx context.Context, key string) *redis.TSTimestampValueCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TSGet")
+	}
+
 	var r0 *redis.TSTimestampValueCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.TSTimestampValueCmd); ok {
 		r0 = rf(ctx, key)
@@ -17461,6 +18889,10 @@ func (_c *MockPipeliner_TSGet_Call) RunAndReturn(run func(context.Context, strin
 // TSGetWithArgs provides a mock function with given fields: ctx, key, options
 func (_m *MockPipeliner) TSGetWithArgs(ctx context.Context, key string, options *redis.TSGetOptions) *redis.TSTimestampValueCmd {
 	ret := _m.Called(ctx, key, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TSGetWithArgs")
+	}
 
 	var r0 *redis.TSTimestampValueCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.TSGetOptions) *redis.TSTimestampValueCmd); ok {
@@ -17508,6 +18940,10 @@ func (_c *MockPipeliner_TSGetWithArgs_Call) RunAndReturn(run func(context.Contex
 func (_m *MockPipeliner) TSIncrBy(ctx context.Context, Key string, timestamp float64) *redis.IntCmd {
 	ret := _m.Called(ctx, Key, timestamp)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TSIncrBy")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, float64) *redis.IntCmd); ok {
 		r0 = rf(ctx, Key, timestamp)
@@ -17553,6 +18989,10 @@ func (_c *MockPipeliner_TSIncrBy_Call) RunAndReturn(run func(context.Context, st
 // TSIncrByWithArgs provides a mock function with given fields: ctx, key, timestamp, options
 func (_m *MockPipeliner) TSIncrByWithArgs(ctx context.Context, key string, timestamp float64, options *redis.TSIncrDecrOptions) *redis.IntCmd {
 	ret := _m.Called(ctx, key, timestamp, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TSIncrByWithArgs")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, float64, *redis.TSIncrDecrOptions) *redis.IntCmd); ok {
@@ -17601,6 +19041,10 @@ func (_c *MockPipeliner_TSIncrByWithArgs_Call) RunAndReturn(run func(context.Con
 func (_m *MockPipeliner) TSInfo(ctx context.Context, key string) *redis.MapStringInterfaceCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TSInfo")
+	}
+
 	var r0 *redis.MapStringInterfaceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.MapStringInterfaceCmd); ok {
 		r0 = rf(ctx, key)
@@ -17645,6 +19089,10 @@ func (_c *MockPipeliner_TSInfo_Call) RunAndReturn(run func(context.Context, stri
 // TSInfoWithArgs provides a mock function with given fields: ctx, key, options
 func (_m *MockPipeliner) TSInfoWithArgs(ctx context.Context, key string, options *redis.TSInfoOptions) *redis.MapStringInterfaceCmd {
 	ret := _m.Called(ctx, key, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TSInfoWithArgs")
+	}
 
 	var r0 *redis.MapStringInterfaceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.TSInfoOptions) *redis.MapStringInterfaceCmd); ok {
@@ -17692,6 +19140,10 @@ func (_c *MockPipeliner_TSInfoWithArgs_Call) RunAndReturn(run func(context.Conte
 func (_m *MockPipeliner) TSMAdd(ctx context.Context, ktvSlices [][]interface{}) *redis.IntSliceCmd {
 	ret := _m.Called(ctx, ktvSlices)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TSMAdd")
+	}
+
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, [][]interface{}) *redis.IntSliceCmd); ok {
 		r0 = rf(ctx, ktvSlices)
@@ -17737,6 +19189,10 @@ func (_c *MockPipeliner_TSMAdd_Call) RunAndReturn(run func(context.Context, [][]
 func (_m *MockPipeliner) TSMGet(ctx context.Context, filters []string) *redis.MapStringSliceInterfaceCmd {
 	ret := _m.Called(ctx, filters)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TSMGet")
+	}
+
 	var r0 *redis.MapStringSliceInterfaceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, []string) *redis.MapStringSliceInterfaceCmd); ok {
 		r0 = rf(ctx, filters)
@@ -17781,6 +19237,10 @@ func (_c *MockPipeliner_TSMGet_Call) RunAndReturn(run func(context.Context, []st
 // TSMGetWithArgs provides a mock function with given fields: ctx, filters, options
 func (_m *MockPipeliner) TSMGetWithArgs(ctx context.Context, filters []string, options *redis.TSMGetOptions) *redis.MapStringSliceInterfaceCmd {
 	ret := _m.Called(ctx, filters, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TSMGetWithArgs")
+	}
 
 	var r0 *redis.MapStringSliceInterfaceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, []string, *redis.TSMGetOptions) *redis.MapStringSliceInterfaceCmd); ok {
@@ -17828,6 +19288,10 @@ func (_c *MockPipeliner_TSMGetWithArgs_Call) RunAndReturn(run func(context.Conte
 func (_m *MockPipeliner) TSMRange(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string) *redis.MapStringSliceInterfaceCmd {
 	ret := _m.Called(ctx, fromTimestamp, toTimestamp, filterExpr)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TSMRange")
+	}
+
 	var r0 *redis.MapStringSliceInterfaceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, int, int, []string) *redis.MapStringSliceInterfaceCmd); ok {
 		r0 = rf(ctx, fromTimestamp, toTimestamp, filterExpr)
@@ -17874,6 +19338,10 @@ func (_c *MockPipeliner_TSMRange_Call) RunAndReturn(run func(context.Context, in
 // TSMRangeWithArgs provides a mock function with given fields: ctx, fromTimestamp, toTimestamp, filterExpr, options
 func (_m *MockPipeliner) TSMRangeWithArgs(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string, options *redis.TSMRangeOptions) *redis.MapStringSliceInterfaceCmd {
 	ret := _m.Called(ctx, fromTimestamp, toTimestamp, filterExpr, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TSMRangeWithArgs")
+	}
 
 	var r0 *redis.MapStringSliceInterfaceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, int, int, []string, *redis.TSMRangeOptions) *redis.MapStringSliceInterfaceCmd); ok {
@@ -17923,6 +19391,10 @@ func (_c *MockPipeliner_TSMRangeWithArgs_Call) RunAndReturn(run func(context.Con
 func (_m *MockPipeliner) TSMRevRange(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string) *redis.MapStringSliceInterfaceCmd {
 	ret := _m.Called(ctx, fromTimestamp, toTimestamp, filterExpr)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TSMRevRange")
+	}
+
 	var r0 *redis.MapStringSliceInterfaceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, int, int, []string) *redis.MapStringSliceInterfaceCmd); ok {
 		r0 = rf(ctx, fromTimestamp, toTimestamp, filterExpr)
@@ -17969,6 +19441,10 @@ func (_c *MockPipeliner_TSMRevRange_Call) RunAndReturn(run func(context.Context,
 // TSMRevRangeWithArgs provides a mock function with given fields: ctx, fromTimestamp, toTimestamp, filterExpr, options
 func (_m *MockPipeliner) TSMRevRangeWithArgs(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string, options *redis.TSMRevRangeOptions) *redis.MapStringSliceInterfaceCmd {
 	ret := _m.Called(ctx, fromTimestamp, toTimestamp, filterExpr, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TSMRevRangeWithArgs")
+	}
 
 	var r0 *redis.MapStringSliceInterfaceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, int, int, []string, *redis.TSMRevRangeOptions) *redis.MapStringSliceInterfaceCmd); ok {
@@ -18018,6 +19494,10 @@ func (_c *MockPipeliner_TSMRevRangeWithArgs_Call) RunAndReturn(run func(context.
 func (_m *MockPipeliner) TSQueryIndex(ctx context.Context, filterExpr []string) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, filterExpr)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TSQueryIndex")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, []string) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, filterExpr)
@@ -18062,6 +19542,10 @@ func (_c *MockPipeliner_TSQueryIndex_Call) RunAndReturn(run func(context.Context
 // TSRange provides a mock function with given fields: ctx, key, fromTimestamp, toTimestamp
 func (_m *MockPipeliner) TSRange(ctx context.Context, key string, fromTimestamp int, toTimestamp int) *redis.TSTimestampValueSliceCmd {
 	ret := _m.Called(ctx, key, fromTimestamp, toTimestamp)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TSRange")
+	}
 
 	var r0 *redis.TSTimestampValueSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int, int) *redis.TSTimestampValueSliceCmd); ok {
@@ -18109,6 +19593,10 @@ func (_c *MockPipeliner_TSRange_Call) RunAndReturn(run func(context.Context, str
 // TSRangeWithArgs provides a mock function with given fields: ctx, key, fromTimestamp, toTimestamp, options
 func (_m *MockPipeliner) TSRangeWithArgs(ctx context.Context, key string, fromTimestamp int, toTimestamp int, options *redis.TSRangeOptions) *redis.TSTimestampValueSliceCmd {
 	ret := _m.Called(ctx, key, fromTimestamp, toTimestamp, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TSRangeWithArgs")
+	}
 
 	var r0 *redis.TSTimestampValueSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int, int, *redis.TSRangeOptions) *redis.TSTimestampValueSliceCmd); ok {
@@ -18158,6 +19646,10 @@ func (_c *MockPipeliner_TSRangeWithArgs_Call) RunAndReturn(run func(context.Cont
 func (_m *MockPipeliner) TSRevRange(ctx context.Context, key string, fromTimestamp int, toTimestamp int) *redis.TSTimestampValueSliceCmd {
 	ret := _m.Called(ctx, key, fromTimestamp, toTimestamp)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TSRevRange")
+	}
+
 	var r0 *redis.TSTimestampValueSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int, int) *redis.TSTimestampValueSliceCmd); ok {
 		r0 = rf(ctx, key, fromTimestamp, toTimestamp)
@@ -18204,6 +19696,10 @@ func (_c *MockPipeliner_TSRevRange_Call) RunAndReturn(run func(context.Context, 
 // TSRevRangeWithArgs provides a mock function with given fields: ctx, key, fromTimestamp, toTimestamp, options
 func (_m *MockPipeliner) TSRevRangeWithArgs(ctx context.Context, key string, fromTimestamp int, toTimestamp int, options *redis.TSRevRangeOptions) *redis.TSTimestampValueSliceCmd {
 	ret := _m.Called(ctx, key, fromTimestamp, toTimestamp, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TSRevRangeWithArgs")
+	}
 
 	var r0 *redis.TSTimestampValueSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int, int, *redis.TSRevRangeOptions) *redis.TSTimestampValueSliceCmd); ok {
@@ -18253,6 +19749,10 @@ func (_c *MockPipeliner_TSRevRangeWithArgs_Call) RunAndReturn(run func(context.C
 func (_m *MockPipeliner) TTL(ctx context.Context, key string) *redis.DurationCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TTL")
+	}
+
 	var r0 *redis.DurationCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.DurationCmd); ok {
 		r0 = rf(ctx, key)
@@ -18297,6 +19797,10 @@ func (_c *MockPipeliner_TTL_Call) RunAndReturn(run func(context.Context, string)
 // Time provides a mock function with given fields: ctx
 func (_m *MockPipeliner) Time(ctx context.Context) *redis.TimeCmd {
 	ret := _m.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Time")
+	}
 
 	var r0 *redis.TimeCmd
 	if rf, ok := ret.Get(0).(func(context.Context) *redis.TimeCmd); ok {
@@ -18344,6 +19848,10 @@ func (_m *MockPipeliner) TopKAdd(ctx context.Context, key string, elements ...in
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, elements...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TopKAdd")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.StringSliceCmd); ok {
@@ -18401,6 +19909,10 @@ func (_m *MockPipeliner) TopKCount(ctx context.Context, key string, elements ...
 	_ca = append(_ca, elements...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TopKCount")
+	}
+
 	var r0 *redis.IntSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntSliceCmd); ok {
 		r0 = rf(ctx, key, elements...)
@@ -18457,6 +19969,10 @@ func (_m *MockPipeliner) TopKIncrBy(ctx context.Context, key string, elements ..
 	_ca = append(_ca, elements...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TopKIncrBy")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, key, elements...)
@@ -18510,6 +20026,10 @@ func (_c *MockPipeliner_TopKIncrBy_Call) RunAndReturn(run func(context.Context, 
 func (_m *MockPipeliner) TopKInfo(ctx context.Context, key string) *redis.TopKInfoCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TopKInfo")
+	}
+
 	var r0 *redis.TopKInfoCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.TopKInfoCmd); ok {
 		r0 = rf(ctx, key)
@@ -18555,6 +20075,10 @@ func (_c *MockPipeliner_TopKInfo_Call) RunAndReturn(run func(context.Context, st
 func (_m *MockPipeliner) TopKList(ctx context.Context, key string) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TopKList")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, key)
@@ -18599,6 +20123,10 @@ func (_c *MockPipeliner_TopKList_Call) RunAndReturn(run func(context.Context, st
 // TopKListWithCount provides a mock function with given fields: ctx, key
 func (_m *MockPipeliner) TopKListWithCount(ctx context.Context, key string) *redis.MapStringIntCmd {
 	ret := _m.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TopKListWithCount")
+	}
 
 	var r0 *redis.MapStringIntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.MapStringIntCmd); ok {
@@ -18647,6 +20175,10 @@ func (_m *MockPipeliner) TopKQuery(ctx context.Context, key string, elements ...
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, elements...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TopKQuery")
+	}
 
 	var r0 *redis.BoolSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.BoolSliceCmd); ok {
@@ -18701,6 +20233,10 @@ func (_c *MockPipeliner_TopKQuery_Call) RunAndReturn(run func(context.Context, s
 func (_m *MockPipeliner) TopKReserve(ctx context.Context, key string, k int64) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, k)
 
+	if len(ret) == 0 {
+		panic("no return value specified for TopKReserve")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64) *redis.StatusCmd); ok {
 		r0 = rf(ctx, key, k)
@@ -18746,6 +20282,10 @@ func (_c *MockPipeliner_TopKReserve_Call) RunAndReturn(run func(context.Context,
 // TopKReserveWithOptions provides a mock function with given fields: ctx, key, k, width, depth, decay
 func (_m *MockPipeliner) TopKReserveWithOptions(ctx context.Context, key string, k int64, width int64, depth int64, decay float64) *redis.StatusCmd {
 	ret := _m.Called(ctx, key, k, width, depth, decay)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TopKReserveWithOptions")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int64, int64, float64) *redis.StatusCmd); ok {
@@ -18803,6 +20343,10 @@ func (_m *MockPipeliner) Touch(ctx context.Context, keys ...string) *redis.IntCm
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Touch")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.IntCmd); ok {
 		r0 = rf(ctx, keys...)
@@ -18855,6 +20399,10 @@ func (_c *MockPipeliner_Touch_Call) RunAndReturn(run func(context.Context, ...st
 func (_m *MockPipeliner) TxPipeline() redis.Pipeliner {
 	ret := _m.Called()
 
+	if len(ret) == 0 {
+		panic("no return value specified for TxPipeline")
+	}
+
 	var r0 redis.Pipeliner
 	if rf, ok := ret.Get(0).(func() redis.Pipeliner); ok {
 		r0 = rf()
@@ -18897,6 +20445,10 @@ func (_c *MockPipeliner_TxPipeline_Call) RunAndReturn(run func() redis.Pipeliner
 // TxPipelined provides a mock function with given fields: ctx, fn
 func (_m *MockPipeliner) TxPipelined(ctx context.Context, fn func(redis.Pipeliner) error) ([]redis.Cmder, error) {
 	ret := _m.Called(ctx, fn)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TxPipelined")
+	}
 
 	var r0 []redis.Cmder
 	var r1 error
@@ -18953,6 +20505,10 @@ func (_c *MockPipeliner_TxPipelined_Call) RunAndReturn(run func(context.Context,
 func (_m *MockPipeliner) Type(ctx context.Context, key string) *redis.StatusCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Type")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StatusCmd); ok {
 		r0 = rf(ctx, key)
@@ -19004,6 +20560,10 @@ func (_m *MockPipeliner) Unlink(ctx context.Context, keys ...string) *redis.IntC
 	_ca = append(_ca, ctx)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Unlink")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.IntCmd); ok {
@@ -19064,6 +20624,10 @@ func (_m *MockPipeliner) XAck(ctx context.Context, stream string, group string, 
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for XAck")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, ...string) *redis.IntCmd); ok {
 		r0 = rf(ctx, stream, group, ids...)
@@ -19118,6 +20682,10 @@ func (_c *MockPipeliner_XAck_Call) RunAndReturn(run func(context.Context, string
 func (_m *MockPipeliner) XAdd(ctx context.Context, a *redis.XAddArgs) *redis.StringCmd {
 	ret := _m.Called(ctx, a)
 
+	if len(ret) == 0 {
+		panic("no return value specified for XAdd")
+	}
+
 	var r0 *redis.StringCmd
 	if rf, ok := ret.Get(0).(func(context.Context, *redis.XAddArgs) *redis.StringCmd); ok {
 		r0 = rf(ctx, a)
@@ -19162,6 +20730,10 @@ func (_c *MockPipeliner_XAdd_Call) RunAndReturn(run func(context.Context, *redis
 // XAutoClaim provides a mock function with given fields: ctx, a
 func (_m *MockPipeliner) XAutoClaim(ctx context.Context, a *redis.XAutoClaimArgs) *redis.XAutoClaimCmd {
 	ret := _m.Called(ctx, a)
+
+	if len(ret) == 0 {
+		panic("no return value specified for XAutoClaim")
+	}
 
 	var r0 *redis.XAutoClaimCmd
 	if rf, ok := ret.Get(0).(func(context.Context, *redis.XAutoClaimArgs) *redis.XAutoClaimCmd); ok {
@@ -19208,6 +20780,10 @@ func (_c *MockPipeliner_XAutoClaim_Call) RunAndReturn(run func(context.Context, 
 func (_m *MockPipeliner) XAutoClaimJustID(ctx context.Context, a *redis.XAutoClaimArgs) *redis.XAutoClaimJustIDCmd {
 	ret := _m.Called(ctx, a)
 
+	if len(ret) == 0 {
+		panic("no return value specified for XAutoClaimJustID")
+	}
+
 	var r0 *redis.XAutoClaimJustIDCmd
 	if rf, ok := ret.Get(0).(func(context.Context, *redis.XAutoClaimArgs) *redis.XAutoClaimJustIDCmd); ok {
 		r0 = rf(ctx, a)
@@ -19253,6 +20829,10 @@ func (_c *MockPipeliner_XAutoClaimJustID_Call) RunAndReturn(run func(context.Con
 func (_m *MockPipeliner) XClaim(ctx context.Context, a *redis.XClaimArgs) *redis.XMessageSliceCmd {
 	ret := _m.Called(ctx, a)
 
+	if len(ret) == 0 {
+		panic("no return value specified for XClaim")
+	}
+
 	var r0 *redis.XMessageSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, *redis.XClaimArgs) *redis.XMessageSliceCmd); ok {
 		r0 = rf(ctx, a)
@@ -19297,6 +20877,10 @@ func (_c *MockPipeliner_XClaim_Call) RunAndReturn(run func(context.Context, *red
 // XClaimJustID provides a mock function with given fields: ctx, a
 func (_m *MockPipeliner) XClaimJustID(ctx context.Context, a *redis.XClaimArgs) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, a)
+
+	if len(ret) == 0 {
+		panic("no return value specified for XClaimJustID")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, *redis.XClaimArgs) *redis.StringSliceCmd); ok {
@@ -19349,6 +20933,10 @@ func (_m *MockPipeliner) XDel(ctx context.Context, stream string, ids ...string)
 	_ca = append(_ca, ctx, stream)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for XDel")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
@@ -19403,6 +20991,10 @@ func (_c *MockPipeliner_XDel_Call) RunAndReturn(run func(context.Context, string
 func (_m *MockPipeliner) XGroupCreate(ctx context.Context, stream string, group string, start string) *redis.StatusCmd {
 	ret := _m.Called(ctx, stream, group, start)
 
+	if len(ret) == 0 {
+		panic("no return value specified for XGroupCreate")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.StatusCmd); ok {
 		r0 = rf(ctx, stream, group, start)
@@ -19449,6 +21041,10 @@ func (_c *MockPipeliner_XGroupCreate_Call) RunAndReturn(run func(context.Context
 // XGroupCreateConsumer provides a mock function with given fields: ctx, stream, group, consumer
 func (_m *MockPipeliner) XGroupCreateConsumer(ctx context.Context, stream string, group string, consumer string) *redis.IntCmd {
 	ret := _m.Called(ctx, stream, group, consumer)
+
+	if len(ret) == 0 {
+		panic("no return value specified for XGroupCreateConsumer")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.IntCmd); ok {
@@ -19497,6 +21093,10 @@ func (_c *MockPipeliner_XGroupCreateConsumer_Call) RunAndReturn(run func(context
 func (_m *MockPipeliner) XGroupCreateMkStream(ctx context.Context, stream string, group string, start string) *redis.StatusCmd {
 	ret := _m.Called(ctx, stream, group, start)
 
+	if len(ret) == 0 {
+		panic("no return value specified for XGroupCreateMkStream")
+	}
+
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.StatusCmd); ok {
 		r0 = rf(ctx, stream, group, start)
@@ -19543,6 +21143,10 @@ func (_c *MockPipeliner_XGroupCreateMkStream_Call) RunAndReturn(run func(context
 // XGroupDelConsumer provides a mock function with given fields: ctx, stream, group, consumer
 func (_m *MockPipeliner) XGroupDelConsumer(ctx context.Context, stream string, group string, consumer string) *redis.IntCmd {
 	ret := _m.Called(ctx, stream, group, consumer)
+
+	if len(ret) == 0 {
+		panic("no return value specified for XGroupDelConsumer")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.IntCmd); ok {
@@ -19591,6 +21195,10 @@ func (_c *MockPipeliner_XGroupDelConsumer_Call) RunAndReturn(run func(context.Co
 func (_m *MockPipeliner) XGroupDestroy(ctx context.Context, stream string, group string) *redis.IntCmd {
 	ret := _m.Called(ctx, stream, group)
 
+	if len(ret) == 0 {
+		panic("no return value specified for XGroupDestroy")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, stream, group)
@@ -19636,6 +21244,10 @@ func (_c *MockPipeliner_XGroupDestroy_Call) RunAndReturn(run func(context.Contex
 // XGroupSetID provides a mock function with given fields: ctx, stream, group, start
 func (_m *MockPipeliner) XGroupSetID(ctx context.Context, stream string, group string, start string) *redis.StatusCmd {
 	ret := _m.Called(ctx, stream, group, start)
+
+	if len(ret) == 0 {
+		panic("no return value specified for XGroupSetID")
+	}
 
 	var r0 *redis.StatusCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.StatusCmd); ok {
@@ -19684,6 +21296,10 @@ func (_c *MockPipeliner_XGroupSetID_Call) RunAndReturn(run func(context.Context,
 func (_m *MockPipeliner) XInfoConsumers(ctx context.Context, key string, group string) *redis.XInfoConsumersCmd {
 	ret := _m.Called(ctx, key, group)
 
+	if len(ret) == 0 {
+		panic("no return value specified for XInfoConsumers")
+	}
+
 	var r0 *redis.XInfoConsumersCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.XInfoConsumersCmd); ok {
 		r0 = rf(ctx, key, group)
@@ -19730,6 +21346,10 @@ func (_c *MockPipeliner_XInfoConsumers_Call) RunAndReturn(run func(context.Conte
 func (_m *MockPipeliner) XInfoGroups(ctx context.Context, key string) *redis.XInfoGroupsCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for XInfoGroups")
+	}
+
 	var r0 *redis.XInfoGroupsCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.XInfoGroupsCmd); ok {
 		r0 = rf(ctx, key)
@@ -19775,6 +21395,10 @@ func (_c *MockPipeliner_XInfoGroups_Call) RunAndReturn(run func(context.Context,
 func (_m *MockPipeliner) XInfoStream(ctx context.Context, key string) *redis.XInfoStreamCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for XInfoStream")
+	}
+
 	var r0 *redis.XInfoStreamCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.XInfoStreamCmd); ok {
 		r0 = rf(ctx, key)
@@ -19819,6 +21443,10 @@ func (_c *MockPipeliner_XInfoStream_Call) RunAndReturn(run func(context.Context,
 // XInfoStreamFull provides a mock function with given fields: ctx, key, count
 func (_m *MockPipeliner) XInfoStreamFull(ctx context.Context, key string, count int) *redis.XInfoStreamFullCmd {
 	ret := _m.Called(ctx, key, count)
+
+	if len(ret) == 0 {
+		panic("no return value specified for XInfoStreamFull")
+	}
 
 	var r0 *redis.XInfoStreamFullCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int) *redis.XInfoStreamFullCmd); ok {
@@ -19866,6 +21494,10 @@ func (_c *MockPipeliner_XInfoStreamFull_Call) RunAndReturn(run func(context.Cont
 func (_m *MockPipeliner) XLen(ctx context.Context, stream string) *redis.IntCmd {
 	ret := _m.Called(ctx, stream)
 
+	if len(ret) == 0 {
+		panic("no return value specified for XLen")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, stream)
@@ -19910,6 +21542,10 @@ func (_c *MockPipeliner_XLen_Call) RunAndReturn(run func(context.Context, string
 // XPending provides a mock function with given fields: ctx, stream, group
 func (_m *MockPipeliner) XPending(ctx context.Context, stream string, group string) *redis.XPendingCmd {
 	ret := _m.Called(ctx, stream, group)
+
+	if len(ret) == 0 {
+		panic("no return value specified for XPending")
+	}
 
 	var r0 *redis.XPendingCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.XPendingCmd); ok {
@@ -19957,6 +21593,10 @@ func (_c *MockPipeliner_XPending_Call) RunAndReturn(run func(context.Context, st
 func (_m *MockPipeliner) XPendingExt(ctx context.Context, a *redis.XPendingExtArgs) *redis.XPendingExtCmd {
 	ret := _m.Called(ctx, a)
 
+	if len(ret) == 0 {
+		panic("no return value specified for XPendingExt")
+	}
+
 	var r0 *redis.XPendingExtCmd
 	if rf, ok := ret.Get(0).(func(context.Context, *redis.XPendingExtArgs) *redis.XPendingExtCmd); ok {
 		r0 = rf(ctx, a)
@@ -20001,6 +21641,10 @@ func (_c *MockPipeliner_XPendingExt_Call) RunAndReturn(run func(context.Context,
 // XRange provides a mock function with given fields: ctx, stream, start, stop
 func (_m *MockPipeliner) XRange(ctx context.Context, stream string, start string, stop string) *redis.XMessageSliceCmd {
 	ret := _m.Called(ctx, stream, start, stop)
+
+	if len(ret) == 0 {
+		panic("no return value specified for XRange")
+	}
 
 	var r0 *redis.XMessageSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.XMessageSliceCmd); ok {
@@ -20048,6 +21692,10 @@ func (_c *MockPipeliner_XRange_Call) RunAndReturn(run func(context.Context, stri
 // XRangeN provides a mock function with given fields: ctx, stream, start, stop, count
 func (_m *MockPipeliner) XRangeN(ctx context.Context, stream string, start string, stop string, count int64) *redis.XMessageSliceCmd {
 	ret := _m.Called(ctx, stream, start, stop, count)
+
+	if len(ret) == 0 {
+		panic("no return value specified for XRangeN")
+	}
 
 	var r0 *redis.XMessageSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, string, int64) *redis.XMessageSliceCmd); ok {
@@ -20097,6 +21745,10 @@ func (_c *MockPipeliner_XRangeN_Call) RunAndReturn(run func(context.Context, str
 func (_m *MockPipeliner) XRead(ctx context.Context, a *redis.XReadArgs) *redis.XStreamSliceCmd {
 	ret := _m.Called(ctx, a)
 
+	if len(ret) == 0 {
+		panic("no return value specified for XRead")
+	}
+
 	var r0 *redis.XStreamSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, *redis.XReadArgs) *redis.XStreamSliceCmd); ok {
 		r0 = rf(ctx, a)
@@ -20141,6 +21793,10 @@ func (_c *MockPipeliner_XRead_Call) RunAndReturn(run func(context.Context, *redi
 // XReadGroup provides a mock function with given fields: ctx, a
 func (_m *MockPipeliner) XReadGroup(ctx context.Context, a *redis.XReadGroupArgs) *redis.XStreamSliceCmd {
 	ret := _m.Called(ctx, a)
+
+	if len(ret) == 0 {
+		panic("no return value specified for XReadGroup")
+	}
 
 	var r0 *redis.XStreamSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, *redis.XReadGroupArgs) *redis.XStreamSliceCmd); ok {
@@ -20194,6 +21850,10 @@ func (_m *MockPipeliner) XReadStreams(ctx context.Context, streams ...string) *r
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for XReadStreams")
+	}
+
 	var r0 *redis.XStreamSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.XStreamSliceCmd); ok {
 		r0 = rf(ctx, streams...)
@@ -20246,6 +21906,10 @@ func (_c *MockPipeliner_XReadStreams_Call) RunAndReturn(run func(context.Context
 func (_m *MockPipeliner) XRevRange(ctx context.Context, stream string, start string, stop string) *redis.XMessageSliceCmd {
 	ret := _m.Called(ctx, stream, start, stop)
 
+	if len(ret) == 0 {
+		panic("no return value specified for XRevRange")
+	}
+
 	var r0 *redis.XMessageSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.XMessageSliceCmd); ok {
 		r0 = rf(ctx, stream, start, stop)
@@ -20292,6 +21956,10 @@ func (_c *MockPipeliner_XRevRange_Call) RunAndReturn(run func(context.Context, s
 // XRevRangeN provides a mock function with given fields: ctx, stream, start, stop, count
 func (_m *MockPipeliner) XRevRangeN(ctx context.Context, stream string, start string, stop string, count int64) *redis.XMessageSliceCmd {
 	ret := _m.Called(ctx, stream, start, stop, count)
+
+	if len(ret) == 0 {
+		panic("no return value specified for XRevRangeN")
+	}
 
 	var r0 *redis.XMessageSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, string, int64) *redis.XMessageSliceCmd); ok {
@@ -20341,6 +22009,10 @@ func (_c *MockPipeliner_XRevRangeN_Call) RunAndReturn(run func(context.Context, 
 func (_m *MockPipeliner) XTrimMaxLen(ctx context.Context, key string, maxLen int64) *redis.IntCmd {
 	ret := _m.Called(ctx, key, maxLen)
 
+	if len(ret) == 0 {
+		panic("no return value specified for XTrimMaxLen")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, maxLen)
@@ -20386,6 +22058,10 @@ func (_c *MockPipeliner_XTrimMaxLen_Call) RunAndReturn(run func(context.Context,
 // XTrimMaxLenApprox provides a mock function with given fields: ctx, key, maxLen, limit
 func (_m *MockPipeliner) XTrimMaxLenApprox(ctx context.Context, key string, maxLen int64, limit int64) *redis.IntCmd {
 	ret := _m.Called(ctx, key, maxLen, limit)
+
+	if len(ret) == 0 {
+		panic("no return value specified for XTrimMaxLenApprox")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int64) *redis.IntCmd); ok {
@@ -20434,6 +22110,10 @@ func (_c *MockPipeliner_XTrimMaxLenApprox_Call) RunAndReturn(run func(context.Co
 func (_m *MockPipeliner) XTrimMinID(ctx context.Context, key string, minID string) *redis.IntCmd {
 	ret := _m.Called(ctx, key, minID)
 
+	if len(ret) == 0 {
+		panic("no return value specified for XTrimMinID")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, minID)
@@ -20479,6 +22159,10 @@ func (_c *MockPipeliner_XTrimMinID_Call) RunAndReturn(run func(context.Context, 
 // XTrimMinIDApprox provides a mock function with given fields: ctx, key, minID, limit
 func (_m *MockPipeliner) XTrimMinIDApprox(ctx context.Context, key string, minID string, limit int64) *redis.IntCmd {
 	ret := _m.Called(ctx, key, minID, limit)
+
+	if len(ret) == 0 {
+		panic("no return value specified for XTrimMinIDApprox")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, int64) *redis.IntCmd); ok {
@@ -20534,6 +22218,10 @@ func (_m *MockPipeliner) ZAdd(ctx context.Context, key string, members ...redis.
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZAdd")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...redis.Z) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, members...)
@@ -20587,6 +22275,10 @@ func (_c *MockPipeliner_ZAdd_Call) RunAndReturn(run func(context.Context, string
 func (_m *MockPipeliner) ZAddArgs(ctx context.Context, key string, args redis.ZAddArgs) *redis.IntCmd {
 	ret := _m.Called(ctx, key, args)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZAddArgs")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, redis.ZAddArgs) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, args)
@@ -20632,6 +22324,10 @@ func (_c *MockPipeliner_ZAddArgs_Call) RunAndReturn(run func(context.Context, st
 // ZAddArgsIncr provides a mock function with given fields: ctx, key, args
 func (_m *MockPipeliner) ZAddArgsIncr(ctx context.Context, key string, args redis.ZAddArgs) *redis.FloatCmd {
 	ret := _m.Called(ctx, key, args)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZAddArgsIncr")
+	}
 
 	var r0 *redis.FloatCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, redis.ZAddArgs) *redis.FloatCmd); ok {
@@ -20685,6 +22381,10 @@ func (_m *MockPipeliner) ZAddGT(ctx context.Context, key string, members ...redi
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZAddGT")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...redis.Z) *redis.IntCmd); ok {
@@ -20746,6 +22446,10 @@ func (_m *MockPipeliner) ZAddLT(ctx context.Context, key string, members ...redi
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZAddLT")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...redis.Z) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, members...)
@@ -20805,6 +22509,10 @@ func (_m *MockPipeliner) ZAddNX(ctx context.Context, key string, members ...redi
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZAddNX")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...redis.Z) *redis.IntCmd); ok {
@@ -20866,6 +22574,10 @@ func (_m *MockPipeliner) ZAddXX(ctx context.Context, key string, members ...redi
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZAddXX")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...redis.Z) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, members...)
@@ -20919,6 +22631,10 @@ func (_c *MockPipeliner_ZAddXX_Call) RunAndReturn(run func(context.Context, stri
 func (_m *MockPipeliner) ZCard(ctx context.Context, key string) *redis.IntCmd {
 	ret := _m.Called(ctx, key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZCard")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, key)
@@ -20963,6 +22679,10 @@ func (_c *MockPipeliner_ZCard_Call) RunAndReturn(run func(context.Context, strin
 // ZCount provides a mock function with given fields: ctx, key, min, max
 func (_m *MockPipeliner) ZCount(ctx context.Context, key string, min string, max string) *redis.IntCmd {
 	ret := _m.Called(ctx, key, min, max)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZCount")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.IntCmd); ok {
@@ -21017,6 +22737,10 @@ func (_m *MockPipeliner) ZDiff(ctx context.Context, keys ...string) *redis.Strin
 	_ca = append(_ca, ctx)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZDiff")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.StringSliceCmd); ok {
@@ -21076,6 +22800,10 @@ func (_m *MockPipeliner) ZDiffStore(ctx context.Context, destination string, key
 	_ca = append(_ca, ctx, destination)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZDiffStore")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
@@ -21137,6 +22865,10 @@ func (_m *MockPipeliner) ZDiffWithScores(ctx context.Context, keys ...string) *r
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZDiffWithScores")
+	}
+
 	var r0 *redis.ZSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.ZSliceCmd); ok {
 		r0 = rf(ctx, keys...)
@@ -21189,6 +22921,10 @@ func (_c *MockPipeliner_ZDiffWithScores_Call) RunAndReturn(run func(context.Cont
 func (_m *MockPipeliner) ZIncrBy(ctx context.Context, key string, increment float64, member string) *redis.FloatCmd {
 	ret := _m.Called(ctx, key, increment, member)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZIncrBy")
+	}
+
 	var r0 *redis.FloatCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, float64, string) *redis.FloatCmd); ok {
 		r0 = rf(ctx, key, increment, member)
@@ -21235,6 +22971,10 @@ func (_c *MockPipeliner_ZIncrBy_Call) RunAndReturn(run func(context.Context, str
 // ZInter provides a mock function with given fields: ctx, store
 func (_m *MockPipeliner) ZInter(ctx context.Context, store *redis.ZStore) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, store)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZInter")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, *redis.ZStore) *redis.StringSliceCmd); ok {
@@ -21287,6 +23027,10 @@ func (_m *MockPipeliner) ZInterCard(ctx context.Context, limit int64, keys ...st
 	_ca = append(_ca, ctx, limit)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZInterCard")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, int64, ...string) *redis.IntCmd); ok {
@@ -21341,6 +23085,10 @@ func (_c *MockPipeliner_ZInterCard_Call) RunAndReturn(run func(context.Context, 
 func (_m *MockPipeliner) ZInterStore(ctx context.Context, destination string, store *redis.ZStore) *redis.IntCmd {
 	ret := _m.Called(ctx, destination, store)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZInterStore")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.ZStore) *redis.IntCmd); ok {
 		r0 = rf(ctx, destination, store)
@@ -21387,6 +23135,10 @@ func (_c *MockPipeliner_ZInterStore_Call) RunAndReturn(run func(context.Context,
 func (_m *MockPipeliner) ZInterWithScores(ctx context.Context, store *redis.ZStore) *redis.ZSliceCmd {
 	ret := _m.Called(ctx, store)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZInterWithScores")
+	}
+
 	var r0 *redis.ZSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, *redis.ZStore) *redis.ZSliceCmd); ok {
 		r0 = rf(ctx, store)
@@ -21431,6 +23183,10 @@ func (_c *MockPipeliner_ZInterWithScores_Call) RunAndReturn(run func(context.Con
 // ZLexCount provides a mock function with given fields: ctx, key, min, max
 func (_m *MockPipeliner) ZLexCount(ctx context.Context, key string, min string, max string) *redis.IntCmd {
 	ret := _m.Called(ctx, key, min, max)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZLexCount")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.IntCmd); ok {
@@ -21485,6 +23241,10 @@ func (_m *MockPipeliner) ZMPop(ctx context.Context, order string, count int64, k
 	_ca = append(_ca, ctx, order, count)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZMPop")
+	}
 
 	var r0 *redis.ZSliceWithKeyCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, ...string) *redis.ZSliceWithKeyCmd); ok {
@@ -21547,6 +23307,10 @@ func (_m *MockPipeliner) ZMScore(ctx context.Context, key string, members ...str
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZMScore")
+	}
+
 	var r0 *redis.FloatSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.FloatSliceCmd); ok {
 		r0 = rf(ctx, key, members...)
@@ -21606,6 +23370,10 @@ func (_m *MockPipeliner) ZPopMax(ctx context.Context, key string, count ...int64
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZPopMax")
+	}
 
 	var r0 *redis.ZSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...int64) *redis.ZSliceCmd); ok {
@@ -21667,6 +23435,10 @@ func (_m *MockPipeliner) ZPopMin(ctx context.Context, key string, count ...int64
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZPopMin")
+	}
+
 	var r0 *redis.ZSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...int64) *redis.ZSliceCmd); ok {
 		r0 = rf(ctx, key, count...)
@@ -21720,6 +23492,10 @@ func (_c *MockPipeliner_ZPopMin_Call) RunAndReturn(run func(context.Context, str
 func (_m *MockPipeliner) ZRandMember(ctx context.Context, key string, count int) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key, count)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZRandMember")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, key, count)
@@ -21766,6 +23542,10 @@ func (_c *MockPipeliner_ZRandMember_Call) RunAndReturn(run func(context.Context,
 func (_m *MockPipeliner) ZRandMemberWithScores(ctx context.Context, key string, count int) *redis.ZSliceCmd {
 	ret := _m.Called(ctx, key, count)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZRandMemberWithScores")
+	}
+
 	var r0 *redis.ZSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int) *redis.ZSliceCmd); ok {
 		r0 = rf(ctx, key, count)
@@ -21811,6 +23591,10 @@ func (_c *MockPipeliner_ZRandMemberWithScores_Call) RunAndReturn(run func(contex
 // ZRange provides a mock function with given fields: ctx, key, start, stop
 func (_m *MockPipeliner) ZRange(ctx context.Context, key string, start int64, stop int64) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key, start, stop)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZRange")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int64) *redis.StringSliceCmd); ok {
@@ -21859,6 +23643,10 @@ func (_c *MockPipeliner_ZRange_Call) RunAndReturn(run func(context.Context, stri
 func (_m *MockPipeliner) ZRangeArgs(ctx context.Context, z redis.ZRangeArgs) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, z)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZRangeArgs")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, redis.ZRangeArgs) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, z)
@@ -21904,6 +23692,10 @@ func (_c *MockPipeliner_ZRangeArgs_Call) RunAndReturn(run func(context.Context, 
 func (_m *MockPipeliner) ZRangeArgsWithScores(ctx context.Context, z redis.ZRangeArgs) *redis.ZSliceCmd {
 	ret := _m.Called(ctx, z)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZRangeArgsWithScores")
+	}
+
 	var r0 *redis.ZSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, redis.ZRangeArgs) *redis.ZSliceCmd); ok {
 		r0 = rf(ctx, z)
@@ -21948,6 +23740,10 @@ func (_c *MockPipeliner_ZRangeArgsWithScores_Call) RunAndReturn(run func(context
 // ZRangeByLex provides a mock function with given fields: ctx, key, opt
 func (_m *MockPipeliner) ZRangeByLex(ctx context.Context, key string, opt *redis.ZRangeBy) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key, opt)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZRangeByLex")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.ZRangeBy) *redis.StringSliceCmd); ok {
@@ -21995,6 +23791,10 @@ func (_c *MockPipeliner_ZRangeByLex_Call) RunAndReturn(run func(context.Context,
 func (_m *MockPipeliner) ZRangeByScore(ctx context.Context, key string, opt *redis.ZRangeBy) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key, opt)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZRangeByScore")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.ZRangeBy) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, key, opt)
@@ -22040,6 +23840,10 @@ func (_c *MockPipeliner_ZRangeByScore_Call) RunAndReturn(run func(context.Contex
 // ZRangeByScoreWithScores provides a mock function with given fields: ctx, key, opt
 func (_m *MockPipeliner) ZRangeByScoreWithScores(ctx context.Context, key string, opt *redis.ZRangeBy) *redis.ZSliceCmd {
 	ret := _m.Called(ctx, key, opt)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZRangeByScoreWithScores")
+	}
 
 	var r0 *redis.ZSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.ZRangeBy) *redis.ZSliceCmd); ok {
@@ -22087,6 +23891,10 @@ func (_c *MockPipeliner_ZRangeByScoreWithScores_Call) RunAndReturn(run func(cont
 func (_m *MockPipeliner) ZRangeStore(ctx context.Context, dst string, z redis.ZRangeArgs) *redis.IntCmd {
 	ret := _m.Called(ctx, dst, z)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZRangeStore")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, redis.ZRangeArgs) *redis.IntCmd); ok {
 		r0 = rf(ctx, dst, z)
@@ -22132,6 +23940,10 @@ func (_c *MockPipeliner_ZRangeStore_Call) RunAndReturn(run func(context.Context,
 // ZRangeWithScores provides a mock function with given fields: ctx, key, start, stop
 func (_m *MockPipeliner) ZRangeWithScores(ctx context.Context, key string, start int64, stop int64) *redis.ZSliceCmd {
 	ret := _m.Called(ctx, key, start, stop)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZRangeWithScores")
+	}
 
 	var r0 *redis.ZSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int64) *redis.ZSliceCmd); ok {
@@ -22180,6 +23992,10 @@ func (_c *MockPipeliner_ZRangeWithScores_Call) RunAndReturn(run func(context.Con
 func (_m *MockPipeliner) ZRank(ctx context.Context, key string, member string) *redis.IntCmd {
 	ret := _m.Called(ctx, key, member)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZRank")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, member)
@@ -22225,6 +24041,10 @@ func (_c *MockPipeliner_ZRank_Call) RunAndReturn(run func(context.Context, strin
 // ZRankWithScore provides a mock function with given fields: ctx, key, member
 func (_m *MockPipeliner) ZRankWithScore(ctx context.Context, key string, member string) *redis.RankWithScoreCmd {
 	ret := _m.Called(ctx, key, member)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZRankWithScore")
+	}
 
 	var r0 *redis.RankWithScoreCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.RankWithScoreCmd); ok {
@@ -22274,6 +24094,10 @@ func (_m *MockPipeliner) ZRem(ctx context.Context, key string, members ...interf
 	_ca = append(_ca, ctx, key)
 	_ca = append(_ca, members...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZRem")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
@@ -22328,6 +24152,10 @@ func (_c *MockPipeliner_ZRem_Call) RunAndReturn(run func(context.Context, string
 func (_m *MockPipeliner) ZRemRangeByLex(ctx context.Context, key string, min string, max string) *redis.IntCmd {
 	ret := _m.Called(ctx, key, min, max)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZRemRangeByLex")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, min, max)
@@ -22374,6 +24202,10 @@ func (_c *MockPipeliner_ZRemRangeByLex_Call) RunAndReturn(run func(context.Conte
 // ZRemRangeByRank provides a mock function with given fields: ctx, key, start, stop
 func (_m *MockPipeliner) ZRemRangeByRank(ctx context.Context, key string, start int64, stop int64) *redis.IntCmd {
 	ret := _m.Called(ctx, key, start, stop)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZRemRangeByRank")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int64) *redis.IntCmd); ok {
@@ -22422,6 +24254,10 @@ func (_c *MockPipeliner_ZRemRangeByRank_Call) RunAndReturn(run func(context.Cont
 func (_m *MockPipeliner) ZRemRangeByScore(ctx context.Context, key string, min string, max string) *redis.IntCmd {
 	ret := _m.Called(ctx, key, min, max)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZRemRangeByScore")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, min, max)
@@ -22468,6 +24304,10 @@ func (_c *MockPipeliner_ZRemRangeByScore_Call) RunAndReturn(run func(context.Con
 // ZRevRange provides a mock function with given fields: ctx, key, start, stop
 func (_m *MockPipeliner) ZRevRange(ctx context.Context, key string, start int64, stop int64) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key, start, stop)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZRevRange")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int64) *redis.StringSliceCmd); ok {
@@ -22516,6 +24356,10 @@ func (_c *MockPipeliner_ZRevRange_Call) RunAndReturn(run func(context.Context, s
 func (_m *MockPipeliner) ZRevRangeByLex(ctx context.Context, key string, opt *redis.ZRangeBy) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key, opt)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZRevRangeByLex")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.ZRangeBy) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, key, opt)
@@ -22561,6 +24405,10 @@ func (_c *MockPipeliner_ZRevRangeByLex_Call) RunAndReturn(run func(context.Conte
 // ZRevRangeByScore provides a mock function with given fields: ctx, key, opt
 func (_m *MockPipeliner) ZRevRangeByScore(ctx context.Context, key string, opt *redis.ZRangeBy) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, key, opt)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZRevRangeByScore")
+	}
 
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.ZRangeBy) *redis.StringSliceCmd); ok {
@@ -22608,6 +24456,10 @@ func (_c *MockPipeliner_ZRevRangeByScore_Call) RunAndReturn(run func(context.Con
 func (_m *MockPipeliner) ZRevRangeByScoreWithScores(ctx context.Context, key string, opt *redis.ZRangeBy) *redis.ZSliceCmd {
 	ret := _m.Called(ctx, key, opt)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZRevRangeByScoreWithScores")
+	}
+
 	var r0 *redis.ZSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.ZRangeBy) *redis.ZSliceCmd); ok {
 		r0 = rf(ctx, key, opt)
@@ -22653,6 +24505,10 @@ func (_c *MockPipeliner_ZRevRangeByScoreWithScores_Call) RunAndReturn(run func(c
 // ZRevRangeWithScores provides a mock function with given fields: ctx, key, start, stop
 func (_m *MockPipeliner) ZRevRangeWithScores(ctx context.Context, key string, start int64, stop int64) *redis.ZSliceCmd {
 	ret := _m.Called(ctx, key, start, stop)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZRevRangeWithScores")
+	}
 
 	var r0 *redis.ZSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, int64, int64) *redis.ZSliceCmd); ok {
@@ -22701,6 +24557,10 @@ func (_c *MockPipeliner_ZRevRangeWithScores_Call) RunAndReturn(run func(context.
 func (_m *MockPipeliner) ZRevRank(ctx context.Context, key string, member string) *redis.IntCmd {
 	ret := _m.Called(ctx, key, member)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZRevRank")
+	}
+
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
 		r0 = rf(ctx, key, member)
@@ -22747,6 +24607,10 @@ func (_c *MockPipeliner_ZRevRank_Call) RunAndReturn(run func(context.Context, st
 func (_m *MockPipeliner) ZRevRankWithScore(ctx context.Context, key string, member string) *redis.RankWithScoreCmd {
 	ret := _m.Called(ctx, key, member)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZRevRankWithScore")
+	}
+
 	var r0 *redis.RankWithScoreCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.RankWithScoreCmd); ok {
 		r0 = rf(ctx, key, member)
@@ -22792,6 +24656,10 @@ func (_c *MockPipeliner_ZRevRankWithScore_Call) RunAndReturn(run func(context.Co
 // ZScan provides a mock function with given fields: ctx, key, cursor, match, count
 func (_m *MockPipeliner) ZScan(ctx context.Context, key string, cursor uint64, match string, count int64) *redis.ScanCmd {
 	ret := _m.Called(ctx, key, cursor, match, count)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZScan")
+	}
 
 	var r0 *redis.ScanCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, uint64, string, int64) *redis.ScanCmd); ok {
@@ -22841,6 +24709,10 @@ func (_c *MockPipeliner_ZScan_Call) RunAndReturn(run func(context.Context, strin
 func (_m *MockPipeliner) ZScore(ctx context.Context, key string, member string) *redis.FloatCmd {
 	ret := _m.Called(ctx, key, member)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZScore")
+	}
+
 	var r0 *redis.FloatCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.FloatCmd); ok {
 		r0 = rf(ctx, key, member)
@@ -22887,6 +24759,10 @@ func (_c *MockPipeliner_ZScore_Call) RunAndReturn(run func(context.Context, stri
 func (_m *MockPipeliner) ZUnion(ctx context.Context, store redis.ZStore) *redis.StringSliceCmd {
 	ret := _m.Called(ctx, store)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ZUnion")
+	}
+
 	var r0 *redis.StringSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, redis.ZStore) *redis.StringSliceCmd); ok {
 		r0 = rf(ctx, store)
@@ -22931,6 +24807,10 @@ func (_c *MockPipeliner_ZUnion_Call) RunAndReturn(run func(context.Context, redi
 // ZUnionStore provides a mock function with given fields: ctx, dest, store
 func (_m *MockPipeliner) ZUnionStore(ctx context.Context, dest string, store *redis.ZStore) *redis.IntCmd {
 	ret := _m.Called(ctx, dest, store)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZUnionStore")
+	}
 
 	var r0 *redis.IntCmd
 	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.ZStore) *redis.IntCmd); ok {
@@ -22977,6 +24857,10 @@ func (_c *MockPipeliner_ZUnionStore_Call) RunAndReturn(run func(context.Context,
 // ZUnionWithScores provides a mock function with given fields: ctx, store
 func (_m *MockPipeliner) ZUnionWithScores(ctx context.Context, store redis.ZStore) *redis.ZSliceCmd {
 	ret := _m.Called(ctx, store)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ZUnionWithScores")
+	}
 
 	var r0 *redis.ZSliceCmd
 	if rf, ok := ret.Get(0).(func(context.Context, redis.ZStore) *redis.ZSliceCmd); ok {

@@ -26,6 +26,10 @@ func (_m *MockRedisCache) EXPECT() *MockRedisCache_Expecter {
 func (_m *MockRedisCache) Del(ctx context.Context, keys []string) error {
 	ret := _m.Called(ctx, keys)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Del")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, []string) error); ok {
 		r0 = rf(ctx, keys)
@@ -68,6 +72,10 @@ func (_c *MockRedisCache_Del_Call) RunAndReturn(run func(context.Context, []stri
 // Get provides a mock function with given fields: ctx, maxItems, keyIter
 func (_m *MockRedisCache) Get(ctx context.Context, maxItems int, keyIter func(int) string) (func() ([]byte, bool), error) {
 	ret := _m.Called(ctx, maxItems, keyIter)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Get")
+	}
 
 	var r0 func() ([]byte, bool)
 	var r1 error
@@ -124,6 +132,10 @@ func (_c *MockRedisCache_Get_Call) RunAndReturn(run func(context.Context, int, f
 // Set provides a mock function with given fields: ctx, maxItems, iter
 func (_m *MockRedisCache) Set(ctx context.Context, maxItems int, iter func(int) (string, []byte, time.Duration)) error {
 	ret := _m.Called(ctx, maxItems, iter)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Set")
+	}
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, int, func(int) (string, []byte, time.Duration)) error); ok {

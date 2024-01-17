@@ -54,6 +54,10 @@ func (_c *MockLocalCache_Del_Call) RunAndReturn(run func(string)) *MockLocalCach
 func (_m *MockLocalCache) Get(key string) []byte {
 	ret := _m.Called(key)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Get")
+	}
+
 	var r0 []byte
 	if rf, ok := ret.Get(0).(func(string) []byte); ok {
 		r0 = rf(key)
