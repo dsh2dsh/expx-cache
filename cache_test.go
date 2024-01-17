@@ -89,7 +89,7 @@ func (self *CacheTestSuite) CacheableValue() CacheableObject {
 
 // --------------------------------------------------
 
-func (self *CacheTestSuite) cacheHit() {
+func (self *CacheTestSuite) expectCacheHit() {
 	if self.cache.statsEnabled {
 		if self.cache.localCache != nil {
 			self.stats.localHit()
@@ -99,7 +99,7 @@ func (self *CacheTestSuite) cacheHit() {
 	}
 }
 
-func (self *CacheTestSuite) cacheMiss() {
+func (self *CacheTestSuite) expectCacheMiss() {
 	if self.cache.statsEnabled {
 		if self.cache.localCache != nil {
 			self.stats.localMiss()
@@ -111,7 +111,7 @@ func (self *CacheTestSuite) cacheMiss() {
 	}
 }
 
-func (self *CacheTestSuite) cacheHitLocalMiss() {
+func (self *CacheTestSuite) expectCacheHitLocalMiss() {
 	if self.cache.statsEnabled {
 		self.stats.hit()
 		if self.cache.localCache != nil {
@@ -134,11 +134,11 @@ func (self *CacheTestSuite) TestCache_GetSet_nil() {
 
 	self.Equal([]Item{item}, valueNoError[[]Item](self.T())(
 		self.cache.Get(ctx, item)))
-	self.cacheMiss()
+	self.expectCacheMiss()
 
 	self.False(valueNoError[bool](self.T())(self.cache.Exists(ctx, item.Key)),
 		"nil value shouldn't be cached")
-	self.cacheMiss()
+	self.expectCacheMiss()
 
 	self.assertStats()
 }
@@ -152,11 +152,11 @@ func (self *CacheTestSuite) TestCache_GetSet_data() {
 	var gotValue CacheableObject
 	item.Value = &gotValue
 	self.Require().Empty(valueNoError[[]Item](self.T())(self.cache.Get(ctx, item)))
-	self.cacheHit()
+	self.expectCacheHit()
 	self.Equal(&val, &gotValue)
 
 	self.True(self.cache.Exists(ctx, testKey))
-	self.cacheHit()
+	self.expectCacheHit()
 	self.assertStats()
 }
 
@@ -169,7 +169,7 @@ func (self *CacheTestSuite) TestCache_GetSet_stringAsIs() {
 	var gotValue string
 	item.Value = &gotValue
 	self.Require().Empty(valueNoError[[]Item](self.T())(self.cache.Get(ctx, item)))
-	self.cacheHit()
+	self.expectCacheHit()
 	self.Equal(value, gotValue)
 	self.assertStats()
 }
@@ -183,7 +183,7 @@ func (self *CacheTestSuite) TestCache_GetSet_bytesAsIs() {
 	var gotValue []byte
 	item.Value = &gotValue
 	self.Require().Empty(valueNoError[[]Item](self.T())(self.cache.Get(ctx, item)))
-	self.cacheHit()
+	self.expectCacheHit()
 	self.Equal(value, gotValue)
 	self.assertStats()
 }
@@ -208,11 +208,11 @@ func (self *CacheTestSuite) TestCache_setGetItems() {
 	for i := range allItems {
 		item := &allItems[i]
 		item.Value = &gotValues[i]
-		self.cacheHit()
+		self.expectCacheHit()
 	}
 	missed := valueNoError[[]Item](self.T())(self.cache.Get(ctx, allItems...))
 	for range missed {
-		self.cacheMiss()
+		self.expectCacheMiss()
 	}
 	self.Equal(allValues, gotValues)
 	self.Empty(missed)
@@ -223,7 +223,7 @@ func (self *CacheTestSuite) TestCache_setGetItems() {
 	expectedValues := make([]CacheableObject, maxItems)
 	missed = valueNoError[[]Item](self.T())(self.cache.Get(ctx, allItems...))
 	for range missed {
-		self.cacheMiss()
+		self.expectCacheMiss()
 	}
 	self.Equal(expectedValues, gotValues)
 	self.Equal(allItems, missed)
@@ -266,8 +266,8 @@ func (self *CacheTestSuite) TestCache_GetSet() {
 	for i := range allItems {
 		item := &allItems[i]
 		item.Value = &gotValues[i]
-		self.cacheMiss()
-		self.cacheHit()
+		self.expectCacheMiss()
+		self.expectCacheHit()
 	}
 	self.Require().NoError(self.cache.GetSet(ctx, allItems...))
 	self.Equal(uint64(0), callCount)

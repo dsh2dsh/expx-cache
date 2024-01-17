@@ -17,14 +17,14 @@ func (self *CacheTestSuite) TestCache_Delete() {
 	item := Item{Key: testKey, Value: self.CacheableValue()}
 	self.Require().NoError(self.cache.Set(ctx, item))
 	self.True(self.cache.Exists(ctx, item.Key))
-	self.cacheHit()
+	self.expectCacheHit()
 
 	self.Require().NoError(self.cache.Delete(ctx, item.Key))
 	self.Equal([]Item{item},
 		valueNoError[[]Item](self.T())(self.cache.Get(ctx, item)))
-	self.cacheMiss()
+	self.expectCacheMiss()
 	self.False(self.cache.Exists(ctx, testKey))
-	self.cacheMiss()
+	self.expectCacheMiss()
 
 	self.assertStats()
 }
@@ -45,10 +45,10 @@ func (self *CacheTestSuite) TestDeleteFromLocalCache() {
 
 	if self.cache.redis != nil {
 		self.True(self.cache.Exists(ctx, testKey))
-		self.cacheHitLocalMiss()
+		self.expectCacheHitLocalMiss()
 	} else {
 		self.False(self.cache.Exists(ctx, testKey))
-		self.cacheMiss()
+		self.expectCacheMiss()
 	}
 
 	self.assertStats()
@@ -65,10 +65,10 @@ func (self *CacheTestSuite) TestDeleteFromRedis() {
 	self.Require().NoError(self.cache.DeleteFromRedis(ctx, testKey))
 	if self.cache.localCache != nil {
 		self.True(self.cache.Exists(ctx, testKey))
-		self.cacheHit()
+		self.expectCacheHit()
 	} else {
 		self.False(self.cache.Exists(ctx, testKey))
-		self.cacheMiss()
+		self.expectCacheMiss()
 	}
 
 	if self.cache.redis != nil {
