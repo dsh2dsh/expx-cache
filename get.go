@@ -3,8 +3,6 @@ package cache
 import (
 	"context"
 	"fmt"
-
-	"golang.org/x/sync/errgroup"
 )
 
 // Exists reports whether value for the given key exists.
@@ -16,8 +14,7 @@ func (self *Cache) Exists(ctx context.Context, key string) (bool, error) {
 	return len(b) > 0, nil
 }
 
-func (self *Cache) getBytes(
-	ctx context.Context, key string, skipLocalCache bool,
+func (self *Cache) getBytes(ctx context.Context, key string, skipLocalCache bool,
 ) ([]byte, error) {
 	key = self.ResolveKey(key)
 
@@ -53,31 +50,24 @@ func (self *Cache) getBytes(
 	return b, nil
 }
 
-func (self *Cache) Get(parentCtx context.Context, items ...Item,
-) ([]Item, error) {
+func (self *Cache) Get(ctx context.Context, items ...Item) ([]Item, error) {
 	if len(items) == 1 {
-		return self.getOneItems(parentCtx, items)
+		return self.getOneItems(ctx, items)
 	}
 
-	g, ctx := errgroup.WithContext(parentCtx)
-	missed, err := self.localGetItems(ctx, g, items)
-	if err != nil {
-		return nil, err
+	g := self.unmarshalGroup(ctx)
+	missed, err := self.localGetItems(&g, items)
+	if err == nil && len(missed) > 0 {
+		missed, err = self.redisGetItems(&g, missed)
 	}
 
-	if len(missed) > 0 {
-		missed, err = self.redisGetItems(ctx, g, missed)
-		if err != nil {
-			return nil, err
-		}
-	}
-
+	const errMsg = "failed unmarshal items: %w"
 	if err := g.Wait(); err != nil {
-		return nil, fmt.Errorf("failed unmarshal items: %w", err)
-	} else if parentCtx.Err() != nil {
-		return nil, fmt.Errorf("failed unmarshal items: %w", context.Cause(ctx))
+		return nil, fmt.Errorf(errMsg, err)
 	}
-
+	if err != nil {
+		return nil, fmt.Errorf(errMsg, err)
+	}
 	return missed, nil
 }
 
@@ -93,15 +83,16 @@ func (self *Cache) getOneItems(ctx context.Context, items []Item,
 	return nil, self.unmarshal(b, item.Value)
 }
 
-func (self *Cache) localGetItems(ctx context.Context, g *errgroup.Group,
-	items []Item,
-) ([]Item, error) {
+func (self *Cache) localGetItems(g *marshalGroup, items []Item) ([]Item, error) {
 	if self.localCache == nil {
 		return items, nil
 	}
 	missed := items[:0]
 
 	for i := range items {
+		if g.Canceled() {
+			return nil, fmt.Errorf("failed get local items: %w", g.Cause())
+		}
 		item := &items[i]
 		if item.SkipLocalCache {
 			missed = append(missed, items[i])
@@ -111,32 +102,32 @@ func (self *Cache) localGetItems(ctx context.Context, g *errgroup.Group,
 			self.addLocalMiss()
 		} else {
 			self.addLocalHit()
-			if err := self.acquireUnmarshal(ctx, g, b, item.Value); err != nil {
+			if err := g.GoUnmarshal(b, item.Value); err != nil {
 				return nil, err
 			}
 		}
 	}
-
 	return missed, nil
 }
 
-func (self *Cache) redisGetItems(ctx context.Context, g *errgroup.Group,
-	items []Item,
-) ([]Item, error) {
+func (self *Cache) redisGetItems(g *marshalGroup, items []Item) ([]Item, error) {
 	if self.redis == nil {
 		return items, nil
 	}
 	missed := items[:0]
 
-	bytesIter, err := self.redis.Get(ctx, len(items), func(i int) string {
-		return self.ResolveKey(items[i].Key)
-	})
+	const errMsg = "failed get redis items: %w"
+	bytesIter, err := self.redis.Get(g.Ctx(), len(items),
+		func(i int) string { return self.ResolveKey(items[i].Key) })
 	if err != nil {
-		return nil, fmt.Errorf("failed get redis items: %w", err)
+		return nil, fmt.Errorf(errMsg, err)
 	}
 
 	var nextItem int
 	for b, ok := bytesIter(); ok; b, ok = bytesIter() {
+		if g.Canceled() {
+			return nil, fmt.Errorf(errMsg, g.Cause())
+		}
 		if len(b) == 0 {
 			missed = append(missed, items[nextItem])
 			self.addMiss()
@@ -146,13 +137,12 @@ func (self *Cache) redisGetItems(ctx context.Context, g *errgroup.Group,
 			if self.localCache != nil && !item.SkipLocalCache {
 				self.localCache.Set(self.ResolveKey(item.Key), b)
 			}
-			if err := self.acquireUnmarshal(ctx, g, b, item.Value); err != nil {
+			if err := g.GoUnmarshal(b, item.Value); err != nil {
 				return nil, err
 			}
 		}
 		nextItem++
 	}
-
 	return missed, nil
 }
 
@@ -163,6 +153,5 @@ func (self *Cache) GetSet(ctx context.Context, items ...Item) error {
 	} else if len(missed) == 0 {
 		return nil
 	}
-
 	return self.Set(ctx, items...)
 }

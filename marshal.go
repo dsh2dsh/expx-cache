@@ -24,73 +24,99 @@ func (self *Cache) Unmarshal(b []byte, value any) error {
 	return self.unmarshal(b, value)
 }
 
-func (self *Cache) marshalItems(parentCtx context.Context, items []Item,
-) ([][]byte, error) {
-	g, ctx := self.valueGroup(parentCtx)
+func (self *Cache) marshalItems(ctx context.Context, items []Item) ([][]byte, error) {
+	g := self.marshalGroup(ctx)
 	bytes := make([][]byte, len(items))
 
+	const errMsg = "failed marshal items: %w"
 	for i := range items {
-		if ctx.Err() != nil {
-			break
+		if g.Canceled() {
+			return nil, fmt.Errorf(errMsg, g.Cause())
 		}
-		i, item := i, &items[i]
-		g.Go(func() error {
-			b, err := item.marshal(ctx, func(v any) ([]byte, error) {
-				return self.acquireMarshal(ctx, v)
-			})
-			if err != nil {
-				return err
-			}
-			bytes[i] = b
-			return nil
-		})
+		i := i
+		g.GoMarshal(&items[i], func(b []byte) { bytes[i] = b })
 	}
 
 	if err := g.Wait(); err != nil {
-		return nil, fmt.Errorf("failed marshal items: %w", err)
-	} else if parentCtx.Err() != nil {
-		return nil, fmt.Errorf("failed marshal items: %w", context.Cause(ctx))
+		return nil, fmt.Errorf(errMsg, err)
 	}
-
 	return bytes, nil
 }
 
-func (self *Cache) valueGroup(ctx context.Context) (*errgroup.Group, context.Context) {
+// --------------------------------------------------
+
+func (self *Cache) marshalGroup(ctx context.Context) marshalGroup {
 	g, ctx := errgroup.WithContext(ctx)
 	if self.valueProcs < 1 {
 		g.SetLimit(runtime.GOMAXPROCS(0))
 	} else {
 		g.SetLimit(self.valueProcs)
 	}
-	return g, ctx
+	return marshalGroup{ctx: ctx, g: g, cache: self}
 }
 
-func (self *Cache) acquireMarshal(ctx context.Context, v any) ([]byte, error) {
-	if err := self.marshalers.Acquire(ctx, 1); err != nil {
-		return nil, fmt.Errorf("acquire: %w", err)
+func (self *Cache) unmarshalGroup(ctx context.Context) marshalGroup {
+	g, ctx := errgroup.WithContext(ctx)
+	return marshalGroup{ctx: ctx, g: g, cache: self}
+}
+
+type marshalGroup struct {
+	ctx   context.Context
+	g     *errgroup.Group
+	cache *Cache
+}
+
+func (self *marshalGroup) GoMarshal(item *Item, fn func([]byte)) {
+	self.g.Go(func() error {
+		b, err := item.marshal(self.ctx, self.marshal)
+		if err != nil {
+			return err
+		}
+		fn(b)
+		return nil
+	})
+}
+
+func (self *marshalGroup) marshal(v any) ([]byte, error) {
+	if err := self.cache.marshalers.Acquire(self.ctx, 1); err != nil {
+		return nil, fmt.Errorf("failed acquire marshalers: %w", err)
 	}
-	defer self.marshalers.Release(1)
-	b, err := self.marshal(v)
+	defer self.cache.marshalers.Release(1)
+	b, err := self.cache.marshal(v)
 	if err != nil {
 		return nil, err
 	}
 	return b, nil
 }
 
-func (self *Cache) acquireUnmarshal(ctx context.Context, g *errgroup.Group,
-	b []byte, v any,
-) error {
-	if err := self.marshalers.Acquire(ctx, 1); err != nil {
-		return fmt.Errorf("acquire: %w", err)
+func (self *marshalGroup) GoUnmarshal(b []byte, v any) error {
+	if err := self.cache.marshalers.Acquire(self.ctx, 1); err != nil {
+		return fmt.Errorf("failed acquire marshalers: %w", err)
 	}
-	g.Go(func() error {
-		defer self.marshalers.Release(1)
-		if err := self.unmarshal(b, v); err != nil {
+	self.g.Go(func() error {
+		defer self.cache.marshalers.Release(1)
+		if err := self.cache.unmarshal(b, v); err != nil {
 			return err
 		}
 		return nil
 	})
 	return nil
+}
+
+func (self *marshalGroup) Ctx() context.Context {
+	return self.ctx
+}
+
+func (self *marshalGroup) Canceled() bool {
+	return self.ctx.Err() != nil
+}
+
+func (self *marshalGroup) Cause() error {
+	return context.Cause(self.ctx) //nolint:wrapcheck // we need the error as is
+}
+
+func (self *marshalGroup) Wait() error {
+	return self.g.Wait() //nolint:wrapcheck // caller will wrap the error
 }
 
 // --------------------------------------------------
@@ -156,8 +182,8 @@ func compress(data []byte) []byte {
 	if len(data) < compressionThreshold {
 		b := make([]byte, len(data)+1)
 		copy(b, data)
-		b = b[:len(data)]               // make a sub-slice for safe append
-		return append(b, noCompression) //nolint:makezero // b is a sub-slice
+		b[len(data)] = noCompression
+		return b
 	}
 
 	b := make([]byte, s2.MaxEncodedLen(len(data))+1)

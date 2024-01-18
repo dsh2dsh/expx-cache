@@ -86,7 +86,16 @@ func TestCache_Get_errorCanceled(t *testing.T) {
 	item := Item{Key: testKey, Value: &obj}
 	require.NoError(t, cache.Set(ctx, item))
 
-	cancel()
+	for cache.marshalers.TryAcquire(1) {
+	}
+	sig := make(chan struct{})
+	go func() {
+		<-sig
+		time.Sleep(100 * time.Millisecond)
+		cancel()
+	}()
+
+	close(sig)
 	missed, err := cache.Get(ctx, item, item)
 	require.ErrorIs(t, err, context.Canceled)
 	assert.Nil(t, missed)
@@ -170,11 +179,19 @@ func TestCache_GetSet_errorGetCanceled(t *testing.T) {
 
 	obj := CacheableObject{Str: "mystring", Num: 42}
 	item := Item{Key: testKey, Value: &obj}
-
 	ctx, cancel := context.WithCancel(context.Background())
 	require.NoError(t, cache.Set(ctx, item))
 
-	cancel()
+	for cache.marshalers.TryAcquire(1) {
+	}
+	sig := make(chan struct{})
+	go func() {
+		<-sig
+		time.Sleep(100 * time.Millisecond)
+		cancel()
+	}()
+
+	close(sig)
 	require.ErrorIs(t, cache.GetSet(ctx, item, item), context.Canceled)
 }
 

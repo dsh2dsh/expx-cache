@@ -12,7 +12,6 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/vmihailenco/msgpack/v5"
-	"golang.org/x/sync/errgroup"
 )
 
 func TestCache_WithMarshal(t *testing.T) {
@@ -163,7 +162,7 @@ func TestCache_marshalersAcquireCanceled(t *testing.T) {
 			assert: marshalAssert,
 		},
 		{
-			name: "acquireUnmarshal",
+			name: "GoUnmarshal",
 			item: Item{Key: testKey},
 			assert: func(ctx context.Context, t *testing.T, c *Cache, item Item) {
 				var callCount uint64
@@ -171,7 +170,8 @@ func TestCache_marshalersAcquireCanceled(t *testing.T) {
 					atomic.AddUint64(&callCount, 1)
 					return nil
 				})
-				require.ErrorIs(t, c.acquireUnmarshal(ctx, nil, nil, nil), context.Canceled)
+				g := c.unmarshalGroup(ctx)
+				require.ErrorIs(t, g.GoUnmarshal(nil, nil), context.Canceled)
 				assert.Equal(t, uint64(0), callCount)
 			},
 		},
@@ -241,15 +241,15 @@ func TestCache_marshalErrGroup(t *testing.T) {
 			assert: marshalAssert,
 		},
 		{
-			name: "acquireUnmarshal",
+			name: "GoUnmarshal",
 			item: Item{Key: testKey},
 			assert: func(ctx context.Context, t *testing.T, c *Cache, item Item) {
 				c.WithUnmarshal(func(b []byte, v any) error {
 					return wantErr
 				})
 				b := valueNoError[[]byte](t)(marshal(foobar))
-				g, ctx := errgroup.WithContext(ctx)
-				require.NoError(t, c.acquireUnmarshal(ctx, g, b, nil))
+				g := c.unmarshalGroup(ctx)
+				require.NoError(t, g.GoUnmarshal(b, nil))
 				require.ErrorIs(t, g.Wait(), wantErr)
 			},
 		},
@@ -287,14 +287,14 @@ func TestCache_marshalItems_canceled(t *testing.T) {
 			defer cancel()
 
 			const foobar = "foobar"
-			var doCount uint64
+			var callCount uint64
 
 			items := make([]Item, tt.items)
 			for i := range items {
 				items[i] = Item{
 					Key: testKey,
 					Do: func(ctx context.Context) (any, error) {
-						n := atomic.AddUint64(&doCount, 1)
+						n := atomic.AddUint64(&callCount, 1)
 						if n == 1 {
 							cancel()
 						} else {
@@ -307,6 +307,8 @@ func TestCache_marshalItems_canceled(t *testing.T) {
 
 			cache := New()
 			require.NotNil(t, cache)
+			for cache.marshalers.TryAcquire(1) {
+			}
 			b, err := cache.marshalItems(ctx, items)
 			require.ErrorIs(t, err, context.Canceled)
 			assert.Nil(t, b)
@@ -314,7 +316,7 @@ func TestCache_marshalItems_canceled(t *testing.T) {
 	}
 }
 
-func TestCache_valueGroup(t *testing.T) {
+func TestCache_marshalGroup_limit(t *testing.T) {
 	tests := []struct {
 		name      string
 		makeCache func(t *testing.T) *Cache
@@ -346,10 +348,10 @@ func TestCache_valueGroup(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			cache := tt.makeCache(t)
 			ctx, cancel := context.WithCancel(context.Background())
-			g, _ := cache.valueGroup(ctx)
+			g := cache.marshalGroup(ctx)
 
 			var callCount uint64
-			for g.TryGo(func() error {
+			for g.g.TryGo(func() error {
 				atomic.AddUint64(&callCount, 1)
 				<-ctx.Done()
 				return nil
