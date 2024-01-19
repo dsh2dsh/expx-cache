@@ -78,6 +78,7 @@ func TestExists_withError(t *testing.T) {
 }
 
 func TestCache_Get_errorCanceled(t *testing.T) {
+	t.Parallel()
 	cache := New().WithTinyLFU(1000, time.Minute)
 	assert.NotNil(t, cache)
 
@@ -174,6 +175,7 @@ func TestCache_Get_localSet(t *testing.T) {
 }
 
 func TestCache_GetSet_errorGetCanceled(t *testing.T) {
+	t.Parallel()
 	cache := New().WithTinyLFU(1000, time.Minute)
 	assert.NotNil(t, cache)
 
@@ -225,4 +227,37 @@ func TestCache_Get_errorRedisCanceled(t *testing.T) {
 	missed, err := cache.Get(ctx, item, item)
 	require.ErrorIs(t, err, context.Canceled)
 	assert.Nil(t, missed)
+}
+
+func TestCache_Get_localGetItemsCanceled(t *testing.T) {
+	cache := New().WithTinyLFU(1000, time.Minute)
+	assert.NotNil(t, cache)
+
+	obj := CacheableObject{}
+	item := Item{Key: testKey, Value: &obj}
+
+	ctx, cancel := context.WithCancel(context.Background())
+	cancel()
+	_, err := cache.Get(ctx, item, item)
+	require.ErrorIs(t, err, context.Canceled)
+}
+
+func TestCache_Get_redisGetItemsCanceled(t *testing.T) {
+	obj := CacheableObject{Str: "mystring", Num: 42}
+	blob := valueNoError[[]byte](t)(marshal(&obj))
+
+	redisCache := cacheMocks.NewMockRedisCache(t)
+	redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).Return(
+		makeBytesIter([][]byte{blob, blob}), nil)
+
+	cache := New().WithRedisCache(redisCache)
+	assert.NotNil(t, cache)
+
+	got := CacheableObject{}
+	item := Item{Key: testKey, Value: &got}
+
+	ctx, cancel := context.WithCancel(context.Background())
+	cancel()
+	_, err := cache.Get(ctx, item, item)
+	require.ErrorIs(t, err, context.Canceled)
 }
