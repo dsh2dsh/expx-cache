@@ -34,6 +34,7 @@ func TestGet_redisErrAddsMiss(t *testing.T) {
 	item := Item{Key: testKey}
 	missed, err := cache.Get(ctx, item)
 	require.ErrorIs(t, err, wantErr)
+	require.ErrorIs(t, err, ErrRedisCache)
 	assert.Nil(t, missed)
 	assert.Equal(t, uint64(1), cache.Stats().Misses)
 }
@@ -74,6 +75,7 @@ func TestExists_withError(t *testing.T) {
 	cache := New().WithRedisCache(redisCache)
 	hit, err := cache.Exists(ctx, testKey)
 	require.ErrorIs(t, err, wantErr)
+	require.ErrorIs(t, err, ErrRedisCache)
 	assert.False(t, hit)
 }
 
@@ -150,6 +152,7 @@ func TestCache_Get_errorRedis(t *testing.T) {
 
 	missed, err := cache.Get(ctx, item, item)
 	require.ErrorIs(t, err, wantErr)
+	require.ErrorIs(t, err, ErrRedisCache)
 	assert.Nil(t, missed)
 }
 

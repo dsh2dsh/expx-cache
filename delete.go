@@ -39,7 +39,7 @@ func (self *Cache) DeleteFromRedis(ctx context.Context, keys ...string) error {
 			wrappedKeys[i] = self.ResolveKey(k)
 		}
 		if err := self.redis.Del(ctx, wrappedKeys); err != nil {
-			return fmt.Errorf("redis delete: %w", err)
+			return newRedisCacheError(fmt.Errorf("redis delete: %w", err))
 		}
 	}
 	return nil

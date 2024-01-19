@@ -34,7 +34,7 @@ func (self *Cache) getBytes(ctx context.Context, key string, skipLocalCache bool
 	bytesIter, err := self.redis.Get(ctx, 1, func(int) string { return key })
 	if err != nil {
 		self.addMiss()
-		return nil, fmt.Errorf("get %q from redis: %w", key, err)
+		return nil, newRedisCacheError(fmt.Errorf("get %q from redis: %w", key, err))
 	}
 
 	b, _ := bytesIter()
@@ -120,7 +120,7 @@ func (self *Cache) redisGetItems(g *marshalGroup, items []Item) ([]Item, error) 
 	bytesIter, err := self.redis.Get(g.Ctx(), len(items),
 		func(i int) string { return self.ResolveKey(items[i].Key) })
 	if err != nil {
-		return nil, fmt.Errorf(errMsg, err)
+		return nil, newRedisCacheError(fmt.Errorf(errMsg, err))
 	}
 
 	var nextItem int

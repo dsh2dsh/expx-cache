@@ -52,7 +52,7 @@ func (self *Cache) redisSet(ctx context.Context, item *Item, b []byte,
 		return self.ResolveKey(item.Key), b, ttl
 	})
 	if err != nil {
-		return fmt.Errorf("redis set: %w", err)
+		return newRedisCacheError(fmt.Errorf("redis set: %w", err))
 	}
 	return nil
 }
@@ -102,7 +102,7 @@ func (self *Cache) redisSetItems(ctx context.Context, items []Item,
 			return self.ResolveKey(item.Key), bytes[i], item.ttl(self.DefaultTTL())
 		})
 	if err != nil {
-		return fmt.Errorf("failed set redis items: %w", err)
+		return newRedisCacheError(fmt.Errorf("failed set redis items: %w", err))
 	}
 	return nil
 }

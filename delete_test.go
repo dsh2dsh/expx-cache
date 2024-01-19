@@ -2,11 +2,10 @@ package cache
 
 import (
 	"context"
-	"io"
+	"errors"
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 
 	mocks "github.com/dsh2dsh/expx-cache/internal/mocks/cache"
@@ -90,10 +89,16 @@ func TestDeleteFromLocalCache_noCache(t *testing.T) {
 }
 
 func TestDelete_errFromRedis(t *testing.T) {
+	wantErr := errors.New("test error")
+	ctx := context.Background()
+
 	redisClient := mocks.NewMockRedisCache(t)
-	redisClient.EXPECT().Del(mock.Anything, mock.Anything).Return(io.EOF)
+	redisClient.EXPECT().Del(ctx, []string{testKey}).Return(wantErr)
 	cache := New().WithRedisCache(redisClient)
-	require.Error(t, cache.Delete(context.Background(), testKey))
+
+	err := cache.Delete(ctx, testKey)
+	require.ErrorIs(t, err, wantErr)
+	require.ErrorIs(t, err, ErrRedisCache)
 }
 
 func TestCache_Delete_withoutKeys(t *testing.T) {

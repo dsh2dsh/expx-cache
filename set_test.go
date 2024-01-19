@@ -67,7 +67,9 @@ func TestCache_Set_redisErr(t *testing.T) {
 	)
 	rdb.EXPECT().Pipeline().Return(pipe)
 
-	require.ErrorIs(t, cache.Set(ctx, item, item), wantErr)
+	err := cache.Set(ctx, item, item)
+	require.ErrorIs(t, err, wantErr)
+	require.ErrorIs(t, err, ErrRedisCache)
 }
 
 func TestCache_Set_errorCanceled(t *testing.T) {
