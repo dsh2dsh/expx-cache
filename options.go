@@ -21,3 +21,7 @@ func WithMarshalMaxProcs(n int) Option {
 func WithItemMaxProcs(n int) Option {
 	return func(c *Cache) { c.valueProcs = n }
 }
+
+func WithNoErr() Option {
+	return func(c *Cache) { c.errOnce = newErrOnce() }
+}

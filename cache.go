@@ -41,8 +41,9 @@ func New(opts ...Option) *Cache {
 		marshal:    marshal,
 		unmarshal:  unmarshal,
 
-		stats: new(Stats),
-		group: new(singleflight.Group),
+		stats:   new(Stats),
+		group:   new(singleflight.Group),
+		errOnce: newErrOnce(),
 	}
 	return c.applyOptions(opts...)
 }
@@ -64,6 +65,8 @@ type Cache struct {
 	group      *singleflight.Group
 	marshalers *semaphore.Weighted
 	valueProcs int
+
+	errOnce *errOnce
 }
 
 func (self *Cache) applyOptions(opts ...Option) *Cache {
@@ -157,7 +160,21 @@ func (self *Cache) ResolveKey(key string) string {
 }
 
 func (self *Cache) WithItemMaxProcs(n int) *Cache {
-	c := self.New()
-	c.valueProcs = n
-	return c
+	return self.New(WithItemMaxProcs(n))
+}
+
+func (self *Cache) Err() error {
+	return self.errOnce.Err()
+}
+
+func (self *Cache) useRedis() bool {
+	return self.redis != nil && self.Err() == nil
+}
+
+func (self *Cache) redisCacheError(err error) error {
+	return self.errOnce.Once(newRedisCacheError(err))
+}
+
+func (self *Cache) ResetErr() error {
+	return self.errOnce.Reset()
 }
