@@ -34,6 +34,13 @@ func (self *Stats) Stats() Stats {
 	}
 }
 
+func (self *Stats) Merge(s *Stats) {
+	atomic.AddUint64(&self.Hits, s.Hits)
+	atomic.AddUint64(&self.Misses, s.Misses)
+	atomic.AddUint64(&self.LocalHits, s.LocalHits)
+	atomic.AddUint64(&self.LocalMisses, s.LocalMisses)
+}
+
 // Stats returns cache statistics.
 func (self *Cache) Stats() Stats {
 	return self.stats.Stats()

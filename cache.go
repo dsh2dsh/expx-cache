@@ -178,3 +178,15 @@ func (self *Cache) redisCacheError(err error) error {
 func (self *Cache) ResetErr() error {
 	return self.errOnce.Reset()
 }
+
+func (self *Cache) WithLocalStats(fn func(c *Cache) error, opts ...Option,
+) (Stats, error) {
+	stats := Stats{}
+	c := self.New(opts...).WithStats(true)
+	c.stats = &stats
+	if err := fn(c); err != nil {
+		return stats, err
+	}
+	self.stats.Merge(&stats)
+	return stats, nil
+}

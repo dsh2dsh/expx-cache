@@ -820,3 +820,24 @@ func TestCache_Err(t *testing.T) {
 	require.NoError(t, cache.Err())
 	require.NoError(t, cache.ResetErr())
 }
+
+func TestCache_WithLocalStats(t *testing.T) {
+	cache := New()
+	require.NotNil(t, cache)
+
+	stats, err := cache.WithLocalStats(func(c *Cache) error {
+		c.addHit()
+		c.addLocalMiss()
+		return nil
+	})
+	require.NoError(t, err)
+	assert.Equal(t, Stats{Hits: 1, LocalMisses: 1}, stats)
+
+	wantErr := errors.New("test error")
+	_, err = cache.WithLocalStats(func(c *Cache) error {
+		c.addHit()
+		c.addLocalMiss()
+		return wantErr
+	})
+	require.ErrorIs(t, err, wantErr)
+}
