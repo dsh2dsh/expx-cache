@@ -177,6 +177,75 @@ func (_c *MockRedisCache_Set_Call) RunAndReturn(run func(context.Context, int, f
 	return _c
 }
 
+// SetNxGet provides a mock function with given fields: ctx, keySet, value, ttl, keyGet
+func (_m *MockRedisCache) SetNxGet(ctx context.Context, keySet string, value string, ttl time.Duration, keyGet string) (bool, []byte, error) {
+	ret := _m.Called(ctx, keySet, value, ttl, keyGet)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetNxGet")
+	}
+
+	var r0 bool
+	var r1 []byte
+	var r2 error
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, time.Duration, string) (bool, []byte, error)); ok {
+		return rf(ctx, keySet, value, ttl, keyGet)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, time.Duration, string) bool); ok {
+		r0 = rf(ctx, keySet, value, ttl, keyGet)
+	} else {
+		r0 = ret.Get(0).(bool)
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, string, string, time.Duration, string) []byte); ok {
+		r1 = rf(ctx, keySet, value, ttl, keyGet)
+	} else {
+		if ret.Get(1) != nil {
+			r1 = ret.Get(1).([]byte)
+		}
+	}
+
+	if rf, ok := ret.Get(2).(func(context.Context, string, string, time.Duration, string) error); ok {
+		r2 = rf(ctx, keySet, value, ttl, keyGet)
+	} else {
+		r2 = ret.Error(2)
+	}
+
+	return r0, r1, r2
+}
+
+// MockRedisCache_SetNxGet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetNxGet'
+type MockRedisCache_SetNxGet_Call struct {
+	*mock.Call
+}
+
+// SetNxGet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - keySet string
+//   - value string
+//   - ttl time.Duration
+//   - keyGet string
+func (_e *MockRedisCache_Expecter) SetNxGet(ctx interface{}, keySet interface{}, value interface{}, ttl interface{}, keyGet interface{}) *MockRedisCache_SetNxGet_Call {
+	return &MockRedisCache_SetNxGet_Call{Call: _e.mock.On("SetNxGet", ctx, keySet, value, ttl, keyGet)}
+}
+
+func (_c *MockRedisCache_SetNxGet_Call) Run(run func(ctx context.Context, keySet string, value string, ttl time.Duration, keyGet string)) *MockRedisCache_SetNxGet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(time.Duration), args[4].(string))
+	})
+	return _c
+}
+
+func (_c *MockRedisCache_SetNxGet_Call) Return(ok bool, b []byte, err error) *MockRedisCache_SetNxGet_Call {
+	_c.Call.Return(ok, b, err)
+	return _c
+}
+
+func (_c *MockRedisCache_SetNxGet_Call) RunAndReturn(run func(context.Context, string, string, time.Duration, string) (bool, []byte, error)) *MockRedisCache_SetNxGet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // NewMockRedisCache creates a new instance of MockRedisCache. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
 // The first argument is typically a *testing.T value.
 func NewMockRedisCache(t interface {
