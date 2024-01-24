@@ -30,6 +30,7 @@ type RedisCache interface {
 		iter func(itemIdx int) (key string, b []byte, ttl time.Duration)) error
 	SetNxGet(ctx context.Context, keySet, value string, ttl time.Duration,
 		keyGet string) (ok bool, b []byte, err error)
+	Expire(ctx context.Context, key string, ttl time.Duration) (bool, error)
 }
 
 type (

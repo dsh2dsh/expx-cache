@@ -69,6 +69,64 @@ func (_c *MockRedisCache_Del_Call) RunAndReturn(run func(context.Context, []stri
 	return _c
 }
 
+// Expire provides a mock function with given fields: ctx, key, ttl
+func (_m *MockRedisCache) Expire(ctx context.Context, key string, ttl time.Duration) (bool, error) {
+	ret := _m.Called(ctx, key, ttl)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Expire")
+	}
+
+	var r0 bool
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, string, time.Duration) (bool, error)); ok {
+		return rf(ctx, key, ttl)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, string, time.Duration) bool); ok {
+		r0 = rf(ctx, key, ttl)
+	} else {
+		r0 = ret.Get(0).(bool)
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, string, time.Duration) error); ok {
+		r1 = rf(ctx, key, ttl)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// MockRedisCache_Expire_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Expire'
+type MockRedisCache_Expire_Call struct {
+	*mock.Call
+}
+
+// Expire is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - ttl time.Duration
+func (_e *MockRedisCache_Expecter) Expire(ctx interface{}, key interface{}, ttl interface{}) *MockRedisCache_Expire_Call {
+	return &MockRedisCache_Expire_Call{Call: _e.mock.On("Expire", ctx, key, ttl)}
+}
+
+func (_c *MockRedisCache_Expire_Call) Run(run func(ctx context.Context, key string, ttl time.Duration)) *MockRedisCache_Expire_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration))
+	})
+	return _c
+}
+
+func (_c *MockRedisCache_Expire_Call) Return(_a0 bool, _a1 error) *MockRedisCache_Expire_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *MockRedisCache_Expire_Call) RunAndReturn(run func(context.Context, string, time.Duration) (bool, error)) *MockRedisCache_Expire_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Get provides a mock function with given fields: ctx, maxItems, keyIter
 func (_m *MockRedisCache) Get(ctx context.Context, maxItems int, keyIter func(int) string) (func() ([]byte, bool), error) {
 	ret := _m.Called(ctx, maxItems, keyIter)
