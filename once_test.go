@@ -97,13 +97,19 @@ func (self *CacheTestSuite) TestOnce_withValue() {
 	var callCount uint64
 	ctx := context.Background()
 	obj := self.CacheableValue()
-	perform(100, func(int) {
-		got := new(CacheableObject)
+	var wg sync.WaitGroup
+	n := 100
+	wg.Add(n)
+	perform(n, func(int) {
+		var got CacheableObject
 		hit := true
+		wg.Done()
 		err := self.cache.Once(ctx, Item{
 			Key:   testKey,
-			Value: got,
+			Value: &got,
 			Do: func(ctx context.Context) (any, error) {
+				wg.Wait()
+				time.Sleep(100 * time.Millisecond)
 				atomic.AddUint64(&callCount, 1)
 				self.expectCacheMiss()
 				hit = false
@@ -111,7 +117,7 @@ func (self *CacheTestSuite) TestOnce_withValue() {
 			},
 		})
 		self.Require().NoError(err)
-		self.Equal(&obj, got)
+		self.Equal(&obj, &got)
 		if hit && self.cache.statsEnabled {
 			self.stats.localHit()
 		}
@@ -124,13 +130,19 @@ func (self *CacheTestSuite) TestOnce_withPtrNonPtr() {
 	var callCount uint64
 	ctx := context.Background()
 	obj := self.CacheableValue()
-	perform(100, func(int) {
-		got := new(CacheableObject)
+	var wg sync.WaitGroup
+	n := 100
+	wg.Add(n)
+	perform(n, func(int) {
+		var got CacheableObject
 		hit := true
+		wg.Done()
 		err := self.cache.Once(ctx, Item{
 			Key:   testKey,
-			Value: got,
+			Value: &got,
 			Do: func(ctx context.Context) (any, error) {
+				wg.Wait()
+				time.Sleep(100 * time.Millisecond)
 				atomic.AddUint64(&callCount, 1)
 				self.expectCacheMiss()
 				hit = false
@@ -138,7 +150,7 @@ func (self *CacheTestSuite) TestOnce_withPtrNonPtr() {
 			},
 		})
 		self.Require().NoError(err)
-		self.Equal(&obj, got)
+		self.Equal(&obj, &got)
 		if hit && self.cache.statsEnabled {
 			self.stats.localHit()
 		}
@@ -150,13 +162,19 @@ func (self *CacheTestSuite) TestOnce_withPtrNonPtr() {
 func (self *CacheTestSuite) TestOnce_withBool() {
 	var callCount uint64
 	ctx := context.Background()
-	perform(100, func(int) {
+	var wg sync.WaitGroup
+	n := 100
+	wg.Add(n)
+	perform(n, func(int) {
 		var got bool
 		hit := true
+		wg.Done()
 		err := self.cache.Once(ctx, Item{
 			Key:   testKey,
 			Value: &got,
 			Do: func(ctx context.Context) (any, error) {
+				wg.Wait()
+				time.Sleep(100 * time.Millisecond)
 				atomic.AddUint64(&callCount, 1)
 				self.expectCacheMiss()
 				hit = false
@@ -176,11 +194,16 @@ func (self *CacheTestSuite) TestOnce_withBool() {
 func (self *CacheTestSuite) TestOnce_withoutValueAndNil() {
 	var callCount uint64
 	ctx := context.Background()
-	perform(100, func(int) {
+	var wg sync.WaitGroup
+	n := 100
+	wg.Add(n)
+	perform(n, func(int) {
 		hit := true
+		wg.Done()
 		err := self.cache.Once(ctx, Item{
 			Key: testKey,
 			Do: func(ctx context.Context) (any, error) {
+				wg.Wait()
 				time.Sleep(100 * time.Millisecond)
 				atomic.AddUint64(&callCount, 1)
 				self.expectCacheMiss()
@@ -201,10 +224,15 @@ func (self *CacheTestSuite) TestOnce_withoutValueAndErr() {
 	var callCount uint64
 	ctx := context.Background()
 	errStub := errors.New("error stub")
-	perform(100, func(int) {
+	var wg sync.WaitGroup
+	n := 100
+	wg.Add(n)
+	perform(n, func(int) {
+		wg.Done()
 		err := self.cache.Once(ctx, Item{
 			Key: testKey,
 			Do: func(ctx context.Context) (any, error) {
+				wg.Wait()
 				time.Sleep(100 * time.Millisecond)
 				atomic.AddUint64(&callCount, 1)
 				self.expectCacheMiss()
@@ -221,13 +249,16 @@ func (self *CacheTestSuite) TestOnce_doesntCacheErr() {
 	var callCount uint64
 	ctx := context.Background()
 	errStub := errors.New("error stub")
+	var wg sync.WaitGroup
 	do := func(sleep time.Duration) (int, error) {
 		var n int
 		hit := true
+		wg.Done()
 		err := self.cache.Once(ctx, Item{
 			Key:   testKey,
 			Value: &n,
 			Do: func(ctx context.Context) (any, error) {
+				wg.Wait()
 				time.Sleep(sleep)
 				self.expectCacheMiss()
 				hit = false
@@ -246,14 +277,17 @@ func (self *CacheTestSuite) TestOnce_doesntCacheErr() {
 		return n, nil
 	}
 
-	perform(100, func(int) {
+	procs := 100
+	wg.Add(procs)
+	perform(procs, func(int) {
 		n, err := do(100 * time.Millisecond)
 		self.Require().ErrorIs(err, errStub)
 		self.Equal(0, n)
 	})
 
-	perform(100, func(int) {
-		n, err := do(0)
+	wg.Add(procs)
+	perform(procs, func(int) {
+		n, err := do(100 * time.Millisecond)
 		self.Require().NoError(err)
 		self.Equal(42, n)
 	})
