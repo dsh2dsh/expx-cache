@@ -5,7 +5,21 @@ import (
 	"sync"
 )
 
-var ErrRedisCache = &RedisCacheError{error: errors.New("redis cache error")}
+var ErrRedisCache = newRedisCacheError(errors.New("redis cache error"))
+
+func (self *Cache) Err() error {
+	return self.errOnce.Err()
+}
+
+func (self *Cache) redisCacheError(err error) error {
+	return self.errOnce.Once(newRedisCacheError(err))
+}
+
+func (self *Cache) ResetErr() error {
+	return self.errOnce.Reset()
+}
+
+// --------------------------------------------------
 
 func newRedisCacheError(err error) error {
 	return &RedisCacheError{error: err}

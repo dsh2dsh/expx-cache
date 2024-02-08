@@ -71,3 +71,19 @@ func TestWithNoErr(t *testing.T) {
 	require.NoError(t, cache2.Err())
 	require.ErrorIs(t, cache.Err(), wantErr1)
 }
+
+func TestWithLockNotFound(t *testing.T) {
+	const foobar = "foobar"
+	var callCount int
+	cache := New(WithLockNotFound(func(key, value string) error {
+		callCount++
+		assert.Equal(t, testKey, key)
+		assert.Equal(t, foobar, value)
+		return nil
+	}))
+	require.NotNil(t, cache)
+
+	l := cache.lock(cache.ResolveKeyLock(testKey), cache.ResolveKey(testKey))
+	require.NoError(t, l.notFound(testKey, foobar))
+	assert.Equal(t, 1, callCount)
+}

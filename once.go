@@ -11,65 +11,49 @@ import (
 // comes in, the duplicate caller waits for the original to complete and
 // receives the same results.
 func (self *Cache) Once(ctx context.Context, item Item) error {
-	return self.once(ctx, &item, true)
+	return self.once(ctx, &item)
 }
 
-func (self *Cache) once(ctx context.Context, item *Item, autoFix bool) error {
-	b, fromCache, err := self.getSetItemBytesOnce(ctx, item)
-	if err != nil {
-		return err
-	} else if len(b) == 0 {
-		return nil
-	}
-
-	if err := self.unmarshal(b, item.Value); err != nil {
-		if fromCache && autoFix {
-			if err := self.Delete(ctx, item.Key); err != nil {
-				return err
-			}
-			return self.once(ctx, item, false)
-		}
+func (self *Cache) once(ctx context.Context, item *Item) error {
+	b, err := self.getSetItemBytesOnce(ctx, item, self.redisGetSet)
+	if err != nil || len(b) == 0 {
 		return err
 	}
-
-	return nil
+	return self.unmarshal(b, item.Value)
 }
 
-func (self *Cache) getSetItemBytesOnce(
-	ctx context.Context, item *Item,
-) ([]byte, bool, error) {
+func (self *Cache) getSetItemBytesOnce(ctx context.Context, item *Item,
+	redisGetSet func(ctx context.Context, item *Item) ([]byte, error),
+) ([]byte, error) {
 	key := self.ResolveKey(item.Key)
-
-	if self.localCache != nil {
-		b := self.localCache.Get(key)
-		if len(b) > 0 {
+	if self.useLocalCache(item) {
+		if b := self.localCache.Get(key); len(b) != 0 {
 			self.addLocalHit()
-			return b, true, nil
-		}
-		// We don't need double addLocalMiss() here, because getBytes does it.
-	}
-
-	fromCache, localHit := false, true
-	v, err, _ := self.group.Do(key, func() (any, error) {
-		localHit = false
-		b, err := self.getBytes(ctx, item.Key, item.SkipLocalCache)
-		if err == nil && len(b) > 0 {
-			fromCache = true
 			return b, nil
 		}
+	}
 
-		b, err = self.set(ctx, item)
-		if err != nil {
-			return nil, err
+	localMiss := false
+	v, err, _ := self.group.Do(key, func() (any, error) {
+		if self.useLocalCache(item) {
+			self.addLocalMiss()
 		}
-		return b, nil
+		localMiss = true
+		return redisGetSet(ctx, item)
 	})
 
 	if err != nil {
-		return nil, false, fmt.Errorf("do: %w", err)
-	} else if localHit {
+		return nil, fmt.Errorf("group Do: %w", err)
+	} else if !localMiss {
 		self.addLocalHit()
 	}
+	return v.([]byte), nil
+}
 
-	return v.([]byte), fromCache, nil
+func (self *Cache) redisGetSet(ctx context.Context, item *Item) ([]byte, error) {
+	b, err := self.redisGet(ctx, self.ResolveKey(item.Key), item.SkipLocalCache)
+	if err != nil || len(b) != 0 {
+		return b, err
+	}
+	return self.set(ctx, item)
 }

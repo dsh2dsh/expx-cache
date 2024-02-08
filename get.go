@@ -11,13 +11,12 @@ func (self *Cache) Exists(ctx context.Context, key string) (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	return len(b) > 0, nil
+	return len(b) != 0, nil
 }
 
 func (self *Cache) getBytes(ctx context.Context, key string, skipLocalCache bool,
 ) ([]byte, error) {
 	key = self.ResolveKey(key)
-
 	if !skipLocalCache && self.localCache != nil {
 		b := self.localCache.Get(key)
 		if b != nil {
@@ -26,7 +25,11 @@ func (self *Cache) getBytes(ctx context.Context, key string, skipLocalCache bool
 		}
 		self.addLocalMiss()
 	}
+	return self.redisGet(ctx, key, skipLocalCache)
+}
 
+func (self *Cache) redisGet(ctx context.Context, key string, skipLocalCache bool,
+) ([]byte, error) {
 	if !self.useRedis() {
 		return nil, nil
 	}
@@ -37,8 +40,8 @@ func (self *Cache) getBytes(ctx context.Context, key string, skipLocalCache bool
 		return nil, self.redisCacheError(fmt.Errorf("get %q from redis: %w", key, err))
 	}
 
-	b, _ := bytesIter()
-	if len(b) == 0 {
+	b, ok := bytesIter()
+	if !ok || len(b) == 0 {
 		self.addMiss()
 		return nil, nil
 	}
@@ -134,7 +137,7 @@ func (self *Cache) redisGetItems(g *marshalGroup, items []Item) ([]Item, error) 
 		} else {
 			self.addHit()
 			item := &items[nextItem]
-			if self.localCache != nil && !item.SkipLocalCache {
+			if self.useLocalCache(item) {
 				self.localCache.Set(self.ResolveKey(item.Key), b)
 			}
 			if err := g.GoUnmarshal(b, item.Value); err != nil {

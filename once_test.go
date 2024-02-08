@@ -16,32 +16,6 @@ import (
 	mocks "github.com/dsh2dsh/expx-cache/internal/mocks/cache"
 )
 
-func (self *CacheTestSuite) TestOnce_cacheFails() {
-	ctx := context.Background()
-	item := Item{Key: testKey, Value: int64(0)}
-	self.Require().NoError(self.cache.Set(ctx, item))
-
-	var got bool
-	item.Value = &got
-	_, err := self.cache.Get(ctx, item)
-	self.Require().ErrorContains(err, "msgpack: invalid code=d3 decoding bool")
-	self.expectCacheHit()
-
-	item.Do = func(ctx context.Context) (any, error) { return true, nil }
-	self.Require().NoError(self.cache.Once(ctx, item))
-	self.True(got)
-	self.expectCacheHit()
-	self.expectCacheMiss()
-
-	got = false
-	item.Do = nil
-	self.Empty(valueNoError[[]Item](self.T())(self.cache.Get(ctx, item)))
-	self.True(got)
-	self.expectCacheHit()
-
-	self.assertStats()
-}
-
 func (self *CacheTestSuite) TestOnce_funcFails() {
 	ctx := context.Background()
 	wantErr := errors.New("expected error")
@@ -334,28 +308,6 @@ func TestOnce_errUnmarshal(t *testing.T) {
 		},
 	})
 	require.Error(t, err)
-	assert.False(t, got)
-}
-
-func TestOnce_errDelete(t *testing.T) {
-	ctx := context.Background()
-	wantErr := errors.New("test error")
-
-	redisCache := mocks.NewMockRedisCache(t)
-	redisCache.EXPECT().Get(ctx, 1, mock.Anything).Return(
-		makeBytesIter([][]byte{{0x1}}), nil)
-	redisCache.EXPECT().Del(mock.Anything, mock.Anything).Return(wantErr)
-
-	cache := New().WithRedisCache(redisCache)
-	var got bool
-	err := cache.Once(ctx, Item{
-		Key:   testKey,
-		Value: &got,
-		Do: func(ctx context.Context) (any, error) {
-			return int64(0), nil
-		},
-	})
-	require.ErrorIs(t, err, wantErr)
 	assert.False(t, got)
 }
 

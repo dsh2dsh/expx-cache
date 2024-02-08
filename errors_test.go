@@ -8,6 +8,25 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+func TestCache_Err(t *testing.T) {
+	cache := New()
+	require.NotNil(t, cache)
+	require.NoError(t, cache.Err())
+	require.NoError(t, cache.ResetErr())
+
+	wantErr1 := errors.New("test error")
+	require.ErrorIs(t, cache.redisCacheError(wantErr1), wantErr1)
+	require.ErrorIs(t, cache.Err(), wantErr1)
+
+	wantErr2 := errors.New("test error 2")
+	require.ErrorIs(t, cache.redisCacheError(wantErr2), wantErr1)
+	require.ErrorIs(t, cache.Err(), wantErr1)
+
+	require.ErrorIs(t, cache.ResetErr(), wantErr1)
+	require.NoError(t, cache.Err())
+	require.NoError(t, cache.ResetErr())
+}
+
 func TestErrOnce(t *testing.T) {
 	errOnce := newErrOnce()
 	require.NoError(t, errOnce.Err())

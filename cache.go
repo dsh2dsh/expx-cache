@@ -3,7 +3,6 @@ package cache
 
 import (
 	"context"
-	"runtime"
 	"time"
 
 	"github.com/redis/go-redis/v9"
@@ -59,6 +58,7 @@ type Cache struct {
 
 	defaultTTL time.Duration
 	namespace  string
+	requestId  string
 
 	marshal    MarshalFunc
 	unmarshal  UnmarshalFunc
@@ -71,6 +71,9 @@ type Cache struct {
 	marshalers *semaphore.Weighted
 	valueProcs int
 
+	cfgLock      cfgLock
+	lockNotFound func(key, value string) error
+
 	errOnce *errOnce
 }
 
@@ -80,7 +83,17 @@ func (self *Cache) applyOptions(opts ...Option) *Cache {
 	}
 
 	if self.marshalers == nil {
-		self.marshalers = semaphore.NewWeighted(int64(runtime.GOMAXPROCS(0)))
+		WithMarshalMaxProcs(0)(self)
+	}
+
+	if !self.cfgLock.valid {
+		WithLock(lockTTL, lockTick, func() LockWaitIter {
+			return NewLockWaitIter(lockPoll[0], lockMinKeep, lockPoll[1])
+		})(self)
+	}
+
+	if self.lockNotFound == nil {
+		WithLockNotFound(func(key, value string) error { return nil })(self)
 	}
 
 	return self
@@ -168,20 +181,8 @@ func (self *Cache) WithItemMaxProcs(n int) *Cache {
 	return self.New(WithItemMaxProcs(n))
 }
 
-func (self *Cache) Err() error {
-	return self.errOnce.Err()
-}
-
 func (self *Cache) useRedis() bool {
 	return self.redis != nil && self.Err() == nil
-}
-
-func (self *Cache) redisCacheError(err error) error {
-	return self.errOnce.Once(newRedisCacheError(err))
-}
-
-func (self *Cache) ResetErr() error {
-	return self.errOnce.Reset()
 }
 
 func (self *Cache) WithLocalStats(fn func(c *Cache) error, opts ...Option,
@@ -194,4 +195,13 @@ func (self *Cache) WithLocalStats(fn func(c *Cache) error, opts ...Option,
 	}
 	self.stats.Merge(&stats)
 	return stats, nil
+}
+
+func (self *Cache) WithRequestId(id string) *Cache {
+	self.requestId = id
+	return self
+}
+
+func (self *Cache) useLocalCache(item *Item) bool {
+	return self.localCache != nil && !item.SkipLocalCache
 }

@@ -61,7 +61,7 @@ type CacheTestSuite struct {
 	rdb   redis.Cmdable
 	stats *Stats
 
-	newCache func() *Cache
+	newCache func(opts ...Option) *Cache
 }
 
 func (self *CacheTestSuite) SetupSuite() {
@@ -127,6 +127,10 @@ func (self *CacheTestSuite) assertStats() {
 }
 
 // --------------------------------------------------
+
+func (self *CacheTestSuite) needsRedis() {
+	skipRedisTests(self.T(), self.T().Name(), true, self.rdb != nil)
+}
 
 func (self *CacheTestSuite) TestCache_GetSet_nil() {
 	ctx := context.Background()
@@ -358,20 +362,6 @@ func (self *CacheTestSuite) TestCache_WithKeyWrapper() {
 				assert.Equal(t, self.CacheableValue(), got)
 			},
 		},
-		{
-			name: "Once with Unmarshal error",
-			assert: func(t *testing.T) {
-				var got bool
-				require.NoError(t, cache.Once(ctx, Item{
-					Key:   testKey,
-					Value: &got,
-					Do: func(ctx context.Context) (any, error) {
-						return true, nil
-					},
-				}), "did Once() delete wrong cache key after Unmarshal() error?")
-				assert.True(t, got)
-			},
-		},
 	}
 
 	for _, tt := range tests {
@@ -551,8 +541,8 @@ func suiteRunSubTests(t *testing.T, rdb redis.Cmdable,
 		) {
 			suite.Run(t, &CacheTestSuite{
 				rdb: rdb,
-				newCache: func() *Cache {
-					return cfg(t, New())
+				newCache: func(opts ...Option) *Cache {
+					return cfg(t, New(opts...))
 				},
 			})
 		}, subTests)
@@ -802,25 +792,6 @@ func TestCache_WithNamespace(t *testing.T) {
 			}).ResolveKey(foobar))
 }
 
-func TestCache_Err(t *testing.T) {
-	cache := New()
-	require.NotNil(t, cache)
-	require.NoError(t, cache.Err())
-	require.NoError(t, cache.ResetErr())
-
-	wantErr1 := errors.New("test error")
-	require.ErrorIs(t, cache.redisCacheError(wantErr1), wantErr1)
-	require.ErrorIs(t, cache.Err(), wantErr1)
-
-	wantErr2 := errors.New("test error 2")
-	require.ErrorIs(t, cache.redisCacheError(wantErr2), wantErr1)
-	require.ErrorIs(t, cache.Err(), wantErr1)
-
-	require.ErrorIs(t, cache.ResetErr(), wantErr1)
-	require.NoError(t, cache.Err())
-	require.NoError(t, cache.ResetErr())
-}
-
 func TestCache_WithLocalStats(t *testing.T) {
 	cache := New()
 	require.NotNil(t, cache)
@@ -840,4 +811,10 @@ func TestCache_WithLocalStats(t *testing.T) {
 		return wantErr
 	})
 	require.ErrorIs(t, err, wantErr)
+}
+
+func TestCache_WithRequestId(t *testing.T) {
+	const foobar = "foobar"
+	c := New().WithRequestId(foobar)
+	assert.Equal(t, foobar, c.requestId)
 }

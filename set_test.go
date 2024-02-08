@@ -44,11 +44,13 @@ func TestCache_Set_redisErr(t *testing.T) {
 
 	rdb := redisMocks.NewMockCmdable(t)
 	rdb.EXPECT().Set(ctx, testKey, mock.Anything, mock.Anything).Return(
-		redis.NewStatusResult("", wantErr))
+		redis.NewStatusResult("", wantErr)).Once()
 
 	cache := New().WithRedis(rdb)
 	item := Item{Key: testKey, Value: "foobar"}
 	require.ErrorIs(t, cache.Set(ctx, item), wantErr)
+	require.ErrorIs(t, cache.Err(), ErrRedisCache)
+	require.ErrorIs(t, cache.Err(), wantErr)
 
 	pipe := redisMocks.NewMockPipeliner(t)
 	var cmds []redis.Cmder
@@ -67,9 +69,12 @@ func TestCache_Set_redisErr(t *testing.T) {
 	)
 	rdb.EXPECT().Pipeline().Return(pipe)
 
+	cache = New().WithRedis(rdb)
 	err := cache.Set(ctx, item, item)
 	require.ErrorIs(t, err, wantErr)
 	require.ErrorIs(t, err, ErrRedisCache)
+	require.ErrorIs(t, cache.Err(), wantErr)
+	require.ErrorIs(t, cache.Err(), ErrRedisCache)
 }
 
 func TestCache_Set_errorCanceled(t *testing.T) {
