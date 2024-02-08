@@ -366,3 +366,72 @@ func TestCache_Once_withKeyWrapper(t *testing.T) {
 	require.NoError(t, err, "Once() uses wrong key for Do()")
 	assert.True(t, shared)
 }
+
+func TestCache_Once_withErrRedisCache(t *testing.T) {
+	const foobar = "foobar"
+	ctx := context.Background()
+	testErr := errors.New("test error")
+
+	tests := []struct {
+		name   string
+		cache  func() *Cache
+		itemDo func()
+		err    error
+	}{
+		{
+			name: "with Err set",
+			cache: func() *Cache {
+				redisCache := mocks.NewMockRedisCache(t)
+				cache := New().WithRedisCache(redisCache)
+				_ = cache.redisCacheError(testErr)
+				return cache
+			},
+			err: ErrRedisCache,
+		},
+		{
+			name: "redisGet ErrRedisCache",
+			cache: func() *Cache {
+				redisCache := mocks.NewMockRedisCache(t)
+				cache := New().WithRedisCache(redisCache)
+				redisCache.EXPECT().Get(ctx, 1, mock.Anything).Return(nil, testErr)
+				return cache
+			},
+			err: ErrRedisCache,
+		},
+		{
+			name: "redisSet ErrRedisCache",
+			cache: func() *Cache {
+				localCache := mocks.NewMockLocalCache(t)
+				localCache.EXPECT().Get(testKey).Return(nil)
+				localCache.EXPECT().Set(testKey, []byte(foobar))
+				redisCache := mocks.NewMockRedisCache(t)
+				cache := New().WithLocalCache(localCache).WithRedisCache(redisCache)
+				redisCache.EXPECT().Get(ctx, 1, mock.Anything).Return(
+					makeBytesIter([][]byte{nil}), nil)
+				redisCache.EXPECT().Set(ctx, 1, mock.Anything).Return(testErr)
+				return cache
+			},
+			err: ErrRedisCache,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			cache := tt.cache()
+			var got string
+			err := cache.Once(ctx, Item{
+				Key:   testKey,
+				Value: &got,
+				Do: func(ctx context.Context) (any, error) {
+					if tt.itemDo != nil {
+						tt.itemDo()
+					}
+					return foobar, nil
+				},
+			})
+			require.NoError(t, err)
+			require.ErrorIs(t, cache.Err(), tt.err)
+			assert.Equal(t, foobar, got)
+		})
+	}
+}
