@@ -63,7 +63,7 @@ func (self *CacheTestSuite) TestOnceLock() {
 			var got2 CacheableObject
 			go func() {
 				<-sig
-				self.Require().NoError(cache2.OnceLock(ctx, Item{
+				self.NoError(cache2.OnceLock(ctx, Item{
 					Key:   testKey,
 					Value: &got2,
 					Do: func(ctx context.Context) (any, error) {
