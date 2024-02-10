@@ -6,7 +6,7 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
-	mathRand "math/rand"
+	mathRand "math/rand/v2"
 	"strings"
 	"time"
 )
@@ -33,7 +33,7 @@ func NewLockWaitIter(minTime time.Duration, keepMin int, maxTime time.Duration,
 			if value < maxTime {
 				value = min(value*2, maxTime)
 			}
-			return minTime + time.Duration(mathRand.Int63n(int64(value-minTime)+1))
+			return minTime + mathRand.N(value-minTime+1)
 		}
 		return value
 	}

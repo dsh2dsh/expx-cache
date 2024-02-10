@@ -3,7 +3,7 @@ package local
 import (
 	"context"
 	"fmt"
-	"math/rand"
+	"math/rand/v2"
 	"testing"
 	"time"
 
@@ -66,7 +66,7 @@ loop:
 			// this is expected
 			break loop
 		default:
-			i := rand.Intn(size) //nolint:gosec // we don't need security rand here
+			i := rand.N(size)
 			key := keyName(i)
 
 			b := mycache.Get(key)

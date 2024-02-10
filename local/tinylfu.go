@@ -1,7 +1,7 @@
 package local
 
 import (
-	"math/rand"
+	"math/rand/v2"
 	"sync"
 	"time"
 
@@ -48,7 +48,7 @@ func (self *TinyLFU) Set(key string, b []byte) {
 	ttl := self.ttl
 	//nolint:gosec // I think weak rand is ok here
 	if self.offset > 0 {
-		ttl += time.Duration(rand.Int63n(int64(self.offset)))
+		ttl += rand.N(self.offset)
 	}
 
 	self.mu.Lock()
