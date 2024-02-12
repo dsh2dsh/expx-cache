@@ -195,9 +195,9 @@ func (self *CacheTestSuite) TestCache_GetSet_bytesAsIs() {
 
 func (self *CacheTestSuite) TestCache_setGetItems() {
 	const maxItems = 21
-	allKeys := make([]string, maxItems)
-	allValues := make([]CacheableObject, maxItems)
-	allItems := make([]Item, maxItems)
+	var allKeys [maxItems]string
+	var allValues [maxItems]CacheableObject
+	var allItems [maxItems]Item
 
 	for i := 0; i < maxItems; i++ {
 		key := fmt.Sprintf("key-%00d", i)
@@ -207,46 +207,43 @@ func (self *CacheTestSuite) TestCache_setGetItems() {
 	}
 
 	ctx := context.Background()
-	self.Require().NoError(self.cache.Set(ctx, allItems...))
+	self.Require().NoError(self.cache.Set(ctx, allItems[:]...))
 
-	gotValues := make([]CacheableObject, maxItems)
+	var gotValues [maxItems]CacheableObject
 	for i := range allItems {
 		item := &allItems[i]
 		item.Value = &gotValues[i]
 		self.expectCacheHit()
 	}
-	missed := valueNoError[[]Item](self.T())(self.cache.Get(ctx, allItems...))
+	missed := valueNoError[[]Item](self.T())(self.cache.Get(ctx, allItems[:]...))
 	for range missed {
 		self.expectCacheMiss()
 	}
 	self.Equal(allValues, gotValues)
 	self.Empty(missed)
 
-	self.Require().NoError(self.cache.Delete(ctx, allKeys...))
+	self.Require().NoError(self.cache.Delete(ctx, allKeys[:]...))
 
-	clear(gotValues)
-	expectedValues := make([]CacheableObject, maxItems)
-	missed = valueNoError[[]Item](self.T())(self.cache.Get(ctx, allItems...))
+	clear(gotValues[:])
+	var expectedValues [maxItems]CacheableObject
+	missed = valueNoError[[]Item](self.T())(self.cache.Get(ctx, allItems[:]...))
 	for range missed {
 		self.expectCacheMiss()
 	}
 	self.Equal(expectedValues, gotValues)
-	self.Equal(allItems, missed)
+	self.Equal(allItems[:], missed)
 
 	self.assertStats()
 }
 
 func (self *CacheTestSuite) TestCache_GetSet() {
-	if testing.Short() {
-		self.T().Skip("skipping in short mode")
-	}
+	const maxItems = 21
+	var allKeys [maxItems]string
+	var allValues [maxItems]CacheableObject
+	var gotValues [maxItems]CacheableObject
 
-	maxItems := 21
-	allKeys := make([]string, maxItems)
-	allValues := make([]CacheableObject, maxItems)
-
-	allItems := make([]Item, maxItems)
-	var callCount uint64
+	var allItems [maxItems]Item
+	var callCount uint32
 	for i := 0; i < maxItems; i++ {
 		i := i
 		key := fmt.Sprintf("key-%00d", i)
@@ -254,28 +251,27 @@ func (self *CacheTestSuite) TestCache_GetSet() {
 		allValues[i] = CacheableObject{Str: key, Num: i}
 		allItems[i] = Item{
 			Key:   key,
-			Value: &allValues[i],
+			Value: &gotValues[i],
 			Do: func(ctx context.Context) (any, error) {
-				atomic.AddUint64(&callCount, 1)
+				atomic.AddUint32(&callCount, 1)
 				return &allValues[i], nil
 			},
 		}
+		self.expectCacheMiss()
 	}
 
 	ctx := context.Background()
-	self.Require().NoError(self.cache.GetSet(ctx, allItems...))
-	self.Equal(uint64(maxItems), callCount)
+	self.Require().NoError(self.cache.GetSet(ctx, allItems[:]...))
+	self.Equal(uint32(maxItems), callCount)
+	self.Equal(allValues, gotValues)
 
-	callCount = 0
-	gotValues := make([]CacheableObject, maxItems)
-	for i := range allItems {
-		item := &allItems[i]
-		item.Value = &gotValues[i]
-		self.expectCacheMiss()
+	clear(gotValues[:])
+	for range allItems {
 		self.expectCacheHit()
 	}
-	self.Require().NoError(self.cache.GetSet(ctx, allItems...))
-	self.Equal(uint64(0), callCount)
+	callCount = 0
+	self.Require().NoError(self.cache.GetSet(ctx, allItems[:]...))
+	self.Equal(uint32(0), callCount)
 	self.Equal(allValues, gotValues)
 
 	self.assertStats()

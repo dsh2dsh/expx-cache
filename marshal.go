@@ -24,23 +24,50 @@ func (self *Cache) Unmarshal(b []byte, value any) error {
 	return self.unmarshal(b, value)
 }
 
-func (self *Cache) marshalItems(ctx context.Context, items []Item) ([][]byte, error) {
+func (self *Cache) marshalItems(ctx context.Context, items []Item,
+) ([][]byte, error) {
 	g := self.marshalGroup(ctx)
 	bytes := make([][]byte, len(items))
-
-	const errMsg = "failed marshal items: %w"
+	var err error
 	for i := range items {
 		if g.Canceled() {
-			return nil, fmt.Errorf(errMsg, g.Cause())
+			err = g.Cause()
+			break
 		}
 		i := i
 		g.GoMarshal(&items[i], func(b []byte) { bytes[i] = b })
 	}
 
-	if err := g.Wait(); err != nil {
+	const errMsg = "failed marshal items: %w"
+	if err2 := g.Wait(); err2 != nil {
+		return nil, fmt.Errorf(errMsg, err2)
+	} else if err != nil {
 		return nil, fmt.Errorf(errMsg, err)
 	}
 	return bytes, nil
+}
+
+func (self *Cache) unmarshalItems(ctx context.Context, bytes [][]byte,
+	items []Item,
+) (err error) {
+	g := self.unmarshalGroup(ctx)
+	for i := range items {
+		if g.Canceled() {
+			err = g.Cause()
+			break
+		}
+		if err = g.GoUnmarshal(bytes[i], items[i].Value); err != nil {
+			break
+		}
+	}
+
+	const errMsg = "failed unmarshal items: %w"
+	if err2 := g.Wait(); err2 != nil {
+		err = fmt.Errorf(errMsg, err2)
+	} else if err != nil {
+		err = fmt.Errorf(errMsg, err)
+	}
+	return
 }
 
 // --------------------------------------------------

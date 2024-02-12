@@ -3,6 +3,7 @@ package cache
 import (
 	"context"
 	"errors"
+	"strconv"
 	"testing"
 	"time"
 
@@ -12,7 +13,9 @@ import (
 	"github.com/stretchr/testify/require"
 
 	cacheMocks "github.com/dsh2dsh/expx-cache/internal/mocks/cache"
+	mocks "github.com/dsh2dsh/expx-cache/internal/mocks/cache"
 	redisMocks "github.com/dsh2dsh/expx-cache/internal/mocks/redis"
+	"github.com/dsh2dsh/expx-cache/redis/classic"
 )
 
 func TestCache_Get_withoutCache(t *testing.T) {
@@ -263,4 +266,204 @@ func TestCache_Get_redisGetItemsCanceled(t *testing.T) {
 	cancel()
 	_, err := cache.Get(ctx, item, item)
 	require.ErrorIs(t, err, context.Canceled)
+}
+
+func TestCache_GetSet_withErrRedisCache(t *testing.T) {
+	const testKey0, testKey1 = testKey + "0", testKey + "1"
+	const foobar, foobaz = "foobar", "foobaz"
+
+	ctx := context.Background()
+	testErr := errors.New("test error")
+	values1 := []string{foobar}
+	values2 := []string{foobar, foobaz}
+
+	tests := []struct {
+		name   string
+		cache  func() *Cache
+		err    error
+		values []string
+	}{
+		{
+			name: "with Err set",
+			cache: func() *Cache {
+				redisCache := mocks.NewMockRedisCache(t)
+				cache := New().WithRedisCache(redisCache)
+				_ = cache.redisCacheError(testErr)
+				return cache
+			},
+			err:    ErrRedisCache,
+			values: values1,
+		},
+		{
+			name: "with Err set: 2 items",
+			cache: func() *Cache {
+				redisCache := mocks.NewMockRedisCache(t)
+				cache := New().WithRedisCache(redisCache)
+				_ = cache.redisCacheError(testErr)
+				return cache
+			},
+			err:    ErrRedisCache,
+			values: values2,
+		},
+		{
+			name: "Get ErrRedisCache",
+			cache: func() *Cache {
+				redisCache := mocks.NewMockRedisCache(t)
+				cache := New().WithRedisCache(redisCache)
+				redisCache.EXPECT().Get(ctx, 1, mock.Anything).Return(nil, testErr)
+				return cache
+			},
+			err:    ErrRedisCache,
+			values: values1,
+		},
+		{
+			name: "Get ErrRedisCache: 2 items",
+			cache: func() *Cache {
+				redisCache := mocks.NewMockRedisCache(t)
+				cache := New().WithRedisCache(redisCache)
+				redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).
+					Return(nil, testErr)
+				return cache
+			},
+			err:    ErrRedisCache,
+			values: values2,
+		},
+		{
+			name: "set ErrRedisCache",
+			cache: func() *Cache {
+				localCache := mocks.NewMockLocalCache(t)
+				localCache.EXPECT().Get(testKey0).Return(nil)
+				localCache.EXPECT().Set(testKey0, []byte(foobar))
+				redisCache := mocks.NewMockRedisCache(t)
+				cache := New().WithLocalCache(localCache).WithRedisCache(redisCache)
+				redisCache.EXPECT().Get(ctx, 1, mock.Anything).Return(
+					makeBytesIter([][]byte{nil}), nil)
+				redisCache.EXPECT().Set(ctx, 1, mock.Anything).Return(testErr)
+				return cache
+			},
+			err:    ErrRedisCache,
+			values: values1,
+		},
+		{
+			name: "set ErrRedisCache: 2 items",
+			cache: func() *Cache {
+				localCache := mocks.NewMockLocalCache(t)
+				localCache.EXPECT().Get(testKey0).Return(nil)
+				localCache.EXPECT().Get(testKey1).Return(nil)
+				localCache.EXPECT().Set(testKey0, []byte(foobar))
+				localCache.EXPECT().Set(testKey1, []byte(foobaz))
+				redisCache := mocks.NewMockRedisCache(t)
+				cache := New().WithLocalCache(localCache).WithRedisCache(redisCache)
+				redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).Return(
+					makeBytesIter([][]byte{nil, nil}), nil)
+				redisCache.EXPECT().Set(ctx, 2, mock.Anything).Return(testErr)
+				return cache
+			},
+			err:    ErrRedisCache,
+			values: values2,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			items := make([]Item, len(tt.values))
+			got := make([]string, len(tt.values))
+			for i, v := range tt.values {
+				i, v := i, v
+				items[i] = Item{
+					Key:   testKey + strconv.Itoa(i),
+					Value: &got[i],
+					Do: func(ctx context.Context) (any, error) {
+						return v, nil
+					},
+				}
+			}
+			cache := tt.cache()
+			err := cache.GetSet(ctx, items...)
+			require.NoError(t, err)
+			require.ErrorIs(t, cache.Err(), tt.err)
+			assert.Equal(t, tt.values, got)
+		})
+	}
+}
+
+func TestCache_GetSet_itemDoNil(t *testing.T) {
+	ctx := context.Background()
+
+	tests := []struct {
+		name  string
+		cache func() *Cache
+		items int
+	}{
+		{
+			name: "1 item",
+			cache: func() *Cache {
+				redisCache := mocks.NewMockRedisCache(t)
+				redisCache.EXPECT().Get(ctx, 1, mock.Anything).Return(
+					makeBytesIter([][]byte{nil}), nil)
+				return New().WithRedisCache(redisCache)
+			},
+			items: 1,
+		},
+		{
+			name: "2 items",
+			cache: func() *Cache {
+				redisCache := mocks.NewMockRedisCache(t)
+				redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).Return(
+					makeBytesIter([][]byte{nil, nil}), nil)
+				redisCache.EXPECT().Set(ctx, 2, mock.Anything).RunAndReturn(
+					func(ctx context.Context, maxItems int,
+						iter func(itemIdx int) (key string, b []byte, ttl time.Duration),
+					) error {
+						pipe := redisMocks.NewMockPipeliner(t)
+						pipe.EXPECT().Len().Return(0)
+						pipe.EXPECT().Exec(ctx).Return([]redis.Cmder{}, nil)
+						rdb := redisMocks.NewMockCmdable(t)
+						rdb.EXPECT().Pipeline().Return(pipe)
+						redisCache := classic.New(rdb)
+						return redisCache.Set(ctx, maxItems, iter)
+					})
+				return New().WithRedisCache(redisCache)
+			},
+			items: 2,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			cache := tt.cache()
+			items := make([]Item, tt.items)
+			want := make([]string, tt.items)
+			got := make([]string, tt.items)
+			for i := 0; i < tt.items; i++ {
+				items[i] = Item{
+					Key:   testKey + strconv.Itoa(i),
+					Value: &got[i],
+					Do: func(ctx context.Context) (any, error) {
+						return nil, nil
+					},
+				}
+			}
+			require.NoError(t, cache.GetSet(ctx, items...))
+			assert.Equal(t, want, got)
+		})
+	}
+}
+
+func TestCache_GetSet_marshalErr(t *testing.T) {
+	redisCache := mocks.NewMockRedisCache(t)
+	redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).Return(
+		makeBytesIter([][]byte{nil, nil}), nil)
+	cache := New().WithRedisCache(redisCache)
+
+	ctx := context.Background()
+	testErr := errors.New("test error")
+	err := cache.GetSet(ctx, Item{
+		Key: testKey + "0",
+		Do:  func(ctx context.Context) (any, error) { return nil, testErr },
+	}, Item{
+		Key: testKey + "1",
+		Do:  func(ctx context.Context) (any, error) { return nil, testErr },
+	})
+	require.ErrorIs(t, err, testErr)
 }

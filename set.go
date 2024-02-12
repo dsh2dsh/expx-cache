@@ -12,7 +12,8 @@ func (self *Cache) Set(ctx context.Context, items ...Item) error {
 		_, err := self.set(ctx, &items[0])
 		return err
 	}
-	return self.setItems(ctx, items)
+	_, err := self.setItems(ctx, items)
+	return err
 }
 
 func (self *Cache) set(ctx context.Context, item *Item) ([]byte, error) {
@@ -49,10 +50,11 @@ func (self *Cache) redisSet(ctx context.Context, item *Item, b []byte,
 	return nil
 }
 
-func (self *Cache) setItems(ctx context.Context, items []Item) error {
+func (self *Cache) setItems(ctx context.Context, items []Item,
+) ([][]byte, error) {
 	bytes, err := self.marshalItems(ctx, items)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	useLocal := self.localCache != nil
@@ -69,7 +71,7 @@ func (self *Cache) setItems(ctx context.Context, items []Item) error {
 	case self.useRedis():
 		err = self.redisSetItems(ctx, items, bytes)
 	}
-	return err
+	return bytes, err
 }
 
 func (self *Cache) localSetItems(items []Item, bytes [][]byte) {
