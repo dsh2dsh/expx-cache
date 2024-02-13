@@ -101,7 +101,7 @@ func TestCache_Get_errorCanceled(t *testing.T) {
 		cancel()
 	}()
 
-	close(sig)
+	sig <- struct{}{}
 	missed, err := cache.Get(ctx, item, item)
 	require.ErrorIs(t, err, context.Canceled)
 	assert.Nil(t, missed)
@@ -199,7 +199,7 @@ func TestCache_GetSet_errorGetCanceled(t *testing.T) {
 		cancel()
 	}()
 
-	close(sig)
+	sig <- struct{}{}
 	require.ErrorIs(t, cache.GetSet(ctx, item, item), context.Canceled)
 }
 
@@ -229,7 +229,7 @@ func TestCache_Get_errorRedisCanceled(t *testing.T) {
 
 	got := CacheableObject{}
 	item := Item{Key: testKey, Value: &got}
-	close(sig)
+	sig <- struct{}{}
 	missed, err := cache.Get(ctx, item, item)
 	require.ErrorIs(t, err, context.Canceled)
 	assert.Nil(t, missed)
