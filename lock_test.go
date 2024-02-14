@@ -470,7 +470,7 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 				redisCache := mocks.NewMockRedisCache(t)
 				cache := New().WithRedisCache(redisCache)
 				redisCache.EXPECT().
-					SetNxGet(ctx, cache.ResolveKeyLock(testKey), mock.Anything, lockTTL,
+					LockGet(ctx, cache.ResolveKeyLock(testKey), mock.Anything, lockTTL,
 						testKey).
 					Return(false, nil, testErr)
 				return cache
@@ -483,10 +483,10 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 				redisCache := mocks.NewMockRedisCache(t)
 				cache := New().WithRedisCache(redisCache)
 				redisCache.EXPECT().
-					SetNxGet(ctx, cache.ResolveKeyLock(testKey), mock.Anything, lockTTL,
+					LockGet(ctx, cache.ResolveKeyLock(testKey), mock.Anything, lockTTL,
 						testKey).
 					Return(true, []byte(foobar), nil)
-				redisCache.EXPECT().DeleteWithValue(ctx, cache.ResolveKeyLock(testKey),
+				redisCache.EXPECT().Unlock(ctx, cache.ResolveKeyLock(testKey),
 					mock.Anything).
 					Return(false, testErr)
 				return cache
@@ -502,10 +502,10 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 				redisCache := mocks.NewMockRedisCache(t)
 				cache := New().WithLocalCache(localCache).WithRedisCache(redisCache)
 				redisCache.EXPECT().
-					SetNxGet(ctx, cache.ResolveKeyLock(testKey), mock.Anything, lockTTL,
+					LockGet(ctx, cache.ResolveKeyLock(testKey), mock.Anything, lockTTL,
 						testKey).
 					Return(true, []byte(foobar), nil)
-				redisCache.EXPECT().DeleteWithValue(ctx, cache.ResolveKeyLock(testKey),
+				redisCache.EXPECT().Unlock(ctx, cache.ResolveKeyLock(testKey),
 					mock.Anything).
 					Return(false, nil)
 				return cache
@@ -517,7 +517,7 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 				redisCache := mocks.NewMockRedisCache(t)
 				cache := New().WithRedisCache(redisCache)
 				redisCache.EXPECT().
-					SetNxGet(ctx, cache.ResolveKeyLock(testKey), mock.Anything, lockTTL,
+					LockGet(ctx, cache.ResolveKeyLock(testKey), mock.Anything, lockTTL,
 						testKey).
 					Return(true, nil, nil)
 				redisCache.EXPECT().Set(ctx, 1, mock.Anything).Return(testErr)
@@ -531,7 +531,7 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 				redisCache := mocks.NewMockRedisCache(t)
 				cache := New().WithRedisCache(redisCache)
 				redisCache.EXPECT().
-					SetNxGet(ctx, cache.ResolveKeyLock(testKey), mock.Anything, lockTTL,
+					LockGet(ctx, cache.ResolveKeyLock(testKey), mock.Anything, lockTTL,
 						testKey).
 					Return(true, nil, nil)
 				redisCache.EXPECT().
@@ -548,12 +548,12 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 				redisCache := mocks.NewMockRedisCache(t)
 				cache := New().WithRedisCache(redisCache)
 				redisCache.EXPECT().
-					SetNxGet(ctx, cache.ResolveKeyLock(testKey), mock.Anything, lockTTL,
+					LockGet(ctx, cache.ResolveKeyLock(testKey), mock.Anything, lockTTL,
 						testKey).
 					Return(true, nil, nil)
 				redisCache.EXPECT().Set(ctx, 1, mock.Anything).Return(nil)
 				redisCache.EXPECT().
-					DeleteWithValue(ctx, cache.ResolveKeyLock(testKey), mock.Anything).
+					Unlock(ctx, cache.ResolveKeyLock(testKey), mock.Anything).
 					Return(false, nil)
 				return cache
 			},
@@ -564,7 +564,7 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 				redisCache := mocks.NewMockRedisCache(t)
 				cache := New().WithRedisCache(redisCache)
 				redisCache.EXPECT().
-					SetNxGet(ctx, cache.ResolveKeyLock(testKey), mock.Anything, lockTTL,
+					LockGet(ctx, cache.ResolveKeyLock(testKey), mock.Anything, lockTTL,
 						testKey).
 					Return(true, nil, nil)
 				redisCache.EXPECT().
@@ -572,7 +572,7 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 					Return(false, nil)
 				redisCache.EXPECT().Set(ctx, 1, mock.Anything).Return(nil)
 				redisCache.EXPECT().
-					DeleteWithValue(ctx, cache.ResolveKeyLock(testKey), mock.Anything).
+					Unlock(ctx, cache.ResolveKeyLock(testKey), mock.Anything).
 					Return(false, nil)
 				return cache
 			},

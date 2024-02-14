@@ -181,7 +181,7 @@ func (self *lock) lockGet(ctx context.Context, ttl time.Duration,
 	waitIter LockWaitIter,
 ) (ok bool, b []byte, err error) {
 	done := func() bool {
-		ok, b, err = self.setNxGet(ctx, ttl)
+		ok, b, err = self.redisLockGet(ctx, ttl)
 		return err != nil || ok || b != nil
 	}
 	if done() {
@@ -209,10 +209,9 @@ func (self *lock) lockGet(ctx context.Context, ttl time.Duration,
 	}
 }
 
-func (self *lock) setNxGet(ctx context.Context, ttl time.Duration,
+func (self *lock) redisLockGet(ctx context.Context, ttl time.Duration,
 ) (ok bool, b []byte, err error) {
-	ok, b, err = self.redis.SetNxGet(ctx, self.keyLock, self.value, ttl,
-		self.keyGet)
+	ok, b, err = self.redis.LockGet(ctx, self.keyLock, self.value, ttl, self.keyGet)
 	if err != nil {
 		err = self.redisCacheError(fmt.Errorf("lock get: %w", err))
 	}
@@ -223,7 +222,7 @@ func (self *lock) release(ctx context.Context) error {
 	if self.value == "" {
 		return fmt.Errorf("release lock %q: empty value", self.keyLock)
 	}
-	ok, err := self.redis.DeleteWithValue(ctx, self.keyLock, self.value)
+	ok, err := self.redis.Unlock(ctx, self.keyLock, self.value)
 	if err != nil {
 		return self.redisCacheError(fmt.Errorf("release lock %q: %w", self.keyLock, err))
 	} else if !ok {
