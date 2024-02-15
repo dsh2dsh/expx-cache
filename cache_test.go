@@ -17,7 +17,7 @@ import (
 	"github.com/stretchr/testify/suite"
 
 	"github.com/dsh2dsh/expx-cache/local"
-	"github.com/dsh2dsh/expx-cache/redis/classic"
+	cacheRedis "github.com/dsh2dsh/expx-cache/redis"
 )
 
 const (
@@ -58,7 +58,7 @@ type CacheTestSuite struct {
 	suite.Suite
 
 	cache *Cache
-	rdb   redis.Cmdable
+	rdb   cacheRedis.Cmdable
 	stats *Stats
 
 	newCache func(opts ...Option) *Cache
@@ -452,27 +452,27 @@ func TestCacheSuite(t *testing.T) {
 		name       string
 		needsLocal bool
 		needsRedis bool
-		subTests   func(rdb redis.Cmdable) []cacheSubTest
+		subTests   func(rdb cacheRedis.Cmdable) []cacheSubTest
 	}{
 		{
 			name:       "LocalCache and RedisCache",
 			needsLocal: true,
 			needsRedis: true,
-			subTests: func(rdb redis.Cmdable) []cacheSubTest {
+			subTests: func(rdb cacheRedis.Cmdable) []cacheSubTest {
 				return []cacheSubTest{withRedis(rdb), withStats}
 			},
 		},
 		{
 			name:       "RedisCache",
 			needsRedis: true,
-			subTests: func(rdb redis.Cmdable) []cacheSubTest {
+			subTests: func(rdb cacheRedis.Cmdable) []cacheSubTest {
 				return []cacheSubTest{withRedis(rdb), withStats}
 			},
 		},
 		{
 			name:       "LocalCache",
 			needsLocal: true,
-			subTests: func(rdb redis.Cmdable) []cacheSubTest {
+			subTests: func(rdb cacheRedis.Cmdable) []cacheSubTest {
 				return []cacheSubTest{withStats}
 			},
 		},
@@ -487,7 +487,7 @@ func TestCacheSuite(t *testing.T) {
 			skipRedisTests(t, tt.name, tt.needsRedis, rdb != nil)
 			t.Parallel()
 			nextDB := cfgDB + i
-			var r redis.Cmdable
+			var r cacheRedis.Cmdable
 			if tt.needsRedis && rdb != nil {
 				cn := rdb.Conn()
 				t.Cleanup(func() {
@@ -528,7 +528,7 @@ func skipRedisTests(t *testing.T, name string, needsRedis, hasRedis bool) {
 	}
 }
 
-func suiteRunSubTests(t *testing.T, rdb redis.Cmdable,
+func suiteRunSubTests(t *testing.T, rdb cacheRedis.Cmdable,
 	cfg func(*testing.T, *Cache) *Cache, subTests []cacheSubTest,
 ) {
 	runCacheSubTests(t, cfg,
@@ -554,7 +554,7 @@ func runCacheSubTests(t *testing.T, cfg func(*testing.T, *Cache) *Cache,
 	}
 }
 
-func withRedis(rdb redis.Cmdable) cacheSubTest {
+func withRedis(rdb cacheRedis.Cmdable) cacheSubTest {
 	return func(t *testing.T, parentCfg func(*testing.T, *Cache) *Cache,
 		suiteRun cacheSubTest, subTests []cacheSubTest,
 	) {
@@ -629,7 +629,7 @@ func TestWithRedisCache(t *testing.T) {
 	require.NotNil(t, cache)
 	assert.Nil(t, cache.redis)
 
-	redisCache := classic.New(nil)
+	redisCache := cacheRedis.New(nil)
 	assert.Same(t, cache, cache.WithRedisCache(redisCache))
 	assert.NotNil(t, cache.redis)
 	assert.Same(t, cache.redis, redisCache)

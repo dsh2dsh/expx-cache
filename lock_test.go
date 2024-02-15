@@ -9,10 +9,11 @@ import (
 	"testing"
 	"time"
 
-	mocks "github.com/dsh2dsh/expx-cache/internal/mocks/cache"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
+
+	mocks "github.com/dsh2dsh/expx-cache/internal/mocks/cache"
 )
 
 func (self *CacheTestSuite) TestOnceLock() {

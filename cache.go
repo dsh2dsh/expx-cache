@@ -5,12 +5,11 @@ import (
 	"context"
 	"time"
 
-	"github.com/redis/go-redis/v9"
 	"golang.org/x/sync/semaphore"
 	"golang.org/x/sync/singleflight"
 
 	"github.com/dsh2dsh/expx-cache/local"
-	"github.com/dsh2dsh/expx-cache/redis/classic"
+	"github.com/dsh2dsh/expx-cache/redis"
 )
 
 const defaultTTL = time.Hour
@@ -116,7 +115,7 @@ func (self *Cache) WithMarshal(fn MarshalFunc) *Cache {
 
 func (self *Cache) WithRedis(rdb redis.Cmdable) *Cache {
 	if rdb != nil {
-		self.redis = classic.New(rdb)
+		self.redis = redis.New(rdb)
 	} else {
 		self.redis = nil
 	}

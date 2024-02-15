@@ -4,12 +4,16 @@ with-expecter: True
 packages:
   github.com/dsh2dsh/expx-cache:
     interfaces:
-      LFU:
       LocalCache:
       RedisCache:
-  github.com/redis/go-redis/v9:
+  github.com/dsh2dsh/expx-cache/local:
+    interfaces:
+      LFU:
+  github.com/dsh2dsh/expx-cache/redis:
     interfaces:
       Cmdable:
         config:
           unroll-variadic: False
+  github.com/redis/go-redis/v9:
+    interfaces:
       Pipeliner:

@@ -16,7 +16,7 @@ type Object struct {
 	Num int
 }
 
-func MustNewRedisCmdable() redis.Cmdable {
+func MustNewRedisCmdable() *redis.Client {
 	rdb, err := cache.NewRedisClient()
 	if err != nil {
 		panic(err)
