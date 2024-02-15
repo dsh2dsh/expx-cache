@@ -489,7 +489,7 @@ func TestCacheSuite(t *testing.T) {
 			nextDB := cfgDB + i
 			var r cacheRedis.Cmdable
 			if tt.needsRedis && rdb != nil {
-				cn := rdb.Conn()
+				cn := newConnCmdable(rdb)
 				t.Cleanup(func() {
 					require.NoError(t, cn.Select(ctx, cfgDB).Err())
 					require.NoError(t, cn.Close())
@@ -526,6 +526,22 @@ func skipRedisTests(t *testing.T, name string, needsRedis, hasRedis bool) {
 			t.Skipf("skip %q, because no Redis connection", name)
 		}
 	}
+}
+
+func newConnCmdable(rdb *redis.Client) *connCmdable {
+	return &connCmdable{Conn: rdb.Conn(), rdb: rdb}
+}
+
+type connCmdable struct {
+	*redis.Conn
+
+	rdb cacheRedis.Cmdable
+}
+
+func (self *connCmdable) Subscribe(ctx context.Context,
+	channels ...string,
+) *redis.PubSub {
+	return self.rdb.Subscribe(ctx, channels...)
 }
 
 func suiteRunSubTests(t *testing.T, rdb cacheRedis.Cmdable,

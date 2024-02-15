@@ -16448,6 +16448,68 @@ func (_c *MockCmdable_StrLen_Call) RunAndReturn(run func(context.Context, string
 	return _c
 }
 
+// Subscribe provides a mock function with given fields: ctx, channels
+func (_m *MockCmdable) Subscribe(ctx context.Context, channels ...string) *redis.PubSub {
+	var tmpRet mock.Arguments
+	if len(channels) > 0 {
+		tmpRet = _m.Called(ctx, channels)
+	} else {
+		tmpRet = _m.Called(ctx)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for Subscribe")
+	}
+
+	var r0 *redis.PubSub
+	if rf, ok := ret.Get(0).(func(context.Context, ...string) *redis.PubSub); ok {
+		r0 = rf(ctx, channels...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.PubSub)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_Subscribe_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Subscribe'
+type MockCmdable_Subscribe_Call struct {
+	*mock.Call
+}
+
+// Subscribe is a helper method to define mock.On call
+//   - ctx context.Context
+//   - channels ...string
+func (_e *MockCmdable_Expecter) Subscribe(ctx interface{}, channels ...interface{}) *MockCmdable_Subscribe_Call {
+	return &MockCmdable_Subscribe_Call{Call: _e.mock.On("Subscribe",
+		append([]interface{}{ctx}, channels...)...)}
+}
+
+func (_c *MockCmdable_Subscribe_Call) Run(run func(ctx context.Context, channels ...string)) *MockCmdable_Subscribe_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]string, len(args)-1)
+		for i, a := range args[1:] {
+			if a != nil {
+				variadicArgs[i] = a.(string)
+			}
+		}
+		run(args[0].(context.Context), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_Subscribe_Call) Return(_a0 *redis.PubSub) *MockCmdable_Subscribe_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_Subscribe_Call) RunAndReturn(run func(context.Context, ...string) *redis.PubSub) *MockCmdable_Subscribe_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // TDigestAdd provides a mock function with given fields: ctx, key, elements
 func (_m *MockCmdable) TDigestAdd(ctx context.Context, key string, elements ...float64) *redis.StatusCmd {
 	var tmpRet mock.Arguments

@@ -187,6 +187,63 @@ func (_c *MockRedisCache_Get_Call) RunAndReturn(run func(context.Context, int, f
 	return _c
 }
 
+// Listen provides a mock function with given fields: ctx, key
+func (_m *MockRedisCache) Listen(ctx context.Context, key string) (string, error) {
+	ret := _m.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Listen")
+	}
+
+	var r0 string
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, string) (string, error)); ok {
+		return rf(ctx, key)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, string) string); ok {
+		r0 = rf(ctx, key)
+	} else {
+		r0 = ret.Get(0).(string)
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, string) error); ok {
+		r1 = rf(ctx, key)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// MockRedisCache_Listen_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Listen'
+type MockRedisCache_Listen_Call struct {
+	*mock.Call
+}
+
+// Listen is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+func (_e *MockRedisCache_Expecter) Listen(ctx interface{}, key interface{}) *MockRedisCache_Listen_Call {
+	return &MockRedisCache_Listen_Call{Call: _e.mock.On("Listen", ctx, key)}
+}
+
+func (_c *MockRedisCache_Listen_Call) Run(run func(ctx context.Context, key string)) *MockRedisCache_Listen_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string))
+	})
+	return _c
+}
+
+func (_c *MockRedisCache_Listen_Call) Return(_a0 string, _a1 error) *MockRedisCache_Listen_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *MockRedisCache_Listen_Call) RunAndReturn(run func(context.Context, string) (string, error)) *MockRedisCache_Listen_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // LockGet provides a mock function with given fields: ctx, keySet, value, ttl, keyGet
 func (_m *MockRedisCache) LockGet(ctx context.Context, keySet string, value string, ttl time.Duration, keyGet string) (bool, []byte, error) {
 	ret := _m.Called(ctx, keySet, value, ttl, keyGet)
