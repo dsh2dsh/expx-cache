@@ -31,7 +31,7 @@ type RedisCache interface {
 		keyGet string) (ok bool, b []byte, err error)
 	Expire(ctx context.Context, key string, ttl time.Duration) (bool, error)
 	Unlock(ctx context.Context, key, value string) (bool, error)
-	Listen(ctx context.Context, key string) (string, error)
+	Listen(ctx context.Context, key string, ready ...func() error) (string, error)
 }
 
 type (

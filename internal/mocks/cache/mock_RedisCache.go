@@ -187,9 +187,16 @@ func (_c *MockRedisCache_Get_Call) RunAndReturn(run func(context.Context, int, f
 	return _c
 }
 
-// Listen provides a mock function with given fields: ctx, key
-func (_m *MockRedisCache) Listen(ctx context.Context, key string) (string, error) {
-	ret := _m.Called(ctx, key)
+// Listen provides a mock function with given fields: ctx, key, ready
+func (_m *MockRedisCache) Listen(ctx context.Context, key string, ready ...func() error) (string, error) {
+	_va := make([]interface{}, len(ready))
+	for _i := range ready {
+		_va[_i] = ready[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, key)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
 
 	if len(ret) == 0 {
 		panic("no return value specified for Listen")
@@ -197,17 +204,17 @@ func (_m *MockRedisCache) Listen(ctx context.Context, key string) (string, error
 
 	var r0 string
 	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, string) (string, error)); ok {
-		return rf(ctx, key)
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...func() error) (string, error)); ok {
+		return rf(ctx, key, ready...)
 	}
-	if rf, ok := ret.Get(0).(func(context.Context, string) string); ok {
-		r0 = rf(ctx, key)
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...func() error) string); ok {
+		r0 = rf(ctx, key, ready...)
 	} else {
 		r0 = ret.Get(0).(string)
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context, string) error); ok {
-		r1 = rf(ctx, key)
+	if rf, ok := ret.Get(1).(func(context.Context, string, ...func() error) error); ok {
+		r1 = rf(ctx, key, ready...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -223,13 +230,21 @@ type MockRedisCache_Listen_Call struct {
 // Listen is a helper method to define mock.On call
 //   - ctx context.Context
 //   - key string
-func (_e *MockRedisCache_Expecter) Listen(ctx interface{}, key interface{}) *MockRedisCache_Listen_Call {
-	return &MockRedisCache_Listen_Call{Call: _e.mock.On("Listen", ctx, key)}
+//   - ready ...func() error
+func (_e *MockRedisCache_Expecter) Listen(ctx interface{}, key interface{}, ready ...interface{}) *MockRedisCache_Listen_Call {
+	return &MockRedisCache_Listen_Call{Call: _e.mock.On("Listen",
+		append([]interface{}{ctx, key}, ready...)...)}
 }
 
-func (_c *MockRedisCache_Listen_Call) Run(run func(ctx context.Context, key string)) *MockRedisCache_Listen_Call {
+func (_c *MockRedisCache_Listen_Call) Run(run func(ctx context.Context, key string, ready ...func() error)) *MockRedisCache_Listen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		variadicArgs := make([]func() error, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(func() error)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
 }
@@ -239,7 +254,7 @@ func (_c *MockRedisCache_Listen_Call) Return(_a0 string, _a1 error) *MockRedisCa
 	return _c
 }
 
-func (_c *MockRedisCache_Listen_Call) RunAndReturn(run func(context.Context, string) (string, error)) *MockRedisCache_Listen_Call {
+func (_c *MockRedisCache_Listen_Call) RunAndReturn(run func(context.Context, string, ...func() error) (string, error)) *MockRedisCache_Listen_Call {
 	_c.Call.Return(run)
 	return _c
 }
