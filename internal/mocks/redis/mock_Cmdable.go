@@ -12389,6 +12389,55 @@ func (_c *MockCmdable_ObjectEncoding_Call) RunAndReturn(run func(context.Context
 	return _c
 }
 
+// ObjectFreq provides a mock function with given fields: ctx, key
+func (_m *MockCmdable) ObjectFreq(ctx context.Context, key string) *redis.IntCmd {
+	ret := _m.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ObjectFreq")
+	}
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
+		r0 = rf(ctx, key)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_ObjectFreq_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ObjectFreq'
+type MockCmdable_ObjectFreq_Call struct {
+	*mock.Call
+}
+
+// ObjectFreq is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+func (_e *MockCmdable_Expecter) ObjectFreq(ctx interface{}, key interface{}) *MockCmdable_ObjectFreq_Call {
+	return &MockCmdable_ObjectFreq_Call{Call: _e.mock.On("ObjectFreq", ctx, key)}
+}
+
+func (_c *MockCmdable_ObjectFreq_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_ObjectFreq_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_ObjectFreq_Call) Return(_a0 *redis.IntCmd) *MockCmdable_ObjectFreq_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_ObjectFreq_Call) RunAndReturn(run func(context.Context, string) *redis.IntCmd) *MockCmdable_ObjectFreq_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // ObjectIdleTime provides a mock function with given fields: ctx, key
 func (_m *MockCmdable) ObjectIdleTime(ctx context.Context, key string) *redis.DurationCmd {
 	ret := _m.Called(ctx, key)
