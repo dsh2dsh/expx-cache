@@ -5,6 +5,8 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strconv"
+	"strings"
 	"sync/atomic"
 	"testing"
 	"time"
@@ -22,7 +24,7 @@ import (
 
 const (
 	rdbOffset = 1
-	testKey   = "mykey"
+	testKey   = "test-key"
 )
 
 func valueNoError[V any](t *testing.T) func(val V, err error) V {
@@ -129,7 +131,7 @@ func (self *CacheTestSuite) assertStats() {
 // --------------------------------------------------
 
 func (self *CacheTestSuite) needsRedis() {
-	skipRedisTests(self.T(), self.T().Name(), true, self.rdb != nil)
+	skipRedisTests(self.T(), self.T().Name(), self.rdb != nil)
 }
 
 func (self *CacheTestSuite) TestCache_GetSet_nil() {
@@ -281,7 +283,8 @@ func (self *CacheTestSuite) TestCache_GetSet() {
 
 func (self *CacheTestSuite) TestCache_WithKeyWrapper() {
 	const keyPrefix = "baz:"
-	wantKey := keyPrefix + testKey
+	wantKey := self.cache.ResolveKey(keyPrefix + testKey)
+	self.T().Log(wantKey)
 
 	cache := self.cache.New().WithKeyWrapper(func(key string) string {
 		return keyPrefix + self.cache.WrapKey(key)
@@ -405,7 +408,7 @@ func keyNotExists(t *testing.T, c *Cache, key string) bool {
 
 // --------------------------------------------------
 
-func NewRedisClient() (*redis.Client, error) {
+func NewRedisClient(db int) (*redis.Client, error) {
 	cfg := struct {
 		WithRedis string `env:"WITH_REDIS"`
 	}{
@@ -423,7 +426,7 @@ func NewRedisClient() (*redis.Client, error) {
 	if err != nil {
 		return nil, fmt.Errorf("parse redis URL %q: %w", cfg.WithRedis, err)
 	}
-	opt.DB += rdbOffset
+	opt.DB += rdbOffset + db
 
 	rdb := redis.NewClient(opt)
 	if err := rdb.Ping(context.Background()).Err(); err != nil {
@@ -438,15 +441,6 @@ type cacheSubTest func(t *testing.T, cfg func(*testing.T, *Cache) *Cache,
 
 func TestCacheSuite(t *testing.T) {
 	t.Parallel()
-
-	var rdb *redis.Client
-	if !testing.Short() {
-		t.Logf("env WITH_REDIS: %q", os.Getenv("WITH_REDIS"))
-		rdb = valueNoError[*redis.Client](t)(NewRedisClient())
-		if rdb != nil {
-			t.Cleanup(func() { require.NoError(t, rdb.Close()) })
-		}
-	}
 
 	tests := []struct {
 		name       string
@@ -478,70 +472,41 @@ func TestCacheSuite(t *testing.T) {
 		},
 	}
 
-	cfgDB := clientDB(t, rdb)
-	ctx := context.Background()
-
 	for i, tt := range tests {
 		i, tt := i, tt
 		t.Run(tt.name, func(t *testing.T) {
-			skipRedisTests(t, tt.name, tt.needsRedis, rdb != nil)
 			t.Parallel()
-			nextDB := cfgDB + i
-			var r cacheRedis.Cmdable
-			if tt.needsRedis && rdb != nil {
-				cn := newConnCmdable(rdb)
-				t.Cleanup(func() {
-					require.NoError(t, cn.Select(ctx, cfgDB).Err())
-					require.NoError(t, cn.Close())
-				})
-				t.Logf("use redis DB %v", nextDB)
-				require.NoError(t, cn.Select(ctx, nextDB).Err())
-				r = cn
+			var rdbCmdable cacheRedis.Cmdable
+			if tt.needsRedis && !testing.Short() {
+				rdb := valueNoError[*redis.Client](t)(NewRedisClient(i))
+				t.Logf("env WITH_REDIS: %q", os.Getenv("WITH_REDIS"))
+				if rdb != nil {
+					t.Cleanup(func() { require.NoError(t, rdb.Close()) })
+					rdbCmdable = rdb
+				}
+				skipRedisTests(t, tt.name, rdb != nil)
+			} else if tt.needsRedis {
+				skipRedisTests(t, tt.name, false)
 			}
+			cacheNamespace := "expx-cache-test-" + strconv.Itoa(i) + ":"
+			t.Logf("cacheNamespace = %q", cacheNamespace)
 			cfg := func(t *testing.T, c *Cache) *Cache {
 				if tt.needsLocal {
-					return c.WithTinyLFU(1000, time.Minute)
+					c.WithTinyLFU(1000, time.Minute)
 				}
-				return c
+				return c.WithNamespace(cacheNamespace)
 			}
-			suiteRunSubTests(t, r, cfg, tt.subTests(r))
+			suiteRunSubTests(t, rdbCmdable, cfg, tt.subTests(rdbCmdable))
 		})
 	}
 }
 
-func clientDB(t *testing.T, rdb *redis.Client) int {
-	if rdb != nil {
-		info := valueNoError[*redis.ClientInfo](t)(rdb.ClientInfo(
-			context.Background()).Result())
-		return info.DB
+func skipRedisTests(t *testing.T, name string, hasRedis bool) {
+	if testing.Short() {
+		t.Skipf("skip %q in short mode, because it requires Redis", name)
+	} else if !hasRedis {
+		t.Skipf("skip %q, because no Redis connection", name)
 	}
-	return 0
-}
-
-func skipRedisTests(t *testing.T, name string, needsRedis, hasRedis bool) {
-	if needsRedis {
-		if testing.Short() {
-			t.Skipf("skip %q in short mode, because it requires Redis", name)
-		} else if !hasRedis {
-			t.Skipf("skip %q, because no Redis connection", name)
-		}
-	}
-}
-
-func newConnCmdable(rdb *redis.Client) *connCmdable {
-	return &connCmdable{Conn: rdb.Conn(), rdb: rdb}
-}
-
-type connCmdable struct {
-	*redis.Conn
-
-	rdb cacheRedis.Cmdable
-}
-
-func (self *connCmdable) Subscribe(ctx context.Context,
-	channels ...string,
-) *redis.PubSub {
-	return self.rdb.Subscribe(ctx, channels...)
 }
 
 func suiteRunSubTests(t *testing.T, rdb cacheRedis.Cmdable,
@@ -829,4 +794,12 @@ func TestCache_WithRequestId(t *testing.T) {
 	const foobar = "foobar"
 	c := New().WithRequestId(foobar)
 	assert.Equal(t, foobar, c.requestId)
+}
+
+func TestCache_WithPrefixLock(t *testing.T) {
+	c := New()
+	const foobar = "foobar"
+	require.Same(t, c, c.WithPrefixLock(foobar))
+	assert.Equal(t, foobar, c.prefixLock)
+	assert.True(t, strings.HasPrefix(c.ResolveKeyLock(testKey), foobar))
 }

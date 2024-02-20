@@ -1,7 +1,9 @@
 package cache
 
 import (
+	"context"
 	"errors"
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -45,4 +47,17 @@ func TestErrOnce(t *testing.T) {
 	assert.Same(t, wantErr2, errOnce.Once(wantErr2))
 	assert.Same(t, wantErr2, errOnce.Err())
 	assert.Same(t, wantErr2, errOnce.Reset())
+}
+
+func TestCache_redisCacheError_canceled(t *testing.T) {
+	cache := New()
+	testErr := fmt.Errorf("test error: %w", context.Canceled)
+	err := cache.redisCacheError(testErr)
+	require.ErrorIs(t, err, testErr)
+	require.NoError(t, cache.Err())
+
+	testErr = fmt.Errorf("test error: %w", context.DeadlineExceeded)
+	err = cache.redisCacheError(testErr)
+	require.ErrorIs(t, err, testErr)
+	require.ErrorIs(t, cache.Err(), ErrRedisCache)
 }

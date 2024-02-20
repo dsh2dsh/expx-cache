@@ -1,6 +1,7 @@
 package cache
 
 import (
+	"context"
 	"errors"
 	"sync"
 )
@@ -12,6 +13,9 @@ func (self *Cache) Err() error {
 }
 
 func (self *Cache) redisCacheError(err error) error {
+	if errors.Is(err, context.Canceled) {
+		return err
+	}
 	return self.errOnce.Once(newRedisCacheError(err))
 }
 

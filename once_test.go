@@ -271,7 +271,7 @@ func (self *CacheTestSuite) TestOnce_doesntCacheErr() {
 }
 
 func (self *CacheTestSuite) TestOnce_withNegTTL() {
-	key := "skip-set"
+	key := testKey + "-skip-set"
 	ctx := context.Background()
 
 	var value string
@@ -287,7 +287,8 @@ func (self *CacheTestSuite) TestOnce_withNegTTL() {
 	self.expectCacheMiss()
 
 	if self.rdb != nil {
-		ttl := valueNoError[time.Duration](self.T())(self.rdb.TTL(ctx, key).Result())
+		ttl := valueNoError[time.Duration](self.T())(self.rdb.TTL(
+			ctx, self.cache.ResolveKey(key)).Result())
 		self.Equal(self.cache.DefaultTTL(), ttl)
 	}
 	self.assertStats()

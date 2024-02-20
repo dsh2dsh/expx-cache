@@ -27,7 +27,7 @@ func WithNoErr() Option {
 	return func(c *Cache) { c.errOnce = newErrOnce() }
 }
 
-func WithLock(ttl, tick time.Duration, iter func() LockWaitIter) Option {
+func WithLock(ttl, tick time.Duration, iter func() WaitLockIter) Option {
 	return func(c *Cache) { c.cfgLock = newCfgLock(ttl, tick, iter) }
 }
 

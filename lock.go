@@ -17,31 +17,44 @@ const (
 )
 
 var (
-	lockTTL     = 10 * time.Second
-	lockTick    = 3 * time.Second
-	lockPoll    = [2]time.Duration{time.Second, 10 * time.Second}
-	lockMinKeep = 3
+	lockTTL  = 10 * time.Second
+	lockTick = 3 * time.Second
+
+	waitLockStart = time.Second
+	waitLockSeq   = []time.Duration{10 * time.Second}
 )
 
-func NewLockWaitIter(minTime time.Duration, keepMin int, maxTime time.Duration,
-) LockWaitIter {
-	value, count := minTime, 0
+func NewWaitLockIter(start time.Duration, seq ...time.Duration) WaitLockIter {
+	if len(seq) == 0 {
+		return func() time.Duration { return start }
+	}
+
+	var minTime, maxTime, curTime time.Duration
+	var i int
+
 	return func() time.Duration {
-		if count < keepMin {
-			count++
-		} else if minTime < maxTime {
-			if value < maxTime {
-				value = min(value*2, maxTime)
+		switch {
+		case i == 0:
+			minTime, maxTime = start, seq[i]
+			i++
+			curTime = minTime
+		case i < len(seq):
+			minTime, maxTime = maxTime, seq[i]
+			i++
+			curTime = minTime
+		case minTime < maxTime:
+			if curTime < maxTime {
+				curTime = min(curTime*2, maxTime)
 			}
-			return minTime + mathRand.N(value-minTime+1)
+			return minTime + mathRand.N(curTime-minTime+1)
 		}
-		return value
+		return curTime
 	}
 }
 
-type LockWaitIter func() time.Duration
+type WaitLockIter func() time.Duration
 
-func newCfgLock(ttl, tick time.Duration, iter func() LockWaitIter) cfgLock {
+func newCfgLock(ttl, tick time.Duration, iter func() WaitLockIter) cfgLock {
 	return cfgLock{
 		TTL:   ttl,
 		Tick:  tick,
@@ -53,10 +66,14 @@ func newCfgLock(ttl, tick time.Duration, iter func() LockWaitIter) cfgLock {
 type cfgLock struct {
 	TTL  time.Duration
 	Tick time.Duration
-	Iter func() LockWaitIter
+	Iter func() WaitLockIter
 
 	valid bool
 }
+
+func (self *cfgLock) Valid() bool { return self.valid }
+
+// --------------------------------------------------
 
 func (self *Cache) OnceLock(ctx context.Context, item Item) error {
 	if !self.useRedis() {
@@ -111,7 +128,11 @@ func (self *Cache) redisLockGet(ctx context.Context, item *Item,
 }
 
 func (self *Cache) ResolveKeyLock(key string) string {
-	return self.ResolveKey(prefixLock + key)
+	return self.ResolveKey(self.keyLocked(key))
+}
+
+func (self *Cache) keyLocked(key string) string {
+	return self.prefixLock + key
 }
 
 // --------------------------------------------------
@@ -146,7 +167,7 @@ type lock struct {
 }
 
 func (self *lock) Get(ctx context.Context, ttl time.Duration,
-	waitIter LockWaitIter,
+	waitIter WaitLockIter,
 ) ([]byte, error) {
 	if err := self.makeValue(); err != nil {
 		return nil, err
@@ -178,35 +199,28 @@ func (self *lock) makeValue() error {
 }
 
 func (self *lock) lockGet(ctx context.Context, ttl time.Duration,
-	waitIter LockWaitIter,
+	waitIter WaitLockIter,
 ) (ok bool, b []byte, err error) {
-	done := func() bool {
+	ctx, cancel := context.WithCancel(ctx)
+	defer cancel()
+
+	get := func() bool {
 		ok, b, err = self.redisLockGet(ctx, ttl)
 		return err != nil || ok || b != nil
 	}
-	if done() {
+	if get() {
 		return
 	}
 
-	t := time.NewTimer(waitIter())
-	for {
-		select {
-		case <-ctx.Done():
-			t.Stop()
-		case <-t.C:
-		}
-
-		if ctx.Err() != nil {
-			err = fmt.Errorf("lock %q get %q: %w", self.keyLock, self.keyGet,
-				context.Cause(ctx))
-			return
-		}
-
-		if done() {
-			return
-		}
-		t.Reset(waitIter())
+	unlockChan := self.subscribe(ctx)
+	if err2 := self.waitUnlock(ctx, unlockChan, get, waitIter); err2 != nil {
+		err = self.redisCacheError(fmt.Errorf("lock %q get %q: %w", self.keyLock,
+			self.keyGet, err2))
 	}
+
+	cancel()
+	<-unlockChan
+	return
 }
 
 func (self *lock) redisLockGet(ctx context.Context, ttl time.Duration,
@@ -218,13 +232,71 @@ func (self *lock) redisLockGet(ctx context.Context, ttl time.Duration,
 	return
 }
 
+func (self *lock) subscribe(ctx context.Context) <-chan unlockMessage {
+	notifyChan := make(chan unlockMessage, 1)
+	ready := make(chan struct{})
+	go func() {
+		value, err := self.redis.Listen(ctx, self.keyLock, func() error {
+			close(ready)
+			return nil
+		})
+		if err != nil {
+			err = fmt.Errorf("listen for unlock %q: %w", self.keyLock, err)
+		}
+		notifyChan <- unlockMessage{Value: value, Err: err}
+		close(notifyChan)
+	}()
+	<-ready
+	return notifyChan
+}
+
+type unlockMessage struct {
+	Value string
+	Err   error
+}
+
+func (self *lock) waitUnlock(ctx context.Context,
+	unlockChan <-chan unlockMessage, doneFn func() bool, waitIter WaitLockIter,
+) (err error) {
+	t := time.NewTimer(waitIter())
+	for {
+		var unlocked bool
+		var msgValue string
+
+		select {
+		case <-ctx.Done():
+			t.Stop()
+			err = fmt.Errorf("waiting for unlock: %w", context.Cause(ctx))
+		case <-t.C:
+		case msg := <-unlockChan:
+			t.Stop()
+			if msg.Err != nil {
+				err = msg.Err
+			} else {
+				unlocked = true
+				msgValue = msg.Value
+			}
+		}
+
+		if err != nil || doneFn() {
+			break
+		} else if unlocked {
+			err = fmt.Errorf("unexpected unlock message: %q", msgValue)
+			break
+		}
+		t.Reset(waitIter())
+	}
+	return
+}
+
 func (self *lock) release(ctx context.Context) error {
 	if self.value == "" {
 		return fmt.Errorf("release lock %q: empty value", self.keyLock)
 	}
 	ok, err := self.redis.Unlock(ctx, self.keyLock, self.value)
 	if err != nil {
-		return self.redisCacheError(fmt.Errorf("release lock %q: %w", self.keyLock, err))
+		return self.redisCacheError(fmt.Errorf("release lock %q: %w",
+			self.keyLock, err))
 	} else if !ok {
 		return self.lockNotFound()
 	}
@@ -238,19 +310,19 @@ func (self *lock) lockNotFound() error {
 func (self *lock) WithLock(ctx context.Context, ttl, freq time.Duration,
 	fn func() error,
 ) error {
-	ctxKeep, cancelKeep := context.WithCancel(ctx)
+	ctx2, cancel := context.WithCancel(ctx)
 	keepErr := make(chan error)
-	go func() { keepErr <- self.keepLock(ctxKeep, ttl, freq) }()
+	go func() { keepErr <- self.keepLock(ctx2, ttl, freq) }()
 
 	const errMsg = "with lock %q: %w"
 	if err := fn(); err != nil {
-		cancelKeep()
+		cancel()
 		<-keepErr
 		return fmt.Errorf(errMsg, self.keyLock, err)
 	}
 
-	cancelKeep()
-	if err := <-keepErr; err != nil {
+	cancel()
+	if err := <-keepErr; err != nil && !errors.Is(err, context.Canceled) {
 		return fmt.Errorf(errMsg, self.keyLock, err)
 	}
 
@@ -265,18 +337,22 @@ func (self *lock) WithLock(ctx context.Context, ttl, freq time.Duration,
 func (self *lock) keepLock(ctx context.Context, ttl, freq time.Duration) error {
 	tick := time.NewTicker(freq)
 	defer tick.Stop()
+
+	const errMsg = "keep lock %q: %w"
 	for {
 		select {
 		case <-ctx.Done():
-			return nil
 		case <-tick.C:
-			ok, err := self.redis.Expire(ctx, self.keyLock, ttl)
-			if err != nil {
-				return self.redisCacheError(fmt.Errorf(
-					"keep lock %q: %w", self.keyLock, err))
-			} else if !ok {
-				return self.lockNotFound()
-			}
+		}
+
+		if ctx.Err() != nil {
+			return fmt.Errorf(errMsg, self.keyLock, context.Cause(ctx))
+		}
+
+		if ok, err := self.redis.Expire(ctx, self.keyLock, ttl); err != nil {
+			return self.redisCacheError(fmt.Errorf(errMsg, self.keyLock, err))
+		} else if !ok {
+			return self.lockNotFound()
 		}
 	}
 }

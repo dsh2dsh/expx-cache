@@ -45,9 +45,10 @@ func New(opts ...Option) *Cache {
 		marshal:    marshal,
 		unmarshal:  unmarshal,
 
-		stats:   new(Stats),
-		group:   new(singleflight.Group),
-		errOnce: newErrOnce(),
+		stats:      new(Stats),
+		group:      new(singleflight.Group),
+		prefixLock: prefixLock,
+		errOnce:    newErrOnce(),
 	}
 	return c.applyOptions(opts...)
 }
@@ -73,6 +74,7 @@ type Cache struct {
 
 	cfgLock      cfgLock
 	lockNotFound func(key, value string) error
+	prefixLock   string
 
 	errOnce *errOnce
 }
@@ -86,9 +88,9 @@ func (self *Cache) applyOptions(opts ...Option) *Cache {
 		WithMarshalMaxProcs(0)(self)
 	}
 
-	if !self.cfgLock.valid {
-		WithLock(lockTTL, lockTick, func() LockWaitIter {
-			return NewLockWaitIter(lockPoll[0], lockMinKeep, lockPoll[1])
+	if !self.cfgLock.Valid() {
+		WithLock(lockTTL, lockTick, func() WaitLockIter {
+			return NewWaitLockIter(waitLockStart, waitLockSeq...)
 		})(self)
 	}
 
@@ -204,4 +206,9 @@ func (self *Cache) WithRequestId(id string) *Cache {
 
 func (self *Cache) useLocalCache(item *Item) bool {
 	return self.localCache != nil && !item.SkipLocalCache
+}
+
+func (self *Cache) WithPrefixLock(s string) *Cache {
+	self.prefixLock = s
+	return self
 }

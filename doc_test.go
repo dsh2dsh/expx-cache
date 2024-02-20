@@ -17,7 +17,7 @@ type Object struct {
 }
 
 func MustNewRedisCmdable() *redis.Client {
-	rdb, err := cache.NewRedisClient()
+	rdb, err := cache.NewRedisClient(0)
 	if err != nil {
 		panic(err)
 	} else if rdb == nil {
