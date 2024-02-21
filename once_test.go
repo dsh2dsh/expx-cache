@@ -329,9 +329,6 @@ func TestOnce_withoutCache(t *testing.T) {
 }
 
 func TestCache_Once_withKeyWrapper(t *testing.T) {
-	if testing.Short() {
-		t.Skip("skipping in short mode")
-	}
 	t.Parallel()
 
 	const keyPrefix = "baz:"

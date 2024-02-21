@@ -10,19 +10,13 @@ it.
 
 ## How to test
 
-Subset of tests can be executed without redis instance
-
-``` shell
-WITH_REDIS="" go test
-```
-
 For launching all tests a redis instance required
 
-``` shell
-WITH_REDIS="redis://localhost:6379" go test
+```
+WITH_REDIS="redis://localhost:6379" make test
 ```
 
-or create file named `.env.test.local` with next content
+or create file named `.env.local` with next content
 
 ```
 WITH_REDIS=redis://localhost:6379
@@ -30,8 +24,8 @@ WITH_REDIS=redis://localhost:6379
 
 and run tests by
 
-``` shell
-go test
+```
+make test
 ```
 
 If this redis instance is in production, tests should be pointed to another

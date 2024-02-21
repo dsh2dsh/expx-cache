@@ -131,7 +131,9 @@ func (self *CacheTestSuite) assertStats() {
 // --------------------------------------------------
 
 func (self *CacheTestSuite) needsRedis() {
-	skipRedisTests(self.T(), self.T().Name(), self.rdb != nil)
+	if self.rdb == nil {
+		self.T().Skipf("skip %q, because no Redis connection", self.T().Name())
+	}
 }
 
 func (self *CacheTestSuite) TestCache_GetSet_nil() {
@@ -477,16 +479,15 @@ func TestCacheSuite(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 			var rdbCmdable cacheRedis.Cmdable
-			if tt.needsRedis && !testing.Short() {
+			if tt.needsRedis {
 				rdb := valueNoError[*redis.Client](t)(NewRedisClient(i))
 				t.Logf("env WITH_REDIS: %q", os.Getenv("WITH_REDIS"))
 				if rdb != nil {
 					t.Cleanup(func() { require.NoError(t, rdb.Close()) })
 					rdbCmdable = rdb
+				} else {
+					t.Skipf("skip %q, because no Redis connection", tt.name)
 				}
-				skipRedisTests(t, tt.name, rdb != nil)
-			} else if tt.needsRedis {
-				skipRedisTests(t, tt.name, false)
 			}
 			cacheNamespace := "expx-cache-test-" + strconv.Itoa(i) + ":"
 			t.Logf("cacheNamespace = %q", cacheNamespace)
@@ -498,14 +499,6 @@ func TestCacheSuite(t *testing.T) {
 			}
 			suiteRunSubTests(t, rdbCmdable, cfg, tt.subTests(rdbCmdable))
 		})
-	}
-}
-
-func skipRedisTests(t *testing.T, name string, hasRedis bool) {
-	if testing.Short() {
-		t.Skipf("skip %q in short mode, because it requires Redis", name)
-	} else if !hasRedis {
-		t.Skipf("skip %q, because no Redis connection", name)
 	}
 }
 
