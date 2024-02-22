@@ -6,7 +6,6 @@ linters:
     - asciicheck
     - bidichk
     - errorlint
-    - exportloopref
     - goconst
     - gocritic
     # - gofmt # we are using gofumpt instead
