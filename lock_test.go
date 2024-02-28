@@ -116,6 +116,45 @@ func (self *CacheTestSuite) TestOnceLock_error() {
 	self.Require().ErrorIs(err, wantErr)
 }
 
+func (self *CacheTestSuite) TestOnceLock_disappearedLock() {
+	self.needsRedis()
+
+	ctx := context.Background()
+	err := self.cache.Set(ctx, Item{
+		Key:            self.cache.keyLocked(testKey),
+		Value:          "some value",
+		SkipLocalCache: true,
+	})
+	self.Require().NoError(err)
+
+	waitIter := self.cache.cfgLock.Iter
+	self.T().Cleanup(func() { self.cache.cfgLock.Iter = waitIter })
+
+	var callCount int
+	self.cache.cfgLock.Iter = func() WaitLockIter {
+		return func() time.Duration {
+			callCount++
+			self.NoError(self.cache.Delete(ctx, self.cache.keyLocked(testKey)))
+			return time.Millisecond
+		}
+	}
+
+	const want = "foobar"
+	var got string
+	err = self.cache.OnceLock(ctx, Item{
+		Key:   testKey,
+		Value: &got,
+		Do: func(ctx context.Context) (any, error) {
+			callCount++
+			return want, nil
+		},
+	})
+
+	self.Require().NoError(err)
+	self.Equal(2, callCount)
+	self.Equal(want, got)
+}
+
 func (self *CacheTestSuite) TestLock_Get_notExists() {
 	self.needsRedis()
 
