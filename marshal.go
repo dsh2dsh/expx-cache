@@ -34,7 +34,6 @@ func (self *Cache) marshalItems(ctx context.Context, items []Item,
 			err = g.Cause()
 			break
 		}
-		i := i
 		g.GoMarshal(&items[i], func(b []byte) { bytes[i] = b })
 	}
 

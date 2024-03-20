@@ -368,7 +368,6 @@ func TestCache_GetSet_withErrRedisCache(t *testing.T) {
 			items := make([]Item, len(tt.values))
 			got := make([]string, len(tt.values))
 			for i, v := range tt.values {
-				i, v := i, v
 				items[i] = Item{
 					Key:   testKey + strconv.Itoa(i),
 					Value: &got[i],

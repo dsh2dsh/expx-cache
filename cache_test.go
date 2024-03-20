@@ -249,7 +249,6 @@ func (self *CacheTestSuite) TestCache_GetSet() {
 	var allItems [maxItems]Item
 	var callCount uint32
 	for i := 0; i < maxItems; i++ {
-		i := i
 		key := fmt.Sprintf("key-%00d", i)
 		allKeys[i] = key
 		allValues[i] = CacheableObject{Str: key, Num: i}
@@ -475,7 +474,6 @@ func TestCacheSuite(t *testing.T) {
 	}
 
 	for i, tt := range tests {
-		i, tt := i, tt
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 			var rdbCmdable cacheRedis.Cmdable
