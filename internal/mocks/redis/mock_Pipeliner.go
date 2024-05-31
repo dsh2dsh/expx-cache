@@ -2007,6 +2007,66 @@ func (_c *MockPipeliner_BitField_Call) RunAndReturn(run func(context.Context, st
 	return _c
 }
 
+// BitFieldRO provides a mock function with given fields: ctx, key, values
+func (_m *MockPipeliner) BitFieldRO(ctx context.Context, key string, values ...interface{}) *redis.IntSliceCmd {
+	var _ca []interface{}
+	_ca = append(_ca, ctx, key)
+	_ca = append(_ca, values...)
+	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for BitFieldRO")
+	}
+
+	var r0 *redis.IntSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntSliceCmd); ok {
+		r0 = rf(ctx, key, values...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockPipeliner_BitFieldRO_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitFieldRO'
+type MockPipeliner_BitFieldRO_Call struct {
+	*mock.Call
+}
+
+// BitFieldRO is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
+func (_e *MockPipeliner_Expecter) BitFieldRO(ctx interface{}, key interface{}, values ...interface{}) *MockPipeliner_BitFieldRO_Call {
+	return &MockPipeliner_BitFieldRO_Call{Call: _e.mock.On("BitFieldRO",
+		append([]interface{}{ctx, key}, values...)...)}
+}
+
+func (_c *MockPipeliner_BitFieldRO_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockPipeliner_BitFieldRO_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]interface{}, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(interface{})
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_BitFieldRO_Call) Return(_a0 *redis.IntSliceCmd) *MockPipeliner_BitFieldRO_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockPipeliner_BitFieldRO_Call) RunAndReturn(run func(context.Context, string, ...interface{}) *redis.IntSliceCmd) *MockPipeliner_BitFieldRO_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // BitOpAnd provides a mock function with given fields: ctx, destKey, keys
 func (_m *MockPipeliner) BitOpAnd(ctx context.Context, destKey string, keys ...string) *redis.IntCmd {
 	_va := make([]interface{}, len(keys))

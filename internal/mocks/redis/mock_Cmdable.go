@@ -1918,6 +1918,69 @@ func (_c *MockCmdable_BitField_Call) RunAndReturn(run func(context.Context, stri
 	return _c
 }
 
+// BitFieldRO provides a mock function with given fields: ctx, key, values
+func (_m *MockCmdable) BitFieldRO(ctx context.Context, key string, values ...interface{}) *redis.IntSliceCmd {
+	var tmpRet mock.Arguments
+	if len(values) > 0 {
+		tmpRet = _m.Called(ctx, key, values)
+	} else {
+		tmpRet = _m.Called(ctx, key)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for BitFieldRO")
+	}
+
+	var r0 *redis.IntSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntSliceCmd); ok {
+		r0 = rf(ctx, key, values...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_BitFieldRO_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BitFieldRO'
+type MockCmdable_BitFieldRO_Call struct {
+	*mock.Call
+}
+
+// BitFieldRO is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
+func (_e *MockCmdable_Expecter) BitFieldRO(ctx interface{}, key interface{}, values ...interface{}) *MockCmdable_BitFieldRO_Call {
+	return &MockCmdable_BitFieldRO_Call{Call: _e.mock.On("BitFieldRO",
+		append([]interface{}{ctx, key}, values...)...)}
+}
+
+func (_c *MockCmdable_BitFieldRO_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockCmdable_BitFieldRO_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]interface{}, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(interface{})
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_BitFieldRO_Call) Return(_a0 *redis.IntSliceCmd) *MockCmdable_BitFieldRO_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_BitFieldRO_Call) RunAndReturn(run func(context.Context, string, ...interface{}) *redis.IntSliceCmd) *MockCmdable_BitFieldRO_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // BitOpAnd provides a mock function with given fields: ctx, destKey, keys
 func (_m *MockCmdable) BitOpAnd(ctx context.Context, destKey string, keys ...string) *redis.IntCmd {
 	var tmpRet mock.Arguments
