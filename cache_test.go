@@ -301,71 +301,71 @@ func (self *CacheTestSuite) TestCache_WithKeyWrapper() {
 
 	tests := []struct {
 		name   string
-		assert func(t *testing.T)
+		assert func()
 	}{
 		{
 			name: "Exists",
-			assert: func(t *testing.T) {
-				assert.True(t, valueNoError[bool](t)(cache.Exists(ctx, testKey)))
+			assert: func() {
+				self.True(valueNoError[bool](self.T())(cache.Exists(ctx, testKey)))
 			},
 		},
 		{
 			name: "Get 1",
-			assert: func(t *testing.T) {
+			assert: func() {
 				got := CacheableObject{}
 				item := Item{Key: testKey, Value: &got}
-				assert.Empty(t, valueNoError[[]Item](t)(cache.Get(ctx, item)))
-				assert.Equal(t, self.CacheableValue(), got)
+				self.Empty(valueNoError[[]Item](self.T())(cache.Get(ctx, item)))
+				self.Equal(self.CacheableValue(), got)
 			},
 		},
 		{
 			name: "Get 2",
-			assert: func(t *testing.T) {
+			assert: func() {
 				got1 := CacheableObject{}
 				got2 := CacheableObject{}
 				item1 := Item{Key: testKey, Value: &got1}
 				item2 := Item{Key: testKey, Value: &got2}
-				assert.Empty(t, valueNoError[[]Item](t)(cache.Get(ctx, item1, item2)))
-				assert.Equal(t, self.CacheableValue(), got1)
-				assert.Equal(t, self.CacheableValue(), got2)
+				self.Empty(valueNoError[[]Item](self.T())(cache.Get(ctx, item1, item2)))
+				self.Equal(self.CacheableValue(), got1)
+				self.Equal(self.CacheableValue(), got2)
 			},
 		},
 		{
 			name: "Once",
-			assert: func(t *testing.T) {
+			assert: func() {
 				got := CacheableObject{}
-				require.NoError(t, cache.Once(ctx, Item{
+				self.Require().NoError(cache.Once(ctx, Item{
 					Key:   testKey,
 					Value: &got,
 				}))
-				assert.Equal(t, self.CacheableValue(), got)
+				self.Equal(self.CacheableValue(), got)
 			},
 		},
 		{
 			name: "Delete",
-			assert: func(t *testing.T) {
-				require.NoError(t, cache.Delete(ctx, testKey))
-				assert.True(t, keyNotExists(t, cache, wantKey))
+			assert: func() {
+				self.Require().NoError(cache.Delete(ctx, testKey))
+				self.True(keyNotExists(self.T(), cache, wantKey))
 			},
 		},
 		{
 			name: "Once after Delete",
-			assert: func(t *testing.T) {
+			assert: func() {
 				got := CacheableObject{}
-				require.NoError(t, cache.Once(ctx, Item{
+				self.Require().NoError(cache.Once(ctx, Item{
 					Key:   testKey,
 					Value: &got,
 					Do: func(ctx context.Context) (any, error) {
 						return self.CacheableValue(), nil
 					},
 				}))
-				assert.Equal(t, self.CacheableValue(), got)
+				self.Equal(self.CacheableValue(), got)
 			},
 		},
 	}
 
 	for _, tt := range tests {
-		self.T().Run(tt.name, tt.assert)
+		self.Run(tt.name, tt.assert)
 	}
 }
 
