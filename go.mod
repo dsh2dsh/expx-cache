@@ -6,8 +6,8 @@ require (
 	github.com/caarlos0/env/v10 v10.0.0
 	github.com/dsh2dsh/expx-dotenv v1.3.2
 	github.com/dsh2dsh/go-tinylfu v1.0.1
-	github.com/klauspost/compress v1.17.10
-	github.com/redis/go-redis/v9 v9.6.1
+	github.com/klauspost/compress v1.17.11
+	github.com/redis/go-redis/v9 v9.7.0
 	github.com/stretchr/testify v1.9.0
 	github.com/vmihailenco/msgpack/v5 v5.4.1
 	golang.org/x/sync v0.8.0

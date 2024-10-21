@@ -54,23 +54,23 @@ func (_c *MockLFU_Del_Call) RunAndReturn(run func(string)) *MockLFU_Del_Call {
 }
 
 // Get provides a mock function with given fields: key
-func (_m *MockLFU) Get(key string) (interface{}, bool) {
+func (_m *MockLFU) Get(key string) (any, bool) {
 	ret := _m.Called(key)
 
 	if len(ret) == 0 {
 		panic("no return value specified for Get")
 	}
 
-	var r0 interface{}
+	var r0 any
 	var r1 bool
-	if rf, ok := ret.Get(0).(func(string) (interface{}, bool)); ok {
+	if rf, ok := ret.Get(0).(func(string) (any, bool)); ok {
 		return rf(key)
 	}
-	if rf, ok := ret.Get(0).(func(string) interface{}); ok {
+	if rf, ok := ret.Get(0).(func(string) any); ok {
 		r0 = rf(key)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(interface{})
+			r0 = ret.Get(0).(any)
 		}
 	}
 
@@ -101,12 +101,12 @@ func (_c *MockLFU_Get_Call) Run(run func(key string)) *MockLFU_Get_Call {
 	return _c
 }
 
-func (_c *MockLFU_Get_Call) Return(_a0 interface{}, _a1 bool) *MockLFU_Get_Call {
+func (_c *MockLFU_Get_Call) Return(_a0 any, _a1 bool) *MockLFU_Get_Call {
 	_c.Call.Return(_a0, _a1)
 	return _c
 }
 
-func (_c *MockLFU_Get_Call) RunAndReturn(run func(string) (interface{}, bool)) *MockLFU_Get_Call {
+func (_c *MockLFU_Get_Call) RunAndReturn(run func(string) (any, bool)) *MockLFU_Get_Call {
 	_c.Call.Return(run)
 	return _c
 }

@@ -6850,6 +6850,1447 @@ func (_c *MockCmdable_FCallRo_Call) RunAndReturn(run func(context.Context, strin
 	return _c
 }
 
+// FTAggregate provides a mock function with given fields: ctx, index, query
+func (_m *MockCmdable) FTAggregate(ctx context.Context, index string, query string) *redis.MapStringInterfaceCmd {
+	ret := _m.Called(ctx, index, query)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTAggregate")
+	}
+
+	var r0 *redis.MapStringInterfaceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.MapStringInterfaceCmd); ok {
+		r0 = rf(ctx, index, query)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.MapStringInterfaceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTAggregate_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTAggregate'
+type MockCmdable_FTAggregate_Call struct {
+	*mock.Call
+}
+
+// FTAggregate is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - query string
+func (_e *MockCmdable_Expecter) FTAggregate(ctx interface{}, index interface{}, query interface{}) *MockCmdable_FTAggregate_Call {
+	return &MockCmdable_FTAggregate_Call{Call: _e.mock.On("FTAggregate", ctx, index, query)}
+}
+
+func (_c *MockCmdable_FTAggregate_Call) Run(run func(ctx context.Context, index string, query string)) *MockCmdable_FTAggregate_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTAggregate_Call) Return(_a0 *redis.MapStringInterfaceCmd) *MockCmdable_FTAggregate_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTAggregate_Call) RunAndReturn(run func(context.Context, string, string) *redis.MapStringInterfaceCmd) *MockCmdable_FTAggregate_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTAggregateWithArgs provides a mock function with given fields: ctx, index, query, options
+func (_m *MockCmdable) FTAggregateWithArgs(ctx context.Context, index string, query string, options *redis.FTAggregateOptions) *redis.AggregateCmd {
+	ret := _m.Called(ctx, index, query, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTAggregateWithArgs")
+	}
+
+	var r0 *redis.AggregateCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, *redis.FTAggregateOptions) *redis.AggregateCmd); ok {
+		r0 = rf(ctx, index, query, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.AggregateCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTAggregateWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTAggregateWithArgs'
+type MockCmdable_FTAggregateWithArgs_Call struct {
+	*mock.Call
+}
+
+// FTAggregateWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - query string
+//   - options *redis.FTAggregateOptions
+func (_e *MockCmdable_Expecter) FTAggregateWithArgs(ctx interface{}, index interface{}, query interface{}, options interface{}) *MockCmdable_FTAggregateWithArgs_Call {
+	return &MockCmdable_FTAggregateWithArgs_Call{Call: _e.mock.On("FTAggregateWithArgs", ctx, index, query, options)}
+}
+
+func (_c *MockCmdable_FTAggregateWithArgs_Call) Run(run func(ctx context.Context, index string, query string, options *redis.FTAggregateOptions)) *MockCmdable_FTAggregateWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.FTAggregateOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTAggregateWithArgs_Call) Return(_a0 *redis.AggregateCmd) *MockCmdable_FTAggregateWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTAggregateWithArgs_Call) RunAndReturn(run func(context.Context, string, string, *redis.FTAggregateOptions) *redis.AggregateCmd) *MockCmdable_FTAggregateWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTAliasAdd provides a mock function with given fields: ctx, index, alias
+func (_m *MockCmdable) FTAliasAdd(ctx context.Context, index string, alias string) *redis.StatusCmd {
+	ret := _m.Called(ctx, index, alias)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTAliasAdd")
+	}
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.StatusCmd); ok {
+		r0 = rf(ctx, index, alias)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTAliasAdd_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTAliasAdd'
+type MockCmdable_FTAliasAdd_Call struct {
+	*mock.Call
+}
+
+// FTAliasAdd is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - alias string
+func (_e *MockCmdable_Expecter) FTAliasAdd(ctx interface{}, index interface{}, alias interface{}) *MockCmdable_FTAliasAdd_Call {
+	return &MockCmdable_FTAliasAdd_Call{Call: _e.mock.On("FTAliasAdd", ctx, index, alias)}
+}
+
+func (_c *MockCmdable_FTAliasAdd_Call) Run(run func(ctx context.Context, index string, alias string)) *MockCmdable_FTAliasAdd_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTAliasAdd_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_FTAliasAdd_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTAliasAdd_Call) RunAndReturn(run func(context.Context, string, string) *redis.StatusCmd) *MockCmdable_FTAliasAdd_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTAliasDel provides a mock function with given fields: ctx, alias
+func (_m *MockCmdable) FTAliasDel(ctx context.Context, alias string) *redis.StatusCmd {
+	ret := _m.Called(ctx, alias)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTAliasDel")
+	}
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StatusCmd); ok {
+		r0 = rf(ctx, alias)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTAliasDel_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTAliasDel'
+type MockCmdable_FTAliasDel_Call struct {
+	*mock.Call
+}
+
+// FTAliasDel is a helper method to define mock.On call
+//   - ctx context.Context
+//   - alias string
+func (_e *MockCmdable_Expecter) FTAliasDel(ctx interface{}, alias interface{}) *MockCmdable_FTAliasDel_Call {
+	return &MockCmdable_FTAliasDel_Call{Call: _e.mock.On("FTAliasDel", ctx, alias)}
+}
+
+func (_c *MockCmdable_FTAliasDel_Call) Run(run func(ctx context.Context, alias string)) *MockCmdable_FTAliasDel_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTAliasDel_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_FTAliasDel_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTAliasDel_Call) RunAndReturn(run func(context.Context, string) *redis.StatusCmd) *MockCmdable_FTAliasDel_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTAliasUpdate provides a mock function with given fields: ctx, index, alias
+func (_m *MockCmdable) FTAliasUpdate(ctx context.Context, index string, alias string) *redis.StatusCmd {
+	ret := _m.Called(ctx, index, alias)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTAliasUpdate")
+	}
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.StatusCmd); ok {
+		r0 = rf(ctx, index, alias)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTAliasUpdate_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTAliasUpdate'
+type MockCmdable_FTAliasUpdate_Call struct {
+	*mock.Call
+}
+
+// FTAliasUpdate is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - alias string
+func (_e *MockCmdable_Expecter) FTAliasUpdate(ctx interface{}, index interface{}, alias interface{}) *MockCmdable_FTAliasUpdate_Call {
+	return &MockCmdable_FTAliasUpdate_Call{Call: _e.mock.On("FTAliasUpdate", ctx, index, alias)}
+}
+
+func (_c *MockCmdable_FTAliasUpdate_Call) Run(run func(ctx context.Context, index string, alias string)) *MockCmdable_FTAliasUpdate_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTAliasUpdate_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_FTAliasUpdate_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTAliasUpdate_Call) RunAndReturn(run func(context.Context, string, string) *redis.StatusCmd) *MockCmdable_FTAliasUpdate_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTAlter provides a mock function with given fields: ctx, index, skipInitialScan, definition
+func (_m *MockCmdable) FTAlter(ctx context.Context, index string, skipInitialScan bool, definition []interface{}) *redis.StatusCmd {
+	ret := _m.Called(ctx, index, skipInitialScan, definition)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTAlter")
+	}
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, bool, []interface{}) *redis.StatusCmd); ok {
+		r0 = rf(ctx, index, skipInitialScan, definition)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTAlter_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTAlter'
+type MockCmdable_FTAlter_Call struct {
+	*mock.Call
+}
+
+// FTAlter is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - skipInitialScan bool
+//   - definition []interface{}
+func (_e *MockCmdable_Expecter) FTAlter(ctx interface{}, index interface{}, skipInitialScan interface{}, definition interface{}) *MockCmdable_FTAlter_Call {
+	return &MockCmdable_FTAlter_Call{Call: _e.mock.On("FTAlter", ctx, index, skipInitialScan, definition)}
+}
+
+func (_c *MockCmdable_FTAlter_Call) Run(run func(ctx context.Context, index string, skipInitialScan bool, definition []interface{})) *MockCmdable_FTAlter_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(bool), args[3].([]interface{}))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTAlter_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_FTAlter_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTAlter_Call) RunAndReturn(run func(context.Context, string, bool, []interface{}) *redis.StatusCmd) *MockCmdable_FTAlter_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTConfigGet provides a mock function with given fields: ctx, option
+func (_m *MockCmdable) FTConfigGet(ctx context.Context, option string) *redis.MapMapStringInterfaceCmd {
+	ret := _m.Called(ctx, option)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTConfigGet")
+	}
+
+	var r0 *redis.MapMapStringInterfaceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.MapMapStringInterfaceCmd); ok {
+		r0 = rf(ctx, option)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.MapMapStringInterfaceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTConfigGet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTConfigGet'
+type MockCmdable_FTConfigGet_Call struct {
+	*mock.Call
+}
+
+// FTConfigGet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - option string
+func (_e *MockCmdable_Expecter) FTConfigGet(ctx interface{}, option interface{}) *MockCmdable_FTConfigGet_Call {
+	return &MockCmdable_FTConfigGet_Call{Call: _e.mock.On("FTConfigGet", ctx, option)}
+}
+
+func (_c *MockCmdable_FTConfigGet_Call) Run(run func(ctx context.Context, option string)) *MockCmdable_FTConfigGet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTConfigGet_Call) Return(_a0 *redis.MapMapStringInterfaceCmd) *MockCmdable_FTConfigGet_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTConfigGet_Call) RunAndReturn(run func(context.Context, string) *redis.MapMapStringInterfaceCmd) *MockCmdable_FTConfigGet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTConfigSet provides a mock function with given fields: ctx, option, value
+func (_m *MockCmdable) FTConfigSet(ctx context.Context, option string, value interface{}) *redis.StatusCmd {
+	ret := _m.Called(ctx, option, value)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTConfigSet")
+	}
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}) *redis.StatusCmd); ok {
+		r0 = rf(ctx, option, value)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTConfigSet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTConfigSet'
+type MockCmdable_FTConfigSet_Call struct {
+	*mock.Call
+}
+
+// FTConfigSet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - option string
+//   - value interface{}
+func (_e *MockCmdable_Expecter) FTConfigSet(ctx interface{}, option interface{}, value interface{}) *MockCmdable_FTConfigSet_Call {
+	return &MockCmdable_FTConfigSet_Call{Call: _e.mock.On("FTConfigSet", ctx, option, value)}
+}
+
+func (_c *MockCmdable_FTConfigSet_Call) Run(run func(ctx context.Context, option string, value interface{})) *MockCmdable_FTConfigSet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTConfigSet_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_FTConfigSet_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTConfigSet_Call) RunAndReturn(run func(context.Context, string, interface{}) *redis.StatusCmd) *MockCmdable_FTConfigSet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTCreate provides a mock function with given fields: ctx, index, options, schema
+func (_m *MockCmdable) FTCreate(ctx context.Context, index string, options *redis.FTCreateOptions, schema ...*redis.FieldSchema) *redis.StatusCmd {
+	var tmpRet mock.Arguments
+	if len(schema) > 0 {
+		tmpRet = _m.Called(ctx, index, options, schema)
+	} else {
+		tmpRet = _m.Called(ctx, index, options)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTCreate")
+	}
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.FTCreateOptions, ...*redis.FieldSchema) *redis.StatusCmd); ok {
+		r0 = rf(ctx, index, options, schema...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTCreate_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTCreate'
+type MockCmdable_FTCreate_Call struct {
+	*mock.Call
+}
+
+// FTCreate is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - options *redis.FTCreateOptions
+//   - schema ...*redis.FieldSchema
+func (_e *MockCmdable_Expecter) FTCreate(ctx interface{}, index interface{}, options interface{}, schema ...interface{}) *MockCmdable_FTCreate_Call {
+	return &MockCmdable_FTCreate_Call{Call: _e.mock.On("FTCreate",
+		append([]interface{}{ctx, index, options}, schema...)...)}
+}
+
+func (_c *MockCmdable_FTCreate_Call) Run(run func(ctx context.Context, index string, options *redis.FTCreateOptions, schema ...*redis.FieldSchema)) *MockCmdable_FTCreate_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*redis.FieldSchema, len(args)-3)
+		for i, a := range args[3:] {
+			if a != nil {
+				variadicArgs[i] = a.(*redis.FieldSchema)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), args[2].(*redis.FTCreateOptions), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTCreate_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_FTCreate_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTCreate_Call) RunAndReturn(run func(context.Context, string, *redis.FTCreateOptions, ...*redis.FieldSchema) *redis.StatusCmd) *MockCmdable_FTCreate_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTCursorDel provides a mock function with given fields: ctx, index, cursorId
+func (_m *MockCmdable) FTCursorDel(ctx context.Context, index string, cursorId int) *redis.StatusCmd {
+	ret := _m.Called(ctx, index, cursorId)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTCursorDel")
+	}
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, int) *redis.StatusCmd); ok {
+		r0 = rf(ctx, index, cursorId)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTCursorDel_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTCursorDel'
+type MockCmdable_FTCursorDel_Call struct {
+	*mock.Call
+}
+
+// FTCursorDel is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - cursorId int
+func (_e *MockCmdable_Expecter) FTCursorDel(ctx interface{}, index interface{}, cursorId interface{}) *MockCmdable_FTCursorDel_Call {
+	return &MockCmdable_FTCursorDel_Call{Call: _e.mock.On("FTCursorDel", ctx, index, cursorId)}
+}
+
+func (_c *MockCmdable_FTCursorDel_Call) Run(run func(ctx context.Context, index string, cursorId int)) *MockCmdable_FTCursorDel_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(int))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTCursorDel_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_FTCursorDel_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTCursorDel_Call) RunAndReturn(run func(context.Context, string, int) *redis.StatusCmd) *MockCmdable_FTCursorDel_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTCursorRead provides a mock function with given fields: ctx, index, cursorId, count
+func (_m *MockCmdable) FTCursorRead(ctx context.Context, index string, cursorId int, count int) *redis.MapStringInterfaceCmd {
+	ret := _m.Called(ctx, index, cursorId, count)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTCursorRead")
+	}
+
+	var r0 *redis.MapStringInterfaceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, int, int) *redis.MapStringInterfaceCmd); ok {
+		r0 = rf(ctx, index, cursorId, count)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.MapStringInterfaceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTCursorRead_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTCursorRead'
+type MockCmdable_FTCursorRead_Call struct {
+	*mock.Call
+}
+
+// FTCursorRead is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - cursorId int
+//   - count int
+func (_e *MockCmdable_Expecter) FTCursorRead(ctx interface{}, index interface{}, cursorId interface{}, count interface{}) *MockCmdable_FTCursorRead_Call {
+	return &MockCmdable_FTCursorRead_Call{Call: _e.mock.On("FTCursorRead", ctx, index, cursorId, count)}
+}
+
+func (_c *MockCmdable_FTCursorRead_Call) Run(run func(ctx context.Context, index string, cursorId int, count int)) *MockCmdable_FTCursorRead_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(int), args[3].(int))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTCursorRead_Call) Return(_a0 *redis.MapStringInterfaceCmd) *MockCmdable_FTCursorRead_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTCursorRead_Call) RunAndReturn(run func(context.Context, string, int, int) *redis.MapStringInterfaceCmd) *MockCmdable_FTCursorRead_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTDictAdd provides a mock function with given fields: ctx, dict, term
+func (_m *MockCmdable) FTDictAdd(ctx context.Context, dict string, term ...interface{}) *redis.IntCmd {
+	var tmpRet mock.Arguments
+	if len(term) > 0 {
+		tmpRet = _m.Called(ctx, dict, term)
+	} else {
+		tmpRet = _m.Called(ctx, dict)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTDictAdd")
+	}
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
+		r0 = rf(ctx, dict, term...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTDictAdd_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTDictAdd'
+type MockCmdable_FTDictAdd_Call struct {
+	*mock.Call
+}
+
+// FTDictAdd is a helper method to define mock.On call
+//   - ctx context.Context
+//   - dict string
+//   - term ...interface{}
+func (_e *MockCmdable_Expecter) FTDictAdd(ctx interface{}, dict interface{}, term ...interface{}) *MockCmdable_FTDictAdd_Call {
+	return &MockCmdable_FTDictAdd_Call{Call: _e.mock.On("FTDictAdd",
+		append([]interface{}{ctx, dict}, term...)...)}
+}
+
+func (_c *MockCmdable_FTDictAdd_Call) Run(run func(ctx context.Context, dict string, term ...interface{})) *MockCmdable_FTDictAdd_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]interface{}, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(interface{})
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTDictAdd_Call) Return(_a0 *redis.IntCmd) *MockCmdable_FTDictAdd_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTDictAdd_Call) RunAndReturn(run func(context.Context, string, ...interface{}) *redis.IntCmd) *MockCmdable_FTDictAdd_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTDictDel provides a mock function with given fields: ctx, dict, term
+func (_m *MockCmdable) FTDictDel(ctx context.Context, dict string, term ...interface{}) *redis.IntCmd {
+	var tmpRet mock.Arguments
+	if len(term) > 0 {
+		tmpRet = _m.Called(ctx, dict, term)
+	} else {
+		tmpRet = _m.Called(ctx, dict)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTDictDel")
+	}
+
+	var r0 *redis.IntCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...interface{}) *redis.IntCmd); ok {
+		r0 = rf(ctx, dict, term...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTDictDel_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTDictDel'
+type MockCmdable_FTDictDel_Call struct {
+	*mock.Call
+}
+
+// FTDictDel is a helper method to define mock.On call
+//   - ctx context.Context
+//   - dict string
+//   - term ...interface{}
+func (_e *MockCmdable_Expecter) FTDictDel(ctx interface{}, dict interface{}, term ...interface{}) *MockCmdable_FTDictDel_Call {
+	return &MockCmdable_FTDictDel_Call{Call: _e.mock.On("FTDictDel",
+		append([]interface{}{ctx, dict}, term...)...)}
+}
+
+func (_c *MockCmdable_FTDictDel_Call) Run(run func(ctx context.Context, dict string, term ...interface{})) *MockCmdable_FTDictDel_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]interface{}, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(interface{})
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTDictDel_Call) Return(_a0 *redis.IntCmd) *MockCmdable_FTDictDel_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTDictDel_Call) RunAndReturn(run func(context.Context, string, ...interface{}) *redis.IntCmd) *MockCmdable_FTDictDel_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTDictDump provides a mock function with given fields: ctx, dict
+func (_m *MockCmdable) FTDictDump(ctx context.Context, dict string) *redis.StringSliceCmd {
+	ret := _m.Called(ctx, dict)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTDictDump")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StringSliceCmd); ok {
+		r0 = rf(ctx, dict)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTDictDump_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTDictDump'
+type MockCmdable_FTDictDump_Call struct {
+	*mock.Call
+}
+
+// FTDictDump is a helper method to define mock.On call
+//   - ctx context.Context
+//   - dict string
+func (_e *MockCmdable_Expecter) FTDictDump(ctx interface{}, dict interface{}) *MockCmdable_FTDictDump_Call {
+	return &MockCmdable_FTDictDump_Call{Call: _e.mock.On("FTDictDump", ctx, dict)}
+}
+
+func (_c *MockCmdable_FTDictDump_Call) Run(run func(ctx context.Context, dict string)) *MockCmdable_FTDictDump_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTDictDump_Call) Return(_a0 *redis.StringSliceCmd) *MockCmdable_FTDictDump_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTDictDump_Call) RunAndReturn(run func(context.Context, string) *redis.StringSliceCmd) *MockCmdable_FTDictDump_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTDropIndex provides a mock function with given fields: ctx, index
+func (_m *MockCmdable) FTDropIndex(ctx context.Context, index string) *redis.StatusCmd {
+	ret := _m.Called(ctx, index)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTDropIndex")
+	}
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.StatusCmd); ok {
+		r0 = rf(ctx, index)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTDropIndex_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTDropIndex'
+type MockCmdable_FTDropIndex_Call struct {
+	*mock.Call
+}
+
+// FTDropIndex is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+func (_e *MockCmdable_Expecter) FTDropIndex(ctx interface{}, index interface{}) *MockCmdable_FTDropIndex_Call {
+	return &MockCmdable_FTDropIndex_Call{Call: _e.mock.On("FTDropIndex", ctx, index)}
+}
+
+func (_c *MockCmdable_FTDropIndex_Call) Run(run func(ctx context.Context, index string)) *MockCmdable_FTDropIndex_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTDropIndex_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_FTDropIndex_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTDropIndex_Call) RunAndReturn(run func(context.Context, string) *redis.StatusCmd) *MockCmdable_FTDropIndex_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTDropIndexWithArgs provides a mock function with given fields: ctx, index, options
+func (_m *MockCmdable) FTDropIndexWithArgs(ctx context.Context, index string, options *redis.FTDropIndexOptions) *redis.StatusCmd {
+	ret := _m.Called(ctx, index, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTDropIndexWithArgs")
+	}
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, *redis.FTDropIndexOptions) *redis.StatusCmd); ok {
+		r0 = rf(ctx, index, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTDropIndexWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTDropIndexWithArgs'
+type MockCmdable_FTDropIndexWithArgs_Call struct {
+	*mock.Call
+}
+
+// FTDropIndexWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - options *redis.FTDropIndexOptions
+func (_e *MockCmdable_Expecter) FTDropIndexWithArgs(ctx interface{}, index interface{}, options interface{}) *MockCmdable_FTDropIndexWithArgs_Call {
+	return &MockCmdable_FTDropIndexWithArgs_Call{Call: _e.mock.On("FTDropIndexWithArgs", ctx, index, options)}
+}
+
+func (_c *MockCmdable_FTDropIndexWithArgs_Call) Run(run func(ctx context.Context, index string, options *redis.FTDropIndexOptions)) *MockCmdable_FTDropIndexWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(*redis.FTDropIndexOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTDropIndexWithArgs_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_FTDropIndexWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTDropIndexWithArgs_Call) RunAndReturn(run func(context.Context, string, *redis.FTDropIndexOptions) *redis.StatusCmd) *MockCmdable_FTDropIndexWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTExplain provides a mock function with given fields: ctx, index, query
+func (_m *MockCmdable) FTExplain(ctx context.Context, index string, query string) *redis.StringCmd {
+	ret := _m.Called(ctx, index, query)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTExplain")
+	}
+
+	var r0 *redis.StringCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.StringCmd); ok {
+		r0 = rf(ctx, index, query)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTExplain_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTExplain'
+type MockCmdable_FTExplain_Call struct {
+	*mock.Call
+}
+
+// FTExplain is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - query string
+func (_e *MockCmdable_Expecter) FTExplain(ctx interface{}, index interface{}, query interface{}) *MockCmdable_FTExplain_Call {
+	return &MockCmdable_FTExplain_Call{Call: _e.mock.On("FTExplain", ctx, index, query)}
+}
+
+func (_c *MockCmdable_FTExplain_Call) Run(run func(ctx context.Context, index string, query string)) *MockCmdable_FTExplain_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTExplain_Call) Return(_a0 *redis.StringCmd) *MockCmdable_FTExplain_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTExplain_Call) RunAndReturn(run func(context.Context, string, string) *redis.StringCmd) *MockCmdable_FTExplain_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTExplainWithArgs provides a mock function with given fields: ctx, index, query, options
+func (_m *MockCmdable) FTExplainWithArgs(ctx context.Context, index string, query string, options *redis.FTExplainOptions) *redis.StringCmd {
+	ret := _m.Called(ctx, index, query, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTExplainWithArgs")
+	}
+
+	var r0 *redis.StringCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, *redis.FTExplainOptions) *redis.StringCmd); ok {
+		r0 = rf(ctx, index, query, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTExplainWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTExplainWithArgs'
+type MockCmdable_FTExplainWithArgs_Call struct {
+	*mock.Call
+}
+
+// FTExplainWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - query string
+//   - options *redis.FTExplainOptions
+func (_e *MockCmdable_Expecter) FTExplainWithArgs(ctx interface{}, index interface{}, query interface{}, options interface{}) *MockCmdable_FTExplainWithArgs_Call {
+	return &MockCmdable_FTExplainWithArgs_Call{Call: _e.mock.On("FTExplainWithArgs", ctx, index, query, options)}
+}
+
+func (_c *MockCmdable_FTExplainWithArgs_Call) Run(run func(ctx context.Context, index string, query string, options *redis.FTExplainOptions)) *MockCmdable_FTExplainWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.FTExplainOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTExplainWithArgs_Call) Return(_a0 *redis.StringCmd) *MockCmdable_FTExplainWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTExplainWithArgs_Call) RunAndReturn(run func(context.Context, string, string, *redis.FTExplainOptions) *redis.StringCmd) *MockCmdable_FTExplainWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTInfo provides a mock function with given fields: ctx, index
+func (_m *MockCmdable) FTInfo(ctx context.Context, index string) *redis.FTInfoCmd {
+	ret := _m.Called(ctx, index)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTInfo")
+	}
+
+	var r0 *redis.FTInfoCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.FTInfoCmd); ok {
+		r0 = rf(ctx, index)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.FTInfoCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTInfo_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTInfo'
+type MockCmdable_FTInfo_Call struct {
+	*mock.Call
+}
+
+// FTInfo is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+func (_e *MockCmdable_Expecter) FTInfo(ctx interface{}, index interface{}) *MockCmdable_FTInfo_Call {
+	return &MockCmdable_FTInfo_Call{Call: _e.mock.On("FTInfo", ctx, index)}
+}
+
+func (_c *MockCmdable_FTInfo_Call) Run(run func(ctx context.Context, index string)) *MockCmdable_FTInfo_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTInfo_Call) Return(_a0 *redis.FTInfoCmd) *MockCmdable_FTInfo_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTInfo_Call) RunAndReturn(run func(context.Context, string) *redis.FTInfoCmd) *MockCmdable_FTInfo_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTSearch provides a mock function with given fields: ctx, index, query
+func (_m *MockCmdable) FTSearch(ctx context.Context, index string, query string) *redis.FTSearchCmd {
+	ret := _m.Called(ctx, index, query)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTSearch")
+	}
+
+	var r0 *redis.FTSearchCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.FTSearchCmd); ok {
+		r0 = rf(ctx, index, query)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.FTSearchCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTSearch_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTSearch'
+type MockCmdable_FTSearch_Call struct {
+	*mock.Call
+}
+
+// FTSearch is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - query string
+func (_e *MockCmdable_Expecter) FTSearch(ctx interface{}, index interface{}, query interface{}) *MockCmdable_FTSearch_Call {
+	return &MockCmdable_FTSearch_Call{Call: _e.mock.On("FTSearch", ctx, index, query)}
+}
+
+func (_c *MockCmdable_FTSearch_Call) Run(run func(ctx context.Context, index string, query string)) *MockCmdable_FTSearch_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTSearch_Call) Return(_a0 *redis.FTSearchCmd) *MockCmdable_FTSearch_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTSearch_Call) RunAndReturn(run func(context.Context, string, string) *redis.FTSearchCmd) *MockCmdable_FTSearch_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTSearchWithArgs provides a mock function with given fields: ctx, index, query, options
+func (_m *MockCmdable) FTSearchWithArgs(ctx context.Context, index string, query string, options *redis.FTSearchOptions) *redis.FTSearchCmd {
+	ret := _m.Called(ctx, index, query, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTSearchWithArgs")
+	}
+
+	var r0 *redis.FTSearchCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, *redis.FTSearchOptions) *redis.FTSearchCmd); ok {
+		r0 = rf(ctx, index, query, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.FTSearchCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTSearchWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTSearchWithArgs'
+type MockCmdable_FTSearchWithArgs_Call struct {
+	*mock.Call
+}
+
+// FTSearchWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - query string
+//   - options *redis.FTSearchOptions
+func (_e *MockCmdable_Expecter) FTSearchWithArgs(ctx interface{}, index interface{}, query interface{}, options interface{}) *MockCmdable_FTSearchWithArgs_Call {
+	return &MockCmdable_FTSearchWithArgs_Call{Call: _e.mock.On("FTSearchWithArgs", ctx, index, query, options)}
+}
+
+func (_c *MockCmdable_FTSearchWithArgs_Call) Run(run func(ctx context.Context, index string, query string, options *redis.FTSearchOptions)) *MockCmdable_FTSearchWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.FTSearchOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTSearchWithArgs_Call) Return(_a0 *redis.FTSearchCmd) *MockCmdable_FTSearchWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTSearchWithArgs_Call) RunAndReturn(run func(context.Context, string, string, *redis.FTSearchOptions) *redis.FTSearchCmd) *MockCmdable_FTSearchWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTSpellCheck provides a mock function with given fields: ctx, index, query
+func (_m *MockCmdable) FTSpellCheck(ctx context.Context, index string, query string) *redis.FTSpellCheckCmd {
+	ret := _m.Called(ctx, index, query)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTSpellCheck")
+	}
+
+	var r0 *redis.FTSpellCheckCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.FTSpellCheckCmd); ok {
+		r0 = rf(ctx, index, query)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.FTSpellCheckCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTSpellCheck_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTSpellCheck'
+type MockCmdable_FTSpellCheck_Call struct {
+	*mock.Call
+}
+
+// FTSpellCheck is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - query string
+func (_e *MockCmdable_Expecter) FTSpellCheck(ctx interface{}, index interface{}, query interface{}) *MockCmdable_FTSpellCheck_Call {
+	return &MockCmdable_FTSpellCheck_Call{Call: _e.mock.On("FTSpellCheck", ctx, index, query)}
+}
+
+func (_c *MockCmdable_FTSpellCheck_Call) Run(run func(ctx context.Context, index string, query string)) *MockCmdable_FTSpellCheck_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTSpellCheck_Call) Return(_a0 *redis.FTSpellCheckCmd) *MockCmdable_FTSpellCheck_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTSpellCheck_Call) RunAndReturn(run func(context.Context, string, string) *redis.FTSpellCheckCmd) *MockCmdable_FTSpellCheck_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTSpellCheckWithArgs provides a mock function with given fields: ctx, index, query, options
+func (_m *MockCmdable) FTSpellCheckWithArgs(ctx context.Context, index string, query string, options *redis.FTSpellCheckOptions) *redis.FTSpellCheckCmd {
+	ret := _m.Called(ctx, index, query, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTSpellCheckWithArgs")
+	}
+
+	var r0 *redis.FTSpellCheckCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, *redis.FTSpellCheckOptions) *redis.FTSpellCheckCmd); ok {
+		r0 = rf(ctx, index, query, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.FTSpellCheckCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTSpellCheckWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTSpellCheckWithArgs'
+type MockCmdable_FTSpellCheckWithArgs_Call struct {
+	*mock.Call
+}
+
+// FTSpellCheckWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - query string
+//   - options *redis.FTSpellCheckOptions
+func (_e *MockCmdable_Expecter) FTSpellCheckWithArgs(ctx interface{}, index interface{}, query interface{}, options interface{}) *MockCmdable_FTSpellCheckWithArgs_Call {
+	return &MockCmdable_FTSpellCheckWithArgs_Call{Call: _e.mock.On("FTSpellCheckWithArgs", ctx, index, query, options)}
+}
+
+func (_c *MockCmdable_FTSpellCheckWithArgs_Call) Run(run func(ctx context.Context, index string, query string, options *redis.FTSpellCheckOptions)) *MockCmdable_FTSpellCheckWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.FTSpellCheckOptions))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTSpellCheckWithArgs_Call) Return(_a0 *redis.FTSpellCheckCmd) *MockCmdable_FTSpellCheckWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTSpellCheckWithArgs_Call) RunAndReturn(run func(context.Context, string, string, *redis.FTSpellCheckOptions) *redis.FTSpellCheckCmd) *MockCmdable_FTSpellCheckWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTSynDump provides a mock function with given fields: ctx, index
+func (_m *MockCmdable) FTSynDump(ctx context.Context, index string) *redis.FTSynDumpCmd {
+	ret := _m.Called(ctx, index)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTSynDump")
+	}
+
+	var r0 *redis.FTSynDumpCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string) *redis.FTSynDumpCmd); ok {
+		r0 = rf(ctx, index)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.FTSynDumpCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTSynDump_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTSynDump'
+type MockCmdable_FTSynDump_Call struct {
+	*mock.Call
+}
+
+// FTSynDump is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+func (_e *MockCmdable_Expecter) FTSynDump(ctx interface{}, index interface{}) *MockCmdable_FTSynDump_Call {
+	return &MockCmdable_FTSynDump_Call{Call: _e.mock.On("FTSynDump", ctx, index)}
+}
+
+func (_c *MockCmdable_FTSynDump_Call) Run(run func(ctx context.Context, index string)) *MockCmdable_FTSynDump_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTSynDump_Call) Return(_a0 *redis.FTSynDumpCmd) *MockCmdable_FTSynDump_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTSynDump_Call) RunAndReturn(run func(context.Context, string) *redis.FTSynDumpCmd) *MockCmdable_FTSynDump_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTSynUpdate provides a mock function with given fields: ctx, index, synGroupId, terms
+func (_m *MockCmdable) FTSynUpdate(ctx context.Context, index string, synGroupId interface{}, terms []interface{}) *redis.StatusCmd {
+	ret := _m.Called(ctx, index, synGroupId, terms)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTSynUpdate")
+	}
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, []interface{}) *redis.StatusCmd); ok {
+		r0 = rf(ctx, index, synGroupId, terms)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTSynUpdate_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTSynUpdate'
+type MockCmdable_FTSynUpdate_Call struct {
+	*mock.Call
+}
+
+// FTSynUpdate is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - synGroupId interface{}
+//   - terms []interface{}
+func (_e *MockCmdable_Expecter) FTSynUpdate(ctx interface{}, index interface{}, synGroupId interface{}, terms interface{}) *MockCmdable_FTSynUpdate_Call {
+	return &MockCmdable_FTSynUpdate_Call{Call: _e.mock.On("FTSynUpdate", ctx, index, synGroupId, terms)}
+}
+
+func (_c *MockCmdable_FTSynUpdate_Call) Run(run func(ctx context.Context, index string, synGroupId interface{}, terms []interface{})) *MockCmdable_FTSynUpdate_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].([]interface{}))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTSynUpdate_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_FTSynUpdate_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTSynUpdate_Call) RunAndReturn(run func(context.Context, string, interface{}, []interface{}) *redis.StatusCmd) *MockCmdable_FTSynUpdate_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTSynUpdateWithArgs provides a mock function with given fields: ctx, index, synGroupId, options, terms
+func (_m *MockCmdable) FTSynUpdateWithArgs(ctx context.Context, index string, synGroupId interface{}, options *redis.FTSynUpdateOptions, terms []interface{}) *redis.StatusCmd {
+	ret := _m.Called(ctx, index, synGroupId, options, terms)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTSynUpdateWithArgs")
+	}
+
+	var r0 *redis.StatusCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, *redis.FTSynUpdateOptions, []interface{}) *redis.StatusCmd); ok {
+		r0 = rf(ctx, index, synGroupId, options, terms)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTSynUpdateWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTSynUpdateWithArgs'
+type MockCmdable_FTSynUpdateWithArgs_Call struct {
+	*mock.Call
+}
+
+// FTSynUpdateWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - synGroupId interface{}
+//   - options *redis.FTSynUpdateOptions
+//   - terms []interface{}
+func (_e *MockCmdable_Expecter) FTSynUpdateWithArgs(ctx interface{}, index interface{}, synGroupId interface{}, options interface{}, terms interface{}) *MockCmdable_FTSynUpdateWithArgs_Call {
+	return &MockCmdable_FTSynUpdateWithArgs_Call{Call: _e.mock.On("FTSynUpdateWithArgs", ctx, index, synGroupId, options, terms)}
+}
+
+func (_c *MockCmdable_FTSynUpdateWithArgs_Call) Run(run func(ctx context.Context, index string, synGroupId interface{}, options *redis.FTSynUpdateOptions, terms []interface{})) *MockCmdable_FTSynUpdateWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(*redis.FTSynUpdateOptions), args[4].([]interface{}))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTSynUpdateWithArgs_Call) Return(_a0 *redis.StatusCmd) *MockCmdable_FTSynUpdateWithArgs_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTSynUpdateWithArgs_Call) RunAndReturn(run func(context.Context, string, interface{}, *redis.FTSynUpdateOptions, []interface{}) *redis.StatusCmd) *MockCmdable_FTSynUpdateWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTTagVals provides a mock function with given fields: ctx, index, field
+func (_m *MockCmdable) FTTagVals(ctx context.Context, index string, field string) *redis.StringSliceCmd {
+	ret := _m.Called(ctx, index, field)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTTagVals")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) *redis.StringSliceCmd); ok {
+		r0 = rf(ctx, index, field)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FTTagVals_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTTagVals'
+type MockCmdable_FTTagVals_Call struct {
+	*mock.Call
+}
+
+// FTTagVals is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - field string
+func (_e *MockCmdable_Expecter) FTTagVals(ctx interface{}, index interface{}, field interface{}) *MockCmdable_FTTagVals_Call {
+	return &MockCmdable_FTTagVals_Call{Call: _e.mock.On("FTTagVals", ctx, index, field)}
+}
+
+func (_c *MockCmdable_FTTagVals_Call) Run(run func(ctx context.Context, index string, field string)) *MockCmdable_FTTagVals_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTTagVals_Call) Return(_a0 *redis.StringSliceCmd) *MockCmdable_FTTagVals_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FTTagVals_Call) RunAndReturn(run func(context.Context, string, string) *redis.StringSliceCmd) *MockCmdable_FTTagVals_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FT_List provides a mock function with given fields: ctx
+func (_m *MockCmdable) FT_List(ctx context.Context) *redis.StringSliceCmd {
+	ret := _m.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FT_List")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if rf, ok := ret.Get(0).(func(context.Context) *redis.StringSliceCmd); ok {
+		r0 = rf(ctx)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+
+	return r0
+}
+
+// MockCmdable_FT_List_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FT_List'
+type MockCmdable_FT_List_Call struct {
+	*mock.Call
+}
+
+// FT_List is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *MockCmdable_Expecter) FT_List(ctx interface{}) *MockCmdable_FT_List_Call {
+	return &MockCmdable_FT_List_Call{Call: _e.mock.On("FT_List", ctx)}
+}
+
+func (_c *MockCmdable_FT_List_Call) Run(run func(ctx context.Context)) *MockCmdable_FT_List_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FT_List_Call) Return(_a0 *redis.StringSliceCmd) *MockCmdable_FT_List_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *MockCmdable_FT_List_Call) RunAndReturn(run func(context.Context) *redis.StringSliceCmd) *MockCmdable_FT_List_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // FlushAll provides a mock function with given fields: ctx
 func (_m *MockCmdable) FlushAll(ctx context.Context) *redis.StatusCmd {
 	ret := _m.Called(ctx)
