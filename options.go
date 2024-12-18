@@ -2,6 +2,7 @@ package cache
 
 import (
 	"runtime"
+	"sync/atomic"
 	"time"
 
 	"golang.org/x/sync/semaphore"
@@ -24,7 +25,7 @@ func WithItemMaxProcs(n int) Option {
 }
 
 func WithNoErr() Option {
-	return func(c *Cache) { c.errOnce = newErrOnce() }
+	return func(c *Cache) { c.gotErr = new(atomic.Bool) }
 }
 
 func WithLock(ttl, tick time.Duration, iter func() WaitLockIter) Option {

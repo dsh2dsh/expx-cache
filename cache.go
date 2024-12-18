@@ -3,6 +3,7 @@ package cache
 
 import (
 	"context"
+	"sync/atomic"
 	"time"
 
 	"golang.org/x/sync/semaphore"
@@ -48,7 +49,7 @@ func New(opts ...Option) *Cache {
 		stats:      new(Stats),
 		group:      new(singleflight.Group),
 		prefixLock: prefixLock,
-		errOnce:    newErrOnce(),
+		gotErr:     new(atomic.Bool),
 	}
 	return c.applyOptions(opts...)
 }
@@ -76,7 +77,7 @@ type Cache struct {
 	lockNotFound func(key, value string) error
 	prefixLock   string
 
-	errOnce *errOnce
+	gotErr *atomic.Bool
 }
 
 func (self *Cache) applyOptions(opts ...Option) *Cache {
@@ -184,7 +185,7 @@ func (self *Cache) WithItemMaxProcs(n int) *Cache {
 }
 
 func (self *Cache) useRedis() bool {
-	return self.redis != nil && self.Err() == nil
+	return self.redis != nil && !self.Failed()
 }
 
 func (self *Cache) WithLocalStats(fn func(c *Cache) error, opts ...Option,

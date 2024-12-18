@@ -274,8 +274,8 @@ func (self *CacheTestSuite) TestLock_Get_waitLockDeadline() {
 	_, err = l2.Get(ctx2, lockTTL, NewWaitLockIter(time.Second))
 	self.T().Log(err)
 	self.Require().ErrorIs(err, context.DeadlineExceeded)
-	self.Require().ErrorIs(self.cache.Err(), context.DeadlineExceeded)
-	self.Require().ErrorIs(err, self.cache.ResetErr())
+	self.True(self.cache.Failed())
+	self.True(self.cache.Unfail())
 
 	var gotLockVal string
 	missed, err := self.cache.Get(ctx, Item{
@@ -560,7 +560,7 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 		name   string
 		cache  func() *Cache
 		itemDo func()
-		err    error
+		failed bool
 	}{
 		{
 			name: "with Err set",
@@ -570,7 +570,7 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 				_ = cache.redisCacheError(testErr)
 				return cache
 			},
-			err: ErrRedisCache,
+			failed: true,
 		},
 		{
 			name: "redisLockGet ErrRedisCache 1",
@@ -583,7 +583,7 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 					Return(false, nil, testErr)
 				return cache
 			},
-			err: ErrRedisCache,
+			failed: true,
 		},
 		{
 			name: "redisLockGet ErrRedisCache 2",
@@ -599,7 +599,7 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 					Return(false, testErr)
 				return cache
 			},
-			err: ErrRedisCache,
+			failed: true,
 		},
 		{
 			name: "waitUnlock ErrRedisCache 1",
@@ -627,7 +627,7 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 
 				return cache
 			},
-			err: ErrRedisCache,
+			failed: true,
 		},
 		{
 			name: "waitUnlock ErrRedisCache 2",
@@ -655,7 +655,7 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 
 				return cache
 			},
-			err: ErrRedisCache,
+			failed: true,
 		},
 		{
 			name: "redisLockGet notFound",
@@ -687,7 +687,7 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 				redisCache.EXPECT().Set(ctx, 1, mock.Anything).Return(testErr)
 				return cache
 			},
-			err: ErrRedisCache,
+			failed: true,
 		},
 		{
 			name: "WithLock ErrRedisCache 2",
@@ -704,7 +704,7 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 				return cache
 			},
 			itemDo: func() { time.Sleep(10 * time.Millisecond) },
-			err:    ErrRedisCache,
+			failed: true,
 		},
 		{
 			name: "WithLock notFound 1",
@@ -761,7 +761,7 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 				},
 			})
 			require.NoError(t, err)
-			require.ErrorIs(t, cache.Err(), tt.err)
+			assert.Equal(t, tt.failed, cache.Failed())
 			assert.Equal(t, foobar, got)
 		})
 	}

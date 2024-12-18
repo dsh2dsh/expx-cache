@@ -2,7 +2,6 @@ package cache
 
 import (
 	"context"
-	"errors"
 	"fmt"
 )
 
@@ -53,14 +52,14 @@ func (self *Cache) getSetItemBytesOnce(ctx context.Context, item *Item,
 
 func (self *Cache) redisGetSet(ctx context.Context, item *Item) ([]byte, error) {
 	b, err := self.redisGet(ctx, self.ResolveKey(item.Key), item.SkipLocalCache)
-	if errors.Is(err, ErrRedisCache) {
+	if self.Failed() {
 		// do nothing
 	} else if err != nil || len(b) != 0 {
 		return b, err
 	}
 
 	b, err = self.set(ctx, item)
-	if errors.Is(err, ErrRedisCache) {
+	if self.Failed() {
 		err = nil
 	}
 	return b, err

@@ -91,7 +91,7 @@ func (self *Cache) redisLockGetSet(ctx context.Context, item *Item,
 ) (b []byte, err error) {
 	l, b, err := self.redisLockGet(ctx, item)
 	if err != nil {
-		if errors.Is(err, ErrRedisCache) {
+		if self.Failed() {
 			b, err = self.set(ctx, item)
 		}
 		return
@@ -103,7 +103,7 @@ func (self *Cache) redisLockGetSet(ctx context.Context, item *Item,
 		b, err = self.set(ctx, item)
 		return err
 	})
-	if errors.Is(err, ErrRedisCache) {
+	if self.Failed() {
 		err = nil
 	}
 	return

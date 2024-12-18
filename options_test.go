@@ -61,15 +61,15 @@ func TestWithMarshalMaxProcs(t *testing.T) {
 func TestWithNoErr(t *testing.T) {
 	cache := New()
 	require.NotNil(t, cache)
-	require.NoError(t, cache.Err())
+	assert.False(t, cache.Failed())
 
 	wantErr1 := errors.New("test error")
 	require.ErrorIs(t, cache.redisCacheError(wantErr1), wantErr1)
-	require.ErrorIs(t, cache.Err(), wantErr1)
+	assert.True(t, cache.Failed())
 
 	cache2 := cache.New(WithNoErr())
-	require.NoError(t, cache2.Err())
-	require.ErrorIs(t, cache.Err(), wantErr1)
+	assert.False(t, cache2.Failed())
+	assert.True(t, cache.Failed())
 }
 
 func TestWithLockNotFound(t *testing.T) {

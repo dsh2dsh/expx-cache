@@ -6,6 +6,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
 	mocks "github.com/dsh2dsh/expx-cache/internal/mocks/cache"
@@ -98,7 +99,7 @@ func TestDelete_errFromRedis(t *testing.T) {
 
 	err := cache.Delete(ctx, testKey)
 	require.ErrorIs(t, err, wantErr)
-	require.ErrorIs(t, err, ErrRedisCache)
+	assert.True(t, cache.Failed())
 }
 
 func TestCache_Delete_withoutKeys(t *testing.T) {

@@ -2,7 +2,6 @@ package cache
 
 import (
 	"context"
-	"errors"
 	"fmt"
 )
 
@@ -152,7 +151,7 @@ func (self *Cache) redisGetItems(g *marshalGroup, items []Item) ([]Item, error) 
 
 func (self *Cache) GetSet(ctx context.Context, items ...Item) error {
 	missed, err := self.Get(ctx, items...)
-	if errors.Is(err, ErrRedisCache) {
+	if self.Failed() {
 		missed = items
 	} else if err != nil || len(missed) == 0 {
 		return err
@@ -160,7 +159,7 @@ func (self *Cache) GetSet(ctx context.Context, items ...Item) error {
 
 	if len(missed) == 1 {
 		b, err := self.set(ctx, &items[0])
-		if errors.Is(err, ErrRedisCache) {
+		if self.Failed() {
 			// do nothing
 		} else if err != nil || len(b) == 0 {
 			return err
@@ -169,7 +168,7 @@ func (self *Cache) GetSet(ctx context.Context, items ...Item) error {
 	}
 
 	bytes, err := self.setItems(ctx, items)
-	if err == nil || errors.Is(err, ErrRedisCache) {
+	if err == nil || self.Failed() {
 		return self.unmarshalItems(ctx, bytes, missed)
 	}
 	return err

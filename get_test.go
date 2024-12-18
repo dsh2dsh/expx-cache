@@ -36,7 +36,7 @@ func TestGet_redisErrAddsMiss(t *testing.T) {
 	item := Item{Key: testKey}
 	missed, err := cache.Get(ctx, item)
 	require.ErrorIs(t, err, wantErr)
-	require.ErrorIs(t, err, ErrRedisCache)
+	assert.True(t, cache.Failed())
 	assert.Nil(t, missed)
 	assert.Equal(t, uint64(1), cache.Stats().Misses)
 }
@@ -77,7 +77,7 @@ func TestExists_withError(t *testing.T) {
 	cache := New().WithRedisCache(redisCache)
 	hit, err := cache.Exists(ctx, testKey)
 	require.ErrorIs(t, err, wantErr)
-	require.ErrorIs(t, err, ErrRedisCache)
+	assert.True(t, cache.Failed())
 	assert.False(t, hit)
 }
 
@@ -154,7 +154,7 @@ func TestCache_Get_errorRedis(t *testing.T) {
 
 	missed, err := cache.Get(ctx, item, item)
 	require.ErrorIs(t, err, wantErr)
-	require.ErrorIs(t, err, ErrRedisCache)
+	assert.True(t, cache.Failed())
 	assert.Nil(t, missed)
 }
 
@@ -279,7 +279,7 @@ func TestCache_GetSet_withErrRedisCache(t *testing.T) {
 	tests := []struct {
 		name   string
 		cache  func() *Cache
-		err    error
+		failed bool
 		values []string
 	}{
 		{
@@ -290,7 +290,7 @@ func TestCache_GetSet_withErrRedisCache(t *testing.T) {
 				_ = cache.redisCacheError(testErr)
 				return cache
 			},
-			err:    ErrRedisCache,
+			failed: true,
 			values: values1,
 		},
 		{
@@ -301,7 +301,7 @@ func TestCache_GetSet_withErrRedisCache(t *testing.T) {
 				_ = cache.redisCacheError(testErr)
 				return cache
 			},
-			err:    ErrRedisCache,
+			failed: true,
 			values: values2,
 		},
 		{
@@ -312,7 +312,7 @@ func TestCache_GetSet_withErrRedisCache(t *testing.T) {
 				redisCache.EXPECT().Get(ctx, 1, mock.Anything).Return(nil, testErr)
 				return cache
 			},
-			err:    ErrRedisCache,
+			failed: true,
 			values: values1,
 		},
 		{
@@ -324,7 +324,7 @@ func TestCache_GetSet_withErrRedisCache(t *testing.T) {
 					Return(nil, testErr)
 				return cache
 			},
-			err:    ErrRedisCache,
+			failed: true,
 			values: values2,
 		},
 		{
@@ -340,7 +340,7 @@ func TestCache_GetSet_withErrRedisCache(t *testing.T) {
 				redisCache.EXPECT().Set(ctx, 1, mock.Anything).Return(testErr)
 				return cache
 			},
-			err:    ErrRedisCache,
+			failed: true,
 			values: values1,
 		},
 		{
@@ -358,7 +358,7 @@ func TestCache_GetSet_withErrRedisCache(t *testing.T) {
 				redisCache.EXPECT().Set(ctx, 2, mock.Anything).Return(testErr)
 				return cache
 			},
-			err:    ErrRedisCache,
+			failed: true,
 			values: values2,
 		},
 	}
@@ -379,7 +379,7 @@ func TestCache_GetSet_withErrRedisCache(t *testing.T) {
 			cache := tt.cache()
 			err := cache.GetSet(ctx, items...)
 			require.NoError(t, err)
-			require.ErrorIs(t, cache.Err(), tt.err)
+			assert.Equal(t, tt.failed, cache.Failed())
 			assert.Equal(t, tt.values, got)
 		})
 	}
