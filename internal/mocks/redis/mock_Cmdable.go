@@ -15406,7 +15406,7 @@ func (_c *MockCmdable_Ping_Call) RunAndReturn(run func(context.Context) *redis.S
 	return _c
 }
 
-// Pipeline provides a mock function with given fields:
+// Pipeline provides a mock function with no fields
 func (_m *MockCmdable) Pipeline() redis.Pipeliner {
 	ret := _m.Called()
 
@@ -22376,7 +22376,7 @@ func (_c *MockCmdable_Touch_Call) RunAndReturn(run func(context.Context, ...stri
 	return _c
 }
 
-// TxPipeline provides a mock function with given fields:
+// TxPipeline provides a mock function with no fields
 func (_m *MockCmdable) TxPipeline() redis.Pipeliner {
 	ret := _m.Called()
 

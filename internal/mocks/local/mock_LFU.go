@@ -49,7 +49,7 @@ func (_c *MockLFU_Del_Call) Return() *MockLFU_Del_Call {
 }
 
 func (_c *MockLFU_Del_Call) RunAndReturn(run func(string)) *MockLFU_Del_Call {
-	_c.Call.Return(run)
+	_c.Run(run)
 	return _c
 }
 
@@ -140,7 +140,7 @@ func (_c *MockLFU_Set_Call) Return() *MockLFU_Set_Call {
 }
 
 func (_c *MockLFU_Set_Call) RunAndReturn(run func(*tinylfu.Item)) *MockLFU_Set_Call {
-	_c.Call.Return(run)
+	_c.Run(run)
 	return _c
 }
 

@@ -6065,7 +6065,7 @@ func (_c *MockPipeliner_Del_Call) RunAndReturn(run func(context.Context, ...stri
 	return _c
 }
 
-// Discard provides a mock function with given fields:
+// Discard provides a mock function with no fields
 func (_m *MockPipeliner) Discard() {
 	_m.Called()
 }
@@ -6093,7 +6093,7 @@ func (_c *MockPipeliner_Discard_Call) Return() *MockPipeliner_Discard_Call {
 }
 
 func (_c *MockPipeliner_Discard_Call) RunAndReturn(run func()) *MockPipeliner_Discard_Call {
-	_c.Call.Return(run)
+	_c.Run(run)
 	return _c
 }
 
@@ -14670,7 +14670,7 @@ func (_c *MockPipeliner_LastSave_Call) RunAndReturn(run func(context.Context) *r
 	return _c
 }
 
-// Len provides a mock function with given fields:
+// Len provides a mock function with no fields
 func (_m *MockPipeliner) Len() int {
 	ret := _m.Called()
 
@@ -15790,7 +15790,7 @@ func (_c *MockPipeliner_Ping_Call) RunAndReturn(run func(context.Context) *redis
 	return _c
 }
 
-// Pipeline provides a mock function with given fields:
+// Pipeline provides a mock function with no fields
 func (_m *MockPipeliner) Pipeline() redis.Pipeliner {
 	ret := _m.Called()
 
@@ -22836,7 +22836,7 @@ func (_c *MockPipeliner_Touch_Call) RunAndReturn(run func(context.Context, ...st
 	return _c
 }
 
-// TxPipeline provides a mock function with given fields:
+// TxPipeline provides a mock function with no fields
 func (_m *MockPipeliner) TxPipeline() redis.Pipeliner {
 	ret := _m.Called()
 

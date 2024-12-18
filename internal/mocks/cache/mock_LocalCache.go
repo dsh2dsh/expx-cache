@@ -46,7 +46,7 @@ func (_c *MockLocalCache_Del_Call) Return() *MockLocalCache_Del_Call {
 }
 
 func (_c *MockLocalCache_Del_Call) RunAndReturn(run func(string)) *MockLocalCache_Del_Call {
-	_c.Call.Return(run)
+	_c.Run(run)
 	return _c
 }
 
@@ -128,7 +128,7 @@ func (_c *MockLocalCache_Set_Call) Return() *MockLocalCache_Set_Call {
 }
 
 func (_c *MockLocalCache_Set_Call) RunAndReturn(run func(string, []byte)) *MockLocalCache_Set_Call {
-	_c.Call.Return(run)
+	_c.Run(run)
 	return _c
 }
 

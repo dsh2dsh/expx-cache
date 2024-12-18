@@ -1,19 +1,21 @@
 dir: "internal/mocks/{{.PackageName}}"
 disable-version-string: True
 with-expecter: True
+issue-845-fix: True
+resolve-type-alias: False
 packages:
-  github.com/dsh2dsh/expx-cache:
+  "github.com/dsh2dsh/expx-cache":
     interfaces:
-      LocalCache:
-      RedisCache:
-  github.com/dsh2dsh/expx-cache/local:
+      "LocalCache":
+      "RedisCache":
+  "github.com/dsh2dsh/expx-cache/local":
     interfaces:
-      LFU:
-  github.com/dsh2dsh/expx-cache/redis:
+      "LFU":
+  "github.com/dsh2dsh/expx-cache/redis":
     interfaces:
-      Cmdable:
+      "Cmdable":
         config:
           unroll-variadic: False
-  github.com/redis/go-redis/v9:
+  "github.com/redis/go-redis/v9":
     interfaces:
-      Pipeliner:
+      "Pipeliner":
