@@ -4,7 +4,9 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"iter"
 	"os"
+	"slices"
 	"strconv"
 	"strings"
 	"sync/atomic"
@@ -34,20 +36,17 @@ func valueNoError[V any](t *testing.T) func(val V, err error) V {
 	}
 }
 
-func mgetIter3(
-	ctx context.Context, keys []string,
-) (context.Context, int, func(itemIdx int) string) {
-	return ctx, len(keys), func(itemIdx int) string { return keys[itemIdx] }
-}
-
-func makeBytesIter(blobs [][]byte) func() ([]byte, bool) {
-	var nextItem int
-	return func() (b []byte, ok bool) {
-		if nextItem < len(blobs) {
-			b, ok = blobs[nextItem], true
-			nextItem++
+func makeBytesIter(blobs [][]byte, err error) iter.Seq2[[]byte, error] {
+	return func(yield func([]byte, error) bool) {
+		if err != nil {
+			yield(nil, err)
+			return
 		}
-		return
+		for _, b := range blobs {
+			if !yield(b, nil) {
+				return
+			}
+		}
 	}
 }
 
@@ -242,7 +241,6 @@ func (self *CacheTestSuite) TestCache_setGetItems() {
 
 func (self *CacheTestSuite) TestCache_GetSet() {
 	const maxItems = 21
-	var allKeys [maxItems]string
 	var allValues [maxItems]CacheableObject
 	var gotValues [maxItems]CacheableObject
 
@@ -250,7 +248,6 @@ func (self *CacheTestSuite) TestCache_GetSet() {
 	var callCount uint32
 	for i := 0; i < maxItems; i++ {
 		key := fmt.Sprintf("key-%00d", i)
-		allKeys[i] = key
 		allValues[i] = CacheableObject{Str: key, Num: i}
 		allItems[i] = Item{
 			Key:   key,
@@ -377,14 +374,14 @@ func keyExists(t *testing.T, c *Cache, key string) bool {
 	}
 
 	if c.redis != nil {
-		bytesIter := valueNoError[func() ([]byte, bool)](t)(
-			c.redis.Get(mgetIter3(context.Background(), []string{key})))
-		b, _ := bytesIter()
-		if b == nil {
-			return false
+		bytesIter := c.redis.Get(context.Background(), 1,
+			slices.Values([]string{key}))
+		for b, err := range bytesIter {
+			require.NoError(t, err)
+			return b != nil
 		}
+		return false
 	}
-
 	return true
 }
 
@@ -396,14 +393,14 @@ func keyNotExists(t *testing.T, c *Cache, key string) bool {
 	}
 
 	if c.redis != nil {
-		bytesIter := valueNoError[func() ([]byte, bool)](t)(
-			c.redis.Get(mgetIter3(context.Background(), []string{key})))
-		b, _ := bytesIter()
-		if b != nil {
-			return false
+		bytesIter := c.redis.Get(context.Background(), 1,
+			slices.Values([]string{key}))
+		for b, err := range bytesIter {
+			require.NoError(t, err)
+			return b == nil
 		}
+		return true
 	}
-
 	return true
 }
 

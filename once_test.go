@@ -389,7 +389,8 @@ func TestCache_Once_withErrRedisCache(t *testing.T) {
 			cache: func() *Cache {
 				redisCache := mocks.NewMockRedisCache(t)
 				cache := New().WithRedisCache(redisCache)
-				redisCache.EXPECT().Get(ctx, 1, mock.Anything).Return(nil, testErr)
+				redisCache.EXPECT().Get(ctx, 1, mock.Anything).
+					Return(makeBytesIter(nil, testErr))
 				return cache
 			},
 		},
@@ -401,8 +402,8 @@ func TestCache_Once_withErrRedisCache(t *testing.T) {
 				localCache.EXPECT().Set(testKey, []byte(foobar))
 				redisCache := mocks.NewMockRedisCache(t)
 				cache := New().WithLocalCache(localCache).WithRedisCache(redisCache)
-				redisCache.EXPECT().Get(ctx, 1, mock.Anything).Return(
-					makeBytesIter([][]byte{nil}), nil)
+				redisCache.EXPECT().Get(ctx, 1, mock.Anything).
+					Return(makeBytesIter([][]byte{nil}, nil))
 				redisCache.EXPECT().Set(ctx, 1, mock.Anything).Return(testErr)
 				return cache
 			},

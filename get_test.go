@@ -30,7 +30,8 @@ func TestGet_redisErrAddsMiss(t *testing.T) {
 	wantErr := errors.New("test error")
 
 	redisCache := cacheMocks.NewMockRedisCache(t)
-	redisCache.EXPECT().Get(ctx, 1, mock.Anything).Return(nil, wantErr)
+	redisCache.EXPECT().Get(ctx, 1, mock.Anything).
+		Return(makeBytesIter(nil, wantErr))
 
 	cache := New().WithStats(true).WithRedisCache(redisCache)
 	item := Item{Key: testKey}
@@ -46,16 +47,16 @@ func TestCache_Get_SkipLocalCache(t *testing.T) {
 
 	localCache := cacheMocks.NewMockLocalCache(t)
 	redisCache := cacheMocks.NewMockRedisCache(t)
-	redisCache.EXPECT().Get(ctx, 1, mock.Anything).Return(
-		makeBytesIter([][]byte{nil}), nil)
+	redisCache.EXPECT().Get(ctx, 1, mock.Anything).
+		Return(makeBytesIter([][]byte{nil}, nil))
 
 	cache := New().WithLocalCache(localCache).WithRedisCache(redisCache)
 	item := Item{Key: testKey, SkipLocalCache: true}
 	missed := valueNoError[[]Item](t)(cache.Get(ctx, item))
 	assert.Equal(t, []Item{item}, missed)
 
-	redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).Return(
-		makeBytesIter([][]byte{nil, nil}), nil)
+	redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).
+		Return(makeBytesIter([][]byte{nil, nil}, nil))
 	missed = valueNoError[[]Item](t)(cache.Get(ctx, item, item))
 	assert.Equal(t, []Item{item, item}, missed)
 }
@@ -72,7 +73,8 @@ func TestExists_withError(t *testing.T) {
 	wantErr := errors.New("test error")
 
 	redisCache := cacheMocks.NewMockRedisCache(t)
-	redisCache.EXPECT().Get(ctx, 1, mock.Anything).Return(nil, wantErr)
+	redisCache.EXPECT().Get(ctx, 1, mock.Anything).
+		Return(makeBytesIter(nil, wantErr))
 
 	cache := New().WithRedisCache(redisCache)
 	hit, err := cache.Exists(ctx, testKey)
@@ -171,8 +173,8 @@ func TestCache_Get_localSet(t *testing.T) {
 	blob := valueNoError[[]byte](t)(cache.Marshal(&obj))
 
 	localCache.EXPECT().Get(item.Key).Return(nil)
-	redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).Return(
-		makeBytesIter([][]byte{blob, blob}), nil)
+	redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).
+		Return(makeBytesIter([][]byte{blob, blob}, nil))
 	localCache.EXPECT().Set(item.Key, blob)
 
 	missed := valueNoError[[]Item](t)(cache.Get(ctx, item, item))
@@ -209,8 +211,8 @@ func TestCache_Get_errorRedisCanceled(t *testing.T) {
 	blob := valueNoError[[]byte](t)(marshal(&obj))
 
 	redisCache := cacheMocks.NewMockRedisCache(t)
-	redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).Return(
-		makeBytesIter([][]byte{blob, blob}), nil)
+	redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).
+		Return(makeBytesIter([][]byte{blob, blob}, nil))
 
 	cache := New().WithRedisCache(redisCache)
 	assert.NotNil(t, cache)
@@ -252,8 +254,8 @@ func TestCache_Get_redisGetItemsCanceled(t *testing.T) {
 	blob := valueNoError[[]byte](t)(marshal(&obj))
 
 	redisCache := cacheMocks.NewMockRedisCache(t)
-	redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).Return(
-		makeBytesIter([][]byte{blob, blob}), nil)
+	redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).
+		Return(makeBytesIter([][]byte{blob, blob}, nil))
 
 	cache := New().WithRedisCache(redisCache)
 	assert.NotNil(t, cache)
@@ -309,7 +311,8 @@ func TestCache_GetSet_withErrRedisCache(t *testing.T) {
 			cache: func() *Cache {
 				redisCache := cacheMocks.NewMockRedisCache(t)
 				cache := New().WithRedisCache(redisCache)
-				redisCache.EXPECT().Get(ctx, 1, mock.Anything).Return(nil, testErr)
+				redisCache.EXPECT().Get(ctx, 1, mock.Anything).
+					Return(makeBytesIter(nil, testErr))
 				return cache
 			},
 			failed: true,
@@ -321,7 +324,7 @@ func TestCache_GetSet_withErrRedisCache(t *testing.T) {
 				redisCache := cacheMocks.NewMockRedisCache(t)
 				cache := New().WithRedisCache(redisCache)
 				redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).
-					Return(nil, testErr)
+					Return(makeBytesIter(nil, testErr))
 				return cache
 			},
 			failed: true,
@@ -335,8 +338,8 @@ func TestCache_GetSet_withErrRedisCache(t *testing.T) {
 				localCache.EXPECT().Set(testKey0, []byte(foobar))
 				redisCache := cacheMocks.NewMockRedisCache(t)
 				cache := New().WithLocalCache(localCache).WithRedisCache(redisCache)
-				redisCache.EXPECT().Get(ctx, 1, mock.Anything).Return(
-					makeBytesIter([][]byte{nil}), nil)
+				redisCache.EXPECT().Get(ctx, 1, mock.Anything).
+					Return(makeBytesIter([][]byte{nil}, nil))
 				redisCache.EXPECT().Set(ctx, 1, mock.Anything).Return(testErr)
 				return cache
 			},
@@ -353,8 +356,8 @@ func TestCache_GetSet_withErrRedisCache(t *testing.T) {
 				localCache.EXPECT().Set(testKey1, []byte(foobaz))
 				redisCache := cacheMocks.NewMockRedisCache(t)
 				cache := New().WithLocalCache(localCache).WithRedisCache(redisCache)
-				redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).Return(
-					makeBytesIter([][]byte{nil, nil}), nil)
+				redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).
+					Return(makeBytesIter([][]byte{nil, nil}, nil))
 				redisCache.EXPECT().Set(ctx, 2, mock.Anything).Return(testErr)
 				return cache
 			},
@@ -397,8 +400,8 @@ func TestCache_GetSet_itemDoNil(t *testing.T) {
 			name: "1 item",
 			cache: func() *Cache {
 				redisCache := cacheMocks.NewMockRedisCache(t)
-				redisCache.EXPECT().Get(ctx, 1, mock.Anything).Return(
-					makeBytesIter([][]byte{nil}), nil)
+				redisCache.EXPECT().Get(ctx, 1, mock.Anything).
+					Return(makeBytesIter([][]byte{nil}, nil))
 				return New().WithRedisCache(redisCache)
 			},
 			items: 1,
@@ -407,15 +410,14 @@ func TestCache_GetSet_itemDoNil(t *testing.T) {
 			name: "2 items",
 			cache: func() *Cache {
 				redisCache := cacheMocks.NewMockRedisCache(t)
-				redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).Return(
-					makeBytesIter([][]byte{nil, nil}), nil)
+				redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).
+					Return(makeBytesIter([][]byte{nil, nil}, nil))
 				redisCache.EXPECT().Set(ctx, 2, mock.Anything).RunAndReturn(
 					func(ctx context.Context, maxItems int,
 						iter func(itemIdx int) (key string, b []byte, ttl time.Duration),
 					) error {
 						pipe := redisMocks.NewMockPipeliner(t)
 						pipe.EXPECT().Len().Return(0)
-						pipe.EXPECT().Exec(ctx).Return([]redis.Cmder{}, nil)
 						rdb := redisMocks.NewMockCmdable(t)
 						rdb.EXPECT().Pipeline().Return(pipe)
 						redisCache := cacheRedis.New(rdb)
@@ -450,8 +452,8 @@ func TestCache_GetSet_itemDoNil(t *testing.T) {
 
 func TestCache_GetSet_marshalErr(t *testing.T) {
 	redisCache := cacheMocks.NewMockRedisCache(t)
-	redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).Return(
-		makeBytesIter([][]byte{nil, nil}), nil)
+	redisCache.EXPECT().Get(mock.Anything, 2, mock.Anything).
+		Return(makeBytesIter([][]byte{nil, nil}, nil))
 	cache := New().WithRedisCache(redisCache)
 
 	ctx := context.Background()

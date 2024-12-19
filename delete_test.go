@@ -3,6 +3,7 @@ package cache
 import (
 	"context"
 	"errors"
+	"slices"
 	"testing"
 	"time"
 
@@ -72,10 +73,12 @@ func (self *CacheTestSuite) TestDeleteFromRedis() {
 	}
 
 	if self.cache.redis != nil {
-		bytesIter := valueNoError[func() ([]byte, bool)](self.T())(
-			self.cache.redis.Get(mgetIter3(context.Background(), []string{testKey})))
-		b, _ := bytesIter()
-		self.Nil(b)
+		bytesIter := self.cache.redis.Get(context.Background(), 1,
+			slices.Values([]string{testKey}))
+		for b, err := range bytesIter {
+			self.Require().NoError(err)
+			self.Nil(b)
+		}
 	}
 	self.assertStats()
 }

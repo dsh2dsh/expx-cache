@@ -3,6 +3,7 @@ package cache
 import (
 	"context"
 	"fmt"
+	"slices"
 )
 
 // Exists reports whether value for the given key exists.
@@ -14,7 +15,8 @@ func (self *Cache) Exists(ctx context.Context, key string) (bool, error) {
 	return len(b) != 0, nil
 }
 
-func (self *Cache) getBytes(ctx context.Context, key string, skipLocalCache bool,
+func (self *Cache) getBytes(ctx context.Context, key string,
+	skipLocalCache bool,
 ) ([]byte, error) {
 	key = self.ResolveKey(key)
 	if !skipLocalCache && self.localCache != nil {
@@ -28,29 +30,30 @@ func (self *Cache) getBytes(ctx context.Context, key string, skipLocalCache bool
 	return self.redisGet(ctx, key, skipLocalCache)
 }
 
-func (self *Cache) redisGet(ctx context.Context, key string, skipLocalCache bool,
+func (self *Cache) redisGet(ctx context.Context, key string,
+	skipLocalCache bool,
 ) ([]byte, error) {
 	if !self.useRedis() {
 		return nil, nil
 	}
 
-	bytesIter, err := self.redis.Get(ctx, 1, func(int) string { return key })
-	if err != nil {
-		self.addMiss()
-		return nil, self.redisCacheError(fmt.Errorf("get %q from redis: %w", key, err))
+	bytesIter := self.redis.Get(ctx, 1, slices.Values([]string{key}))
+	for b, err := range bytesIter {
+		if err != nil {
+			self.addMiss()
+			return nil, self.redisCacheError(fmt.Errorf(
+				"get %q from redis: %w", key, err))
+		} else if len(b) == 0 {
+			self.addMiss()
+			return nil, nil
+		}
+		self.addHit()
+		if !skipLocalCache && self.localCache != nil {
+			self.localCache.Set(key, b)
+		}
+		return b, nil
 	}
-
-	b, ok := bytesIter()
-	if !ok || len(b) == 0 {
-		self.addMiss()
-		return nil, nil
-	}
-	self.addHit()
-
-	if !skipLocalCache && self.localCache != nil {
-		self.localCache.Set(key, b)
-	}
-	return b, nil
+	return nil, nil
 }
 
 func (self *Cache) Get(ctx context.Context, items ...Item) ([]Item, error) {
@@ -86,7 +89,9 @@ func (self *Cache) getOneItems(ctx context.Context, items []Item,
 	return nil, self.unmarshal(b, item.Value)
 }
 
-func (self *Cache) localGetItems(g *marshalGroup, items []Item) ([]Item, error) {
+func (self *Cache) localGetItems(g *marshalGroup, items []Item) ([]Item,
+	error,
+) {
 	if self.localCache == nil {
 		return items, nil
 	}
@@ -113,22 +118,29 @@ func (self *Cache) localGetItems(g *marshalGroup, items []Item) ([]Item, error) 
 	return missed, nil
 }
 
-func (self *Cache) redisGetItems(g *marshalGroup, items []Item) ([]Item, error) {
+func (self *Cache) redisGetItems(g *marshalGroup, items []Item) ([]Item,
+	error,
+) {
 	if !self.useRedis() {
 		return items, nil
 	}
 	missed := items[:0]
 
-	const errMsg = "failed get redis items: %w"
-	bytesIter, err := self.redis.Get(g.Ctx(), len(items),
-		func(i int) string { return self.ResolveKey(items[i].Key) })
-	if err != nil {
-		return nil, self.redisCacheError(fmt.Errorf(errMsg, err))
-	}
+	bytesIter := self.redis.Get(g.Ctx(), len(items),
+		func(yield func(string) bool) {
+			for i := range items {
+				if !yield(self.ResolveKey(items[i].Key)) {
+					break
+				}
+			}
+		})
 
 	var nextItem int
-	for b, ok := bytesIter(); ok; b, ok = bytesIter() {
-		if g.Canceled() {
+	for b, err := range bytesIter {
+		const errMsg = "failed get redis items: %w"
+		if err != nil {
+			return nil, self.redisCacheError(fmt.Errorf(errMsg, err))
+		} else if g.Canceled() {
 			return nil, fmt.Errorf(errMsg, g.Cause())
 		}
 		if len(b) == 0 {

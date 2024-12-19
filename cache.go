@@ -3,6 +3,7 @@ package cache
 
 import (
 	"context"
+	"iter"
 	"sync/atomic"
 	"time"
 
@@ -24,7 +25,7 @@ type LocalCache interface {
 type RedisCache interface {
 	Del(ctx context.Context, keys []string) error
 	Get(ctx context.Context, maxItems int,
-		keyIter func(itemIdx int) string) (func() ([]byte, bool), error)
+		keys iter.Seq[string]) iter.Seq2[[]byte, error]
 	Set(ctx context.Context, maxItems int,
 		iter func(itemIdx int) (key string, b []byte, ttl time.Duration)) error
 
