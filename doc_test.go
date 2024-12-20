@@ -77,7 +77,6 @@ func ExampleNew() {
 			return cache.NewWaitLockIter(time.Second, 10*time.Second)
 		})).
 		WithDefaultTTL(24*time.Hour).
-		WithStats(true).
 		WithNamespace("expx-cache-v0:").
 		WithTinyLFU(1000, time.Hour).WithRedis(rdb)
 

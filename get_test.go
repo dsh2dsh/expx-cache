@@ -34,7 +34,7 @@ func TestGet_redisErrAddsMiss(t *testing.T) {
 	redisCache.EXPECT().Get(ctx, 1, mock.Anything).
 		Return(makeBytesIter(nil, wantErr))
 
-	cache := New().WithStats(true).WithRedisCache(redisCache)
+	cache := New().WithRedisCache(redisCache)
 	item := Item{Key: testKey}
 	missed, err := cache.Get(ctx, item)
 	require.ErrorIs(t, err, wantErr)

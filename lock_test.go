@@ -39,9 +39,7 @@ func (self *CacheTestSuite) TestOnceLock() {
 			name: "same cache",
 			cache2: func() *Cache {
 				self.expectCacheMiss()
-				if self.cache.statsEnabled {
-					self.stats.localHit()
-				}
+				self.stats.localHit()
 				return self.cache
 			},
 			assertCount: func(callCount uint32) {

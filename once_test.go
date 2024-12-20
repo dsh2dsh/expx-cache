@@ -92,7 +92,7 @@ func (self *CacheTestSuite) TestOnce_withValue() {
 		})
 		self.Require().NoError(err)
 		self.Equal(&obj, &got)
-		if hit && self.cache.statsEnabled {
+		if hit {
 			self.stats.localHit()
 		}
 	})
@@ -125,7 +125,7 @@ func (self *CacheTestSuite) TestOnce_withPtrNonPtr() {
 		})
 		self.Require().NoError(err)
 		self.Equal(&obj, &got)
-		if hit && self.cache.statsEnabled {
+		if hit {
 			self.stats.localHit()
 		}
 	})
@@ -157,7 +157,7 @@ func (self *CacheTestSuite) TestOnce_withBool() {
 		})
 		self.Require().NoError(err)
 		self.True(got)
-		if hit && self.cache.statsEnabled {
+		if hit {
 			self.stats.localHit()
 		}
 	})
@@ -186,7 +186,7 @@ func (self *CacheTestSuite) TestOnce_withoutValueAndNil() {
 			},
 		})
 		self.Require().NoError(err)
-		if hit && self.cache.statsEnabled {
+		if hit {
 			self.stats.localHit()
 		}
 	})
@@ -245,7 +245,7 @@ func (self *CacheTestSuite) TestOnce_doesntCacheErr() {
 		})
 		if err != nil {
 			return 0, err
-		} else if hit && self.cache.statsEnabled {
+		} else if hit {
 			self.stats.localHit()
 		}
 		return n, nil

@@ -42,30 +42,12 @@ func (self *Stats) Merge(s *Stats) {
 }
 
 // Stats returns cache statistics.
-func (self *Cache) Stats() Stats {
-	return self.stats.Stats()
-}
+func (self *Cache) Stats() Stats { return self.stats.Stats() }
 
-func (self *Cache) addLocalHit() {
-	if self.statsEnabled {
-		self.stats.localHit()
-	}
-}
+func (self *Cache) addLocalHit() { self.stats.localHit() }
 
-func (self *Cache) addLocalMiss() {
-	if self.statsEnabled {
-		self.stats.localMiss()
-	}
-}
+func (self *Cache) addLocalMiss() { self.stats.localMiss() }
 
-func (self *Cache) addHit() {
-	if self.statsEnabled {
-		self.stats.hit()
-	}
-}
+func (self *Cache) addHit() { self.stats.hit() }
 
-func (self *Cache) addMiss() {
-	if self.statsEnabled {
-		self.stats.miss()
-	}
-}
+func (self *Cache) addMiss() { self.stats.miss() }

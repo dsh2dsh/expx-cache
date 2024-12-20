@@ -29,13 +29,3 @@ func TestStats_Merge(t *testing.T) {
 	}
 	assert.Equal(t, wantStats, s1)
 }
-
-func TestCache_Stats_statsEnabled(t *testing.T) {
-	cache := New()
-	cache.addHit()
-	assert.Equal(t, Stats{}, cache.Stats())
-
-	cache = cache.WithStats(true)
-	cache.addHit()
-	assert.NotEqual(t, Stats{}, cache.Stats())
-}

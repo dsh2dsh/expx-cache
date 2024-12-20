@@ -92,33 +92,26 @@ func (self *CacheTestSuite) CacheableValue() CacheableObject {
 // --------------------------------------------------
 
 func (self *CacheTestSuite) expectCacheHit() {
-	if self.cache.statsEnabled {
-		if self.cache.localCache != nil {
-			self.stats.localHit()
-		} else if self.cache.redis != nil {
-			self.stats.hit()
-		}
+	if self.cache.localCache != nil {
+		self.stats.localHit()
+	} else if self.cache.redis != nil {
+		self.stats.hit()
 	}
 }
 
 func (self *CacheTestSuite) expectCacheMiss() {
-	if self.cache.statsEnabled {
-		if self.cache.localCache != nil {
-			self.stats.localMiss()
-		}
-		if self.cache.redis != nil {
-			self.stats.miss()
-		}
-
+	if self.cache.localCache != nil {
+		self.stats.localMiss()
+	}
+	if self.cache.redis != nil {
+		self.stats.miss()
 	}
 }
 
 func (self *CacheTestSuite) expectCacheHitLocalMiss() {
-	if self.cache.statsEnabled {
-		self.stats.hit()
-		if self.cache.localCache != nil {
-			self.stats.localMiss()
-		}
+	self.stats.hit()
+	if self.cache.localCache != nil {
+		self.stats.localMiss()
 	}
 }
 
@@ -451,22 +444,20 @@ func TestCacheSuite(t *testing.T) {
 			needsLocal: true,
 			needsRedis: true,
 			subTests: func(rdb cacheRedis.Cmdable) []cacheSubTest {
-				return []cacheSubTest{withRedis(rdb), withStats}
+				return []cacheSubTest{withRedis(rdb)}
 			},
 		},
 		{
 			name:       "RedisCache",
 			needsRedis: true,
 			subTests: func(rdb cacheRedis.Cmdable) []cacheSubTest {
-				return []cacheSubTest{withRedis(rdb), withStats}
+				return []cacheSubTest{withRedis(rdb)}
 			},
 		},
 		{
 			name:       "LocalCache",
 			needsLocal: true,
-			subTests: func(rdb cacheRedis.Cmdable) []cacheSubTest {
-				return []cacheSubTest{withStats}
-			},
+			subTests:   func(rdb cacheRedis.Cmdable) []cacheSubTest { return nil },
 		},
 	}
 
@@ -534,36 +525,6 @@ func withRedis(rdb cacheRedis.Cmdable) cacheSubTest {
 	}
 }
 
-func withStats(t *testing.T, parentCfg func(*testing.T, *Cache) *Cache,
-	suiteRun cacheSubTest, subTests []cacheSubTest,
-) {
-	tests := []struct {
-		name      string
-		withStats bool
-	}{
-		{
-			name: "without Stats",
-		},
-		{
-			name:      "with Stats",
-			withStats: true,
-		},
-	}
-
-	for _, tt := range tests {
-		cfg := func(t *testing.T, c *Cache) *Cache {
-			return parentCfg(t, c).WithStats(tt.withStats)
-		}
-		if tt.withStats {
-			t.Run(tt.name, func(t *testing.T) {
-				runCacheSubTests(t, cfg, suiteRun, subTests)
-			})
-		} else {
-			runCacheSubTests(t, cfg, suiteRun, subTests)
-		}
-	}
-}
-
 // --------------------------------------------------
 
 func TestWithLocalCache(t *testing.T) {
@@ -605,14 +566,6 @@ func TestWithRedisCache(t *testing.T) {
 
 	assert.Same(t, cache, cache.WithRedisCache(nil))
 	assert.Nil(t, cache.redis)
-}
-
-func TestWithStats(t *testing.T) {
-	cache := New()
-	require.NotNil(t, cache)
-	assert.False(t, cache.statsEnabled)
-	require.Same(t, cache, cache.WithStats(true))
-	assert.True(t, cache.statsEnabled)
 }
 
 func TestWithTinyLFU(t *testing.T) {

@@ -66,8 +66,7 @@ type Cache struct {
 	unmarshal  UnmarshalFunc
 	keyWrapper func(keys string) string
 
-	stats        *Stats
-	statsEnabled bool
+	stats *Stats
 
 	group      *singleflight.Group
 	marshalers *semaphore.Weighted
@@ -131,11 +130,6 @@ func (self *Cache) WithRedisCache(client RedisCache) *Cache {
 	return self
 }
 
-func (self *Cache) WithStats(val bool) *Cache {
-	self.statsEnabled = val
-	return self
-}
-
 func (self *Cache) WithTinyLFU(size int, ttl time.Duration) *Cache {
 	self.localCache = local.NewTinyLFU(size, ttl)
 	return self
@@ -191,7 +185,7 @@ func (self *Cache) useRedis() bool {
 func (self *Cache) WithLocalStats(fn func(c *Cache) error, opts ...Option,
 ) (Stats, error) {
 	stats := Stats{}
-	c := self.New(opts...).WithStats(true)
+	c := self.New(opts...)
 	c.stats = &stats
 	if err := fn(c); err != nil {
 		return stats, err
