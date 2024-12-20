@@ -3,6 +3,7 @@ package cache
 import (
 	"context"
 	"errors"
+	"iter"
 	"strconv"
 	"testing"
 	"time"
@@ -414,14 +415,14 @@ func TestCache_GetSet_itemDoNil(t *testing.T) {
 					Return(makeBytesIter([][]byte{nil, nil}, nil))
 				redisCache.EXPECT().Set(ctx, 2, mock.Anything).RunAndReturn(
 					func(ctx context.Context, maxItems int,
-						iter func(itemIdx int) (key string, b []byte, ttl time.Duration),
+						items iter.Seq[cacheRedis.Item],
 					) error {
 						pipe := redisMocks.NewMockPipeliner(t)
 						pipe.EXPECT().Len().Return(0)
 						rdb := redisMocks.NewMockCmdable(t)
 						rdb.EXPECT().Pipeline().Return(pipe)
 						redisCache := cacheRedis.New(rdb)
-						return redisCache.Set(ctx, maxItems, iter)
+						return redisCache.Set(ctx, maxItems, items)
 					})
 				return New().WithRedisCache(redisCache)
 			},

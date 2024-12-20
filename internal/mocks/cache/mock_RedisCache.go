@@ -8,6 +8,8 @@ import (
 
 	mock "github.com/stretchr/testify/mock"
 
+	redis "github.com/dsh2dsh/expx-cache/redis"
+
 	time "time"
 )
 
@@ -320,17 +322,17 @@ func (_c *MockRedisCache_LockGet_Call) RunAndReturn(run func(context.Context, st
 	return _c
 }
 
-// Set provides a mock function with given fields: ctx, maxItems, _a2
-func (_m *MockRedisCache) Set(ctx context.Context, maxItems int, _a2 func(int) (string, []byte, time.Duration)) error {
-	ret := _m.Called(ctx, maxItems, _a2)
+// Set provides a mock function with given fields: ctx, maxItems, items
+func (_m *MockRedisCache) Set(ctx context.Context, maxItems int, items iter.Seq[redis.Item]) error {
+	ret := _m.Called(ctx, maxItems, items)
 
 	if len(ret) == 0 {
 		panic("no return value specified for Set")
 	}
 
 	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, int, func(int) (string, []byte, time.Duration)) error); ok {
-		r0 = rf(ctx, maxItems, _a2)
+	if rf, ok := ret.Get(0).(func(context.Context, int, iter.Seq[redis.Item]) error); ok {
+		r0 = rf(ctx, maxItems, items)
 	} else {
 		r0 = ret.Error(0)
 	}
@@ -346,14 +348,14 @@ type MockRedisCache_Set_Call struct {
 // Set is a helper method to define mock.On call
 //   - ctx context.Context
 //   - maxItems int
-//   - _a2 func(int)(string , []byte , time.Duration)
-func (_e *MockRedisCache_Expecter) Set(ctx interface{}, maxItems interface{}, _a2 interface{}) *MockRedisCache_Set_Call {
-	return &MockRedisCache_Set_Call{Call: _e.mock.On("Set", ctx, maxItems, _a2)}
+//   - items iter.Seq[redis.Item]
+func (_e *MockRedisCache_Expecter) Set(ctx interface{}, maxItems interface{}, items interface{}) *MockRedisCache_Set_Call {
+	return &MockRedisCache_Set_Call{Call: _e.mock.On("Set", ctx, maxItems, items)}
 }
 
-func (_c *MockRedisCache_Set_Call) Run(run func(ctx context.Context, maxItems int, _a2 func(int) (string, []byte, time.Duration))) *MockRedisCache_Set_Call {
+func (_c *MockRedisCache_Set_Call) Run(run func(ctx context.Context, maxItems int, items iter.Seq[redis.Item])) *MockRedisCache_Set_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int), args[2].(func(int) (string, []byte, time.Duration)))
+		run(args[0].(context.Context), args[1].(int), args[2].(iter.Seq[redis.Item]))
 	})
 	return _c
 }
@@ -363,7 +365,7 @@ func (_c *MockRedisCache_Set_Call) Return(_a0 error) *MockRedisCache_Set_Call {
 	return _c
 }
 
-func (_c *MockRedisCache_Set_Call) RunAndReturn(run func(context.Context, int, func(int) (string, []byte, time.Duration)) error) *MockRedisCache_Set_Call {
+func (_c *MockRedisCache_Set_Call) RunAndReturn(run func(context.Context, int, iter.Seq[redis.Item]) error) *MockRedisCache_Set_Call {
 	_c.Call.Return(run)
 	return _c
 }

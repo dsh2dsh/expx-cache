@@ -3,7 +3,10 @@ package cache
 import (
 	"context"
 	"fmt"
+	"slices"
 	"time"
+
+	"github.com/dsh2dsh/expx-cache/redis"
 )
 
 // Set caches the item.
@@ -41,9 +44,9 @@ func (self *Cache) set(ctx context.Context, item *Item) ([]byte, error) {
 func (self *Cache) redisSet(ctx context.Context, item *Item, b []byte,
 	ttl time.Duration,
 ) error {
-	err := self.redis.Set(ctx, 1, func(int) (string, []byte, time.Duration) {
-		return self.ResolveKey(item.Key), b, ttl
-	})
+	err := self.redis.Set(ctx, 1, slices.Values([]redis.Item{
+		redis.NewItem(self.ResolveKey(item.Key), b, ttl),
+	}))
 	if err != nil {
 		return self.redisCacheError(fmt.Errorf("redis set: %w", err))
 	}
@@ -87,11 +90,16 @@ func (self *Cache) localSetItems(items []Item, bytes [][]byte) {
 func (self *Cache) redisSetItems(ctx context.Context, items []Item,
 	bytes [][]byte,
 ) error {
-	err := self.redis.Set(ctx, len(items),
-		func(i int) (string, []byte, time.Duration) {
+	err := self.redis.Set(ctx, len(items), func(yield func(redis.Item) bool) {
+		for i := range items {
 			item := &items[i]
-			return self.ResolveKey(item.Key), bytes[i], item.ttl(self.DefaultTTL())
-		})
+			ok := yield(redis.NewItem(self.ResolveKey(item.Key), bytes[i],
+				item.ttl(self.DefaultTTL())))
+			if !ok {
+				return
+			}
+		}
+	})
 	if err != nil {
 		return self.redisCacheError(fmt.Errorf("failed set redis items: %w", err))
 	}

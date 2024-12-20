@@ -26,8 +26,7 @@ type RedisCache interface {
 	Del(ctx context.Context, keys []string) error
 	Get(ctx context.Context, maxItems int,
 		keys iter.Seq[string]) iter.Seq2[[]byte, error]
-	Set(ctx context.Context, maxItems int,
-		iter func(itemIdx int) (key string, b []byte, ttl time.Duration)) error
+	Set(ctx context.Context, maxItems int, items iter.Seq[redis.Item]) error
 
 	LockGet(ctx context.Context, keySet, value string, ttl time.Duration,
 		keyGet string) (ok bool, b []byte, err error)
