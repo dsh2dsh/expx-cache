@@ -49,7 +49,7 @@ func TestTinyLFU_Get_CorruptionOnExpiry(t *testing.T) {
 	mycache := NewTinyLFU(1000, time.Second)
 	size := 50000
 	// Put a bunch of stuff in the cache with a TTL of 1 second
-	for i := 0; i < size; i++ {
+	for i := range size {
 		key := keyName(i)
 		mycache.Set(key, []byte(strFor(i)))
 	}
@@ -129,7 +129,7 @@ func TestTinyLFU_Set_offset(t *testing.T) {
 
 	start := time.Now().Add(ttl)
 	var expireAt time.Time
-	lfu.EXPECT().Set(mock.Anything).Run(func(item *tinylfu.Item) {
+	lfu.EXPECT().Set(mock.Anything).Run(func(item *tinylfu.Item[[]byte]) {
 		expireAt = item.ExpireAt
 	})
 

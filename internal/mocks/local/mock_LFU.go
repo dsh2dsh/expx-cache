@@ -54,23 +54,23 @@ func (_c *MockLFU_Del_Call) RunAndReturn(run func(string)) *MockLFU_Del_Call {
 }
 
 // Get provides a mock function with given fields: key
-func (_m *MockLFU) Get(key string) (any, bool) {
+func (_m *MockLFU) Get(key string) ([]byte, bool) {
 	ret := _m.Called(key)
 
 	if len(ret) == 0 {
 		panic("no return value specified for Get")
 	}
 
-	var r0 any
+	var r0 []byte
 	var r1 bool
-	if rf, ok := ret.Get(0).(func(string) (any, bool)); ok {
+	if rf, ok := ret.Get(0).(func(string) ([]byte, bool)); ok {
 		return rf(key)
 	}
-	if rf, ok := ret.Get(0).(func(string) any); ok {
+	if rf, ok := ret.Get(0).(func(string) []byte); ok {
 		r0 = rf(key)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(any)
+			r0 = ret.Get(0).([]byte)
 		}
 	}
 
@@ -101,18 +101,18 @@ func (_c *MockLFU_Get_Call) Run(run func(key string)) *MockLFU_Get_Call {
 	return _c
 }
 
-func (_c *MockLFU_Get_Call) Return(_a0 any, _a1 bool) *MockLFU_Get_Call {
+func (_c *MockLFU_Get_Call) Return(_a0 []byte, _a1 bool) *MockLFU_Get_Call {
 	_c.Call.Return(_a0, _a1)
 	return _c
 }
 
-func (_c *MockLFU_Get_Call) RunAndReturn(run func(string) (any, bool)) *MockLFU_Get_Call {
+func (_c *MockLFU_Get_Call) RunAndReturn(run func(string) ([]byte, bool)) *MockLFU_Get_Call {
 	_c.Call.Return(run)
 	return _c
 }
 
 // Set provides a mock function with given fields: _a0
-func (_m *MockLFU) Set(_a0 *tinylfu.Item) {
+func (_m *MockLFU) Set(_a0 *tinylfu.Item[[]byte]) {
 	_m.Called(_a0)
 }
 
@@ -122,14 +122,14 @@ type MockLFU_Set_Call struct {
 }
 
 // Set is a helper method to define mock.On call
-//   - _a0 *tinylfu.Item
+//   - _a0 *tinylfu.Item[[]byte]
 func (_e *MockLFU_Expecter) Set(_a0 interface{}) *MockLFU_Set_Call {
 	return &MockLFU_Set_Call{Call: _e.mock.On("Set", _a0)}
 }
 
-func (_c *MockLFU_Set_Call) Run(run func(_a0 *tinylfu.Item)) *MockLFU_Set_Call {
+func (_c *MockLFU_Set_Call) Run(run func(_a0 *tinylfu.Item[[]byte])) *MockLFU_Set_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(*tinylfu.Item))
+		run(args[0].(*tinylfu.Item[[]byte]))
 	})
 	return _c
 }
@@ -139,7 +139,7 @@ func (_c *MockLFU_Set_Call) Return() *MockLFU_Set_Call {
 	return _c
 }
 
-func (_c *MockLFU_Set_Call) RunAndReturn(run func(*tinylfu.Item)) *MockLFU_Set_Call {
+func (_c *MockLFU_Set_Call) RunAndReturn(run func(*tinylfu.Item[[]byte])) *MockLFU_Set_Call {
 	_c.Run(run)
 	return _c
 }

@@ -1,5 +1,6 @@
 run:
   timeout: "5m"
+  relative-path-mode: "gomod"
 
 linters:
   enable:
@@ -12,6 +13,7 @@ linters:
     - "goimports"
     - "makezero"
     - "misspell"
+    - "nilnesserr"
     - "nolintlint"
     - "perfsprint"
     - "prealloc"
@@ -41,6 +43,15 @@ linters-settings:
     #
     # Default: false
     require-specific: true
+
+  usetesting:
+    # Enable/disable `os.Setenv()` detections.
+    # Default: false
+    os-setenv: true
+
+    # Enable/disable `os.TempDir()` detections.
+    # Default: false
+    os-temp-dir: true
 
   wrapcheck:
     # An array of glob patterns which, if any match the package of the function

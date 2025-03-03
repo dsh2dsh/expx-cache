@@ -9,21 +9,17 @@ import (
 )
 
 type LFU interface {
-	Get(key string) (any, bool)
-	Set(*tinylfu.Item)
+	Get(key string) ([]byte, bool)
+	Set(*tinylfu.Item[[]byte])
 	Del(key string)
 }
 
 func NewTinyLFU(size int, ttl time.Duration) *TinyLFU {
 	const maxOffset = 10 * time.Second
-
-	offset := ttl / 10
-	if offset > maxOffset {
-		offset = maxOffset
-	}
+	offset := min(maxOffset, ttl/10)
 
 	return &TinyLFU{
-		lfu:    tinylfu.New(size, 100000),
+		lfu:    tinylfu.New[[]byte](size, 100000),
 		ttl:    ttl,
 		offset: offset,
 	}
@@ -54,23 +50,17 @@ func (self *TinyLFU) Set(key string, b []byte) {
 	self.mu.Lock()
 	defer self.mu.Unlock()
 
-	self.lfu.Set(&tinylfu.Item{
-		Key:      key,
-		Value:    b,
-		ExpireAt: time.Now().Add(ttl),
-	})
+	self.lfu.Set(tinylfu.NewItemExpire(key, b, time.Now().Add(ttl)))
 }
 
 func (self *TinyLFU) Get(key string) []byte {
 	self.mu.Lock()
 	defer self.mu.Unlock()
 
-	val, ok := self.lfu.Get(key)
+	b, ok := self.lfu.Get(key)
 	if !ok {
 		return nil
 	}
-
-	b := val.([]byte)
 	return b
 }
 
