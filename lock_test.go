@@ -477,7 +477,7 @@ func TestLock_Get_errorRandRead(t *testing.T) {
 		return 0, wantErr
 	}
 
-	ctx := context.Background()
+	ctx := t.Context()
 	b, err := l.Get(ctx, lockTTL, NewWaitLockIter(time.Second))
 	require.ErrorIs(t, err, wantErr)
 	assert.Nil(t, b)
@@ -485,11 +485,11 @@ func TestLock_Get_errorRandRead(t *testing.T) {
 
 func TestLock_releaseNoValue(t *testing.T) {
 	var l lock
-	require.ErrorContains(t, l.release(context.Background()), "empty value")
+	require.ErrorContains(t, l.release(t.Context()), "empty value")
 }
 
 func TestLock_lockGet_getAfterSubscribe(t *testing.T) {
-	ctx := context.Background()
+	ctx := t.Context()
 
 	redisCache := mocks.NewMockRedisCache(t)
 	cache := New().WithRedisCache(redisCache)
@@ -526,7 +526,7 @@ func TestLock_lockGet_getAfterSubscribe(t *testing.T) {
 }
 
 func TestLock_WithLock_canceledBeforeRelease(t *testing.T) {
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	defer cancel()
 	sig := make(chan struct{})
 	ttl := time.Second
@@ -551,7 +551,7 @@ func TestLock_WithLock_canceledBeforeRelease(t *testing.T) {
 
 func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 	const foobar = "foobar"
-	ctx := context.Background()
+	ctx := t.Context()
 	testErr := errors.New("test error")
 
 	tests := []struct {

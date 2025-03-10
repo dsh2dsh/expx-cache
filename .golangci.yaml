@@ -21,6 +21,7 @@ linters:
     - "testifylint"
     - "unconvert"
     - "usestdlibvars"
+    - "usetesting"
     - "wastedassign"
     - "wrapcheck"
 

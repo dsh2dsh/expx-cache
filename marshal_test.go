@@ -24,7 +24,7 @@ func TestCache_WithMarshal(t *testing.T) {
 		return marshal(v)
 	})
 
-	ctx := context.Background()
+	ctx := t.Context()
 	value := "abc"
 	require.NoError(t, cache.Set(ctx, Item{Key: testKey, Value: &value}))
 
@@ -35,7 +35,7 @@ func TestCache_WithUnmarshal(t *testing.T) {
 	cache := New().WithTinyLFU(1000, time.Minute)
 	require.NotNil(t, cache)
 
-	ctx := context.Background()
+	ctx := t.Context()
 	value := "abc"
 	item := Item{Key: testKey, Value: &value}
 	require.NoError(t, cache.Set(ctx, item))
@@ -201,7 +201,7 @@ func TestCache_marshalersAcquireCanceled(t *testing.T) {
 		},
 	}
 
-	ctx := context.Background()
+	ctx := t.Context()
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			cache := New().WithTinyLFU(1000, time.Minute)
@@ -280,7 +280,7 @@ func TestCache_marshalErrGroup(t *testing.T) {
 		},
 	}
 
-	ctx := context.Background()
+	ctx := t.Context()
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			cache := New()
@@ -307,7 +307,7 @@ func TestCache_marshalItems_canceled(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			ctx, cancel := context.WithCancel(context.Background())
+			ctx, cancel := context.WithCancel(t.Context())
 			defer cancel()
 
 			const foobar = "foobar"
@@ -371,7 +371,7 @@ func TestCache_marshalGroup_limit(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			cache := tt.makeCache(t)
-			ctx, cancel := context.WithCancel(context.Background())
+			ctx, cancel := context.WithCancel(t.Context())
 			g := cache.marshalGroup(ctx)
 
 			var callCount uint64
@@ -406,7 +406,7 @@ func TestCache_unmarshalItems_gCanceled(t *testing.T) {
 		})
 	require.NotNil(t, cache)
 
-	ctx := context.Background()
+	ctx := t.Context()
 	err := cache.unmarshalItems(ctx, bytes[:], items[:])
 	require.ErrorIs(t, err, testErr)
 }

@@ -21,7 +21,7 @@ func TestCache_Set_errorMarshal(t *testing.T) {
 	cache := New().WithLocalCache(localCache).WithMarshal(
 		func(v any) ([]byte, error) { return nil, wantErr })
 
-	ctx := context.Background()
+	ctx := t.Context()
 	item := Item{Key: testKey, Value: "foobar"}
 
 	require.ErrorIs(t, cache.Set(ctx, item), wantErr)
@@ -31,7 +31,7 @@ func TestCache_Set_errorMarshal(t *testing.T) {
 func TestCache_Set_withoutCache(t *testing.T) {
 	cache := New()
 
-	ctx := context.Background()
+	ctx := t.Context()
 	item := Item{Key: testKey, Value: "foobar"}
 
 	require.NoError(t, cache.Set(ctx, item))
@@ -39,7 +39,7 @@ func TestCache_Set_withoutCache(t *testing.T) {
 }
 
 func TestCache_Set_redisErr(t *testing.T) {
-	ctx := context.Background()
+	ctx := t.Context()
 	wantErr := errors.New("test error")
 
 	rdb := redisMocks.NewMockCmdable(t)
@@ -83,7 +83,7 @@ func TestCache_Set_errorCanceled(t *testing.T) {
 		Value: CacheableObject{Str: "mystring", Num: 42},
 	}
 
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	cancel()
 
 	require.ErrorIs(t, cache.Set(ctx, item, item), context.Canceled)
@@ -101,5 +101,5 @@ func TestCache_Set_errorWait(t *testing.T) {
 		},
 	}
 
-	require.ErrorIs(t, cache.Set(context.Background(), item, item), wantErr)
+	require.ErrorIs(t, cache.Set(t.Context(), item, item), wantErr)
 }

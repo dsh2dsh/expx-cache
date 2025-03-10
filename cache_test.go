@@ -195,7 +195,7 @@ func (self *CacheTestSuite) TestCache_setGetItems() {
 	var allValues [maxItems]CacheableObject
 	var allItems [maxItems]Item
 
-	for i := 0; i < maxItems; i++ {
+	for i := range maxItems {
 		key := fmt.Sprintf("key-%00d", i)
 		allKeys[i] = key
 		allValues[i] = CacheableObject{Str: key, Num: i}
@@ -239,7 +239,7 @@ func (self *CacheTestSuite) TestCache_GetSet() {
 
 	var allItems [maxItems]Item
 	var callCount uint32
-	for i := 0; i < maxItems; i++ {
+	for i := range maxItems {
 		key := fmt.Sprintf("key-%00d", i)
 		allValues[i] = CacheableObject{Str: key, Num: i}
 		allItems[i] = Item{
@@ -367,8 +367,7 @@ func keyExists(t *testing.T, c *Cache, key string) bool {
 	}
 
 	if c.redis != nil {
-		bytesIter := c.redis.Get(context.Background(), 1,
-			slices.Values([]string{key}))
+		bytesIter := c.redis.Get(t.Context(), 1, slices.Values([]string{key}))
 		for b, err := range bytesIter {
 			require.NoError(t, err)
 			return b != nil
@@ -386,8 +385,7 @@ func keyNotExists(t *testing.T, c *Cache, key string) bool {
 	}
 
 	if c.redis != nil {
-		bytesIter := c.redis.Get(context.Background(), 1,
-			slices.Values([]string{key}))
+		bytesIter := c.redis.Get(t.Context(), 1, slices.Values([]string{key}))
 		for b, err := range bytesIter {
 			require.NoError(t, err)
 			return b == nil

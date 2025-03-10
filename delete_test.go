@@ -85,7 +85,7 @@ func (self *CacheTestSuite) TestDeleteFromRedis() {
 
 func TestDelete_withoutCache(t *testing.T) {
 	cache := New()
-	require.NoError(t, cache.Delete(context.Background(), testKey))
+	require.NoError(t, cache.Delete(t.Context(), testKey))
 }
 
 func TestDeleteFromLocalCache_noCache(t *testing.T) {
@@ -94,7 +94,7 @@ func TestDeleteFromLocalCache_noCache(t *testing.T) {
 
 func TestDelete_errFromRedis(t *testing.T) {
 	wantErr := errors.New("test error")
-	ctx := context.Background()
+	ctx := t.Context()
 
 	redisClient := mocks.NewMockRedisCache(t)
 	redisClient.EXPECT().Del(ctx, []string{testKey}).Return(wantErr)
@@ -108,11 +108,11 @@ func TestDelete_errFromRedis(t *testing.T) {
 func TestCache_Delete_withoutKeys(t *testing.T) {
 	cache := New()
 	require.NotNil(t, cache)
-	require.NoError(t, cache.Delete(context.Background()))
+	require.NoError(t, cache.Delete(t.Context()))
 }
 
 func TestCache_Delete_withKeyWrapper(t *testing.T) {
-	ctx := context.Background()
+	ctx := t.Context()
 	const keyPrefix = "baz:"
 	wantKey := keyPrefix + testKey
 

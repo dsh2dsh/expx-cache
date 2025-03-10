@@ -38,7 +38,7 @@ func TestWithMarshalMaxProcs(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			cache := tt.makeCache(t)
-			ctx, cancel := context.WithCancel(context.Background())
+			ctx, cancel := context.WithCancel(t.Context())
 
 			var callCount uint64
 			var wg sync.WaitGroup

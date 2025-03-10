@@ -56,7 +56,7 @@ func (self *CacheTestSuite) TestOnce_funcFails() {
 func perform(n int, callbacks ...func(int)) {
 	var wg sync.WaitGroup
 	for _, cb := range callbacks {
-		for i := 0; i < n; i++ {
+		for i := range n {
 			wg.Add(1)
 			go func(cb func(int), i int) {
 				defer wg.Done()
@@ -301,7 +301,7 @@ func TestOnce_errUnmarshal(t *testing.T) {
 
 	cache := New().WithLocalCache(localCache)
 	var got bool
-	err := cache.Once(context.Background(), Item{
+	err := cache.Once(t.Context(), Item{
 		Key:   testKey,
 		Value: &got,
 		Do: func(ctx context.Context) (any, error) {
@@ -316,7 +316,7 @@ func TestOnce_withoutCache(t *testing.T) {
 	cache := New()
 	callCount := 0
 	got := false
-	require.NoError(t, cache.Once(context.Background(), Item{
+	require.NoError(t, cache.Once(t.Context(), Item{
 		Key:   testKey,
 		Value: &got,
 		Do: func(ctx context.Context) (any, error) {
@@ -343,7 +343,7 @@ func TestCache_Once_withKeyWrapper(t *testing.T) {
 	var got bool
 
 	go func() {
-		onceErr <- cache.Once(context.Background(), Item{
+		onceErr <- cache.Once(t.Context(), Item{
 			Key:   testKey,
 			Value: &got,
 			Do: func(ctx context.Context) (any, error) {
@@ -367,7 +367,7 @@ func TestCache_Once_withKeyWrapper(t *testing.T) {
 
 func TestCache_Once_withErrRedisCache(t *testing.T) {
 	const foobar = "foobar"
-	ctx := context.Background()
+	ctx := t.Context()
 	testErr := errors.New("test error")
 
 	tests := []struct {

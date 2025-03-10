@@ -21,13 +21,13 @@ import (
 func TestCache_Get_withoutCache(t *testing.T) {
 	cache := New()
 	item := Item{Key: testKey}
-	missed, err := cache.Get(context.Background(), item)
+	missed, err := cache.Get(t.Context(), item)
 	require.NoError(t, err)
 	assert.Equal(t, []Item{item}, missed)
 }
 
 func TestGet_redisErrAddsMiss(t *testing.T) {
-	ctx := context.Background()
+	ctx := t.Context()
 	wantErr := errors.New("test error")
 
 	redisCache := cacheMocks.NewMockRedisCache(t)
@@ -44,7 +44,7 @@ func TestGet_redisErrAddsMiss(t *testing.T) {
 }
 
 func TestCache_Get_SkipLocalCache(t *testing.T) {
-	ctx := context.Background()
+	ctx := t.Context()
 
 	localCache := cacheMocks.NewMockLocalCache(t)
 	redisCache := cacheMocks.NewMockRedisCache(t)
@@ -64,13 +64,13 @@ func TestCache_Get_SkipLocalCache(t *testing.T) {
 
 func TestExists_withoutCache(t *testing.T) {
 	cache := New()
-	hit, err := cache.Exists(context.Background(), testKey)
+	hit, err := cache.Exists(t.Context(), testKey)
 	require.NoError(t, err)
 	assert.False(t, hit)
 }
 
 func TestExists_withError(t *testing.T) {
-	ctx := context.Background()
+	ctx := t.Context()
 	wantErr := errors.New("test error")
 
 	redisCache := cacheMocks.NewMockRedisCache(t)
@@ -90,7 +90,7 @@ func TestCache_Get_errorCanceled(t *testing.T) {
 	assert.NotNil(t, cache)
 
 	obj := CacheableObject{Str: "mystring", Num: 42}
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	item := Item{Key: testKey, Value: &obj}
 	require.NoError(t, cache.Set(ctx, item))
 
@@ -113,7 +113,7 @@ func TestCache_Get_errorWait(t *testing.T) {
 	cache := New().WithTinyLFU(1000, time.Minute)
 	assert.NotNil(t, cache)
 
-	ctx := context.Background()
+	ctx := t.Context()
 	item := Item{
 		Key:   testKey,
 		Value: CacheableObject{Str: "mystring", Num: 42},
@@ -128,7 +128,7 @@ func TestCache_Get_errorWait(t *testing.T) {
 }
 
 func TestCache_Get_errorRedis(t *testing.T) {
-	ctx := context.Background()
+	ctx := t.Context()
 	wantErr := errors.New("test error")
 
 	rdb := redisMocks.NewMockCmdable(t)
@@ -168,7 +168,7 @@ func TestCache_Get_localSet(t *testing.T) {
 	cache := New().WithLocalCache(localCache).WithRedisCache(redisCache)
 	assert.NotNil(t, cache)
 
-	ctx := context.Background()
+	ctx := t.Context()
 	obj := CacheableObject{}
 	item := Item{Key: testKey, Value: &obj}
 	blob := valueNoError[[]byte](t)(cache.Marshal(&obj))
@@ -189,7 +189,7 @@ func TestCache_GetSet_errorGetCanceled(t *testing.T) {
 
 	obj := CacheableObject{Str: "mystring", Num: 42}
 	item := Item{Key: testKey, Value: &obj}
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	require.NoError(t, cache.Set(ctx, item))
 
 	for cache.marshalers.TryAcquire(1) {
@@ -218,7 +218,7 @@ func TestCache_Get_errorRedisCanceled(t *testing.T) {
 	cache := New().WithRedisCache(redisCache)
 	assert.NotNil(t, cache)
 
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	for cache.marshalers.TryAcquire(1) {
 	}
 
@@ -244,7 +244,7 @@ func TestCache_Get_localGetItemsCanceled(t *testing.T) {
 	obj := CacheableObject{}
 	item := Item{Key: testKey, Value: &obj}
 
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	cancel()
 	_, err := cache.Get(ctx, item, item)
 	require.ErrorIs(t, err, context.Canceled)
@@ -264,7 +264,7 @@ func TestCache_Get_redisGetItemsCanceled(t *testing.T) {
 	got := CacheableObject{}
 	item := Item{Key: testKey, Value: &got}
 
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	cancel()
 	_, err := cache.Get(ctx, item, item)
 	require.ErrorIs(t, err, context.Canceled)
@@ -274,7 +274,7 @@ func TestCache_GetSet_withErrRedisCache(t *testing.T) {
 	const testKey0, testKey1 = testKey + "0", testKey + "1"
 	const foobar, foobaz = "foobar", "foobaz"
 
-	ctx := context.Background()
+	ctx := t.Context()
 	testErr := errors.New("test error")
 	values1 := []string{foobar}
 	values2 := []string{foobar, foobaz}
@@ -390,7 +390,7 @@ func TestCache_GetSet_withErrRedisCache(t *testing.T) {
 }
 
 func TestCache_GetSet_itemDoNil(t *testing.T) {
-	ctx := context.Background()
+	ctx := t.Context()
 
 	tests := []struct {
 		name  string
@@ -436,7 +436,7 @@ func TestCache_GetSet_itemDoNil(t *testing.T) {
 			items := make([]Item, tt.items)
 			want := make([]string, tt.items)
 			got := make([]string, tt.items)
-			for i := 0; i < tt.items; i++ {
+			for i := range tt.items {
 				items[i] = Item{
 					Key:   testKey + strconv.Itoa(i),
 					Value: &got[i],
@@ -457,7 +457,7 @@ func TestCache_GetSet_marshalErr(t *testing.T) {
 		Return(makeBytesIter([][]byte{nil, nil}, nil))
 	cache := New().WithRedisCache(redisCache)
 
-	ctx := context.Background()
+	ctx := t.Context()
 	testErr := errors.New("test error")
 	err := cache.GetSet(ctx, Item{
 		Key: testKey + "0",

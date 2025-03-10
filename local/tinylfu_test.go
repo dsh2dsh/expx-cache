@@ -55,7 +55,7 @@ func TestTinyLFU_Get_CorruptionOnExpiry(t *testing.T) {
 	}
 
 	// Read stuff for a bit longer than the TTL - that's when the corruption occurs
-	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	ctx, cancel := context.WithTimeout(t.Context(), 2*time.Second)
 	defer cancel()
 
 	done := ctx.Done()
