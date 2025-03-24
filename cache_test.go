@@ -685,7 +685,7 @@ func TestCache_WithNamespace(t *testing.T) {
 	cache := New()
 	require.NotNil(t, cache)
 
-	assert.Equal(t, "", cache.namespace)
+	assert.Empty(t, cache.namespace)
 	assert.Equal(t, cache.namespace, cache.Namespace())
 
 	const abc = "abc"
