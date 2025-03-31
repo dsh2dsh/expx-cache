@@ -4,7 +4,7 @@ go 1.24
 
 require (
 	github.com/caarlos0/env/v10 v10.0.0
-	github.com/dsh2dsh/expx-dotenv v1.3.2
+	github.com/dsh2dsh/expx-dotenv v1.4.0
 	github.com/dsh2dsh/go-tinylfu v1.0.3
 	github.com/klauspost/compress v1.18.0
 	github.com/redis/go-redis/v9 v9.7.3
