@@ -1,8 +1,6 @@
-dir: "internal/mocks/{{.PackageName}}"
-disable-version-string: True
-with-expecter: True
-issue-845-fix: True
-resolve-type-alias: False
+dir: "internal/mocks/{{.SrcPackageName}}"
+filename: "mock_{{.InterfaceName}}.go"
+template: "testify"
 packages:
   "github.com/dsh2dsh/expx-cache":
     interfaces:
@@ -15,7 +13,8 @@ packages:
     interfaces:
       "Cmdable":
         config:
-          unroll-variadic: False
+          template-data:
+            unroll-variadic: false
   "github.com/redis/go-redis/v9":
     interfaces:
       "Pipeliner":
