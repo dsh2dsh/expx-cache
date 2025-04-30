@@ -239,12 +239,7 @@ func (_e *MockRedisCache_Expecter) Listen(ctx interface{}, key interface{}, read
 
 func (_c *MockRedisCache_Listen_Call) Run(run func(ctx context.Context, key string, ready ...func() error)) *MockRedisCache_Listen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]func() error, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(func() error)
-			}
-		}
+		variadicArgs := args[2].([]func() error)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c

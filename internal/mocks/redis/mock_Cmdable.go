@@ -39,6 +39,149 @@ func (_m *MockCmdable) EXPECT() *MockCmdable_Expecter {
 	return &MockCmdable_Expecter{mock: &_m.Mock}
 }
 
+// ACLCat provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) ACLCat(ctx context.Context) *redis.StringSliceCmd {
+	ret := _mock.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ACLCat")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context) *redis.StringSliceCmd); ok {
+		r0 = returnFunc(ctx)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_ACLCat_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ACLCat'
+type MockCmdable_ACLCat_Call struct {
+	*mock.Call
+}
+
+// ACLCat is a helper method to define mock.On call
+//   - ctx
+func (_e *MockCmdable_Expecter) ACLCat(ctx interface{}) *MockCmdable_ACLCat_Call {
+	return &MockCmdable_ACLCat_Call{Call: _e.mock.On("ACLCat", ctx)}
+}
+
+func (_c *MockCmdable_ACLCat_Call) Run(run func(ctx context.Context)) *MockCmdable_ACLCat_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_ACLCat_Call) Return(stringSliceCmd *redis.StringSliceCmd) *MockCmdable_ACLCat_Call {
+	_c.Call.Return(stringSliceCmd)
+	return _c
+}
+
+func (_c *MockCmdable_ACLCat_Call) RunAndReturn(run func(ctx context.Context) *redis.StringSliceCmd) *MockCmdable_ACLCat_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// ACLCatArgs provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) ACLCatArgs(ctx context.Context, options *redis.ACLCatArgs) *redis.StringSliceCmd {
+	ret := _mock.Called(ctx, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ACLCatArgs")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, *redis.ACLCatArgs) *redis.StringSliceCmd); ok {
+		r0 = returnFunc(ctx, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_ACLCatArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ACLCatArgs'
+type MockCmdable_ACLCatArgs_Call struct {
+	*mock.Call
+}
+
+// ACLCatArgs is a helper method to define mock.On call
+//   - ctx
+//   - options
+func (_e *MockCmdable_Expecter) ACLCatArgs(ctx interface{}, options interface{}) *MockCmdable_ACLCatArgs_Call {
+	return &MockCmdable_ACLCatArgs_Call{Call: _e.mock.On("ACLCatArgs", ctx, options)}
+}
+
+func (_c *MockCmdable_ACLCatArgs_Call) Run(run func(ctx context.Context, options *redis.ACLCatArgs)) *MockCmdable_ACLCatArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(*redis.ACLCatArgs))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_ACLCatArgs_Call) Return(stringSliceCmd *redis.StringSliceCmd) *MockCmdable_ACLCatArgs_Call {
+	_c.Call.Return(stringSliceCmd)
+	return _c
+}
+
+func (_c *MockCmdable_ACLCatArgs_Call) RunAndReturn(run func(ctx context.Context, options *redis.ACLCatArgs) *redis.StringSliceCmd) *MockCmdable_ACLCatArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// ACLDelUser provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) ACLDelUser(ctx context.Context, username string) *redis.IntCmd {
+	ret := _mock.Called(ctx, username)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ACLDelUser")
+	}
+
+	var r0 *redis.IntCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
+		r0 = returnFunc(ctx, username)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_ACLDelUser_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ACLDelUser'
+type MockCmdable_ACLDelUser_Call struct {
+	*mock.Call
+}
+
+// ACLDelUser is a helper method to define mock.On call
+//   - ctx
+//   - username
+func (_e *MockCmdable_Expecter) ACLDelUser(ctx interface{}, username interface{}) *MockCmdable_ACLDelUser_Call {
+	return &MockCmdable_ACLDelUser_Call{Call: _e.mock.On("ACLDelUser", ctx, username)}
+}
+
+func (_c *MockCmdable_ACLDelUser_Call) Run(run func(ctx context.Context, username string)) *MockCmdable_ACLDelUser_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_ACLDelUser_Call) Return(intCmd *redis.IntCmd) *MockCmdable_ACLDelUser_Call {
+	_c.Call.Return(intCmd)
+	return _c
+}
+
+func (_c *MockCmdable_ACLDelUser_Call) RunAndReturn(run func(ctx context.Context, username string) *redis.IntCmd) *MockCmdable_ACLDelUser_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // ACLDryRun provides a mock function for the type MockCmdable
 func (_mock *MockCmdable) ACLDryRun(ctx context.Context, username string, command ...interface{}) *redis.StringCmd {
 	var tmpRet mock.Arguments
@@ -80,12 +223,7 @@ func (_e *MockCmdable_Expecter) ACLDryRun(ctx interface{}, username interface{},
 
 func (_c *MockCmdable_ACLDryRun_Call) Run(run func(ctx context.Context, username string, command ...interface{})) *MockCmdable_ACLDryRun_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -97,6 +235,53 @@ func (_c *MockCmdable_ACLDryRun_Call) Return(stringCmd *redis.StringCmd) *MockCm
 }
 
 func (_c *MockCmdable_ACLDryRun_Call) RunAndReturn(run func(ctx context.Context, username string, command ...interface{}) *redis.StringCmd) *MockCmdable_ACLDryRun_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// ACLList provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) ACLList(ctx context.Context) *redis.StringSliceCmd {
+	ret := _mock.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ACLList")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context) *redis.StringSliceCmd); ok {
+		r0 = returnFunc(ctx)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_ACLList_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ACLList'
+type MockCmdable_ACLList_Call struct {
+	*mock.Call
+}
+
+// ACLList is a helper method to define mock.On call
+//   - ctx
+func (_e *MockCmdable_Expecter) ACLList(ctx interface{}) *MockCmdable_ACLList_Call {
+	return &MockCmdable_ACLList_Call{Call: _e.mock.On("ACLList", ctx)}
+}
+
+func (_c *MockCmdable_ACLList_Call) Run(run func(ctx context.Context)) *MockCmdable_ACLList_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_ACLList_Call) Return(stringSliceCmd *redis.StringSliceCmd) *MockCmdable_ACLList_Call {
+	_c.Call.Return(stringSliceCmd)
+	return _c
+}
+
+func (_c *MockCmdable_ACLList_Call) RunAndReturn(run func(ctx context.Context) *redis.StringSliceCmd) *MockCmdable_ACLList_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -192,6 +377,63 @@ func (_c *MockCmdable_ACLLogReset_Call) Return(statusCmd *redis.StatusCmd) *Mock
 }
 
 func (_c *MockCmdable_ACLLogReset_Call) RunAndReturn(run func(ctx context.Context) *redis.StatusCmd) *MockCmdable_ACLLogReset_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// ACLSetUser provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) ACLSetUser(ctx context.Context, username string, rules ...string) *redis.StatusCmd {
+	var tmpRet mock.Arguments
+	if len(rules) > 0 {
+		tmpRet = _mock.Called(ctx, username, rules)
+	} else {
+		tmpRet = _mock.Called(ctx, username)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for ACLSetUser")
+	}
+
+	var r0 *redis.StatusCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.StatusCmd); ok {
+		r0 = returnFunc(ctx, username, rules...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_ACLSetUser_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ACLSetUser'
+type MockCmdable_ACLSetUser_Call struct {
+	*mock.Call
+}
+
+// ACLSetUser is a helper method to define mock.On call
+//   - ctx
+//   - username
+//   - rules
+func (_e *MockCmdable_Expecter) ACLSetUser(ctx interface{}, username interface{}, rules ...interface{}) *MockCmdable_ACLSetUser_Call {
+	return &MockCmdable_ACLSetUser_Call{Call: _e.mock.On("ACLSetUser",
+		append([]interface{}{ctx, username}, rules...)...)}
+}
+
+func (_c *MockCmdable_ACLSetUser_Call) Run(run func(ctx context.Context, username string, rules ...string)) *MockCmdable_ACLSetUser_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := args[2].([]string)
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_ACLSetUser_Call) Return(statusCmd *redis.StatusCmd) *MockCmdable_ACLSetUser_Call {
+	_c.Call.Return(statusCmd)
+	return _c
+}
+
+func (_c *MockCmdable_ACLSetUser_Call) RunAndReturn(run func(ctx context.Context, username string, rules ...string) *redis.StatusCmd) *MockCmdable_ACLSetUser_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -770,12 +1012,7 @@ func (_e *MockCmdable_Expecter) BFInsert(ctx interface{}, key interface{}, optio
 
 func (_c *MockCmdable_BFInsert_Call) Run(run func(ctx context.Context, key string, options *redis.BFInsertOptions, elements ...interface{})) *MockCmdable_BFInsert_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[3].([]interface{})
 		run(args[0].(context.Context), args[1].(string), args[2].(*redis.BFInsertOptions), variadicArgs...)
 	})
 	return _c
@@ -882,12 +1119,7 @@ func (_e *MockCmdable_Expecter) BFMAdd(ctx interface{}, key interface{}, element
 
 func (_c *MockCmdable_BFMAdd_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockCmdable_BFMAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -944,12 +1176,7 @@ func (_e *MockCmdable_Expecter) BFMExists(ctx interface{}, key interface{}, elem
 
 func (_c *MockCmdable_BFMExists_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockCmdable_BFMExists_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -1257,12 +1484,7 @@ func (_e *MockCmdable_Expecter) BLMPop(ctx interface{}, timeout interface{}, dir
 
 func (_c *MockCmdable_BLMPop_Call) Run(run func(ctx context.Context, timeout time.Duration, direction string, count int64, keys ...string)) *MockCmdable_BLMPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-4)
-		for i, a := range args[4:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[4].([]string)
 		run(args[0].(context.Context), args[1].(time.Duration), args[2].(string), args[3].(int64), variadicArgs...)
 	})
 	return _c
@@ -1371,12 +1593,7 @@ func (_e *MockCmdable_Expecter) BLPop(ctx interface{}, timeout interface{}, keys
 
 func (_c *MockCmdable_BLPop_Call) Run(run func(ctx context.Context, timeout time.Duration, keys ...string)) *MockCmdable_BLPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(time.Duration), variadicArgs...)
 	})
 	return _c
@@ -1433,12 +1650,7 @@ func (_e *MockCmdable_Expecter) BRPop(ctx interface{}, timeout interface{}, keys
 
 func (_c *MockCmdable_BRPop_Call) Run(run func(ctx context.Context, timeout time.Duration, keys ...string)) *MockCmdable_BRPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(time.Duration), variadicArgs...)
 	})
 	return _c
@@ -1547,12 +1759,7 @@ func (_e *MockCmdable_Expecter) BZMPop(ctx interface{}, timeout interface{}, ord
 
 func (_c *MockCmdable_BZMPop_Call) Run(run func(ctx context.Context, timeout time.Duration, order string, count int64, keys ...string)) *MockCmdable_BZMPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-4)
-		for i, a := range args[4:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[4].([]string)
 		run(args[0].(context.Context), args[1].(time.Duration), args[2].(string), args[3].(int64), variadicArgs...)
 	})
 	return _c
@@ -1609,12 +1816,7 @@ func (_e *MockCmdable_Expecter) BZPopMax(ctx interface{}, timeout interface{}, k
 
 func (_c *MockCmdable_BZPopMax_Call) Run(run func(ctx context.Context, timeout time.Duration, keys ...string)) *MockCmdable_BZPopMax_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(time.Duration), variadicArgs...)
 	})
 	return _c
@@ -1671,12 +1873,7 @@ func (_e *MockCmdable_Expecter) BZPopMin(ctx interface{}, timeout interface{}, k
 
 func (_c *MockCmdable_BZPopMin_Call) Run(run func(ctx context.Context, timeout time.Duration, keys ...string)) *MockCmdable_BZPopMin_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(time.Duration), variadicArgs...)
 	})
 	return _c
@@ -1876,12 +2073,7 @@ func (_e *MockCmdable_Expecter) BitField(ctx interface{}, key interface{}, value
 
 func (_c *MockCmdable_BitField_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockCmdable_BitField_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -1938,12 +2130,7 @@ func (_e *MockCmdable_Expecter) BitFieldRO(ctx interface{}, key interface{}, val
 
 func (_c *MockCmdable_BitFieldRO_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockCmdable_BitFieldRO_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -2000,12 +2187,7 @@ func (_e *MockCmdable_Expecter) BitOpAnd(ctx interface{}, destKey interface{}, k
 
 func (_c *MockCmdable_BitOpAnd_Call) Run(run func(ctx context.Context, destKey string, keys ...string)) *MockCmdable_BitOpAnd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -2111,12 +2293,7 @@ func (_e *MockCmdable_Expecter) BitOpOr(ctx interface{}, destKey interface{}, ke
 
 func (_c *MockCmdable_BitOpOr_Call) Run(run func(ctx context.Context, destKey string, keys ...string)) *MockCmdable_BitOpOr_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -2173,12 +2350,7 @@ func (_e *MockCmdable_Expecter) BitOpXor(ctx interface{}, destKey interface{}, k
 
 func (_c *MockCmdable_BitOpXor_Call) Run(run func(ctx context.Context, destKey string, keys ...string)) *MockCmdable_BitOpXor_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -2236,12 +2408,7 @@ func (_e *MockCmdable_Expecter) BitPos(ctx interface{}, key interface{}, bit int
 
 func (_c *MockCmdable_BitPos_Call) Run(run func(ctx context.Context, key string, bit int64, pos ...int64)) *MockCmdable_BitPos_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]int64, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(int64)
-			}
-		}
+		variadicArgs := args[3].([]int64)
 		run(args[0].(context.Context), args[1].(string), args[2].(int64), variadicArgs...)
 	})
 	return _c
@@ -2644,12 +2811,7 @@ func (_e *MockCmdable_Expecter) CFInsert(ctx interface{}, key interface{}, optio
 
 func (_c *MockCmdable_CFInsert_Call) Run(run func(ctx context.Context, key string, options *redis.CFInsertOptions, elements ...interface{})) *MockCmdable_CFInsert_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[3].([]interface{})
 		run(args[0].(context.Context), args[1].(string), args[2].(*redis.CFInsertOptions), variadicArgs...)
 	})
 	return _c
@@ -2707,12 +2869,7 @@ func (_e *MockCmdable_Expecter) CFInsertNX(ctx interface{}, key interface{}, opt
 
 func (_c *MockCmdable_CFInsertNX_Call) Run(run func(ctx context.Context, key string, options *redis.CFInsertOptions, elements ...interface{})) *MockCmdable_CFInsertNX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[3].([]interface{})
 		run(args[0].(context.Context), args[1].(string), args[2].(*redis.CFInsertOptions), variadicArgs...)
 	})
 	return _c
@@ -2819,12 +2976,7 @@ func (_e *MockCmdable_Expecter) CFMExists(ctx interface{}, key interface{}, elem
 
 func (_c *MockCmdable_CFMExists_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockCmdable_CFMExists_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -3178,12 +3330,7 @@ func (_e *MockCmdable_Expecter) CMSIncrBy(ctx interface{}, key interface{}, elem
 
 func (_c *MockCmdable_CMSIncrBy_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockCmdable_CMSIncrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -3388,12 +3535,7 @@ func (_e *MockCmdable_Expecter) CMSMerge(ctx interface{}, destKey interface{}, s
 
 func (_c *MockCmdable_CMSMerge_Call) Run(run func(ctx context.Context, destKey string, sourceKeys ...string)) *MockCmdable_CMSMerge_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -3499,12 +3641,7 @@ func (_e *MockCmdable_Expecter) CMSQuery(ctx interface{}, key interface{}, eleme
 
 func (_c *MockCmdable_CMSQuery_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockCmdable_CMSQuery_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -3749,12 +3886,7 @@ func (_e *MockCmdable_Expecter) ClientKillByFilter(ctx interface{}, keys ...inte
 
 func (_c *MockCmdable_ClientKillByFilter_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_ClientKillByFilter_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[1].([]string)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -4048,12 +4180,7 @@ func (_e *MockCmdable_Expecter) ClusterAddSlots(ctx interface{}, slots ...interf
 
 func (_c *MockCmdable_ClusterAddSlots_Call) Run(run func(ctx context.Context, slots ...int)) *MockCmdable_ClusterAddSlots_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]int, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(int)
-			}
-		}
+		variadicArgs := args[1].([]int)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -4254,12 +4381,7 @@ func (_e *MockCmdable_Expecter) ClusterDelSlots(ctx interface{}, slots ...interf
 
 func (_c *MockCmdable_ClusterDelSlots_Call) Run(run func(ctx context.Context, slots ...int)) *MockCmdable_ClusterDelSlots_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]int, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(int)
-			}
-		}
+		variadicArgs := args[1].([]int)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -4655,6 +4777,53 @@ func (_c *MockCmdable_ClusterMeet_Call) Return(statusCmd *redis.StatusCmd) *Mock
 }
 
 func (_c *MockCmdable_ClusterMeet_Call) RunAndReturn(run func(ctx context.Context, host string, port string) *redis.StatusCmd) *MockCmdable_ClusterMeet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// ClusterMyID provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) ClusterMyID(ctx context.Context) *redis.StringCmd {
+	ret := _mock.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterMyID")
+	}
+
+	var r0 *redis.StringCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context) *redis.StringCmd); ok {
+		r0 = returnFunc(ctx)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_ClusterMyID_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ClusterMyID'
+type MockCmdable_ClusterMyID_Call struct {
+	*mock.Call
+}
+
+// ClusterMyID is a helper method to define mock.On call
+//   - ctx
+func (_e *MockCmdable_Expecter) ClusterMyID(ctx interface{}) *MockCmdable_ClusterMyID_Call {
+	return &MockCmdable_ClusterMyID_Call{Call: _e.mock.On("ClusterMyID", ctx)}
+}
+
+func (_c *MockCmdable_ClusterMyID_Call) Run(run func(ctx context.Context)) *MockCmdable_ClusterMyID_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_ClusterMyID_Call) Return(stringCmd *redis.StringCmd) *MockCmdable_ClusterMyID_Call {
+	_c.Call.Return(stringCmd)
+	return _c
+}
+
+func (_c *MockCmdable_ClusterMyID_Call) RunAndReturn(run func(ctx context.Context) *redis.StringCmd) *MockCmdable_ClusterMyID_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -5171,12 +5340,7 @@ func (_e *MockCmdable_Expecter) CommandGetKeys(ctx interface{}, commands ...inte
 
 func (_c *MockCmdable_CommandGetKeys_Call) Run(run func(ctx context.Context, commands ...interface{})) *MockCmdable_CommandGetKeys_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[1].([]interface{})
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -5232,12 +5396,7 @@ func (_e *MockCmdable_Expecter) CommandGetKeysAndFlags(ctx interface{}, commands
 
 func (_c *MockCmdable_CommandGetKeysAndFlags_Call) Run(run func(ctx context.Context, commands ...interface{})) *MockCmdable_CommandGetKeysAndFlags_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[1].([]interface{})
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -5775,12 +5934,7 @@ func (_e *MockCmdable_Expecter) Del(ctx interface{}, keys ...interface{}) *MockC
 
 func (_c *MockCmdable_Del_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_Del_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[1].([]string)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -5934,12 +6088,7 @@ func (_e *MockCmdable_Expecter) Eval(ctx interface{}, script interface{}, keys i
 
 func (_c *MockCmdable_Eval_Call) Run(run func(ctx context.Context, script string, keys []string, args ...interface{})) *MockCmdable_Eval_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[3].([]interface{})
 		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
 	})
 	return _c
@@ -5997,12 +6146,7 @@ func (_e *MockCmdable_Expecter) EvalRO(ctx interface{}, script interface{}, keys
 
 func (_c *MockCmdable_EvalRO_Call) Run(run func(ctx context.Context, script string, keys []string, args ...interface{})) *MockCmdable_EvalRO_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[3].([]interface{})
 		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
 	})
 	return _c
@@ -6060,12 +6204,7 @@ func (_e *MockCmdable_Expecter) EvalSha(ctx interface{}, sha1 interface{}, keys 
 
 func (_c *MockCmdable_EvalSha_Call) Run(run func(ctx context.Context, sha1 string, keys []string, args ...interface{})) *MockCmdable_EvalSha_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[3].([]interface{})
 		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
 	})
 	return _c
@@ -6123,12 +6262,7 @@ func (_e *MockCmdable_Expecter) EvalShaRO(ctx interface{}, sha1 interface{}, key
 
 func (_c *MockCmdable_EvalShaRO_Call) Run(run func(ctx context.Context, sha1 string, keys []string, args ...interface{})) *MockCmdable_EvalShaRO_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[3].([]interface{})
 		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
 	})
 	return _c
@@ -6184,12 +6318,7 @@ func (_e *MockCmdable_Expecter) Exists(ctx interface{}, keys ...interface{}) *Mo
 
 func (_c *MockCmdable_Exists_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_Exists_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[1].([]string)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -6589,12 +6718,7 @@ func (_e *MockCmdable_Expecter) FCall(ctx interface{}, function interface{}, key
 
 func (_c *MockCmdable_FCall_Call) Run(run func(ctx context.Context, function string, keys []string, args ...interface{})) *MockCmdable_FCall_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[3].([]interface{})
 		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
 	})
 	return _c
@@ -6652,12 +6776,7 @@ func (_e *MockCmdable_Expecter) FCallRO(ctx interface{}, function interface{}, k
 
 func (_c *MockCmdable_FCallRO_Call) Run(run func(ctx context.Context, function string, keys []string, args ...interface{})) *MockCmdable_FCallRO_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[3].([]interface{})
 		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
 	})
 	return _c
@@ -6715,12 +6834,7 @@ func (_e *MockCmdable_Expecter) FCallRo(ctx interface{}, function interface{}, k
 
 func (_c *MockCmdable_FCallRo_Call) Run(run func(ctx context.Context, function string, keys []string, args ...interface{})) *MockCmdable_FCallRo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[3].([]interface{})
 		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
 	})
 	return _c
@@ -7170,12 +7284,7 @@ func (_e *MockCmdable_Expecter) FTCreate(ctx interface{}, index interface{}, opt
 
 func (_c *MockCmdable_FTCreate_Call) Run(run func(ctx context.Context, index string, options *redis.FTCreateOptions, schema ...*redis.FieldSchema)) *MockCmdable_FTCreate_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]*redis.FieldSchema, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(*redis.FieldSchema)
-			}
-		}
+		variadicArgs := args[3].([]*redis.FieldSchema)
 		run(args[0].(context.Context), args[1].(string), args[2].(*redis.FTCreateOptions), variadicArgs...)
 	})
 	return _c
@@ -7331,12 +7440,7 @@ func (_e *MockCmdable_Expecter) FTDictAdd(ctx interface{}, dict interface{}, ter
 
 func (_c *MockCmdable_FTDictAdd_Call) Run(run func(ctx context.Context, dict string, term ...interface{})) *MockCmdable_FTDictAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -7393,12 +7497,7 @@ func (_e *MockCmdable_Expecter) FTDictDel(ctx interface{}, dict interface{}, ter
 
 func (_c *MockCmdable_FTDictDel_Call) Run(run func(ctx context.Context, dict string, term ...interface{})) *MockCmdable_FTDictDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -8853,12 +8952,7 @@ func (_e *MockCmdable_Expecter) GeoAdd(ctx interface{}, key interface{}, geoLoca
 
 func (_c *MockCmdable_GeoAdd_Call) Run(run func(ctx context.Context, key string, geoLocation ...*redis.GeoLocation)) *MockCmdable_GeoAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]*redis.GeoLocation, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(*redis.GeoLocation)
-			}
-		}
+		variadicArgs := args[2].([]*redis.GeoLocation)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -8966,12 +9060,7 @@ func (_e *MockCmdable_Expecter) GeoHash(ctx interface{}, key interface{}, member
 
 func (_c *MockCmdable_GeoHash_Call) Run(run func(ctx context.Context, key string, members ...string)) *MockCmdable_GeoHash_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -9028,12 +9117,7 @@ func (_e *MockCmdable_Expecter) GeoPos(ctx interface{}, key interface{}, members
 
 func (_c *MockCmdable_GeoPos_Call) Run(run func(ctx context.Context, key string, members ...string)) *MockCmdable_GeoPos_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -9733,12 +9817,7 @@ func (_e *MockCmdable_Expecter) HDel(ctx interface{}, key interface{}, fields ..
 
 func (_c *MockCmdable_HDel_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockCmdable_HDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -9845,12 +9924,7 @@ func (_e *MockCmdable_Expecter) HExpire(ctx interface{}, key interface{}, expira
 
 func (_c *MockCmdable_HExpire_Call) Run(run func(ctx context.Context, key string, expiration time.Duration, fields ...string)) *MockCmdable_HExpire_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[3].([]string)
 		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration), variadicArgs...)
 	})
 	return _c
@@ -9908,12 +9982,7 @@ func (_e *MockCmdable_Expecter) HExpireAt(ctx interface{}, key interface{}, tm i
 
 func (_c *MockCmdable_HExpireAt_Call) Run(run func(ctx context.Context, key string, tm time.Time, fields ...string)) *MockCmdable_HExpireAt_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[3].([]string)
 		run(args[0].(context.Context), args[1].(string), args[2].(time.Time), variadicArgs...)
 	})
 	return _c
@@ -9972,12 +10041,7 @@ func (_e *MockCmdable_Expecter) HExpireAtWithArgs(ctx interface{}, key interface
 
 func (_c *MockCmdable_HExpireAtWithArgs_Call) Run(run func(ctx context.Context, key string, tm time.Time, expirationArgs redis.HExpireArgs, fields ...string)) *MockCmdable_HExpireAtWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-4)
-		for i, a := range args[4:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[4].([]string)
 		run(args[0].(context.Context), args[1].(string), args[2].(time.Time), args[3].(redis.HExpireArgs), variadicArgs...)
 	})
 	return _c
@@ -10034,12 +10098,7 @@ func (_e *MockCmdable_Expecter) HExpireTime(ctx interface{}, key interface{}, fi
 
 func (_c *MockCmdable_HExpireTime_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockCmdable_HExpireTime_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -10098,12 +10157,7 @@ func (_e *MockCmdable_Expecter) HExpireWithArgs(ctx interface{}, key interface{}
 
 func (_c *MockCmdable_HExpireWithArgs_Call) Run(run func(ctx context.Context, key string, expiration time.Duration, expirationArgs redis.HExpireArgs, fields ...string)) *MockCmdable_HExpireWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-4)
-		for i, a := range args[4:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[4].([]string)
 		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration), args[3].(redis.HExpireArgs), variadicArgs...)
 	})
 	return _c
@@ -10212,6 +10266,178 @@ func (_c *MockCmdable_HGetAll_Call) Return(mapStringStringCmd *redis.MapStringSt
 }
 
 func (_c *MockCmdable_HGetAll_Call) RunAndReturn(run func(ctx context.Context, key string) *redis.MapStringStringCmd) *MockCmdable_HGetAll_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// HGetDel provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) HGetDel(ctx context.Context, key string, fields ...string) *redis.StringSliceCmd {
+	var tmpRet mock.Arguments
+	if len(fields) > 0 {
+		tmpRet = _mock.Called(ctx, key, fields)
+	} else {
+		tmpRet = _mock.Called(ctx, key)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for HGetDel")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.StringSliceCmd); ok {
+		r0 = returnFunc(ctx, key, fields...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_HGetDel_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'HGetDel'
+type MockCmdable_HGetDel_Call struct {
+	*mock.Call
+}
+
+// HGetDel is a helper method to define mock.On call
+//   - ctx
+//   - key
+//   - fields
+func (_e *MockCmdable_Expecter) HGetDel(ctx interface{}, key interface{}, fields ...interface{}) *MockCmdable_HGetDel_Call {
+	return &MockCmdable_HGetDel_Call{Call: _e.mock.On("HGetDel",
+		append([]interface{}{ctx, key}, fields...)...)}
+}
+
+func (_c *MockCmdable_HGetDel_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockCmdable_HGetDel_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := args[2].([]string)
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_HGetDel_Call) Return(stringSliceCmd *redis.StringSliceCmd) *MockCmdable_HGetDel_Call {
+	_c.Call.Return(stringSliceCmd)
+	return _c
+}
+
+func (_c *MockCmdable_HGetDel_Call) RunAndReturn(run func(ctx context.Context, key string, fields ...string) *redis.StringSliceCmd) *MockCmdable_HGetDel_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// HGetEX provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) HGetEX(ctx context.Context, key string, fields ...string) *redis.StringSliceCmd {
+	var tmpRet mock.Arguments
+	if len(fields) > 0 {
+		tmpRet = _mock.Called(ctx, key, fields)
+	} else {
+		tmpRet = _mock.Called(ctx, key)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for HGetEX")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.StringSliceCmd); ok {
+		r0 = returnFunc(ctx, key, fields...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_HGetEX_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'HGetEX'
+type MockCmdable_HGetEX_Call struct {
+	*mock.Call
+}
+
+// HGetEX is a helper method to define mock.On call
+//   - ctx
+//   - key
+//   - fields
+func (_e *MockCmdable_Expecter) HGetEX(ctx interface{}, key interface{}, fields ...interface{}) *MockCmdable_HGetEX_Call {
+	return &MockCmdable_HGetEX_Call{Call: _e.mock.On("HGetEX",
+		append([]interface{}{ctx, key}, fields...)...)}
+}
+
+func (_c *MockCmdable_HGetEX_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockCmdable_HGetEX_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := args[2].([]string)
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_HGetEX_Call) Return(stringSliceCmd *redis.StringSliceCmd) *MockCmdable_HGetEX_Call {
+	_c.Call.Return(stringSliceCmd)
+	return _c
+}
+
+func (_c *MockCmdable_HGetEX_Call) RunAndReturn(run func(ctx context.Context, key string, fields ...string) *redis.StringSliceCmd) *MockCmdable_HGetEX_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// HGetEXWithArgs provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) HGetEXWithArgs(ctx context.Context, key string, options *redis.HGetEXOptions, fields ...string) *redis.StringSliceCmd {
+	var tmpRet mock.Arguments
+	if len(fields) > 0 {
+		tmpRet = _mock.Called(ctx, key, options, fields)
+	} else {
+		tmpRet = _mock.Called(ctx, key, options)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for HGetEXWithArgs")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, *redis.HGetEXOptions, ...string) *redis.StringSliceCmd); ok {
+		r0 = returnFunc(ctx, key, options, fields...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_HGetEXWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'HGetEXWithArgs'
+type MockCmdable_HGetEXWithArgs_Call struct {
+	*mock.Call
+}
+
+// HGetEXWithArgs is a helper method to define mock.On call
+//   - ctx
+//   - key
+//   - options
+//   - fields
+func (_e *MockCmdable_Expecter) HGetEXWithArgs(ctx interface{}, key interface{}, options interface{}, fields ...interface{}) *MockCmdable_HGetEXWithArgs_Call {
+	return &MockCmdable_HGetEXWithArgs_Call{Call: _e.mock.On("HGetEXWithArgs",
+		append([]interface{}{ctx, key, options}, fields...)...)}
+}
+
+func (_c *MockCmdable_HGetEXWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.HGetEXOptions, fields ...string)) *MockCmdable_HGetEXWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := args[3].([]string)
+		run(args[0].(context.Context), args[1].(string), args[2].(*redis.HGetEXOptions), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_HGetEXWithArgs_Call) Return(stringSliceCmd *redis.StringSliceCmd) *MockCmdable_HGetEXWithArgs_Call {
+	_c.Call.Return(stringSliceCmd)
+	return _c
+}
+
+func (_c *MockCmdable_HGetEXWithArgs_Call) RunAndReturn(run func(ctx context.Context, key string, options *redis.HGetEXOptions, fields ...string) *redis.StringSliceCmd) *MockCmdable_HGetEXWithArgs_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -10453,12 +10679,7 @@ func (_e *MockCmdable_Expecter) HMGet(ctx interface{}, key interface{}, fields .
 
 func (_c *MockCmdable_HMGet_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockCmdable_HMGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -10515,12 +10736,7 @@ func (_e *MockCmdable_Expecter) HMSet(ctx interface{}, key interface{}, values .
 
 func (_c *MockCmdable_HMSet_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockCmdable_HMSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -10578,12 +10794,7 @@ func (_e *MockCmdable_Expecter) HPExpire(ctx interface{}, key interface{}, expir
 
 func (_c *MockCmdable_HPExpire_Call) Run(run func(ctx context.Context, key string, expiration time.Duration, fields ...string)) *MockCmdable_HPExpire_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[3].([]string)
 		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration), variadicArgs...)
 	})
 	return _c
@@ -10641,12 +10852,7 @@ func (_e *MockCmdable_Expecter) HPExpireAt(ctx interface{}, key interface{}, tm 
 
 func (_c *MockCmdable_HPExpireAt_Call) Run(run func(ctx context.Context, key string, tm time.Time, fields ...string)) *MockCmdable_HPExpireAt_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[3].([]string)
 		run(args[0].(context.Context), args[1].(string), args[2].(time.Time), variadicArgs...)
 	})
 	return _c
@@ -10705,12 +10911,7 @@ func (_e *MockCmdable_Expecter) HPExpireAtWithArgs(ctx interface{}, key interfac
 
 func (_c *MockCmdable_HPExpireAtWithArgs_Call) Run(run func(ctx context.Context, key string, tm time.Time, expirationArgs redis.HExpireArgs, fields ...string)) *MockCmdable_HPExpireAtWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-4)
-		for i, a := range args[4:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[4].([]string)
 		run(args[0].(context.Context), args[1].(string), args[2].(time.Time), args[3].(redis.HExpireArgs), variadicArgs...)
 	})
 	return _c
@@ -10767,12 +10968,7 @@ func (_e *MockCmdable_Expecter) HPExpireTime(ctx interface{}, key interface{}, f
 
 func (_c *MockCmdable_HPExpireTime_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockCmdable_HPExpireTime_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -10831,12 +11027,7 @@ func (_e *MockCmdable_Expecter) HPExpireWithArgs(ctx interface{}, key interface{
 
 func (_c *MockCmdable_HPExpireWithArgs_Call) Run(run func(ctx context.Context, key string, expiration time.Duration, expirationArgs redis.HExpireArgs, fields ...string)) *MockCmdable_HPExpireWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-4)
-		for i, a := range args[4:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[4].([]string)
 		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration), args[3].(redis.HExpireArgs), variadicArgs...)
 	})
 	return _c
@@ -10893,12 +11084,7 @@ func (_e *MockCmdable_Expecter) HPTTL(ctx interface{}, key interface{}, fields .
 
 func (_c *MockCmdable_HPTTL_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockCmdable_HPTTL_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -10955,12 +11141,7 @@ func (_e *MockCmdable_Expecter) HPersist(ctx interface{}, key interface{}, field
 
 func (_c *MockCmdable_HPersist_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockCmdable_HPersist_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -11217,12 +11398,7 @@ func (_e *MockCmdable_Expecter) HSet(ctx interface{}, key interface{}, values ..
 
 func (_c *MockCmdable_HSet_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockCmdable_HSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -11234,6 +11410,121 @@ func (_c *MockCmdable_HSet_Call) Return(intCmd *redis.IntCmd) *MockCmdable_HSet_
 }
 
 func (_c *MockCmdable_HSet_Call) RunAndReturn(run func(ctx context.Context, key string, values ...interface{}) *redis.IntCmd) *MockCmdable_HSet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// HSetEX provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) HSetEX(ctx context.Context, key string, fieldsAndValues ...string) *redis.IntCmd {
+	var tmpRet mock.Arguments
+	if len(fieldsAndValues) > 0 {
+		tmpRet = _mock.Called(ctx, key, fieldsAndValues)
+	} else {
+		tmpRet = _mock.Called(ctx, key)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for HSetEX")
+	}
+
+	var r0 *redis.IntCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, ...string) *redis.IntCmd); ok {
+		r0 = returnFunc(ctx, key, fieldsAndValues...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_HSetEX_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'HSetEX'
+type MockCmdable_HSetEX_Call struct {
+	*mock.Call
+}
+
+// HSetEX is a helper method to define mock.On call
+//   - ctx
+//   - key
+//   - fieldsAndValues
+func (_e *MockCmdable_Expecter) HSetEX(ctx interface{}, key interface{}, fieldsAndValues ...interface{}) *MockCmdable_HSetEX_Call {
+	return &MockCmdable_HSetEX_Call{Call: _e.mock.On("HSetEX",
+		append([]interface{}{ctx, key}, fieldsAndValues...)...)}
+}
+
+func (_c *MockCmdable_HSetEX_Call) Run(run func(ctx context.Context, key string, fieldsAndValues ...string)) *MockCmdable_HSetEX_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := args[2].([]string)
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_HSetEX_Call) Return(intCmd *redis.IntCmd) *MockCmdable_HSetEX_Call {
+	_c.Call.Return(intCmd)
+	return _c
+}
+
+func (_c *MockCmdable_HSetEX_Call) RunAndReturn(run func(ctx context.Context, key string, fieldsAndValues ...string) *redis.IntCmd) *MockCmdable_HSetEX_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// HSetEXWithArgs provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) HSetEXWithArgs(ctx context.Context, key string, options *redis.HSetEXOptions, fieldsAndValues ...string) *redis.IntCmd {
+	var tmpRet mock.Arguments
+	if len(fieldsAndValues) > 0 {
+		tmpRet = _mock.Called(ctx, key, options, fieldsAndValues)
+	} else {
+		tmpRet = _mock.Called(ctx, key, options)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for HSetEXWithArgs")
+	}
+
+	var r0 *redis.IntCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, *redis.HSetEXOptions, ...string) *redis.IntCmd); ok {
+		r0 = returnFunc(ctx, key, options, fieldsAndValues...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_HSetEXWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'HSetEXWithArgs'
+type MockCmdable_HSetEXWithArgs_Call struct {
+	*mock.Call
+}
+
+// HSetEXWithArgs is a helper method to define mock.On call
+//   - ctx
+//   - key
+//   - options
+//   - fieldsAndValues
+func (_e *MockCmdable_Expecter) HSetEXWithArgs(ctx interface{}, key interface{}, options interface{}, fieldsAndValues ...interface{}) *MockCmdable_HSetEXWithArgs_Call {
+	return &MockCmdable_HSetEXWithArgs_Call{Call: _e.mock.On("HSetEXWithArgs",
+		append([]interface{}{ctx, key, options}, fieldsAndValues...)...)}
+}
+
+func (_c *MockCmdable_HSetEXWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.HSetEXOptions, fieldsAndValues ...string)) *MockCmdable_HSetEXWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := args[3].([]string)
+		run(args[0].(context.Context), args[1].(string), args[2].(*redis.HSetEXOptions), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_HSetEXWithArgs_Call) Return(intCmd *redis.IntCmd) *MockCmdable_HSetEXWithArgs_Call {
+	_c.Call.Return(intCmd)
+	return _c
+}
+
+func (_c *MockCmdable_HSetEXWithArgs_Call) RunAndReturn(run func(ctx context.Context, key string, options *redis.HSetEXOptions, fieldsAndValues ...string) *redis.IntCmd) *MockCmdable_HSetEXWithArgs_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -11288,6 +11579,55 @@ func (_c *MockCmdable_HSetNX_Call) RunAndReturn(run func(ctx context.Context, ke
 	return _c
 }
 
+// HStrLen provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) HStrLen(ctx context.Context, key string, field string) *redis.IntCmd {
+	ret := _mock.Called(ctx, key, field)
+
+	if len(ret) == 0 {
+		panic("no return value specified for HStrLen")
+	}
+
+	var r0 *redis.IntCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string) *redis.IntCmd); ok {
+		r0 = returnFunc(ctx, key, field)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_HStrLen_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'HStrLen'
+type MockCmdable_HStrLen_Call struct {
+	*mock.Call
+}
+
+// HStrLen is a helper method to define mock.On call
+//   - ctx
+//   - key
+//   - field
+func (_e *MockCmdable_Expecter) HStrLen(ctx interface{}, key interface{}, field interface{}) *MockCmdable_HStrLen_Call {
+	return &MockCmdable_HStrLen_Call{Call: _e.mock.On("HStrLen", ctx, key, field)}
+}
+
+func (_c *MockCmdable_HStrLen_Call) Run(run func(ctx context.Context, key string, field string)) *MockCmdable_HStrLen_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *MockCmdable_HStrLen_Call) Return(intCmd *redis.IntCmd) *MockCmdable_HStrLen_Call {
+	_c.Call.Return(intCmd)
+	return _c
+}
+
+func (_c *MockCmdable_HStrLen_Call) RunAndReturn(run func(ctx context.Context, key string, field string) *redis.IntCmd) *MockCmdable_HStrLen_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // HTTL provides a mock function for the type MockCmdable
 func (_mock *MockCmdable) HTTL(ctx context.Context, key string, fields ...string) *redis.IntSliceCmd {
 	var tmpRet mock.Arguments
@@ -11329,12 +11669,7 @@ func (_e *MockCmdable_Expecter) HTTL(ctx interface{}, key interface{}, fields ..
 
 func (_c *MockCmdable_HTTL_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockCmdable_HTTL_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -11584,12 +11919,7 @@ func (_e *MockCmdable_Expecter) Info(ctx interface{}, section ...interface{}) *M
 
 func (_c *MockCmdable_Info_Call) Run(run func(ctx context.Context, section ...string)) *MockCmdable_Info_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[1].([]string)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -11647,12 +11977,7 @@ func (_e *MockCmdable_Expecter) JSONArrAppend(ctx interface{}, key interface{}, 
 
 func (_c *MockCmdable_JSONArrAppend_Call) Run(run func(ctx context.Context, key string, path string, values ...interface{})) *MockCmdable_JSONArrAppend_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[3].([]interface{})
 		run(args[0].(context.Context), args[1].(string), args[2].(string), variadicArgs...)
 	})
 	return _c
@@ -11710,12 +12035,7 @@ func (_e *MockCmdable_Expecter) JSONArrIndex(ctx interface{}, key interface{}, p
 
 func (_c *MockCmdable_JSONArrIndex_Call) Run(run func(ctx context.Context, key string, path string, value ...interface{})) *MockCmdable_JSONArrIndex_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[3].([]interface{})
 		run(args[0].(context.Context), args[1].(string), args[2].(string), variadicArgs...)
 	})
 	return _c
@@ -11774,12 +12094,7 @@ func (_e *MockCmdable_Expecter) JSONArrIndexWithArgs(ctx interface{}, key interf
 
 func (_c *MockCmdable_JSONArrIndexWithArgs_Call) Run(run func(ctx context.Context, key string, path string, options *redis.JSONArrIndexArgs, value ...interface{})) *MockCmdable_JSONArrIndexWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-4)
-		for i, a := range args[4:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[4].([]interface{})
 		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.JSONArrIndexArgs), variadicArgs...)
 	})
 	return _c
@@ -11838,12 +12153,7 @@ func (_e *MockCmdable_Expecter) JSONArrInsert(ctx interface{}, key interface{}, 
 
 func (_c *MockCmdable_JSONArrInsert_Call) Run(run func(ctx context.Context, key string, path string, index int64, values ...interface{})) *MockCmdable_JSONArrInsert_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-4)
-		for i, a := range args[4:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[4].([]interface{})
 		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int64), variadicArgs...)
 	})
 	return _c
@@ -12294,12 +12604,7 @@ func (_e *MockCmdable_Expecter) JSONGet(ctx interface{}, key interface{}, paths 
 
 func (_c *MockCmdable_JSONGet_Call) Run(run func(ctx context.Context, key string, paths ...string)) *MockCmdable_JSONGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -12357,12 +12662,7 @@ func (_e *MockCmdable_Expecter) JSONGetWithArgs(ctx interface{}, key interface{}
 
 func (_c *MockCmdable_JSONGetWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.JSONGetArgs, paths ...string)) *MockCmdable_JSONGetWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[3].([]string)
 		run(args[0].(context.Context), args[1].(string), args[2].(*redis.JSONGetArgs), variadicArgs...)
 	})
 	return _c
@@ -12419,12 +12719,7 @@ func (_e *MockCmdable_Expecter) JSONMGet(ctx interface{}, path interface{}, keys
 
 func (_c *MockCmdable_JSONMGet_Call) Run(run func(ctx context.Context, path string, keys ...string)) *MockCmdable_JSONMGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -12480,12 +12775,7 @@ func (_e *MockCmdable_Expecter) JSONMSet(ctx interface{}, params ...interface{})
 
 func (_c *MockCmdable_JSONMSet_Call) Run(run func(ctx context.Context, params ...interface{})) *MockCmdable_JSONMSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[1].([]interface{})
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -13431,12 +13721,7 @@ func (_e *MockCmdable_Expecter) LMPop(ctx interface{}, direction interface{}, co
 
 func (_c *MockCmdable_LMPop_Call) Run(run func(ctx context.Context, direction string, count int64, keys ...string)) *MockCmdable_LMPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[3].([]string)
 		run(args[0].(context.Context), args[1].(string), args[2].(int64), variadicArgs...)
 	})
 	return _c
@@ -13742,12 +14027,7 @@ func (_e *MockCmdable_Expecter) LPush(ctx interface{}, key interface{}, values .
 
 func (_c *MockCmdable_LPush_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockCmdable_LPush_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -13804,12 +14084,7 @@ func (_e *MockCmdable_Expecter) LPushX(ctx interface{}, key interface{}, values 
 
 func (_c *MockCmdable_LPushX_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockCmdable_LPushX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -14112,12 +14387,7 @@ func (_e *MockCmdable_Expecter) MGet(ctx interface{}, keys ...interface{}) *Mock
 
 func (_c *MockCmdable_MGet_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_MGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[1].([]string)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -14173,12 +14443,7 @@ func (_e *MockCmdable_Expecter) MSet(ctx interface{}, values ...interface{}) *Mo
 
 func (_c *MockCmdable_MSet_Call) Run(run func(ctx context.Context, values ...interface{})) *MockCmdable_MSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[1].([]interface{})
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -14234,12 +14499,7 @@ func (_e *MockCmdable_Expecter) MSetNX(ctx interface{}, values ...interface{}) *
 
 func (_c *MockCmdable_MSetNX_Call) Run(run func(ctx context.Context, values ...interface{})) *MockCmdable_MSetNX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[1].([]interface{})
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -14296,12 +14556,7 @@ func (_e *MockCmdable_Expecter) MemoryUsage(ctx interface{}, key interface{}, sa
 
 func (_c *MockCmdable_MemoryUsage_Call) Run(run func(ctx context.Context, key string, samples ...int)) *MockCmdable_MemoryUsage_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]int, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(int)
-			}
-		}
+		variadicArgs := args[2].([]int)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -14845,12 +15100,7 @@ func (_e *MockCmdable_Expecter) PFAdd(ctx interface{}, key interface{}, els ...i
 
 func (_c *MockCmdable_PFAdd_Call) Run(run func(ctx context.Context, key string, els ...interface{})) *MockCmdable_PFAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -14906,12 +15156,7 @@ func (_e *MockCmdable_Expecter) PFCount(ctx interface{}, keys ...interface{}) *M
 
 func (_c *MockCmdable_PFCount_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_PFCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[1].([]string)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -14968,12 +15213,7 @@ func (_e *MockCmdable_Expecter) PFMerge(ctx interface{}, dest interface{}, keys 
 
 func (_c *MockCmdable_PFMerge_Call) Run(run func(ctx context.Context, dest string, keys ...string)) *MockCmdable_PFMerge_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -15370,12 +15610,7 @@ func (_e *MockCmdable_Expecter) PubSubNumSub(ctx interface{}, channels ...interf
 
 func (_c *MockCmdable_PubSubNumSub_Call) Run(run func(ctx context.Context, channels ...string)) *MockCmdable_PubSubNumSub_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[1].([]string)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -15479,12 +15714,7 @@ func (_e *MockCmdable_Expecter) PubSubShardNumSub(ctx interface{}, channels ...i
 
 func (_c *MockCmdable_PubSubShardNumSub_Call) Run(run func(ctx context.Context, channels ...string)) *MockCmdable_PubSubShardNumSub_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[1].([]string)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -15783,12 +16013,7 @@ func (_e *MockCmdable_Expecter) RPush(ctx interface{}, key interface{}, values .
 
 func (_c *MockCmdable_RPush_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockCmdable_RPush_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -15845,12 +16070,7 @@ func (_e *MockCmdable_Expecter) RPushX(ctx interface{}, key interface{}, values 
 
 func (_c *MockCmdable_RPushX_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockCmdable_RPushX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -16246,12 +16466,7 @@ func (_e *MockCmdable_Expecter) SAdd(ctx interface{}, key interface{}, members .
 
 func (_c *MockCmdable_SAdd_Call) Run(run func(ctx context.Context, key string, members ...interface{})) *MockCmdable_SAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -16355,12 +16570,7 @@ func (_e *MockCmdable_Expecter) SDiff(ctx interface{}, keys ...interface{}) *Moc
 
 func (_c *MockCmdable_SDiff_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_SDiff_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[1].([]string)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -16417,12 +16627,7 @@ func (_e *MockCmdable_Expecter) SDiffStore(ctx interface{}, destination interfac
 
 func (_c *MockCmdable_SDiffStore_Call) Run(run func(ctx context.Context, destination string, keys ...string)) *MockCmdable_SDiffStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -16478,12 +16683,7 @@ func (_e *MockCmdable_Expecter) SInter(ctx interface{}, keys ...interface{}) *Mo
 
 func (_c *MockCmdable_SInter_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_SInter_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[1].([]string)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -16540,12 +16740,7 @@ func (_e *MockCmdable_Expecter) SInterCard(ctx interface{}, limit interface{}, k
 
 func (_c *MockCmdable_SInterCard_Call) Run(run func(ctx context.Context, limit int64, keys ...string)) *MockCmdable_SInterCard_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(int64), variadicArgs...)
 	})
 	return _c
@@ -16602,12 +16797,7 @@ func (_e *MockCmdable_Expecter) SInterStore(ctx interface{}, destination interfa
 
 func (_c *MockCmdable_SInterStore_Call) Run(run func(ctx context.Context, destination string, keys ...string)) *MockCmdable_SInterStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -16713,12 +16903,7 @@ func (_e *MockCmdable_Expecter) SMIsMember(ctx interface{}, key interface{}, mem
 
 func (_c *MockCmdable_SMIsMember_Call) Run(run func(ctx context.Context, key string, members ...interface{})) *MockCmdable_SMIsMember_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -17164,12 +17349,7 @@ func (_e *MockCmdable_Expecter) SRem(ctx interface{}, key interface{}, members .
 
 func (_c *MockCmdable_SRem_Call) Run(run func(ctx context.Context, key string, members ...interface{})) *MockCmdable_SRem_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -17276,12 +17456,7 @@ func (_e *MockCmdable_Expecter) SUnion(ctx interface{}, keys ...interface{}) *Mo
 
 func (_c *MockCmdable_SUnion_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_SUnion_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[1].([]string)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -17338,12 +17513,7 @@ func (_e *MockCmdable_Expecter) SUnionStore(ctx interface{}, destination interfa
 
 func (_c *MockCmdable_SUnionStore_Call) Run(run func(ctx context.Context, destination string, keys ...string)) *MockCmdable_SUnionStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -17547,12 +17717,7 @@ func (_e *MockCmdable_Expecter) ScriptExists(ctx interface{}, hashes ...interfac
 
 func (_c *MockCmdable_ScriptExists_Call) Run(run func(ctx context.Context, hashes ...string)) *MockCmdable_ScriptExists_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[1].([]string)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -18583,12 +18748,7 @@ func (_e *MockCmdable_Expecter) Subscribe(ctx interface{}, channels ...interface
 
 func (_c *MockCmdable_Subscribe_Call) Run(run func(ctx context.Context, channels ...string)) *MockCmdable_Subscribe_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[1].([]string)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -18645,12 +18805,7 @@ func (_e *MockCmdable_Expecter) TDigestAdd(ctx interface{}, key interface{}, ele
 
 func (_c *MockCmdable_TDigestAdd_Call) Run(run func(ctx context.Context, key string, elements ...float64)) *MockCmdable_TDigestAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]float64, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(float64)
-			}
-		}
+		variadicArgs := args[2].([]float64)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -18707,12 +18862,7 @@ func (_e *MockCmdable_Expecter) TDigestByRank(ctx interface{}, key interface{}, 
 
 func (_c *MockCmdable_TDigestByRank_Call) Run(run func(ctx context.Context, key string, rank ...uint64)) *MockCmdable_TDigestByRank_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]uint64, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(uint64)
-			}
-		}
+		variadicArgs := args[2].([]uint64)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -18769,12 +18919,7 @@ func (_e *MockCmdable_Expecter) TDigestByRevRank(ctx interface{}, key interface{
 
 func (_c *MockCmdable_TDigestByRevRank_Call) Run(run func(ctx context.Context, key string, rank ...uint64)) *MockCmdable_TDigestByRevRank_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]uint64, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(uint64)
-			}
-		}
+		variadicArgs := args[2].([]uint64)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -18831,12 +18976,7 @@ func (_e *MockCmdable_Expecter) TDigestCDF(ctx interface{}, key interface{}, ele
 
 func (_c *MockCmdable_TDigestCDF_Call) Run(run func(ctx context.Context, key string, elements ...float64)) *MockCmdable_TDigestCDF_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]float64, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(float64)
-			}
-		}
+		variadicArgs := args[2].([]float64)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -19087,12 +19227,7 @@ func (_e *MockCmdable_Expecter) TDigestMerge(ctx interface{}, destKey interface{
 
 func (_c *MockCmdable_TDigestMerge_Call) Run(run func(ctx context.Context, destKey string, options *redis.TDigestMergeOptions, sourceKeys ...string)) *MockCmdable_TDigestMerge_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[3].([]string)
 		run(args[0].(context.Context), args[1].(string), args[2].(*redis.TDigestMergeOptions), variadicArgs...)
 	})
 	return _c
@@ -19197,12 +19332,7 @@ func (_e *MockCmdable_Expecter) TDigestQuantile(ctx interface{}, key interface{}
 
 func (_c *MockCmdable_TDigestQuantile_Call) Run(run func(ctx context.Context, key string, elements ...float64)) *MockCmdable_TDigestQuantile_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]float64, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(float64)
-			}
-		}
+		variadicArgs := args[2].([]float64)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -19259,12 +19389,7 @@ func (_e *MockCmdable_Expecter) TDigestRank(ctx interface{}, key interface{}, va
 
 func (_c *MockCmdable_TDigestRank_Call) Run(run func(ctx context.Context, key string, values ...float64)) *MockCmdable_TDigestRank_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]float64, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(float64)
-			}
-		}
+		variadicArgs := args[2].([]float64)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -19369,12 +19494,7 @@ func (_e *MockCmdable_Expecter) TDigestRevRank(ctx interface{}, key interface{},
 
 func (_c *MockCmdable_TDigestRevRank_Call) Run(run func(ctx context.Context, key string, values ...float64)) *MockCmdable_TDigestRevRank_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]float64, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(float64)
-			}
-		}
+		variadicArgs := args[2].([]float64)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -19436,448 +19556,6 @@ func (_c *MockCmdable_TDigestTrimmedMean_Call) Return(floatCmd *redis.FloatCmd) 
 }
 
 func (_c *MockCmdable_TDigestTrimmedMean_Call) RunAndReturn(run func(ctx context.Context, key string, lowCutQuantile float64, highCutQuantile float64) *redis.FloatCmd) *MockCmdable_TDigestTrimmedMean_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// TFCall provides a mock function for the type MockCmdable
-func (_mock *MockCmdable) TFCall(ctx context.Context, libName string, funcName string, numKeys int) *redis.Cmd {
-	ret := _mock.Called(ctx, libName, funcName, numKeys)
-
-	if len(ret) == 0 {
-		panic("no return value specified for TFCall")
-	}
-
-	var r0 *redis.Cmd
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, int) *redis.Cmd); ok {
-		r0 = returnFunc(ctx, libName, funcName, numKeys)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.Cmd)
-		}
-	}
-	return r0
-}
-
-// MockCmdable_TFCall_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TFCall'
-type MockCmdable_TFCall_Call struct {
-	*mock.Call
-}
-
-// TFCall is a helper method to define mock.On call
-//   - ctx
-//   - libName
-//   - funcName
-//   - numKeys
-func (_e *MockCmdable_Expecter) TFCall(ctx interface{}, libName interface{}, funcName interface{}, numKeys interface{}) *MockCmdable_TFCall_Call {
-	return &MockCmdable_TFCall_Call{Call: _e.mock.On("TFCall", ctx, libName, funcName, numKeys)}
-}
-
-func (_c *MockCmdable_TFCall_Call) Run(run func(ctx context.Context, libName string, funcName string, numKeys int)) *MockCmdable_TFCall_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_TFCall_Call) Return(cmd *redis.Cmd) *MockCmdable_TFCall_Call {
-	_c.Call.Return(cmd)
-	return _c
-}
-
-func (_c *MockCmdable_TFCall_Call) RunAndReturn(run func(ctx context.Context, libName string, funcName string, numKeys int) *redis.Cmd) *MockCmdable_TFCall_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// TFCallASYNC provides a mock function for the type MockCmdable
-func (_mock *MockCmdable) TFCallASYNC(ctx context.Context, libName string, funcName string, numKeys int) *redis.Cmd {
-	ret := _mock.Called(ctx, libName, funcName, numKeys)
-
-	if len(ret) == 0 {
-		panic("no return value specified for TFCallASYNC")
-	}
-
-	var r0 *redis.Cmd
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, int) *redis.Cmd); ok {
-		r0 = returnFunc(ctx, libName, funcName, numKeys)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.Cmd)
-		}
-	}
-	return r0
-}
-
-// MockCmdable_TFCallASYNC_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TFCallASYNC'
-type MockCmdable_TFCallASYNC_Call struct {
-	*mock.Call
-}
-
-// TFCallASYNC is a helper method to define mock.On call
-//   - ctx
-//   - libName
-//   - funcName
-//   - numKeys
-func (_e *MockCmdable_Expecter) TFCallASYNC(ctx interface{}, libName interface{}, funcName interface{}, numKeys interface{}) *MockCmdable_TFCallASYNC_Call {
-	return &MockCmdable_TFCallASYNC_Call{Call: _e.mock.On("TFCallASYNC", ctx, libName, funcName, numKeys)}
-}
-
-func (_c *MockCmdable_TFCallASYNC_Call) Run(run func(ctx context.Context, libName string, funcName string, numKeys int)) *MockCmdable_TFCallASYNC_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_TFCallASYNC_Call) Return(cmd *redis.Cmd) *MockCmdable_TFCallASYNC_Call {
-	_c.Call.Return(cmd)
-	return _c
-}
-
-func (_c *MockCmdable_TFCallASYNC_Call) RunAndReturn(run func(ctx context.Context, libName string, funcName string, numKeys int) *redis.Cmd) *MockCmdable_TFCallASYNC_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// TFCallASYNCArgs provides a mock function for the type MockCmdable
-func (_mock *MockCmdable) TFCallASYNCArgs(ctx context.Context, libName string, funcName string, numKeys int, options *redis.TFCallOptions) *redis.Cmd {
-	ret := _mock.Called(ctx, libName, funcName, numKeys, options)
-
-	if len(ret) == 0 {
-		panic("no return value specified for TFCallASYNCArgs")
-	}
-
-	var r0 *redis.Cmd
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, int, *redis.TFCallOptions) *redis.Cmd); ok {
-		r0 = returnFunc(ctx, libName, funcName, numKeys, options)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.Cmd)
-		}
-	}
-	return r0
-}
-
-// MockCmdable_TFCallASYNCArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TFCallASYNCArgs'
-type MockCmdable_TFCallASYNCArgs_Call struct {
-	*mock.Call
-}
-
-// TFCallASYNCArgs is a helper method to define mock.On call
-//   - ctx
-//   - libName
-//   - funcName
-//   - numKeys
-//   - options
-func (_e *MockCmdable_Expecter) TFCallASYNCArgs(ctx interface{}, libName interface{}, funcName interface{}, numKeys interface{}, options interface{}) *MockCmdable_TFCallASYNCArgs_Call {
-	return &MockCmdable_TFCallASYNCArgs_Call{Call: _e.mock.On("TFCallASYNCArgs", ctx, libName, funcName, numKeys, options)}
-}
-
-func (_c *MockCmdable_TFCallASYNCArgs_Call) Run(run func(ctx context.Context, libName string, funcName string, numKeys int, options *redis.TFCallOptions)) *MockCmdable_TFCallASYNCArgs_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int), args[4].(*redis.TFCallOptions))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_TFCallASYNCArgs_Call) Return(cmd *redis.Cmd) *MockCmdable_TFCallASYNCArgs_Call {
-	_c.Call.Return(cmd)
-	return _c
-}
-
-func (_c *MockCmdable_TFCallASYNCArgs_Call) RunAndReturn(run func(ctx context.Context, libName string, funcName string, numKeys int, options *redis.TFCallOptions) *redis.Cmd) *MockCmdable_TFCallASYNCArgs_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// TFCallArgs provides a mock function for the type MockCmdable
-func (_mock *MockCmdable) TFCallArgs(ctx context.Context, libName string, funcName string, numKeys int, options *redis.TFCallOptions) *redis.Cmd {
-	ret := _mock.Called(ctx, libName, funcName, numKeys, options)
-
-	if len(ret) == 0 {
-		panic("no return value specified for TFCallArgs")
-	}
-
-	var r0 *redis.Cmd
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, int, *redis.TFCallOptions) *redis.Cmd); ok {
-		r0 = returnFunc(ctx, libName, funcName, numKeys, options)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.Cmd)
-		}
-	}
-	return r0
-}
-
-// MockCmdable_TFCallArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TFCallArgs'
-type MockCmdable_TFCallArgs_Call struct {
-	*mock.Call
-}
-
-// TFCallArgs is a helper method to define mock.On call
-//   - ctx
-//   - libName
-//   - funcName
-//   - numKeys
-//   - options
-func (_e *MockCmdable_Expecter) TFCallArgs(ctx interface{}, libName interface{}, funcName interface{}, numKeys interface{}, options interface{}) *MockCmdable_TFCallArgs_Call {
-	return &MockCmdable_TFCallArgs_Call{Call: _e.mock.On("TFCallArgs", ctx, libName, funcName, numKeys, options)}
-}
-
-func (_c *MockCmdable_TFCallArgs_Call) Run(run func(ctx context.Context, libName string, funcName string, numKeys int, options *redis.TFCallOptions)) *MockCmdable_TFCallArgs_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int), args[4].(*redis.TFCallOptions))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_TFCallArgs_Call) Return(cmd *redis.Cmd) *MockCmdable_TFCallArgs_Call {
-	_c.Call.Return(cmd)
-	return _c
-}
-
-func (_c *MockCmdable_TFCallArgs_Call) RunAndReturn(run func(ctx context.Context, libName string, funcName string, numKeys int, options *redis.TFCallOptions) *redis.Cmd) *MockCmdable_TFCallArgs_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// TFunctionDelete provides a mock function for the type MockCmdable
-func (_mock *MockCmdable) TFunctionDelete(ctx context.Context, libName string) *redis.StatusCmd {
-	ret := _mock.Called(ctx, libName)
-
-	if len(ret) == 0 {
-		panic("no return value specified for TFunctionDelete")
-	}
-
-	var r0 *redis.StatusCmd
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string) *redis.StatusCmd); ok {
-		r0 = returnFunc(ctx, libName)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.StatusCmd)
-		}
-	}
-	return r0
-}
-
-// MockCmdable_TFunctionDelete_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TFunctionDelete'
-type MockCmdable_TFunctionDelete_Call struct {
-	*mock.Call
-}
-
-// TFunctionDelete is a helper method to define mock.On call
-//   - ctx
-//   - libName
-func (_e *MockCmdable_Expecter) TFunctionDelete(ctx interface{}, libName interface{}) *MockCmdable_TFunctionDelete_Call {
-	return &MockCmdable_TFunctionDelete_Call{Call: _e.mock.On("TFunctionDelete", ctx, libName)}
-}
-
-func (_c *MockCmdable_TFunctionDelete_Call) Run(run func(ctx context.Context, libName string)) *MockCmdable_TFunctionDelete_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_TFunctionDelete_Call) Return(statusCmd *redis.StatusCmd) *MockCmdable_TFunctionDelete_Call {
-	_c.Call.Return(statusCmd)
-	return _c
-}
-
-func (_c *MockCmdable_TFunctionDelete_Call) RunAndReturn(run func(ctx context.Context, libName string) *redis.StatusCmd) *MockCmdable_TFunctionDelete_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// TFunctionList provides a mock function for the type MockCmdable
-func (_mock *MockCmdable) TFunctionList(ctx context.Context) *redis.MapStringInterfaceSliceCmd {
-	ret := _mock.Called(ctx)
-
-	if len(ret) == 0 {
-		panic("no return value specified for TFunctionList")
-	}
-
-	var r0 *redis.MapStringInterfaceSliceCmd
-	if returnFunc, ok := ret.Get(0).(func(context.Context) *redis.MapStringInterfaceSliceCmd); ok {
-		r0 = returnFunc(ctx)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.MapStringInterfaceSliceCmd)
-		}
-	}
-	return r0
-}
-
-// MockCmdable_TFunctionList_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TFunctionList'
-type MockCmdable_TFunctionList_Call struct {
-	*mock.Call
-}
-
-// TFunctionList is a helper method to define mock.On call
-//   - ctx
-func (_e *MockCmdable_Expecter) TFunctionList(ctx interface{}) *MockCmdable_TFunctionList_Call {
-	return &MockCmdable_TFunctionList_Call{Call: _e.mock.On("TFunctionList", ctx)}
-}
-
-func (_c *MockCmdable_TFunctionList_Call) Run(run func(ctx context.Context)) *MockCmdable_TFunctionList_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_TFunctionList_Call) Return(mapStringInterfaceSliceCmd *redis.MapStringInterfaceSliceCmd) *MockCmdable_TFunctionList_Call {
-	_c.Call.Return(mapStringInterfaceSliceCmd)
-	return _c
-}
-
-func (_c *MockCmdable_TFunctionList_Call) RunAndReturn(run func(ctx context.Context) *redis.MapStringInterfaceSliceCmd) *MockCmdable_TFunctionList_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// TFunctionListArgs provides a mock function for the type MockCmdable
-func (_mock *MockCmdable) TFunctionListArgs(ctx context.Context, options *redis.TFunctionListOptions) *redis.MapStringInterfaceSliceCmd {
-	ret := _mock.Called(ctx, options)
-
-	if len(ret) == 0 {
-		panic("no return value specified for TFunctionListArgs")
-	}
-
-	var r0 *redis.MapStringInterfaceSliceCmd
-	if returnFunc, ok := ret.Get(0).(func(context.Context, *redis.TFunctionListOptions) *redis.MapStringInterfaceSliceCmd); ok {
-		r0 = returnFunc(ctx, options)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.MapStringInterfaceSliceCmd)
-		}
-	}
-	return r0
-}
-
-// MockCmdable_TFunctionListArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TFunctionListArgs'
-type MockCmdable_TFunctionListArgs_Call struct {
-	*mock.Call
-}
-
-// TFunctionListArgs is a helper method to define mock.On call
-//   - ctx
-//   - options
-func (_e *MockCmdable_Expecter) TFunctionListArgs(ctx interface{}, options interface{}) *MockCmdable_TFunctionListArgs_Call {
-	return &MockCmdable_TFunctionListArgs_Call{Call: _e.mock.On("TFunctionListArgs", ctx, options)}
-}
-
-func (_c *MockCmdable_TFunctionListArgs_Call) Run(run func(ctx context.Context, options *redis.TFunctionListOptions)) *MockCmdable_TFunctionListArgs_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.TFunctionListOptions))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_TFunctionListArgs_Call) Return(mapStringInterfaceSliceCmd *redis.MapStringInterfaceSliceCmd) *MockCmdable_TFunctionListArgs_Call {
-	_c.Call.Return(mapStringInterfaceSliceCmd)
-	return _c
-}
-
-func (_c *MockCmdable_TFunctionListArgs_Call) RunAndReturn(run func(ctx context.Context, options *redis.TFunctionListOptions) *redis.MapStringInterfaceSliceCmd) *MockCmdable_TFunctionListArgs_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// TFunctionLoad provides a mock function for the type MockCmdable
-func (_mock *MockCmdable) TFunctionLoad(ctx context.Context, lib string) *redis.StatusCmd {
-	ret := _mock.Called(ctx, lib)
-
-	if len(ret) == 0 {
-		panic("no return value specified for TFunctionLoad")
-	}
-
-	var r0 *redis.StatusCmd
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string) *redis.StatusCmd); ok {
-		r0 = returnFunc(ctx, lib)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.StatusCmd)
-		}
-	}
-	return r0
-}
-
-// MockCmdable_TFunctionLoad_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TFunctionLoad'
-type MockCmdable_TFunctionLoad_Call struct {
-	*mock.Call
-}
-
-// TFunctionLoad is a helper method to define mock.On call
-//   - ctx
-//   - lib
-func (_e *MockCmdable_Expecter) TFunctionLoad(ctx interface{}, lib interface{}) *MockCmdable_TFunctionLoad_Call {
-	return &MockCmdable_TFunctionLoad_Call{Call: _e.mock.On("TFunctionLoad", ctx, lib)}
-}
-
-func (_c *MockCmdable_TFunctionLoad_Call) Run(run func(ctx context.Context, lib string)) *MockCmdable_TFunctionLoad_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_TFunctionLoad_Call) Return(statusCmd *redis.StatusCmd) *MockCmdable_TFunctionLoad_Call {
-	_c.Call.Return(statusCmd)
-	return _c
-}
-
-func (_c *MockCmdable_TFunctionLoad_Call) RunAndReturn(run func(ctx context.Context, lib string) *redis.StatusCmd) *MockCmdable_TFunctionLoad_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// TFunctionLoadArgs provides a mock function for the type MockCmdable
-func (_mock *MockCmdable) TFunctionLoadArgs(ctx context.Context, lib string, options *redis.TFunctionLoadOptions) *redis.StatusCmd {
-	ret := _mock.Called(ctx, lib, options)
-
-	if len(ret) == 0 {
-		panic("no return value specified for TFunctionLoadArgs")
-	}
-
-	var r0 *redis.StatusCmd
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, *redis.TFunctionLoadOptions) *redis.StatusCmd); ok {
-		r0 = returnFunc(ctx, lib, options)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*redis.StatusCmd)
-		}
-	}
-	return r0
-}
-
-// MockCmdable_TFunctionLoadArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TFunctionLoadArgs'
-type MockCmdable_TFunctionLoadArgs_Call struct {
-	*mock.Call
-}
-
-// TFunctionLoadArgs is a helper method to define mock.On call
-//   - ctx
-//   - lib
-//   - options
-func (_e *MockCmdable_Expecter) TFunctionLoadArgs(ctx interface{}, lib interface{}, options interface{}) *MockCmdable_TFunctionLoadArgs_Call {
-	return &MockCmdable_TFunctionLoadArgs_Call{Call: _e.mock.On("TFunctionLoadArgs", ctx, lib, options)}
-}
-
-func (_c *MockCmdable_TFunctionLoadArgs_Call) Run(run func(ctx context.Context, lib string, options *redis.TFunctionLoadOptions)) *MockCmdable_TFunctionLoadArgs_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.TFunctionLoadOptions))
-	})
-	return _c
-}
-
-func (_c *MockCmdable_TFunctionLoadArgs_Call) Return(statusCmd *redis.StatusCmd) *MockCmdable_TFunctionLoadArgs_Call {
-	_c.Call.Return(statusCmd)
-	return _c
-}
-
-func (_c *MockCmdable_TFunctionLoadArgs_Call) RunAndReturn(run func(ctx context.Context, lib string, options *redis.TFunctionLoadOptions) *redis.StatusCmd) *MockCmdable_TFunctionLoadArgs_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -21456,12 +21134,7 @@ func (_e *MockCmdable_Expecter) TopKAdd(ctx interface{}, key interface{}, elemen
 
 func (_c *MockCmdable_TopKAdd_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockCmdable_TopKAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -21518,12 +21191,7 @@ func (_e *MockCmdable_Expecter) TopKCount(ctx interface{}, key interface{}, elem
 
 func (_c *MockCmdable_TopKCount_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockCmdable_TopKCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -21580,12 +21248,7 @@ func (_e *MockCmdable_Expecter) TopKIncrBy(ctx interface{}, key interface{}, ele
 
 func (_c *MockCmdable_TopKIncrBy_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockCmdable_TopKIncrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -21786,12 +21449,7 @@ func (_e *MockCmdable_Expecter) TopKQuery(ctx interface{}, key interface{}, elem
 
 func (_c *MockCmdable_TopKQuery_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockCmdable_TopKQuery_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -21948,12 +21606,7 @@ func (_e *MockCmdable_Expecter) Touch(ctx interface{}, keys ...interface{}) *Moc
 
 func (_c *MockCmdable_Touch_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_Touch_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[1].([]string)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -22160,12 +21813,7 @@ func (_e *MockCmdable_Expecter) Unlink(ctx interface{}, keys ...interface{}) *Mo
 
 func (_c *MockCmdable_Unlink_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_Unlink_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[1].([]string)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -22223,12 +21871,7 @@ func (_e *MockCmdable_Expecter) XAck(ctx interface{}, stream interface{}, group 
 
 func (_c *MockCmdable_XAck_Call) Run(run func(ctx context.Context, stream string, group string, ids ...string)) *MockCmdable_XAck_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[3].([]string)
 		run(args[0].(context.Context), args[1].(string), args[2].(string), variadicArgs...)
 	})
 	return _c
@@ -22525,12 +22168,7 @@ func (_e *MockCmdable_Expecter) XDel(ctx interface{}, stream interface{}, ids ..
 
 func (_c *MockCmdable_XDel_Call) Run(run func(ctx context.Context, stream string, ids ...string)) *MockCmdable_XDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -23421,12 +23059,7 @@ func (_e *MockCmdable_Expecter) XReadStreams(ctx interface{}, streams ...interfa
 
 func (_c *MockCmdable_XReadStreams_Call) Run(run func(ctx context.Context, streams ...string)) *MockCmdable_XReadStreams_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[1].([]string)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -23782,12 +23415,7 @@ func (_e *MockCmdable_Expecter) ZAdd(ctx interface{}, key interface{}, members .
 
 func (_c *MockCmdable_ZAdd_Call) Run(run func(ctx context.Context, key string, members ...redis.Z)) *MockCmdable_ZAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]redis.Z, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(redis.Z)
-			}
-		}
+		variadicArgs := args[2].([]redis.Z)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -23942,12 +23570,7 @@ func (_e *MockCmdable_Expecter) ZAddGT(ctx interface{}, key interface{}, members
 
 func (_c *MockCmdable_ZAddGT_Call) Run(run func(ctx context.Context, key string, members ...redis.Z)) *MockCmdable_ZAddGT_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]redis.Z, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(redis.Z)
-			}
-		}
+		variadicArgs := args[2].([]redis.Z)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -24004,12 +23627,7 @@ func (_e *MockCmdable_Expecter) ZAddLT(ctx interface{}, key interface{}, members
 
 func (_c *MockCmdable_ZAddLT_Call) Run(run func(ctx context.Context, key string, members ...redis.Z)) *MockCmdable_ZAddLT_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]redis.Z, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(redis.Z)
-			}
-		}
+		variadicArgs := args[2].([]redis.Z)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -24066,12 +23684,7 @@ func (_e *MockCmdable_Expecter) ZAddNX(ctx interface{}, key interface{}, members
 
 func (_c *MockCmdable_ZAddNX_Call) Run(run func(ctx context.Context, key string, members ...redis.Z)) *MockCmdable_ZAddNX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]redis.Z, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(redis.Z)
-			}
-		}
+		variadicArgs := args[2].([]redis.Z)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -24128,12 +23741,7 @@ func (_e *MockCmdable_Expecter) ZAddXX(ctx interface{}, key interface{}, members
 
 func (_c *MockCmdable_ZAddXX_Call) Run(run func(ctx context.Context, key string, members ...redis.Z)) *MockCmdable_ZAddXX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]redis.Z, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(redis.Z)
-			}
-		}
+		variadicArgs := args[2].([]redis.Z)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -24287,12 +23895,7 @@ func (_e *MockCmdable_Expecter) ZDiff(ctx interface{}, keys ...interface{}) *Moc
 
 func (_c *MockCmdable_ZDiff_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_ZDiff_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[1].([]string)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -24349,12 +23952,7 @@ func (_e *MockCmdable_Expecter) ZDiffStore(ctx interface{}, destination interfac
 
 func (_c *MockCmdable_ZDiffStore_Call) Run(run func(ctx context.Context, destination string, keys ...string)) *MockCmdable_ZDiffStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -24410,12 +24008,7 @@ func (_e *MockCmdable_Expecter) ZDiffWithScores(ctx interface{}, keys ...interfa
 
 func (_c *MockCmdable_ZDiffWithScores_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_ZDiffWithScores_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-1)
-		for i, a := range args[1:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[1].([]string)
 		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
@@ -24570,12 +24163,7 @@ func (_e *MockCmdable_Expecter) ZInterCard(ctx interface{}, limit interface{}, k
 
 func (_c *MockCmdable_ZInterCard_Call) Run(run func(ctx context.Context, limit int64, keys ...string)) *MockCmdable_ZInterCard_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(int64), variadicArgs...)
 	})
 	return _c
@@ -24780,12 +24368,7 @@ func (_e *MockCmdable_Expecter) ZMPop(ctx interface{}, order interface{}, count 
 
 func (_c *MockCmdable_ZMPop_Call) Run(run func(ctx context.Context, order string, count int64, keys ...string)) *MockCmdable_ZMPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-3)
-		for i, a := range args[3:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[3].([]string)
 		run(args[0].(context.Context), args[1].(string), args[2].(int64), variadicArgs...)
 	})
 	return _c
@@ -24842,12 +24425,7 @@ func (_e *MockCmdable_Expecter) ZMScore(ctx interface{}, key interface{}, member
 
 func (_c *MockCmdable_ZMScore_Call) Run(run func(ctx context.Context, key string, members ...string)) *MockCmdable_ZMScore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]string, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(string)
-			}
-		}
+		variadicArgs := args[2].([]string)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -24904,12 +24482,7 @@ func (_e *MockCmdable_Expecter) ZPopMax(ctx interface{}, key interface{}, count 
 
 func (_c *MockCmdable_ZPopMax_Call) Run(run func(ctx context.Context, key string, count ...int64)) *MockCmdable_ZPopMax_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]int64, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(int64)
-			}
-		}
+		variadicArgs := args[2].([]int64)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -24966,12 +24539,7 @@ func (_e *MockCmdable_Expecter) ZPopMin(ctx interface{}, key interface{}, count 
 
 func (_c *MockCmdable_ZPopMin_Call) Run(run func(ctx context.Context, key string, count ...int64)) *MockCmdable_ZPopMin_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]int64, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(int64)
-			}
-		}
+		variadicArgs := args[2].([]int64)
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
@@ -25616,12 +25184,7 @@ func (_e *MockCmdable_Expecter) ZRem(ctx interface{}, key interface{}, members .
 
 func (_c *MockCmdable_ZRem_Call) Run(run func(ctx context.Context, key string, members ...interface{})) *MockCmdable_ZRem_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := make([]interface{}, len(args)-2)
-		for i, a := range args[2:] {
-			if a != nil {
-				variadicArgs[i] = a.(interface{})
-			}
-		}
+		variadicArgs := args[2].([]interface{})
 		run(args[0].(context.Context), args[1].(string), variadicArgs...)
 	})
 	return _c
