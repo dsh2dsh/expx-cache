@@ -47,14 +47,20 @@ type MockLocalCache_Del_Call struct {
 }
 
 // Del is a helper method to define mock.On call
-//   - key
+//   - key string
 func (_e *MockLocalCache_Expecter) Del(key interface{}) *MockLocalCache_Del_Call {
 	return &MockLocalCache_Del_Call{Call: _e.mock.On("Del", key)}
 }
 
 func (_c *MockLocalCache_Del_Call) Run(run func(key string)) *MockLocalCache_Del_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(string))
+		var arg0 string
+		if args[0] != nil {
+			arg0 = args[0].(string)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -94,14 +100,20 @@ type MockLocalCache_Get_Call struct {
 }
 
 // Get is a helper method to define mock.On call
-//   - key
+//   - key string
 func (_e *MockLocalCache_Expecter) Get(key interface{}) *MockLocalCache_Get_Call {
 	return &MockLocalCache_Get_Call{Call: _e.mock.On("Get", key)}
 }
 
 func (_c *MockLocalCache_Get_Call) Run(run func(key string)) *MockLocalCache_Get_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(string))
+		var arg0 string
+		if args[0] != nil {
+			arg0 = args[0].(string)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -128,15 +140,26 @@ type MockLocalCache_Set_Call struct {
 }
 
 // Set is a helper method to define mock.On call
-//   - key
-//   - data
+//   - key string
+//   - data []byte
 func (_e *MockLocalCache_Expecter) Set(key interface{}, data interface{}) *MockLocalCache_Set_Call {
 	return &MockLocalCache_Set_Call{Call: _e.mock.On("Set", key, data)}
 }
 
 func (_c *MockLocalCache_Set_Call) Run(run func(key string, data []byte)) *MockLocalCache_Set_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(string), args[1].([]byte))
+		var arg0 string
+		if args[0] != nil {
+			arg0 = args[0].(string)
+		}
+		var arg1 []byte
+		if args[1] != nil {
+			arg1 = args[1].([]byte)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }

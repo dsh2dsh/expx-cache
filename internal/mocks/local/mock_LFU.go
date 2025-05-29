@@ -48,14 +48,20 @@ type MockLFU_Del_Call struct {
 }
 
 // Del is a helper method to define mock.On call
-//   - key
+//   - key string
 func (_e *MockLFU_Expecter) Del(key interface{}) *MockLFU_Del_Call {
 	return &MockLFU_Del_Call{Call: _e.mock.On("Del", key)}
 }
 
 func (_c *MockLFU_Del_Call) Run(run func(key string)) *MockLFU_Del_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(string))
+		var arg0 string
+		if args[0] != nil {
+			arg0 = args[0].(string)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -104,14 +110,20 @@ type MockLFU_Get_Call struct {
 }
 
 // Get is a helper method to define mock.On call
-//   - key
+//   - key string
 func (_e *MockLFU_Expecter) Get(key interface{}) *MockLFU_Get_Call {
 	return &MockLFU_Get_Call{Call: _e.mock.On("Get", key)}
 }
 
 func (_c *MockLFU_Get_Call) Run(run func(key string)) *MockLFU_Get_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(string))
+		var arg0 string
+		if args[0] != nil {
+			arg0 = args[0].(string)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -138,14 +150,20 @@ type MockLFU_Set_Call struct {
 }
 
 // Set is a helper method to define mock.On call
-//   - item
+//   - item *tinylfu.Item[[]byte]
 func (_e *MockLFU_Expecter) Set(item interface{}) *MockLFU_Set_Call {
 	return &MockLFU_Set_Call{Call: _e.mock.On("Set", item)}
 }
 
 func (_c *MockLFU_Set_Call) Run(run func(item *tinylfu.Item[[]byte])) *MockLFU_Set_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(*tinylfu.Item[[]byte]))
+		var arg0 *tinylfu.Item[[]byte]
+		if args[0] != nil {
+			arg0 = args[0].(*tinylfu.Item[[]byte])
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }

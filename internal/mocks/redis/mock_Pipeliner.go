@@ -64,14 +64,20 @@ type MockPipeliner_ACLCat_Call struct {
 }
 
 // ACLCat is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ACLCat(ctx interface{}) *MockPipeliner_ACLCat_Call {
 	return &MockPipeliner_ACLCat_Call{Call: _e.mock.On("ACLCat", ctx)}
 }
 
 func (_c *MockPipeliner_ACLCat_Call) Run(run func(ctx context.Context)) *MockPipeliner_ACLCat_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -111,15 +117,26 @@ type MockPipeliner_ACLCatArgs_Call struct {
 }
 
 // ACLCatArgs is a helper method to define mock.On call
-//   - ctx
-//   - options
+//   - ctx context.Context
+//   - options *redis.ACLCatArgs
 func (_e *MockPipeliner_Expecter) ACLCatArgs(ctx interface{}, options interface{}) *MockPipeliner_ACLCatArgs_Call {
 	return &MockPipeliner_ACLCatArgs_Call{Call: _e.mock.On("ACLCatArgs", ctx, options)}
 }
 
 func (_c *MockPipeliner_ACLCatArgs_Call) Run(run func(ctx context.Context, options *redis.ACLCatArgs)) *MockPipeliner_ACLCatArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.ACLCatArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.ACLCatArgs
+		if args[1] != nil {
+			arg1 = args[1].(*redis.ACLCatArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -159,15 +176,26 @@ type MockPipeliner_ACLDelUser_Call struct {
 }
 
 // ACLDelUser is a helper method to define mock.On call
-//   - ctx
-//   - username
+//   - ctx context.Context
+//   - username string
 func (_e *MockPipeliner_Expecter) ACLDelUser(ctx interface{}, username interface{}) *MockPipeliner_ACLDelUser_Call {
 	return &MockPipeliner_ACLDelUser_Call{Call: _e.mock.On("ACLDelUser", ctx, username)}
 }
 
 func (_c *MockPipeliner_ACLDelUser_Call) Run(run func(ctx context.Context, username string)) *MockPipeliner_ACLDelUser_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -213,9 +241,9 @@ type MockPipeliner_ACLDryRun_Call struct {
 }
 
 // ACLDryRun is a helper method to define mock.On call
-//   - ctx
-//   - username
-//   - command
+//   - ctx context.Context
+//   - username string
+//   - command ...interface{}
 func (_e *MockPipeliner_Expecter) ACLDryRun(ctx interface{}, username interface{}, command ...interface{}) *MockPipeliner_ACLDryRun_Call {
 	return &MockPipeliner_ACLDryRun_Call{Call: _e.mock.On("ACLDryRun",
 		append([]interface{}{ctx, username}, command...)...)}
@@ -223,8 +251,25 @@ func (_e *MockPipeliner_Expecter) ACLDryRun(ctx interface{}, username interface{
 
 func (_c *MockPipeliner_ACLDryRun_Call) Run(run func(ctx context.Context, username string, command ...interface{})) *MockPipeliner_ACLDryRun_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -264,14 +309,20 @@ type MockPipeliner_ACLList_Call struct {
 }
 
 // ACLList is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ACLList(ctx interface{}) *MockPipeliner_ACLList_Call {
 	return &MockPipeliner_ACLList_Call{Call: _e.mock.On("ACLList", ctx)}
 }
 
 func (_c *MockPipeliner_ACLList_Call) Run(run func(ctx context.Context)) *MockPipeliner_ACLList_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -311,15 +362,26 @@ type MockPipeliner_ACLLog_Call struct {
 }
 
 // ACLLog is a helper method to define mock.On call
-//   - ctx
-//   - count
+//   - ctx context.Context
+//   - count int64
 func (_e *MockPipeliner_Expecter) ACLLog(ctx interface{}, count interface{}) *MockPipeliner_ACLLog_Call {
 	return &MockPipeliner_ACLLog_Call{Call: _e.mock.On("ACLLog", ctx, count)}
 }
 
 func (_c *MockPipeliner_ACLLog_Call) Run(run func(ctx context.Context, count int64)) *MockPipeliner_ACLLog_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int64
+		if args[1] != nil {
+			arg1 = args[1].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -359,14 +421,20 @@ type MockPipeliner_ACLLogReset_Call struct {
 }
 
 // ACLLogReset is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ACLLogReset(ctx interface{}) *MockPipeliner_ACLLogReset_Call {
 	return &MockPipeliner_ACLLogReset_Call{Call: _e.mock.On("ACLLogReset", ctx)}
 }
 
 func (_c *MockPipeliner_ACLLogReset_Call) Run(run func(ctx context.Context)) *MockPipeliner_ACLLogReset_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -412,9 +480,9 @@ type MockPipeliner_ACLSetUser_Call struct {
 }
 
 // ACLSetUser is a helper method to define mock.On call
-//   - ctx
-//   - username
-//   - rules
+//   - ctx context.Context
+//   - username string
+//   - rules ...string
 func (_e *MockPipeliner_Expecter) ACLSetUser(ctx interface{}, username interface{}, rules ...interface{}) *MockPipeliner_ACLSetUser_Call {
 	return &MockPipeliner_ACLSetUser_Call{Call: _e.mock.On("ACLSetUser",
 		append([]interface{}{ctx, username}, rules...)...)}
@@ -422,8 +490,25 @@ func (_e *MockPipeliner_Expecter) ACLSetUser(ctx interface{}, username interface
 
 func (_c *MockPipeliner_ACLSetUser_Call) Run(run func(ctx context.Context, username string, rules ...string)) *MockPipeliner_ACLSetUser_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -463,16 +548,32 @@ type MockPipeliner_Append_Call struct {
 }
 
 // Append is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - value string
 func (_e *MockPipeliner_Expecter) Append(ctx interface{}, key interface{}, value interface{}) *MockPipeliner_Append_Call {
 	return &MockPipeliner_Append_Call{Call: _e.mock.On("Append", ctx, key, value)}
 }
 
 func (_c *MockPipeliner_Append_Call) Run(run func(ctx context.Context, key string, value string)) *MockPipeliner_Append_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -512,15 +613,26 @@ type MockPipeliner_Auth_Call struct {
 }
 
 // Auth is a helper method to define mock.On call
-//   - ctx
-//   - password
+//   - ctx context.Context
+//   - password string
 func (_e *MockPipeliner_Expecter) Auth(ctx interface{}, password interface{}) *MockPipeliner_Auth_Call {
 	return &MockPipeliner_Auth_Call{Call: _e.mock.On("Auth", ctx, password)}
 }
 
 func (_c *MockPipeliner_Auth_Call) Run(run func(ctx context.Context, password string)) *MockPipeliner_Auth_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -560,16 +672,32 @@ type MockPipeliner_AuthACL_Call struct {
 }
 
 // AuthACL is a helper method to define mock.On call
-//   - ctx
-//   - username
-//   - password
+//   - ctx context.Context
+//   - username string
+//   - password string
 func (_e *MockPipeliner_Expecter) AuthACL(ctx interface{}, username interface{}, password interface{}) *MockPipeliner_AuthACL_Call {
 	return &MockPipeliner_AuthACL_Call{Call: _e.mock.On("AuthACL", ctx, username, password)}
 }
 
 func (_c *MockPipeliner_AuthACL_Call) Run(run func(ctx context.Context, username string, password string)) *MockPipeliner_AuthACL_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -609,16 +737,32 @@ type MockPipeliner_BFAdd_Call struct {
 }
 
 // BFAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - element
+//   - ctx context.Context
+//   - key string
+//   - element interface{}
 func (_e *MockPipeliner_Expecter) BFAdd(ctx interface{}, key interface{}, element interface{}) *MockPipeliner_BFAdd_Call {
 	return &MockPipeliner_BFAdd_Call{Call: _e.mock.On("BFAdd", ctx, key, element)}
 }
 
 func (_c *MockPipeliner_BFAdd_Call) Run(run func(ctx context.Context, key string, element interface{})) *MockPipeliner_BFAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -658,15 +802,26 @@ type MockPipeliner_BFCard_Call struct {
 }
 
 // BFCard is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) BFCard(ctx interface{}, key interface{}) *MockPipeliner_BFCard_Call {
 	return &MockPipeliner_BFCard_Call{Call: _e.mock.On("BFCard", ctx, key)}
 }
 
 func (_c *MockPipeliner_BFCard_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_BFCard_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -706,16 +861,32 @@ type MockPipeliner_BFExists_Call struct {
 }
 
 // BFExists is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - element
+//   - ctx context.Context
+//   - key string
+//   - element interface{}
 func (_e *MockPipeliner_Expecter) BFExists(ctx interface{}, key interface{}, element interface{}) *MockPipeliner_BFExists_Call {
 	return &MockPipeliner_BFExists_Call{Call: _e.mock.On("BFExists", ctx, key, element)}
 }
 
 func (_c *MockPipeliner_BFExists_Call) Run(run func(ctx context.Context, key string, element interface{})) *MockPipeliner_BFExists_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -755,15 +926,26 @@ type MockPipeliner_BFInfo_Call struct {
 }
 
 // BFInfo is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) BFInfo(ctx interface{}, key interface{}) *MockPipeliner_BFInfo_Call {
 	return &MockPipeliner_BFInfo_Call{Call: _e.mock.On("BFInfo", ctx, key)}
 }
 
 func (_c *MockPipeliner_BFInfo_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_BFInfo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -803,16 +985,32 @@ type MockPipeliner_BFInfoArg_Call struct {
 }
 
 // BFInfoArg is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - option
+//   - ctx context.Context
+//   - key string
+//   - option string
 func (_e *MockPipeliner_Expecter) BFInfoArg(ctx interface{}, key interface{}, option interface{}) *MockPipeliner_BFInfoArg_Call {
 	return &MockPipeliner_BFInfoArg_Call{Call: _e.mock.On("BFInfoArg", ctx, key, option)}
 }
 
 func (_c *MockPipeliner_BFInfoArg_Call) Run(run func(ctx context.Context, key string, option string)) *MockPipeliner_BFInfoArg_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -852,15 +1050,26 @@ type MockPipeliner_BFInfoCapacity_Call struct {
 }
 
 // BFInfoCapacity is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) BFInfoCapacity(ctx interface{}, key interface{}) *MockPipeliner_BFInfoCapacity_Call {
 	return &MockPipeliner_BFInfoCapacity_Call{Call: _e.mock.On("BFInfoCapacity", ctx, key)}
 }
 
 func (_c *MockPipeliner_BFInfoCapacity_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_BFInfoCapacity_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -900,15 +1109,26 @@ type MockPipeliner_BFInfoExpansion_Call struct {
 }
 
 // BFInfoExpansion is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) BFInfoExpansion(ctx interface{}, key interface{}) *MockPipeliner_BFInfoExpansion_Call {
 	return &MockPipeliner_BFInfoExpansion_Call{Call: _e.mock.On("BFInfoExpansion", ctx, key)}
 }
 
 func (_c *MockPipeliner_BFInfoExpansion_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_BFInfoExpansion_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -948,15 +1168,26 @@ type MockPipeliner_BFInfoFilters_Call struct {
 }
 
 // BFInfoFilters is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) BFInfoFilters(ctx interface{}, key interface{}) *MockPipeliner_BFInfoFilters_Call {
 	return &MockPipeliner_BFInfoFilters_Call{Call: _e.mock.On("BFInfoFilters", ctx, key)}
 }
 
 func (_c *MockPipeliner_BFInfoFilters_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_BFInfoFilters_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -996,15 +1227,26 @@ type MockPipeliner_BFInfoItems_Call struct {
 }
 
 // BFInfoItems is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) BFInfoItems(ctx interface{}, key interface{}) *MockPipeliner_BFInfoItems_Call {
 	return &MockPipeliner_BFInfoItems_Call{Call: _e.mock.On("BFInfoItems", ctx, key)}
 }
 
 func (_c *MockPipeliner_BFInfoItems_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_BFInfoItems_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -1044,15 +1286,26 @@ type MockPipeliner_BFInfoSize_Call struct {
 }
 
 // BFInfoSize is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) BFInfoSize(ctx interface{}, key interface{}) *MockPipeliner_BFInfoSize_Call {
 	return &MockPipeliner_BFInfoSize_Call{Call: _e.mock.On("BFInfoSize", ctx, key)}
 }
 
 func (_c *MockPipeliner_BFInfoSize_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_BFInfoSize_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -1098,10 +1351,10 @@ type MockPipeliner_BFInsert_Call struct {
 }
 
 // BFInsert is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - options *redis.BFInsertOptions
+//   - elements ...interface{}
 func (_e *MockPipeliner_Expecter) BFInsert(ctx interface{}, key interface{}, options interface{}, elements ...interface{}) *MockPipeliner_BFInsert_Call {
 	return &MockPipeliner_BFInsert_Call{Call: _e.mock.On("BFInsert",
 		append([]interface{}{ctx, key, options}, elements...)...)}
@@ -1109,8 +1362,30 @@ func (_e *MockPipeliner_Expecter) BFInsert(ctx interface{}, key interface{}, opt
 
 func (_c *MockPipeliner_BFInsert_Call) Run(run func(ctx context.Context, key string, options *redis.BFInsertOptions, elements ...interface{})) *MockPipeliner_BFInsert_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.BFInsertOptions), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.BFInsertOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.BFInsertOptions)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -1150,17 +1425,38 @@ type MockPipeliner_BFLoadChunk_Call struct {
 }
 
 // BFLoadChunk is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - iterator
-//   - data
+//   - ctx context.Context
+//   - key string
+//   - iterator int64
+//   - data interface{}
 func (_e *MockPipeliner_Expecter) BFLoadChunk(ctx interface{}, key interface{}, iterator interface{}, data interface{}) *MockPipeliner_BFLoadChunk_Call {
 	return &MockPipeliner_BFLoadChunk_Call{Call: _e.mock.On("BFLoadChunk", ctx, key, iterator, data)}
 }
 
 func (_c *MockPipeliner_BFLoadChunk_Call) Run(run func(ctx context.Context, key string, iterator int64, data interface{})) *MockPipeliner_BFLoadChunk_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -1206,9 +1502,9 @@ type MockPipeliner_BFMAdd_Call struct {
 }
 
 // BFMAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...interface{}
 func (_e *MockPipeliner_Expecter) BFMAdd(ctx interface{}, key interface{}, elements ...interface{}) *MockPipeliner_BFMAdd_Call {
 	return &MockPipeliner_BFMAdd_Call{Call: _e.mock.On("BFMAdd",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -1216,8 +1512,25 @@ func (_e *MockPipeliner_Expecter) BFMAdd(ctx interface{}, key interface{}, eleme
 
 func (_c *MockPipeliner_BFMAdd_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockPipeliner_BFMAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -1263,9 +1576,9 @@ type MockPipeliner_BFMExists_Call struct {
 }
 
 // BFMExists is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...interface{}
 func (_e *MockPipeliner_Expecter) BFMExists(ctx interface{}, key interface{}, elements ...interface{}) *MockPipeliner_BFMExists_Call {
 	return &MockPipeliner_BFMExists_Call{Call: _e.mock.On("BFMExists",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -1273,8 +1586,25 @@ func (_e *MockPipeliner_Expecter) BFMExists(ctx interface{}, key interface{}, el
 
 func (_c *MockPipeliner_BFMExists_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockPipeliner_BFMExists_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -1314,17 +1644,38 @@ type MockPipeliner_BFReserve_Call struct {
 }
 
 // BFReserve is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - errorRate
-//   - capacity
+//   - ctx context.Context
+//   - key string
+//   - errorRate float64
+//   - capacity int64
 func (_e *MockPipeliner_Expecter) BFReserve(ctx interface{}, key interface{}, errorRate interface{}, capacity interface{}) *MockPipeliner_BFReserve_Call {
 	return &MockPipeliner_BFReserve_Call{Call: _e.mock.On("BFReserve", ctx, key, errorRate, capacity)}
 }
 
 func (_c *MockPipeliner_BFReserve_Call) Run(run func(ctx context.Context, key string, errorRate float64, capacity int64)) *MockPipeliner_BFReserve_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -1364,18 +1715,44 @@ type MockPipeliner_BFReserveExpansion_Call struct {
 }
 
 // BFReserveExpansion is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - errorRate
-//   - capacity
-//   - expansion
+//   - ctx context.Context
+//   - key string
+//   - errorRate float64
+//   - capacity int64
+//   - expansion int64
 func (_e *MockPipeliner_Expecter) BFReserveExpansion(ctx interface{}, key interface{}, errorRate interface{}, capacity interface{}, expansion interface{}) *MockPipeliner_BFReserveExpansion_Call {
 	return &MockPipeliner_BFReserveExpansion_Call{Call: _e.mock.On("BFReserveExpansion", ctx, key, errorRate, capacity, expansion)}
 }
 
 func (_c *MockPipeliner_BFReserveExpansion_Call) Run(run func(ctx context.Context, key string, errorRate float64, capacity int64, expansion int64)) *MockPipeliner_BFReserveExpansion_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(int64), args[4].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -1415,17 +1792,38 @@ type MockPipeliner_BFReserveNonScaling_Call struct {
 }
 
 // BFReserveNonScaling is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - errorRate
-//   - capacity
+//   - ctx context.Context
+//   - key string
+//   - errorRate float64
+//   - capacity int64
 func (_e *MockPipeliner_Expecter) BFReserveNonScaling(ctx interface{}, key interface{}, errorRate interface{}, capacity interface{}) *MockPipeliner_BFReserveNonScaling_Call {
 	return &MockPipeliner_BFReserveNonScaling_Call{Call: _e.mock.On("BFReserveNonScaling", ctx, key, errorRate, capacity)}
 }
 
 func (_c *MockPipeliner_BFReserveNonScaling_Call) Run(run func(ctx context.Context, key string, errorRate float64, capacity int64)) *MockPipeliner_BFReserveNonScaling_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -1465,16 +1863,32 @@ type MockPipeliner_BFReserveWithArgs_Call struct {
 }
 
 // BFReserveWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - options *redis.BFReserveOptions
 func (_e *MockPipeliner_Expecter) BFReserveWithArgs(ctx interface{}, key interface{}, options interface{}) *MockPipeliner_BFReserveWithArgs_Call {
 	return &MockPipeliner_BFReserveWithArgs_Call{Call: _e.mock.On("BFReserveWithArgs", ctx, key, options)}
 }
 
 func (_c *MockPipeliner_BFReserveWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.BFReserveOptions)) *MockPipeliner_BFReserveWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.BFReserveOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.BFReserveOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.BFReserveOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -1514,16 +1928,32 @@ type MockPipeliner_BFScanDump_Call struct {
 }
 
 // BFScanDump is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - iterator
+//   - ctx context.Context
+//   - key string
+//   - iterator int64
 func (_e *MockPipeliner_Expecter) BFScanDump(ctx interface{}, key interface{}, iterator interface{}) *MockPipeliner_BFScanDump_Call {
 	return &MockPipeliner_BFScanDump_Call{Call: _e.mock.On("BFScanDump", ctx, key, iterator)}
 }
 
 func (_c *MockPipeliner_BFScanDump_Call) Run(run func(ctx context.Context, key string, iterator int64)) *MockPipeliner_BFScanDump_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -1569,11 +1999,11 @@ type MockPipeliner_BLMPop_Call struct {
 }
 
 // BLMPop is a helper method to define mock.On call
-//   - ctx
-//   - timeout
-//   - direction
-//   - count
-//   - keys
+//   - ctx context.Context
+//   - timeout time.Duration
+//   - direction string
+//   - count int64
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) BLMPop(ctx interface{}, timeout interface{}, direction interface{}, count interface{}, keys ...interface{}) *MockPipeliner_BLMPop_Call {
 	return &MockPipeliner_BLMPop_Call{Call: _e.mock.On("BLMPop",
 		append([]interface{}{ctx, timeout, direction, count}, keys...)...)}
@@ -1581,8 +2011,35 @@ func (_e *MockPipeliner_Expecter) BLMPop(ctx interface{}, timeout interface{}, d
 
 func (_c *MockPipeliner_BLMPop_Call) Run(run func(ctx context.Context, timeout time.Duration, direction string, count int64, keys ...string)) *MockPipeliner_BLMPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[4].([]string)
-		run(args[0].(context.Context), args[1].(time.Duration), args[2].(string), args[3].(int64), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 time.Duration
+		if args[1] != nil {
+			arg1 = args[1].(time.Duration)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		var arg4 []string
+		var variadicArgs []string
+		if len(args) > 4 {
+			variadicArgs = args[4].([]string)
+		}
+		arg4 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4...,
+		)
 	})
 	return _c
 }
@@ -1622,19 +2079,50 @@ type MockPipeliner_BLMove_Call struct {
 }
 
 // BLMove is a helper method to define mock.On call
-//   - ctx
-//   - source
-//   - destination
-//   - srcpos
-//   - destpos
-//   - timeout
+//   - ctx context.Context
+//   - source string
+//   - destination string
+//   - srcpos string
+//   - destpos string
+//   - timeout time.Duration
 func (_e *MockPipeliner_Expecter) BLMove(ctx interface{}, source interface{}, destination interface{}, srcpos interface{}, destpos interface{}, timeout interface{}) *MockPipeliner_BLMove_Call {
 	return &MockPipeliner_BLMove_Call{Call: _e.mock.On("BLMove", ctx, source, destination, srcpos, destpos, timeout)}
 }
 
 func (_c *MockPipeliner_BLMove_Call) Run(run func(ctx context.Context, source string, destination string, srcpos string, destpos string, timeout time.Duration)) *MockPipeliner_BLMove_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string), args[4].(string), args[5].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 string
+		if args[4] != nil {
+			arg4 = args[4].(string)
+		}
+		var arg5 time.Duration
+		if args[5] != nil {
+			arg5 = args[5].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+			arg5,
+		)
 	})
 	return _c
 }
@@ -1680,9 +2168,9 @@ type MockPipeliner_BLPop_Call struct {
 }
 
 // BLPop is a helper method to define mock.On call
-//   - ctx
-//   - timeout
-//   - keys
+//   - ctx context.Context
+//   - timeout time.Duration
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) BLPop(ctx interface{}, timeout interface{}, keys ...interface{}) *MockPipeliner_BLPop_Call {
 	return &MockPipeliner_BLPop_Call{Call: _e.mock.On("BLPop",
 		append([]interface{}{ctx, timeout}, keys...)...)}
@@ -1690,8 +2178,25 @@ func (_e *MockPipeliner_Expecter) BLPop(ctx interface{}, timeout interface{}, ke
 
 func (_c *MockPipeliner_BLPop_Call) Run(run func(ctx context.Context, timeout time.Duration, keys ...string)) *MockPipeliner_BLPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(time.Duration), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 time.Duration
+		if args[1] != nil {
+			arg1 = args[1].(time.Duration)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -1737,9 +2242,9 @@ type MockPipeliner_BRPop_Call struct {
 }
 
 // BRPop is a helper method to define mock.On call
-//   - ctx
-//   - timeout
-//   - keys
+//   - ctx context.Context
+//   - timeout time.Duration
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) BRPop(ctx interface{}, timeout interface{}, keys ...interface{}) *MockPipeliner_BRPop_Call {
 	return &MockPipeliner_BRPop_Call{Call: _e.mock.On("BRPop",
 		append([]interface{}{ctx, timeout}, keys...)...)}
@@ -1747,8 +2252,25 @@ func (_e *MockPipeliner_Expecter) BRPop(ctx interface{}, timeout interface{}, ke
 
 func (_c *MockPipeliner_BRPop_Call) Run(run func(ctx context.Context, timeout time.Duration, keys ...string)) *MockPipeliner_BRPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(time.Duration), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 time.Duration
+		if args[1] != nil {
+			arg1 = args[1].(time.Duration)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -1788,17 +2310,38 @@ type MockPipeliner_BRPopLPush_Call struct {
 }
 
 // BRPopLPush is a helper method to define mock.On call
-//   - ctx
-//   - source
-//   - destination
-//   - timeout
+//   - ctx context.Context
+//   - source string
+//   - destination string
+//   - timeout time.Duration
 func (_e *MockPipeliner_Expecter) BRPopLPush(ctx interface{}, source interface{}, destination interface{}, timeout interface{}) *MockPipeliner_BRPopLPush_Call {
 	return &MockPipeliner_BRPopLPush_Call{Call: _e.mock.On("BRPopLPush", ctx, source, destination, timeout)}
 }
 
 func (_c *MockPipeliner_BRPopLPush_Call) Run(run func(ctx context.Context, source string, destination string, timeout time.Duration)) *MockPipeliner_BRPopLPush_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 time.Duration
+		if args[3] != nil {
+			arg3 = args[3].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -1844,11 +2387,11 @@ type MockPipeliner_BZMPop_Call struct {
 }
 
 // BZMPop is a helper method to define mock.On call
-//   - ctx
-//   - timeout
-//   - order
-//   - count
-//   - keys
+//   - ctx context.Context
+//   - timeout time.Duration
+//   - order string
+//   - count int64
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) BZMPop(ctx interface{}, timeout interface{}, order interface{}, count interface{}, keys ...interface{}) *MockPipeliner_BZMPop_Call {
 	return &MockPipeliner_BZMPop_Call{Call: _e.mock.On("BZMPop",
 		append([]interface{}{ctx, timeout, order, count}, keys...)...)}
@@ -1856,8 +2399,35 @@ func (_e *MockPipeliner_Expecter) BZMPop(ctx interface{}, timeout interface{}, o
 
 func (_c *MockPipeliner_BZMPop_Call) Run(run func(ctx context.Context, timeout time.Duration, order string, count int64, keys ...string)) *MockPipeliner_BZMPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[4].([]string)
-		run(args[0].(context.Context), args[1].(time.Duration), args[2].(string), args[3].(int64), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 time.Duration
+		if args[1] != nil {
+			arg1 = args[1].(time.Duration)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		var arg4 []string
+		var variadicArgs []string
+		if len(args) > 4 {
+			variadicArgs = args[4].([]string)
+		}
+		arg4 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4...,
+		)
 	})
 	return _c
 }
@@ -1903,9 +2473,9 @@ type MockPipeliner_BZPopMax_Call struct {
 }
 
 // BZPopMax is a helper method to define mock.On call
-//   - ctx
-//   - timeout
-//   - keys
+//   - ctx context.Context
+//   - timeout time.Duration
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) BZPopMax(ctx interface{}, timeout interface{}, keys ...interface{}) *MockPipeliner_BZPopMax_Call {
 	return &MockPipeliner_BZPopMax_Call{Call: _e.mock.On("BZPopMax",
 		append([]interface{}{ctx, timeout}, keys...)...)}
@@ -1913,8 +2483,25 @@ func (_e *MockPipeliner_Expecter) BZPopMax(ctx interface{}, timeout interface{},
 
 func (_c *MockPipeliner_BZPopMax_Call) Run(run func(ctx context.Context, timeout time.Duration, keys ...string)) *MockPipeliner_BZPopMax_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(time.Duration), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 time.Duration
+		if args[1] != nil {
+			arg1 = args[1].(time.Duration)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -1960,9 +2547,9 @@ type MockPipeliner_BZPopMin_Call struct {
 }
 
 // BZPopMin is a helper method to define mock.On call
-//   - ctx
-//   - timeout
-//   - keys
+//   - ctx context.Context
+//   - timeout time.Duration
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) BZPopMin(ctx interface{}, timeout interface{}, keys ...interface{}) *MockPipeliner_BZPopMin_Call {
 	return &MockPipeliner_BZPopMin_Call{Call: _e.mock.On("BZPopMin",
 		append([]interface{}{ctx, timeout}, keys...)...)}
@@ -1970,8 +2557,25 @@ func (_e *MockPipeliner_Expecter) BZPopMin(ctx interface{}, timeout interface{},
 
 func (_c *MockPipeliner_BZPopMin_Call) Run(run func(ctx context.Context, timeout time.Duration, keys ...string)) *MockPipeliner_BZPopMin_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(time.Duration), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 time.Duration
+		if args[1] != nil {
+			arg1 = args[1].(time.Duration)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -2011,14 +2615,20 @@ type MockPipeliner_BgRewriteAOF_Call struct {
 }
 
 // BgRewriteAOF is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) BgRewriteAOF(ctx interface{}) *MockPipeliner_BgRewriteAOF_Call {
 	return &MockPipeliner_BgRewriteAOF_Call{Call: _e.mock.On("BgRewriteAOF", ctx)}
 }
 
 func (_c *MockPipeliner_BgRewriteAOF_Call) Run(run func(ctx context.Context)) *MockPipeliner_BgRewriteAOF_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -2058,14 +2668,20 @@ type MockPipeliner_BgSave_Call struct {
 }
 
 // BgSave is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) BgSave(ctx interface{}) *MockPipeliner_BgSave_Call {
 	return &MockPipeliner_BgSave_Call{Call: _e.mock.On("BgSave", ctx)}
 }
 
 func (_c *MockPipeliner_BgSave_Call) Run(run func(ctx context.Context)) *MockPipeliner_BgSave_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -2105,16 +2721,32 @@ type MockPipeliner_BitCount_Call struct {
 }
 
 // BitCount is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - bitCount
+//   - ctx context.Context
+//   - key string
+//   - bitCount *redis.BitCount
 func (_e *MockPipeliner_Expecter) BitCount(ctx interface{}, key interface{}, bitCount interface{}) *MockPipeliner_BitCount_Call {
 	return &MockPipeliner_BitCount_Call{Call: _e.mock.On("BitCount", ctx, key, bitCount)}
 }
 
 func (_c *MockPipeliner_BitCount_Call) Run(run func(ctx context.Context, key string, bitCount *redis.BitCount)) *MockPipeliner_BitCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.BitCount))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.BitCount
+		if args[2] != nil {
+			arg2 = args[2].(*redis.BitCount)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -2160,9 +2792,9 @@ type MockPipeliner_BitField_Call struct {
 }
 
 // BitField is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
 func (_e *MockPipeliner_Expecter) BitField(ctx interface{}, key interface{}, values ...interface{}) *MockPipeliner_BitField_Call {
 	return &MockPipeliner_BitField_Call{Call: _e.mock.On("BitField",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -2170,8 +2802,25 @@ func (_e *MockPipeliner_Expecter) BitField(ctx interface{}, key interface{}, val
 
 func (_c *MockPipeliner_BitField_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockPipeliner_BitField_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -2217,9 +2866,9 @@ type MockPipeliner_BitFieldRO_Call struct {
 }
 
 // BitFieldRO is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
 func (_e *MockPipeliner_Expecter) BitFieldRO(ctx interface{}, key interface{}, values ...interface{}) *MockPipeliner_BitFieldRO_Call {
 	return &MockPipeliner_BitFieldRO_Call{Call: _e.mock.On("BitFieldRO",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -2227,8 +2876,25 @@ func (_e *MockPipeliner_Expecter) BitFieldRO(ctx interface{}, key interface{}, v
 
 func (_c *MockPipeliner_BitFieldRO_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockPipeliner_BitFieldRO_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -2274,9 +2940,9 @@ type MockPipeliner_BitOpAnd_Call struct {
 }
 
 // BitOpAnd is a helper method to define mock.On call
-//   - ctx
-//   - destKey
-//   - keys
+//   - ctx context.Context
+//   - destKey string
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) BitOpAnd(ctx interface{}, destKey interface{}, keys ...interface{}) *MockPipeliner_BitOpAnd_Call {
 	return &MockPipeliner_BitOpAnd_Call{Call: _e.mock.On("BitOpAnd",
 		append([]interface{}{ctx, destKey}, keys...)...)}
@@ -2284,8 +2950,25 @@ func (_e *MockPipeliner_Expecter) BitOpAnd(ctx interface{}, destKey interface{},
 
 func (_c *MockPipeliner_BitOpAnd_Call) Run(run func(ctx context.Context, destKey string, keys ...string)) *MockPipeliner_BitOpAnd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -2325,16 +3008,32 @@ type MockPipeliner_BitOpNot_Call struct {
 }
 
 // BitOpNot is a helper method to define mock.On call
-//   - ctx
-//   - destKey
-//   - key
+//   - ctx context.Context
+//   - destKey string
+//   - key string
 func (_e *MockPipeliner_Expecter) BitOpNot(ctx interface{}, destKey interface{}, key interface{}) *MockPipeliner_BitOpNot_Call {
 	return &MockPipeliner_BitOpNot_Call{Call: _e.mock.On("BitOpNot", ctx, destKey, key)}
 }
 
 func (_c *MockPipeliner_BitOpNot_Call) Run(run func(ctx context.Context, destKey string, key string)) *MockPipeliner_BitOpNot_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -2380,9 +3079,9 @@ type MockPipeliner_BitOpOr_Call struct {
 }
 
 // BitOpOr is a helper method to define mock.On call
-//   - ctx
-//   - destKey
-//   - keys
+//   - ctx context.Context
+//   - destKey string
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) BitOpOr(ctx interface{}, destKey interface{}, keys ...interface{}) *MockPipeliner_BitOpOr_Call {
 	return &MockPipeliner_BitOpOr_Call{Call: _e.mock.On("BitOpOr",
 		append([]interface{}{ctx, destKey}, keys...)...)}
@@ -2390,8 +3089,25 @@ func (_e *MockPipeliner_Expecter) BitOpOr(ctx interface{}, destKey interface{}, 
 
 func (_c *MockPipeliner_BitOpOr_Call) Run(run func(ctx context.Context, destKey string, keys ...string)) *MockPipeliner_BitOpOr_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -2437,9 +3153,9 @@ type MockPipeliner_BitOpXor_Call struct {
 }
 
 // BitOpXor is a helper method to define mock.On call
-//   - ctx
-//   - destKey
-//   - keys
+//   - ctx context.Context
+//   - destKey string
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) BitOpXor(ctx interface{}, destKey interface{}, keys ...interface{}) *MockPipeliner_BitOpXor_Call {
 	return &MockPipeliner_BitOpXor_Call{Call: _e.mock.On("BitOpXor",
 		append([]interface{}{ctx, destKey}, keys...)...)}
@@ -2447,8 +3163,25 @@ func (_e *MockPipeliner_Expecter) BitOpXor(ctx interface{}, destKey interface{},
 
 func (_c *MockPipeliner_BitOpXor_Call) Run(run func(ctx context.Context, destKey string, keys ...string)) *MockPipeliner_BitOpXor_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -2494,10 +3227,10 @@ type MockPipeliner_BitPos_Call struct {
 }
 
 // BitPos is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - bit
-//   - pos
+//   - ctx context.Context
+//   - key string
+//   - bit int64
+//   - pos ...int64
 func (_e *MockPipeliner_Expecter) BitPos(ctx interface{}, key interface{}, bit interface{}, pos ...interface{}) *MockPipeliner_BitPos_Call {
 	return &MockPipeliner_BitPos_Call{Call: _e.mock.On("BitPos",
 		append([]interface{}{ctx, key, bit}, pos...)...)}
@@ -2505,8 +3238,30 @@ func (_e *MockPipeliner_Expecter) BitPos(ctx interface{}, key interface{}, bit i
 
 func (_c *MockPipeliner_BitPos_Call) Run(run func(ctx context.Context, key string, bit int64, pos ...int64)) *MockPipeliner_BitPos_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]int64)
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 []int64
+		var variadicArgs []int64
+		if len(args) > 3 {
+			variadicArgs = args[3].([]int64)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -2546,19 +3301,50 @@ type MockPipeliner_BitPosSpan_Call struct {
 }
 
 // BitPosSpan is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - bit
-//   - start
-//   - end
-//   - span
+//   - ctx context.Context
+//   - key string
+//   - bit int8
+//   - start int64
+//   - end int64
+//   - span string
 func (_e *MockPipeliner_Expecter) BitPosSpan(ctx interface{}, key interface{}, bit interface{}, start interface{}, end interface{}, span interface{}) *MockPipeliner_BitPosSpan_Call {
 	return &MockPipeliner_BitPosSpan_Call{Call: _e.mock.On("BitPosSpan", ctx, key, bit, start, end, span)}
 }
 
 func (_c *MockPipeliner_BitPosSpan_Call) Run(run func(ctx context.Context, key string, bit int8, start int64, end int64, span string)) *MockPipeliner_BitPosSpan_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int8), args[3].(int64), args[4].(int64), args[5].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int8
+		if args[2] != nil {
+			arg2 = args[2].(int8)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		var arg5 string
+		if args[5] != nil {
+			arg5 = args[5].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+			arg5,
+		)
 	})
 	return _c
 }
@@ -2598,16 +3384,32 @@ type MockPipeliner_CFAdd_Call struct {
 }
 
 // CFAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - element
+//   - ctx context.Context
+//   - key string
+//   - element interface{}
 func (_e *MockPipeliner_Expecter) CFAdd(ctx interface{}, key interface{}, element interface{}) *MockPipeliner_CFAdd_Call {
 	return &MockPipeliner_CFAdd_Call{Call: _e.mock.On("CFAdd", ctx, key, element)}
 }
 
 func (_c *MockPipeliner_CFAdd_Call) Run(run func(ctx context.Context, key string, element interface{})) *MockPipeliner_CFAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -2647,16 +3449,32 @@ type MockPipeliner_CFAddNX_Call struct {
 }
 
 // CFAddNX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - element
+//   - ctx context.Context
+//   - key string
+//   - element interface{}
 func (_e *MockPipeliner_Expecter) CFAddNX(ctx interface{}, key interface{}, element interface{}) *MockPipeliner_CFAddNX_Call {
 	return &MockPipeliner_CFAddNX_Call{Call: _e.mock.On("CFAddNX", ctx, key, element)}
 }
 
 func (_c *MockPipeliner_CFAddNX_Call) Run(run func(ctx context.Context, key string, element interface{})) *MockPipeliner_CFAddNX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -2696,16 +3514,32 @@ type MockPipeliner_CFCount_Call struct {
 }
 
 // CFCount is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - element
+//   - ctx context.Context
+//   - key string
+//   - element interface{}
 func (_e *MockPipeliner_Expecter) CFCount(ctx interface{}, key interface{}, element interface{}) *MockPipeliner_CFCount_Call {
 	return &MockPipeliner_CFCount_Call{Call: _e.mock.On("CFCount", ctx, key, element)}
 }
 
 func (_c *MockPipeliner_CFCount_Call) Run(run func(ctx context.Context, key string, element interface{})) *MockPipeliner_CFCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -2745,16 +3579,32 @@ type MockPipeliner_CFDel_Call struct {
 }
 
 // CFDel is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - element
+//   - ctx context.Context
+//   - key string
+//   - element interface{}
 func (_e *MockPipeliner_Expecter) CFDel(ctx interface{}, key interface{}, element interface{}) *MockPipeliner_CFDel_Call {
 	return &MockPipeliner_CFDel_Call{Call: _e.mock.On("CFDel", ctx, key, element)}
 }
 
 func (_c *MockPipeliner_CFDel_Call) Run(run func(ctx context.Context, key string, element interface{})) *MockPipeliner_CFDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -2794,16 +3644,32 @@ type MockPipeliner_CFExists_Call struct {
 }
 
 // CFExists is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - element
+//   - ctx context.Context
+//   - key string
+//   - element interface{}
 func (_e *MockPipeliner_Expecter) CFExists(ctx interface{}, key interface{}, element interface{}) *MockPipeliner_CFExists_Call {
 	return &MockPipeliner_CFExists_Call{Call: _e.mock.On("CFExists", ctx, key, element)}
 }
 
 func (_c *MockPipeliner_CFExists_Call) Run(run func(ctx context.Context, key string, element interface{})) *MockPipeliner_CFExists_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -2843,15 +3709,26 @@ type MockPipeliner_CFInfo_Call struct {
 }
 
 // CFInfo is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) CFInfo(ctx interface{}, key interface{}) *MockPipeliner_CFInfo_Call {
 	return &MockPipeliner_CFInfo_Call{Call: _e.mock.On("CFInfo", ctx, key)}
 }
 
 func (_c *MockPipeliner_CFInfo_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_CFInfo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -2897,10 +3774,10 @@ type MockPipeliner_CFInsert_Call struct {
 }
 
 // CFInsert is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - options *redis.CFInsertOptions
+//   - elements ...interface{}
 func (_e *MockPipeliner_Expecter) CFInsert(ctx interface{}, key interface{}, options interface{}, elements ...interface{}) *MockPipeliner_CFInsert_Call {
 	return &MockPipeliner_CFInsert_Call{Call: _e.mock.On("CFInsert",
 		append([]interface{}{ctx, key, options}, elements...)...)}
@@ -2908,8 +3785,30 @@ func (_e *MockPipeliner_Expecter) CFInsert(ctx interface{}, key interface{}, opt
 
 func (_c *MockPipeliner_CFInsert_Call) Run(run func(ctx context.Context, key string, options *redis.CFInsertOptions, elements ...interface{})) *MockPipeliner_CFInsert_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.CFInsertOptions), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.CFInsertOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.CFInsertOptions)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -2955,10 +3854,10 @@ type MockPipeliner_CFInsertNX_Call struct {
 }
 
 // CFInsertNX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - options *redis.CFInsertOptions
+//   - elements ...interface{}
 func (_e *MockPipeliner_Expecter) CFInsertNX(ctx interface{}, key interface{}, options interface{}, elements ...interface{}) *MockPipeliner_CFInsertNX_Call {
 	return &MockPipeliner_CFInsertNX_Call{Call: _e.mock.On("CFInsertNX",
 		append([]interface{}{ctx, key, options}, elements...)...)}
@@ -2966,8 +3865,30 @@ func (_e *MockPipeliner_Expecter) CFInsertNX(ctx interface{}, key interface{}, o
 
 func (_c *MockPipeliner_CFInsertNX_Call) Run(run func(ctx context.Context, key string, options *redis.CFInsertOptions, elements ...interface{})) *MockPipeliner_CFInsertNX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.CFInsertOptions), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.CFInsertOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.CFInsertOptions)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -3007,17 +3928,38 @@ type MockPipeliner_CFLoadChunk_Call struct {
 }
 
 // CFLoadChunk is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - iterator
-//   - data
+//   - ctx context.Context
+//   - key string
+//   - iterator int64
+//   - data interface{}
 func (_e *MockPipeliner_Expecter) CFLoadChunk(ctx interface{}, key interface{}, iterator interface{}, data interface{}) *MockPipeliner_CFLoadChunk_Call {
 	return &MockPipeliner_CFLoadChunk_Call{Call: _e.mock.On("CFLoadChunk", ctx, key, iterator, data)}
 }
 
 func (_c *MockPipeliner_CFLoadChunk_Call) Run(run func(ctx context.Context, key string, iterator int64, data interface{})) *MockPipeliner_CFLoadChunk_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -3063,9 +4005,9 @@ type MockPipeliner_CFMExists_Call struct {
 }
 
 // CFMExists is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...interface{}
 func (_e *MockPipeliner_Expecter) CFMExists(ctx interface{}, key interface{}, elements ...interface{}) *MockPipeliner_CFMExists_Call {
 	return &MockPipeliner_CFMExists_Call{Call: _e.mock.On("CFMExists",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -3073,8 +4015,25 @@ func (_e *MockPipeliner_Expecter) CFMExists(ctx interface{}, key interface{}, el
 
 func (_c *MockPipeliner_CFMExists_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockPipeliner_CFMExists_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -3114,16 +4073,32 @@ type MockPipeliner_CFReserve_Call struct {
 }
 
 // CFReserve is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - capacity
+//   - ctx context.Context
+//   - key string
+//   - capacity int64
 func (_e *MockPipeliner_Expecter) CFReserve(ctx interface{}, key interface{}, capacity interface{}) *MockPipeliner_CFReserve_Call {
 	return &MockPipeliner_CFReserve_Call{Call: _e.mock.On("CFReserve", ctx, key, capacity)}
 }
 
 func (_c *MockPipeliner_CFReserve_Call) Run(run func(ctx context.Context, key string, capacity int64)) *MockPipeliner_CFReserve_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -3163,17 +4138,38 @@ type MockPipeliner_CFReserveBucketSize_Call struct {
 }
 
 // CFReserveBucketSize is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - capacity
-//   - bucketsize
+//   - ctx context.Context
+//   - key string
+//   - capacity int64
+//   - bucketsize int64
 func (_e *MockPipeliner_Expecter) CFReserveBucketSize(ctx interface{}, key interface{}, capacity interface{}, bucketsize interface{}) *MockPipeliner_CFReserveBucketSize_Call {
 	return &MockPipeliner_CFReserveBucketSize_Call{Call: _e.mock.On("CFReserveBucketSize", ctx, key, capacity, bucketsize)}
 }
 
 func (_c *MockPipeliner_CFReserveBucketSize_Call) Run(run func(ctx context.Context, key string, capacity int64, bucketsize int64)) *MockPipeliner_CFReserveBucketSize_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -3213,17 +4209,38 @@ type MockPipeliner_CFReserveExpansion_Call struct {
 }
 
 // CFReserveExpansion is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - capacity
-//   - expansion
+//   - ctx context.Context
+//   - key string
+//   - capacity int64
+//   - expansion int64
 func (_e *MockPipeliner_Expecter) CFReserveExpansion(ctx interface{}, key interface{}, capacity interface{}, expansion interface{}) *MockPipeliner_CFReserveExpansion_Call {
 	return &MockPipeliner_CFReserveExpansion_Call{Call: _e.mock.On("CFReserveExpansion", ctx, key, capacity, expansion)}
 }
 
 func (_c *MockPipeliner_CFReserveExpansion_Call) Run(run func(ctx context.Context, key string, capacity int64, expansion int64)) *MockPipeliner_CFReserveExpansion_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -3263,17 +4280,38 @@ type MockPipeliner_CFReserveMaxIterations_Call struct {
 }
 
 // CFReserveMaxIterations is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - capacity
-//   - maxiterations
+//   - ctx context.Context
+//   - key string
+//   - capacity int64
+//   - maxiterations int64
 func (_e *MockPipeliner_Expecter) CFReserveMaxIterations(ctx interface{}, key interface{}, capacity interface{}, maxiterations interface{}) *MockPipeliner_CFReserveMaxIterations_Call {
 	return &MockPipeliner_CFReserveMaxIterations_Call{Call: _e.mock.On("CFReserveMaxIterations", ctx, key, capacity, maxiterations)}
 }
 
 func (_c *MockPipeliner_CFReserveMaxIterations_Call) Run(run func(ctx context.Context, key string, capacity int64, maxiterations int64)) *MockPipeliner_CFReserveMaxIterations_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -3313,16 +4351,32 @@ type MockPipeliner_CFReserveWithArgs_Call struct {
 }
 
 // CFReserveWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - options *redis.CFReserveOptions
 func (_e *MockPipeliner_Expecter) CFReserveWithArgs(ctx interface{}, key interface{}, options interface{}) *MockPipeliner_CFReserveWithArgs_Call {
 	return &MockPipeliner_CFReserveWithArgs_Call{Call: _e.mock.On("CFReserveWithArgs", ctx, key, options)}
 }
 
 func (_c *MockPipeliner_CFReserveWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.CFReserveOptions)) *MockPipeliner_CFReserveWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.CFReserveOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.CFReserveOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.CFReserveOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -3362,16 +4416,32 @@ type MockPipeliner_CFScanDump_Call struct {
 }
 
 // CFScanDump is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - iterator
+//   - ctx context.Context
+//   - key string
+//   - iterator int64
 func (_e *MockPipeliner_Expecter) CFScanDump(ctx interface{}, key interface{}, iterator interface{}) *MockPipeliner_CFScanDump_Call {
 	return &MockPipeliner_CFScanDump_Call{Call: _e.mock.On("CFScanDump", ctx, key, iterator)}
 }
 
 func (_c *MockPipeliner_CFScanDump_Call) Run(run func(ctx context.Context, key string, iterator int64)) *MockPipeliner_CFScanDump_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -3417,9 +4487,9 @@ type MockPipeliner_CMSIncrBy_Call struct {
 }
 
 // CMSIncrBy is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...interface{}
 func (_e *MockPipeliner_Expecter) CMSIncrBy(ctx interface{}, key interface{}, elements ...interface{}) *MockPipeliner_CMSIncrBy_Call {
 	return &MockPipeliner_CMSIncrBy_Call{Call: _e.mock.On("CMSIncrBy",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -3427,8 +4497,25 @@ func (_e *MockPipeliner_Expecter) CMSIncrBy(ctx interface{}, key interface{}, el
 
 func (_c *MockPipeliner_CMSIncrBy_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockPipeliner_CMSIncrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -3468,15 +4555,26 @@ type MockPipeliner_CMSInfo_Call struct {
 }
 
 // CMSInfo is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) CMSInfo(ctx interface{}, key interface{}) *MockPipeliner_CMSInfo_Call {
 	return &MockPipeliner_CMSInfo_Call{Call: _e.mock.On("CMSInfo", ctx, key)}
 }
 
 func (_c *MockPipeliner_CMSInfo_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_CMSInfo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -3516,17 +4614,38 @@ type MockPipeliner_CMSInitByDim_Call struct {
 }
 
 // CMSInitByDim is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - width
-//   - height
+//   - ctx context.Context
+//   - key string
+//   - width int64
+//   - height int64
 func (_e *MockPipeliner_Expecter) CMSInitByDim(ctx interface{}, key interface{}, width interface{}, height interface{}) *MockPipeliner_CMSInitByDim_Call {
 	return &MockPipeliner_CMSInitByDim_Call{Call: _e.mock.On("CMSInitByDim", ctx, key, width, height)}
 }
 
 func (_c *MockPipeliner_CMSInitByDim_Call) Run(run func(ctx context.Context, key string, width int64, height int64)) *MockPipeliner_CMSInitByDim_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -3566,17 +4685,38 @@ type MockPipeliner_CMSInitByProb_Call struct {
 }
 
 // CMSInitByProb is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - errorRate
-//   - probability
+//   - ctx context.Context
+//   - key string
+//   - errorRate float64
+//   - probability float64
 func (_e *MockPipeliner_Expecter) CMSInitByProb(ctx interface{}, key interface{}, errorRate interface{}, probability interface{}) *MockPipeliner_CMSInitByProb_Call {
 	return &MockPipeliner_CMSInitByProb_Call{Call: _e.mock.On("CMSInitByProb", ctx, key, errorRate, probability)}
 }
 
 func (_c *MockPipeliner_CMSInitByProb_Call) Run(run func(ctx context.Context, key string, errorRate float64, probability float64)) *MockPipeliner_CMSInitByProb_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(float64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 float64
+		if args[3] != nil {
+			arg3 = args[3].(float64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -3622,9 +4762,9 @@ type MockPipeliner_CMSMerge_Call struct {
 }
 
 // CMSMerge is a helper method to define mock.On call
-//   - ctx
-//   - destKey
-//   - sourceKeys
+//   - ctx context.Context
+//   - destKey string
+//   - sourceKeys ...string
 func (_e *MockPipeliner_Expecter) CMSMerge(ctx interface{}, destKey interface{}, sourceKeys ...interface{}) *MockPipeliner_CMSMerge_Call {
 	return &MockPipeliner_CMSMerge_Call{Call: _e.mock.On("CMSMerge",
 		append([]interface{}{ctx, destKey}, sourceKeys...)...)}
@@ -3632,8 +4772,25 @@ func (_e *MockPipeliner_Expecter) CMSMerge(ctx interface{}, destKey interface{},
 
 func (_c *MockPipeliner_CMSMerge_Call) Run(run func(ctx context.Context, destKey string, sourceKeys ...string)) *MockPipeliner_CMSMerge_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -3673,16 +4830,32 @@ type MockPipeliner_CMSMergeWithWeight_Call struct {
 }
 
 // CMSMergeWithWeight is a helper method to define mock.On call
-//   - ctx
-//   - destKey
-//   - sourceKeys
+//   - ctx context.Context
+//   - destKey string
+//   - sourceKeys map[string]int64
 func (_e *MockPipeliner_Expecter) CMSMergeWithWeight(ctx interface{}, destKey interface{}, sourceKeys interface{}) *MockPipeliner_CMSMergeWithWeight_Call {
 	return &MockPipeliner_CMSMergeWithWeight_Call{Call: _e.mock.On("CMSMergeWithWeight", ctx, destKey, sourceKeys)}
 }
 
 func (_c *MockPipeliner_CMSMergeWithWeight_Call) Run(run func(ctx context.Context, destKey string, sourceKeys map[string]int64)) *MockPipeliner_CMSMergeWithWeight_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(map[string]int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 map[string]int64
+		if args[2] != nil {
+			arg2 = args[2].(map[string]int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -3728,9 +4901,9 @@ type MockPipeliner_CMSQuery_Call struct {
 }
 
 // CMSQuery is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...interface{}
 func (_e *MockPipeliner_Expecter) CMSQuery(ctx interface{}, key interface{}, elements ...interface{}) *MockPipeliner_CMSQuery_Call {
 	return &MockPipeliner_CMSQuery_Call{Call: _e.mock.On("CMSQuery",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -3738,8 +4911,25 @@ func (_e *MockPipeliner_Expecter) CMSQuery(ctx interface{}, key interface{}, ele
 
 func (_c *MockPipeliner_CMSQuery_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockPipeliner_CMSQuery_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -3779,14 +4969,20 @@ type MockPipeliner_ClientGetName_Call struct {
 }
 
 // ClientGetName is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ClientGetName(ctx interface{}) *MockPipeliner_ClientGetName_Call {
 	return &MockPipeliner_ClientGetName_Call{Call: _e.mock.On("ClientGetName", ctx)}
 }
 
 func (_c *MockPipeliner_ClientGetName_Call) Run(run func(ctx context.Context)) *MockPipeliner_ClientGetName_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -3826,14 +5022,20 @@ type MockPipeliner_ClientID_Call struct {
 }
 
 // ClientID is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ClientID(ctx interface{}) *MockPipeliner_ClientID_Call {
 	return &MockPipeliner_ClientID_Call{Call: _e.mock.On("ClientID", ctx)}
 }
 
 func (_c *MockPipeliner_ClientID_Call) Run(run func(ctx context.Context)) *MockPipeliner_ClientID_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -3873,14 +5075,20 @@ type MockPipeliner_ClientInfo_Call struct {
 }
 
 // ClientInfo is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ClientInfo(ctx interface{}) *MockPipeliner_ClientInfo_Call {
 	return &MockPipeliner_ClientInfo_Call{Call: _e.mock.On("ClientInfo", ctx)}
 }
 
 func (_c *MockPipeliner_ClientInfo_Call) Run(run func(ctx context.Context)) *MockPipeliner_ClientInfo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -3920,15 +5128,26 @@ type MockPipeliner_ClientKill_Call struct {
 }
 
 // ClientKill is a helper method to define mock.On call
-//   - ctx
-//   - ipPort
+//   - ctx context.Context
+//   - ipPort string
 func (_e *MockPipeliner_Expecter) ClientKill(ctx interface{}, ipPort interface{}) *MockPipeliner_ClientKill_Call {
 	return &MockPipeliner_ClientKill_Call{Call: _e.mock.On("ClientKill", ctx, ipPort)}
 }
 
 func (_c *MockPipeliner_ClientKill_Call) Run(run func(ctx context.Context, ipPort string)) *MockPipeliner_ClientKill_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -3974,8 +5193,8 @@ type MockPipeliner_ClientKillByFilter_Call struct {
 }
 
 // ClientKillByFilter is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) ClientKillByFilter(ctx interface{}, keys ...interface{}) *MockPipeliner_ClientKillByFilter_Call {
 	return &MockPipeliner_ClientKillByFilter_Call{Call: _e.mock.On("ClientKillByFilter",
 		append([]interface{}{ctx}, keys...)...)}
@@ -3983,8 +5202,20 @@ func (_e *MockPipeliner_Expecter) ClientKillByFilter(ctx interface{}, keys ...in
 
 func (_c *MockPipeliner_ClientKillByFilter_Call) Run(run func(ctx context.Context, keys ...string)) *MockPipeliner_ClientKillByFilter_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -4024,14 +5255,20 @@ type MockPipeliner_ClientList_Call struct {
 }
 
 // ClientList is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ClientList(ctx interface{}) *MockPipeliner_ClientList_Call {
 	return &MockPipeliner_ClientList_Call{Call: _e.mock.On("ClientList", ctx)}
 }
 
 func (_c *MockPipeliner_ClientList_Call) Run(run func(ctx context.Context)) *MockPipeliner_ClientList_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -4071,15 +5308,26 @@ type MockPipeliner_ClientPause_Call struct {
 }
 
 // ClientPause is a helper method to define mock.On call
-//   - ctx
-//   - dur
+//   - ctx context.Context
+//   - dur time.Duration
 func (_e *MockPipeliner_Expecter) ClientPause(ctx interface{}, dur interface{}) *MockPipeliner_ClientPause_Call {
 	return &MockPipeliner_ClientPause_Call{Call: _e.mock.On("ClientPause", ctx, dur)}
 }
 
 func (_c *MockPipeliner_ClientPause_Call) Run(run func(ctx context.Context, dur time.Duration)) *MockPipeliner_ClientPause_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 time.Duration
+		if args[1] != nil {
+			arg1 = args[1].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -4119,15 +5367,26 @@ type MockPipeliner_ClientSetInfo_Call struct {
 }
 
 // ClientSetInfo is a helper method to define mock.On call
-//   - ctx
-//   - info
+//   - ctx context.Context
+//   - info redis.LibraryInfo
 func (_e *MockPipeliner_Expecter) ClientSetInfo(ctx interface{}, info interface{}) *MockPipeliner_ClientSetInfo_Call {
 	return &MockPipeliner_ClientSetInfo_Call{Call: _e.mock.On("ClientSetInfo", ctx, info)}
 }
 
 func (_c *MockPipeliner_ClientSetInfo_Call) Run(run func(ctx context.Context, info redis.LibraryInfo)) *MockPipeliner_ClientSetInfo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(redis.LibraryInfo))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 redis.LibraryInfo
+		if args[1] != nil {
+			arg1 = args[1].(redis.LibraryInfo)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -4167,15 +5426,26 @@ type MockPipeliner_ClientSetName_Call struct {
 }
 
 // ClientSetName is a helper method to define mock.On call
-//   - ctx
-//   - name
+//   - ctx context.Context
+//   - name string
 func (_e *MockPipeliner_Expecter) ClientSetName(ctx interface{}, name interface{}) *MockPipeliner_ClientSetName_Call {
 	return &MockPipeliner_ClientSetName_Call{Call: _e.mock.On("ClientSetName", ctx, name)}
 }
 
 func (_c *MockPipeliner_ClientSetName_Call) Run(run func(ctx context.Context, name string)) *MockPipeliner_ClientSetName_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -4215,15 +5485,26 @@ type MockPipeliner_ClientUnblock_Call struct {
 }
 
 // ClientUnblock is a helper method to define mock.On call
-//   - ctx
-//   - id
+//   - ctx context.Context
+//   - id int64
 func (_e *MockPipeliner_Expecter) ClientUnblock(ctx interface{}, id interface{}) *MockPipeliner_ClientUnblock_Call {
 	return &MockPipeliner_ClientUnblock_Call{Call: _e.mock.On("ClientUnblock", ctx, id)}
 }
 
 func (_c *MockPipeliner_ClientUnblock_Call) Run(run func(ctx context.Context, id int64)) *MockPipeliner_ClientUnblock_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int64
+		if args[1] != nil {
+			arg1 = args[1].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -4263,15 +5544,26 @@ type MockPipeliner_ClientUnblockWithError_Call struct {
 }
 
 // ClientUnblockWithError is a helper method to define mock.On call
-//   - ctx
-//   - id
+//   - ctx context.Context
+//   - id int64
 func (_e *MockPipeliner_Expecter) ClientUnblockWithError(ctx interface{}, id interface{}) *MockPipeliner_ClientUnblockWithError_Call {
 	return &MockPipeliner_ClientUnblockWithError_Call{Call: _e.mock.On("ClientUnblockWithError", ctx, id)}
 }
 
 func (_c *MockPipeliner_ClientUnblockWithError_Call) Run(run func(ctx context.Context, id int64)) *MockPipeliner_ClientUnblockWithError_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int64
+		if args[1] != nil {
+			arg1 = args[1].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -4311,14 +5603,20 @@ type MockPipeliner_ClientUnpause_Call struct {
 }
 
 // ClientUnpause is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ClientUnpause(ctx interface{}) *MockPipeliner_ClientUnpause_Call {
 	return &MockPipeliner_ClientUnpause_Call{Call: _e.mock.On("ClientUnpause", ctx)}
 }
 
 func (_c *MockPipeliner_ClientUnpause_Call) Run(run func(ctx context.Context)) *MockPipeliner_ClientUnpause_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -4364,8 +5662,8 @@ type MockPipeliner_ClusterAddSlots_Call struct {
 }
 
 // ClusterAddSlots is a helper method to define mock.On call
-//   - ctx
-//   - slots
+//   - ctx context.Context
+//   - slots ...int
 func (_e *MockPipeliner_Expecter) ClusterAddSlots(ctx interface{}, slots ...interface{}) *MockPipeliner_ClusterAddSlots_Call {
 	return &MockPipeliner_ClusterAddSlots_Call{Call: _e.mock.On("ClusterAddSlots",
 		append([]interface{}{ctx}, slots...)...)}
@@ -4373,8 +5671,20 @@ func (_e *MockPipeliner_Expecter) ClusterAddSlots(ctx interface{}, slots ...inte
 
 func (_c *MockPipeliner_ClusterAddSlots_Call) Run(run func(ctx context.Context, slots ...int)) *MockPipeliner_ClusterAddSlots_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]int)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []int
+		var variadicArgs []int
+		if len(args) > 1 {
+			variadicArgs = args[1].([]int)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -4414,16 +5724,32 @@ type MockPipeliner_ClusterAddSlotsRange_Call struct {
 }
 
 // ClusterAddSlotsRange is a helper method to define mock.On call
-//   - ctx
-//   - min
-//   - max
+//   - ctx context.Context
+//   - min int
+//   - max int
 func (_e *MockPipeliner_Expecter) ClusterAddSlotsRange(ctx interface{}, min interface{}, max interface{}) *MockPipeliner_ClusterAddSlotsRange_Call {
 	return &MockPipeliner_ClusterAddSlotsRange_Call{Call: _e.mock.On("ClusterAddSlotsRange", ctx, min, max)}
 }
 
 func (_c *MockPipeliner_ClusterAddSlotsRange_Call) Run(run func(ctx context.Context, min int, max int)) *MockPipeliner_ClusterAddSlotsRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -4463,15 +5789,26 @@ type MockPipeliner_ClusterCountFailureReports_Call struct {
 }
 
 // ClusterCountFailureReports is a helper method to define mock.On call
-//   - ctx
-//   - nodeID
+//   - ctx context.Context
+//   - nodeID string
 func (_e *MockPipeliner_Expecter) ClusterCountFailureReports(ctx interface{}, nodeID interface{}) *MockPipeliner_ClusterCountFailureReports_Call {
 	return &MockPipeliner_ClusterCountFailureReports_Call{Call: _e.mock.On("ClusterCountFailureReports", ctx, nodeID)}
 }
 
 func (_c *MockPipeliner_ClusterCountFailureReports_Call) Run(run func(ctx context.Context, nodeID string)) *MockPipeliner_ClusterCountFailureReports_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -4511,15 +5848,26 @@ type MockPipeliner_ClusterCountKeysInSlot_Call struct {
 }
 
 // ClusterCountKeysInSlot is a helper method to define mock.On call
-//   - ctx
-//   - slot
+//   - ctx context.Context
+//   - slot int
 func (_e *MockPipeliner_Expecter) ClusterCountKeysInSlot(ctx interface{}, slot interface{}) *MockPipeliner_ClusterCountKeysInSlot_Call {
 	return &MockPipeliner_ClusterCountKeysInSlot_Call{Call: _e.mock.On("ClusterCountKeysInSlot", ctx, slot)}
 }
 
 func (_c *MockPipeliner_ClusterCountKeysInSlot_Call) Run(run func(ctx context.Context, slot int)) *MockPipeliner_ClusterCountKeysInSlot_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -4565,8 +5913,8 @@ type MockPipeliner_ClusterDelSlots_Call struct {
 }
 
 // ClusterDelSlots is a helper method to define mock.On call
-//   - ctx
-//   - slots
+//   - ctx context.Context
+//   - slots ...int
 func (_e *MockPipeliner_Expecter) ClusterDelSlots(ctx interface{}, slots ...interface{}) *MockPipeliner_ClusterDelSlots_Call {
 	return &MockPipeliner_ClusterDelSlots_Call{Call: _e.mock.On("ClusterDelSlots",
 		append([]interface{}{ctx}, slots...)...)}
@@ -4574,8 +5922,20 @@ func (_e *MockPipeliner_Expecter) ClusterDelSlots(ctx interface{}, slots ...inte
 
 func (_c *MockPipeliner_ClusterDelSlots_Call) Run(run func(ctx context.Context, slots ...int)) *MockPipeliner_ClusterDelSlots_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]int)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []int
+		var variadicArgs []int
+		if len(args) > 1 {
+			variadicArgs = args[1].([]int)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -4615,16 +5975,32 @@ type MockPipeliner_ClusterDelSlotsRange_Call struct {
 }
 
 // ClusterDelSlotsRange is a helper method to define mock.On call
-//   - ctx
-//   - min
-//   - max
+//   - ctx context.Context
+//   - min int
+//   - max int
 func (_e *MockPipeliner_Expecter) ClusterDelSlotsRange(ctx interface{}, min interface{}, max interface{}) *MockPipeliner_ClusterDelSlotsRange_Call {
 	return &MockPipeliner_ClusterDelSlotsRange_Call{Call: _e.mock.On("ClusterDelSlotsRange", ctx, min, max)}
 }
 
 func (_c *MockPipeliner_ClusterDelSlotsRange_Call) Run(run func(ctx context.Context, min int, max int)) *MockPipeliner_ClusterDelSlotsRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -4664,14 +6040,20 @@ type MockPipeliner_ClusterFailover_Call struct {
 }
 
 // ClusterFailover is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ClusterFailover(ctx interface{}) *MockPipeliner_ClusterFailover_Call {
 	return &MockPipeliner_ClusterFailover_Call{Call: _e.mock.On("ClusterFailover", ctx)}
 }
 
 func (_c *MockPipeliner_ClusterFailover_Call) Run(run func(ctx context.Context)) *MockPipeliner_ClusterFailover_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -4711,15 +6093,26 @@ type MockPipeliner_ClusterForget_Call struct {
 }
 
 // ClusterForget is a helper method to define mock.On call
-//   - ctx
-//   - nodeID
+//   - ctx context.Context
+//   - nodeID string
 func (_e *MockPipeliner_Expecter) ClusterForget(ctx interface{}, nodeID interface{}) *MockPipeliner_ClusterForget_Call {
 	return &MockPipeliner_ClusterForget_Call{Call: _e.mock.On("ClusterForget", ctx, nodeID)}
 }
 
 func (_c *MockPipeliner_ClusterForget_Call) Run(run func(ctx context.Context, nodeID string)) *MockPipeliner_ClusterForget_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -4759,16 +6152,32 @@ type MockPipeliner_ClusterGetKeysInSlot_Call struct {
 }
 
 // ClusterGetKeysInSlot is a helper method to define mock.On call
-//   - ctx
-//   - slot
-//   - count
+//   - ctx context.Context
+//   - slot int
+//   - count int
 func (_e *MockPipeliner_Expecter) ClusterGetKeysInSlot(ctx interface{}, slot interface{}, count interface{}) *MockPipeliner_ClusterGetKeysInSlot_Call {
 	return &MockPipeliner_ClusterGetKeysInSlot_Call{Call: _e.mock.On("ClusterGetKeysInSlot", ctx, slot, count)}
 }
 
 func (_c *MockPipeliner_ClusterGetKeysInSlot_Call) Run(run func(ctx context.Context, slot int, count int)) *MockPipeliner_ClusterGetKeysInSlot_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -4808,14 +6217,20 @@ type MockPipeliner_ClusterInfo_Call struct {
 }
 
 // ClusterInfo is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ClusterInfo(ctx interface{}) *MockPipeliner_ClusterInfo_Call {
 	return &MockPipeliner_ClusterInfo_Call{Call: _e.mock.On("ClusterInfo", ctx)}
 }
 
 func (_c *MockPipeliner_ClusterInfo_Call) Run(run func(ctx context.Context)) *MockPipeliner_ClusterInfo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -4855,15 +6270,26 @@ type MockPipeliner_ClusterKeySlot_Call struct {
 }
 
 // ClusterKeySlot is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) ClusterKeySlot(ctx interface{}, key interface{}) *MockPipeliner_ClusterKeySlot_Call {
 	return &MockPipeliner_ClusterKeySlot_Call{Call: _e.mock.On("ClusterKeySlot", ctx, key)}
 }
 
 func (_c *MockPipeliner_ClusterKeySlot_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_ClusterKeySlot_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -4903,14 +6329,20 @@ type MockPipeliner_ClusterLinks_Call struct {
 }
 
 // ClusterLinks is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ClusterLinks(ctx interface{}) *MockPipeliner_ClusterLinks_Call {
 	return &MockPipeliner_ClusterLinks_Call{Call: _e.mock.On("ClusterLinks", ctx)}
 }
 
 func (_c *MockPipeliner_ClusterLinks_Call) Run(run func(ctx context.Context)) *MockPipeliner_ClusterLinks_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -4950,16 +6382,32 @@ type MockPipeliner_ClusterMeet_Call struct {
 }
 
 // ClusterMeet is a helper method to define mock.On call
-//   - ctx
-//   - host
-//   - port
+//   - ctx context.Context
+//   - host string
+//   - port string
 func (_e *MockPipeliner_Expecter) ClusterMeet(ctx interface{}, host interface{}, port interface{}) *MockPipeliner_ClusterMeet_Call {
 	return &MockPipeliner_ClusterMeet_Call{Call: _e.mock.On("ClusterMeet", ctx, host, port)}
 }
 
 func (_c *MockPipeliner_ClusterMeet_Call) Run(run func(ctx context.Context, host string, port string)) *MockPipeliner_ClusterMeet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -4999,14 +6447,20 @@ type MockPipeliner_ClusterMyID_Call struct {
 }
 
 // ClusterMyID is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ClusterMyID(ctx interface{}) *MockPipeliner_ClusterMyID_Call {
 	return &MockPipeliner_ClusterMyID_Call{Call: _e.mock.On("ClusterMyID", ctx)}
 }
 
 func (_c *MockPipeliner_ClusterMyID_Call) Run(run func(ctx context.Context)) *MockPipeliner_ClusterMyID_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5046,14 +6500,20 @@ type MockPipeliner_ClusterMyShardID_Call struct {
 }
 
 // ClusterMyShardID is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ClusterMyShardID(ctx interface{}) *MockPipeliner_ClusterMyShardID_Call {
 	return &MockPipeliner_ClusterMyShardID_Call{Call: _e.mock.On("ClusterMyShardID", ctx)}
 }
 
 func (_c *MockPipeliner_ClusterMyShardID_Call) Run(run func(ctx context.Context)) *MockPipeliner_ClusterMyShardID_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5093,14 +6553,20 @@ type MockPipeliner_ClusterNodes_Call struct {
 }
 
 // ClusterNodes is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ClusterNodes(ctx interface{}) *MockPipeliner_ClusterNodes_Call {
 	return &MockPipeliner_ClusterNodes_Call{Call: _e.mock.On("ClusterNodes", ctx)}
 }
 
 func (_c *MockPipeliner_ClusterNodes_Call) Run(run func(ctx context.Context)) *MockPipeliner_ClusterNodes_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5140,15 +6606,26 @@ type MockPipeliner_ClusterReplicate_Call struct {
 }
 
 // ClusterReplicate is a helper method to define mock.On call
-//   - ctx
-//   - nodeID
+//   - ctx context.Context
+//   - nodeID string
 func (_e *MockPipeliner_Expecter) ClusterReplicate(ctx interface{}, nodeID interface{}) *MockPipeliner_ClusterReplicate_Call {
 	return &MockPipeliner_ClusterReplicate_Call{Call: _e.mock.On("ClusterReplicate", ctx, nodeID)}
 }
 
 func (_c *MockPipeliner_ClusterReplicate_Call) Run(run func(ctx context.Context, nodeID string)) *MockPipeliner_ClusterReplicate_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -5188,14 +6665,20 @@ type MockPipeliner_ClusterResetHard_Call struct {
 }
 
 // ClusterResetHard is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ClusterResetHard(ctx interface{}) *MockPipeliner_ClusterResetHard_Call {
 	return &MockPipeliner_ClusterResetHard_Call{Call: _e.mock.On("ClusterResetHard", ctx)}
 }
 
 func (_c *MockPipeliner_ClusterResetHard_Call) Run(run func(ctx context.Context)) *MockPipeliner_ClusterResetHard_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5235,14 +6718,20 @@ type MockPipeliner_ClusterResetSoft_Call struct {
 }
 
 // ClusterResetSoft is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ClusterResetSoft(ctx interface{}) *MockPipeliner_ClusterResetSoft_Call {
 	return &MockPipeliner_ClusterResetSoft_Call{Call: _e.mock.On("ClusterResetSoft", ctx)}
 }
 
 func (_c *MockPipeliner_ClusterResetSoft_Call) Run(run func(ctx context.Context)) *MockPipeliner_ClusterResetSoft_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5282,14 +6771,20 @@ type MockPipeliner_ClusterSaveConfig_Call struct {
 }
 
 // ClusterSaveConfig is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ClusterSaveConfig(ctx interface{}) *MockPipeliner_ClusterSaveConfig_Call {
 	return &MockPipeliner_ClusterSaveConfig_Call{Call: _e.mock.On("ClusterSaveConfig", ctx)}
 }
 
 func (_c *MockPipeliner_ClusterSaveConfig_Call) Run(run func(ctx context.Context)) *MockPipeliner_ClusterSaveConfig_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5329,14 +6824,20 @@ type MockPipeliner_ClusterShards_Call struct {
 }
 
 // ClusterShards is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ClusterShards(ctx interface{}) *MockPipeliner_ClusterShards_Call {
 	return &MockPipeliner_ClusterShards_Call{Call: _e.mock.On("ClusterShards", ctx)}
 }
 
 func (_c *MockPipeliner_ClusterShards_Call) Run(run func(ctx context.Context)) *MockPipeliner_ClusterShards_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5376,15 +6877,26 @@ type MockPipeliner_ClusterSlaves_Call struct {
 }
 
 // ClusterSlaves is a helper method to define mock.On call
-//   - ctx
-//   - nodeID
+//   - ctx context.Context
+//   - nodeID string
 func (_e *MockPipeliner_Expecter) ClusterSlaves(ctx interface{}, nodeID interface{}) *MockPipeliner_ClusterSlaves_Call {
 	return &MockPipeliner_ClusterSlaves_Call{Call: _e.mock.On("ClusterSlaves", ctx, nodeID)}
 }
 
 func (_c *MockPipeliner_ClusterSlaves_Call) Run(run func(ctx context.Context, nodeID string)) *MockPipeliner_ClusterSlaves_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -5424,14 +6936,20 @@ type MockPipeliner_ClusterSlots_Call struct {
 }
 
 // ClusterSlots is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ClusterSlots(ctx interface{}) *MockPipeliner_ClusterSlots_Call {
 	return &MockPipeliner_ClusterSlots_Call{Call: _e.mock.On("ClusterSlots", ctx)}
 }
 
 func (_c *MockPipeliner_ClusterSlots_Call) Run(run func(ctx context.Context)) *MockPipeliner_ClusterSlots_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5471,14 +6989,20 @@ type MockPipeliner_Command_Call struct {
 }
 
 // Command is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) Command(ctx interface{}) *MockPipeliner_Command_Call {
 	return &MockPipeliner_Command_Call{Call: _e.mock.On("Command", ctx)}
 }
 
 func (_c *MockPipeliner_Command_Call) Run(run func(ctx context.Context)) *MockPipeliner_Command_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5524,8 +7048,8 @@ type MockPipeliner_CommandGetKeys_Call struct {
 }
 
 // CommandGetKeys is a helper method to define mock.On call
-//   - ctx
-//   - commands
+//   - ctx context.Context
+//   - commands ...interface{}
 func (_e *MockPipeliner_Expecter) CommandGetKeys(ctx interface{}, commands ...interface{}) *MockPipeliner_CommandGetKeys_Call {
 	return &MockPipeliner_CommandGetKeys_Call{Call: _e.mock.On("CommandGetKeys",
 		append([]interface{}{ctx}, commands...)...)}
@@ -5533,8 +7057,20 @@ func (_e *MockPipeliner_Expecter) CommandGetKeys(ctx interface{}, commands ...in
 
 func (_c *MockPipeliner_CommandGetKeys_Call) Run(run func(ctx context.Context, commands ...interface{})) *MockPipeliner_CommandGetKeys_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]interface{})
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 1 {
+			variadicArgs = args[1].([]interface{})
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -5580,8 +7116,8 @@ type MockPipeliner_CommandGetKeysAndFlags_Call struct {
 }
 
 // CommandGetKeysAndFlags is a helper method to define mock.On call
-//   - ctx
-//   - commands
+//   - ctx context.Context
+//   - commands ...interface{}
 func (_e *MockPipeliner_Expecter) CommandGetKeysAndFlags(ctx interface{}, commands ...interface{}) *MockPipeliner_CommandGetKeysAndFlags_Call {
 	return &MockPipeliner_CommandGetKeysAndFlags_Call{Call: _e.mock.On("CommandGetKeysAndFlags",
 		append([]interface{}{ctx}, commands...)...)}
@@ -5589,8 +7125,20 @@ func (_e *MockPipeliner_Expecter) CommandGetKeysAndFlags(ctx interface{}, comman
 
 func (_c *MockPipeliner_CommandGetKeysAndFlags_Call) Run(run func(ctx context.Context, commands ...interface{})) *MockPipeliner_CommandGetKeysAndFlags_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]interface{})
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 1 {
+			variadicArgs = args[1].([]interface{})
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -5630,15 +7178,26 @@ type MockPipeliner_CommandList_Call struct {
 }
 
 // CommandList is a helper method to define mock.On call
-//   - ctx
-//   - filter
+//   - ctx context.Context
+//   - filter *redis.FilterBy
 func (_e *MockPipeliner_Expecter) CommandList(ctx interface{}, filter interface{}) *MockPipeliner_CommandList_Call {
 	return &MockPipeliner_CommandList_Call{Call: _e.mock.On("CommandList", ctx, filter)}
 }
 
 func (_c *MockPipeliner_CommandList_Call) Run(run func(ctx context.Context, filter *redis.FilterBy)) *MockPipeliner_CommandList_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.FilterBy))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.FilterBy
+		if args[1] != nil {
+			arg1 = args[1].(*redis.FilterBy)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -5678,15 +7237,26 @@ type MockPipeliner_ConfigGet_Call struct {
 }
 
 // ConfigGet is a helper method to define mock.On call
-//   - ctx
-//   - parameter
+//   - ctx context.Context
+//   - parameter string
 func (_e *MockPipeliner_Expecter) ConfigGet(ctx interface{}, parameter interface{}) *MockPipeliner_ConfigGet_Call {
 	return &MockPipeliner_ConfigGet_Call{Call: _e.mock.On("ConfigGet", ctx, parameter)}
 }
 
 func (_c *MockPipeliner_ConfigGet_Call) Run(run func(ctx context.Context, parameter string)) *MockPipeliner_ConfigGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -5726,14 +7296,20 @@ type MockPipeliner_ConfigResetStat_Call struct {
 }
 
 // ConfigResetStat is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ConfigResetStat(ctx interface{}) *MockPipeliner_ConfigResetStat_Call {
 	return &MockPipeliner_ConfigResetStat_Call{Call: _e.mock.On("ConfigResetStat", ctx)}
 }
 
 func (_c *MockPipeliner_ConfigResetStat_Call) Run(run func(ctx context.Context)) *MockPipeliner_ConfigResetStat_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5773,14 +7349,20 @@ type MockPipeliner_ConfigRewrite_Call struct {
 }
 
 // ConfigRewrite is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ConfigRewrite(ctx interface{}) *MockPipeliner_ConfigRewrite_Call {
 	return &MockPipeliner_ConfigRewrite_Call{Call: _e.mock.On("ConfigRewrite", ctx)}
 }
 
 func (_c *MockPipeliner_ConfigRewrite_Call) Run(run func(ctx context.Context)) *MockPipeliner_ConfigRewrite_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5820,16 +7402,32 @@ type MockPipeliner_ConfigSet_Call struct {
 }
 
 // ConfigSet is a helper method to define mock.On call
-//   - ctx
-//   - parameter
-//   - value
+//   - ctx context.Context
+//   - parameter string
+//   - value string
 func (_e *MockPipeliner_Expecter) ConfigSet(ctx interface{}, parameter interface{}, value interface{}) *MockPipeliner_ConfigSet_Call {
 	return &MockPipeliner_ConfigSet_Call{Call: _e.mock.On("ConfigSet", ctx, parameter, value)}
 }
 
 func (_c *MockPipeliner_ConfigSet_Call) Run(run func(ctx context.Context, parameter string, value string)) *MockPipeliner_ConfigSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -5869,18 +7467,44 @@ type MockPipeliner_Copy_Call struct {
 }
 
 // Copy is a helper method to define mock.On call
-//   - ctx
-//   - sourceKey
-//   - destKey
-//   - db
-//   - replace
+//   - ctx context.Context
+//   - sourceKey string
+//   - destKey string
+//   - db int
+//   - replace bool
 func (_e *MockPipeliner_Expecter) Copy(ctx interface{}, sourceKey interface{}, destKey interface{}, db interface{}, replace interface{}) *MockPipeliner_Copy_Call {
 	return &MockPipeliner_Copy_Call{Call: _e.mock.On("Copy", ctx, sourceKey, destKey, db, replace)}
 }
 
 func (_c *MockPipeliner_Copy_Call) Run(run func(ctx context.Context, sourceKey string, destKey string, db int, replace bool)) *MockPipeliner_Copy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int), args[4].(bool))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int
+		if args[3] != nil {
+			arg3 = args[3].(int)
+		}
+		var arg4 bool
+		if args[4] != nil {
+			arg4 = args[4].(bool)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -5920,14 +7544,20 @@ type MockPipeliner_DBSize_Call struct {
 }
 
 // DBSize is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) DBSize(ctx interface{}) *MockPipeliner_DBSize_Call {
 	return &MockPipeliner_DBSize_Call{Call: _e.mock.On("DBSize", ctx)}
 }
 
 func (_c *MockPipeliner_DBSize_Call) Run(run func(ctx context.Context)) *MockPipeliner_DBSize_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5967,15 +7597,26 @@ type MockPipeliner_DebugObject_Call struct {
 }
 
 // DebugObject is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) DebugObject(ctx interface{}, key interface{}) *MockPipeliner_DebugObject_Call {
 	return &MockPipeliner_DebugObject_Call{Call: _e.mock.On("DebugObject", ctx, key)}
 }
 
 func (_c *MockPipeliner_DebugObject_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_DebugObject_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -6015,15 +7656,26 @@ type MockPipeliner_Decr_Call struct {
 }
 
 // Decr is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) Decr(ctx interface{}, key interface{}) *MockPipeliner_Decr_Call {
 	return &MockPipeliner_Decr_Call{Call: _e.mock.On("Decr", ctx, key)}
 }
 
 func (_c *MockPipeliner_Decr_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_Decr_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -6063,16 +7715,32 @@ type MockPipeliner_DecrBy_Call struct {
 }
 
 // DecrBy is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - decrement
+//   - ctx context.Context
+//   - key string
+//   - decrement int64
 func (_e *MockPipeliner_Expecter) DecrBy(ctx interface{}, key interface{}, decrement interface{}) *MockPipeliner_DecrBy_Call {
 	return &MockPipeliner_DecrBy_Call{Call: _e.mock.On("DecrBy", ctx, key, decrement)}
 }
 
 func (_c *MockPipeliner_DecrBy_Call) Run(run func(ctx context.Context, key string, decrement int64)) *MockPipeliner_DecrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -6118,8 +7786,8 @@ type MockPipeliner_Del_Call struct {
 }
 
 // Del is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) Del(ctx interface{}, keys ...interface{}) *MockPipeliner_Del_Call {
 	return &MockPipeliner_Del_Call{Call: _e.mock.On("Del",
 		append([]interface{}{ctx}, keys...)...)}
@@ -6127,8 +7795,20 @@ func (_e *MockPipeliner_Expecter) Del(ctx interface{}, keys ...interface{}) *Moc
 
 func (_c *MockPipeliner_Del_Call) Run(run func(ctx context.Context, keys ...string)) *MockPipeliner_Del_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -6207,8 +7887,8 @@ type MockPipeliner_Do_Call struct {
 }
 
 // Do is a helper method to define mock.On call
-//   - ctx
-//   - args
+//   - ctx context.Context
+//   - args ...interface{}
 func (_e *MockPipeliner_Expecter) Do(ctx interface{}, args ...interface{}) *MockPipeliner_Do_Call {
 	return &MockPipeliner_Do_Call{Call: _e.mock.On("Do",
 		append([]interface{}{ctx}, args...)...)}
@@ -6216,8 +7896,20 @@ func (_e *MockPipeliner_Expecter) Do(ctx interface{}, args ...interface{}) *Mock
 
 func (_c *MockPipeliner_Do_Call) Run(run func(ctx context.Context, args ...interface{})) *MockPipeliner_Do_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]interface{})
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 1 {
+			variadicArgs = args[1].([]interface{})
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -6257,15 +7949,26 @@ type MockPipeliner_Dump_Call struct {
 }
 
 // Dump is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) Dump(ctx interface{}, key interface{}) *MockPipeliner_Dump_Call {
 	return &MockPipeliner_Dump_Call{Call: _e.mock.On("Dump", ctx, key)}
 }
 
 func (_c *MockPipeliner_Dump_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_Dump_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -6305,15 +8008,26 @@ type MockPipeliner_Echo_Call struct {
 }
 
 // Echo is a helper method to define mock.On call
-//   - ctx
-//   - message
+//   - ctx context.Context
+//   - message interface{}
 func (_e *MockPipeliner_Expecter) Echo(ctx interface{}, message interface{}) *MockPipeliner_Echo_Call {
 	return &MockPipeliner_Echo_Call{Call: _e.mock.On("Echo", ctx, message)}
 }
 
 func (_c *MockPipeliner_Echo_Call) Run(run func(ctx context.Context, message interface{})) *MockPipeliner_Echo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 interface{}
+		if args[1] != nil {
+			arg1 = args[1].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -6359,10 +8073,10 @@ type MockPipeliner_Eval_Call struct {
 }
 
 // Eval is a helper method to define mock.On call
-//   - ctx
-//   - script
-//   - keys
-//   - args
+//   - ctx context.Context
+//   - script string
+//   - keys []string
+//   - args ...interface{}
 func (_e *MockPipeliner_Expecter) Eval(ctx interface{}, script interface{}, keys interface{}, args ...interface{}) *MockPipeliner_Eval_Call {
 	return &MockPipeliner_Eval_Call{Call: _e.mock.On("Eval",
 		append([]interface{}{ctx, script, keys}, args...)...)}
@@ -6370,8 +8084,30 @@ func (_e *MockPipeliner_Expecter) Eval(ctx interface{}, script interface{}, keys
 
 func (_c *MockPipeliner_Eval_Call) Run(run func(ctx context.Context, script string, keys []string, args ...interface{})) *MockPipeliner_Eval_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		if args[2] != nil {
+			arg2 = args[2].([]string)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -6417,10 +8153,10 @@ type MockPipeliner_EvalRO_Call struct {
 }
 
 // EvalRO is a helper method to define mock.On call
-//   - ctx
-//   - script
-//   - keys
-//   - args
+//   - ctx context.Context
+//   - script string
+//   - keys []string
+//   - args ...interface{}
 func (_e *MockPipeliner_Expecter) EvalRO(ctx interface{}, script interface{}, keys interface{}, args ...interface{}) *MockPipeliner_EvalRO_Call {
 	return &MockPipeliner_EvalRO_Call{Call: _e.mock.On("EvalRO",
 		append([]interface{}{ctx, script, keys}, args...)...)}
@@ -6428,8 +8164,30 @@ func (_e *MockPipeliner_Expecter) EvalRO(ctx interface{}, script interface{}, ke
 
 func (_c *MockPipeliner_EvalRO_Call) Run(run func(ctx context.Context, script string, keys []string, args ...interface{})) *MockPipeliner_EvalRO_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		if args[2] != nil {
+			arg2 = args[2].([]string)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -6475,10 +8233,10 @@ type MockPipeliner_EvalSha_Call struct {
 }
 
 // EvalSha is a helper method to define mock.On call
-//   - ctx
-//   - sha1
-//   - keys
-//   - args
+//   - ctx context.Context
+//   - sha1 string
+//   - keys []string
+//   - args ...interface{}
 func (_e *MockPipeliner_Expecter) EvalSha(ctx interface{}, sha1 interface{}, keys interface{}, args ...interface{}) *MockPipeliner_EvalSha_Call {
 	return &MockPipeliner_EvalSha_Call{Call: _e.mock.On("EvalSha",
 		append([]interface{}{ctx, sha1, keys}, args...)...)}
@@ -6486,8 +8244,30 @@ func (_e *MockPipeliner_Expecter) EvalSha(ctx interface{}, sha1 interface{}, key
 
 func (_c *MockPipeliner_EvalSha_Call) Run(run func(ctx context.Context, sha1 string, keys []string, args ...interface{})) *MockPipeliner_EvalSha_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		if args[2] != nil {
+			arg2 = args[2].([]string)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -6533,10 +8313,10 @@ type MockPipeliner_EvalShaRO_Call struct {
 }
 
 // EvalShaRO is a helper method to define mock.On call
-//   - ctx
-//   - sha1
-//   - keys
-//   - args
+//   - ctx context.Context
+//   - sha1 string
+//   - keys []string
+//   - args ...interface{}
 func (_e *MockPipeliner_Expecter) EvalShaRO(ctx interface{}, sha1 interface{}, keys interface{}, args ...interface{}) *MockPipeliner_EvalShaRO_Call {
 	return &MockPipeliner_EvalShaRO_Call{Call: _e.mock.On("EvalShaRO",
 		append([]interface{}{ctx, sha1, keys}, args...)...)}
@@ -6544,8 +8324,30 @@ func (_e *MockPipeliner_Expecter) EvalShaRO(ctx interface{}, sha1 interface{}, k
 
 func (_c *MockPipeliner_EvalShaRO_Call) Run(run func(ctx context.Context, sha1 string, keys []string, args ...interface{})) *MockPipeliner_EvalShaRO_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		if args[2] != nil {
+			arg2 = args[2].([]string)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -6594,14 +8396,20 @@ type MockPipeliner_Exec_Call struct {
 }
 
 // Exec is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) Exec(ctx interface{}) *MockPipeliner_Exec_Call {
 	return &MockPipeliner_Exec_Call{Call: _e.mock.On("Exec", ctx)}
 }
 
 func (_c *MockPipeliner_Exec_Call) Run(run func(ctx context.Context)) *MockPipeliner_Exec_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -6647,8 +8455,8 @@ type MockPipeliner_Exists_Call struct {
 }
 
 // Exists is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) Exists(ctx interface{}, keys ...interface{}) *MockPipeliner_Exists_Call {
 	return &MockPipeliner_Exists_Call{Call: _e.mock.On("Exists",
 		append([]interface{}{ctx}, keys...)...)}
@@ -6656,8 +8464,20 @@ func (_e *MockPipeliner_Expecter) Exists(ctx interface{}, keys ...interface{}) *
 
 func (_c *MockPipeliner_Exists_Call) Run(run func(ctx context.Context, keys ...string)) *MockPipeliner_Exists_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -6697,16 +8517,32 @@ type MockPipeliner_Expire_Call struct {
 }
 
 // Expire is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
 func (_e *MockPipeliner_Expecter) Expire(ctx interface{}, key interface{}, expiration interface{}) *MockPipeliner_Expire_Call {
 	return &MockPipeliner_Expire_Call{Call: _e.mock.On("Expire", ctx, key, expiration)}
 }
 
 func (_c *MockPipeliner_Expire_Call) Run(run func(ctx context.Context, key string, expiration time.Duration)) *MockPipeliner_Expire_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -6746,16 +8582,32 @@ type MockPipeliner_ExpireAt_Call struct {
 }
 
 // ExpireAt is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - tm
+//   - ctx context.Context
+//   - key string
+//   - tm time.Time
 func (_e *MockPipeliner_Expecter) ExpireAt(ctx interface{}, key interface{}, tm interface{}) *MockPipeliner_ExpireAt_Call {
 	return &MockPipeliner_ExpireAt_Call{Call: _e.mock.On("ExpireAt", ctx, key, tm)}
 }
 
 func (_c *MockPipeliner_ExpireAt_Call) Run(run func(ctx context.Context, key string, tm time.Time)) *MockPipeliner_ExpireAt_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Time))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Time
+		if args[2] != nil {
+			arg2 = args[2].(time.Time)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -6795,16 +8647,32 @@ type MockPipeliner_ExpireGT_Call struct {
 }
 
 // ExpireGT is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
 func (_e *MockPipeliner_Expecter) ExpireGT(ctx interface{}, key interface{}, expiration interface{}) *MockPipeliner_ExpireGT_Call {
 	return &MockPipeliner_ExpireGT_Call{Call: _e.mock.On("ExpireGT", ctx, key, expiration)}
 }
 
 func (_c *MockPipeliner_ExpireGT_Call) Run(run func(ctx context.Context, key string, expiration time.Duration)) *MockPipeliner_ExpireGT_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -6844,16 +8712,32 @@ type MockPipeliner_ExpireLT_Call struct {
 }
 
 // ExpireLT is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
 func (_e *MockPipeliner_Expecter) ExpireLT(ctx interface{}, key interface{}, expiration interface{}) *MockPipeliner_ExpireLT_Call {
 	return &MockPipeliner_ExpireLT_Call{Call: _e.mock.On("ExpireLT", ctx, key, expiration)}
 }
 
 func (_c *MockPipeliner_ExpireLT_Call) Run(run func(ctx context.Context, key string, expiration time.Duration)) *MockPipeliner_ExpireLT_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -6893,16 +8777,32 @@ type MockPipeliner_ExpireNX_Call struct {
 }
 
 // ExpireNX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
 func (_e *MockPipeliner_Expecter) ExpireNX(ctx interface{}, key interface{}, expiration interface{}) *MockPipeliner_ExpireNX_Call {
 	return &MockPipeliner_ExpireNX_Call{Call: _e.mock.On("ExpireNX", ctx, key, expiration)}
 }
 
 func (_c *MockPipeliner_ExpireNX_Call) Run(run func(ctx context.Context, key string, expiration time.Duration)) *MockPipeliner_ExpireNX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -6942,15 +8842,26 @@ type MockPipeliner_ExpireTime_Call struct {
 }
 
 // ExpireTime is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) ExpireTime(ctx interface{}, key interface{}) *MockPipeliner_ExpireTime_Call {
 	return &MockPipeliner_ExpireTime_Call{Call: _e.mock.On("ExpireTime", ctx, key)}
 }
 
 func (_c *MockPipeliner_ExpireTime_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_ExpireTime_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -6990,16 +8901,32 @@ type MockPipeliner_ExpireXX_Call struct {
 }
 
 // ExpireXX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
 func (_e *MockPipeliner_Expecter) ExpireXX(ctx interface{}, key interface{}, expiration interface{}) *MockPipeliner_ExpireXX_Call {
 	return &MockPipeliner_ExpireXX_Call{Call: _e.mock.On("ExpireXX", ctx, key, expiration)}
 }
 
 func (_c *MockPipeliner_ExpireXX_Call) Run(run func(ctx context.Context, key string, expiration time.Duration)) *MockPipeliner_ExpireXX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -7045,10 +8972,10 @@ type MockPipeliner_FCall_Call struct {
 }
 
 // FCall is a helper method to define mock.On call
-//   - ctx
-//   - function
-//   - keys
-//   - args
+//   - ctx context.Context
+//   - function string
+//   - keys []string
+//   - args ...interface{}
 func (_e *MockPipeliner_Expecter) FCall(ctx interface{}, function interface{}, keys interface{}, args ...interface{}) *MockPipeliner_FCall_Call {
 	return &MockPipeliner_FCall_Call{Call: _e.mock.On("FCall",
 		append([]interface{}{ctx, function, keys}, args...)...)}
@@ -7056,8 +8983,30 @@ func (_e *MockPipeliner_Expecter) FCall(ctx interface{}, function interface{}, k
 
 func (_c *MockPipeliner_FCall_Call) Run(run func(ctx context.Context, function string, keys []string, args ...interface{})) *MockPipeliner_FCall_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		if args[2] != nil {
+			arg2 = args[2].([]string)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -7103,10 +9052,10 @@ type MockPipeliner_FCallRO_Call struct {
 }
 
 // FCallRO is a helper method to define mock.On call
-//   - ctx
-//   - function
-//   - keys
-//   - args
+//   - ctx context.Context
+//   - function string
+//   - keys []string
+//   - args ...interface{}
 func (_e *MockPipeliner_Expecter) FCallRO(ctx interface{}, function interface{}, keys interface{}, args ...interface{}) *MockPipeliner_FCallRO_Call {
 	return &MockPipeliner_FCallRO_Call{Call: _e.mock.On("FCallRO",
 		append([]interface{}{ctx, function, keys}, args...)...)}
@@ -7114,8 +9063,30 @@ func (_e *MockPipeliner_Expecter) FCallRO(ctx interface{}, function interface{},
 
 func (_c *MockPipeliner_FCallRO_Call) Run(run func(ctx context.Context, function string, keys []string, args ...interface{})) *MockPipeliner_FCallRO_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		if args[2] != nil {
+			arg2 = args[2].([]string)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -7161,10 +9132,10 @@ type MockPipeliner_FCallRo_Call struct {
 }
 
 // FCallRo is a helper method to define mock.On call
-//   - ctx
-//   - function
-//   - keys
-//   - args
+//   - ctx context.Context
+//   - function string
+//   - keys []string
+//   - args ...interface{}
 func (_e *MockPipeliner_Expecter) FCallRo(ctx interface{}, function interface{}, keys interface{}, args ...interface{}) *MockPipeliner_FCallRo_Call {
 	return &MockPipeliner_FCallRo_Call{Call: _e.mock.On("FCallRo",
 		append([]interface{}{ctx, function, keys}, args...)...)}
@@ -7172,8 +9143,30 @@ func (_e *MockPipeliner_Expecter) FCallRo(ctx interface{}, function interface{},
 
 func (_c *MockPipeliner_FCallRo_Call) Run(run func(ctx context.Context, function string, keys []string, args ...interface{})) *MockPipeliner_FCallRo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		if args[2] != nil {
+			arg2 = args[2].([]string)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -7213,16 +9206,32 @@ type MockPipeliner_FTAggregate_Call struct {
 }
 
 // FTAggregate is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - query
+//   - ctx context.Context
+//   - index string
+//   - query string
 func (_e *MockPipeliner_Expecter) FTAggregate(ctx interface{}, index interface{}, query interface{}) *MockPipeliner_FTAggregate_Call {
 	return &MockPipeliner_FTAggregate_Call{Call: _e.mock.On("FTAggregate", ctx, index, query)}
 }
 
 func (_c *MockPipeliner_FTAggregate_Call) Run(run func(ctx context.Context, index string, query string)) *MockPipeliner_FTAggregate_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -7262,17 +9271,38 @@ type MockPipeliner_FTAggregateWithArgs_Call struct {
 }
 
 // FTAggregateWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - query
-//   - options
+//   - ctx context.Context
+//   - index string
+//   - query string
+//   - options *redis.FTAggregateOptions
 func (_e *MockPipeliner_Expecter) FTAggregateWithArgs(ctx interface{}, index interface{}, query interface{}, options interface{}) *MockPipeliner_FTAggregateWithArgs_Call {
 	return &MockPipeliner_FTAggregateWithArgs_Call{Call: _e.mock.On("FTAggregateWithArgs", ctx, index, query, options)}
 }
 
 func (_c *MockPipeliner_FTAggregateWithArgs_Call) Run(run func(ctx context.Context, index string, query string, options *redis.FTAggregateOptions)) *MockPipeliner_FTAggregateWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.FTAggregateOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.FTAggregateOptions
+		if args[3] != nil {
+			arg3 = args[3].(*redis.FTAggregateOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -7312,16 +9342,32 @@ type MockPipeliner_FTAliasAdd_Call struct {
 }
 
 // FTAliasAdd is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - alias
+//   - ctx context.Context
+//   - index string
+//   - alias string
 func (_e *MockPipeliner_Expecter) FTAliasAdd(ctx interface{}, index interface{}, alias interface{}) *MockPipeliner_FTAliasAdd_Call {
 	return &MockPipeliner_FTAliasAdd_Call{Call: _e.mock.On("FTAliasAdd", ctx, index, alias)}
 }
 
 func (_c *MockPipeliner_FTAliasAdd_Call) Run(run func(ctx context.Context, index string, alias string)) *MockPipeliner_FTAliasAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -7361,15 +9407,26 @@ type MockPipeliner_FTAliasDel_Call struct {
 }
 
 // FTAliasDel is a helper method to define mock.On call
-//   - ctx
-//   - alias
+//   - ctx context.Context
+//   - alias string
 func (_e *MockPipeliner_Expecter) FTAliasDel(ctx interface{}, alias interface{}) *MockPipeliner_FTAliasDel_Call {
 	return &MockPipeliner_FTAliasDel_Call{Call: _e.mock.On("FTAliasDel", ctx, alias)}
 }
 
 func (_c *MockPipeliner_FTAliasDel_Call) Run(run func(ctx context.Context, alias string)) *MockPipeliner_FTAliasDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -7409,16 +9466,32 @@ type MockPipeliner_FTAliasUpdate_Call struct {
 }
 
 // FTAliasUpdate is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - alias
+//   - ctx context.Context
+//   - index string
+//   - alias string
 func (_e *MockPipeliner_Expecter) FTAliasUpdate(ctx interface{}, index interface{}, alias interface{}) *MockPipeliner_FTAliasUpdate_Call {
 	return &MockPipeliner_FTAliasUpdate_Call{Call: _e.mock.On("FTAliasUpdate", ctx, index, alias)}
 }
 
 func (_c *MockPipeliner_FTAliasUpdate_Call) Run(run func(ctx context.Context, index string, alias string)) *MockPipeliner_FTAliasUpdate_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -7458,17 +9531,38 @@ type MockPipeliner_FTAlter_Call struct {
 }
 
 // FTAlter is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - skipInitialScan
-//   - definition
+//   - ctx context.Context
+//   - index string
+//   - skipInitialScan bool
+//   - definition []interface{}
 func (_e *MockPipeliner_Expecter) FTAlter(ctx interface{}, index interface{}, skipInitialScan interface{}, definition interface{}) *MockPipeliner_FTAlter_Call {
 	return &MockPipeliner_FTAlter_Call{Call: _e.mock.On("FTAlter", ctx, index, skipInitialScan, definition)}
 }
 
 func (_c *MockPipeliner_FTAlter_Call) Run(run func(ctx context.Context, index string, skipInitialScan bool, definition []interface{})) *MockPipeliner_FTAlter_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(bool), args[3].([]interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 bool
+		if args[2] != nil {
+			arg2 = args[2].(bool)
+		}
+		var arg3 []interface{}
+		if args[3] != nil {
+			arg3 = args[3].([]interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -7508,15 +9602,26 @@ type MockPipeliner_FTConfigGet_Call struct {
 }
 
 // FTConfigGet is a helper method to define mock.On call
-//   - ctx
-//   - option
+//   - ctx context.Context
+//   - option string
 func (_e *MockPipeliner_Expecter) FTConfigGet(ctx interface{}, option interface{}) *MockPipeliner_FTConfigGet_Call {
 	return &MockPipeliner_FTConfigGet_Call{Call: _e.mock.On("FTConfigGet", ctx, option)}
 }
 
 func (_c *MockPipeliner_FTConfigGet_Call) Run(run func(ctx context.Context, option string)) *MockPipeliner_FTConfigGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -7556,16 +9661,32 @@ type MockPipeliner_FTConfigSet_Call struct {
 }
 
 // FTConfigSet is a helper method to define mock.On call
-//   - ctx
-//   - option
-//   - value
+//   - ctx context.Context
+//   - option string
+//   - value interface{}
 func (_e *MockPipeliner_Expecter) FTConfigSet(ctx interface{}, option interface{}, value interface{}) *MockPipeliner_FTConfigSet_Call {
 	return &MockPipeliner_FTConfigSet_Call{Call: _e.mock.On("FTConfigSet", ctx, option, value)}
 }
 
 func (_c *MockPipeliner_FTConfigSet_Call) Run(run func(ctx context.Context, option string, value interface{})) *MockPipeliner_FTConfigSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -7611,10 +9732,10 @@ type MockPipeliner_FTCreate_Call struct {
 }
 
 // FTCreate is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - options
-//   - schema
+//   - ctx context.Context
+//   - index string
+//   - options *redis.FTCreateOptions
+//   - schema ...*redis.FieldSchema
 func (_e *MockPipeliner_Expecter) FTCreate(ctx interface{}, index interface{}, options interface{}, schema ...interface{}) *MockPipeliner_FTCreate_Call {
 	return &MockPipeliner_FTCreate_Call{Call: _e.mock.On("FTCreate",
 		append([]interface{}{ctx, index, options}, schema...)...)}
@@ -7622,8 +9743,30 @@ func (_e *MockPipeliner_Expecter) FTCreate(ctx interface{}, index interface{}, o
 
 func (_c *MockPipeliner_FTCreate_Call) Run(run func(ctx context.Context, index string, options *redis.FTCreateOptions, schema ...*redis.FieldSchema)) *MockPipeliner_FTCreate_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]*redis.FieldSchema)
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.FTCreateOptions), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.FTCreateOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.FTCreateOptions)
+		}
+		var arg3 []*redis.FieldSchema
+		var variadicArgs []*redis.FieldSchema
+		if len(args) > 3 {
+			variadicArgs = args[3].([]*redis.FieldSchema)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -7663,16 +9806,32 @@ type MockPipeliner_FTCursorDel_Call struct {
 }
 
 // FTCursorDel is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - cursorId
+//   - ctx context.Context
+//   - index string
+//   - cursorId int
 func (_e *MockPipeliner_Expecter) FTCursorDel(ctx interface{}, index interface{}, cursorId interface{}) *MockPipeliner_FTCursorDel_Call {
 	return &MockPipeliner_FTCursorDel_Call{Call: _e.mock.On("FTCursorDel", ctx, index, cursorId)}
 }
 
 func (_c *MockPipeliner_FTCursorDel_Call) Run(run func(ctx context.Context, index string, cursorId int)) *MockPipeliner_FTCursorDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -7712,17 +9871,38 @@ type MockPipeliner_FTCursorRead_Call struct {
 }
 
 // FTCursorRead is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - cursorId
-//   - count
+//   - ctx context.Context
+//   - index string
+//   - cursorId int
+//   - count int
 func (_e *MockPipeliner_Expecter) FTCursorRead(ctx interface{}, index interface{}, cursorId interface{}, count interface{}) *MockPipeliner_FTCursorRead_Call {
 	return &MockPipeliner_FTCursorRead_Call{Call: _e.mock.On("FTCursorRead", ctx, index, cursorId, count)}
 }
 
 func (_c *MockPipeliner_FTCursorRead_Call) Run(run func(ctx context.Context, index string, cursorId int, count int)) *MockPipeliner_FTCursorRead_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int), args[3].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 int
+		if args[3] != nil {
+			arg3 = args[3].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -7768,9 +9948,9 @@ type MockPipeliner_FTDictAdd_Call struct {
 }
 
 // FTDictAdd is a helper method to define mock.On call
-//   - ctx
-//   - dict
-//   - term
+//   - ctx context.Context
+//   - dict string
+//   - term ...interface{}
 func (_e *MockPipeliner_Expecter) FTDictAdd(ctx interface{}, dict interface{}, term ...interface{}) *MockPipeliner_FTDictAdd_Call {
 	return &MockPipeliner_FTDictAdd_Call{Call: _e.mock.On("FTDictAdd",
 		append([]interface{}{ctx, dict}, term...)...)}
@@ -7778,8 +9958,25 @@ func (_e *MockPipeliner_Expecter) FTDictAdd(ctx interface{}, dict interface{}, t
 
 func (_c *MockPipeliner_FTDictAdd_Call) Run(run func(ctx context.Context, dict string, term ...interface{})) *MockPipeliner_FTDictAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -7825,9 +10022,9 @@ type MockPipeliner_FTDictDel_Call struct {
 }
 
 // FTDictDel is a helper method to define mock.On call
-//   - ctx
-//   - dict
-//   - term
+//   - ctx context.Context
+//   - dict string
+//   - term ...interface{}
 func (_e *MockPipeliner_Expecter) FTDictDel(ctx interface{}, dict interface{}, term ...interface{}) *MockPipeliner_FTDictDel_Call {
 	return &MockPipeliner_FTDictDel_Call{Call: _e.mock.On("FTDictDel",
 		append([]interface{}{ctx, dict}, term...)...)}
@@ -7835,8 +10032,25 @@ func (_e *MockPipeliner_Expecter) FTDictDel(ctx interface{}, dict interface{}, t
 
 func (_c *MockPipeliner_FTDictDel_Call) Run(run func(ctx context.Context, dict string, term ...interface{})) *MockPipeliner_FTDictDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -7876,15 +10090,26 @@ type MockPipeliner_FTDictDump_Call struct {
 }
 
 // FTDictDump is a helper method to define mock.On call
-//   - ctx
-//   - dict
+//   - ctx context.Context
+//   - dict string
 func (_e *MockPipeliner_Expecter) FTDictDump(ctx interface{}, dict interface{}) *MockPipeliner_FTDictDump_Call {
 	return &MockPipeliner_FTDictDump_Call{Call: _e.mock.On("FTDictDump", ctx, dict)}
 }
 
 func (_c *MockPipeliner_FTDictDump_Call) Run(run func(ctx context.Context, dict string)) *MockPipeliner_FTDictDump_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -7924,15 +10149,26 @@ type MockPipeliner_FTDropIndex_Call struct {
 }
 
 // FTDropIndex is a helper method to define mock.On call
-//   - ctx
-//   - index
+//   - ctx context.Context
+//   - index string
 func (_e *MockPipeliner_Expecter) FTDropIndex(ctx interface{}, index interface{}) *MockPipeliner_FTDropIndex_Call {
 	return &MockPipeliner_FTDropIndex_Call{Call: _e.mock.On("FTDropIndex", ctx, index)}
 }
 
 func (_c *MockPipeliner_FTDropIndex_Call) Run(run func(ctx context.Context, index string)) *MockPipeliner_FTDropIndex_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -7972,16 +10208,32 @@ type MockPipeliner_FTDropIndexWithArgs_Call struct {
 }
 
 // FTDropIndexWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - options
+//   - ctx context.Context
+//   - index string
+//   - options *redis.FTDropIndexOptions
 func (_e *MockPipeliner_Expecter) FTDropIndexWithArgs(ctx interface{}, index interface{}, options interface{}) *MockPipeliner_FTDropIndexWithArgs_Call {
 	return &MockPipeliner_FTDropIndexWithArgs_Call{Call: _e.mock.On("FTDropIndexWithArgs", ctx, index, options)}
 }
 
 func (_c *MockPipeliner_FTDropIndexWithArgs_Call) Run(run func(ctx context.Context, index string, options *redis.FTDropIndexOptions)) *MockPipeliner_FTDropIndexWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.FTDropIndexOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.FTDropIndexOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.FTDropIndexOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -8021,16 +10273,32 @@ type MockPipeliner_FTExplain_Call struct {
 }
 
 // FTExplain is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - query
+//   - ctx context.Context
+//   - index string
+//   - query string
 func (_e *MockPipeliner_Expecter) FTExplain(ctx interface{}, index interface{}, query interface{}) *MockPipeliner_FTExplain_Call {
 	return &MockPipeliner_FTExplain_Call{Call: _e.mock.On("FTExplain", ctx, index, query)}
 }
 
 func (_c *MockPipeliner_FTExplain_Call) Run(run func(ctx context.Context, index string, query string)) *MockPipeliner_FTExplain_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -8070,17 +10338,38 @@ type MockPipeliner_FTExplainWithArgs_Call struct {
 }
 
 // FTExplainWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - query
-//   - options
+//   - ctx context.Context
+//   - index string
+//   - query string
+//   - options *redis.FTExplainOptions
 func (_e *MockPipeliner_Expecter) FTExplainWithArgs(ctx interface{}, index interface{}, query interface{}, options interface{}) *MockPipeliner_FTExplainWithArgs_Call {
 	return &MockPipeliner_FTExplainWithArgs_Call{Call: _e.mock.On("FTExplainWithArgs", ctx, index, query, options)}
 }
 
 func (_c *MockPipeliner_FTExplainWithArgs_Call) Run(run func(ctx context.Context, index string, query string, options *redis.FTExplainOptions)) *MockPipeliner_FTExplainWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.FTExplainOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.FTExplainOptions
+		if args[3] != nil {
+			arg3 = args[3].(*redis.FTExplainOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -8120,15 +10409,26 @@ type MockPipeliner_FTInfo_Call struct {
 }
 
 // FTInfo is a helper method to define mock.On call
-//   - ctx
-//   - index
+//   - ctx context.Context
+//   - index string
 func (_e *MockPipeliner_Expecter) FTInfo(ctx interface{}, index interface{}) *MockPipeliner_FTInfo_Call {
 	return &MockPipeliner_FTInfo_Call{Call: _e.mock.On("FTInfo", ctx, index)}
 }
 
 func (_c *MockPipeliner_FTInfo_Call) Run(run func(ctx context.Context, index string)) *MockPipeliner_FTInfo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -8168,16 +10468,32 @@ type MockPipeliner_FTSearch_Call struct {
 }
 
 // FTSearch is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - query
+//   - ctx context.Context
+//   - index string
+//   - query string
 func (_e *MockPipeliner_Expecter) FTSearch(ctx interface{}, index interface{}, query interface{}) *MockPipeliner_FTSearch_Call {
 	return &MockPipeliner_FTSearch_Call{Call: _e.mock.On("FTSearch", ctx, index, query)}
 }
 
 func (_c *MockPipeliner_FTSearch_Call) Run(run func(ctx context.Context, index string, query string)) *MockPipeliner_FTSearch_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -8217,17 +10533,38 @@ type MockPipeliner_FTSearchWithArgs_Call struct {
 }
 
 // FTSearchWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - query
-//   - options
+//   - ctx context.Context
+//   - index string
+//   - query string
+//   - options *redis.FTSearchOptions
 func (_e *MockPipeliner_Expecter) FTSearchWithArgs(ctx interface{}, index interface{}, query interface{}, options interface{}) *MockPipeliner_FTSearchWithArgs_Call {
 	return &MockPipeliner_FTSearchWithArgs_Call{Call: _e.mock.On("FTSearchWithArgs", ctx, index, query, options)}
 }
 
 func (_c *MockPipeliner_FTSearchWithArgs_Call) Run(run func(ctx context.Context, index string, query string, options *redis.FTSearchOptions)) *MockPipeliner_FTSearchWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.FTSearchOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.FTSearchOptions
+		if args[3] != nil {
+			arg3 = args[3].(*redis.FTSearchOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -8267,16 +10604,32 @@ type MockPipeliner_FTSpellCheck_Call struct {
 }
 
 // FTSpellCheck is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - query
+//   - ctx context.Context
+//   - index string
+//   - query string
 func (_e *MockPipeliner_Expecter) FTSpellCheck(ctx interface{}, index interface{}, query interface{}) *MockPipeliner_FTSpellCheck_Call {
 	return &MockPipeliner_FTSpellCheck_Call{Call: _e.mock.On("FTSpellCheck", ctx, index, query)}
 }
 
 func (_c *MockPipeliner_FTSpellCheck_Call) Run(run func(ctx context.Context, index string, query string)) *MockPipeliner_FTSpellCheck_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -8316,17 +10669,38 @@ type MockPipeliner_FTSpellCheckWithArgs_Call struct {
 }
 
 // FTSpellCheckWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - query
-//   - options
+//   - ctx context.Context
+//   - index string
+//   - query string
+//   - options *redis.FTSpellCheckOptions
 func (_e *MockPipeliner_Expecter) FTSpellCheckWithArgs(ctx interface{}, index interface{}, query interface{}, options interface{}) *MockPipeliner_FTSpellCheckWithArgs_Call {
 	return &MockPipeliner_FTSpellCheckWithArgs_Call{Call: _e.mock.On("FTSpellCheckWithArgs", ctx, index, query, options)}
 }
 
 func (_c *MockPipeliner_FTSpellCheckWithArgs_Call) Run(run func(ctx context.Context, index string, query string, options *redis.FTSpellCheckOptions)) *MockPipeliner_FTSpellCheckWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.FTSpellCheckOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.FTSpellCheckOptions
+		if args[3] != nil {
+			arg3 = args[3].(*redis.FTSpellCheckOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -8366,15 +10740,26 @@ type MockPipeliner_FTSynDump_Call struct {
 }
 
 // FTSynDump is a helper method to define mock.On call
-//   - ctx
-//   - index
+//   - ctx context.Context
+//   - index string
 func (_e *MockPipeliner_Expecter) FTSynDump(ctx interface{}, index interface{}) *MockPipeliner_FTSynDump_Call {
 	return &MockPipeliner_FTSynDump_Call{Call: _e.mock.On("FTSynDump", ctx, index)}
 }
 
 func (_c *MockPipeliner_FTSynDump_Call) Run(run func(ctx context.Context, index string)) *MockPipeliner_FTSynDump_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -8414,17 +10799,38 @@ type MockPipeliner_FTSynUpdate_Call struct {
 }
 
 // FTSynUpdate is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - synGroupId
-//   - terms
+//   - ctx context.Context
+//   - index string
+//   - synGroupId interface{}
+//   - terms []interface{}
 func (_e *MockPipeliner_Expecter) FTSynUpdate(ctx interface{}, index interface{}, synGroupId interface{}, terms interface{}) *MockPipeliner_FTSynUpdate_Call {
 	return &MockPipeliner_FTSynUpdate_Call{Call: _e.mock.On("FTSynUpdate", ctx, index, synGroupId, terms)}
 }
 
 func (_c *MockPipeliner_FTSynUpdate_Call) Run(run func(ctx context.Context, index string, synGroupId interface{}, terms []interface{})) *MockPipeliner_FTSynUpdate_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].([]interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 []interface{}
+		if args[3] != nil {
+			arg3 = args[3].([]interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -8464,18 +10870,44 @@ type MockPipeliner_FTSynUpdateWithArgs_Call struct {
 }
 
 // FTSynUpdateWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - synGroupId
-//   - options
-//   - terms
+//   - ctx context.Context
+//   - index string
+//   - synGroupId interface{}
+//   - options *redis.FTSynUpdateOptions
+//   - terms []interface{}
 func (_e *MockPipeliner_Expecter) FTSynUpdateWithArgs(ctx interface{}, index interface{}, synGroupId interface{}, options interface{}, terms interface{}) *MockPipeliner_FTSynUpdateWithArgs_Call {
 	return &MockPipeliner_FTSynUpdateWithArgs_Call{Call: _e.mock.On("FTSynUpdateWithArgs", ctx, index, synGroupId, options, terms)}
 }
 
 func (_c *MockPipeliner_FTSynUpdateWithArgs_Call) Run(run func(ctx context.Context, index string, synGroupId interface{}, options *redis.FTSynUpdateOptions, terms []interface{})) *MockPipeliner_FTSynUpdateWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(*redis.FTSynUpdateOptions), args[4].([]interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 *redis.FTSynUpdateOptions
+		if args[3] != nil {
+			arg3 = args[3].(*redis.FTSynUpdateOptions)
+		}
+		var arg4 []interface{}
+		if args[4] != nil {
+			arg4 = args[4].([]interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -8515,16 +10947,32 @@ type MockPipeliner_FTTagVals_Call struct {
 }
 
 // FTTagVals is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - field
+//   - ctx context.Context
+//   - index string
+//   - field string
 func (_e *MockPipeliner_Expecter) FTTagVals(ctx interface{}, index interface{}, field interface{}) *MockPipeliner_FTTagVals_Call {
 	return &MockPipeliner_FTTagVals_Call{Call: _e.mock.On("FTTagVals", ctx, index, field)}
 }
 
 func (_c *MockPipeliner_FTTagVals_Call) Run(run func(ctx context.Context, index string, field string)) *MockPipeliner_FTTagVals_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -8564,14 +11012,20 @@ type MockPipeliner_FT_List_Call struct {
 }
 
 // FT_List is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) FT_List(ctx interface{}) *MockPipeliner_FT_List_Call {
 	return &MockPipeliner_FT_List_Call{Call: _e.mock.On("FT_List", ctx)}
 }
 
 func (_c *MockPipeliner_FT_List_Call) Run(run func(ctx context.Context)) *MockPipeliner_FT_List_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -8611,14 +11065,20 @@ type MockPipeliner_FlushAll_Call struct {
 }
 
 // FlushAll is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) FlushAll(ctx interface{}) *MockPipeliner_FlushAll_Call {
 	return &MockPipeliner_FlushAll_Call{Call: _e.mock.On("FlushAll", ctx)}
 }
 
 func (_c *MockPipeliner_FlushAll_Call) Run(run func(ctx context.Context)) *MockPipeliner_FlushAll_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -8658,14 +11118,20 @@ type MockPipeliner_FlushAllAsync_Call struct {
 }
 
 // FlushAllAsync is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) FlushAllAsync(ctx interface{}) *MockPipeliner_FlushAllAsync_Call {
 	return &MockPipeliner_FlushAllAsync_Call{Call: _e.mock.On("FlushAllAsync", ctx)}
 }
 
 func (_c *MockPipeliner_FlushAllAsync_Call) Run(run func(ctx context.Context)) *MockPipeliner_FlushAllAsync_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -8705,14 +11171,20 @@ type MockPipeliner_FlushDB_Call struct {
 }
 
 // FlushDB is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) FlushDB(ctx interface{}) *MockPipeliner_FlushDB_Call {
 	return &MockPipeliner_FlushDB_Call{Call: _e.mock.On("FlushDB", ctx)}
 }
 
 func (_c *MockPipeliner_FlushDB_Call) Run(run func(ctx context.Context)) *MockPipeliner_FlushDB_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -8752,14 +11224,20 @@ type MockPipeliner_FlushDBAsync_Call struct {
 }
 
 // FlushDBAsync is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) FlushDBAsync(ctx interface{}) *MockPipeliner_FlushDBAsync_Call {
 	return &MockPipeliner_FlushDBAsync_Call{Call: _e.mock.On("FlushDBAsync", ctx)}
 }
 
 func (_c *MockPipeliner_FlushDBAsync_Call) Run(run func(ctx context.Context)) *MockPipeliner_FlushDBAsync_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -8799,15 +11277,26 @@ type MockPipeliner_FunctionDelete_Call struct {
 }
 
 // FunctionDelete is a helper method to define mock.On call
-//   - ctx
-//   - libName
+//   - ctx context.Context
+//   - libName string
 func (_e *MockPipeliner_Expecter) FunctionDelete(ctx interface{}, libName interface{}) *MockPipeliner_FunctionDelete_Call {
 	return &MockPipeliner_FunctionDelete_Call{Call: _e.mock.On("FunctionDelete", ctx, libName)}
 }
 
 func (_c *MockPipeliner_FunctionDelete_Call) Run(run func(ctx context.Context, libName string)) *MockPipeliner_FunctionDelete_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -8847,14 +11336,20 @@ type MockPipeliner_FunctionDump_Call struct {
 }
 
 // FunctionDump is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) FunctionDump(ctx interface{}) *MockPipeliner_FunctionDump_Call {
 	return &MockPipeliner_FunctionDump_Call{Call: _e.mock.On("FunctionDump", ctx)}
 }
 
 func (_c *MockPipeliner_FunctionDump_Call) Run(run func(ctx context.Context)) *MockPipeliner_FunctionDump_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -8894,14 +11389,20 @@ type MockPipeliner_FunctionFlush_Call struct {
 }
 
 // FunctionFlush is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) FunctionFlush(ctx interface{}) *MockPipeliner_FunctionFlush_Call {
 	return &MockPipeliner_FunctionFlush_Call{Call: _e.mock.On("FunctionFlush", ctx)}
 }
 
 func (_c *MockPipeliner_FunctionFlush_Call) Run(run func(ctx context.Context)) *MockPipeliner_FunctionFlush_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -8941,14 +11442,20 @@ type MockPipeliner_FunctionFlushAsync_Call struct {
 }
 
 // FunctionFlushAsync is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) FunctionFlushAsync(ctx interface{}) *MockPipeliner_FunctionFlushAsync_Call {
 	return &MockPipeliner_FunctionFlushAsync_Call{Call: _e.mock.On("FunctionFlushAsync", ctx)}
 }
 
 func (_c *MockPipeliner_FunctionFlushAsync_Call) Run(run func(ctx context.Context)) *MockPipeliner_FunctionFlushAsync_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -8988,14 +11495,20 @@ type MockPipeliner_FunctionKill_Call struct {
 }
 
 // FunctionKill is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) FunctionKill(ctx interface{}) *MockPipeliner_FunctionKill_Call {
 	return &MockPipeliner_FunctionKill_Call{Call: _e.mock.On("FunctionKill", ctx)}
 }
 
 func (_c *MockPipeliner_FunctionKill_Call) Run(run func(ctx context.Context)) *MockPipeliner_FunctionKill_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -9035,15 +11548,26 @@ type MockPipeliner_FunctionList_Call struct {
 }
 
 // FunctionList is a helper method to define mock.On call
-//   - ctx
-//   - q
+//   - ctx context.Context
+//   - q redis.FunctionListQuery
 func (_e *MockPipeliner_Expecter) FunctionList(ctx interface{}, q interface{}) *MockPipeliner_FunctionList_Call {
 	return &MockPipeliner_FunctionList_Call{Call: _e.mock.On("FunctionList", ctx, q)}
 }
 
 func (_c *MockPipeliner_FunctionList_Call) Run(run func(ctx context.Context, q redis.FunctionListQuery)) *MockPipeliner_FunctionList_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(redis.FunctionListQuery))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 redis.FunctionListQuery
+		if args[1] != nil {
+			arg1 = args[1].(redis.FunctionListQuery)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -9083,15 +11607,26 @@ type MockPipeliner_FunctionLoad_Call struct {
 }
 
 // FunctionLoad is a helper method to define mock.On call
-//   - ctx
-//   - code
+//   - ctx context.Context
+//   - code string
 func (_e *MockPipeliner_Expecter) FunctionLoad(ctx interface{}, code interface{}) *MockPipeliner_FunctionLoad_Call {
 	return &MockPipeliner_FunctionLoad_Call{Call: _e.mock.On("FunctionLoad", ctx, code)}
 }
 
 func (_c *MockPipeliner_FunctionLoad_Call) Run(run func(ctx context.Context, code string)) *MockPipeliner_FunctionLoad_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -9131,15 +11666,26 @@ type MockPipeliner_FunctionLoadReplace_Call struct {
 }
 
 // FunctionLoadReplace is a helper method to define mock.On call
-//   - ctx
-//   - code
+//   - ctx context.Context
+//   - code string
 func (_e *MockPipeliner_Expecter) FunctionLoadReplace(ctx interface{}, code interface{}) *MockPipeliner_FunctionLoadReplace_Call {
 	return &MockPipeliner_FunctionLoadReplace_Call{Call: _e.mock.On("FunctionLoadReplace", ctx, code)}
 }
 
 func (_c *MockPipeliner_FunctionLoadReplace_Call) Run(run func(ctx context.Context, code string)) *MockPipeliner_FunctionLoadReplace_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -9179,15 +11725,26 @@ type MockPipeliner_FunctionRestore_Call struct {
 }
 
 // FunctionRestore is a helper method to define mock.On call
-//   - ctx
-//   - libDump
+//   - ctx context.Context
+//   - libDump string
 func (_e *MockPipeliner_Expecter) FunctionRestore(ctx interface{}, libDump interface{}) *MockPipeliner_FunctionRestore_Call {
 	return &MockPipeliner_FunctionRestore_Call{Call: _e.mock.On("FunctionRestore", ctx, libDump)}
 }
 
 func (_c *MockPipeliner_FunctionRestore_Call) Run(run func(ctx context.Context, libDump string)) *MockPipeliner_FunctionRestore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -9227,14 +11784,20 @@ type MockPipeliner_FunctionStats_Call struct {
 }
 
 // FunctionStats is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) FunctionStats(ctx interface{}) *MockPipeliner_FunctionStats_Call {
 	return &MockPipeliner_FunctionStats_Call{Call: _e.mock.On("FunctionStats", ctx)}
 }
 
 func (_c *MockPipeliner_FunctionStats_Call) Run(run func(ctx context.Context)) *MockPipeliner_FunctionStats_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -9280,9 +11843,9 @@ type MockPipeliner_GeoAdd_Call struct {
 }
 
 // GeoAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - geoLocation
+//   - ctx context.Context
+//   - key string
+//   - geoLocation ...*redis.GeoLocation
 func (_e *MockPipeliner_Expecter) GeoAdd(ctx interface{}, key interface{}, geoLocation ...interface{}) *MockPipeliner_GeoAdd_Call {
 	return &MockPipeliner_GeoAdd_Call{Call: _e.mock.On("GeoAdd",
 		append([]interface{}{ctx, key}, geoLocation...)...)}
@@ -9290,8 +11853,25 @@ func (_e *MockPipeliner_Expecter) GeoAdd(ctx interface{}, key interface{}, geoLo
 
 func (_c *MockPipeliner_GeoAdd_Call) Run(run func(ctx context.Context, key string, geoLocation ...*redis.GeoLocation)) *MockPipeliner_GeoAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]*redis.GeoLocation)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []*redis.GeoLocation
+		var variadicArgs []*redis.GeoLocation
+		if len(args) > 2 {
+			variadicArgs = args[2].([]*redis.GeoLocation)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -9331,18 +11911,44 @@ type MockPipeliner_GeoDist_Call struct {
 }
 
 // GeoDist is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - member1
-//   - member2
-//   - unit
+//   - ctx context.Context
+//   - key string
+//   - member1 string
+//   - member2 string
+//   - unit string
 func (_e *MockPipeliner_Expecter) GeoDist(ctx interface{}, key interface{}, member1 interface{}, member2 interface{}, unit interface{}) *MockPipeliner_GeoDist_Call {
 	return &MockPipeliner_GeoDist_Call{Call: _e.mock.On("GeoDist", ctx, key, member1, member2, unit)}
 }
 
 func (_c *MockPipeliner_GeoDist_Call) Run(run func(ctx context.Context, key string, member1 string, member2 string, unit string)) *MockPipeliner_GeoDist_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string), args[4].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 string
+		if args[4] != nil {
+			arg4 = args[4].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -9388,9 +11994,9 @@ type MockPipeliner_GeoHash_Call struct {
 }
 
 // GeoHash is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...string
 func (_e *MockPipeliner_Expecter) GeoHash(ctx interface{}, key interface{}, members ...interface{}) *MockPipeliner_GeoHash_Call {
 	return &MockPipeliner_GeoHash_Call{Call: _e.mock.On("GeoHash",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -9398,8 +12004,25 @@ func (_e *MockPipeliner_Expecter) GeoHash(ctx interface{}, key interface{}, memb
 
 func (_c *MockPipeliner_GeoHash_Call) Run(run func(ctx context.Context, key string, members ...string)) *MockPipeliner_GeoHash_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -9445,9 +12068,9 @@ type MockPipeliner_GeoPos_Call struct {
 }
 
 // GeoPos is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...string
 func (_e *MockPipeliner_Expecter) GeoPos(ctx interface{}, key interface{}, members ...interface{}) *MockPipeliner_GeoPos_Call {
 	return &MockPipeliner_GeoPos_Call{Call: _e.mock.On("GeoPos",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -9455,8 +12078,25 @@ func (_e *MockPipeliner_Expecter) GeoPos(ctx interface{}, key interface{}, membe
 
 func (_c *MockPipeliner_GeoPos_Call) Run(run func(ctx context.Context, key string, members ...string)) *MockPipeliner_GeoPos_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -9496,18 +12136,44 @@ type MockPipeliner_GeoRadius_Call struct {
 }
 
 // GeoRadius is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - longitude
-//   - latitude
-//   - query
+//   - ctx context.Context
+//   - key string
+//   - longitude float64
+//   - latitude float64
+//   - query *redis.GeoRadiusQuery
 func (_e *MockPipeliner_Expecter) GeoRadius(ctx interface{}, key interface{}, longitude interface{}, latitude interface{}, query interface{}) *MockPipeliner_GeoRadius_Call {
 	return &MockPipeliner_GeoRadius_Call{Call: _e.mock.On("GeoRadius", ctx, key, longitude, latitude, query)}
 }
 
 func (_c *MockPipeliner_GeoRadius_Call) Run(run func(ctx context.Context, key string, longitude float64, latitude float64, query *redis.GeoRadiusQuery)) *MockPipeliner_GeoRadius_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(float64), args[4].(*redis.GeoRadiusQuery))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 float64
+		if args[3] != nil {
+			arg3 = args[3].(float64)
+		}
+		var arg4 *redis.GeoRadiusQuery
+		if args[4] != nil {
+			arg4 = args[4].(*redis.GeoRadiusQuery)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -9547,17 +12213,38 @@ type MockPipeliner_GeoRadiusByMember_Call struct {
 }
 
 // GeoRadiusByMember is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - member
-//   - query
+//   - ctx context.Context
+//   - key string
+//   - member string
+//   - query *redis.GeoRadiusQuery
 func (_e *MockPipeliner_Expecter) GeoRadiusByMember(ctx interface{}, key interface{}, member interface{}, query interface{}) *MockPipeliner_GeoRadiusByMember_Call {
 	return &MockPipeliner_GeoRadiusByMember_Call{Call: _e.mock.On("GeoRadiusByMember", ctx, key, member, query)}
 }
 
 func (_c *MockPipeliner_GeoRadiusByMember_Call) Run(run func(ctx context.Context, key string, member string, query *redis.GeoRadiusQuery)) *MockPipeliner_GeoRadiusByMember_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.GeoRadiusQuery))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.GeoRadiusQuery
+		if args[3] != nil {
+			arg3 = args[3].(*redis.GeoRadiusQuery)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -9597,17 +12284,38 @@ type MockPipeliner_GeoRadiusByMemberStore_Call struct {
 }
 
 // GeoRadiusByMemberStore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - member
-//   - query
+//   - ctx context.Context
+//   - key string
+//   - member string
+//   - query *redis.GeoRadiusQuery
 func (_e *MockPipeliner_Expecter) GeoRadiusByMemberStore(ctx interface{}, key interface{}, member interface{}, query interface{}) *MockPipeliner_GeoRadiusByMemberStore_Call {
 	return &MockPipeliner_GeoRadiusByMemberStore_Call{Call: _e.mock.On("GeoRadiusByMemberStore", ctx, key, member, query)}
 }
 
 func (_c *MockPipeliner_GeoRadiusByMemberStore_Call) Run(run func(ctx context.Context, key string, member string, query *redis.GeoRadiusQuery)) *MockPipeliner_GeoRadiusByMemberStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.GeoRadiusQuery))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.GeoRadiusQuery
+		if args[3] != nil {
+			arg3 = args[3].(*redis.GeoRadiusQuery)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -9647,18 +12355,44 @@ type MockPipeliner_GeoRadiusStore_Call struct {
 }
 
 // GeoRadiusStore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - longitude
-//   - latitude
-//   - query
+//   - ctx context.Context
+//   - key string
+//   - longitude float64
+//   - latitude float64
+//   - query *redis.GeoRadiusQuery
 func (_e *MockPipeliner_Expecter) GeoRadiusStore(ctx interface{}, key interface{}, longitude interface{}, latitude interface{}, query interface{}) *MockPipeliner_GeoRadiusStore_Call {
 	return &MockPipeliner_GeoRadiusStore_Call{Call: _e.mock.On("GeoRadiusStore", ctx, key, longitude, latitude, query)}
 }
 
 func (_c *MockPipeliner_GeoRadiusStore_Call) Run(run func(ctx context.Context, key string, longitude float64, latitude float64, query *redis.GeoRadiusQuery)) *MockPipeliner_GeoRadiusStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(float64), args[4].(*redis.GeoRadiusQuery))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 float64
+		if args[3] != nil {
+			arg3 = args[3].(float64)
+		}
+		var arg4 *redis.GeoRadiusQuery
+		if args[4] != nil {
+			arg4 = args[4].(*redis.GeoRadiusQuery)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -9698,16 +12432,32 @@ type MockPipeliner_GeoSearch_Call struct {
 }
 
 // GeoSearch is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - q
+//   - ctx context.Context
+//   - key string
+//   - q *redis.GeoSearchQuery
 func (_e *MockPipeliner_Expecter) GeoSearch(ctx interface{}, key interface{}, q interface{}) *MockPipeliner_GeoSearch_Call {
 	return &MockPipeliner_GeoSearch_Call{Call: _e.mock.On("GeoSearch", ctx, key, q)}
 }
 
 func (_c *MockPipeliner_GeoSearch_Call) Run(run func(ctx context.Context, key string, q *redis.GeoSearchQuery)) *MockPipeliner_GeoSearch_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.GeoSearchQuery))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.GeoSearchQuery
+		if args[2] != nil {
+			arg2 = args[2].(*redis.GeoSearchQuery)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -9747,16 +12497,32 @@ type MockPipeliner_GeoSearchLocation_Call struct {
 }
 
 // GeoSearchLocation is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - q
+//   - ctx context.Context
+//   - key string
+//   - q *redis.GeoSearchLocationQuery
 func (_e *MockPipeliner_Expecter) GeoSearchLocation(ctx interface{}, key interface{}, q interface{}) *MockPipeliner_GeoSearchLocation_Call {
 	return &MockPipeliner_GeoSearchLocation_Call{Call: _e.mock.On("GeoSearchLocation", ctx, key, q)}
 }
 
 func (_c *MockPipeliner_GeoSearchLocation_Call) Run(run func(ctx context.Context, key string, q *redis.GeoSearchLocationQuery)) *MockPipeliner_GeoSearchLocation_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.GeoSearchLocationQuery))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.GeoSearchLocationQuery
+		if args[2] != nil {
+			arg2 = args[2].(*redis.GeoSearchLocationQuery)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -9796,17 +12562,38 @@ type MockPipeliner_GeoSearchStore_Call struct {
 }
 
 // GeoSearchStore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - store
-//   - q
+//   - ctx context.Context
+//   - key string
+//   - store string
+//   - q *redis.GeoSearchStoreQuery
 func (_e *MockPipeliner_Expecter) GeoSearchStore(ctx interface{}, key interface{}, store interface{}, q interface{}) *MockPipeliner_GeoSearchStore_Call {
 	return &MockPipeliner_GeoSearchStore_Call{Call: _e.mock.On("GeoSearchStore", ctx, key, store, q)}
 }
 
 func (_c *MockPipeliner_GeoSearchStore_Call) Run(run func(ctx context.Context, key string, store string, q *redis.GeoSearchStoreQuery)) *MockPipeliner_GeoSearchStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.GeoSearchStoreQuery))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.GeoSearchStoreQuery
+		if args[3] != nil {
+			arg3 = args[3].(*redis.GeoSearchStoreQuery)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -9846,15 +12633,26 @@ type MockPipeliner_Get_Call struct {
 }
 
 // Get is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) Get(ctx interface{}, key interface{}) *MockPipeliner_Get_Call {
 	return &MockPipeliner_Get_Call{Call: _e.mock.On("Get", ctx, key)}
 }
 
 func (_c *MockPipeliner_Get_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_Get_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -9894,16 +12692,32 @@ type MockPipeliner_GetBit_Call struct {
 }
 
 // GetBit is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - offset
+//   - ctx context.Context
+//   - key string
+//   - offset int64
 func (_e *MockPipeliner_Expecter) GetBit(ctx interface{}, key interface{}, offset interface{}) *MockPipeliner_GetBit_Call {
 	return &MockPipeliner_GetBit_Call{Call: _e.mock.On("GetBit", ctx, key, offset)}
 }
 
 func (_c *MockPipeliner_GetBit_Call) Run(run func(ctx context.Context, key string, offset int64)) *MockPipeliner_GetBit_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -9943,15 +12757,26 @@ type MockPipeliner_GetDel_Call struct {
 }
 
 // GetDel is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) GetDel(ctx interface{}, key interface{}) *MockPipeliner_GetDel_Call {
 	return &MockPipeliner_GetDel_Call{Call: _e.mock.On("GetDel", ctx, key)}
 }
 
 func (_c *MockPipeliner_GetDel_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_GetDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -9991,16 +12816,32 @@ type MockPipeliner_GetEx_Call struct {
 }
 
 // GetEx is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
 func (_e *MockPipeliner_Expecter) GetEx(ctx interface{}, key interface{}, expiration interface{}) *MockPipeliner_GetEx_Call {
 	return &MockPipeliner_GetEx_Call{Call: _e.mock.On("GetEx", ctx, key, expiration)}
 }
 
 func (_c *MockPipeliner_GetEx_Call) Run(run func(ctx context.Context, key string, expiration time.Duration)) *MockPipeliner_GetEx_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -10040,17 +12881,38 @@ type MockPipeliner_GetRange_Call struct {
 }
 
 // GetRange is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - start
-//   - end
+//   - ctx context.Context
+//   - key string
+//   - start int64
+//   - end int64
 func (_e *MockPipeliner_Expecter) GetRange(ctx interface{}, key interface{}, start interface{}, end interface{}) *MockPipeliner_GetRange_Call {
 	return &MockPipeliner_GetRange_Call{Call: _e.mock.On("GetRange", ctx, key, start, end)}
 }
 
 func (_c *MockPipeliner_GetRange_Call) Run(run func(ctx context.Context, key string, start int64, end int64)) *MockPipeliner_GetRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -10090,16 +12952,32 @@ type MockPipeliner_GetSet_Call struct {
 }
 
 // GetSet is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
 func (_e *MockPipeliner_Expecter) GetSet(ctx interface{}, key interface{}, value interface{}) *MockPipeliner_GetSet_Call {
 	return &MockPipeliner_GetSet_Call{Call: _e.mock.On("GetSet", ctx, key, value)}
 }
 
 func (_c *MockPipeliner_GetSet_Call) Run(run func(ctx context.Context, key string, value interface{})) *MockPipeliner_GetSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -10145,9 +13023,9 @@ type MockPipeliner_HDel_Call struct {
 }
 
 // HDel is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - fields ...string
 func (_e *MockPipeliner_Expecter) HDel(ctx interface{}, key interface{}, fields ...interface{}) *MockPipeliner_HDel_Call {
 	return &MockPipeliner_HDel_Call{Call: _e.mock.On("HDel",
 		append([]interface{}{ctx, key}, fields...)...)}
@@ -10155,8 +13033,25 @@ func (_e *MockPipeliner_Expecter) HDel(ctx interface{}, key interface{}, fields 
 
 func (_c *MockPipeliner_HDel_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockPipeliner_HDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -10196,16 +13091,32 @@ type MockPipeliner_HExists_Call struct {
 }
 
 // HExists is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - field
+//   - ctx context.Context
+//   - key string
+//   - field string
 func (_e *MockPipeliner_Expecter) HExists(ctx interface{}, key interface{}, field interface{}) *MockPipeliner_HExists_Call {
 	return &MockPipeliner_HExists_Call{Call: _e.mock.On("HExists", ctx, key, field)}
 }
 
 func (_c *MockPipeliner_HExists_Call) Run(run func(ctx context.Context, key string, field string)) *MockPipeliner_HExists_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -10251,10 +13162,10 @@ type MockPipeliner_HExpire_Call struct {
 }
 
 // HExpire is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
+//   - fields ...string
 func (_e *MockPipeliner_Expecter) HExpire(ctx interface{}, key interface{}, expiration interface{}, fields ...interface{}) *MockPipeliner_HExpire_Call {
 	return &MockPipeliner_HExpire_Call{Call: _e.mock.On("HExpire",
 		append([]interface{}{ctx, key, expiration}, fields...)...)}
@@ -10262,8 +13173,30 @@ func (_e *MockPipeliner_Expecter) HExpire(ctx interface{}, key interface{}, expi
 
 func (_c *MockPipeliner_HExpire_Call) Run(run func(ctx context.Context, key string, expiration time.Duration, fields ...string)) *MockPipeliner_HExpire_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -10309,10 +13242,10 @@ type MockPipeliner_HExpireAt_Call struct {
 }
 
 // HExpireAt is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - tm
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - tm time.Time
+//   - fields ...string
 func (_e *MockPipeliner_Expecter) HExpireAt(ctx interface{}, key interface{}, tm interface{}, fields ...interface{}) *MockPipeliner_HExpireAt_Call {
 	return &MockPipeliner_HExpireAt_Call{Call: _e.mock.On("HExpireAt",
 		append([]interface{}{ctx, key, tm}, fields...)...)}
@@ -10320,8 +13253,30 @@ func (_e *MockPipeliner_Expecter) HExpireAt(ctx interface{}, key interface{}, tm
 
 func (_c *MockPipeliner_HExpireAt_Call) Run(run func(ctx context.Context, key string, tm time.Time, fields ...string)) *MockPipeliner_HExpireAt_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Time), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Time
+		if args[2] != nil {
+			arg2 = args[2].(time.Time)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -10367,11 +13322,11 @@ type MockPipeliner_HExpireAtWithArgs_Call struct {
 }
 
 // HExpireAtWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - tm
-//   - expirationArgs
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - tm time.Time
+//   - expirationArgs redis.HExpireArgs
+//   - fields ...string
 func (_e *MockPipeliner_Expecter) HExpireAtWithArgs(ctx interface{}, key interface{}, tm interface{}, expirationArgs interface{}, fields ...interface{}) *MockPipeliner_HExpireAtWithArgs_Call {
 	return &MockPipeliner_HExpireAtWithArgs_Call{Call: _e.mock.On("HExpireAtWithArgs",
 		append([]interface{}{ctx, key, tm, expirationArgs}, fields...)...)}
@@ -10379,8 +13334,35 @@ func (_e *MockPipeliner_Expecter) HExpireAtWithArgs(ctx interface{}, key interfa
 
 func (_c *MockPipeliner_HExpireAtWithArgs_Call) Run(run func(ctx context.Context, key string, tm time.Time, expirationArgs redis.HExpireArgs, fields ...string)) *MockPipeliner_HExpireAtWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[4].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Time), args[3].(redis.HExpireArgs), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Time
+		if args[2] != nil {
+			arg2 = args[2].(time.Time)
+		}
+		var arg3 redis.HExpireArgs
+		if args[3] != nil {
+			arg3 = args[3].(redis.HExpireArgs)
+		}
+		var arg4 []string
+		var variadicArgs []string
+		if len(args) > 4 {
+			variadicArgs = args[4].([]string)
+		}
+		arg4 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4...,
+		)
 	})
 	return _c
 }
@@ -10426,9 +13408,9 @@ type MockPipeliner_HExpireTime_Call struct {
 }
 
 // HExpireTime is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - fields ...string
 func (_e *MockPipeliner_Expecter) HExpireTime(ctx interface{}, key interface{}, fields ...interface{}) *MockPipeliner_HExpireTime_Call {
 	return &MockPipeliner_HExpireTime_Call{Call: _e.mock.On("HExpireTime",
 		append([]interface{}{ctx, key}, fields...)...)}
@@ -10436,8 +13418,25 @@ func (_e *MockPipeliner_Expecter) HExpireTime(ctx interface{}, key interface{}, 
 
 func (_c *MockPipeliner_HExpireTime_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockPipeliner_HExpireTime_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -10483,11 +13482,11 @@ type MockPipeliner_HExpireWithArgs_Call struct {
 }
 
 // HExpireWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
-//   - expirationArgs
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
+//   - expirationArgs redis.HExpireArgs
+//   - fields ...string
 func (_e *MockPipeliner_Expecter) HExpireWithArgs(ctx interface{}, key interface{}, expiration interface{}, expirationArgs interface{}, fields ...interface{}) *MockPipeliner_HExpireWithArgs_Call {
 	return &MockPipeliner_HExpireWithArgs_Call{Call: _e.mock.On("HExpireWithArgs",
 		append([]interface{}{ctx, key, expiration, expirationArgs}, fields...)...)}
@@ -10495,8 +13494,35 @@ func (_e *MockPipeliner_Expecter) HExpireWithArgs(ctx interface{}, key interface
 
 func (_c *MockPipeliner_HExpireWithArgs_Call) Run(run func(ctx context.Context, key string, expiration time.Duration, expirationArgs redis.HExpireArgs, fields ...string)) *MockPipeliner_HExpireWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[4].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration), args[3].(redis.HExpireArgs), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		var arg3 redis.HExpireArgs
+		if args[3] != nil {
+			arg3 = args[3].(redis.HExpireArgs)
+		}
+		var arg4 []string
+		var variadicArgs []string
+		if len(args) > 4 {
+			variadicArgs = args[4].([]string)
+		}
+		arg4 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4...,
+		)
 	})
 	return _c
 }
@@ -10536,16 +13562,32 @@ type MockPipeliner_HGet_Call struct {
 }
 
 // HGet is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - field
+//   - ctx context.Context
+//   - key string
+//   - field string
 func (_e *MockPipeliner_Expecter) HGet(ctx interface{}, key interface{}, field interface{}) *MockPipeliner_HGet_Call {
 	return &MockPipeliner_HGet_Call{Call: _e.mock.On("HGet", ctx, key, field)}
 }
 
 func (_c *MockPipeliner_HGet_Call) Run(run func(ctx context.Context, key string, field string)) *MockPipeliner_HGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -10585,15 +13627,26 @@ type MockPipeliner_HGetAll_Call struct {
 }
 
 // HGetAll is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) HGetAll(ctx interface{}, key interface{}) *MockPipeliner_HGetAll_Call {
 	return &MockPipeliner_HGetAll_Call{Call: _e.mock.On("HGetAll", ctx, key)}
 }
 
 func (_c *MockPipeliner_HGetAll_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_HGetAll_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -10639,9 +13692,9 @@ type MockPipeliner_HGetDel_Call struct {
 }
 
 // HGetDel is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - fields ...string
 func (_e *MockPipeliner_Expecter) HGetDel(ctx interface{}, key interface{}, fields ...interface{}) *MockPipeliner_HGetDel_Call {
 	return &MockPipeliner_HGetDel_Call{Call: _e.mock.On("HGetDel",
 		append([]interface{}{ctx, key}, fields...)...)}
@@ -10649,8 +13702,25 @@ func (_e *MockPipeliner_Expecter) HGetDel(ctx interface{}, key interface{}, fiel
 
 func (_c *MockPipeliner_HGetDel_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockPipeliner_HGetDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -10696,9 +13766,9 @@ type MockPipeliner_HGetEX_Call struct {
 }
 
 // HGetEX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - fields ...string
 func (_e *MockPipeliner_Expecter) HGetEX(ctx interface{}, key interface{}, fields ...interface{}) *MockPipeliner_HGetEX_Call {
 	return &MockPipeliner_HGetEX_Call{Call: _e.mock.On("HGetEX",
 		append([]interface{}{ctx, key}, fields...)...)}
@@ -10706,8 +13776,25 @@ func (_e *MockPipeliner_Expecter) HGetEX(ctx interface{}, key interface{}, field
 
 func (_c *MockPipeliner_HGetEX_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockPipeliner_HGetEX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -10753,10 +13840,10 @@ type MockPipeliner_HGetEXWithArgs_Call struct {
 }
 
 // HGetEXWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - options *redis.HGetEXOptions
+//   - fields ...string
 func (_e *MockPipeliner_Expecter) HGetEXWithArgs(ctx interface{}, key interface{}, options interface{}, fields ...interface{}) *MockPipeliner_HGetEXWithArgs_Call {
 	return &MockPipeliner_HGetEXWithArgs_Call{Call: _e.mock.On("HGetEXWithArgs",
 		append([]interface{}{ctx, key, options}, fields...)...)}
@@ -10764,8 +13851,30 @@ func (_e *MockPipeliner_Expecter) HGetEXWithArgs(ctx interface{}, key interface{
 
 func (_c *MockPipeliner_HGetEXWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.HGetEXOptions, fields ...string)) *MockPipeliner_HGetEXWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.HGetEXOptions), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.HGetEXOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.HGetEXOptions)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -10805,17 +13914,38 @@ type MockPipeliner_HIncrBy_Call struct {
 }
 
 // HIncrBy is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - field
-//   - incr
+//   - ctx context.Context
+//   - key string
+//   - field string
+//   - incr int64
 func (_e *MockPipeliner_Expecter) HIncrBy(ctx interface{}, key interface{}, field interface{}, incr interface{}) *MockPipeliner_HIncrBy_Call {
 	return &MockPipeliner_HIncrBy_Call{Call: _e.mock.On("HIncrBy", ctx, key, field, incr)}
 }
 
 func (_c *MockPipeliner_HIncrBy_Call) Run(run func(ctx context.Context, key string, field string, incr int64)) *MockPipeliner_HIncrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -10855,17 +13985,38 @@ type MockPipeliner_HIncrByFloat_Call struct {
 }
 
 // HIncrByFloat is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - field
-//   - incr
+//   - ctx context.Context
+//   - key string
+//   - field string
+//   - incr float64
 func (_e *MockPipeliner_Expecter) HIncrByFloat(ctx interface{}, key interface{}, field interface{}, incr interface{}) *MockPipeliner_HIncrByFloat_Call {
 	return &MockPipeliner_HIncrByFloat_Call{Call: _e.mock.On("HIncrByFloat", ctx, key, field, incr)}
 }
 
 func (_c *MockPipeliner_HIncrByFloat_Call) Run(run func(ctx context.Context, key string, field string, incr float64)) *MockPipeliner_HIncrByFloat_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(float64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 float64
+		if args[3] != nil {
+			arg3 = args[3].(float64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -10905,15 +14056,26 @@ type MockPipeliner_HKeys_Call struct {
 }
 
 // HKeys is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) HKeys(ctx interface{}, key interface{}) *MockPipeliner_HKeys_Call {
 	return &MockPipeliner_HKeys_Call{Call: _e.mock.On("HKeys", ctx, key)}
 }
 
 func (_c *MockPipeliner_HKeys_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_HKeys_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -10953,15 +14115,26 @@ type MockPipeliner_HLen_Call struct {
 }
 
 // HLen is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) HLen(ctx interface{}, key interface{}) *MockPipeliner_HLen_Call {
 	return &MockPipeliner_HLen_Call{Call: _e.mock.On("HLen", ctx, key)}
 }
 
 func (_c *MockPipeliner_HLen_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_HLen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -11007,9 +14180,9 @@ type MockPipeliner_HMGet_Call struct {
 }
 
 // HMGet is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - fields ...string
 func (_e *MockPipeliner_Expecter) HMGet(ctx interface{}, key interface{}, fields ...interface{}) *MockPipeliner_HMGet_Call {
 	return &MockPipeliner_HMGet_Call{Call: _e.mock.On("HMGet",
 		append([]interface{}{ctx, key}, fields...)...)}
@@ -11017,8 +14190,25 @@ func (_e *MockPipeliner_Expecter) HMGet(ctx interface{}, key interface{}, fields
 
 func (_c *MockPipeliner_HMGet_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockPipeliner_HMGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -11064,9 +14254,9 @@ type MockPipeliner_HMSet_Call struct {
 }
 
 // HMSet is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
 func (_e *MockPipeliner_Expecter) HMSet(ctx interface{}, key interface{}, values ...interface{}) *MockPipeliner_HMSet_Call {
 	return &MockPipeliner_HMSet_Call{Call: _e.mock.On("HMSet",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -11074,8 +14264,25 @@ func (_e *MockPipeliner_Expecter) HMSet(ctx interface{}, key interface{}, values
 
 func (_c *MockPipeliner_HMSet_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockPipeliner_HMSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -11121,10 +14328,10 @@ type MockPipeliner_HPExpire_Call struct {
 }
 
 // HPExpire is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
+//   - fields ...string
 func (_e *MockPipeliner_Expecter) HPExpire(ctx interface{}, key interface{}, expiration interface{}, fields ...interface{}) *MockPipeliner_HPExpire_Call {
 	return &MockPipeliner_HPExpire_Call{Call: _e.mock.On("HPExpire",
 		append([]interface{}{ctx, key, expiration}, fields...)...)}
@@ -11132,8 +14339,30 @@ func (_e *MockPipeliner_Expecter) HPExpire(ctx interface{}, key interface{}, exp
 
 func (_c *MockPipeliner_HPExpire_Call) Run(run func(ctx context.Context, key string, expiration time.Duration, fields ...string)) *MockPipeliner_HPExpire_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -11179,10 +14408,10 @@ type MockPipeliner_HPExpireAt_Call struct {
 }
 
 // HPExpireAt is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - tm
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - tm time.Time
+//   - fields ...string
 func (_e *MockPipeliner_Expecter) HPExpireAt(ctx interface{}, key interface{}, tm interface{}, fields ...interface{}) *MockPipeliner_HPExpireAt_Call {
 	return &MockPipeliner_HPExpireAt_Call{Call: _e.mock.On("HPExpireAt",
 		append([]interface{}{ctx, key, tm}, fields...)...)}
@@ -11190,8 +14419,30 @@ func (_e *MockPipeliner_Expecter) HPExpireAt(ctx interface{}, key interface{}, t
 
 func (_c *MockPipeliner_HPExpireAt_Call) Run(run func(ctx context.Context, key string, tm time.Time, fields ...string)) *MockPipeliner_HPExpireAt_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Time), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Time
+		if args[2] != nil {
+			arg2 = args[2].(time.Time)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -11237,11 +14488,11 @@ type MockPipeliner_HPExpireAtWithArgs_Call struct {
 }
 
 // HPExpireAtWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - tm
-//   - expirationArgs
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - tm time.Time
+//   - expirationArgs redis.HExpireArgs
+//   - fields ...string
 func (_e *MockPipeliner_Expecter) HPExpireAtWithArgs(ctx interface{}, key interface{}, tm interface{}, expirationArgs interface{}, fields ...interface{}) *MockPipeliner_HPExpireAtWithArgs_Call {
 	return &MockPipeliner_HPExpireAtWithArgs_Call{Call: _e.mock.On("HPExpireAtWithArgs",
 		append([]interface{}{ctx, key, tm, expirationArgs}, fields...)...)}
@@ -11249,8 +14500,35 @@ func (_e *MockPipeliner_Expecter) HPExpireAtWithArgs(ctx interface{}, key interf
 
 func (_c *MockPipeliner_HPExpireAtWithArgs_Call) Run(run func(ctx context.Context, key string, tm time.Time, expirationArgs redis.HExpireArgs, fields ...string)) *MockPipeliner_HPExpireAtWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[4].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Time), args[3].(redis.HExpireArgs), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Time
+		if args[2] != nil {
+			arg2 = args[2].(time.Time)
+		}
+		var arg3 redis.HExpireArgs
+		if args[3] != nil {
+			arg3 = args[3].(redis.HExpireArgs)
+		}
+		var arg4 []string
+		var variadicArgs []string
+		if len(args) > 4 {
+			variadicArgs = args[4].([]string)
+		}
+		arg4 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4...,
+		)
 	})
 	return _c
 }
@@ -11296,9 +14574,9 @@ type MockPipeliner_HPExpireTime_Call struct {
 }
 
 // HPExpireTime is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - fields ...string
 func (_e *MockPipeliner_Expecter) HPExpireTime(ctx interface{}, key interface{}, fields ...interface{}) *MockPipeliner_HPExpireTime_Call {
 	return &MockPipeliner_HPExpireTime_Call{Call: _e.mock.On("HPExpireTime",
 		append([]interface{}{ctx, key}, fields...)...)}
@@ -11306,8 +14584,25 @@ func (_e *MockPipeliner_Expecter) HPExpireTime(ctx interface{}, key interface{},
 
 func (_c *MockPipeliner_HPExpireTime_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockPipeliner_HPExpireTime_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -11353,11 +14648,11 @@ type MockPipeliner_HPExpireWithArgs_Call struct {
 }
 
 // HPExpireWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
-//   - expirationArgs
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
+//   - expirationArgs redis.HExpireArgs
+//   - fields ...string
 func (_e *MockPipeliner_Expecter) HPExpireWithArgs(ctx interface{}, key interface{}, expiration interface{}, expirationArgs interface{}, fields ...interface{}) *MockPipeliner_HPExpireWithArgs_Call {
 	return &MockPipeliner_HPExpireWithArgs_Call{Call: _e.mock.On("HPExpireWithArgs",
 		append([]interface{}{ctx, key, expiration, expirationArgs}, fields...)...)}
@@ -11365,8 +14660,35 @@ func (_e *MockPipeliner_Expecter) HPExpireWithArgs(ctx interface{}, key interfac
 
 func (_c *MockPipeliner_HPExpireWithArgs_Call) Run(run func(ctx context.Context, key string, expiration time.Duration, expirationArgs redis.HExpireArgs, fields ...string)) *MockPipeliner_HPExpireWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[4].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration), args[3].(redis.HExpireArgs), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		var arg3 redis.HExpireArgs
+		if args[3] != nil {
+			arg3 = args[3].(redis.HExpireArgs)
+		}
+		var arg4 []string
+		var variadicArgs []string
+		if len(args) > 4 {
+			variadicArgs = args[4].([]string)
+		}
+		arg4 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4...,
+		)
 	})
 	return _c
 }
@@ -11412,9 +14734,9 @@ type MockPipeliner_HPTTL_Call struct {
 }
 
 // HPTTL is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - fields ...string
 func (_e *MockPipeliner_Expecter) HPTTL(ctx interface{}, key interface{}, fields ...interface{}) *MockPipeliner_HPTTL_Call {
 	return &MockPipeliner_HPTTL_Call{Call: _e.mock.On("HPTTL",
 		append([]interface{}{ctx, key}, fields...)...)}
@@ -11422,8 +14744,25 @@ func (_e *MockPipeliner_Expecter) HPTTL(ctx interface{}, key interface{}, fields
 
 func (_c *MockPipeliner_HPTTL_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockPipeliner_HPTTL_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -11469,9 +14808,9 @@ type MockPipeliner_HPersist_Call struct {
 }
 
 // HPersist is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - fields ...string
 func (_e *MockPipeliner_Expecter) HPersist(ctx interface{}, key interface{}, fields ...interface{}) *MockPipeliner_HPersist_Call {
 	return &MockPipeliner_HPersist_Call{Call: _e.mock.On("HPersist",
 		append([]interface{}{ctx, key}, fields...)...)}
@@ -11479,8 +14818,25 @@ func (_e *MockPipeliner_Expecter) HPersist(ctx interface{}, key interface{}, fie
 
 func (_c *MockPipeliner_HPersist_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockPipeliner_HPersist_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -11520,16 +14876,32 @@ type MockPipeliner_HRandField_Call struct {
 }
 
 // HRandField is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count int
 func (_e *MockPipeliner_Expecter) HRandField(ctx interface{}, key interface{}, count interface{}) *MockPipeliner_HRandField_Call {
 	return &MockPipeliner_HRandField_Call{Call: _e.mock.On("HRandField", ctx, key, count)}
 }
 
 func (_c *MockPipeliner_HRandField_Call) Run(run func(ctx context.Context, key string, count int)) *MockPipeliner_HRandField_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -11569,16 +14941,32 @@ type MockPipeliner_HRandFieldWithValues_Call struct {
 }
 
 // HRandFieldWithValues is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count int
 func (_e *MockPipeliner_Expecter) HRandFieldWithValues(ctx interface{}, key interface{}, count interface{}) *MockPipeliner_HRandFieldWithValues_Call {
 	return &MockPipeliner_HRandFieldWithValues_Call{Call: _e.mock.On("HRandFieldWithValues", ctx, key, count)}
 }
 
 func (_c *MockPipeliner_HRandFieldWithValues_Call) Run(run func(ctx context.Context, key string, count int)) *MockPipeliner_HRandFieldWithValues_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -11618,18 +15006,44 @@ type MockPipeliner_HScan_Call struct {
 }
 
 // HScan is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - cursor
-//   - match
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - cursor uint64
+//   - match string
+//   - count int64
 func (_e *MockPipeliner_Expecter) HScan(ctx interface{}, key interface{}, cursor interface{}, match interface{}, count interface{}) *MockPipeliner_HScan_Call {
 	return &MockPipeliner_HScan_Call{Call: _e.mock.On("HScan", ctx, key, cursor, match, count)}
 }
 
 func (_c *MockPipeliner_HScan_Call) Run(run func(ctx context.Context, key string, cursor uint64, match string, count int64)) *MockPipeliner_HScan_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(uint64), args[3].(string), args[4].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 uint64
+		if args[2] != nil {
+			arg2 = args[2].(uint64)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -11669,18 +15083,44 @@ type MockPipeliner_HScanNoValues_Call struct {
 }
 
 // HScanNoValues is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - cursor
-//   - match
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - cursor uint64
+//   - match string
+//   - count int64
 func (_e *MockPipeliner_Expecter) HScanNoValues(ctx interface{}, key interface{}, cursor interface{}, match interface{}, count interface{}) *MockPipeliner_HScanNoValues_Call {
 	return &MockPipeliner_HScanNoValues_Call{Call: _e.mock.On("HScanNoValues", ctx, key, cursor, match, count)}
 }
 
 func (_c *MockPipeliner_HScanNoValues_Call) Run(run func(ctx context.Context, key string, cursor uint64, match string, count int64)) *MockPipeliner_HScanNoValues_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(uint64), args[3].(string), args[4].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 uint64
+		if args[2] != nil {
+			arg2 = args[2].(uint64)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -11726,9 +15166,9 @@ type MockPipeliner_HSet_Call struct {
 }
 
 // HSet is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
 func (_e *MockPipeliner_Expecter) HSet(ctx interface{}, key interface{}, values ...interface{}) *MockPipeliner_HSet_Call {
 	return &MockPipeliner_HSet_Call{Call: _e.mock.On("HSet",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -11736,8 +15176,25 @@ func (_e *MockPipeliner_Expecter) HSet(ctx interface{}, key interface{}, values 
 
 func (_c *MockPipeliner_HSet_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockPipeliner_HSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -11783,9 +15240,9 @@ type MockPipeliner_HSetEX_Call struct {
 }
 
 // HSetEX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fieldsAndValues
+//   - ctx context.Context
+//   - key string
+//   - fieldsAndValues ...string
 func (_e *MockPipeliner_Expecter) HSetEX(ctx interface{}, key interface{}, fieldsAndValues ...interface{}) *MockPipeliner_HSetEX_Call {
 	return &MockPipeliner_HSetEX_Call{Call: _e.mock.On("HSetEX",
 		append([]interface{}{ctx, key}, fieldsAndValues...)...)}
@@ -11793,8 +15250,25 @@ func (_e *MockPipeliner_Expecter) HSetEX(ctx interface{}, key interface{}, field
 
 func (_c *MockPipeliner_HSetEX_Call) Run(run func(ctx context.Context, key string, fieldsAndValues ...string)) *MockPipeliner_HSetEX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -11840,10 +15314,10 @@ type MockPipeliner_HSetEXWithArgs_Call struct {
 }
 
 // HSetEXWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
-//   - fieldsAndValues
+//   - ctx context.Context
+//   - key string
+//   - options *redis.HSetEXOptions
+//   - fieldsAndValues ...string
 func (_e *MockPipeliner_Expecter) HSetEXWithArgs(ctx interface{}, key interface{}, options interface{}, fieldsAndValues ...interface{}) *MockPipeliner_HSetEXWithArgs_Call {
 	return &MockPipeliner_HSetEXWithArgs_Call{Call: _e.mock.On("HSetEXWithArgs",
 		append([]interface{}{ctx, key, options}, fieldsAndValues...)...)}
@@ -11851,8 +15325,30 @@ func (_e *MockPipeliner_Expecter) HSetEXWithArgs(ctx interface{}, key interface{
 
 func (_c *MockPipeliner_HSetEXWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.HSetEXOptions, fieldsAndValues ...string)) *MockPipeliner_HSetEXWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.HSetEXOptions), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.HSetEXOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.HSetEXOptions)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -11892,17 +15388,38 @@ type MockPipeliner_HSetNX_Call struct {
 }
 
 // HSetNX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - field
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - field string
+//   - value interface{}
 func (_e *MockPipeliner_Expecter) HSetNX(ctx interface{}, key interface{}, field interface{}, value interface{}) *MockPipeliner_HSetNX_Call {
 	return &MockPipeliner_HSetNX_Call{Call: _e.mock.On("HSetNX", ctx, key, field, value)}
 }
 
 func (_c *MockPipeliner_HSetNX_Call) Run(run func(ctx context.Context, key string, field string, value interface{})) *MockPipeliner_HSetNX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -11942,16 +15459,32 @@ type MockPipeliner_HStrLen_Call struct {
 }
 
 // HStrLen is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - field
+//   - ctx context.Context
+//   - key string
+//   - field string
 func (_e *MockPipeliner_Expecter) HStrLen(ctx interface{}, key interface{}, field interface{}) *MockPipeliner_HStrLen_Call {
 	return &MockPipeliner_HStrLen_Call{Call: _e.mock.On("HStrLen", ctx, key, field)}
 }
 
 func (_c *MockPipeliner_HStrLen_Call) Run(run func(ctx context.Context, key string, field string)) *MockPipeliner_HStrLen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -11997,9 +15530,9 @@ type MockPipeliner_HTTL_Call struct {
 }
 
 // HTTL is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - fields ...string
 func (_e *MockPipeliner_Expecter) HTTL(ctx interface{}, key interface{}, fields ...interface{}) *MockPipeliner_HTTL_Call {
 	return &MockPipeliner_HTTL_Call{Call: _e.mock.On("HTTL",
 		append([]interface{}{ctx, key}, fields...)...)}
@@ -12007,8 +15540,25 @@ func (_e *MockPipeliner_Expecter) HTTL(ctx interface{}, key interface{}, fields 
 
 func (_c *MockPipeliner_HTTL_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockPipeliner_HTTL_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -12048,15 +15598,26 @@ type MockPipeliner_HVals_Call struct {
 }
 
 // HVals is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) HVals(ctx interface{}, key interface{}) *MockPipeliner_HVals_Call {
 	return &MockPipeliner_HVals_Call{Call: _e.mock.On("HVals", ctx, key)}
 }
 
 func (_c *MockPipeliner_HVals_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_HVals_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -12096,18 +15657,44 @@ type MockPipeliner_Hello_Call struct {
 }
 
 // Hello is a helper method to define mock.On call
-//   - ctx
-//   - ver
-//   - username
-//   - password
-//   - clientName
+//   - ctx context.Context
+//   - ver int
+//   - username string
+//   - password string
+//   - clientName string
 func (_e *MockPipeliner_Expecter) Hello(ctx interface{}, ver interface{}, username interface{}, password interface{}, clientName interface{}) *MockPipeliner_Hello_Call {
 	return &MockPipeliner_Hello_Call{Call: _e.mock.On("Hello", ctx, ver, username, password, clientName)}
 }
 
 func (_c *MockPipeliner_Hello_Call) Run(run func(ctx context.Context, ver int, username string, password string, clientName string)) *MockPipeliner_Hello_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int), args[2].(string), args[3].(string), args[4].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 string
+		if args[4] != nil {
+			arg4 = args[4].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -12147,15 +15734,26 @@ type MockPipeliner_Incr_Call struct {
 }
 
 // Incr is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) Incr(ctx interface{}, key interface{}) *MockPipeliner_Incr_Call {
 	return &MockPipeliner_Incr_Call{Call: _e.mock.On("Incr", ctx, key)}
 }
 
 func (_c *MockPipeliner_Incr_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_Incr_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -12195,16 +15793,32 @@ type MockPipeliner_IncrBy_Call struct {
 }
 
 // IncrBy is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - value int64
 func (_e *MockPipeliner_Expecter) IncrBy(ctx interface{}, key interface{}, value interface{}) *MockPipeliner_IncrBy_Call {
 	return &MockPipeliner_IncrBy_Call{Call: _e.mock.On("IncrBy", ctx, key, value)}
 }
 
 func (_c *MockPipeliner_IncrBy_Call) Run(run func(ctx context.Context, key string, value int64)) *MockPipeliner_IncrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -12244,16 +15858,32 @@ type MockPipeliner_IncrByFloat_Call struct {
 }
 
 // IncrByFloat is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - value float64
 func (_e *MockPipeliner_Expecter) IncrByFloat(ctx interface{}, key interface{}, value interface{}) *MockPipeliner_IncrByFloat_Call {
 	return &MockPipeliner_IncrByFloat_Call{Call: _e.mock.On("IncrByFloat", ctx, key, value)}
 }
 
 func (_c *MockPipeliner_IncrByFloat_Call) Run(run func(ctx context.Context, key string, value float64)) *MockPipeliner_IncrByFloat_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -12299,8 +15929,8 @@ type MockPipeliner_Info_Call struct {
 }
 
 // Info is a helper method to define mock.On call
-//   - ctx
-//   - section
+//   - ctx context.Context
+//   - section ...string
 func (_e *MockPipeliner_Expecter) Info(ctx interface{}, section ...interface{}) *MockPipeliner_Info_Call {
 	return &MockPipeliner_Info_Call{Call: _e.mock.On("Info",
 		append([]interface{}{ctx}, section...)...)}
@@ -12308,8 +15938,20 @@ func (_e *MockPipeliner_Expecter) Info(ctx interface{}, section ...interface{}) 
 
 func (_c *MockPipeliner_Info_Call) Run(run func(ctx context.Context, section ...string)) *MockPipeliner_Info_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -12355,10 +15997,10 @@ type MockPipeliner_JSONArrAppend_Call struct {
 }
 
 // JSONArrAppend is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - values ...interface{}
 func (_e *MockPipeliner_Expecter) JSONArrAppend(ctx interface{}, key interface{}, path interface{}, values ...interface{}) *MockPipeliner_JSONArrAppend_Call {
 	return &MockPipeliner_JSONArrAppend_Call{Call: _e.mock.On("JSONArrAppend",
 		append([]interface{}{ctx, key, path}, values...)...)}
@@ -12366,8 +16008,30 @@ func (_e *MockPipeliner_Expecter) JSONArrAppend(ctx interface{}, key interface{}
 
 func (_c *MockPipeliner_JSONArrAppend_Call) Run(run func(ctx context.Context, key string, path string, values ...interface{})) *MockPipeliner_JSONArrAppend_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -12413,10 +16077,10 @@ type MockPipeliner_JSONArrIndex_Call struct {
 }
 
 // JSONArrIndex is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value ...interface{}
 func (_e *MockPipeliner_Expecter) JSONArrIndex(ctx interface{}, key interface{}, path interface{}, value ...interface{}) *MockPipeliner_JSONArrIndex_Call {
 	return &MockPipeliner_JSONArrIndex_Call{Call: _e.mock.On("JSONArrIndex",
 		append([]interface{}{ctx, key, path}, value...)...)}
@@ -12424,8 +16088,30 @@ func (_e *MockPipeliner_Expecter) JSONArrIndex(ctx interface{}, key interface{},
 
 func (_c *MockPipeliner_JSONArrIndex_Call) Run(run func(ctx context.Context, key string, path string, value ...interface{})) *MockPipeliner_JSONArrIndex_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -12471,11 +16157,11 @@ type MockPipeliner_JSONArrIndexWithArgs_Call struct {
 }
 
 // JSONArrIndexWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - options
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - options *redis.JSONArrIndexArgs
+//   - value ...interface{}
 func (_e *MockPipeliner_Expecter) JSONArrIndexWithArgs(ctx interface{}, key interface{}, path interface{}, options interface{}, value ...interface{}) *MockPipeliner_JSONArrIndexWithArgs_Call {
 	return &MockPipeliner_JSONArrIndexWithArgs_Call{Call: _e.mock.On("JSONArrIndexWithArgs",
 		append([]interface{}{ctx, key, path, options}, value...)...)}
@@ -12483,8 +16169,35 @@ func (_e *MockPipeliner_Expecter) JSONArrIndexWithArgs(ctx interface{}, key inte
 
 func (_c *MockPipeliner_JSONArrIndexWithArgs_Call) Run(run func(ctx context.Context, key string, path string, options *redis.JSONArrIndexArgs, value ...interface{})) *MockPipeliner_JSONArrIndexWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[4].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.JSONArrIndexArgs), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.JSONArrIndexArgs
+		if args[3] != nil {
+			arg3 = args[3].(*redis.JSONArrIndexArgs)
+		}
+		var arg4 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 4 {
+			variadicArgs = args[4].([]interface{})
+		}
+		arg4 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4...,
+		)
 	})
 	return _c
 }
@@ -12530,11 +16243,11 @@ type MockPipeliner_JSONArrInsert_Call struct {
 }
 
 // JSONArrInsert is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - index
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - index int64
+//   - values ...interface{}
 func (_e *MockPipeliner_Expecter) JSONArrInsert(ctx interface{}, key interface{}, path interface{}, index interface{}, values ...interface{}) *MockPipeliner_JSONArrInsert_Call {
 	return &MockPipeliner_JSONArrInsert_Call{Call: _e.mock.On("JSONArrInsert",
 		append([]interface{}{ctx, key, path, index}, values...)...)}
@@ -12542,8 +16255,35 @@ func (_e *MockPipeliner_Expecter) JSONArrInsert(ctx interface{}, key interface{}
 
 func (_c *MockPipeliner_JSONArrInsert_Call) Run(run func(ctx context.Context, key string, path string, index int64, values ...interface{})) *MockPipeliner_JSONArrInsert_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[4].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int64), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		var arg4 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 4 {
+			variadicArgs = args[4].([]interface{})
+		}
+		arg4 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4...,
+		)
 	})
 	return _c
 }
@@ -12583,16 +16323,32 @@ type MockPipeliner_JSONArrLen_Call struct {
 }
 
 // JSONArrLen is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockPipeliner_Expecter) JSONArrLen(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONArrLen_Call {
 	return &MockPipeliner_JSONArrLen_Call{Call: _e.mock.On("JSONArrLen", ctx, key, path)}
 }
 
 func (_c *MockPipeliner_JSONArrLen_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONArrLen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -12632,17 +16388,38 @@ type MockPipeliner_JSONArrPop_Call struct {
 }
 
 // JSONArrPop is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - index
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - index int
 func (_e *MockPipeliner_Expecter) JSONArrPop(ctx interface{}, key interface{}, path interface{}, index interface{}) *MockPipeliner_JSONArrPop_Call {
 	return &MockPipeliner_JSONArrPop_Call{Call: _e.mock.On("JSONArrPop", ctx, key, path, index)}
 }
 
 func (_c *MockPipeliner_JSONArrPop_Call) Run(run func(ctx context.Context, key string, path string, index int)) *MockPipeliner_JSONArrPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int
+		if args[3] != nil {
+			arg3 = args[3].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -12682,16 +16459,32 @@ type MockPipeliner_JSONArrTrim_Call struct {
 }
 
 // JSONArrTrim is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockPipeliner_Expecter) JSONArrTrim(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONArrTrim_Call {
 	return &MockPipeliner_JSONArrTrim_Call{Call: _e.mock.On("JSONArrTrim", ctx, key, path)}
 }
 
 func (_c *MockPipeliner_JSONArrTrim_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONArrTrim_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -12731,17 +16524,38 @@ type MockPipeliner_JSONArrTrimWithArgs_Call struct {
 }
 
 // JSONArrTrimWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - options *redis.JSONArrTrimArgs
 func (_e *MockPipeliner_Expecter) JSONArrTrimWithArgs(ctx interface{}, key interface{}, path interface{}, options interface{}) *MockPipeliner_JSONArrTrimWithArgs_Call {
 	return &MockPipeliner_JSONArrTrimWithArgs_Call{Call: _e.mock.On("JSONArrTrimWithArgs", ctx, key, path, options)}
 }
 
 func (_c *MockPipeliner_JSONArrTrimWithArgs_Call) Run(run func(ctx context.Context, key string, path string, options *redis.JSONArrTrimArgs)) *MockPipeliner_JSONArrTrimWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.JSONArrTrimArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.JSONArrTrimArgs
+		if args[3] != nil {
+			arg3 = args[3].(*redis.JSONArrTrimArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -12781,16 +16595,32 @@ type MockPipeliner_JSONClear_Call struct {
 }
 
 // JSONClear is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockPipeliner_Expecter) JSONClear(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONClear_Call {
 	return &MockPipeliner_JSONClear_Call{Call: _e.mock.On("JSONClear", ctx, key, path)}
 }
 
 func (_c *MockPipeliner_JSONClear_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONClear_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -12830,16 +16660,32 @@ type MockPipeliner_JSONDebugMemory_Call struct {
 }
 
 // JSONDebugMemory is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockPipeliner_Expecter) JSONDebugMemory(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONDebugMemory_Call {
 	return &MockPipeliner_JSONDebugMemory_Call{Call: _e.mock.On("JSONDebugMemory", ctx, key, path)}
 }
 
 func (_c *MockPipeliner_JSONDebugMemory_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONDebugMemory_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -12879,16 +16725,32 @@ type MockPipeliner_JSONDel_Call struct {
 }
 
 // JSONDel is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockPipeliner_Expecter) JSONDel(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONDel_Call {
 	return &MockPipeliner_JSONDel_Call{Call: _e.mock.On("JSONDel", ctx, key, path)}
 }
 
 func (_c *MockPipeliner_JSONDel_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -12928,16 +16790,32 @@ type MockPipeliner_JSONForget_Call struct {
 }
 
 // JSONForget is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockPipeliner_Expecter) JSONForget(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONForget_Call {
 	return &MockPipeliner_JSONForget_Call{Call: _e.mock.On("JSONForget", ctx, key, path)}
 }
 
 func (_c *MockPipeliner_JSONForget_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONForget_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -12983,9 +16861,9 @@ type MockPipeliner_JSONGet_Call struct {
 }
 
 // JSONGet is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - paths
+//   - ctx context.Context
+//   - key string
+//   - paths ...string
 func (_e *MockPipeliner_Expecter) JSONGet(ctx interface{}, key interface{}, paths ...interface{}) *MockPipeliner_JSONGet_Call {
 	return &MockPipeliner_JSONGet_Call{Call: _e.mock.On("JSONGet",
 		append([]interface{}{ctx, key}, paths...)...)}
@@ -12993,8 +16871,25 @@ func (_e *MockPipeliner_Expecter) JSONGet(ctx interface{}, key interface{}, path
 
 func (_c *MockPipeliner_JSONGet_Call) Run(run func(ctx context.Context, key string, paths ...string)) *MockPipeliner_JSONGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -13040,10 +16935,10 @@ type MockPipeliner_JSONGetWithArgs_Call struct {
 }
 
 // JSONGetWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
-//   - paths
+//   - ctx context.Context
+//   - key string
+//   - options *redis.JSONGetArgs
+//   - paths ...string
 func (_e *MockPipeliner_Expecter) JSONGetWithArgs(ctx interface{}, key interface{}, options interface{}, paths ...interface{}) *MockPipeliner_JSONGetWithArgs_Call {
 	return &MockPipeliner_JSONGetWithArgs_Call{Call: _e.mock.On("JSONGetWithArgs",
 		append([]interface{}{ctx, key, options}, paths...)...)}
@@ -13051,8 +16946,30 @@ func (_e *MockPipeliner_Expecter) JSONGetWithArgs(ctx interface{}, key interface
 
 func (_c *MockPipeliner_JSONGetWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.JSONGetArgs, paths ...string)) *MockPipeliner_JSONGetWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.JSONGetArgs), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.JSONGetArgs
+		if args[2] != nil {
+			arg2 = args[2].(*redis.JSONGetArgs)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -13098,9 +17015,9 @@ type MockPipeliner_JSONMGet_Call struct {
 }
 
 // JSONMGet is a helper method to define mock.On call
-//   - ctx
-//   - path
-//   - keys
+//   - ctx context.Context
+//   - path string
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) JSONMGet(ctx interface{}, path interface{}, keys ...interface{}) *MockPipeliner_JSONMGet_Call {
 	return &MockPipeliner_JSONMGet_Call{Call: _e.mock.On("JSONMGet",
 		append([]interface{}{ctx, path}, keys...)...)}
@@ -13108,8 +17025,25 @@ func (_e *MockPipeliner_Expecter) JSONMGet(ctx interface{}, path interface{}, ke
 
 func (_c *MockPipeliner_JSONMGet_Call) Run(run func(ctx context.Context, path string, keys ...string)) *MockPipeliner_JSONMGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -13155,8 +17089,8 @@ type MockPipeliner_JSONMSet_Call struct {
 }
 
 // JSONMSet is a helper method to define mock.On call
-//   - ctx
-//   - params
+//   - ctx context.Context
+//   - params ...interface{}
 func (_e *MockPipeliner_Expecter) JSONMSet(ctx interface{}, params ...interface{}) *MockPipeliner_JSONMSet_Call {
 	return &MockPipeliner_JSONMSet_Call{Call: _e.mock.On("JSONMSet",
 		append([]interface{}{ctx}, params...)...)}
@@ -13164,8 +17098,20 @@ func (_e *MockPipeliner_Expecter) JSONMSet(ctx interface{}, params ...interface{
 
 func (_c *MockPipeliner_JSONMSet_Call) Run(run func(ctx context.Context, params ...interface{})) *MockPipeliner_JSONMSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]interface{})
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 1 {
+			variadicArgs = args[1].([]interface{})
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -13205,15 +17151,26 @@ type MockPipeliner_JSONMSetArgs_Call struct {
 }
 
 // JSONMSetArgs is a helper method to define mock.On call
-//   - ctx
-//   - docs
+//   - ctx context.Context
+//   - docs []redis.JSONSetArgs
 func (_e *MockPipeliner_Expecter) JSONMSetArgs(ctx interface{}, docs interface{}) *MockPipeliner_JSONMSetArgs_Call {
 	return &MockPipeliner_JSONMSetArgs_Call{Call: _e.mock.On("JSONMSetArgs", ctx, docs)}
 }
 
 func (_c *MockPipeliner_JSONMSetArgs_Call) Run(run func(ctx context.Context, docs []redis.JSONSetArgs)) *MockPipeliner_JSONMSetArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].([]redis.JSONSetArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []redis.JSONSetArgs
+		if args[1] != nil {
+			arg1 = args[1].([]redis.JSONSetArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -13253,17 +17210,38 @@ type MockPipeliner_JSONMerge_Call struct {
 }
 
 // JSONMerge is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value string
 func (_e *MockPipeliner_Expecter) JSONMerge(ctx interface{}, key interface{}, path interface{}, value interface{}) *MockPipeliner_JSONMerge_Call {
 	return &MockPipeliner_JSONMerge_Call{Call: _e.mock.On("JSONMerge", ctx, key, path, value)}
 }
 
 func (_c *MockPipeliner_JSONMerge_Call) Run(run func(ctx context.Context, key string, path string, value string)) *MockPipeliner_JSONMerge_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -13303,17 +17281,38 @@ type MockPipeliner_JSONNumIncrBy_Call struct {
 }
 
 // JSONNumIncrBy is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value float64
 func (_e *MockPipeliner_Expecter) JSONNumIncrBy(ctx interface{}, key interface{}, path interface{}, value interface{}) *MockPipeliner_JSONNumIncrBy_Call {
 	return &MockPipeliner_JSONNumIncrBy_Call{Call: _e.mock.On("JSONNumIncrBy", ctx, key, path, value)}
 }
 
 func (_c *MockPipeliner_JSONNumIncrBy_Call) Run(run func(ctx context.Context, key string, path string, value float64)) *MockPipeliner_JSONNumIncrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(float64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 float64
+		if args[3] != nil {
+			arg3 = args[3].(float64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -13353,16 +17352,32 @@ type MockPipeliner_JSONObjKeys_Call struct {
 }
 
 // JSONObjKeys is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockPipeliner_Expecter) JSONObjKeys(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONObjKeys_Call {
 	return &MockPipeliner_JSONObjKeys_Call{Call: _e.mock.On("JSONObjKeys", ctx, key, path)}
 }
 
 func (_c *MockPipeliner_JSONObjKeys_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONObjKeys_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -13402,16 +17417,32 @@ type MockPipeliner_JSONObjLen_Call struct {
 }
 
 // JSONObjLen is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockPipeliner_Expecter) JSONObjLen(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONObjLen_Call {
 	return &MockPipeliner_JSONObjLen_Call{Call: _e.mock.On("JSONObjLen", ctx, key, path)}
 }
 
 func (_c *MockPipeliner_JSONObjLen_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONObjLen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -13451,17 +17482,38 @@ type MockPipeliner_JSONSet_Call struct {
 }
 
 // JSONSet is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value interface{}
 func (_e *MockPipeliner_Expecter) JSONSet(ctx interface{}, key interface{}, path interface{}, value interface{}) *MockPipeliner_JSONSet_Call {
 	return &MockPipeliner_JSONSet_Call{Call: _e.mock.On("JSONSet", ctx, key, path, value)}
 }
 
 func (_c *MockPipeliner_JSONSet_Call) Run(run func(ctx context.Context, key string, path string, value interface{})) *MockPipeliner_JSONSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -13501,18 +17553,44 @@ type MockPipeliner_JSONSetMode_Call struct {
 }
 
 // JSONSetMode is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - value
-//   - mode
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value interface{}
+//   - mode string
 func (_e *MockPipeliner_Expecter) JSONSetMode(ctx interface{}, key interface{}, path interface{}, value interface{}, mode interface{}) *MockPipeliner_JSONSetMode_Call {
 	return &MockPipeliner_JSONSetMode_Call{Call: _e.mock.On("JSONSetMode", ctx, key, path, value, mode)}
 }
 
 func (_c *MockPipeliner_JSONSetMode_Call) Run(run func(ctx context.Context, key string, path string, value interface{}, mode string)) *MockPipeliner_JSONSetMode_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(interface{}), args[4].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		var arg4 string
+		if args[4] != nil {
+			arg4 = args[4].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -13552,17 +17630,38 @@ type MockPipeliner_JSONStrAppend_Call struct {
 }
 
 // JSONStrAppend is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value string
 func (_e *MockPipeliner_Expecter) JSONStrAppend(ctx interface{}, key interface{}, path interface{}, value interface{}) *MockPipeliner_JSONStrAppend_Call {
 	return &MockPipeliner_JSONStrAppend_Call{Call: _e.mock.On("JSONStrAppend", ctx, key, path, value)}
 }
 
 func (_c *MockPipeliner_JSONStrAppend_Call) Run(run func(ctx context.Context, key string, path string, value string)) *MockPipeliner_JSONStrAppend_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -13602,16 +17701,32 @@ type MockPipeliner_JSONStrLen_Call struct {
 }
 
 // JSONStrLen is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockPipeliner_Expecter) JSONStrLen(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONStrLen_Call {
 	return &MockPipeliner_JSONStrLen_Call{Call: _e.mock.On("JSONStrLen", ctx, key, path)}
 }
 
 func (_c *MockPipeliner_JSONStrLen_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONStrLen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -13651,16 +17766,32 @@ type MockPipeliner_JSONToggle_Call struct {
 }
 
 // JSONToggle is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockPipeliner_Expecter) JSONToggle(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONToggle_Call {
 	return &MockPipeliner_JSONToggle_Call{Call: _e.mock.On("JSONToggle", ctx, key, path)}
 }
 
 func (_c *MockPipeliner_JSONToggle_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONToggle_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -13700,16 +17831,32 @@ type MockPipeliner_JSONType_Call struct {
 }
 
 // JSONType is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockPipeliner_Expecter) JSONType(ctx interface{}, key interface{}, path interface{}) *MockPipeliner_JSONType_Call {
 	return &MockPipeliner_JSONType_Call{Call: _e.mock.On("JSONType", ctx, key, path)}
 }
 
 func (_c *MockPipeliner_JSONType_Call) Run(run func(ctx context.Context, key string, path string)) *MockPipeliner_JSONType_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -13749,15 +17896,26 @@ type MockPipeliner_Keys_Call struct {
 }
 
 // Keys is a helper method to define mock.On call
-//   - ctx
-//   - pattern
+//   - ctx context.Context
+//   - pattern string
 func (_e *MockPipeliner_Expecter) Keys(ctx interface{}, pattern interface{}) *MockPipeliner_Keys_Call {
 	return &MockPipeliner_Keys_Call{Call: _e.mock.On("Keys", ctx, pattern)}
 }
 
 func (_c *MockPipeliner_Keys_Call) Run(run func(ctx context.Context, pattern string)) *MockPipeliner_Keys_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -13797,15 +17955,26 @@ type MockPipeliner_LCS_Call struct {
 }
 
 // LCS is a helper method to define mock.On call
-//   - ctx
-//   - q
+//   - ctx context.Context
+//   - q *redis.LCSQuery
 func (_e *MockPipeliner_Expecter) LCS(ctx interface{}, q interface{}) *MockPipeliner_LCS_Call {
 	return &MockPipeliner_LCS_Call{Call: _e.mock.On("LCS", ctx, q)}
 }
 
 func (_c *MockPipeliner_LCS_Call) Run(run func(ctx context.Context, q *redis.LCSQuery)) *MockPipeliner_LCS_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.LCSQuery))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.LCSQuery
+		if args[1] != nil {
+			arg1 = args[1].(*redis.LCSQuery)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -13845,16 +18014,32 @@ type MockPipeliner_LIndex_Call struct {
 }
 
 // LIndex is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - index
+//   - ctx context.Context
+//   - key string
+//   - index int64
 func (_e *MockPipeliner_Expecter) LIndex(ctx interface{}, key interface{}, index interface{}) *MockPipeliner_LIndex_Call {
 	return &MockPipeliner_LIndex_Call{Call: _e.mock.On("LIndex", ctx, key, index)}
 }
 
 func (_c *MockPipeliner_LIndex_Call) Run(run func(ctx context.Context, key string, index int64)) *MockPipeliner_LIndex_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -13894,18 +18079,44 @@ type MockPipeliner_LInsert_Call struct {
 }
 
 // LInsert is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - op
-//   - pivot
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - op string
+//   - pivot interface{}
+//   - value interface{}
 func (_e *MockPipeliner_Expecter) LInsert(ctx interface{}, key interface{}, op interface{}, pivot interface{}, value interface{}) *MockPipeliner_LInsert_Call {
 	return &MockPipeliner_LInsert_Call{Call: _e.mock.On("LInsert", ctx, key, op, pivot, value)}
 }
 
 func (_c *MockPipeliner_LInsert_Call) Run(run func(ctx context.Context, key string, op string, pivot interface{}, value interface{})) *MockPipeliner_LInsert_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(interface{}), args[4].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		var arg4 interface{}
+		if args[4] != nil {
+			arg4 = args[4].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -13945,17 +18156,38 @@ type MockPipeliner_LInsertAfter_Call struct {
 }
 
 // LInsertAfter is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - pivot
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - pivot interface{}
+//   - value interface{}
 func (_e *MockPipeliner_Expecter) LInsertAfter(ctx interface{}, key interface{}, pivot interface{}, value interface{}) *MockPipeliner_LInsertAfter_Call {
 	return &MockPipeliner_LInsertAfter_Call{Call: _e.mock.On("LInsertAfter", ctx, key, pivot, value)}
 }
 
 func (_c *MockPipeliner_LInsertAfter_Call) Run(run func(ctx context.Context, key string, pivot interface{}, value interface{})) *MockPipeliner_LInsertAfter_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -13995,17 +18227,38 @@ type MockPipeliner_LInsertBefore_Call struct {
 }
 
 // LInsertBefore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - pivot
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - pivot interface{}
+//   - value interface{}
 func (_e *MockPipeliner_Expecter) LInsertBefore(ctx interface{}, key interface{}, pivot interface{}, value interface{}) *MockPipeliner_LInsertBefore_Call {
 	return &MockPipeliner_LInsertBefore_Call{Call: _e.mock.On("LInsertBefore", ctx, key, pivot, value)}
 }
 
 func (_c *MockPipeliner_LInsertBefore_Call) Run(run func(ctx context.Context, key string, pivot interface{}, value interface{})) *MockPipeliner_LInsertBefore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -14045,15 +18298,26 @@ type MockPipeliner_LLen_Call struct {
 }
 
 // LLen is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) LLen(ctx interface{}, key interface{}) *MockPipeliner_LLen_Call {
 	return &MockPipeliner_LLen_Call{Call: _e.mock.On("LLen", ctx, key)}
 }
 
 func (_c *MockPipeliner_LLen_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_LLen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -14099,10 +18363,10 @@ type MockPipeliner_LMPop_Call struct {
 }
 
 // LMPop is a helper method to define mock.On call
-//   - ctx
-//   - direction
-//   - count
-//   - keys
+//   - ctx context.Context
+//   - direction string
+//   - count int64
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) LMPop(ctx interface{}, direction interface{}, count interface{}, keys ...interface{}) *MockPipeliner_LMPop_Call {
 	return &MockPipeliner_LMPop_Call{Call: _e.mock.On("LMPop",
 		append([]interface{}{ctx, direction, count}, keys...)...)}
@@ -14110,8 +18374,30 @@ func (_e *MockPipeliner_Expecter) LMPop(ctx interface{}, direction interface{}, 
 
 func (_c *MockPipeliner_LMPop_Call) Run(run func(ctx context.Context, direction string, count int64, keys ...string)) *MockPipeliner_LMPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -14151,18 +18437,44 @@ type MockPipeliner_LMove_Call struct {
 }
 
 // LMove is a helper method to define mock.On call
-//   - ctx
-//   - source
-//   - destination
-//   - srcpos
-//   - destpos
+//   - ctx context.Context
+//   - source string
+//   - destination string
+//   - srcpos string
+//   - destpos string
 func (_e *MockPipeliner_Expecter) LMove(ctx interface{}, source interface{}, destination interface{}, srcpos interface{}, destpos interface{}) *MockPipeliner_LMove_Call {
 	return &MockPipeliner_LMove_Call{Call: _e.mock.On("LMove", ctx, source, destination, srcpos, destpos)}
 }
 
 func (_c *MockPipeliner_LMove_Call) Run(run func(ctx context.Context, source string, destination string, srcpos string, destpos string)) *MockPipeliner_LMove_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string), args[4].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 string
+		if args[4] != nil {
+			arg4 = args[4].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -14202,15 +18514,26 @@ type MockPipeliner_LPop_Call struct {
 }
 
 // LPop is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) LPop(ctx interface{}, key interface{}) *MockPipeliner_LPop_Call {
 	return &MockPipeliner_LPop_Call{Call: _e.mock.On("LPop", ctx, key)}
 }
 
 func (_c *MockPipeliner_LPop_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_LPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -14250,16 +18573,32 @@ type MockPipeliner_LPopCount_Call struct {
 }
 
 // LPopCount is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count int
 func (_e *MockPipeliner_Expecter) LPopCount(ctx interface{}, key interface{}, count interface{}) *MockPipeliner_LPopCount_Call {
 	return &MockPipeliner_LPopCount_Call{Call: _e.mock.On("LPopCount", ctx, key, count)}
 }
 
 func (_c *MockPipeliner_LPopCount_Call) Run(run func(ctx context.Context, key string, count int)) *MockPipeliner_LPopCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -14299,17 +18638,38 @@ type MockPipeliner_LPos_Call struct {
 }
 
 // LPos is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
-//   - args
+//   - ctx context.Context
+//   - key string
+//   - value string
+//   - args redis.LPosArgs
 func (_e *MockPipeliner_Expecter) LPos(ctx interface{}, key interface{}, value interface{}, args interface{}) *MockPipeliner_LPos_Call {
 	return &MockPipeliner_LPos_Call{Call: _e.mock.On("LPos", ctx, key, value, args)}
 }
 
 func (_c *MockPipeliner_LPos_Call) Run(run func(ctx context.Context, key string, value string, args redis.LPosArgs)) *MockPipeliner_LPos_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(redis.LPosArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 redis.LPosArgs
+		if args[3] != nil {
+			arg3 = args[3].(redis.LPosArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -14349,18 +18709,44 @@ type MockPipeliner_LPosCount_Call struct {
 }
 
 // LPosCount is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
-//   - count
-//   - args
+//   - ctx context.Context
+//   - key string
+//   - value string
+//   - count int64
+//   - args redis.LPosArgs
 func (_e *MockPipeliner_Expecter) LPosCount(ctx interface{}, key interface{}, value interface{}, count interface{}, args interface{}) *MockPipeliner_LPosCount_Call {
 	return &MockPipeliner_LPosCount_Call{Call: _e.mock.On("LPosCount", ctx, key, value, count, args)}
 }
 
 func (_c *MockPipeliner_LPosCount_Call) Run(run func(ctx context.Context, key string, value string, count int64, args redis.LPosArgs)) *MockPipeliner_LPosCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int64), args[4].(redis.LPosArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		var arg4 redis.LPosArgs
+		if args[4] != nil {
+			arg4 = args[4].(redis.LPosArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -14406,9 +18792,9 @@ type MockPipeliner_LPush_Call struct {
 }
 
 // LPush is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
 func (_e *MockPipeliner_Expecter) LPush(ctx interface{}, key interface{}, values ...interface{}) *MockPipeliner_LPush_Call {
 	return &MockPipeliner_LPush_Call{Call: _e.mock.On("LPush",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -14416,8 +18802,25 @@ func (_e *MockPipeliner_Expecter) LPush(ctx interface{}, key interface{}, values
 
 func (_c *MockPipeliner_LPush_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockPipeliner_LPush_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -14463,9 +18866,9 @@ type MockPipeliner_LPushX_Call struct {
 }
 
 // LPushX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
 func (_e *MockPipeliner_Expecter) LPushX(ctx interface{}, key interface{}, values ...interface{}) *MockPipeliner_LPushX_Call {
 	return &MockPipeliner_LPushX_Call{Call: _e.mock.On("LPushX",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -14473,8 +18876,25 @@ func (_e *MockPipeliner_Expecter) LPushX(ctx interface{}, key interface{}, value
 
 func (_c *MockPipeliner_LPushX_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockPipeliner_LPushX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -14514,17 +18934,38 @@ type MockPipeliner_LRange_Call struct {
 }
 
 // LRange is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - start
-//   - stop
+//   - ctx context.Context
+//   - key string
+//   - start int64
+//   - stop int64
 func (_e *MockPipeliner_Expecter) LRange(ctx interface{}, key interface{}, start interface{}, stop interface{}) *MockPipeliner_LRange_Call {
 	return &MockPipeliner_LRange_Call{Call: _e.mock.On("LRange", ctx, key, start, stop)}
 }
 
 func (_c *MockPipeliner_LRange_Call) Run(run func(ctx context.Context, key string, start int64, stop int64)) *MockPipeliner_LRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -14564,17 +19005,38 @@ type MockPipeliner_LRem_Call struct {
 }
 
 // LRem is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - count int64
+//   - value interface{}
 func (_e *MockPipeliner_Expecter) LRem(ctx interface{}, key interface{}, count interface{}, value interface{}) *MockPipeliner_LRem_Call {
 	return &MockPipeliner_LRem_Call{Call: _e.mock.On("LRem", ctx, key, count, value)}
 }
 
 func (_c *MockPipeliner_LRem_Call) Run(run func(ctx context.Context, key string, count int64, value interface{})) *MockPipeliner_LRem_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -14614,17 +19076,38 @@ type MockPipeliner_LSet_Call struct {
 }
 
 // LSet is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - index
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - index int64
+//   - value interface{}
 func (_e *MockPipeliner_Expecter) LSet(ctx interface{}, key interface{}, index interface{}, value interface{}) *MockPipeliner_LSet_Call {
 	return &MockPipeliner_LSet_Call{Call: _e.mock.On("LSet", ctx, key, index, value)}
 }
 
 func (_c *MockPipeliner_LSet_Call) Run(run func(ctx context.Context, key string, index int64, value interface{})) *MockPipeliner_LSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -14664,17 +19147,38 @@ type MockPipeliner_LTrim_Call struct {
 }
 
 // LTrim is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - start
-//   - stop
+//   - ctx context.Context
+//   - key string
+//   - start int64
+//   - stop int64
 func (_e *MockPipeliner_Expecter) LTrim(ctx interface{}, key interface{}, start interface{}, stop interface{}) *MockPipeliner_LTrim_Call {
 	return &MockPipeliner_LTrim_Call{Call: _e.mock.On("LTrim", ctx, key, start, stop)}
 }
 
 func (_c *MockPipeliner_LTrim_Call) Run(run func(ctx context.Context, key string, start int64, stop int64)) *MockPipeliner_LTrim_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -14714,14 +19218,20 @@ type MockPipeliner_LastSave_Call struct {
 }
 
 // LastSave is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) LastSave(ctx interface{}) *MockPipeliner_LastSave_Call {
 	return &MockPipeliner_LastSave_Call{Call: _e.mock.On("LastSave", ctx)}
 }
 
 func (_c *MockPipeliner_LastSave_Call) Run(run func(ctx context.Context)) *MockPipeliner_LastSave_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -14811,8 +19321,8 @@ type MockPipeliner_MGet_Call struct {
 }
 
 // MGet is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) MGet(ctx interface{}, keys ...interface{}) *MockPipeliner_MGet_Call {
 	return &MockPipeliner_MGet_Call{Call: _e.mock.On("MGet",
 		append([]interface{}{ctx}, keys...)...)}
@@ -14820,8 +19330,20 @@ func (_e *MockPipeliner_Expecter) MGet(ctx interface{}, keys ...interface{}) *Mo
 
 func (_c *MockPipeliner_MGet_Call) Run(run func(ctx context.Context, keys ...string)) *MockPipeliner_MGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -14867,8 +19389,8 @@ type MockPipeliner_MSet_Call struct {
 }
 
 // MSet is a helper method to define mock.On call
-//   - ctx
-//   - values
+//   - ctx context.Context
+//   - values ...interface{}
 func (_e *MockPipeliner_Expecter) MSet(ctx interface{}, values ...interface{}) *MockPipeliner_MSet_Call {
 	return &MockPipeliner_MSet_Call{Call: _e.mock.On("MSet",
 		append([]interface{}{ctx}, values...)...)}
@@ -14876,8 +19398,20 @@ func (_e *MockPipeliner_Expecter) MSet(ctx interface{}, values ...interface{}) *
 
 func (_c *MockPipeliner_MSet_Call) Run(run func(ctx context.Context, values ...interface{})) *MockPipeliner_MSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]interface{})
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 1 {
+			variadicArgs = args[1].([]interface{})
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -14923,8 +19457,8 @@ type MockPipeliner_MSetNX_Call struct {
 }
 
 // MSetNX is a helper method to define mock.On call
-//   - ctx
-//   - values
+//   - ctx context.Context
+//   - values ...interface{}
 func (_e *MockPipeliner_Expecter) MSetNX(ctx interface{}, values ...interface{}) *MockPipeliner_MSetNX_Call {
 	return &MockPipeliner_MSetNX_Call{Call: _e.mock.On("MSetNX",
 		append([]interface{}{ctx}, values...)...)}
@@ -14932,8 +19466,20 @@ func (_e *MockPipeliner_Expecter) MSetNX(ctx interface{}, values ...interface{})
 
 func (_c *MockPipeliner_MSetNX_Call) Run(run func(ctx context.Context, values ...interface{})) *MockPipeliner_MSetNX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]interface{})
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 1 {
+			variadicArgs = args[1].([]interface{})
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -14979,9 +19525,9 @@ type MockPipeliner_MemoryUsage_Call struct {
 }
 
 // MemoryUsage is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - samples
+//   - ctx context.Context
+//   - key string
+//   - samples ...int
 func (_e *MockPipeliner_Expecter) MemoryUsage(ctx interface{}, key interface{}, samples ...interface{}) *MockPipeliner_MemoryUsage_Call {
 	return &MockPipeliner_MemoryUsage_Call{Call: _e.mock.On("MemoryUsage",
 		append([]interface{}{ctx, key}, samples...)...)}
@@ -14989,8 +19535,25 @@ func (_e *MockPipeliner_Expecter) MemoryUsage(ctx interface{}, key interface{}, 
 
 func (_c *MockPipeliner_MemoryUsage_Call) Run(run func(ctx context.Context, key string, samples ...int)) *MockPipeliner_MemoryUsage_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]int)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []int
+		var variadicArgs []int
+		if len(args) > 2 {
+			variadicArgs = args[2].([]int)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -15030,19 +19593,50 @@ type MockPipeliner_Migrate_Call struct {
 }
 
 // Migrate is a helper method to define mock.On call
-//   - ctx
-//   - host
-//   - port
-//   - key
-//   - db
-//   - timeout
+//   - ctx context.Context
+//   - host string
+//   - port string
+//   - key string
+//   - db int
+//   - timeout time.Duration
 func (_e *MockPipeliner_Expecter) Migrate(ctx interface{}, host interface{}, port interface{}, key interface{}, db interface{}, timeout interface{}) *MockPipeliner_Migrate_Call {
 	return &MockPipeliner_Migrate_Call{Call: _e.mock.On("Migrate", ctx, host, port, key, db, timeout)}
 }
 
 func (_c *MockPipeliner_Migrate_Call) Run(run func(ctx context.Context, host string, port string, key string, db int, timeout time.Duration)) *MockPipeliner_Migrate_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string), args[4].(int), args[5].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 int
+		if args[4] != nil {
+			arg4 = args[4].(int)
+		}
+		var arg5 time.Duration
+		if args[5] != nil {
+			arg5 = args[5].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+			arg5,
+		)
 	})
 	return _c
 }
@@ -15082,15 +19676,26 @@ type MockPipeliner_ModuleLoadex_Call struct {
 }
 
 // ModuleLoadex is a helper method to define mock.On call
-//   - ctx
-//   - conf
+//   - ctx context.Context
+//   - conf *redis.ModuleLoadexConfig
 func (_e *MockPipeliner_Expecter) ModuleLoadex(ctx interface{}, conf interface{}) *MockPipeliner_ModuleLoadex_Call {
 	return &MockPipeliner_ModuleLoadex_Call{Call: _e.mock.On("ModuleLoadex", ctx, conf)}
 }
 
 func (_c *MockPipeliner_ModuleLoadex_Call) Run(run func(ctx context.Context, conf *redis.ModuleLoadexConfig)) *MockPipeliner_ModuleLoadex_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.ModuleLoadexConfig))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.ModuleLoadexConfig
+		if args[1] != nil {
+			arg1 = args[1].(*redis.ModuleLoadexConfig)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -15130,16 +19735,32 @@ type MockPipeliner_Move_Call struct {
 }
 
 // Move is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - db
+//   - ctx context.Context
+//   - key string
+//   - db int
 func (_e *MockPipeliner_Expecter) Move(ctx interface{}, key interface{}, db interface{}) *MockPipeliner_Move_Call {
 	return &MockPipeliner_Move_Call{Call: _e.mock.On("Move", ctx, key, db)}
 }
 
 func (_c *MockPipeliner_Move_Call) Run(run func(ctx context.Context, key string, db int)) *MockPipeliner_Move_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -15179,15 +19800,26 @@ type MockPipeliner_ObjectEncoding_Call struct {
 }
 
 // ObjectEncoding is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) ObjectEncoding(ctx interface{}, key interface{}) *MockPipeliner_ObjectEncoding_Call {
 	return &MockPipeliner_ObjectEncoding_Call{Call: _e.mock.On("ObjectEncoding", ctx, key)}
 }
 
 func (_c *MockPipeliner_ObjectEncoding_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_ObjectEncoding_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -15227,15 +19859,26 @@ type MockPipeliner_ObjectFreq_Call struct {
 }
 
 // ObjectFreq is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) ObjectFreq(ctx interface{}, key interface{}) *MockPipeliner_ObjectFreq_Call {
 	return &MockPipeliner_ObjectFreq_Call{Call: _e.mock.On("ObjectFreq", ctx, key)}
 }
 
 func (_c *MockPipeliner_ObjectFreq_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_ObjectFreq_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -15275,15 +19918,26 @@ type MockPipeliner_ObjectIdleTime_Call struct {
 }
 
 // ObjectIdleTime is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) ObjectIdleTime(ctx interface{}, key interface{}) *MockPipeliner_ObjectIdleTime_Call {
 	return &MockPipeliner_ObjectIdleTime_Call{Call: _e.mock.On("ObjectIdleTime", ctx, key)}
 }
 
 func (_c *MockPipeliner_ObjectIdleTime_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_ObjectIdleTime_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -15323,15 +19977,26 @@ type MockPipeliner_ObjectRefCount_Call struct {
 }
 
 // ObjectRefCount is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) ObjectRefCount(ctx interface{}, key interface{}) *MockPipeliner_ObjectRefCount_Call {
 	return &MockPipeliner_ObjectRefCount_Call{Call: _e.mock.On("ObjectRefCount", ctx, key)}
 }
 
 func (_c *MockPipeliner_ObjectRefCount_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_ObjectRefCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -15371,16 +20036,32 @@ type MockPipeliner_PExpire_Call struct {
 }
 
 // PExpire is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
 func (_e *MockPipeliner_Expecter) PExpire(ctx interface{}, key interface{}, expiration interface{}) *MockPipeliner_PExpire_Call {
 	return &MockPipeliner_PExpire_Call{Call: _e.mock.On("PExpire", ctx, key, expiration)}
 }
 
 func (_c *MockPipeliner_PExpire_Call) Run(run func(ctx context.Context, key string, expiration time.Duration)) *MockPipeliner_PExpire_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -15420,16 +20101,32 @@ type MockPipeliner_PExpireAt_Call struct {
 }
 
 // PExpireAt is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - tm
+//   - ctx context.Context
+//   - key string
+//   - tm time.Time
 func (_e *MockPipeliner_Expecter) PExpireAt(ctx interface{}, key interface{}, tm interface{}) *MockPipeliner_PExpireAt_Call {
 	return &MockPipeliner_PExpireAt_Call{Call: _e.mock.On("PExpireAt", ctx, key, tm)}
 }
 
 func (_c *MockPipeliner_PExpireAt_Call) Run(run func(ctx context.Context, key string, tm time.Time)) *MockPipeliner_PExpireAt_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Time))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Time
+		if args[2] != nil {
+			arg2 = args[2].(time.Time)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -15469,15 +20166,26 @@ type MockPipeliner_PExpireTime_Call struct {
 }
 
 // PExpireTime is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) PExpireTime(ctx interface{}, key interface{}) *MockPipeliner_PExpireTime_Call {
 	return &MockPipeliner_PExpireTime_Call{Call: _e.mock.On("PExpireTime", ctx, key)}
 }
 
 func (_c *MockPipeliner_PExpireTime_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_PExpireTime_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -15523,9 +20231,9 @@ type MockPipeliner_PFAdd_Call struct {
 }
 
 // PFAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - els
+//   - ctx context.Context
+//   - key string
+//   - els ...interface{}
 func (_e *MockPipeliner_Expecter) PFAdd(ctx interface{}, key interface{}, els ...interface{}) *MockPipeliner_PFAdd_Call {
 	return &MockPipeliner_PFAdd_Call{Call: _e.mock.On("PFAdd",
 		append([]interface{}{ctx, key}, els...)...)}
@@ -15533,8 +20241,25 @@ func (_e *MockPipeliner_Expecter) PFAdd(ctx interface{}, key interface{}, els ..
 
 func (_c *MockPipeliner_PFAdd_Call) Run(run func(ctx context.Context, key string, els ...interface{})) *MockPipeliner_PFAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -15580,8 +20305,8 @@ type MockPipeliner_PFCount_Call struct {
 }
 
 // PFCount is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) PFCount(ctx interface{}, keys ...interface{}) *MockPipeliner_PFCount_Call {
 	return &MockPipeliner_PFCount_Call{Call: _e.mock.On("PFCount",
 		append([]interface{}{ctx}, keys...)...)}
@@ -15589,8 +20314,20 @@ func (_e *MockPipeliner_Expecter) PFCount(ctx interface{}, keys ...interface{}) 
 
 func (_c *MockPipeliner_PFCount_Call) Run(run func(ctx context.Context, keys ...string)) *MockPipeliner_PFCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -15636,9 +20373,9 @@ type MockPipeliner_PFMerge_Call struct {
 }
 
 // PFMerge is a helper method to define mock.On call
-//   - ctx
-//   - dest
-//   - keys
+//   - ctx context.Context
+//   - dest string
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) PFMerge(ctx interface{}, dest interface{}, keys ...interface{}) *MockPipeliner_PFMerge_Call {
 	return &MockPipeliner_PFMerge_Call{Call: _e.mock.On("PFMerge",
 		append([]interface{}{ctx, dest}, keys...)...)}
@@ -15646,8 +20383,25 @@ func (_e *MockPipeliner_Expecter) PFMerge(ctx interface{}, dest interface{}, key
 
 func (_c *MockPipeliner_PFMerge_Call) Run(run func(ctx context.Context, dest string, keys ...string)) *MockPipeliner_PFMerge_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -15687,15 +20441,26 @@ type MockPipeliner_PTTL_Call struct {
 }
 
 // PTTL is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) PTTL(ctx interface{}, key interface{}) *MockPipeliner_PTTL_Call {
 	return &MockPipeliner_PTTL_Call{Call: _e.mock.On("PTTL", ctx, key)}
 }
 
 func (_c *MockPipeliner_PTTL_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_PTTL_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -15735,15 +20500,26 @@ type MockPipeliner_Persist_Call struct {
 }
 
 // Persist is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) Persist(ctx interface{}, key interface{}) *MockPipeliner_Persist_Call {
 	return &MockPipeliner_Persist_Call{Call: _e.mock.On("Persist", ctx, key)}
 }
 
 func (_c *MockPipeliner_Persist_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_Persist_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -15783,14 +20559,20 @@ type MockPipeliner_Ping_Call struct {
 }
 
 // Ping is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) Ping(ctx interface{}) *MockPipeliner_Ping_Call {
 	return &MockPipeliner_Ping_Call{Call: _e.mock.On("Ping", ctx)}
 }
 
 func (_c *MockPipeliner_Ping_Call) Run(run func(ctx context.Context)) *MockPipeliner_Ping_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -15885,15 +20667,26 @@ type MockPipeliner_Pipelined_Call struct {
 }
 
 // Pipelined is a helper method to define mock.On call
-//   - ctx
-//   - fn
+//   - ctx context.Context
+//   - fn func(redis.Pipeliner) error
 func (_e *MockPipeliner_Expecter) Pipelined(ctx interface{}, fn interface{}) *MockPipeliner_Pipelined_Call {
 	return &MockPipeliner_Pipelined_Call{Call: _e.mock.On("Pipelined", ctx, fn)}
 }
 
 func (_c *MockPipeliner_Pipelined_Call) Run(run func(ctx context.Context, fn func(redis.Pipeliner) error)) *MockPipeliner_Pipelined_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(func(redis.Pipeliner) error))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 func(redis.Pipeliner) error
+		if args[1] != nil {
+			arg1 = args[1].(func(redis.Pipeliner) error)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -15931,15 +20724,26 @@ type MockPipeliner_Process_Call struct {
 }
 
 // Process is a helper method to define mock.On call
-//   - ctx
-//   - cmd
+//   - ctx context.Context
+//   - cmd redis.Cmder
 func (_e *MockPipeliner_Expecter) Process(ctx interface{}, cmd interface{}) *MockPipeliner_Process_Call {
 	return &MockPipeliner_Process_Call{Call: _e.mock.On("Process", ctx, cmd)}
 }
 
 func (_c *MockPipeliner_Process_Call) Run(run func(ctx context.Context, cmd redis.Cmder)) *MockPipeliner_Process_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(redis.Cmder))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 redis.Cmder
+		if args[1] != nil {
+			arg1 = args[1].(redis.Cmder)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -15979,15 +20783,26 @@ type MockPipeliner_PubSubChannels_Call struct {
 }
 
 // PubSubChannels is a helper method to define mock.On call
-//   - ctx
-//   - pattern
+//   - ctx context.Context
+//   - pattern string
 func (_e *MockPipeliner_Expecter) PubSubChannels(ctx interface{}, pattern interface{}) *MockPipeliner_PubSubChannels_Call {
 	return &MockPipeliner_PubSubChannels_Call{Call: _e.mock.On("PubSubChannels", ctx, pattern)}
 }
 
 func (_c *MockPipeliner_PubSubChannels_Call) Run(run func(ctx context.Context, pattern string)) *MockPipeliner_PubSubChannels_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -16027,14 +20842,20 @@ type MockPipeliner_PubSubNumPat_Call struct {
 }
 
 // PubSubNumPat is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) PubSubNumPat(ctx interface{}) *MockPipeliner_PubSubNumPat_Call {
 	return &MockPipeliner_PubSubNumPat_Call{Call: _e.mock.On("PubSubNumPat", ctx)}
 }
 
 func (_c *MockPipeliner_PubSubNumPat_Call) Run(run func(ctx context.Context)) *MockPipeliner_PubSubNumPat_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -16080,8 +20901,8 @@ type MockPipeliner_PubSubNumSub_Call struct {
 }
 
 // PubSubNumSub is a helper method to define mock.On call
-//   - ctx
-//   - channels
+//   - ctx context.Context
+//   - channels ...string
 func (_e *MockPipeliner_Expecter) PubSubNumSub(ctx interface{}, channels ...interface{}) *MockPipeliner_PubSubNumSub_Call {
 	return &MockPipeliner_PubSubNumSub_Call{Call: _e.mock.On("PubSubNumSub",
 		append([]interface{}{ctx}, channels...)...)}
@@ -16089,8 +20910,20 @@ func (_e *MockPipeliner_Expecter) PubSubNumSub(ctx interface{}, channels ...inte
 
 func (_c *MockPipeliner_PubSubNumSub_Call) Run(run func(ctx context.Context, channels ...string)) *MockPipeliner_PubSubNumSub_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -16130,15 +20963,26 @@ type MockPipeliner_PubSubShardChannels_Call struct {
 }
 
 // PubSubShardChannels is a helper method to define mock.On call
-//   - ctx
-//   - pattern
+//   - ctx context.Context
+//   - pattern string
 func (_e *MockPipeliner_Expecter) PubSubShardChannels(ctx interface{}, pattern interface{}) *MockPipeliner_PubSubShardChannels_Call {
 	return &MockPipeliner_PubSubShardChannels_Call{Call: _e.mock.On("PubSubShardChannels", ctx, pattern)}
 }
 
 func (_c *MockPipeliner_PubSubShardChannels_Call) Run(run func(ctx context.Context, pattern string)) *MockPipeliner_PubSubShardChannels_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -16184,8 +21028,8 @@ type MockPipeliner_PubSubShardNumSub_Call struct {
 }
 
 // PubSubShardNumSub is a helper method to define mock.On call
-//   - ctx
-//   - channels
+//   - ctx context.Context
+//   - channels ...string
 func (_e *MockPipeliner_Expecter) PubSubShardNumSub(ctx interface{}, channels ...interface{}) *MockPipeliner_PubSubShardNumSub_Call {
 	return &MockPipeliner_PubSubShardNumSub_Call{Call: _e.mock.On("PubSubShardNumSub",
 		append([]interface{}{ctx}, channels...)...)}
@@ -16193,8 +21037,20 @@ func (_e *MockPipeliner_Expecter) PubSubShardNumSub(ctx interface{}, channels ..
 
 func (_c *MockPipeliner_PubSubShardNumSub_Call) Run(run func(ctx context.Context, channels ...string)) *MockPipeliner_PubSubShardNumSub_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -16234,16 +21090,32 @@ type MockPipeliner_Publish_Call struct {
 }
 
 // Publish is a helper method to define mock.On call
-//   - ctx
-//   - channel
-//   - message
+//   - ctx context.Context
+//   - channel string
+//   - message interface{}
 func (_e *MockPipeliner_Expecter) Publish(ctx interface{}, channel interface{}, message interface{}) *MockPipeliner_Publish_Call {
 	return &MockPipeliner_Publish_Call{Call: _e.mock.On("Publish", ctx, channel, message)}
 }
 
 func (_c *MockPipeliner_Publish_Call) Run(run func(ctx context.Context, channel string, message interface{})) *MockPipeliner_Publish_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -16283,14 +21155,20 @@ type MockPipeliner_Quit_Call struct {
 }
 
 // Quit is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) Quit(ctx interface{}) *MockPipeliner_Quit_Call {
 	return &MockPipeliner_Quit_Call{Call: _e.mock.On("Quit", ctx)}
 }
 
 func (_c *MockPipeliner_Quit_Call) Run(run func(ctx context.Context)) *MockPipeliner_Quit_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -16330,15 +21208,26 @@ type MockPipeliner_RPop_Call struct {
 }
 
 // RPop is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) RPop(ctx interface{}, key interface{}) *MockPipeliner_RPop_Call {
 	return &MockPipeliner_RPop_Call{Call: _e.mock.On("RPop", ctx, key)}
 }
 
 func (_c *MockPipeliner_RPop_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_RPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -16378,16 +21267,32 @@ type MockPipeliner_RPopCount_Call struct {
 }
 
 // RPopCount is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count int
 func (_e *MockPipeliner_Expecter) RPopCount(ctx interface{}, key interface{}, count interface{}) *MockPipeliner_RPopCount_Call {
 	return &MockPipeliner_RPopCount_Call{Call: _e.mock.On("RPopCount", ctx, key, count)}
 }
 
 func (_c *MockPipeliner_RPopCount_Call) Run(run func(ctx context.Context, key string, count int)) *MockPipeliner_RPopCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -16427,16 +21332,32 @@ type MockPipeliner_RPopLPush_Call struct {
 }
 
 // RPopLPush is a helper method to define mock.On call
-//   - ctx
-//   - source
-//   - destination
+//   - ctx context.Context
+//   - source string
+//   - destination string
 func (_e *MockPipeliner_Expecter) RPopLPush(ctx interface{}, source interface{}, destination interface{}) *MockPipeliner_RPopLPush_Call {
 	return &MockPipeliner_RPopLPush_Call{Call: _e.mock.On("RPopLPush", ctx, source, destination)}
 }
 
 func (_c *MockPipeliner_RPopLPush_Call) Run(run func(ctx context.Context, source string, destination string)) *MockPipeliner_RPopLPush_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -16482,9 +21403,9 @@ type MockPipeliner_RPush_Call struct {
 }
 
 // RPush is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
 func (_e *MockPipeliner_Expecter) RPush(ctx interface{}, key interface{}, values ...interface{}) *MockPipeliner_RPush_Call {
 	return &MockPipeliner_RPush_Call{Call: _e.mock.On("RPush",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -16492,8 +21413,25 @@ func (_e *MockPipeliner_Expecter) RPush(ctx interface{}, key interface{}, values
 
 func (_c *MockPipeliner_RPush_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockPipeliner_RPush_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -16539,9 +21477,9 @@ type MockPipeliner_RPushX_Call struct {
 }
 
 // RPushX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
 func (_e *MockPipeliner_Expecter) RPushX(ctx interface{}, key interface{}, values ...interface{}) *MockPipeliner_RPushX_Call {
 	return &MockPipeliner_RPushX_Call{Call: _e.mock.On("RPushX",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -16549,8 +21487,25 @@ func (_e *MockPipeliner_Expecter) RPushX(ctx interface{}, key interface{}, value
 
 func (_c *MockPipeliner_RPushX_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockPipeliner_RPushX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -16590,14 +21545,20 @@ type MockPipeliner_RandomKey_Call struct {
 }
 
 // RandomKey is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) RandomKey(ctx interface{}) *MockPipeliner_RandomKey_Call {
 	return &MockPipeliner_RandomKey_Call{Call: _e.mock.On("RandomKey", ctx)}
 }
 
 func (_c *MockPipeliner_RandomKey_Call) Run(run func(ctx context.Context)) *MockPipeliner_RandomKey_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -16637,14 +21598,20 @@ type MockPipeliner_ReadOnly_Call struct {
 }
 
 // ReadOnly is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ReadOnly(ctx interface{}) *MockPipeliner_ReadOnly_Call {
 	return &MockPipeliner_ReadOnly_Call{Call: _e.mock.On("ReadOnly", ctx)}
 }
 
 func (_c *MockPipeliner_ReadOnly_Call) Run(run func(ctx context.Context)) *MockPipeliner_ReadOnly_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -16684,14 +21651,20 @@ type MockPipeliner_ReadWrite_Call struct {
 }
 
 // ReadWrite is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ReadWrite(ctx interface{}) *MockPipeliner_ReadWrite_Call {
 	return &MockPipeliner_ReadWrite_Call{Call: _e.mock.On("ReadWrite", ctx)}
 }
 
 func (_c *MockPipeliner_ReadWrite_Call) Run(run func(ctx context.Context)) *MockPipeliner_ReadWrite_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -16731,16 +21704,32 @@ type MockPipeliner_Rename_Call struct {
 }
 
 // Rename is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - newkey
+//   - ctx context.Context
+//   - key string
+//   - newkey string
 func (_e *MockPipeliner_Expecter) Rename(ctx interface{}, key interface{}, newkey interface{}) *MockPipeliner_Rename_Call {
 	return &MockPipeliner_Rename_Call{Call: _e.mock.On("Rename", ctx, key, newkey)}
 }
 
 func (_c *MockPipeliner_Rename_Call) Run(run func(ctx context.Context, key string, newkey string)) *MockPipeliner_Rename_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -16780,16 +21769,32 @@ type MockPipeliner_RenameNX_Call struct {
 }
 
 // RenameNX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - newkey
+//   - ctx context.Context
+//   - key string
+//   - newkey string
 func (_e *MockPipeliner_Expecter) RenameNX(ctx interface{}, key interface{}, newkey interface{}) *MockPipeliner_RenameNX_Call {
 	return &MockPipeliner_RenameNX_Call{Call: _e.mock.On("RenameNX", ctx, key, newkey)}
 }
 
 func (_c *MockPipeliner_RenameNX_Call) Run(run func(ctx context.Context, key string, newkey string)) *MockPipeliner_RenameNX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -16829,17 +21834,38 @@ type MockPipeliner_Restore_Call struct {
 }
 
 // Restore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - ttl
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - ttl time.Duration
+//   - value string
 func (_e *MockPipeliner_Expecter) Restore(ctx interface{}, key interface{}, ttl interface{}, value interface{}) *MockPipeliner_Restore_Call {
 	return &MockPipeliner_Restore_Call{Call: _e.mock.On("Restore", ctx, key, ttl, value)}
 }
 
 func (_c *MockPipeliner_Restore_Call) Run(run func(ctx context.Context, key string, ttl time.Duration, value string)) *MockPipeliner_Restore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -16879,17 +21905,38 @@ type MockPipeliner_RestoreReplace_Call struct {
 }
 
 // RestoreReplace is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - ttl
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - ttl time.Duration
+//   - value string
 func (_e *MockPipeliner_Expecter) RestoreReplace(ctx interface{}, key interface{}, ttl interface{}, value interface{}) *MockPipeliner_RestoreReplace_Call {
 	return &MockPipeliner_RestoreReplace_Call{Call: _e.mock.On("RestoreReplace", ctx, key, ttl, value)}
 }
 
 func (_c *MockPipeliner_RestoreReplace_Call) Run(run func(ctx context.Context, key string, ttl time.Duration, value string)) *MockPipeliner_RestoreReplace_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -16935,9 +21982,9 @@ type MockPipeliner_SAdd_Call struct {
 }
 
 // SAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...interface{}
 func (_e *MockPipeliner_Expecter) SAdd(ctx interface{}, key interface{}, members ...interface{}) *MockPipeliner_SAdd_Call {
 	return &MockPipeliner_SAdd_Call{Call: _e.mock.On("SAdd",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -16945,8 +21992,25 @@ func (_e *MockPipeliner_Expecter) SAdd(ctx interface{}, key interface{}, members
 
 func (_c *MockPipeliner_SAdd_Call) Run(run func(ctx context.Context, key string, members ...interface{})) *MockPipeliner_SAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -16986,15 +22050,26 @@ type MockPipeliner_SCard_Call struct {
 }
 
 // SCard is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) SCard(ctx interface{}, key interface{}) *MockPipeliner_SCard_Call {
 	return &MockPipeliner_SCard_Call{Call: _e.mock.On("SCard", ctx, key)}
 }
 
 func (_c *MockPipeliner_SCard_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_SCard_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -17040,8 +22115,8 @@ type MockPipeliner_SDiff_Call struct {
 }
 
 // SDiff is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) SDiff(ctx interface{}, keys ...interface{}) *MockPipeliner_SDiff_Call {
 	return &MockPipeliner_SDiff_Call{Call: _e.mock.On("SDiff",
 		append([]interface{}{ctx}, keys...)...)}
@@ -17049,8 +22124,20 @@ func (_e *MockPipeliner_Expecter) SDiff(ctx interface{}, keys ...interface{}) *M
 
 func (_c *MockPipeliner_SDiff_Call) Run(run func(ctx context.Context, keys ...string)) *MockPipeliner_SDiff_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -17096,9 +22183,9 @@ type MockPipeliner_SDiffStore_Call struct {
 }
 
 // SDiffStore is a helper method to define mock.On call
-//   - ctx
-//   - destination
-//   - keys
+//   - ctx context.Context
+//   - destination string
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) SDiffStore(ctx interface{}, destination interface{}, keys ...interface{}) *MockPipeliner_SDiffStore_Call {
 	return &MockPipeliner_SDiffStore_Call{Call: _e.mock.On("SDiffStore",
 		append([]interface{}{ctx, destination}, keys...)...)}
@@ -17106,8 +22193,25 @@ func (_e *MockPipeliner_Expecter) SDiffStore(ctx interface{}, destination interf
 
 func (_c *MockPipeliner_SDiffStore_Call) Run(run func(ctx context.Context, destination string, keys ...string)) *MockPipeliner_SDiffStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -17153,8 +22257,8 @@ type MockPipeliner_SInter_Call struct {
 }
 
 // SInter is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) SInter(ctx interface{}, keys ...interface{}) *MockPipeliner_SInter_Call {
 	return &MockPipeliner_SInter_Call{Call: _e.mock.On("SInter",
 		append([]interface{}{ctx}, keys...)...)}
@@ -17162,8 +22266,20 @@ func (_e *MockPipeliner_Expecter) SInter(ctx interface{}, keys ...interface{}) *
 
 func (_c *MockPipeliner_SInter_Call) Run(run func(ctx context.Context, keys ...string)) *MockPipeliner_SInter_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -17209,9 +22325,9 @@ type MockPipeliner_SInterCard_Call struct {
 }
 
 // SInterCard is a helper method to define mock.On call
-//   - ctx
-//   - limit
-//   - keys
+//   - ctx context.Context
+//   - limit int64
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) SInterCard(ctx interface{}, limit interface{}, keys ...interface{}) *MockPipeliner_SInterCard_Call {
 	return &MockPipeliner_SInterCard_Call{Call: _e.mock.On("SInterCard",
 		append([]interface{}{ctx, limit}, keys...)...)}
@@ -17219,8 +22335,25 @@ func (_e *MockPipeliner_Expecter) SInterCard(ctx interface{}, limit interface{},
 
 func (_c *MockPipeliner_SInterCard_Call) Run(run func(ctx context.Context, limit int64, keys ...string)) *MockPipeliner_SInterCard_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(int64), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int64
+		if args[1] != nil {
+			arg1 = args[1].(int64)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -17266,9 +22399,9 @@ type MockPipeliner_SInterStore_Call struct {
 }
 
 // SInterStore is a helper method to define mock.On call
-//   - ctx
-//   - destination
-//   - keys
+//   - ctx context.Context
+//   - destination string
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) SInterStore(ctx interface{}, destination interface{}, keys ...interface{}) *MockPipeliner_SInterStore_Call {
 	return &MockPipeliner_SInterStore_Call{Call: _e.mock.On("SInterStore",
 		append([]interface{}{ctx, destination}, keys...)...)}
@@ -17276,8 +22409,25 @@ func (_e *MockPipeliner_Expecter) SInterStore(ctx interface{}, destination inter
 
 func (_c *MockPipeliner_SInterStore_Call) Run(run func(ctx context.Context, destination string, keys ...string)) *MockPipeliner_SInterStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -17317,16 +22467,32 @@ type MockPipeliner_SIsMember_Call struct {
 }
 
 // SIsMember is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - member
+//   - ctx context.Context
+//   - key string
+//   - member interface{}
 func (_e *MockPipeliner_Expecter) SIsMember(ctx interface{}, key interface{}, member interface{}) *MockPipeliner_SIsMember_Call {
 	return &MockPipeliner_SIsMember_Call{Call: _e.mock.On("SIsMember", ctx, key, member)}
 }
 
 func (_c *MockPipeliner_SIsMember_Call) Run(run func(ctx context.Context, key string, member interface{})) *MockPipeliner_SIsMember_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -17372,9 +22538,9 @@ type MockPipeliner_SMIsMember_Call struct {
 }
 
 // SMIsMember is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...interface{}
 func (_e *MockPipeliner_Expecter) SMIsMember(ctx interface{}, key interface{}, members ...interface{}) *MockPipeliner_SMIsMember_Call {
 	return &MockPipeliner_SMIsMember_Call{Call: _e.mock.On("SMIsMember",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -17382,8 +22548,25 @@ func (_e *MockPipeliner_Expecter) SMIsMember(ctx interface{}, key interface{}, m
 
 func (_c *MockPipeliner_SMIsMember_Call) Run(run func(ctx context.Context, key string, members ...interface{})) *MockPipeliner_SMIsMember_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -17423,15 +22606,26 @@ type MockPipeliner_SMembers_Call struct {
 }
 
 // SMembers is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) SMembers(ctx interface{}, key interface{}) *MockPipeliner_SMembers_Call {
 	return &MockPipeliner_SMembers_Call{Call: _e.mock.On("SMembers", ctx, key)}
 }
 
 func (_c *MockPipeliner_SMembers_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_SMembers_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -17471,15 +22665,26 @@ type MockPipeliner_SMembersMap_Call struct {
 }
 
 // SMembersMap is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) SMembersMap(ctx interface{}, key interface{}) *MockPipeliner_SMembersMap_Call {
 	return &MockPipeliner_SMembersMap_Call{Call: _e.mock.On("SMembersMap", ctx, key)}
 }
 
 func (_c *MockPipeliner_SMembersMap_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_SMembersMap_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -17519,17 +22724,38 @@ type MockPipeliner_SMove_Call struct {
 }
 
 // SMove is a helper method to define mock.On call
-//   - ctx
-//   - source
-//   - destination
-//   - member
+//   - ctx context.Context
+//   - source string
+//   - destination string
+//   - member interface{}
 func (_e *MockPipeliner_Expecter) SMove(ctx interface{}, source interface{}, destination interface{}, member interface{}) *MockPipeliner_SMove_Call {
 	return &MockPipeliner_SMove_Call{Call: _e.mock.On("SMove", ctx, source, destination, member)}
 }
 
 func (_c *MockPipeliner_SMove_Call) Run(run func(ctx context.Context, source string, destination string, member interface{})) *MockPipeliner_SMove_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -17569,15 +22795,26 @@ type MockPipeliner_SPop_Call struct {
 }
 
 // SPop is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) SPop(ctx interface{}, key interface{}) *MockPipeliner_SPop_Call {
 	return &MockPipeliner_SPop_Call{Call: _e.mock.On("SPop", ctx, key)}
 }
 
 func (_c *MockPipeliner_SPop_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_SPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -17617,16 +22854,32 @@ type MockPipeliner_SPopN_Call struct {
 }
 
 // SPopN is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count int64
 func (_e *MockPipeliner_Expecter) SPopN(ctx interface{}, key interface{}, count interface{}) *MockPipeliner_SPopN_Call {
 	return &MockPipeliner_SPopN_Call{Call: _e.mock.On("SPopN", ctx, key, count)}
 }
 
 func (_c *MockPipeliner_SPopN_Call) Run(run func(ctx context.Context, key string, count int64)) *MockPipeliner_SPopN_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -17666,16 +22919,32 @@ type MockPipeliner_SPublish_Call struct {
 }
 
 // SPublish is a helper method to define mock.On call
-//   - ctx
-//   - channel
-//   - message
+//   - ctx context.Context
+//   - channel string
+//   - message interface{}
 func (_e *MockPipeliner_Expecter) SPublish(ctx interface{}, channel interface{}, message interface{}) *MockPipeliner_SPublish_Call {
 	return &MockPipeliner_SPublish_Call{Call: _e.mock.On("SPublish", ctx, channel, message)}
 }
 
 func (_c *MockPipeliner_SPublish_Call) Run(run func(ctx context.Context, channel string, message interface{})) *MockPipeliner_SPublish_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -17715,15 +22984,26 @@ type MockPipeliner_SRandMember_Call struct {
 }
 
 // SRandMember is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) SRandMember(ctx interface{}, key interface{}) *MockPipeliner_SRandMember_Call {
 	return &MockPipeliner_SRandMember_Call{Call: _e.mock.On("SRandMember", ctx, key)}
 }
 
 func (_c *MockPipeliner_SRandMember_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_SRandMember_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -17763,16 +23043,32 @@ type MockPipeliner_SRandMemberN_Call struct {
 }
 
 // SRandMemberN is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count int64
 func (_e *MockPipeliner_Expecter) SRandMemberN(ctx interface{}, key interface{}, count interface{}) *MockPipeliner_SRandMemberN_Call {
 	return &MockPipeliner_SRandMemberN_Call{Call: _e.mock.On("SRandMemberN", ctx, key, count)}
 }
 
 func (_c *MockPipeliner_SRandMemberN_Call) Run(run func(ctx context.Context, key string, count int64)) *MockPipeliner_SRandMemberN_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -17818,9 +23114,9 @@ type MockPipeliner_SRem_Call struct {
 }
 
 // SRem is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...interface{}
 func (_e *MockPipeliner_Expecter) SRem(ctx interface{}, key interface{}, members ...interface{}) *MockPipeliner_SRem_Call {
 	return &MockPipeliner_SRem_Call{Call: _e.mock.On("SRem",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -17828,8 +23124,25 @@ func (_e *MockPipeliner_Expecter) SRem(ctx interface{}, key interface{}, members
 
 func (_c *MockPipeliner_SRem_Call) Run(run func(ctx context.Context, key string, members ...interface{})) *MockPipeliner_SRem_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -17869,18 +23182,44 @@ type MockPipeliner_SScan_Call struct {
 }
 
 // SScan is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - cursor
-//   - match
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - cursor uint64
+//   - match string
+//   - count int64
 func (_e *MockPipeliner_Expecter) SScan(ctx interface{}, key interface{}, cursor interface{}, match interface{}, count interface{}) *MockPipeliner_SScan_Call {
 	return &MockPipeliner_SScan_Call{Call: _e.mock.On("SScan", ctx, key, cursor, match, count)}
 }
 
 func (_c *MockPipeliner_SScan_Call) Run(run func(ctx context.Context, key string, cursor uint64, match string, count int64)) *MockPipeliner_SScan_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(uint64), args[3].(string), args[4].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 uint64
+		if args[2] != nil {
+			arg2 = args[2].(uint64)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -17926,8 +23265,8 @@ type MockPipeliner_SUnion_Call struct {
 }
 
 // SUnion is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) SUnion(ctx interface{}, keys ...interface{}) *MockPipeliner_SUnion_Call {
 	return &MockPipeliner_SUnion_Call{Call: _e.mock.On("SUnion",
 		append([]interface{}{ctx}, keys...)...)}
@@ -17935,8 +23274,20 @@ func (_e *MockPipeliner_Expecter) SUnion(ctx interface{}, keys ...interface{}) *
 
 func (_c *MockPipeliner_SUnion_Call) Run(run func(ctx context.Context, keys ...string)) *MockPipeliner_SUnion_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -17982,9 +23333,9 @@ type MockPipeliner_SUnionStore_Call struct {
 }
 
 // SUnionStore is a helper method to define mock.On call
-//   - ctx
-//   - destination
-//   - keys
+//   - ctx context.Context
+//   - destination string
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) SUnionStore(ctx interface{}, destination interface{}, keys ...interface{}) *MockPipeliner_SUnionStore_Call {
 	return &MockPipeliner_SUnionStore_Call{Call: _e.mock.On("SUnionStore",
 		append([]interface{}{ctx, destination}, keys...)...)}
@@ -17992,8 +23343,25 @@ func (_e *MockPipeliner_Expecter) SUnionStore(ctx interface{}, destination inter
 
 func (_c *MockPipeliner_SUnionStore_Call) Run(run func(ctx context.Context, destination string, keys ...string)) *MockPipeliner_SUnionStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -18033,14 +23401,20 @@ type MockPipeliner_Save_Call struct {
 }
 
 // Save is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) Save(ctx interface{}) *MockPipeliner_Save_Call {
 	return &MockPipeliner_Save_Call{Call: _e.mock.On("Save", ctx)}
 }
 
 func (_c *MockPipeliner_Save_Call) Run(run func(ctx context.Context)) *MockPipeliner_Save_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -18080,17 +23454,38 @@ type MockPipeliner_Scan_Call struct {
 }
 
 // Scan is a helper method to define mock.On call
-//   - ctx
-//   - cursor
-//   - match
-//   - count
+//   - ctx context.Context
+//   - cursor uint64
+//   - match string
+//   - count int64
 func (_e *MockPipeliner_Expecter) Scan(ctx interface{}, cursor interface{}, match interface{}, count interface{}) *MockPipeliner_Scan_Call {
 	return &MockPipeliner_Scan_Call{Call: _e.mock.On("Scan", ctx, cursor, match, count)}
 }
 
 func (_c *MockPipeliner_Scan_Call) Run(run func(ctx context.Context, cursor uint64, match string, count int64)) *MockPipeliner_Scan_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(uint64), args[2].(string), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 uint64
+		if args[1] != nil {
+			arg1 = args[1].(uint64)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -18130,18 +23525,44 @@ type MockPipeliner_ScanType_Call struct {
 }
 
 // ScanType is a helper method to define mock.On call
-//   - ctx
-//   - cursor
-//   - match
-//   - count
-//   - keyType
+//   - ctx context.Context
+//   - cursor uint64
+//   - match string
+//   - count int64
+//   - keyType string
 func (_e *MockPipeliner_Expecter) ScanType(ctx interface{}, cursor interface{}, match interface{}, count interface{}, keyType interface{}) *MockPipeliner_ScanType_Call {
 	return &MockPipeliner_ScanType_Call{Call: _e.mock.On("ScanType", ctx, cursor, match, count, keyType)}
 }
 
 func (_c *MockPipeliner_ScanType_Call) Run(run func(ctx context.Context, cursor uint64, match string, count int64, keyType string)) *MockPipeliner_ScanType_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(uint64), args[2].(string), args[3].(int64), args[4].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 uint64
+		if args[1] != nil {
+			arg1 = args[1].(uint64)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		var arg4 string
+		if args[4] != nil {
+			arg4 = args[4].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -18187,8 +23608,8 @@ type MockPipeliner_ScriptExists_Call struct {
 }
 
 // ScriptExists is a helper method to define mock.On call
-//   - ctx
-//   - hashes
+//   - ctx context.Context
+//   - hashes ...string
 func (_e *MockPipeliner_Expecter) ScriptExists(ctx interface{}, hashes ...interface{}) *MockPipeliner_ScriptExists_Call {
 	return &MockPipeliner_ScriptExists_Call{Call: _e.mock.On("ScriptExists",
 		append([]interface{}{ctx}, hashes...)...)}
@@ -18196,8 +23617,20 @@ func (_e *MockPipeliner_Expecter) ScriptExists(ctx interface{}, hashes ...interf
 
 func (_c *MockPipeliner_ScriptExists_Call) Run(run func(ctx context.Context, hashes ...string)) *MockPipeliner_ScriptExists_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -18237,14 +23670,20 @@ type MockPipeliner_ScriptFlush_Call struct {
 }
 
 // ScriptFlush is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ScriptFlush(ctx interface{}) *MockPipeliner_ScriptFlush_Call {
 	return &MockPipeliner_ScriptFlush_Call{Call: _e.mock.On("ScriptFlush", ctx)}
 }
 
 func (_c *MockPipeliner_ScriptFlush_Call) Run(run func(ctx context.Context)) *MockPipeliner_ScriptFlush_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -18284,14 +23723,20 @@ type MockPipeliner_ScriptKill_Call struct {
 }
 
 // ScriptKill is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ScriptKill(ctx interface{}) *MockPipeliner_ScriptKill_Call {
 	return &MockPipeliner_ScriptKill_Call{Call: _e.mock.On("ScriptKill", ctx)}
 }
 
 func (_c *MockPipeliner_ScriptKill_Call) Run(run func(ctx context.Context)) *MockPipeliner_ScriptKill_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -18331,15 +23776,26 @@ type MockPipeliner_ScriptLoad_Call struct {
 }
 
 // ScriptLoad is a helper method to define mock.On call
-//   - ctx
-//   - script
+//   - ctx context.Context
+//   - script string
 func (_e *MockPipeliner_Expecter) ScriptLoad(ctx interface{}, script interface{}) *MockPipeliner_ScriptLoad_Call {
 	return &MockPipeliner_ScriptLoad_Call{Call: _e.mock.On("ScriptLoad", ctx, script)}
 }
 
 func (_c *MockPipeliner_ScriptLoad_Call) Run(run func(ctx context.Context, script string)) *MockPipeliner_ScriptLoad_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -18379,15 +23835,26 @@ type MockPipeliner_Select_Call struct {
 }
 
 // Select is a helper method to define mock.On call
-//   - ctx
-//   - index
+//   - ctx context.Context
+//   - index int
 func (_e *MockPipeliner_Expecter) Select(ctx interface{}, index interface{}) *MockPipeliner_Select_Call {
 	return &MockPipeliner_Select_Call{Call: _e.mock.On("Select", ctx, index)}
 }
 
 func (_c *MockPipeliner_Select_Call) Run(run func(ctx context.Context, index int)) *MockPipeliner_Select_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -18427,17 +23894,38 @@ type MockPipeliner_Set_Call struct {
 }
 
 // Set is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - expiration time.Duration
 func (_e *MockPipeliner_Expecter) Set(ctx interface{}, key interface{}, value interface{}, expiration interface{}) *MockPipeliner_Set_Call {
 	return &MockPipeliner_Set_Call{Call: _e.mock.On("Set", ctx, key, value, expiration)}
 }
 
 func (_c *MockPipeliner_Set_Call) Run(run func(ctx context.Context, key string, value interface{}, expiration time.Duration)) *MockPipeliner_Set_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 time.Duration
+		if args[3] != nil {
+			arg3 = args[3].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -18477,17 +23965,38 @@ type MockPipeliner_SetArgs_Call struct {
 }
 
 // SetArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
-//   - a
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - a redis.SetArgs
 func (_e *MockPipeliner_Expecter) SetArgs(ctx interface{}, key interface{}, value interface{}, a interface{}) *MockPipeliner_SetArgs_Call {
 	return &MockPipeliner_SetArgs_Call{Call: _e.mock.On("SetArgs", ctx, key, value, a)}
 }
 
 func (_c *MockPipeliner_SetArgs_Call) Run(run func(ctx context.Context, key string, value interface{}, a redis.SetArgs)) *MockPipeliner_SetArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(redis.SetArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 redis.SetArgs
+		if args[3] != nil {
+			arg3 = args[3].(redis.SetArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -18527,17 +24036,38 @@ type MockPipeliner_SetBit_Call struct {
 }
 
 // SetBit is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - offset
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - offset int64
+//   - value int
 func (_e *MockPipeliner_Expecter) SetBit(ctx interface{}, key interface{}, offset interface{}, value interface{}) *MockPipeliner_SetBit_Call {
 	return &MockPipeliner_SetBit_Call{Call: _e.mock.On("SetBit", ctx, key, offset, value)}
 }
 
 func (_c *MockPipeliner_SetBit_Call) Run(run func(ctx context.Context, key string, offset int64, value int)) *MockPipeliner_SetBit_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int
+		if args[3] != nil {
+			arg3 = args[3].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -18577,17 +24107,38 @@ type MockPipeliner_SetEx_Call struct {
 }
 
 // SetEx is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - expiration time.Duration
 func (_e *MockPipeliner_Expecter) SetEx(ctx interface{}, key interface{}, value interface{}, expiration interface{}) *MockPipeliner_SetEx_Call {
 	return &MockPipeliner_SetEx_Call{Call: _e.mock.On("SetEx", ctx, key, value, expiration)}
 }
 
 func (_c *MockPipeliner_SetEx_Call) Run(run func(ctx context.Context, key string, value interface{}, expiration time.Duration)) *MockPipeliner_SetEx_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 time.Duration
+		if args[3] != nil {
+			arg3 = args[3].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -18627,17 +24178,38 @@ type MockPipeliner_SetNX_Call struct {
 }
 
 // SetNX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - expiration time.Duration
 func (_e *MockPipeliner_Expecter) SetNX(ctx interface{}, key interface{}, value interface{}, expiration interface{}) *MockPipeliner_SetNX_Call {
 	return &MockPipeliner_SetNX_Call{Call: _e.mock.On("SetNX", ctx, key, value, expiration)}
 }
 
 func (_c *MockPipeliner_SetNX_Call) Run(run func(ctx context.Context, key string, value interface{}, expiration time.Duration)) *MockPipeliner_SetNX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 time.Duration
+		if args[3] != nil {
+			arg3 = args[3].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -18677,17 +24249,38 @@ type MockPipeliner_SetRange_Call struct {
 }
 
 // SetRange is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - offset
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - offset int64
+//   - value string
 func (_e *MockPipeliner_Expecter) SetRange(ctx interface{}, key interface{}, offset interface{}, value interface{}) *MockPipeliner_SetRange_Call {
 	return &MockPipeliner_SetRange_Call{Call: _e.mock.On("SetRange", ctx, key, offset, value)}
 }
 
 func (_c *MockPipeliner_SetRange_Call) Run(run func(ctx context.Context, key string, offset int64, value string)) *MockPipeliner_SetRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -18727,17 +24320,38 @@ type MockPipeliner_SetXX_Call struct {
 }
 
 // SetXX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - expiration time.Duration
 func (_e *MockPipeliner_Expecter) SetXX(ctx interface{}, key interface{}, value interface{}, expiration interface{}) *MockPipeliner_SetXX_Call {
 	return &MockPipeliner_SetXX_Call{Call: _e.mock.On("SetXX", ctx, key, value, expiration)}
 }
 
 func (_c *MockPipeliner_SetXX_Call) Run(run func(ctx context.Context, key string, value interface{}, expiration time.Duration)) *MockPipeliner_SetXX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 time.Duration
+		if args[3] != nil {
+			arg3 = args[3].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -18777,14 +24391,20 @@ type MockPipeliner_Shutdown_Call struct {
 }
 
 // Shutdown is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) Shutdown(ctx interface{}) *MockPipeliner_Shutdown_Call {
 	return &MockPipeliner_Shutdown_Call{Call: _e.mock.On("Shutdown", ctx)}
 }
 
 func (_c *MockPipeliner_Shutdown_Call) Run(run func(ctx context.Context)) *MockPipeliner_Shutdown_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -18824,14 +24444,20 @@ type MockPipeliner_ShutdownNoSave_Call struct {
 }
 
 // ShutdownNoSave is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ShutdownNoSave(ctx interface{}) *MockPipeliner_ShutdownNoSave_Call {
 	return &MockPipeliner_ShutdownNoSave_Call{Call: _e.mock.On("ShutdownNoSave", ctx)}
 }
 
 func (_c *MockPipeliner_ShutdownNoSave_Call) Run(run func(ctx context.Context)) *MockPipeliner_ShutdownNoSave_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -18871,14 +24497,20 @@ type MockPipeliner_ShutdownSave_Call struct {
 }
 
 // ShutdownSave is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) ShutdownSave(ctx interface{}) *MockPipeliner_ShutdownSave_Call {
 	return &MockPipeliner_ShutdownSave_Call{Call: _e.mock.On("ShutdownSave", ctx)}
 }
 
 func (_c *MockPipeliner_ShutdownSave_Call) Run(run func(ctx context.Context)) *MockPipeliner_ShutdownSave_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -18918,16 +24550,32 @@ type MockPipeliner_SlaveOf_Call struct {
 }
 
 // SlaveOf is a helper method to define mock.On call
-//   - ctx
-//   - host
-//   - port
+//   - ctx context.Context
+//   - host string
+//   - port string
 func (_e *MockPipeliner_Expecter) SlaveOf(ctx interface{}, host interface{}, port interface{}) *MockPipeliner_SlaveOf_Call {
 	return &MockPipeliner_SlaveOf_Call{Call: _e.mock.On("SlaveOf", ctx, host, port)}
 }
 
 func (_c *MockPipeliner_SlaveOf_Call) Run(run func(ctx context.Context, host string, port string)) *MockPipeliner_SlaveOf_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -18967,15 +24615,26 @@ type MockPipeliner_SlowLogGet_Call struct {
 }
 
 // SlowLogGet is a helper method to define mock.On call
-//   - ctx
-//   - num
+//   - ctx context.Context
+//   - num int64
 func (_e *MockPipeliner_Expecter) SlowLogGet(ctx interface{}, num interface{}) *MockPipeliner_SlowLogGet_Call {
 	return &MockPipeliner_SlowLogGet_Call{Call: _e.mock.On("SlowLogGet", ctx, num)}
 }
 
 func (_c *MockPipeliner_SlowLogGet_Call) Run(run func(ctx context.Context, num int64)) *MockPipeliner_SlowLogGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int64
+		if args[1] != nil {
+			arg1 = args[1].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -19015,16 +24674,32 @@ type MockPipeliner_Sort_Call struct {
 }
 
 // Sort is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - sort
+//   - ctx context.Context
+//   - key string
+//   - sort *redis.Sort
 func (_e *MockPipeliner_Expecter) Sort(ctx interface{}, key interface{}, sort interface{}) *MockPipeliner_Sort_Call {
 	return &MockPipeliner_Sort_Call{Call: _e.mock.On("Sort", ctx, key, sort)}
 }
 
 func (_c *MockPipeliner_Sort_Call) Run(run func(ctx context.Context, key string, sort *redis.Sort)) *MockPipeliner_Sort_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.Sort))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.Sort
+		if args[2] != nil {
+			arg2 = args[2].(*redis.Sort)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -19064,16 +24739,32 @@ type MockPipeliner_SortInterfaces_Call struct {
 }
 
 // SortInterfaces is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - sort
+//   - ctx context.Context
+//   - key string
+//   - sort *redis.Sort
 func (_e *MockPipeliner_Expecter) SortInterfaces(ctx interface{}, key interface{}, sort interface{}) *MockPipeliner_SortInterfaces_Call {
 	return &MockPipeliner_SortInterfaces_Call{Call: _e.mock.On("SortInterfaces", ctx, key, sort)}
 }
 
 func (_c *MockPipeliner_SortInterfaces_Call) Run(run func(ctx context.Context, key string, sort *redis.Sort)) *MockPipeliner_SortInterfaces_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.Sort))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.Sort
+		if args[2] != nil {
+			arg2 = args[2].(*redis.Sort)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -19113,16 +24804,32 @@ type MockPipeliner_SortRO_Call struct {
 }
 
 // SortRO is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - sort
+//   - ctx context.Context
+//   - key string
+//   - sort *redis.Sort
 func (_e *MockPipeliner_Expecter) SortRO(ctx interface{}, key interface{}, sort interface{}) *MockPipeliner_SortRO_Call {
 	return &MockPipeliner_SortRO_Call{Call: _e.mock.On("SortRO", ctx, key, sort)}
 }
 
 func (_c *MockPipeliner_SortRO_Call) Run(run func(ctx context.Context, key string, sort *redis.Sort)) *MockPipeliner_SortRO_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.Sort))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.Sort
+		if args[2] != nil {
+			arg2 = args[2].(*redis.Sort)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -19162,17 +24869,38 @@ type MockPipeliner_SortStore_Call struct {
 }
 
 // SortStore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - store
-//   - sort
+//   - ctx context.Context
+//   - key string
+//   - store string
+//   - sort *redis.Sort
 func (_e *MockPipeliner_Expecter) SortStore(ctx interface{}, key interface{}, store interface{}, sort interface{}) *MockPipeliner_SortStore_Call {
 	return &MockPipeliner_SortStore_Call{Call: _e.mock.On("SortStore", ctx, key, store, sort)}
 }
 
 func (_c *MockPipeliner_SortStore_Call) Run(run func(ctx context.Context, key string, store string, sort *redis.Sort)) *MockPipeliner_SortStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.Sort))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.Sort
+		if args[3] != nil {
+			arg3 = args[3].(*redis.Sort)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -19212,15 +24940,26 @@ type MockPipeliner_StrLen_Call struct {
 }
 
 // StrLen is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) StrLen(ctx interface{}, key interface{}) *MockPipeliner_StrLen_Call {
 	return &MockPipeliner_StrLen_Call{Call: _e.mock.On("StrLen", ctx, key)}
 }
 
 func (_c *MockPipeliner_StrLen_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_StrLen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -19260,16 +24999,32 @@ type MockPipeliner_SwapDB_Call struct {
 }
 
 // SwapDB is a helper method to define mock.On call
-//   - ctx
-//   - index1
-//   - index2
+//   - ctx context.Context
+//   - index1 int
+//   - index2 int
 func (_e *MockPipeliner_Expecter) SwapDB(ctx interface{}, index1 interface{}, index2 interface{}) *MockPipeliner_SwapDB_Call {
 	return &MockPipeliner_SwapDB_Call{Call: _e.mock.On("SwapDB", ctx, index1, index2)}
 }
 
 func (_c *MockPipeliner_SwapDB_Call) Run(run func(ctx context.Context, index1 int, index2 int)) *MockPipeliner_SwapDB_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -19315,9 +25070,9 @@ type MockPipeliner_TDigestAdd_Call struct {
 }
 
 // TDigestAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...float64
 func (_e *MockPipeliner_Expecter) TDigestAdd(ctx interface{}, key interface{}, elements ...interface{}) *MockPipeliner_TDigestAdd_Call {
 	return &MockPipeliner_TDigestAdd_Call{Call: _e.mock.On("TDigestAdd",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -19325,8 +25080,25 @@ func (_e *MockPipeliner_Expecter) TDigestAdd(ctx interface{}, key interface{}, e
 
 func (_c *MockPipeliner_TDigestAdd_Call) Run(run func(ctx context.Context, key string, elements ...float64)) *MockPipeliner_TDigestAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]float64)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []float64
+		var variadicArgs []float64
+		if len(args) > 2 {
+			variadicArgs = args[2].([]float64)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -19372,9 +25144,9 @@ type MockPipeliner_TDigestByRank_Call struct {
 }
 
 // TDigestByRank is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - rank
+//   - ctx context.Context
+//   - key string
+//   - rank ...uint64
 func (_e *MockPipeliner_Expecter) TDigestByRank(ctx interface{}, key interface{}, rank ...interface{}) *MockPipeliner_TDigestByRank_Call {
 	return &MockPipeliner_TDigestByRank_Call{Call: _e.mock.On("TDigestByRank",
 		append([]interface{}{ctx, key}, rank...)...)}
@@ -19382,8 +25154,25 @@ func (_e *MockPipeliner_Expecter) TDigestByRank(ctx interface{}, key interface{}
 
 func (_c *MockPipeliner_TDigestByRank_Call) Run(run func(ctx context.Context, key string, rank ...uint64)) *MockPipeliner_TDigestByRank_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]uint64)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []uint64
+		var variadicArgs []uint64
+		if len(args) > 2 {
+			variadicArgs = args[2].([]uint64)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -19429,9 +25218,9 @@ type MockPipeliner_TDigestByRevRank_Call struct {
 }
 
 // TDigestByRevRank is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - rank
+//   - ctx context.Context
+//   - key string
+//   - rank ...uint64
 func (_e *MockPipeliner_Expecter) TDigestByRevRank(ctx interface{}, key interface{}, rank ...interface{}) *MockPipeliner_TDigestByRevRank_Call {
 	return &MockPipeliner_TDigestByRevRank_Call{Call: _e.mock.On("TDigestByRevRank",
 		append([]interface{}{ctx, key}, rank...)...)}
@@ -19439,8 +25228,25 @@ func (_e *MockPipeliner_Expecter) TDigestByRevRank(ctx interface{}, key interfac
 
 func (_c *MockPipeliner_TDigestByRevRank_Call) Run(run func(ctx context.Context, key string, rank ...uint64)) *MockPipeliner_TDigestByRevRank_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]uint64)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []uint64
+		var variadicArgs []uint64
+		if len(args) > 2 {
+			variadicArgs = args[2].([]uint64)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -19486,9 +25292,9 @@ type MockPipeliner_TDigestCDF_Call struct {
 }
 
 // TDigestCDF is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...float64
 func (_e *MockPipeliner_Expecter) TDigestCDF(ctx interface{}, key interface{}, elements ...interface{}) *MockPipeliner_TDigestCDF_Call {
 	return &MockPipeliner_TDigestCDF_Call{Call: _e.mock.On("TDigestCDF",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -19496,8 +25302,25 @@ func (_e *MockPipeliner_Expecter) TDigestCDF(ctx interface{}, key interface{}, e
 
 func (_c *MockPipeliner_TDigestCDF_Call) Run(run func(ctx context.Context, key string, elements ...float64)) *MockPipeliner_TDigestCDF_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]float64)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []float64
+		var variadicArgs []float64
+		if len(args) > 2 {
+			variadicArgs = args[2].([]float64)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -19537,15 +25360,26 @@ type MockPipeliner_TDigestCreate_Call struct {
 }
 
 // TDigestCreate is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) TDigestCreate(ctx interface{}, key interface{}) *MockPipeliner_TDigestCreate_Call {
 	return &MockPipeliner_TDigestCreate_Call{Call: _e.mock.On("TDigestCreate", ctx, key)}
 }
 
 func (_c *MockPipeliner_TDigestCreate_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_TDigestCreate_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -19585,16 +25419,32 @@ type MockPipeliner_TDigestCreateWithCompression_Call struct {
 }
 
 // TDigestCreateWithCompression is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - compression
+//   - ctx context.Context
+//   - key string
+//   - compression int64
 func (_e *MockPipeliner_Expecter) TDigestCreateWithCompression(ctx interface{}, key interface{}, compression interface{}) *MockPipeliner_TDigestCreateWithCompression_Call {
 	return &MockPipeliner_TDigestCreateWithCompression_Call{Call: _e.mock.On("TDigestCreateWithCompression", ctx, key, compression)}
 }
 
 func (_c *MockPipeliner_TDigestCreateWithCompression_Call) Run(run func(ctx context.Context, key string, compression int64)) *MockPipeliner_TDigestCreateWithCompression_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -19634,15 +25484,26 @@ type MockPipeliner_TDigestInfo_Call struct {
 }
 
 // TDigestInfo is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) TDigestInfo(ctx interface{}, key interface{}) *MockPipeliner_TDigestInfo_Call {
 	return &MockPipeliner_TDigestInfo_Call{Call: _e.mock.On("TDigestInfo", ctx, key)}
 }
 
 func (_c *MockPipeliner_TDigestInfo_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_TDigestInfo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -19682,15 +25543,26 @@ type MockPipeliner_TDigestMax_Call struct {
 }
 
 // TDigestMax is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) TDigestMax(ctx interface{}, key interface{}) *MockPipeliner_TDigestMax_Call {
 	return &MockPipeliner_TDigestMax_Call{Call: _e.mock.On("TDigestMax", ctx, key)}
 }
 
 func (_c *MockPipeliner_TDigestMax_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_TDigestMax_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -19736,10 +25608,10 @@ type MockPipeliner_TDigestMerge_Call struct {
 }
 
 // TDigestMerge is a helper method to define mock.On call
-//   - ctx
-//   - destKey
-//   - options
-//   - sourceKeys
+//   - ctx context.Context
+//   - destKey string
+//   - options *redis.TDigestMergeOptions
+//   - sourceKeys ...string
 func (_e *MockPipeliner_Expecter) TDigestMerge(ctx interface{}, destKey interface{}, options interface{}, sourceKeys ...interface{}) *MockPipeliner_TDigestMerge_Call {
 	return &MockPipeliner_TDigestMerge_Call{Call: _e.mock.On("TDigestMerge",
 		append([]interface{}{ctx, destKey, options}, sourceKeys...)...)}
@@ -19747,8 +25619,30 @@ func (_e *MockPipeliner_Expecter) TDigestMerge(ctx interface{}, destKey interfac
 
 func (_c *MockPipeliner_TDigestMerge_Call) Run(run func(ctx context.Context, destKey string, options *redis.TDigestMergeOptions, sourceKeys ...string)) *MockPipeliner_TDigestMerge_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.TDigestMergeOptions), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.TDigestMergeOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.TDigestMergeOptions)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -19788,15 +25682,26 @@ type MockPipeliner_TDigestMin_Call struct {
 }
 
 // TDigestMin is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) TDigestMin(ctx interface{}, key interface{}) *MockPipeliner_TDigestMin_Call {
 	return &MockPipeliner_TDigestMin_Call{Call: _e.mock.On("TDigestMin", ctx, key)}
 }
 
 func (_c *MockPipeliner_TDigestMin_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_TDigestMin_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -19842,9 +25747,9 @@ type MockPipeliner_TDigestQuantile_Call struct {
 }
 
 // TDigestQuantile is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...float64
 func (_e *MockPipeliner_Expecter) TDigestQuantile(ctx interface{}, key interface{}, elements ...interface{}) *MockPipeliner_TDigestQuantile_Call {
 	return &MockPipeliner_TDigestQuantile_Call{Call: _e.mock.On("TDigestQuantile",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -19852,8 +25757,25 @@ func (_e *MockPipeliner_Expecter) TDigestQuantile(ctx interface{}, key interface
 
 func (_c *MockPipeliner_TDigestQuantile_Call) Run(run func(ctx context.Context, key string, elements ...float64)) *MockPipeliner_TDigestQuantile_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]float64)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []float64
+		var variadicArgs []float64
+		if len(args) > 2 {
+			variadicArgs = args[2].([]float64)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -19899,9 +25821,9 @@ type MockPipeliner_TDigestRank_Call struct {
 }
 
 // TDigestRank is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...float64
 func (_e *MockPipeliner_Expecter) TDigestRank(ctx interface{}, key interface{}, values ...interface{}) *MockPipeliner_TDigestRank_Call {
 	return &MockPipeliner_TDigestRank_Call{Call: _e.mock.On("TDigestRank",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -19909,8 +25831,25 @@ func (_e *MockPipeliner_Expecter) TDigestRank(ctx interface{}, key interface{}, 
 
 func (_c *MockPipeliner_TDigestRank_Call) Run(run func(ctx context.Context, key string, values ...float64)) *MockPipeliner_TDigestRank_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]float64)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []float64
+		var variadicArgs []float64
+		if len(args) > 2 {
+			variadicArgs = args[2].([]float64)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -19950,15 +25889,26 @@ type MockPipeliner_TDigestReset_Call struct {
 }
 
 // TDigestReset is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) TDigestReset(ctx interface{}, key interface{}) *MockPipeliner_TDigestReset_Call {
 	return &MockPipeliner_TDigestReset_Call{Call: _e.mock.On("TDigestReset", ctx, key)}
 }
 
 func (_c *MockPipeliner_TDigestReset_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_TDigestReset_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -20004,9 +25954,9 @@ type MockPipeliner_TDigestRevRank_Call struct {
 }
 
 // TDigestRevRank is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...float64
 func (_e *MockPipeliner_Expecter) TDigestRevRank(ctx interface{}, key interface{}, values ...interface{}) *MockPipeliner_TDigestRevRank_Call {
 	return &MockPipeliner_TDigestRevRank_Call{Call: _e.mock.On("TDigestRevRank",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -20014,8 +25964,25 @@ func (_e *MockPipeliner_Expecter) TDigestRevRank(ctx interface{}, key interface{
 
 func (_c *MockPipeliner_TDigestRevRank_Call) Run(run func(ctx context.Context, key string, values ...float64)) *MockPipeliner_TDigestRevRank_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]float64)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []float64
+		var variadicArgs []float64
+		if len(args) > 2 {
+			variadicArgs = args[2].([]float64)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -20055,17 +26022,38 @@ type MockPipeliner_TDigestTrimmedMean_Call struct {
 }
 
 // TDigestTrimmedMean is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - lowCutQuantile
-//   - highCutQuantile
+//   - ctx context.Context
+//   - key string
+//   - lowCutQuantile float64
+//   - highCutQuantile float64
 func (_e *MockPipeliner_Expecter) TDigestTrimmedMean(ctx interface{}, key interface{}, lowCutQuantile interface{}, highCutQuantile interface{}) *MockPipeliner_TDigestTrimmedMean_Call {
 	return &MockPipeliner_TDigestTrimmedMean_Call{Call: _e.mock.On("TDigestTrimmedMean", ctx, key, lowCutQuantile, highCutQuantile)}
 }
 
 func (_c *MockPipeliner_TDigestTrimmedMean_Call) Run(run func(ctx context.Context, key string, lowCutQuantile float64, highCutQuantile float64)) *MockPipeliner_TDigestTrimmedMean_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(float64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 float64
+		if args[3] != nil {
+			arg3 = args[3].(float64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -20105,17 +26093,38 @@ type MockPipeliner_TSAdd_Call struct {
 }
 
 // TSAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - timestamp
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - timestamp interface{}
+//   - value float64
 func (_e *MockPipeliner_Expecter) TSAdd(ctx interface{}, key interface{}, timestamp interface{}, value interface{}) *MockPipeliner_TSAdd_Call {
 	return &MockPipeliner_TSAdd_Call{Call: _e.mock.On("TSAdd", ctx, key, timestamp, value)}
 }
 
 func (_c *MockPipeliner_TSAdd_Call) Run(run func(ctx context.Context, key string, timestamp interface{}, value float64)) *MockPipeliner_TSAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(float64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 float64
+		if args[3] != nil {
+			arg3 = args[3].(float64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -20155,18 +26164,44 @@ type MockPipeliner_TSAddWithArgs_Call struct {
 }
 
 // TSAddWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - timestamp
-//   - value
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - timestamp interface{}
+//   - value float64
+//   - options *redis.TSOptions
 func (_e *MockPipeliner_Expecter) TSAddWithArgs(ctx interface{}, key interface{}, timestamp interface{}, value interface{}, options interface{}) *MockPipeliner_TSAddWithArgs_Call {
 	return &MockPipeliner_TSAddWithArgs_Call{Call: _e.mock.On("TSAddWithArgs", ctx, key, timestamp, value, options)}
 }
 
 func (_c *MockPipeliner_TSAddWithArgs_Call) Run(run func(ctx context.Context, key string, timestamp interface{}, value float64, options *redis.TSOptions)) *MockPipeliner_TSAddWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(float64), args[4].(*redis.TSOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 float64
+		if args[3] != nil {
+			arg3 = args[3].(float64)
+		}
+		var arg4 *redis.TSOptions
+		if args[4] != nil {
+			arg4 = args[4].(*redis.TSOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -20206,16 +26241,32 @@ type MockPipeliner_TSAlter_Call struct {
 }
 
 // TSAlter is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - options *redis.TSAlterOptions
 func (_e *MockPipeliner_Expecter) TSAlter(ctx interface{}, key interface{}, options interface{}) *MockPipeliner_TSAlter_Call {
 	return &MockPipeliner_TSAlter_Call{Call: _e.mock.On("TSAlter", ctx, key, options)}
 }
 
 func (_c *MockPipeliner_TSAlter_Call) Run(run func(ctx context.Context, key string, options *redis.TSAlterOptions)) *MockPipeliner_TSAlter_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.TSAlterOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.TSAlterOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.TSAlterOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -20255,15 +26306,26 @@ type MockPipeliner_TSCreate_Call struct {
 }
 
 // TSCreate is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) TSCreate(ctx interface{}, key interface{}) *MockPipeliner_TSCreate_Call {
 	return &MockPipeliner_TSCreate_Call{Call: _e.mock.On("TSCreate", ctx, key)}
 }
 
 func (_c *MockPipeliner_TSCreate_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_TSCreate_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -20303,18 +26365,44 @@ type MockPipeliner_TSCreateRule_Call struct {
 }
 
 // TSCreateRule is a helper method to define mock.On call
-//   - ctx
-//   - sourceKey
-//   - destKey
-//   - aggregator
-//   - bucketDuration
+//   - ctx context.Context
+//   - sourceKey string
+//   - destKey string
+//   - aggregator redis.Aggregator
+//   - bucketDuration int
 func (_e *MockPipeliner_Expecter) TSCreateRule(ctx interface{}, sourceKey interface{}, destKey interface{}, aggregator interface{}, bucketDuration interface{}) *MockPipeliner_TSCreateRule_Call {
 	return &MockPipeliner_TSCreateRule_Call{Call: _e.mock.On("TSCreateRule", ctx, sourceKey, destKey, aggregator, bucketDuration)}
 }
 
 func (_c *MockPipeliner_TSCreateRule_Call) Run(run func(ctx context.Context, sourceKey string, destKey string, aggregator redis.Aggregator, bucketDuration int)) *MockPipeliner_TSCreateRule_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(redis.Aggregator), args[4].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 redis.Aggregator
+		if args[3] != nil {
+			arg3 = args[3].(redis.Aggregator)
+		}
+		var arg4 int
+		if args[4] != nil {
+			arg4 = args[4].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -20354,19 +26442,50 @@ type MockPipeliner_TSCreateRuleWithArgs_Call struct {
 }
 
 // TSCreateRuleWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - sourceKey
-//   - destKey
-//   - aggregator
-//   - bucketDuration
-//   - options
+//   - ctx context.Context
+//   - sourceKey string
+//   - destKey string
+//   - aggregator redis.Aggregator
+//   - bucketDuration int
+//   - options *redis.TSCreateRuleOptions
 func (_e *MockPipeliner_Expecter) TSCreateRuleWithArgs(ctx interface{}, sourceKey interface{}, destKey interface{}, aggregator interface{}, bucketDuration interface{}, options interface{}) *MockPipeliner_TSCreateRuleWithArgs_Call {
 	return &MockPipeliner_TSCreateRuleWithArgs_Call{Call: _e.mock.On("TSCreateRuleWithArgs", ctx, sourceKey, destKey, aggregator, bucketDuration, options)}
 }
 
 func (_c *MockPipeliner_TSCreateRuleWithArgs_Call) Run(run func(ctx context.Context, sourceKey string, destKey string, aggregator redis.Aggregator, bucketDuration int, options *redis.TSCreateRuleOptions)) *MockPipeliner_TSCreateRuleWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(redis.Aggregator), args[4].(int), args[5].(*redis.TSCreateRuleOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 redis.Aggregator
+		if args[3] != nil {
+			arg3 = args[3].(redis.Aggregator)
+		}
+		var arg4 int
+		if args[4] != nil {
+			arg4 = args[4].(int)
+		}
+		var arg5 *redis.TSCreateRuleOptions
+		if args[5] != nil {
+			arg5 = args[5].(*redis.TSCreateRuleOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+			arg5,
+		)
 	})
 	return _c
 }
@@ -20406,16 +26525,32 @@ type MockPipeliner_TSCreateWithArgs_Call struct {
 }
 
 // TSCreateWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - options *redis.TSOptions
 func (_e *MockPipeliner_Expecter) TSCreateWithArgs(ctx interface{}, key interface{}, options interface{}) *MockPipeliner_TSCreateWithArgs_Call {
 	return &MockPipeliner_TSCreateWithArgs_Call{Call: _e.mock.On("TSCreateWithArgs", ctx, key, options)}
 }
 
 func (_c *MockPipeliner_TSCreateWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.TSOptions)) *MockPipeliner_TSCreateWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.TSOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.TSOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.TSOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -20455,16 +26590,32 @@ type MockPipeliner_TSDecrBy_Call struct {
 }
 
 // TSDecrBy is a helper method to define mock.On call
-//   - ctx
-//   - Key
-//   - timestamp
+//   - ctx context.Context
+//   - Key string
+//   - timestamp float64
 func (_e *MockPipeliner_Expecter) TSDecrBy(ctx interface{}, Key interface{}, timestamp interface{}) *MockPipeliner_TSDecrBy_Call {
 	return &MockPipeliner_TSDecrBy_Call{Call: _e.mock.On("TSDecrBy", ctx, Key, timestamp)}
 }
 
 func (_c *MockPipeliner_TSDecrBy_Call) Run(run func(ctx context.Context, Key string, timestamp float64)) *MockPipeliner_TSDecrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -20504,17 +26655,38 @@ type MockPipeliner_TSDecrByWithArgs_Call struct {
 }
 
 // TSDecrByWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - timestamp
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - timestamp float64
+//   - options *redis.TSIncrDecrOptions
 func (_e *MockPipeliner_Expecter) TSDecrByWithArgs(ctx interface{}, key interface{}, timestamp interface{}, options interface{}) *MockPipeliner_TSDecrByWithArgs_Call {
 	return &MockPipeliner_TSDecrByWithArgs_Call{Call: _e.mock.On("TSDecrByWithArgs", ctx, key, timestamp, options)}
 }
 
 func (_c *MockPipeliner_TSDecrByWithArgs_Call) Run(run func(ctx context.Context, key string, timestamp float64, options *redis.TSIncrDecrOptions)) *MockPipeliner_TSDecrByWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(*redis.TSIncrDecrOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 *redis.TSIncrDecrOptions
+		if args[3] != nil {
+			arg3 = args[3].(*redis.TSIncrDecrOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -20554,17 +26726,38 @@ type MockPipeliner_TSDel_Call struct {
 }
 
 // TSDel is a helper method to define mock.On call
-//   - ctx
-//   - Key
-//   - fromTimestamp
-//   - toTimestamp
+//   - ctx context.Context
+//   - Key string
+//   - fromTimestamp int
+//   - toTimestamp int
 func (_e *MockPipeliner_Expecter) TSDel(ctx interface{}, Key interface{}, fromTimestamp interface{}, toTimestamp interface{}) *MockPipeliner_TSDel_Call {
 	return &MockPipeliner_TSDel_Call{Call: _e.mock.On("TSDel", ctx, Key, fromTimestamp, toTimestamp)}
 }
 
 func (_c *MockPipeliner_TSDel_Call) Run(run func(ctx context.Context, Key string, fromTimestamp int, toTimestamp int)) *MockPipeliner_TSDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int), args[3].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 int
+		if args[3] != nil {
+			arg3 = args[3].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -20604,16 +26797,32 @@ type MockPipeliner_TSDeleteRule_Call struct {
 }
 
 // TSDeleteRule is a helper method to define mock.On call
-//   - ctx
-//   - sourceKey
-//   - destKey
+//   - ctx context.Context
+//   - sourceKey string
+//   - destKey string
 func (_e *MockPipeliner_Expecter) TSDeleteRule(ctx interface{}, sourceKey interface{}, destKey interface{}) *MockPipeliner_TSDeleteRule_Call {
 	return &MockPipeliner_TSDeleteRule_Call{Call: _e.mock.On("TSDeleteRule", ctx, sourceKey, destKey)}
 }
 
 func (_c *MockPipeliner_TSDeleteRule_Call) Run(run func(ctx context.Context, sourceKey string, destKey string)) *MockPipeliner_TSDeleteRule_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -20653,15 +26862,26 @@ type MockPipeliner_TSGet_Call struct {
 }
 
 // TSGet is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) TSGet(ctx interface{}, key interface{}) *MockPipeliner_TSGet_Call {
 	return &MockPipeliner_TSGet_Call{Call: _e.mock.On("TSGet", ctx, key)}
 }
 
 func (_c *MockPipeliner_TSGet_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_TSGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -20701,16 +26921,32 @@ type MockPipeliner_TSGetWithArgs_Call struct {
 }
 
 // TSGetWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - options *redis.TSGetOptions
 func (_e *MockPipeliner_Expecter) TSGetWithArgs(ctx interface{}, key interface{}, options interface{}) *MockPipeliner_TSGetWithArgs_Call {
 	return &MockPipeliner_TSGetWithArgs_Call{Call: _e.mock.On("TSGetWithArgs", ctx, key, options)}
 }
 
 func (_c *MockPipeliner_TSGetWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.TSGetOptions)) *MockPipeliner_TSGetWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.TSGetOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.TSGetOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.TSGetOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -20750,16 +26986,32 @@ type MockPipeliner_TSIncrBy_Call struct {
 }
 
 // TSIncrBy is a helper method to define mock.On call
-//   - ctx
-//   - Key
-//   - timestamp
+//   - ctx context.Context
+//   - Key string
+//   - timestamp float64
 func (_e *MockPipeliner_Expecter) TSIncrBy(ctx interface{}, Key interface{}, timestamp interface{}) *MockPipeliner_TSIncrBy_Call {
 	return &MockPipeliner_TSIncrBy_Call{Call: _e.mock.On("TSIncrBy", ctx, Key, timestamp)}
 }
 
 func (_c *MockPipeliner_TSIncrBy_Call) Run(run func(ctx context.Context, Key string, timestamp float64)) *MockPipeliner_TSIncrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -20799,17 +27051,38 @@ type MockPipeliner_TSIncrByWithArgs_Call struct {
 }
 
 // TSIncrByWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - timestamp
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - timestamp float64
+//   - options *redis.TSIncrDecrOptions
 func (_e *MockPipeliner_Expecter) TSIncrByWithArgs(ctx interface{}, key interface{}, timestamp interface{}, options interface{}) *MockPipeliner_TSIncrByWithArgs_Call {
 	return &MockPipeliner_TSIncrByWithArgs_Call{Call: _e.mock.On("TSIncrByWithArgs", ctx, key, timestamp, options)}
 }
 
 func (_c *MockPipeliner_TSIncrByWithArgs_Call) Run(run func(ctx context.Context, key string, timestamp float64, options *redis.TSIncrDecrOptions)) *MockPipeliner_TSIncrByWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(*redis.TSIncrDecrOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 *redis.TSIncrDecrOptions
+		if args[3] != nil {
+			arg3 = args[3].(*redis.TSIncrDecrOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -20849,15 +27122,26 @@ type MockPipeliner_TSInfo_Call struct {
 }
 
 // TSInfo is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) TSInfo(ctx interface{}, key interface{}) *MockPipeliner_TSInfo_Call {
 	return &MockPipeliner_TSInfo_Call{Call: _e.mock.On("TSInfo", ctx, key)}
 }
 
 func (_c *MockPipeliner_TSInfo_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_TSInfo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -20897,16 +27181,32 @@ type MockPipeliner_TSInfoWithArgs_Call struct {
 }
 
 // TSInfoWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - options *redis.TSInfoOptions
 func (_e *MockPipeliner_Expecter) TSInfoWithArgs(ctx interface{}, key interface{}, options interface{}) *MockPipeliner_TSInfoWithArgs_Call {
 	return &MockPipeliner_TSInfoWithArgs_Call{Call: _e.mock.On("TSInfoWithArgs", ctx, key, options)}
 }
 
 func (_c *MockPipeliner_TSInfoWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.TSInfoOptions)) *MockPipeliner_TSInfoWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.TSInfoOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.TSInfoOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.TSInfoOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -20946,15 +27246,26 @@ type MockPipeliner_TSMAdd_Call struct {
 }
 
 // TSMAdd is a helper method to define mock.On call
-//   - ctx
-//   - ktvSlices
+//   - ctx context.Context
+//   - ktvSlices [][]interface{}
 func (_e *MockPipeliner_Expecter) TSMAdd(ctx interface{}, ktvSlices interface{}) *MockPipeliner_TSMAdd_Call {
 	return &MockPipeliner_TSMAdd_Call{Call: _e.mock.On("TSMAdd", ctx, ktvSlices)}
 }
 
 func (_c *MockPipeliner_TSMAdd_Call) Run(run func(ctx context.Context, ktvSlices [][]interface{})) *MockPipeliner_TSMAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].([][]interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 [][]interface{}
+		if args[1] != nil {
+			arg1 = args[1].([][]interface{})
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -20994,15 +27305,26 @@ type MockPipeliner_TSMGet_Call struct {
 }
 
 // TSMGet is a helper method to define mock.On call
-//   - ctx
-//   - filters
+//   - ctx context.Context
+//   - filters []string
 func (_e *MockPipeliner_Expecter) TSMGet(ctx interface{}, filters interface{}) *MockPipeliner_TSMGet_Call {
 	return &MockPipeliner_TSMGet_Call{Call: _e.mock.On("TSMGet", ctx, filters)}
 }
 
 func (_c *MockPipeliner_TSMGet_Call) Run(run func(ctx context.Context, filters []string)) *MockPipeliner_TSMGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].([]string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		if args[1] != nil {
+			arg1 = args[1].([]string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -21042,16 +27364,32 @@ type MockPipeliner_TSMGetWithArgs_Call struct {
 }
 
 // TSMGetWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - filters
-//   - options
+//   - ctx context.Context
+//   - filters []string
+//   - options *redis.TSMGetOptions
 func (_e *MockPipeliner_Expecter) TSMGetWithArgs(ctx interface{}, filters interface{}, options interface{}) *MockPipeliner_TSMGetWithArgs_Call {
 	return &MockPipeliner_TSMGetWithArgs_Call{Call: _e.mock.On("TSMGetWithArgs", ctx, filters, options)}
 }
 
 func (_c *MockPipeliner_TSMGetWithArgs_Call) Run(run func(ctx context.Context, filters []string, options *redis.TSMGetOptions)) *MockPipeliner_TSMGetWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].([]string), args[2].(*redis.TSMGetOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		if args[1] != nil {
+			arg1 = args[1].([]string)
+		}
+		var arg2 *redis.TSMGetOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.TSMGetOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -21091,17 +27429,38 @@ type MockPipeliner_TSMRange_Call struct {
 }
 
 // TSMRange is a helper method to define mock.On call
-//   - ctx
-//   - fromTimestamp
-//   - toTimestamp
-//   - filterExpr
+//   - ctx context.Context
+//   - fromTimestamp int
+//   - toTimestamp int
+//   - filterExpr []string
 func (_e *MockPipeliner_Expecter) TSMRange(ctx interface{}, fromTimestamp interface{}, toTimestamp interface{}, filterExpr interface{}) *MockPipeliner_TSMRange_Call {
 	return &MockPipeliner_TSMRange_Call{Call: _e.mock.On("TSMRange", ctx, fromTimestamp, toTimestamp, filterExpr)}
 }
 
 func (_c *MockPipeliner_TSMRange_Call) Run(run func(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string)) *MockPipeliner_TSMRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int), args[2].(int), args[3].([]string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 []string
+		if args[3] != nil {
+			arg3 = args[3].([]string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -21141,18 +27500,44 @@ type MockPipeliner_TSMRangeWithArgs_Call struct {
 }
 
 // TSMRangeWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - fromTimestamp
-//   - toTimestamp
-//   - filterExpr
-//   - options
+//   - ctx context.Context
+//   - fromTimestamp int
+//   - toTimestamp int
+//   - filterExpr []string
+//   - options *redis.TSMRangeOptions
 func (_e *MockPipeliner_Expecter) TSMRangeWithArgs(ctx interface{}, fromTimestamp interface{}, toTimestamp interface{}, filterExpr interface{}, options interface{}) *MockPipeliner_TSMRangeWithArgs_Call {
 	return &MockPipeliner_TSMRangeWithArgs_Call{Call: _e.mock.On("TSMRangeWithArgs", ctx, fromTimestamp, toTimestamp, filterExpr, options)}
 }
 
 func (_c *MockPipeliner_TSMRangeWithArgs_Call) Run(run func(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string, options *redis.TSMRangeOptions)) *MockPipeliner_TSMRangeWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int), args[2].(int), args[3].([]string), args[4].(*redis.TSMRangeOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 []string
+		if args[3] != nil {
+			arg3 = args[3].([]string)
+		}
+		var arg4 *redis.TSMRangeOptions
+		if args[4] != nil {
+			arg4 = args[4].(*redis.TSMRangeOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -21192,17 +27577,38 @@ type MockPipeliner_TSMRevRange_Call struct {
 }
 
 // TSMRevRange is a helper method to define mock.On call
-//   - ctx
-//   - fromTimestamp
-//   - toTimestamp
-//   - filterExpr
+//   - ctx context.Context
+//   - fromTimestamp int
+//   - toTimestamp int
+//   - filterExpr []string
 func (_e *MockPipeliner_Expecter) TSMRevRange(ctx interface{}, fromTimestamp interface{}, toTimestamp interface{}, filterExpr interface{}) *MockPipeliner_TSMRevRange_Call {
 	return &MockPipeliner_TSMRevRange_Call{Call: _e.mock.On("TSMRevRange", ctx, fromTimestamp, toTimestamp, filterExpr)}
 }
 
 func (_c *MockPipeliner_TSMRevRange_Call) Run(run func(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string)) *MockPipeliner_TSMRevRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int), args[2].(int), args[3].([]string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 []string
+		if args[3] != nil {
+			arg3 = args[3].([]string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -21242,18 +27648,44 @@ type MockPipeliner_TSMRevRangeWithArgs_Call struct {
 }
 
 // TSMRevRangeWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - fromTimestamp
-//   - toTimestamp
-//   - filterExpr
-//   - options
+//   - ctx context.Context
+//   - fromTimestamp int
+//   - toTimestamp int
+//   - filterExpr []string
+//   - options *redis.TSMRevRangeOptions
 func (_e *MockPipeliner_Expecter) TSMRevRangeWithArgs(ctx interface{}, fromTimestamp interface{}, toTimestamp interface{}, filterExpr interface{}, options interface{}) *MockPipeliner_TSMRevRangeWithArgs_Call {
 	return &MockPipeliner_TSMRevRangeWithArgs_Call{Call: _e.mock.On("TSMRevRangeWithArgs", ctx, fromTimestamp, toTimestamp, filterExpr, options)}
 }
 
 func (_c *MockPipeliner_TSMRevRangeWithArgs_Call) Run(run func(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string, options *redis.TSMRevRangeOptions)) *MockPipeliner_TSMRevRangeWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int), args[2].(int), args[3].([]string), args[4].(*redis.TSMRevRangeOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 []string
+		if args[3] != nil {
+			arg3 = args[3].([]string)
+		}
+		var arg4 *redis.TSMRevRangeOptions
+		if args[4] != nil {
+			arg4 = args[4].(*redis.TSMRevRangeOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -21293,15 +27725,26 @@ type MockPipeliner_TSQueryIndex_Call struct {
 }
 
 // TSQueryIndex is a helper method to define mock.On call
-//   - ctx
-//   - filterExpr
+//   - ctx context.Context
+//   - filterExpr []string
 func (_e *MockPipeliner_Expecter) TSQueryIndex(ctx interface{}, filterExpr interface{}) *MockPipeliner_TSQueryIndex_Call {
 	return &MockPipeliner_TSQueryIndex_Call{Call: _e.mock.On("TSQueryIndex", ctx, filterExpr)}
 }
 
 func (_c *MockPipeliner_TSQueryIndex_Call) Run(run func(ctx context.Context, filterExpr []string)) *MockPipeliner_TSQueryIndex_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].([]string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		if args[1] != nil {
+			arg1 = args[1].([]string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -21341,17 +27784,38 @@ type MockPipeliner_TSRange_Call struct {
 }
 
 // TSRange is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fromTimestamp
-//   - toTimestamp
+//   - ctx context.Context
+//   - key string
+//   - fromTimestamp int
+//   - toTimestamp int
 func (_e *MockPipeliner_Expecter) TSRange(ctx interface{}, key interface{}, fromTimestamp interface{}, toTimestamp interface{}) *MockPipeliner_TSRange_Call {
 	return &MockPipeliner_TSRange_Call{Call: _e.mock.On("TSRange", ctx, key, fromTimestamp, toTimestamp)}
 }
 
 func (_c *MockPipeliner_TSRange_Call) Run(run func(ctx context.Context, key string, fromTimestamp int, toTimestamp int)) *MockPipeliner_TSRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int), args[3].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 int
+		if args[3] != nil {
+			arg3 = args[3].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -21391,18 +27855,44 @@ type MockPipeliner_TSRangeWithArgs_Call struct {
 }
 
 // TSRangeWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fromTimestamp
-//   - toTimestamp
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - fromTimestamp int
+//   - toTimestamp int
+//   - options *redis.TSRangeOptions
 func (_e *MockPipeliner_Expecter) TSRangeWithArgs(ctx interface{}, key interface{}, fromTimestamp interface{}, toTimestamp interface{}, options interface{}) *MockPipeliner_TSRangeWithArgs_Call {
 	return &MockPipeliner_TSRangeWithArgs_Call{Call: _e.mock.On("TSRangeWithArgs", ctx, key, fromTimestamp, toTimestamp, options)}
 }
 
 func (_c *MockPipeliner_TSRangeWithArgs_Call) Run(run func(ctx context.Context, key string, fromTimestamp int, toTimestamp int, options *redis.TSRangeOptions)) *MockPipeliner_TSRangeWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int), args[3].(int), args[4].(*redis.TSRangeOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 int
+		if args[3] != nil {
+			arg3 = args[3].(int)
+		}
+		var arg4 *redis.TSRangeOptions
+		if args[4] != nil {
+			arg4 = args[4].(*redis.TSRangeOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -21442,17 +27932,38 @@ type MockPipeliner_TSRevRange_Call struct {
 }
 
 // TSRevRange is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fromTimestamp
-//   - toTimestamp
+//   - ctx context.Context
+//   - key string
+//   - fromTimestamp int
+//   - toTimestamp int
 func (_e *MockPipeliner_Expecter) TSRevRange(ctx interface{}, key interface{}, fromTimestamp interface{}, toTimestamp interface{}) *MockPipeliner_TSRevRange_Call {
 	return &MockPipeliner_TSRevRange_Call{Call: _e.mock.On("TSRevRange", ctx, key, fromTimestamp, toTimestamp)}
 }
 
 func (_c *MockPipeliner_TSRevRange_Call) Run(run func(ctx context.Context, key string, fromTimestamp int, toTimestamp int)) *MockPipeliner_TSRevRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int), args[3].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 int
+		if args[3] != nil {
+			arg3 = args[3].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -21492,18 +28003,44 @@ type MockPipeliner_TSRevRangeWithArgs_Call struct {
 }
 
 // TSRevRangeWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fromTimestamp
-//   - toTimestamp
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - fromTimestamp int
+//   - toTimestamp int
+//   - options *redis.TSRevRangeOptions
 func (_e *MockPipeliner_Expecter) TSRevRangeWithArgs(ctx interface{}, key interface{}, fromTimestamp interface{}, toTimestamp interface{}, options interface{}) *MockPipeliner_TSRevRangeWithArgs_Call {
 	return &MockPipeliner_TSRevRangeWithArgs_Call{Call: _e.mock.On("TSRevRangeWithArgs", ctx, key, fromTimestamp, toTimestamp, options)}
 }
 
 func (_c *MockPipeliner_TSRevRangeWithArgs_Call) Run(run func(ctx context.Context, key string, fromTimestamp int, toTimestamp int, options *redis.TSRevRangeOptions)) *MockPipeliner_TSRevRangeWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int), args[3].(int), args[4].(*redis.TSRevRangeOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 int
+		if args[3] != nil {
+			arg3 = args[3].(int)
+		}
+		var arg4 *redis.TSRevRangeOptions
+		if args[4] != nil {
+			arg4 = args[4].(*redis.TSRevRangeOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -21543,15 +28080,26 @@ type MockPipeliner_TTL_Call struct {
 }
 
 // TTL is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) TTL(ctx interface{}, key interface{}) *MockPipeliner_TTL_Call {
 	return &MockPipeliner_TTL_Call{Call: _e.mock.On("TTL", ctx, key)}
 }
 
 func (_c *MockPipeliner_TTL_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_TTL_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -21591,14 +28139,20 @@ type MockPipeliner_Time_Call struct {
 }
 
 // Time is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockPipeliner_Expecter) Time(ctx interface{}) *MockPipeliner_Time_Call {
 	return &MockPipeliner_Time_Call{Call: _e.mock.On("Time", ctx)}
 }
 
 func (_c *MockPipeliner_Time_Call) Run(run func(ctx context.Context)) *MockPipeliner_Time_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -21644,9 +28198,9 @@ type MockPipeliner_TopKAdd_Call struct {
 }
 
 // TopKAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...interface{}
 func (_e *MockPipeliner_Expecter) TopKAdd(ctx interface{}, key interface{}, elements ...interface{}) *MockPipeliner_TopKAdd_Call {
 	return &MockPipeliner_TopKAdd_Call{Call: _e.mock.On("TopKAdd",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -21654,8 +28208,25 @@ func (_e *MockPipeliner_Expecter) TopKAdd(ctx interface{}, key interface{}, elem
 
 func (_c *MockPipeliner_TopKAdd_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockPipeliner_TopKAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -21701,9 +28272,9 @@ type MockPipeliner_TopKCount_Call struct {
 }
 
 // TopKCount is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...interface{}
 func (_e *MockPipeliner_Expecter) TopKCount(ctx interface{}, key interface{}, elements ...interface{}) *MockPipeliner_TopKCount_Call {
 	return &MockPipeliner_TopKCount_Call{Call: _e.mock.On("TopKCount",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -21711,8 +28282,25 @@ func (_e *MockPipeliner_Expecter) TopKCount(ctx interface{}, key interface{}, el
 
 func (_c *MockPipeliner_TopKCount_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockPipeliner_TopKCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -21758,9 +28346,9 @@ type MockPipeliner_TopKIncrBy_Call struct {
 }
 
 // TopKIncrBy is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...interface{}
 func (_e *MockPipeliner_Expecter) TopKIncrBy(ctx interface{}, key interface{}, elements ...interface{}) *MockPipeliner_TopKIncrBy_Call {
 	return &MockPipeliner_TopKIncrBy_Call{Call: _e.mock.On("TopKIncrBy",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -21768,8 +28356,25 @@ func (_e *MockPipeliner_Expecter) TopKIncrBy(ctx interface{}, key interface{}, e
 
 func (_c *MockPipeliner_TopKIncrBy_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockPipeliner_TopKIncrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -21809,15 +28414,26 @@ type MockPipeliner_TopKInfo_Call struct {
 }
 
 // TopKInfo is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) TopKInfo(ctx interface{}, key interface{}) *MockPipeliner_TopKInfo_Call {
 	return &MockPipeliner_TopKInfo_Call{Call: _e.mock.On("TopKInfo", ctx, key)}
 }
 
 func (_c *MockPipeliner_TopKInfo_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_TopKInfo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -21857,15 +28473,26 @@ type MockPipeliner_TopKList_Call struct {
 }
 
 // TopKList is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) TopKList(ctx interface{}, key interface{}) *MockPipeliner_TopKList_Call {
 	return &MockPipeliner_TopKList_Call{Call: _e.mock.On("TopKList", ctx, key)}
 }
 
 func (_c *MockPipeliner_TopKList_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_TopKList_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -21905,15 +28532,26 @@ type MockPipeliner_TopKListWithCount_Call struct {
 }
 
 // TopKListWithCount is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) TopKListWithCount(ctx interface{}, key interface{}) *MockPipeliner_TopKListWithCount_Call {
 	return &MockPipeliner_TopKListWithCount_Call{Call: _e.mock.On("TopKListWithCount", ctx, key)}
 }
 
 func (_c *MockPipeliner_TopKListWithCount_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_TopKListWithCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -21959,9 +28597,9 @@ type MockPipeliner_TopKQuery_Call struct {
 }
 
 // TopKQuery is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...interface{}
 func (_e *MockPipeliner_Expecter) TopKQuery(ctx interface{}, key interface{}, elements ...interface{}) *MockPipeliner_TopKQuery_Call {
 	return &MockPipeliner_TopKQuery_Call{Call: _e.mock.On("TopKQuery",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -21969,8 +28607,25 @@ func (_e *MockPipeliner_Expecter) TopKQuery(ctx interface{}, key interface{}, el
 
 func (_c *MockPipeliner_TopKQuery_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockPipeliner_TopKQuery_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -22010,16 +28665,32 @@ type MockPipeliner_TopKReserve_Call struct {
 }
 
 // TopKReserve is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - k
+//   - ctx context.Context
+//   - key string
+//   - k int64
 func (_e *MockPipeliner_Expecter) TopKReserve(ctx interface{}, key interface{}, k interface{}) *MockPipeliner_TopKReserve_Call {
 	return &MockPipeliner_TopKReserve_Call{Call: _e.mock.On("TopKReserve", ctx, key, k)}
 }
 
 func (_c *MockPipeliner_TopKReserve_Call) Run(run func(ctx context.Context, key string, k int64)) *MockPipeliner_TopKReserve_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -22059,19 +28730,50 @@ type MockPipeliner_TopKReserveWithOptions_Call struct {
 }
 
 // TopKReserveWithOptions is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - k
-//   - width
-//   - depth
-//   - decay
+//   - ctx context.Context
+//   - key string
+//   - k int64
+//   - width int64
+//   - depth int64
+//   - decay float64
 func (_e *MockPipeliner_Expecter) TopKReserveWithOptions(ctx interface{}, key interface{}, k interface{}, width interface{}, depth interface{}, decay interface{}) *MockPipeliner_TopKReserveWithOptions_Call {
 	return &MockPipeliner_TopKReserveWithOptions_Call{Call: _e.mock.On("TopKReserveWithOptions", ctx, key, k, width, depth, decay)}
 }
 
 func (_c *MockPipeliner_TopKReserveWithOptions_Call) Run(run func(ctx context.Context, key string, k int64, width int64, depth int64, decay float64)) *MockPipeliner_TopKReserveWithOptions_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64), args[4].(int64), args[5].(float64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		var arg5 float64
+		if args[5] != nil {
+			arg5 = args[5].(float64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+			arg5,
+		)
 	})
 	return _c
 }
@@ -22117,8 +28819,8 @@ type MockPipeliner_Touch_Call struct {
 }
 
 // Touch is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) Touch(ctx interface{}, keys ...interface{}) *MockPipeliner_Touch_Call {
 	return &MockPipeliner_Touch_Call{Call: _e.mock.On("Touch",
 		append([]interface{}{ctx}, keys...)...)}
@@ -22126,8 +28828,20 @@ func (_e *MockPipeliner_Expecter) Touch(ctx interface{}, keys ...interface{}) *M
 
 func (_c *MockPipeliner_Touch_Call) Run(run func(ctx context.Context, keys ...string)) *MockPipeliner_Touch_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -22222,15 +28936,26 @@ type MockPipeliner_TxPipelined_Call struct {
 }
 
 // TxPipelined is a helper method to define mock.On call
-//   - ctx
-//   - fn
+//   - ctx context.Context
+//   - fn func(redis.Pipeliner) error
 func (_e *MockPipeliner_Expecter) TxPipelined(ctx interface{}, fn interface{}) *MockPipeliner_TxPipelined_Call {
 	return &MockPipeliner_TxPipelined_Call{Call: _e.mock.On("TxPipelined", ctx, fn)}
 }
 
 func (_c *MockPipeliner_TxPipelined_Call) Run(run func(ctx context.Context, fn func(redis.Pipeliner) error)) *MockPipeliner_TxPipelined_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(func(redis.Pipeliner) error))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 func(redis.Pipeliner) error
+		if args[1] != nil {
+			arg1 = args[1].(func(redis.Pipeliner) error)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -22270,15 +28995,26 @@ type MockPipeliner_Type_Call struct {
 }
 
 // Type is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) Type(ctx interface{}, key interface{}) *MockPipeliner_Type_Call {
 	return &MockPipeliner_Type_Call{Call: _e.mock.On("Type", ctx, key)}
 }
 
 func (_c *MockPipeliner_Type_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_Type_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -22324,8 +29060,8 @@ type MockPipeliner_Unlink_Call struct {
 }
 
 // Unlink is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) Unlink(ctx interface{}, keys ...interface{}) *MockPipeliner_Unlink_Call {
 	return &MockPipeliner_Unlink_Call{Call: _e.mock.On("Unlink",
 		append([]interface{}{ctx}, keys...)...)}
@@ -22333,8 +29069,20 @@ func (_e *MockPipeliner_Expecter) Unlink(ctx interface{}, keys ...interface{}) *
 
 func (_c *MockPipeliner_Unlink_Call) Run(run func(ctx context.Context, keys ...string)) *MockPipeliner_Unlink_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -22380,10 +29128,10 @@ type MockPipeliner_XAck_Call struct {
 }
 
 // XAck is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - group
-//   - ids
+//   - ctx context.Context
+//   - stream string
+//   - group string
+//   - ids ...string
 func (_e *MockPipeliner_Expecter) XAck(ctx interface{}, stream interface{}, group interface{}, ids ...interface{}) *MockPipeliner_XAck_Call {
 	return &MockPipeliner_XAck_Call{Call: _e.mock.On("XAck",
 		append([]interface{}{ctx, stream, group}, ids...)...)}
@@ -22391,8 +29139,30 @@ func (_e *MockPipeliner_Expecter) XAck(ctx interface{}, stream interface{}, grou
 
 func (_c *MockPipeliner_XAck_Call) Run(run func(ctx context.Context, stream string, group string, ids ...string)) *MockPipeliner_XAck_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -22432,15 +29202,26 @@ type MockPipeliner_XAdd_Call struct {
 }
 
 // XAdd is a helper method to define mock.On call
-//   - ctx
-//   - a
+//   - ctx context.Context
+//   - a *redis.XAddArgs
 func (_e *MockPipeliner_Expecter) XAdd(ctx interface{}, a interface{}) *MockPipeliner_XAdd_Call {
 	return &MockPipeliner_XAdd_Call{Call: _e.mock.On("XAdd", ctx, a)}
 }
 
 func (_c *MockPipeliner_XAdd_Call) Run(run func(ctx context.Context, a *redis.XAddArgs)) *MockPipeliner_XAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XAddArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.XAddArgs
+		if args[1] != nil {
+			arg1 = args[1].(*redis.XAddArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -22480,15 +29261,26 @@ type MockPipeliner_XAutoClaim_Call struct {
 }
 
 // XAutoClaim is a helper method to define mock.On call
-//   - ctx
-//   - a
+//   - ctx context.Context
+//   - a *redis.XAutoClaimArgs
 func (_e *MockPipeliner_Expecter) XAutoClaim(ctx interface{}, a interface{}) *MockPipeliner_XAutoClaim_Call {
 	return &MockPipeliner_XAutoClaim_Call{Call: _e.mock.On("XAutoClaim", ctx, a)}
 }
 
 func (_c *MockPipeliner_XAutoClaim_Call) Run(run func(ctx context.Context, a *redis.XAutoClaimArgs)) *MockPipeliner_XAutoClaim_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XAutoClaimArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.XAutoClaimArgs
+		if args[1] != nil {
+			arg1 = args[1].(*redis.XAutoClaimArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -22528,15 +29320,26 @@ type MockPipeliner_XAutoClaimJustID_Call struct {
 }
 
 // XAutoClaimJustID is a helper method to define mock.On call
-//   - ctx
-//   - a
+//   - ctx context.Context
+//   - a *redis.XAutoClaimArgs
 func (_e *MockPipeliner_Expecter) XAutoClaimJustID(ctx interface{}, a interface{}) *MockPipeliner_XAutoClaimJustID_Call {
 	return &MockPipeliner_XAutoClaimJustID_Call{Call: _e.mock.On("XAutoClaimJustID", ctx, a)}
 }
 
 func (_c *MockPipeliner_XAutoClaimJustID_Call) Run(run func(ctx context.Context, a *redis.XAutoClaimArgs)) *MockPipeliner_XAutoClaimJustID_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XAutoClaimArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.XAutoClaimArgs
+		if args[1] != nil {
+			arg1 = args[1].(*redis.XAutoClaimArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -22576,15 +29379,26 @@ type MockPipeliner_XClaim_Call struct {
 }
 
 // XClaim is a helper method to define mock.On call
-//   - ctx
-//   - a
+//   - ctx context.Context
+//   - a *redis.XClaimArgs
 func (_e *MockPipeliner_Expecter) XClaim(ctx interface{}, a interface{}) *MockPipeliner_XClaim_Call {
 	return &MockPipeliner_XClaim_Call{Call: _e.mock.On("XClaim", ctx, a)}
 }
 
 func (_c *MockPipeliner_XClaim_Call) Run(run func(ctx context.Context, a *redis.XClaimArgs)) *MockPipeliner_XClaim_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XClaimArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.XClaimArgs
+		if args[1] != nil {
+			arg1 = args[1].(*redis.XClaimArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -22624,15 +29438,26 @@ type MockPipeliner_XClaimJustID_Call struct {
 }
 
 // XClaimJustID is a helper method to define mock.On call
-//   - ctx
-//   - a
+//   - ctx context.Context
+//   - a *redis.XClaimArgs
 func (_e *MockPipeliner_Expecter) XClaimJustID(ctx interface{}, a interface{}) *MockPipeliner_XClaimJustID_Call {
 	return &MockPipeliner_XClaimJustID_Call{Call: _e.mock.On("XClaimJustID", ctx, a)}
 }
 
 func (_c *MockPipeliner_XClaimJustID_Call) Run(run func(ctx context.Context, a *redis.XClaimArgs)) *MockPipeliner_XClaimJustID_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XClaimArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.XClaimArgs
+		if args[1] != nil {
+			arg1 = args[1].(*redis.XClaimArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -22678,9 +29503,9 @@ type MockPipeliner_XDel_Call struct {
 }
 
 // XDel is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - ids
+//   - ctx context.Context
+//   - stream string
+//   - ids ...string
 func (_e *MockPipeliner_Expecter) XDel(ctx interface{}, stream interface{}, ids ...interface{}) *MockPipeliner_XDel_Call {
 	return &MockPipeliner_XDel_Call{Call: _e.mock.On("XDel",
 		append([]interface{}{ctx, stream}, ids...)...)}
@@ -22688,8 +29513,25 @@ func (_e *MockPipeliner_Expecter) XDel(ctx interface{}, stream interface{}, ids 
 
 func (_c *MockPipeliner_XDel_Call) Run(run func(ctx context.Context, stream string, ids ...string)) *MockPipeliner_XDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -22729,17 +29571,38 @@ type MockPipeliner_XGroupCreate_Call struct {
 }
 
 // XGroupCreate is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - group
-//   - start
+//   - ctx context.Context
+//   - stream string
+//   - group string
+//   - start string
 func (_e *MockPipeliner_Expecter) XGroupCreate(ctx interface{}, stream interface{}, group interface{}, start interface{}) *MockPipeliner_XGroupCreate_Call {
 	return &MockPipeliner_XGroupCreate_Call{Call: _e.mock.On("XGroupCreate", ctx, stream, group, start)}
 }
 
 func (_c *MockPipeliner_XGroupCreate_Call) Run(run func(ctx context.Context, stream string, group string, start string)) *MockPipeliner_XGroupCreate_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -22779,17 +29642,38 @@ type MockPipeliner_XGroupCreateConsumer_Call struct {
 }
 
 // XGroupCreateConsumer is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - group
-//   - consumer
+//   - ctx context.Context
+//   - stream string
+//   - group string
+//   - consumer string
 func (_e *MockPipeliner_Expecter) XGroupCreateConsumer(ctx interface{}, stream interface{}, group interface{}, consumer interface{}) *MockPipeliner_XGroupCreateConsumer_Call {
 	return &MockPipeliner_XGroupCreateConsumer_Call{Call: _e.mock.On("XGroupCreateConsumer", ctx, stream, group, consumer)}
 }
 
 func (_c *MockPipeliner_XGroupCreateConsumer_Call) Run(run func(ctx context.Context, stream string, group string, consumer string)) *MockPipeliner_XGroupCreateConsumer_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -22829,17 +29713,38 @@ type MockPipeliner_XGroupCreateMkStream_Call struct {
 }
 
 // XGroupCreateMkStream is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - group
-//   - start
+//   - ctx context.Context
+//   - stream string
+//   - group string
+//   - start string
 func (_e *MockPipeliner_Expecter) XGroupCreateMkStream(ctx interface{}, stream interface{}, group interface{}, start interface{}) *MockPipeliner_XGroupCreateMkStream_Call {
 	return &MockPipeliner_XGroupCreateMkStream_Call{Call: _e.mock.On("XGroupCreateMkStream", ctx, stream, group, start)}
 }
 
 func (_c *MockPipeliner_XGroupCreateMkStream_Call) Run(run func(ctx context.Context, stream string, group string, start string)) *MockPipeliner_XGroupCreateMkStream_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -22879,17 +29784,38 @@ type MockPipeliner_XGroupDelConsumer_Call struct {
 }
 
 // XGroupDelConsumer is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - group
-//   - consumer
+//   - ctx context.Context
+//   - stream string
+//   - group string
+//   - consumer string
 func (_e *MockPipeliner_Expecter) XGroupDelConsumer(ctx interface{}, stream interface{}, group interface{}, consumer interface{}) *MockPipeliner_XGroupDelConsumer_Call {
 	return &MockPipeliner_XGroupDelConsumer_Call{Call: _e.mock.On("XGroupDelConsumer", ctx, stream, group, consumer)}
 }
 
 func (_c *MockPipeliner_XGroupDelConsumer_Call) Run(run func(ctx context.Context, stream string, group string, consumer string)) *MockPipeliner_XGroupDelConsumer_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -22929,16 +29855,32 @@ type MockPipeliner_XGroupDestroy_Call struct {
 }
 
 // XGroupDestroy is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - group
+//   - ctx context.Context
+//   - stream string
+//   - group string
 func (_e *MockPipeliner_Expecter) XGroupDestroy(ctx interface{}, stream interface{}, group interface{}) *MockPipeliner_XGroupDestroy_Call {
 	return &MockPipeliner_XGroupDestroy_Call{Call: _e.mock.On("XGroupDestroy", ctx, stream, group)}
 }
 
 func (_c *MockPipeliner_XGroupDestroy_Call) Run(run func(ctx context.Context, stream string, group string)) *MockPipeliner_XGroupDestroy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -22978,17 +29920,38 @@ type MockPipeliner_XGroupSetID_Call struct {
 }
 
 // XGroupSetID is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - group
-//   - start
+//   - ctx context.Context
+//   - stream string
+//   - group string
+//   - start string
 func (_e *MockPipeliner_Expecter) XGroupSetID(ctx interface{}, stream interface{}, group interface{}, start interface{}) *MockPipeliner_XGroupSetID_Call {
 	return &MockPipeliner_XGroupSetID_Call{Call: _e.mock.On("XGroupSetID", ctx, stream, group, start)}
 }
 
 func (_c *MockPipeliner_XGroupSetID_Call) Run(run func(ctx context.Context, stream string, group string, start string)) *MockPipeliner_XGroupSetID_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -23028,16 +29991,32 @@ type MockPipeliner_XInfoConsumers_Call struct {
 }
 
 // XInfoConsumers is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - group
+//   - ctx context.Context
+//   - key string
+//   - group string
 func (_e *MockPipeliner_Expecter) XInfoConsumers(ctx interface{}, key interface{}, group interface{}) *MockPipeliner_XInfoConsumers_Call {
 	return &MockPipeliner_XInfoConsumers_Call{Call: _e.mock.On("XInfoConsumers", ctx, key, group)}
 }
 
 func (_c *MockPipeliner_XInfoConsumers_Call) Run(run func(ctx context.Context, key string, group string)) *MockPipeliner_XInfoConsumers_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -23077,15 +30056,26 @@ type MockPipeliner_XInfoGroups_Call struct {
 }
 
 // XInfoGroups is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) XInfoGroups(ctx interface{}, key interface{}) *MockPipeliner_XInfoGroups_Call {
 	return &MockPipeliner_XInfoGroups_Call{Call: _e.mock.On("XInfoGroups", ctx, key)}
 }
 
 func (_c *MockPipeliner_XInfoGroups_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_XInfoGroups_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -23125,15 +30115,26 @@ type MockPipeliner_XInfoStream_Call struct {
 }
 
 // XInfoStream is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) XInfoStream(ctx interface{}, key interface{}) *MockPipeliner_XInfoStream_Call {
 	return &MockPipeliner_XInfoStream_Call{Call: _e.mock.On("XInfoStream", ctx, key)}
 }
 
 func (_c *MockPipeliner_XInfoStream_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_XInfoStream_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -23173,16 +30174,32 @@ type MockPipeliner_XInfoStreamFull_Call struct {
 }
 
 // XInfoStreamFull is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count int
 func (_e *MockPipeliner_Expecter) XInfoStreamFull(ctx interface{}, key interface{}, count interface{}) *MockPipeliner_XInfoStreamFull_Call {
 	return &MockPipeliner_XInfoStreamFull_Call{Call: _e.mock.On("XInfoStreamFull", ctx, key, count)}
 }
 
 func (_c *MockPipeliner_XInfoStreamFull_Call) Run(run func(ctx context.Context, key string, count int)) *MockPipeliner_XInfoStreamFull_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -23222,15 +30239,26 @@ type MockPipeliner_XLen_Call struct {
 }
 
 // XLen is a helper method to define mock.On call
-//   - ctx
-//   - stream
+//   - ctx context.Context
+//   - stream string
 func (_e *MockPipeliner_Expecter) XLen(ctx interface{}, stream interface{}) *MockPipeliner_XLen_Call {
 	return &MockPipeliner_XLen_Call{Call: _e.mock.On("XLen", ctx, stream)}
 }
 
 func (_c *MockPipeliner_XLen_Call) Run(run func(ctx context.Context, stream string)) *MockPipeliner_XLen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -23270,16 +30298,32 @@ type MockPipeliner_XPending_Call struct {
 }
 
 // XPending is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - group
+//   - ctx context.Context
+//   - stream string
+//   - group string
 func (_e *MockPipeliner_Expecter) XPending(ctx interface{}, stream interface{}, group interface{}) *MockPipeliner_XPending_Call {
 	return &MockPipeliner_XPending_Call{Call: _e.mock.On("XPending", ctx, stream, group)}
 }
 
 func (_c *MockPipeliner_XPending_Call) Run(run func(ctx context.Context, stream string, group string)) *MockPipeliner_XPending_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -23319,15 +30363,26 @@ type MockPipeliner_XPendingExt_Call struct {
 }
 
 // XPendingExt is a helper method to define mock.On call
-//   - ctx
-//   - a
+//   - ctx context.Context
+//   - a *redis.XPendingExtArgs
 func (_e *MockPipeliner_Expecter) XPendingExt(ctx interface{}, a interface{}) *MockPipeliner_XPendingExt_Call {
 	return &MockPipeliner_XPendingExt_Call{Call: _e.mock.On("XPendingExt", ctx, a)}
 }
 
 func (_c *MockPipeliner_XPendingExt_Call) Run(run func(ctx context.Context, a *redis.XPendingExtArgs)) *MockPipeliner_XPendingExt_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XPendingExtArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.XPendingExtArgs
+		if args[1] != nil {
+			arg1 = args[1].(*redis.XPendingExtArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -23367,17 +30422,38 @@ type MockPipeliner_XRange_Call struct {
 }
 
 // XRange is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - start
-//   - stop
+//   - ctx context.Context
+//   - stream string
+//   - start string
+//   - stop string
 func (_e *MockPipeliner_Expecter) XRange(ctx interface{}, stream interface{}, start interface{}, stop interface{}) *MockPipeliner_XRange_Call {
 	return &MockPipeliner_XRange_Call{Call: _e.mock.On("XRange", ctx, stream, start, stop)}
 }
 
 func (_c *MockPipeliner_XRange_Call) Run(run func(ctx context.Context, stream string, start string, stop string)) *MockPipeliner_XRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -23417,18 +30493,44 @@ type MockPipeliner_XRangeN_Call struct {
 }
 
 // XRangeN is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - start
-//   - stop
-//   - count
+//   - ctx context.Context
+//   - stream string
+//   - start string
+//   - stop string
+//   - count int64
 func (_e *MockPipeliner_Expecter) XRangeN(ctx interface{}, stream interface{}, start interface{}, stop interface{}, count interface{}) *MockPipeliner_XRangeN_Call {
 	return &MockPipeliner_XRangeN_Call{Call: _e.mock.On("XRangeN", ctx, stream, start, stop, count)}
 }
 
 func (_c *MockPipeliner_XRangeN_Call) Run(run func(ctx context.Context, stream string, start string, stop string, count int64)) *MockPipeliner_XRangeN_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string), args[4].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -23468,15 +30570,26 @@ type MockPipeliner_XRead_Call struct {
 }
 
 // XRead is a helper method to define mock.On call
-//   - ctx
-//   - a
+//   - ctx context.Context
+//   - a *redis.XReadArgs
 func (_e *MockPipeliner_Expecter) XRead(ctx interface{}, a interface{}) *MockPipeliner_XRead_Call {
 	return &MockPipeliner_XRead_Call{Call: _e.mock.On("XRead", ctx, a)}
 }
 
 func (_c *MockPipeliner_XRead_Call) Run(run func(ctx context.Context, a *redis.XReadArgs)) *MockPipeliner_XRead_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XReadArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.XReadArgs
+		if args[1] != nil {
+			arg1 = args[1].(*redis.XReadArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -23516,15 +30629,26 @@ type MockPipeliner_XReadGroup_Call struct {
 }
 
 // XReadGroup is a helper method to define mock.On call
-//   - ctx
-//   - a
+//   - ctx context.Context
+//   - a *redis.XReadGroupArgs
 func (_e *MockPipeliner_Expecter) XReadGroup(ctx interface{}, a interface{}) *MockPipeliner_XReadGroup_Call {
 	return &MockPipeliner_XReadGroup_Call{Call: _e.mock.On("XReadGroup", ctx, a)}
 }
 
 func (_c *MockPipeliner_XReadGroup_Call) Run(run func(ctx context.Context, a *redis.XReadGroupArgs)) *MockPipeliner_XReadGroup_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XReadGroupArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.XReadGroupArgs
+		if args[1] != nil {
+			arg1 = args[1].(*redis.XReadGroupArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -23570,8 +30694,8 @@ type MockPipeliner_XReadStreams_Call struct {
 }
 
 // XReadStreams is a helper method to define mock.On call
-//   - ctx
-//   - streams
+//   - ctx context.Context
+//   - streams ...string
 func (_e *MockPipeliner_Expecter) XReadStreams(ctx interface{}, streams ...interface{}) *MockPipeliner_XReadStreams_Call {
 	return &MockPipeliner_XReadStreams_Call{Call: _e.mock.On("XReadStreams",
 		append([]interface{}{ctx}, streams...)...)}
@@ -23579,8 +30703,20 @@ func (_e *MockPipeliner_Expecter) XReadStreams(ctx interface{}, streams ...inter
 
 func (_c *MockPipeliner_XReadStreams_Call) Run(run func(ctx context.Context, streams ...string)) *MockPipeliner_XReadStreams_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -23620,17 +30756,38 @@ type MockPipeliner_XRevRange_Call struct {
 }
 
 // XRevRange is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - start
-//   - stop
+//   - ctx context.Context
+//   - stream string
+//   - start string
+//   - stop string
 func (_e *MockPipeliner_Expecter) XRevRange(ctx interface{}, stream interface{}, start interface{}, stop interface{}) *MockPipeliner_XRevRange_Call {
 	return &MockPipeliner_XRevRange_Call{Call: _e.mock.On("XRevRange", ctx, stream, start, stop)}
 }
 
 func (_c *MockPipeliner_XRevRange_Call) Run(run func(ctx context.Context, stream string, start string, stop string)) *MockPipeliner_XRevRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -23670,18 +30827,44 @@ type MockPipeliner_XRevRangeN_Call struct {
 }
 
 // XRevRangeN is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - start
-//   - stop
-//   - count
+//   - ctx context.Context
+//   - stream string
+//   - start string
+//   - stop string
+//   - count int64
 func (_e *MockPipeliner_Expecter) XRevRangeN(ctx interface{}, stream interface{}, start interface{}, stop interface{}, count interface{}) *MockPipeliner_XRevRangeN_Call {
 	return &MockPipeliner_XRevRangeN_Call{Call: _e.mock.On("XRevRangeN", ctx, stream, start, stop, count)}
 }
 
 func (_c *MockPipeliner_XRevRangeN_Call) Run(run func(ctx context.Context, stream string, start string, stop string, count int64)) *MockPipeliner_XRevRangeN_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string), args[4].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -23721,16 +30904,32 @@ type MockPipeliner_XTrimMaxLen_Call struct {
 }
 
 // XTrimMaxLen is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - maxLen
+//   - ctx context.Context
+//   - key string
+//   - maxLen int64
 func (_e *MockPipeliner_Expecter) XTrimMaxLen(ctx interface{}, key interface{}, maxLen interface{}) *MockPipeliner_XTrimMaxLen_Call {
 	return &MockPipeliner_XTrimMaxLen_Call{Call: _e.mock.On("XTrimMaxLen", ctx, key, maxLen)}
 }
 
 func (_c *MockPipeliner_XTrimMaxLen_Call) Run(run func(ctx context.Context, key string, maxLen int64)) *MockPipeliner_XTrimMaxLen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -23770,17 +30969,38 @@ type MockPipeliner_XTrimMaxLenApprox_Call struct {
 }
 
 // XTrimMaxLenApprox is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - maxLen
-//   - limit
+//   - ctx context.Context
+//   - key string
+//   - maxLen int64
+//   - limit int64
 func (_e *MockPipeliner_Expecter) XTrimMaxLenApprox(ctx interface{}, key interface{}, maxLen interface{}, limit interface{}) *MockPipeliner_XTrimMaxLenApprox_Call {
 	return &MockPipeliner_XTrimMaxLenApprox_Call{Call: _e.mock.On("XTrimMaxLenApprox", ctx, key, maxLen, limit)}
 }
 
 func (_c *MockPipeliner_XTrimMaxLenApprox_Call) Run(run func(ctx context.Context, key string, maxLen int64, limit int64)) *MockPipeliner_XTrimMaxLenApprox_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -23820,16 +31040,32 @@ type MockPipeliner_XTrimMinID_Call struct {
 }
 
 // XTrimMinID is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - minID
+//   - ctx context.Context
+//   - key string
+//   - minID string
 func (_e *MockPipeliner_Expecter) XTrimMinID(ctx interface{}, key interface{}, minID interface{}) *MockPipeliner_XTrimMinID_Call {
 	return &MockPipeliner_XTrimMinID_Call{Call: _e.mock.On("XTrimMinID", ctx, key, minID)}
 }
 
 func (_c *MockPipeliner_XTrimMinID_Call) Run(run func(ctx context.Context, key string, minID string)) *MockPipeliner_XTrimMinID_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -23869,17 +31105,38 @@ type MockPipeliner_XTrimMinIDApprox_Call struct {
 }
 
 // XTrimMinIDApprox is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - minID
-//   - limit
+//   - ctx context.Context
+//   - key string
+//   - minID string
+//   - limit int64
 func (_e *MockPipeliner_Expecter) XTrimMinIDApprox(ctx interface{}, key interface{}, minID interface{}, limit interface{}) *MockPipeliner_XTrimMinIDApprox_Call {
 	return &MockPipeliner_XTrimMinIDApprox_Call{Call: _e.mock.On("XTrimMinIDApprox", ctx, key, minID, limit)}
 }
 
 func (_c *MockPipeliner_XTrimMinIDApprox_Call) Run(run func(ctx context.Context, key string, minID string, limit int64)) *MockPipeliner_XTrimMinIDApprox_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -23925,9 +31182,9 @@ type MockPipeliner_ZAdd_Call struct {
 }
 
 // ZAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...redis.Z
 func (_e *MockPipeliner_Expecter) ZAdd(ctx interface{}, key interface{}, members ...interface{}) *MockPipeliner_ZAdd_Call {
 	return &MockPipeliner_ZAdd_Call{Call: _e.mock.On("ZAdd",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -23935,8 +31192,25 @@ func (_e *MockPipeliner_Expecter) ZAdd(ctx interface{}, key interface{}, members
 
 func (_c *MockPipeliner_ZAdd_Call) Run(run func(ctx context.Context, key string, members ...redis.Z)) *MockPipeliner_ZAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]redis.Z)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []redis.Z
+		var variadicArgs []redis.Z
+		if len(args) > 2 {
+			variadicArgs = args[2].([]redis.Z)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -23976,16 +31250,32 @@ type MockPipeliner_ZAddArgs_Call struct {
 }
 
 // ZAddArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - args
+//   - ctx context.Context
+//   - key string
+//   - args redis.ZAddArgs
 func (_e *MockPipeliner_Expecter) ZAddArgs(ctx interface{}, key interface{}, args interface{}) *MockPipeliner_ZAddArgs_Call {
 	return &MockPipeliner_ZAddArgs_Call{Call: _e.mock.On("ZAddArgs", ctx, key, args)}
 }
 
 func (_c *MockPipeliner_ZAddArgs_Call) Run(run func(ctx context.Context, key string, args redis.ZAddArgs)) *MockPipeliner_ZAddArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(redis.ZAddArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 redis.ZAddArgs
+		if args[2] != nil {
+			arg2 = args[2].(redis.ZAddArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -24025,16 +31315,32 @@ type MockPipeliner_ZAddArgsIncr_Call struct {
 }
 
 // ZAddArgsIncr is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - args
+//   - ctx context.Context
+//   - key string
+//   - args redis.ZAddArgs
 func (_e *MockPipeliner_Expecter) ZAddArgsIncr(ctx interface{}, key interface{}, args interface{}) *MockPipeliner_ZAddArgsIncr_Call {
 	return &MockPipeliner_ZAddArgsIncr_Call{Call: _e.mock.On("ZAddArgsIncr", ctx, key, args)}
 }
 
 func (_c *MockPipeliner_ZAddArgsIncr_Call) Run(run func(ctx context.Context, key string, args redis.ZAddArgs)) *MockPipeliner_ZAddArgsIncr_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(redis.ZAddArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 redis.ZAddArgs
+		if args[2] != nil {
+			arg2 = args[2].(redis.ZAddArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -24080,9 +31386,9 @@ type MockPipeliner_ZAddGT_Call struct {
 }
 
 // ZAddGT is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...redis.Z
 func (_e *MockPipeliner_Expecter) ZAddGT(ctx interface{}, key interface{}, members ...interface{}) *MockPipeliner_ZAddGT_Call {
 	return &MockPipeliner_ZAddGT_Call{Call: _e.mock.On("ZAddGT",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -24090,8 +31396,25 @@ func (_e *MockPipeliner_Expecter) ZAddGT(ctx interface{}, key interface{}, membe
 
 func (_c *MockPipeliner_ZAddGT_Call) Run(run func(ctx context.Context, key string, members ...redis.Z)) *MockPipeliner_ZAddGT_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]redis.Z)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []redis.Z
+		var variadicArgs []redis.Z
+		if len(args) > 2 {
+			variadicArgs = args[2].([]redis.Z)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -24137,9 +31460,9 @@ type MockPipeliner_ZAddLT_Call struct {
 }
 
 // ZAddLT is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...redis.Z
 func (_e *MockPipeliner_Expecter) ZAddLT(ctx interface{}, key interface{}, members ...interface{}) *MockPipeliner_ZAddLT_Call {
 	return &MockPipeliner_ZAddLT_Call{Call: _e.mock.On("ZAddLT",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -24147,8 +31470,25 @@ func (_e *MockPipeliner_Expecter) ZAddLT(ctx interface{}, key interface{}, membe
 
 func (_c *MockPipeliner_ZAddLT_Call) Run(run func(ctx context.Context, key string, members ...redis.Z)) *MockPipeliner_ZAddLT_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]redis.Z)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []redis.Z
+		var variadicArgs []redis.Z
+		if len(args) > 2 {
+			variadicArgs = args[2].([]redis.Z)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -24194,9 +31534,9 @@ type MockPipeliner_ZAddNX_Call struct {
 }
 
 // ZAddNX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...redis.Z
 func (_e *MockPipeliner_Expecter) ZAddNX(ctx interface{}, key interface{}, members ...interface{}) *MockPipeliner_ZAddNX_Call {
 	return &MockPipeliner_ZAddNX_Call{Call: _e.mock.On("ZAddNX",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -24204,8 +31544,25 @@ func (_e *MockPipeliner_Expecter) ZAddNX(ctx interface{}, key interface{}, membe
 
 func (_c *MockPipeliner_ZAddNX_Call) Run(run func(ctx context.Context, key string, members ...redis.Z)) *MockPipeliner_ZAddNX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]redis.Z)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []redis.Z
+		var variadicArgs []redis.Z
+		if len(args) > 2 {
+			variadicArgs = args[2].([]redis.Z)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -24251,9 +31608,9 @@ type MockPipeliner_ZAddXX_Call struct {
 }
 
 // ZAddXX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...redis.Z
 func (_e *MockPipeliner_Expecter) ZAddXX(ctx interface{}, key interface{}, members ...interface{}) *MockPipeliner_ZAddXX_Call {
 	return &MockPipeliner_ZAddXX_Call{Call: _e.mock.On("ZAddXX",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -24261,8 +31618,25 @@ func (_e *MockPipeliner_Expecter) ZAddXX(ctx interface{}, key interface{}, membe
 
 func (_c *MockPipeliner_ZAddXX_Call) Run(run func(ctx context.Context, key string, members ...redis.Z)) *MockPipeliner_ZAddXX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]redis.Z)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []redis.Z
+		var variadicArgs []redis.Z
+		if len(args) > 2 {
+			variadicArgs = args[2].([]redis.Z)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -24302,15 +31676,26 @@ type MockPipeliner_ZCard_Call struct {
 }
 
 // ZCard is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockPipeliner_Expecter) ZCard(ctx interface{}, key interface{}) *MockPipeliner_ZCard_Call {
 	return &MockPipeliner_ZCard_Call{Call: _e.mock.On("ZCard", ctx, key)}
 }
 
 func (_c *MockPipeliner_ZCard_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_ZCard_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -24350,17 +31735,38 @@ type MockPipeliner_ZCount_Call struct {
 }
 
 // ZCount is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - min
-//   - max
+//   - ctx context.Context
+//   - key string
+//   - min string
+//   - max string
 func (_e *MockPipeliner_Expecter) ZCount(ctx interface{}, key interface{}, min interface{}, max interface{}) *MockPipeliner_ZCount_Call {
 	return &MockPipeliner_ZCount_Call{Call: _e.mock.On("ZCount", ctx, key, min, max)}
 }
 
 func (_c *MockPipeliner_ZCount_Call) Run(run func(ctx context.Context, key string, min string, max string)) *MockPipeliner_ZCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -24406,8 +31812,8 @@ type MockPipeliner_ZDiff_Call struct {
 }
 
 // ZDiff is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) ZDiff(ctx interface{}, keys ...interface{}) *MockPipeliner_ZDiff_Call {
 	return &MockPipeliner_ZDiff_Call{Call: _e.mock.On("ZDiff",
 		append([]interface{}{ctx}, keys...)...)}
@@ -24415,8 +31821,20 @@ func (_e *MockPipeliner_Expecter) ZDiff(ctx interface{}, keys ...interface{}) *M
 
 func (_c *MockPipeliner_ZDiff_Call) Run(run func(ctx context.Context, keys ...string)) *MockPipeliner_ZDiff_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -24462,9 +31880,9 @@ type MockPipeliner_ZDiffStore_Call struct {
 }
 
 // ZDiffStore is a helper method to define mock.On call
-//   - ctx
-//   - destination
-//   - keys
+//   - ctx context.Context
+//   - destination string
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) ZDiffStore(ctx interface{}, destination interface{}, keys ...interface{}) *MockPipeliner_ZDiffStore_Call {
 	return &MockPipeliner_ZDiffStore_Call{Call: _e.mock.On("ZDiffStore",
 		append([]interface{}{ctx, destination}, keys...)...)}
@@ -24472,8 +31890,25 @@ func (_e *MockPipeliner_Expecter) ZDiffStore(ctx interface{}, destination interf
 
 func (_c *MockPipeliner_ZDiffStore_Call) Run(run func(ctx context.Context, destination string, keys ...string)) *MockPipeliner_ZDiffStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -24519,8 +31954,8 @@ type MockPipeliner_ZDiffWithScores_Call struct {
 }
 
 // ZDiffWithScores is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) ZDiffWithScores(ctx interface{}, keys ...interface{}) *MockPipeliner_ZDiffWithScores_Call {
 	return &MockPipeliner_ZDiffWithScores_Call{Call: _e.mock.On("ZDiffWithScores",
 		append([]interface{}{ctx}, keys...)...)}
@@ -24528,8 +31963,20 @@ func (_e *MockPipeliner_Expecter) ZDiffWithScores(ctx interface{}, keys ...inter
 
 func (_c *MockPipeliner_ZDiffWithScores_Call) Run(run func(ctx context.Context, keys ...string)) *MockPipeliner_ZDiffWithScores_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -24569,17 +32016,38 @@ type MockPipeliner_ZIncrBy_Call struct {
 }
 
 // ZIncrBy is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - increment
-//   - member
+//   - ctx context.Context
+//   - key string
+//   - increment float64
+//   - member string
 func (_e *MockPipeliner_Expecter) ZIncrBy(ctx interface{}, key interface{}, increment interface{}, member interface{}) *MockPipeliner_ZIncrBy_Call {
 	return &MockPipeliner_ZIncrBy_Call{Call: _e.mock.On("ZIncrBy", ctx, key, increment, member)}
 }
 
 func (_c *MockPipeliner_ZIncrBy_Call) Run(run func(ctx context.Context, key string, increment float64, member string)) *MockPipeliner_ZIncrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -24619,15 +32087,26 @@ type MockPipeliner_ZInter_Call struct {
 }
 
 // ZInter is a helper method to define mock.On call
-//   - ctx
-//   - store
+//   - ctx context.Context
+//   - store *redis.ZStore
 func (_e *MockPipeliner_Expecter) ZInter(ctx interface{}, store interface{}) *MockPipeliner_ZInter_Call {
 	return &MockPipeliner_ZInter_Call{Call: _e.mock.On("ZInter", ctx, store)}
 }
 
 func (_c *MockPipeliner_ZInter_Call) Run(run func(ctx context.Context, store *redis.ZStore)) *MockPipeliner_ZInter_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.ZStore))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.ZStore
+		if args[1] != nil {
+			arg1 = args[1].(*redis.ZStore)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -24673,9 +32152,9 @@ type MockPipeliner_ZInterCard_Call struct {
 }
 
 // ZInterCard is a helper method to define mock.On call
-//   - ctx
-//   - limit
-//   - keys
+//   - ctx context.Context
+//   - limit int64
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) ZInterCard(ctx interface{}, limit interface{}, keys ...interface{}) *MockPipeliner_ZInterCard_Call {
 	return &MockPipeliner_ZInterCard_Call{Call: _e.mock.On("ZInterCard",
 		append([]interface{}{ctx, limit}, keys...)...)}
@@ -24683,8 +32162,25 @@ func (_e *MockPipeliner_Expecter) ZInterCard(ctx interface{}, limit interface{},
 
 func (_c *MockPipeliner_ZInterCard_Call) Run(run func(ctx context.Context, limit int64, keys ...string)) *MockPipeliner_ZInterCard_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(int64), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int64
+		if args[1] != nil {
+			arg1 = args[1].(int64)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -24724,16 +32220,32 @@ type MockPipeliner_ZInterStore_Call struct {
 }
 
 // ZInterStore is a helper method to define mock.On call
-//   - ctx
-//   - destination
-//   - store
+//   - ctx context.Context
+//   - destination string
+//   - store *redis.ZStore
 func (_e *MockPipeliner_Expecter) ZInterStore(ctx interface{}, destination interface{}, store interface{}) *MockPipeliner_ZInterStore_Call {
 	return &MockPipeliner_ZInterStore_Call{Call: _e.mock.On("ZInterStore", ctx, destination, store)}
 }
 
 func (_c *MockPipeliner_ZInterStore_Call) Run(run func(ctx context.Context, destination string, store *redis.ZStore)) *MockPipeliner_ZInterStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.ZStore))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.ZStore
+		if args[2] != nil {
+			arg2 = args[2].(*redis.ZStore)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -24773,15 +32285,26 @@ type MockPipeliner_ZInterWithScores_Call struct {
 }
 
 // ZInterWithScores is a helper method to define mock.On call
-//   - ctx
-//   - store
+//   - ctx context.Context
+//   - store *redis.ZStore
 func (_e *MockPipeliner_Expecter) ZInterWithScores(ctx interface{}, store interface{}) *MockPipeliner_ZInterWithScores_Call {
 	return &MockPipeliner_ZInterWithScores_Call{Call: _e.mock.On("ZInterWithScores", ctx, store)}
 }
 
 func (_c *MockPipeliner_ZInterWithScores_Call) Run(run func(ctx context.Context, store *redis.ZStore)) *MockPipeliner_ZInterWithScores_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.ZStore))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.ZStore
+		if args[1] != nil {
+			arg1 = args[1].(*redis.ZStore)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -24821,17 +32344,38 @@ type MockPipeliner_ZLexCount_Call struct {
 }
 
 // ZLexCount is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - min
-//   - max
+//   - ctx context.Context
+//   - key string
+//   - min string
+//   - max string
 func (_e *MockPipeliner_Expecter) ZLexCount(ctx interface{}, key interface{}, min interface{}, max interface{}) *MockPipeliner_ZLexCount_Call {
 	return &MockPipeliner_ZLexCount_Call{Call: _e.mock.On("ZLexCount", ctx, key, min, max)}
 }
 
 func (_c *MockPipeliner_ZLexCount_Call) Run(run func(ctx context.Context, key string, min string, max string)) *MockPipeliner_ZLexCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -24877,10 +32421,10 @@ type MockPipeliner_ZMPop_Call struct {
 }
 
 // ZMPop is a helper method to define mock.On call
-//   - ctx
-//   - order
-//   - count
-//   - keys
+//   - ctx context.Context
+//   - order string
+//   - count int64
+//   - keys ...string
 func (_e *MockPipeliner_Expecter) ZMPop(ctx interface{}, order interface{}, count interface{}, keys ...interface{}) *MockPipeliner_ZMPop_Call {
 	return &MockPipeliner_ZMPop_Call{Call: _e.mock.On("ZMPop",
 		append([]interface{}{ctx, order, count}, keys...)...)}
@@ -24888,8 +32432,30 @@ func (_e *MockPipeliner_Expecter) ZMPop(ctx interface{}, order interface{}, coun
 
 func (_c *MockPipeliner_ZMPop_Call) Run(run func(ctx context.Context, order string, count int64, keys ...string)) *MockPipeliner_ZMPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -24935,9 +32501,9 @@ type MockPipeliner_ZMScore_Call struct {
 }
 
 // ZMScore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...string
 func (_e *MockPipeliner_Expecter) ZMScore(ctx interface{}, key interface{}, members ...interface{}) *MockPipeliner_ZMScore_Call {
 	return &MockPipeliner_ZMScore_Call{Call: _e.mock.On("ZMScore",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -24945,8 +32511,25 @@ func (_e *MockPipeliner_Expecter) ZMScore(ctx interface{}, key interface{}, memb
 
 func (_c *MockPipeliner_ZMScore_Call) Run(run func(ctx context.Context, key string, members ...string)) *MockPipeliner_ZMScore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -24992,9 +32575,9 @@ type MockPipeliner_ZPopMax_Call struct {
 }
 
 // ZPopMax is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count ...int64
 func (_e *MockPipeliner_Expecter) ZPopMax(ctx interface{}, key interface{}, count ...interface{}) *MockPipeliner_ZPopMax_Call {
 	return &MockPipeliner_ZPopMax_Call{Call: _e.mock.On("ZPopMax",
 		append([]interface{}{ctx, key}, count...)...)}
@@ -25002,8 +32585,25 @@ func (_e *MockPipeliner_Expecter) ZPopMax(ctx interface{}, key interface{}, coun
 
 func (_c *MockPipeliner_ZPopMax_Call) Run(run func(ctx context.Context, key string, count ...int64)) *MockPipeliner_ZPopMax_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]int64)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []int64
+		var variadicArgs []int64
+		if len(args) > 2 {
+			variadicArgs = args[2].([]int64)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -25049,9 +32649,9 @@ type MockPipeliner_ZPopMin_Call struct {
 }
 
 // ZPopMin is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count ...int64
 func (_e *MockPipeliner_Expecter) ZPopMin(ctx interface{}, key interface{}, count ...interface{}) *MockPipeliner_ZPopMin_Call {
 	return &MockPipeliner_ZPopMin_Call{Call: _e.mock.On("ZPopMin",
 		append([]interface{}{ctx, key}, count...)...)}
@@ -25059,8 +32659,25 @@ func (_e *MockPipeliner_Expecter) ZPopMin(ctx interface{}, key interface{}, coun
 
 func (_c *MockPipeliner_ZPopMin_Call) Run(run func(ctx context.Context, key string, count ...int64)) *MockPipeliner_ZPopMin_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]int64)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []int64
+		var variadicArgs []int64
+		if len(args) > 2 {
+			variadicArgs = args[2].([]int64)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -25100,16 +32717,32 @@ type MockPipeliner_ZRandMember_Call struct {
 }
 
 // ZRandMember is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count int
 func (_e *MockPipeliner_Expecter) ZRandMember(ctx interface{}, key interface{}, count interface{}) *MockPipeliner_ZRandMember_Call {
 	return &MockPipeliner_ZRandMember_Call{Call: _e.mock.On("ZRandMember", ctx, key, count)}
 }
 
 func (_c *MockPipeliner_ZRandMember_Call) Run(run func(ctx context.Context, key string, count int)) *MockPipeliner_ZRandMember_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -25149,16 +32782,32 @@ type MockPipeliner_ZRandMemberWithScores_Call struct {
 }
 
 // ZRandMemberWithScores is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count int
 func (_e *MockPipeliner_Expecter) ZRandMemberWithScores(ctx interface{}, key interface{}, count interface{}) *MockPipeliner_ZRandMemberWithScores_Call {
 	return &MockPipeliner_ZRandMemberWithScores_Call{Call: _e.mock.On("ZRandMemberWithScores", ctx, key, count)}
 }
 
 func (_c *MockPipeliner_ZRandMemberWithScores_Call) Run(run func(ctx context.Context, key string, count int)) *MockPipeliner_ZRandMemberWithScores_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -25198,17 +32847,38 @@ type MockPipeliner_ZRange_Call struct {
 }
 
 // ZRange is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - start
-//   - stop
+//   - ctx context.Context
+//   - key string
+//   - start int64
+//   - stop int64
 func (_e *MockPipeliner_Expecter) ZRange(ctx interface{}, key interface{}, start interface{}, stop interface{}) *MockPipeliner_ZRange_Call {
 	return &MockPipeliner_ZRange_Call{Call: _e.mock.On("ZRange", ctx, key, start, stop)}
 }
 
 func (_c *MockPipeliner_ZRange_Call) Run(run func(ctx context.Context, key string, start int64, stop int64)) *MockPipeliner_ZRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -25248,15 +32918,26 @@ type MockPipeliner_ZRangeArgs_Call struct {
 }
 
 // ZRangeArgs is a helper method to define mock.On call
-//   - ctx
-//   - z
+//   - ctx context.Context
+//   - z redis.ZRangeArgs
 func (_e *MockPipeliner_Expecter) ZRangeArgs(ctx interface{}, z interface{}) *MockPipeliner_ZRangeArgs_Call {
 	return &MockPipeliner_ZRangeArgs_Call{Call: _e.mock.On("ZRangeArgs", ctx, z)}
 }
 
 func (_c *MockPipeliner_ZRangeArgs_Call) Run(run func(ctx context.Context, z redis.ZRangeArgs)) *MockPipeliner_ZRangeArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(redis.ZRangeArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 redis.ZRangeArgs
+		if args[1] != nil {
+			arg1 = args[1].(redis.ZRangeArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -25296,15 +32977,26 @@ type MockPipeliner_ZRangeArgsWithScores_Call struct {
 }
 
 // ZRangeArgsWithScores is a helper method to define mock.On call
-//   - ctx
-//   - z
+//   - ctx context.Context
+//   - z redis.ZRangeArgs
 func (_e *MockPipeliner_Expecter) ZRangeArgsWithScores(ctx interface{}, z interface{}) *MockPipeliner_ZRangeArgsWithScores_Call {
 	return &MockPipeliner_ZRangeArgsWithScores_Call{Call: _e.mock.On("ZRangeArgsWithScores", ctx, z)}
 }
 
 func (_c *MockPipeliner_ZRangeArgsWithScores_Call) Run(run func(ctx context.Context, z redis.ZRangeArgs)) *MockPipeliner_ZRangeArgsWithScores_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(redis.ZRangeArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 redis.ZRangeArgs
+		if args[1] != nil {
+			arg1 = args[1].(redis.ZRangeArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -25344,16 +33036,32 @@ type MockPipeliner_ZRangeByLex_Call struct {
 }
 
 // ZRangeByLex is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - opt
+//   - ctx context.Context
+//   - key string
+//   - opt *redis.ZRangeBy
 func (_e *MockPipeliner_Expecter) ZRangeByLex(ctx interface{}, key interface{}, opt interface{}) *MockPipeliner_ZRangeByLex_Call {
 	return &MockPipeliner_ZRangeByLex_Call{Call: _e.mock.On("ZRangeByLex", ctx, key, opt)}
 }
 
 func (_c *MockPipeliner_ZRangeByLex_Call) Run(run func(ctx context.Context, key string, opt *redis.ZRangeBy)) *MockPipeliner_ZRangeByLex_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.ZRangeBy))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.ZRangeBy
+		if args[2] != nil {
+			arg2 = args[2].(*redis.ZRangeBy)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -25393,16 +33101,32 @@ type MockPipeliner_ZRangeByScore_Call struct {
 }
 
 // ZRangeByScore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - opt
+//   - ctx context.Context
+//   - key string
+//   - opt *redis.ZRangeBy
 func (_e *MockPipeliner_Expecter) ZRangeByScore(ctx interface{}, key interface{}, opt interface{}) *MockPipeliner_ZRangeByScore_Call {
 	return &MockPipeliner_ZRangeByScore_Call{Call: _e.mock.On("ZRangeByScore", ctx, key, opt)}
 }
 
 func (_c *MockPipeliner_ZRangeByScore_Call) Run(run func(ctx context.Context, key string, opt *redis.ZRangeBy)) *MockPipeliner_ZRangeByScore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.ZRangeBy))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.ZRangeBy
+		if args[2] != nil {
+			arg2 = args[2].(*redis.ZRangeBy)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -25442,16 +33166,32 @@ type MockPipeliner_ZRangeByScoreWithScores_Call struct {
 }
 
 // ZRangeByScoreWithScores is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - opt
+//   - ctx context.Context
+//   - key string
+//   - opt *redis.ZRangeBy
 func (_e *MockPipeliner_Expecter) ZRangeByScoreWithScores(ctx interface{}, key interface{}, opt interface{}) *MockPipeliner_ZRangeByScoreWithScores_Call {
 	return &MockPipeliner_ZRangeByScoreWithScores_Call{Call: _e.mock.On("ZRangeByScoreWithScores", ctx, key, opt)}
 }
 
 func (_c *MockPipeliner_ZRangeByScoreWithScores_Call) Run(run func(ctx context.Context, key string, opt *redis.ZRangeBy)) *MockPipeliner_ZRangeByScoreWithScores_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.ZRangeBy))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.ZRangeBy
+		if args[2] != nil {
+			arg2 = args[2].(*redis.ZRangeBy)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -25491,16 +33231,32 @@ type MockPipeliner_ZRangeStore_Call struct {
 }
 
 // ZRangeStore is a helper method to define mock.On call
-//   - ctx
-//   - dst
-//   - z
+//   - ctx context.Context
+//   - dst string
+//   - z redis.ZRangeArgs
 func (_e *MockPipeliner_Expecter) ZRangeStore(ctx interface{}, dst interface{}, z interface{}) *MockPipeliner_ZRangeStore_Call {
 	return &MockPipeliner_ZRangeStore_Call{Call: _e.mock.On("ZRangeStore", ctx, dst, z)}
 }
 
 func (_c *MockPipeliner_ZRangeStore_Call) Run(run func(ctx context.Context, dst string, z redis.ZRangeArgs)) *MockPipeliner_ZRangeStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(redis.ZRangeArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 redis.ZRangeArgs
+		if args[2] != nil {
+			arg2 = args[2].(redis.ZRangeArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -25540,17 +33296,38 @@ type MockPipeliner_ZRangeWithScores_Call struct {
 }
 
 // ZRangeWithScores is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - start
-//   - stop
+//   - ctx context.Context
+//   - key string
+//   - start int64
+//   - stop int64
 func (_e *MockPipeliner_Expecter) ZRangeWithScores(ctx interface{}, key interface{}, start interface{}, stop interface{}) *MockPipeliner_ZRangeWithScores_Call {
 	return &MockPipeliner_ZRangeWithScores_Call{Call: _e.mock.On("ZRangeWithScores", ctx, key, start, stop)}
 }
 
 func (_c *MockPipeliner_ZRangeWithScores_Call) Run(run func(ctx context.Context, key string, start int64, stop int64)) *MockPipeliner_ZRangeWithScores_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -25590,16 +33367,32 @@ type MockPipeliner_ZRank_Call struct {
 }
 
 // ZRank is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - member
+//   - ctx context.Context
+//   - key string
+//   - member string
 func (_e *MockPipeliner_Expecter) ZRank(ctx interface{}, key interface{}, member interface{}) *MockPipeliner_ZRank_Call {
 	return &MockPipeliner_ZRank_Call{Call: _e.mock.On("ZRank", ctx, key, member)}
 }
 
 func (_c *MockPipeliner_ZRank_Call) Run(run func(ctx context.Context, key string, member string)) *MockPipeliner_ZRank_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -25639,16 +33432,32 @@ type MockPipeliner_ZRankWithScore_Call struct {
 }
 
 // ZRankWithScore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - member
+//   - ctx context.Context
+//   - key string
+//   - member string
 func (_e *MockPipeliner_Expecter) ZRankWithScore(ctx interface{}, key interface{}, member interface{}) *MockPipeliner_ZRankWithScore_Call {
 	return &MockPipeliner_ZRankWithScore_Call{Call: _e.mock.On("ZRankWithScore", ctx, key, member)}
 }
 
 func (_c *MockPipeliner_ZRankWithScore_Call) Run(run func(ctx context.Context, key string, member string)) *MockPipeliner_ZRankWithScore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -25694,9 +33503,9 @@ type MockPipeliner_ZRem_Call struct {
 }
 
 // ZRem is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...interface{}
 func (_e *MockPipeliner_Expecter) ZRem(ctx interface{}, key interface{}, members ...interface{}) *MockPipeliner_ZRem_Call {
 	return &MockPipeliner_ZRem_Call{Call: _e.mock.On("ZRem",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -25704,8 +33513,25 @@ func (_e *MockPipeliner_Expecter) ZRem(ctx interface{}, key interface{}, members
 
 func (_c *MockPipeliner_ZRem_Call) Run(run func(ctx context.Context, key string, members ...interface{})) *MockPipeliner_ZRem_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -25745,17 +33571,38 @@ type MockPipeliner_ZRemRangeByLex_Call struct {
 }
 
 // ZRemRangeByLex is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - min
-//   - max
+//   - ctx context.Context
+//   - key string
+//   - min string
+//   - max string
 func (_e *MockPipeliner_Expecter) ZRemRangeByLex(ctx interface{}, key interface{}, min interface{}, max interface{}) *MockPipeliner_ZRemRangeByLex_Call {
 	return &MockPipeliner_ZRemRangeByLex_Call{Call: _e.mock.On("ZRemRangeByLex", ctx, key, min, max)}
 }
 
 func (_c *MockPipeliner_ZRemRangeByLex_Call) Run(run func(ctx context.Context, key string, min string, max string)) *MockPipeliner_ZRemRangeByLex_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -25795,17 +33642,38 @@ type MockPipeliner_ZRemRangeByRank_Call struct {
 }
 
 // ZRemRangeByRank is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - start
-//   - stop
+//   - ctx context.Context
+//   - key string
+//   - start int64
+//   - stop int64
 func (_e *MockPipeliner_Expecter) ZRemRangeByRank(ctx interface{}, key interface{}, start interface{}, stop interface{}) *MockPipeliner_ZRemRangeByRank_Call {
 	return &MockPipeliner_ZRemRangeByRank_Call{Call: _e.mock.On("ZRemRangeByRank", ctx, key, start, stop)}
 }
 
 func (_c *MockPipeliner_ZRemRangeByRank_Call) Run(run func(ctx context.Context, key string, start int64, stop int64)) *MockPipeliner_ZRemRangeByRank_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -25845,17 +33713,38 @@ type MockPipeliner_ZRemRangeByScore_Call struct {
 }
 
 // ZRemRangeByScore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - min
-//   - max
+//   - ctx context.Context
+//   - key string
+//   - min string
+//   - max string
 func (_e *MockPipeliner_Expecter) ZRemRangeByScore(ctx interface{}, key interface{}, min interface{}, max interface{}) *MockPipeliner_ZRemRangeByScore_Call {
 	return &MockPipeliner_ZRemRangeByScore_Call{Call: _e.mock.On("ZRemRangeByScore", ctx, key, min, max)}
 }
 
 func (_c *MockPipeliner_ZRemRangeByScore_Call) Run(run func(ctx context.Context, key string, min string, max string)) *MockPipeliner_ZRemRangeByScore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -25895,17 +33784,38 @@ type MockPipeliner_ZRevRange_Call struct {
 }
 
 // ZRevRange is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - start
-//   - stop
+//   - ctx context.Context
+//   - key string
+//   - start int64
+//   - stop int64
 func (_e *MockPipeliner_Expecter) ZRevRange(ctx interface{}, key interface{}, start interface{}, stop interface{}) *MockPipeliner_ZRevRange_Call {
 	return &MockPipeliner_ZRevRange_Call{Call: _e.mock.On("ZRevRange", ctx, key, start, stop)}
 }
 
 func (_c *MockPipeliner_ZRevRange_Call) Run(run func(ctx context.Context, key string, start int64, stop int64)) *MockPipeliner_ZRevRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -25945,16 +33855,32 @@ type MockPipeliner_ZRevRangeByLex_Call struct {
 }
 
 // ZRevRangeByLex is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - opt
+//   - ctx context.Context
+//   - key string
+//   - opt *redis.ZRangeBy
 func (_e *MockPipeliner_Expecter) ZRevRangeByLex(ctx interface{}, key interface{}, opt interface{}) *MockPipeliner_ZRevRangeByLex_Call {
 	return &MockPipeliner_ZRevRangeByLex_Call{Call: _e.mock.On("ZRevRangeByLex", ctx, key, opt)}
 }
 
 func (_c *MockPipeliner_ZRevRangeByLex_Call) Run(run func(ctx context.Context, key string, opt *redis.ZRangeBy)) *MockPipeliner_ZRevRangeByLex_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.ZRangeBy))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.ZRangeBy
+		if args[2] != nil {
+			arg2 = args[2].(*redis.ZRangeBy)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -25994,16 +33920,32 @@ type MockPipeliner_ZRevRangeByScore_Call struct {
 }
 
 // ZRevRangeByScore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - opt
+//   - ctx context.Context
+//   - key string
+//   - opt *redis.ZRangeBy
 func (_e *MockPipeliner_Expecter) ZRevRangeByScore(ctx interface{}, key interface{}, opt interface{}) *MockPipeliner_ZRevRangeByScore_Call {
 	return &MockPipeliner_ZRevRangeByScore_Call{Call: _e.mock.On("ZRevRangeByScore", ctx, key, opt)}
 }
 
 func (_c *MockPipeliner_ZRevRangeByScore_Call) Run(run func(ctx context.Context, key string, opt *redis.ZRangeBy)) *MockPipeliner_ZRevRangeByScore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.ZRangeBy))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.ZRangeBy
+		if args[2] != nil {
+			arg2 = args[2].(*redis.ZRangeBy)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -26043,16 +33985,32 @@ type MockPipeliner_ZRevRangeByScoreWithScores_Call struct {
 }
 
 // ZRevRangeByScoreWithScores is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - opt
+//   - ctx context.Context
+//   - key string
+//   - opt *redis.ZRangeBy
 func (_e *MockPipeliner_Expecter) ZRevRangeByScoreWithScores(ctx interface{}, key interface{}, opt interface{}) *MockPipeliner_ZRevRangeByScoreWithScores_Call {
 	return &MockPipeliner_ZRevRangeByScoreWithScores_Call{Call: _e.mock.On("ZRevRangeByScoreWithScores", ctx, key, opt)}
 }
 
 func (_c *MockPipeliner_ZRevRangeByScoreWithScores_Call) Run(run func(ctx context.Context, key string, opt *redis.ZRangeBy)) *MockPipeliner_ZRevRangeByScoreWithScores_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.ZRangeBy))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.ZRangeBy
+		if args[2] != nil {
+			arg2 = args[2].(*redis.ZRangeBy)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -26092,17 +34050,38 @@ type MockPipeliner_ZRevRangeWithScores_Call struct {
 }
 
 // ZRevRangeWithScores is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - start
-//   - stop
+//   - ctx context.Context
+//   - key string
+//   - start int64
+//   - stop int64
 func (_e *MockPipeliner_Expecter) ZRevRangeWithScores(ctx interface{}, key interface{}, start interface{}, stop interface{}) *MockPipeliner_ZRevRangeWithScores_Call {
 	return &MockPipeliner_ZRevRangeWithScores_Call{Call: _e.mock.On("ZRevRangeWithScores", ctx, key, start, stop)}
 }
 
 func (_c *MockPipeliner_ZRevRangeWithScores_Call) Run(run func(ctx context.Context, key string, start int64, stop int64)) *MockPipeliner_ZRevRangeWithScores_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -26142,16 +34121,32 @@ type MockPipeliner_ZRevRank_Call struct {
 }
 
 // ZRevRank is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - member
+//   - ctx context.Context
+//   - key string
+//   - member string
 func (_e *MockPipeliner_Expecter) ZRevRank(ctx interface{}, key interface{}, member interface{}) *MockPipeliner_ZRevRank_Call {
 	return &MockPipeliner_ZRevRank_Call{Call: _e.mock.On("ZRevRank", ctx, key, member)}
 }
 
 func (_c *MockPipeliner_ZRevRank_Call) Run(run func(ctx context.Context, key string, member string)) *MockPipeliner_ZRevRank_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -26191,16 +34186,32 @@ type MockPipeliner_ZRevRankWithScore_Call struct {
 }
 
 // ZRevRankWithScore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - member
+//   - ctx context.Context
+//   - key string
+//   - member string
 func (_e *MockPipeliner_Expecter) ZRevRankWithScore(ctx interface{}, key interface{}, member interface{}) *MockPipeliner_ZRevRankWithScore_Call {
 	return &MockPipeliner_ZRevRankWithScore_Call{Call: _e.mock.On("ZRevRankWithScore", ctx, key, member)}
 }
 
 func (_c *MockPipeliner_ZRevRankWithScore_Call) Run(run func(ctx context.Context, key string, member string)) *MockPipeliner_ZRevRankWithScore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -26240,18 +34251,44 @@ type MockPipeliner_ZScan_Call struct {
 }
 
 // ZScan is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - cursor
-//   - match
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - cursor uint64
+//   - match string
+//   - count int64
 func (_e *MockPipeliner_Expecter) ZScan(ctx interface{}, key interface{}, cursor interface{}, match interface{}, count interface{}) *MockPipeliner_ZScan_Call {
 	return &MockPipeliner_ZScan_Call{Call: _e.mock.On("ZScan", ctx, key, cursor, match, count)}
 }
 
 func (_c *MockPipeliner_ZScan_Call) Run(run func(ctx context.Context, key string, cursor uint64, match string, count int64)) *MockPipeliner_ZScan_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(uint64), args[3].(string), args[4].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 uint64
+		if args[2] != nil {
+			arg2 = args[2].(uint64)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -26291,16 +34328,32 @@ type MockPipeliner_ZScore_Call struct {
 }
 
 // ZScore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - member
+//   - ctx context.Context
+//   - key string
+//   - member string
 func (_e *MockPipeliner_Expecter) ZScore(ctx interface{}, key interface{}, member interface{}) *MockPipeliner_ZScore_Call {
 	return &MockPipeliner_ZScore_Call{Call: _e.mock.On("ZScore", ctx, key, member)}
 }
 
 func (_c *MockPipeliner_ZScore_Call) Run(run func(ctx context.Context, key string, member string)) *MockPipeliner_ZScore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -26340,15 +34393,26 @@ type MockPipeliner_ZUnion_Call struct {
 }
 
 // ZUnion is a helper method to define mock.On call
-//   - ctx
-//   - store
+//   - ctx context.Context
+//   - store redis.ZStore
 func (_e *MockPipeliner_Expecter) ZUnion(ctx interface{}, store interface{}) *MockPipeliner_ZUnion_Call {
 	return &MockPipeliner_ZUnion_Call{Call: _e.mock.On("ZUnion", ctx, store)}
 }
 
 func (_c *MockPipeliner_ZUnion_Call) Run(run func(ctx context.Context, store redis.ZStore)) *MockPipeliner_ZUnion_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(redis.ZStore))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 redis.ZStore
+		if args[1] != nil {
+			arg1 = args[1].(redis.ZStore)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -26388,16 +34452,32 @@ type MockPipeliner_ZUnionStore_Call struct {
 }
 
 // ZUnionStore is a helper method to define mock.On call
-//   - ctx
-//   - dest
-//   - store
+//   - ctx context.Context
+//   - dest string
+//   - store *redis.ZStore
 func (_e *MockPipeliner_Expecter) ZUnionStore(ctx interface{}, dest interface{}, store interface{}) *MockPipeliner_ZUnionStore_Call {
 	return &MockPipeliner_ZUnionStore_Call{Call: _e.mock.On("ZUnionStore", ctx, dest, store)}
 }
 
 func (_c *MockPipeliner_ZUnionStore_Call) Run(run func(ctx context.Context, dest string, store *redis.ZStore)) *MockPipeliner_ZUnionStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.ZStore))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.ZStore
+		if args[2] != nil {
+			arg2 = args[2].(*redis.ZStore)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -26437,15 +34517,26 @@ type MockPipeliner_ZUnionWithScores_Call struct {
 }
 
 // ZUnionWithScores is a helper method to define mock.On call
-//   - ctx
-//   - store
+//   - ctx context.Context
+//   - store redis.ZStore
 func (_e *MockPipeliner_Expecter) ZUnionWithScores(ctx interface{}, store interface{}) *MockPipeliner_ZUnionWithScores_Call {
 	return &MockPipeliner_ZUnionWithScores_Call{Call: _e.mock.On("ZUnionWithScores", ctx, store)}
 }
 
 func (_c *MockPipeliner_ZUnionWithScores_Call) Run(run func(ctx context.Context, store redis.ZStore)) *MockPipeliner_ZUnionWithScores_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(redis.ZStore))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 redis.ZStore
+		if args[1] != nil {
+			arg1 = args[1].(redis.ZStore)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }

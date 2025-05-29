@@ -64,14 +64,20 @@ type MockCmdable_ACLCat_Call struct {
 }
 
 // ACLCat is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ACLCat(ctx interface{}) *MockCmdable_ACLCat_Call {
 	return &MockCmdable_ACLCat_Call{Call: _e.mock.On("ACLCat", ctx)}
 }
 
 func (_c *MockCmdable_ACLCat_Call) Run(run func(ctx context.Context)) *MockCmdable_ACLCat_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -111,15 +117,26 @@ type MockCmdable_ACLCatArgs_Call struct {
 }
 
 // ACLCatArgs is a helper method to define mock.On call
-//   - ctx
-//   - options
+//   - ctx context.Context
+//   - options *redis.ACLCatArgs
 func (_e *MockCmdable_Expecter) ACLCatArgs(ctx interface{}, options interface{}) *MockCmdable_ACLCatArgs_Call {
 	return &MockCmdable_ACLCatArgs_Call{Call: _e.mock.On("ACLCatArgs", ctx, options)}
 }
 
 func (_c *MockCmdable_ACLCatArgs_Call) Run(run func(ctx context.Context, options *redis.ACLCatArgs)) *MockCmdable_ACLCatArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.ACLCatArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.ACLCatArgs
+		if args[1] != nil {
+			arg1 = args[1].(*redis.ACLCatArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -159,15 +176,26 @@ type MockCmdable_ACLDelUser_Call struct {
 }
 
 // ACLDelUser is a helper method to define mock.On call
-//   - ctx
-//   - username
+//   - ctx context.Context
+//   - username string
 func (_e *MockCmdable_Expecter) ACLDelUser(ctx interface{}, username interface{}) *MockCmdable_ACLDelUser_Call {
 	return &MockCmdable_ACLDelUser_Call{Call: _e.mock.On("ACLDelUser", ctx, username)}
 }
 
 func (_c *MockCmdable_ACLDelUser_Call) Run(run func(ctx context.Context, username string)) *MockCmdable_ACLDelUser_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -213,9 +241,9 @@ type MockCmdable_ACLDryRun_Call struct {
 }
 
 // ACLDryRun is a helper method to define mock.On call
-//   - ctx
-//   - username
-//   - command
+//   - ctx context.Context
+//   - username string
+//   - command ...interface{}
 func (_e *MockCmdable_Expecter) ACLDryRun(ctx interface{}, username interface{}, command ...interface{}) *MockCmdable_ACLDryRun_Call {
 	return &MockCmdable_ACLDryRun_Call{Call: _e.mock.On("ACLDryRun",
 		append([]interface{}{ctx, username}, command...)...)}
@@ -223,8 +251,25 @@ func (_e *MockCmdable_Expecter) ACLDryRun(ctx interface{}, username interface{},
 
 func (_c *MockCmdable_ACLDryRun_Call) Run(run func(ctx context.Context, username string, command ...interface{})) *MockCmdable_ACLDryRun_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -264,14 +309,20 @@ type MockCmdable_ACLList_Call struct {
 }
 
 // ACLList is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ACLList(ctx interface{}) *MockCmdable_ACLList_Call {
 	return &MockCmdable_ACLList_Call{Call: _e.mock.On("ACLList", ctx)}
 }
 
 func (_c *MockCmdable_ACLList_Call) Run(run func(ctx context.Context)) *MockCmdable_ACLList_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -311,15 +362,26 @@ type MockCmdable_ACLLog_Call struct {
 }
 
 // ACLLog is a helper method to define mock.On call
-//   - ctx
-//   - count
+//   - ctx context.Context
+//   - count int64
 func (_e *MockCmdable_Expecter) ACLLog(ctx interface{}, count interface{}) *MockCmdable_ACLLog_Call {
 	return &MockCmdable_ACLLog_Call{Call: _e.mock.On("ACLLog", ctx, count)}
 }
 
 func (_c *MockCmdable_ACLLog_Call) Run(run func(ctx context.Context, count int64)) *MockCmdable_ACLLog_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int64
+		if args[1] != nil {
+			arg1 = args[1].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -359,14 +421,20 @@ type MockCmdable_ACLLogReset_Call struct {
 }
 
 // ACLLogReset is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ACLLogReset(ctx interface{}) *MockCmdable_ACLLogReset_Call {
 	return &MockCmdable_ACLLogReset_Call{Call: _e.mock.On("ACLLogReset", ctx)}
 }
 
 func (_c *MockCmdable_ACLLogReset_Call) Run(run func(ctx context.Context)) *MockCmdable_ACLLogReset_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -412,9 +480,9 @@ type MockCmdable_ACLSetUser_Call struct {
 }
 
 // ACLSetUser is a helper method to define mock.On call
-//   - ctx
-//   - username
-//   - rules
+//   - ctx context.Context
+//   - username string
+//   - rules ...string
 func (_e *MockCmdable_Expecter) ACLSetUser(ctx interface{}, username interface{}, rules ...interface{}) *MockCmdable_ACLSetUser_Call {
 	return &MockCmdable_ACLSetUser_Call{Call: _e.mock.On("ACLSetUser",
 		append([]interface{}{ctx, username}, rules...)...)}
@@ -422,8 +490,25 @@ func (_e *MockCmdable_Expecter) ACLSetUser(ctx interface{}, username interface{}
 
 func (_c *MockCmdable_ACLSetUser_Call) Run(run func(ctx context.Context, username string, rules ...string)) *MockCmdable_ACLSetUser_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -463,16 +548,32 @@ type MockCmdable_Append_Call struct {
 }
 
 // Append is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - value string
 func (_e *MockCmdable_Expecter) Append(ctx interface{}, key interface{}, value interface{}) *MockCmdable_Append_Call {
 	return &MockCmdable_Append_Call{Call: _e.mock.On("Append", ctx, key, value)}
 }
 
 func (_c *MockCmdable_Append_Call) Run(run func(ctx context.Context, key string, value string)) *MockCmdable_Append_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -512,16 +613,32 @@ type MockCmdable_BFAdd_Call struct {
 }
 
 // BFAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - element
+//   - ctx context.Context
+//   - key string
+//   - element interface{}
 func (_e *MockCmdable_Expecter) BFAdd(ctx interface{}, key interface{}, element interface{}) *MockCmdable_BFAdd_Call {
 	return &MockCmdable_BFAdd_Call{Call: _e.mock.On("BFAdd", ctx, key, element)}
 }
 
 func (_c *MockCmdable_BFAdd_Call) Run(run func(ctx context.Context, key string, element interface{})) *MockCmdable_BFAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -561,15 +678,26 @@ type MockCmdable_BFCard_Call struct {
 }
 
 // BFCard is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) BFCard(ctx interface{}, key interface{}) *MockCmdable_BFCard_Call {
 	return &MockCmdable_BFCard_Call{Call: _e.mock.On("BFCard", ctx, key)}
 }
 
 func (_c *MockCmdable_BFCard_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_BFCard_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -609,16 +737,32 @@ type MockCmdable_BFExists_Call struct {
 }
 
 // BFExists is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - element
+//   - ctx context.Context
+//   - key string
+//   - element interface{}
 func (_e *MockCmdable_Expecter) BFExists(ctx interface{}, key interface{}, element interface{}) *MockCmdable_BFExists_Call {
 	return &MockCmdable_BFExists_Call{Call: _e.mock.On("BFExists", ctx, key, element)}
 }
 
 func (_c *MockCmdable_BFExists_Call) Run(run func(ctx context.Context, key string, element interface{})) *MockCmdable_BFExists_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -658,15 +802,26 @@ type MockCmdable_BFInfo_Call struct {
 }
 
 // BFInfo is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) BFInfo(ctx interface{}, key interface{}) *MockCmdable_BFInfo_Call {
 	return &MockCmdable_BFInfo_Call{Call: _e.mock.On("BFInfo", ctx, key)}
 }
 
 func (_c *MockCmdable_BFInfo_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_BFInfo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -706,16 +861,32 @@ type MockCmdable_BFInfoArg_Call struct {
 }
 
 // BFInfoArg is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - option
+//   - ctx context.Context
+//   - key string
+//   - option string
 func (_e *MockCmdable_Expecter) BFInfoArg(ctx interface{}, key interface{}, option interface{}) *MockCmdable_BFInfoArg_Call {
 	return &MockCmdable_BFInfoArg_Call{Call: _e.mock.On("BFInfoArg", ctx, key, option)}
 }
 
 func (_c *MockCmdable_BFInfoArg_Call) Run(run func(ctx context.Context, key string, option string)) *MockCmdable_BFInfoArg_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -755,15 +926,26 @@ type MockCmdable_BFInfoCapacity_Call struct {
 }
 
 // BFInfoCapacity is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) BFInfoCapacity(ctx interface{}, key interface{}) *MockCmdable_BFInfoCapacity_Call {
 	return &MockCmdable_BFInfoCapacity_Call{Call: _e.mock.On("BFInfoCapacity", ctx, key)}
 }
 
 func (_c *MockCmdable_BFInfoCapacity_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_BFInfoCapacity_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -803,15 +985,26 @@ type MockCmdable_BFInfoExpansion_Call struct {
 }
 
 // BFInfoExpansion is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) BFInfoExpansion(ctx interface{}, key interface{}) *MockCmdable_BFInfoExpansion_Call {
 	return &MockCmdable_BFInfoExpansion_Call{Call: _e.mock.On("BFInfoExpansion", ctx, key)}
 }
 
 func (_c *MockCmdable_BFInfoExpansion_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_BFInfoExpansion_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -851,15 +1044,26 @@ type MockCmdable_BFInfoFilters_Call struct {
 }
 
 // BFInfoFilters is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) BFInfoFilters(ctx interface{}, key interface{}) *MockCmdable_BFInfoFilters_Call {
 	return &MockCmdable_BFInfoFilters_Call{Call: _e.mock.On("BFInfoFilters", ctx, key)}
 }
 
 func (_c *MockCmdable_BFInfoFilters_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_BFInfoFilters_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -899,15 +1103,26 @@ type MockCmdable_BFInfoItems_Call struct {
 }
 
 // BFInfoItems is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) BFInfoItems(ctx interface{}, key interface{}) *MockCmdable_BFInfoItems_Call {
 	return &MockCmdable_BFInfoItems_Call{Call: _e.mock.On("BFInfoItems", ctx, key)}
 }
 
 func (_c *MockCmdable_BFInfoItems_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_BFInfoItems_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -947,15 +1162,26 @@ type MockCmdable_BFInfoSize_Call struct {
 }
 
 // BFInfoSize is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) BFInfoSize(ctx interface{}, key interface{}) *MockCmdable_BFInfoSize_Call {
 	return &MockCmdable_BFInfoSize_Call{Call: _e.mock.On("BFInfoSize", ctx, key)}
 }
 
 func (_c *MockCmdable_BFInfoSize_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_BFInfoSize_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -1001,10 +1227,10 @@ type MockCmdable_BFInsert_Call struct {
 }
 
 // BFInsert is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - options *redis.BFInsertOptions
+//   - elements ...interface{}
 func (_e *MockCmdable_Expecter) BFInsert(ctx interface{}, key interface{}, options interface{}, elements ...interface{}) *MockCmdable_BFInsert_Call {
 	return &MockCmdable_BFInsert_Call{Call: _e.mock.On("BFInsert",
 		append([]interface{}{ctx, key, options}, elements...)...)}
@@ -1012,8 +1238,30 @@ func (_e *MockCmdable_Expecter) BFInsert(ctx interface{}, key interface{}, optio
 
 func (_c *MockCmdable_BFInsert_Call) Run(run func(ctx context.Context, key string, options *redis.BFInsertOptions, elements ...interface{})) *MockCmdable_BFInsert_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.BFInsertOptions), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.BFInsertOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.BFInsertOptions)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -1053,17 +1301,38 @@ type MockCmdable_BFLoadChunk_Call struct {
 }
 
 // BFLoadChunk is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - iterator
-//   - data
+//   - ctx context.Context
+//   - key string
+//   - iterator int64
+//   - data interface{}
 func (_e *MockCmdable_Expecter) BFLoadChunk(ctx interface{}, key interface{}, iterator interface{}, data interface{}) *MockCmdable_BFLoadChunk_Call {
 	return &MockCmdable_BFLoadChunk_Call{Call: _e.mock.On("BFLoadChunk", ctx, key, iterator, data)}
 }
 
 func (_c *MockCmdable_BFLoadChunk_Call) Run(run func(ctx context.Context, key string, iterator int64, data interface{})) *MockCmdable_BFLoadChunk_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -1109,9 +1378,9 @@ type MockCmdable_BFMAdd_Call struct {
 }
 
 // BFMAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...interface{}
 func (_e *MockCmdable_Expecter) BFMAdd(ctx interface{}, key interface{}, elements ...interface{}) *MockCmdable_BFMAdd_Call {
 	return &MockCmdable_BFMAdd_Call{Call: _e.mock.On("BFMAdd",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -1119,8 +1388,25 @@ func (_e *MockCmdable_Expecter) BFMAdd(ctx interface{}, key interface{}, element
 
 func (_c *MockCmdable_BFMAdd_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockCmdable_BFMAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -1166,9 +1452,9 @@ type MockCmdable_BFMExists_Call struct {
 }
 
 // BFMExists is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...interface{}
 func (_e *MockCmdable_Expecter) BFMExists(ctx interface{}, key interface{}, elements ...interface{}) *MockCmdable_BFMExists_Call {
 	return &MockCmdable_BFMExists_Call{Call: _e.mock.On("BFMExists",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -1176,8 +1462,25 @@ func (_e *MockCmdable_Expecter) BFMExists(ctx interface{}, key interface{}, elem
 
 func (_c *MockCmdable_BFMExists_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockCmdable_BFMExists_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -1217,17 +1520,38 @@ type MockCmdable_BFReserve_Call struct {
 }
 
 // BFReserve is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - errorRate
-//   - capacity
+//   - ctx context.Context
+//   - key string
+//   - errorRate float64
+//   - capacity int64
 func (_e *MockCmdable_Expecter) BFReserve(ctx interface{}, key interface{}, errorRate interface{}, capacity interface{}) *MockCmdable_BFReserve_Call {
 	return &MockCmdable_BFReserve_Call{Call: _e.mock.On("BFReserve", ctx, key, errorRate, capacity)}
 }
 
 func (_c *MockCmdable_BFReserve_Call) Run(run func(ctx context.Context, key string, errorRate float64, capacity int64)) *MockCmdable_BFReserve_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -1267,18 +1591,44 @@ type MockCmdable_BFReserveExpansion_Call struct {
 }
 
 // BFReserveExpansion is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - errorRate
-//   - capacity
-//   - expansion
+//   - ctx context.Context
+//   - key string
+//   - errorRate float64
+//   - capacity int64
+//   - expansion int64
 func (_e *MockCmdable_Expecter) BFReserveExpansion(ctx interface{}, key interface{}, errorRate interface{}, capacity interface{}, expansion interface{}) *MockCmdable_BFReserveExpansion_Call {
 	return &MockCmdable_BFReserveExpansion_Call{Call: _e.mock.On("BFReserveExpansion", ctx, key, errorRate, capacity, expansion)}
 }
 
 func (_c *MockCmdable_BFReserveExpansion_Call) Run(run func(ctx context.Context, key string, errorRate float64, capacity int64, expansion int64)) *MockCmdable_BFReserveExpansion_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(int64), args[4].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -1318,17 +1668,38 @@ type MockCmdable_BFReserveNonScaling_Call struct {
 }
 
 // BFReserveNonScaling is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - errorRate
-//   - capacity
+//   - ctx context.Context
+//   - key string
+//   - errorRate float64
+//   - capacity int64
 func (_e *MockCmdable_Expecter) BFReserveNonScaling(ctx interface{}, key interface{}, errorRate interface{}, capacity interface{}) *MockCmdable_BFReserveNonScaling_Call {
 	return &MockCmdable_BFReserveNonScaling_Call{Call: _e.mock.On("BFReserveNonScaling", ctx, key, errorRate, capacity)}
 }
 
 func (_c *MockCmdable_BFReserveNonScaling_Call) Run(run func(ctx context.Context, key string, errorRate float64, capacity int64)) *MockCmdable_BFReserveNonScaling_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -1368,16 +1739,32 @@ type MockCmdable_BFReserveWithArgs_Call struct {
 }
 
 // BFReserveWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - options *redis.BFReserveOptions
 func (_e *MockCmdable_Expecter) BFReserveWithArgs(ctx interface{}, key interface{}, options interface{}) *MockCmdable_BFReserveWithArgs_Call {
 	return &MockCmdable_BFReserveWithArgs_Call{Call: _e.mock.On("BFReserveWithArgs", ctx, key, options)}
 }
 
 func (_c *MockCmdable_BFReserveWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.BFReserveOptions)) *MockCmdable_BFReserveWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.BFReserveOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.BFReserveOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.BFReserveOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -1417,16 +1804,32 @@ type MockCmdable_BFScanDump_Call struct {
 }
 
 // BFScanDump is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - iterator
+//   - ctx context.Context
+//   - key string
+//   - iterator int64
 func (_e *MockCmdable_Expecter) BFScanDump(ctx interface{}, key interface{}, iterator interface{}) *MockCmdable_BFScanDump_Call {
 	return &MockCmdable_BFScanDump_Call{Call: _e.mock.On("BFScanDump", ctx, key, iterator)}
 }
 
 func (_c *MockCmdable_BFScanDump_Call) Run(run func(ctx context.Context, key string, iterator int64)) *MockCmdable_BFScanDump_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -1472,11 +1875,11 @@ type MockCmdable_BLMPop_Call struct {
 }
 
 // BLMPop is a helper method to define mock.On call
-//   - ctx
-//   - timeout
-//   - direction
-//   - count
-//   - keys
+//   - ctx context.Context
+//   - timeout time.Duration
+//   - direction string
+//   - count int64
+//   - keys ...string
 func (_e *MockCmdable_Expecter) BLMPop(ctx interface{}, timeout interface{}, direction interface{}, count interface{}, keys ...interface{}) *MockCmdable_BLMPop_Call {
 	return &MockCmdable_BLMPop_Call{Call: _e.mock.On("BLMPop",
 		append([]interface{}{ctx, timeout, direction, count}, keys...)...)}
@@ -1484,8 +1887,35 @@ func (_e *MockCmdable_Expecter) BLMPop(ctx interface{}, timeout interface{}, dir
 
 func (_c *MockCmdable_BLMPop_Call) Run(run func(ctx context.Context, timeout time.Duration, direction string, count int64, keys ...string)) *MockCmdable_BLMPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[4].([]string)
-		run(args[0].(context.Context), args[1].(time.Duration), args[2].(string), args[3].(int64), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 time.Duration
+		if args[1] != nil {
+			arg1 = args[1].(time.Duration)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		var arg4 []string
+		var variadicArgs []string
+		if len(args) > 4 {
+			variadicArgs = args[4].([]string)
+		}
+		arg4 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4...,
+		)
 	})
 	return _c
 }
@@ -1525,19 +1955,50 @@ type MockCmdable_BLMove_Call struct {
 }
 
 // BLMove is a helper method to define mock.On call
-//   - ctx
-//   - source
-//   - destination
-//   - srcpos
-//   - destpos
-//   - timeout
+//   - ctx context.Context
+//   - source string
+//   - destination string
+//   - srcpos string
+//   - destpos string
+//   - timeout time.Duration
 func (_e *MockCmdable_Expecter) BLMove(ctx interface{}, source interface{}, destination interface{}, srcpos interface{}, destpos interface{}, timeout interface{}) *MockCmdable_BLMove_Call {
 	return &MockCmdable_BLMove_Call{Call: _e.mock.On("BLMove", ctx, source, destination, srcpos, destpos, timeout)}
 }
 
 func (_c *MockCmdable_BLMove_Call) Run(run func(ctx context.Context, source string, destination string, srcpos string, destpos string, timeout time.Duration)) *MockCmdable_BLMove_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string), args[4].(string), args[5].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 string
+		if args[4] != nil {
+			arg4 = args[4].(string)
+		}
+		var arg5 time.Duration
+		if args[5] != nil {
+			arg5 = args[5].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+			arg5,
+		)
 	})
 	return _c
 }
@@ -1583,9 +2044,9 @@ type MockCmdable_BLPop_Call struct {
 }
 
 // BLPop is a helper method to define mock.On call
-//   - ctx
-//   - timeout
-//   - keys
+//   - ctx context.Context
+//   - timeout time.Duration
+//   - keys ...string
 func (_e *MockCmdable_Expecter) BLPop(ctx interface{}, timeout interface{}, keys ...interface{}) *MockCmdable_BLPop_Call {
 	return &MockCmdable_BLPop_Call{Call: _e.mock.On("BLPop",
 		append([]interface{}{ctx, timeout}, keys...)...)}
@@ -1593,8 +2054,25 @@ func (_e *MockCmdable_Expecter) BLPop(ctx interface{}, timeout interface{}, keys
 
 func (_c *MockCmdable_BLPop_Call) Run(run func(ctx context.Context, timeout time.Duration, keys ...string)) *MockCmdable_BLPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(time.Duration), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 time.Duration
+		if args[1] != nil {
+			arg1 = args[1].(time.Duration)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -1640,9 +2118,9 @@ type MockCmdable_BRPop_Call struct {
 }
 
 // BRPop is a helper method to define mock.On call
-//   - ctx
-//   - timeout
-//   - keys
+//   - ctx context.Context
+//   - timeout time.Duration
+//   - keys ...string
 func (_e *MockCmdable_Expecter) BRPop(ctx interface{}, timeout interface{}, keys ...interface{}) *MockCmdable_BRPop_Call {
 	return &MockCmdable_BRPop_Call{Call: _e.mock.On("BRPop",
 		append([]interface{}{ctx, timeout}, keys...)...)}
@@ -1650,8 +2128,25 @@ func (_e *MockCmdable_Expecter) BRPop(ctx interface{}, timeout interface{}, keys
 
 func (_c *MockCmdable_BRPop_Call) Run(run func(ctx context.Context, timeout time.Duration, keys ...string)) *MockCmdable_BRPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(time.Duration), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 time.Duration
+		if args[1] != nil {
+			arg1 = args[1].(time.Duration)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -1691,17 +2186,38 @@ type MockCmdable_BRPopLPush_Call struct {
 }
 
 // BRPopLPush is a helper method to define mock.On call
-//   - ctx
-//   - source
-//   - destination
-//   - timeout
+//   - ctx context.Context
+//   - source string
+//   - destination string
+//   - timeout time.Duration
 func (_e *MockCmdable_Expecter) BRPopLPush(ctx interface{}, source interface{}, destination interface{}, timeout interface{}) *MockCmdable_BRPopLPush_Call {
 	return &MockCmdable_BRPopLPush_Call{Call: _e.mock.On("BRPopLPush", ctx, source, destination, timeout)}
 }
 
 func (_c *MockCmdable_BRPopLPush_Call) Run(run func(ctx context.Context, source string, destination string, timeout time.Duration)) *MockCmdable_BRPopLPush_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 time.Duration
+		if args[3] != nil {
+			arg3 = args[3].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -1747,11 +2263,11 @@ type MockCmdable_BZMPop_Call struct {
 }
 
 // BZMPop is a helper method to define mock.On call
-//   - ctx
-//   - timeout
-//   - order
-//   - count
-//   - keys
+//   - ctx context.Context
+//   - timeout time.Duration
+//   - order string
+//   - count int64
+//   - keys ...string
 func (_e *MockCmdable_Expecter) BZMPop(ctx interface{}, timeout interface{}, order interface{}, count interface{}, keys ...interface{}) *MockCmdable_BZMPop_Call {
 	return &MockCmdable_BZMPop_Call{Call: _e.mock.On("BZMPop",
 		append([]interface{}{ctx, timeout, order, count}, keys...)...)}
@@ -1759,8 +2275,35 @@ func (_e *MockCmdable_Expecter) BZMPop(ctx interface{}, timeout interface{}, ord
 
 func (_c *MockCmdable_BZMPop_Call) Run(run func(ctx context.Context, timeout time.Duration, order string, count int64, keys ...string)) *MockCmdable_BZMPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[4].([]string)
-		run(args[0].(context.Context), args[1].(time.Duration), args[2].(string), args[3].(int64), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 time.Duration
+		if args[1] != nil {
+			arg1 = args[1].(time.Duration)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		var arg4 []string
+		var variadicArgs []string
+		if len(args) > 4 {
+			variadicArgs = args[4].([]string)
+		}
+		arg4 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4...,
+		)
 	})
 	return _c
 }
@@ -1806,9 +2349,9 @@ type MockCmdable_BZPopMax_Call struct {
 }
 
 // BZPopMax is a helper method to define mock.On call
-//   - ctx
-//   - timeout
-//   - keys
+//   - ctx context.Context
+//   - timeout time.Duration
+//   - keys ...string
 func (_e *MockCmdable_Expecter) BZPopMax(ctx interface{}, timeout interface{}, keys ...interface{}) *MockCmdable_BZPopMax_Call {
 	return &MockCmdable_BZPopMax_Call{Call: _e.mock.On("BZPopMax",
 		append([]interface{}{ctx, timeout}, keys...)...)}
@@ -1816,8 +2359,25 @@ func (_e *MockCmdable_Expecter) BZPopMax(ctx interface{}, timeout interface{}, k
 
 func (_c *MockCmdable_BZPopMax_Call) Run(run func(ctx context.Context, timeout time.Duration, keys ...string)) *MockCmdable_BZPopMax_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(time.Duration), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 time.Duration
+		if args[1] != nil {
+			arg1 = args[1].(time.Duration)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -1863,9 +2423,9 @@ type MockCmdable_BZPopMin_Call struct {
 }
 
 // BZPopMin is a helper method to define mock.On call
-//   - ctx
-//   - timeout
-//   - keys
+//   - ctx context.Context
+//   - timeout time.Duration
+//   - keys ...string
 func (_e *MockCmdable_Expecter) BZPopMin(ctx interface{}, timeout interface{}, keys ...interface{}) *MockCmdable_BZPopMin_Call {
 	return &MockCmdable_BZPopMin_Call{Call: _e.mock.On("BZPopMin",
 		append([]interface{}{ctx, timeout}, keys...)...)}
@@ -1873,8 +2433,25 @@ func (_e *MockCmdable_Expecter) BZPopMin(ctx interface{}, timeout interface{}, k
 
 func (_c *MockCmdable_BZPopMin_Call) Run(run func(ctx context.Context, timeout time.Duration, keys ...string)) *MockCmdable_BZPopMin_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(time.Duration), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 time.Duration
+		if args[1] != nil {
+			arg1 = args[1].(time.Duration)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -1914,14 +2491,20 @@ type MockCmdable_BgRewriteAOF_Call struct {
 }
 
 // BgRewriteAOF is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) BgRewriteAOF(ctx interface{}) *MockCmdable_BgRewriteAOF_Call {
 	return &MockCmdable_BgRewriteAOF_Call{Call: _e.mock.On("BgRewriteAOF", ctx)}
 }
 
 func (_c *MockCmdable_BgRewriteAOF_Call) Run(run func(ctx context.Context)) *MockCmdable_BgRewriteAOF_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -1961,14 +2544,20 @@ type MockCmdable_BgSave_Call struct {
 }
 
 // BgSave is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) BgSave(ctx interface{}) *MockCmdable_BgSave_Call {
 	return &MockCmdable_BgSave_Call{Call: _e.mock.On("BgSave", ctx)}
 }
 
 func (_c *MockCmdable_BgSave_Call) Run(run func(ctx context.Context)) *MockCmdable_BgSave_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -2008,16 +2597,32 @@ type MockCmdable_BitCount_Call struct {
 }
 
 // BitCount is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - bitCount
+//   - ctx context.Context
+//   - key string
+//   - bitCount *redis.BitCount
 func (_e *MockCmdable_Expecter) BitCount(ctx interface{}, key interface{}, bitCount interface{}) *MockCmdable_BitCount_Call {
 	return &MockCmdable_BitCount_Call{Call: _e.mock.On("BitCount", ctx, key, bitCount)}
 }
 
 func (_c *MockCmdable_BitCount_Call) Run(run func(ctx context.Context, key string, bitCount *redis.BitCount)) *MockCmdable_BitCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.BitCount))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.BitCount
+		if args[2] != nil {
+			arg2 = args[2].(*redis.BitCount)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -2063,9 +2668,9 @@ type MockCmdable_BitField_Call struct {
 }
 
 // BitField is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
 func (_e *MockCmdable_Expecter) BitField(ctx interface{}, key interface{}, values ...interface{}) *MockCmdable_BitField_Call {
 	return &MockCmdable_BitField_Call{Call: _e.mock.On("BitField",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -2073,8 +2678,25 @@ func (_e *MockCmdable_Expecter) BitField(ctx interface{}, key interface{}, value
 
 func (_c *MockCmdable_BitField_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockCmdable_BitField_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -2120,9 +2742,9 @@ type MockCmdable_BitFieldRO_Call struct {
 }
 
 // BitFieldRO is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
 func (_e *MockCmdable_Expecter) BitFieldRO(ctx interface{}, key interface{}, values ...interface{}) *MockCmdable_BitFieldRO_Call {
 	return &MockCmdable_BitFieldRO_Call{Call: _e.mock.On("BitFieldRO",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -2130,8 +2752,25 @@ func (_e *MockCmdable_Expecter) BitFieldRO(ctx interface{}, key interface{}, val
 
 func (_c *MockCmdable_BitFieldRO_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockCmdable_BitFieldRO_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -2177,9 +2816,9 @@ type MockCmdable_BitOpAnd_Call struct {
 }
 
 // BitOpAnd is a helper method to define mock.On call
-//   - ctx
-//   - destKey
-//   - keys
+//   - ctx context.Context
+//   - destKey string
+//   - keys ...string
 func (_e *MockCmdable_Expecter) BitOpAnd(ctx interface{}, destKey interface{}, keys ...interface{}) *MockCmdable_BitOpAnd_Call {
 	return &MockCmdable_BitOpAnd_Call{Call: _e.mock.On("BitOpAnd",
 		append([]interface{}{ctx, destKey}, keys...)...)}
@@ -2187,8 +2826,25 @@ func (_e *MockCmdable_Expecter) BitOpAnd(ctx interface{}, destKey interface{}, k
 
 func (_c *MockCmdable_BitOpAnd_Call) Run(run func(ctx context.Context, destKey string, keys ...string)) *MockCmdable_BitOpAnd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -2228,16 +2884,32 @@ type MockCmdable_BitOpNot_Call struct {
 }
 
 // BitOpNot is a helper method to define mock.On call
-//   - ctx
-//   - destKey
-//   - key
+//   - ctx context.Context
+//   - destKey string
+//   - key string
 func (_e *MockCmdable_Expecter) BitOpNot(ctx interface{}, destKey interface{}, key interface{}) *MockCmdable_BitOpNot_Call {
 	return &MockCmdable_BitOpNot_Call{Call: _e.mock.On("BitOpNot", ctx, destKey, key)}
 }
 
 func (_c *MockCmdable_BitOpNot_Call) Run(run func(ctx context.Context, destKey string, key string)) *MockCmdable_BitOpNot_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -2283,9 +2955,9 @@ type MockCmdable_BitOpOr_Call struct {
 }
 
 // BitOpOr is a helper method to define mock.On call
-//   - ctx
-//   - destKey
-//   - keys
+//   - ctx context.Context
+//   - destKey string
+//   - keys ...string
 func (_e *MockCmdable_Expecter) BitOpOr(ctx interface{}, destKey interface{}, keys ...interface{}) *MockCmdable_BitOpOr_Call {
 	return &MockCmdable_BitOpOr_Call{Call: _e.mock.On("BitOpOr",
 		append([]interface{}{ctx, destKey}, keys...)...)}
@@ -2293,8 +2965,25 @@ func (_e *MockCmdable_Expecter) BitOpOr(ctx interface{}, destKey interface{}, ke
 
 func (_c *MockCmdable_BitOpOr_Call) Run(run func(ctx context.Context, destKey string, keys ...string)) *MockCmdable_BitOpOr_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -2340,9 +3029,9 @@ type MockCmdable_BitOpXor_Call struct {
 }
 
 // BitOpXor is a helper method to define mock.On call
-//   - ctx
-//   - destKey
-//   - keys
+//   - ctx context.Context
+//   - destKey string
+//   - keys ...string
 func (_e *MockCmdable_Expecter) BitOpXor(ctx interface{}, destKey interface{}, keys ...interface{}) *MockCmdable_BitOpXor_Call {
 	return &MockCmdable_BitOpXor_Call{Call: _e.mock.On("BitOpXor",
 		append([]interface{}{ctx, destKey}, keys...)...)}
@@ -2350,8 +3039,25 @@ func (_e *MockCmdable_Expecter) BitOpXor(ctx interface{}, destKey interface{}, k
 
 func (_c *MockCmdable_BitOpXor_Call) Run(run func(ctx context.Context, destKey string, keys ...string)) *MockCmdable_BitOpXor_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -2397,10 +3103,10 @@ type MockCmdable_BitPos_Call struct {
 }
 
 // BitPos is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - bit
-//   - pos
+//   - ctx context.Context
+//   - key string
+//   - bit int64
+//   - pos ...int64
 func (_e *MockCmdable_Expecter) BitPos(ctx interface{}, key interface{}, bit interface{}, pos ...interface{}) *MockCmdable_BitPos_Call {
 	return &MockCmdable_BitPos_Call{Call: _e.mock.On("BitPos",
 		append([]interface{}{ctx, key, bit}, pos...)...)}
@@ -2408,8 +3114,30 @@ func (_e *MockCmdable_Expecter) BitPos(ctx interface{}, key interface{}, bit int
 
 func (_c *MockCmdable_BitPos_Call) Run(run func(ctx context.Context, key string, bit int64, pos ...int64)) *MockCmdable_BitPos_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]int64)
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 []int64
+		var variadicArgs []int64
+		if len(args) > 3 {
+			variadicArgs = args[3].([]int64)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -2449,19 +3177,50 @@ type MockCmdable_BitPosSpan_Call struct {
 }
 
 // BitPosSpan is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - bit
-//   - start
-//   - end
-//   - span
+//   - ctx context.Context
+//   - key string
+//   - bit int8
+//   - start int64
+//   - end int64
+//   - span string
 func (_e *MockCmdable_Expecter) BitPosSpan(ctx interface{}, key interface{}, bit interface{}, start interface{}, end interface{}, span interface{}) *MockCmdable_BitPosSpan_Call {
 	return &MockCmdable_BitPosSpan_Call{Call: _e.mock.On("BitPosSpan", ctx, key, bit, start, end, span)}
 }
 
 func (_c *MockCmdable_BitPosSpan_Call) Run(run func(ctx context.Context, key string, bit int8, start int64, end int64, span string)) *MockCmdable_BitPosSpan_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int8), args[3].(int64), args[4].(int64), args[5].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int8
+		if args[2] != nil {
+			arg2 = args[2].(int8)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		var arg5 string
+		if args[5] != nil {
+			arg5 = args[5].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+			arg5,
+		)
 	})
 	return _c
 }
@@ -2501,16 +3260,32 @@ type MockCmdable_CFAdd_Call struct {
 }
 
 // CFAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - element
+//   - ctx context.Context
+//   - key string
+//   - element interface{}
 func (_e *MockCmdable_Expecter) CFAdd(ctx interface{}, key interface{}, element interface{}) *MockCmdable_CFAdd_Call {
 	return &MockCmdable_CFAdd_Call{Call: _e.mock.On("CFAdd", ctx, key, element)}
 }
 
 func (_c *MockCmdable_CFAdd_Call) Run(run func(ctx context.Context, key string, element interface{})) *MockCmdable_CFAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -2550,16 +3325,32 @@ type MockCmdable_CFAddNX_Call struct {
 }
 
 // CFAddNX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - element
+//   - ctx context.Context
+//   - key string
+//   - element interface{}
 func (_e *MockCmdable_Expecter) CFAddNX(ctx interface{}, key interface{}, element interface{}) *MockCmdable_CFAddNX_Call {
 	return &MockCmdable_CFAddNX_Call{Call: _e.mock.On("CFAddNX", ctx, key, element)}
 }
 
 func (_c *MockCmdable_CFAddNX_Call) Run(run func(ctx context.Context, key string, element interface{})) *MockCmdable_CFAddNX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -2599,16 +3390,32 @@ type MockCmdable_CFCount_Call struct {
 }
 
 // CFCount is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - element
+//   - ctx context.Context
+//   - key string
+//   - element interface{}
 func (_e *MockCmdable_Expecter) CFCount(ctx interface{}, key interface{}, element interface{}) *MockCmdable_CFCount_Call {
 	return &MockCmdable_CFCount_Call{Call: _e.mock.On("CFCount", ctx, key, element)}
 }
 
 func (_c *MockCmdable_CFCount_Call) Run(run func(ctx context.Context, key string, element interface{})) *MockCmdable_CFCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -2648,16 +3455,32 @@ type MockCmdable_CFDel_Call struct {
 }
 
 // CFDel is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - element
+//   - ctx context.Context
+//   - key string
+//   - element interface{}
 func (_e *MockCmdable_Expecter) CFDel(ctx interface{}, key interface{}, element interface{}) *MockCmdable_CFDel_Call {
 	return &MockCmdable_CFDel_Call{Call: _e.mock.On("CFDel", ctx, key, element)}
 }
 
 func (_c *MockCmdable_CFDel_Call) Run(run func(ctx context.Context, key string, element interface{})) *MockCmdable_CFDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -2697,16 +3520,32 @@ type MockCmdable_CFExists_Call struct {
 }
 
 // CFExists is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - element
+//   - ctx context.Context
+//   - key string
+//   - element interface{}
 func (_e *MockCmdable_Expecter) CFExists(ctx interface{}, key interface{}, element interface{}) *MockCmdable_CFExists_Call {
 	return &MockCmdable_CFExists_Call{Call: _e.mock.On("CFExists", ctx, key, element)}
 }
 
 func (_c *MockCmdable_CFExists_Call) Run(run func(ctx context.Context, key string, element interface{})) *MockCmdable_CFExists_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -2746,15 +3585,26 @@ type MockCmdable_CFInfo_Call struct {
 }
 
 // CFInfo is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) CFInfo(ctx interface{}, key interface{}) *MockCmdable_CFInfo_Call {
 	return &MockCmdable_CFInfo_Call{Call: _e.mock.On("CFInfo", ctx, key)}
 }
 
 func (_c *MockCmdable_CFInfo_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_CFInfo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -2800,10 +3650,10 @@ type MockCmdable_CFInsert_Call struct {
 }
 
 // CFInsert is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - options *redis.CFInsertOptions
+//   - elements ...interface{}
 func (_e *MockCmdable_Expecter) CFInsert(ctx interface{}, key interface{}, options interface{}, elements ...interface{}) *MockCmdable_CFInsert_Call {
 	return &MockCmdable_CFInsert_Call{Call: _e.mock.On("CFInsert",
 		append([]interface{}{ctx, key, options}, elements...)...)}
@@ -2811,8 +3661,30 @@ func (_e *MockCmdable_Expecter) CFInsert(ctx interface{}, key interface{}, optio
 
 func (_c *MockCmdable_CFInsert_Call) Run(run func(ctx context.Context, key string, options *redis.CFInsertOptions, elements ...interface{})) *MockCmdable_CFInsert_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.CFInsertOptions), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.CFInsertOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.CFInsertOptions)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -2858,10 +3730,10 @@ type MockCmdable_CFInsertNX_Call struct {
 }
 
 // CFInsertNX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - options *redis.CFInsertOptions
+//   - elements ...interface{}
 func (_e *MockCmdable_Expecter) CFInsertNX(ctx interface{}, key interface{}, options interface{}, elements ...interface{}) *MockCmdable_CFInsertNX_Call {
 	return &MockCmdable_CFInsertNX_Call{Call: _e.mock.On("CFInsertNX",
 		append([]interface{}{ctx, key, options}, elements...)...)}
@@ -2869,8 +3741,30 @@ func (_e *MockCmdable_Expecter) CFInsertNX(ctx interface{}, key interface{}, opt
 
 func (_c *MockCmdable_CFInsertNX_Call) Run(run func(ctx context.Context, key string, options *redis.CFInsertOptions, elements ...interface{})) *MockCmdable_CFInsertNX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.CFInsertOptions), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.CFInsertOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.CFInsertOptions)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -2910,17 +3804,38 @@ type MockCmdable_CFLoadChunk_Call struct {
 }
 
 // CFLoadChunk is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - iterator
-//   - data
+//   - ctx context.Context
+//   - key string
+//   - iterator int64
+//   - data interface{}
 func (_e *MockCmdable_Expecter) CFLoadChunk(ctx interface{}, key interface{}, iterator interface{}, data interface{}) *MockCmdable_CFLoadChunk_Call {
 	return &MockCmdable_CFLoadChunk_Call{Call: _e.mock.On("CFLoadChunk", ctx, key, iterator, data)}
 }
 
 func (_c *MockCmdable_CFLoadChunk_Call) Run(run func(ctx context.Context, key string, iterator int64, data interface{})) *MockCmdable_CFLoadChunk_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -2966,9 +3881,9 @@ type MockCmdable_CFMExists_Call struct {
 }
 
 // CFMExists is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...interface{}
 func (_e *MockCmdable_Expecter) CFMExists(ctx interface{}, key interface{}, elements ...interface{}) *MockCmdable_CFMExists_Call {
 	return &MockCmdable_CFMExists_Call{Call: _e.mock.On("CFMExists",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -2976,8 +3891,25 @@ func (_e *MockCmdable_Expecter) CFMExists(ctx interface{}, key interface{}, elem
 
 func (_c *MockCmdable_CFMExists_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockCmdable_CFMExists_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -3017,16 +3949,32 @@ type MockCmdable_CFReserve_Call struct {
 }
 
 // CFReserve is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - capacity
+//   - ctx context.Context
+//   - key string
+//   - capacity int64
 func (_e *MockCmdable_Expecter) CFReserve(ctx interface{}, key interface{}, capacity interface{}) *MockCmdable_CFReserve_Call {
 	return &MockCmdable_CFReserve_Call{Call: _e.mock.On("CFReserve", ctx, key, capacity)}
 }
 
 func (_c *MockCmdable_CFReserve_Call) Run(run func(ctx context.Context, key string, capacity int64)) *MockCmdable_CFReserve_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -3066,17 +4014,38 @@ type MockCmdable_CFReserveBucketSize_Call struct {
 }
 
 // CFReserveBucketSize is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - capacity
-//   - bucketsize
+//   - ctx context.Context
+//   - key string
+//   - capacity int64
+//   - bucketsize int64
 func (_e *MockCmdable_Expecter) CFReserveBucketSize(ctx interface{}, key interface{}, capacity interface{}, bucketsize interface{}) *MockCmdable_CFReserveBucketSize_Call {
 	return &MockCmdable_CFReserveBucketSize_Call{Call: _e.mock.On("CFReserveBucketSize", ctx, key, capacity, bucketsize)}
 }
 
 func (_c *MockCmdable_CFReserveBucketSize_Call) Run(run func(ctx context.Context, key string, capacity int64, bucketsize int64)) *MockCmdable_CFReserveBucketSize_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -3116,17 +4085,38 @@ type MockCmdable_CFReserveExpansion_Call struct {
 }
 
 // CFReserveExpansion is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - capacity
-//   - expansion
+//   - ctx context.Context
+//   - key string
+//   - capacity int64
+//   - expansion int64
 func (_e *MockCmdable_Expecter) CFReserveExpansion(ctx interface{}, key interface{}, capacity interface{}, expansion interface{}) *MockCmdable_CFReserveExpansion_Call {
 	return &MockCmdable_CFReserveExpansion_Call{Call: _e.mock.On("CFReserveExpansion", ctx, key, capacity, expansion)}
 }
 
 func (_c *MockCmdable_CFReserveExpansion_Call) Run(run func(ctx context.Context, key string, capacity int64, expansion int64)) *MockCmdable_CFReserveExpansion_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -3166,17 +4156,38 @@ type MockCmdable_CFReserveMaxIterations_Call struct {
 }
 
 // CFReserveMaxIterations is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - capacity
-//   - maxiterations
+//   - ctx context.Context
+//   - key string
+//   - capacity int64
+//   - maxiterations int64
 func (_e *MockCmdable_Expecter) CFReserveMaxIterations(ctx interface{}, key interface{}, capacity interface{}, maxiterations interface{}) *MockCmdable_CFReserveMaxIterations_Call {
 	return &MockCmdable_CFReserveMaxIterations_Call{Call: _e.mock.On("CFReserveMaxIterations", ctx, key, capacity, maxiterations)}
 }
 
 func (_c *MockCmdable_CFReserveMaxIterations_Call) Run(run func(ctx context.Context, key string, capacity int64, maxiterations int64)) *MockCmdable_CFReserveMaxIterations_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -3216,16 +4227,32 @@ type MockCmdable_CFReserveWithArgs_Call struct {
 }
 
 // CFReserveWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - options *redis.CFReserveOptions
 func (_e *MockCmdable_Expecter) CFReserveWithArgs(ctx interface{}, key interface{}, options interface{}) *MockCmdable_CFReserveWithArgs_Call {
 	return &MockCmdable_CFReserveWithArgs_Call{Call: _e.mock.On("CFReserveWithArgs", ctx, key, options)}
 }
 
 func (_c *MockCmdable_CFReserveWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.CFReserveOptions)) *MockCmdable_CFReserveWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.CFReserveOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.CFReserveOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.CFReserveOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -3265,16 +4292,32 @@ type MockCmdable_CFScanDump_Call struct {
 }
 
 // CFScanDump is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - iterator
+//   - ctx context.Context
+//   - key string
+//   - iterator int64
 func (_e *MockCmdable_Expecter) CFScanDump(ctx interface{}, key interface{}, iterator interface{}) *MockCmdable_CFScanDump_Call {
 	return &MockCmdable_CFScanDump_Call{Call: _e.mock.On("CFScanDump", ctx, key, iterator)}
 }
 
 func (_c *MockCmdable_CFScanDump_Call) Run(run func(ctx context.Context, key string, iterator int64)) *MockCmdable_CFScanDump_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -3320,9 +4363,9 @@ type MockCmdable_CMSIncrBy_Call struct {
 }
 
 // CMSIncrBy is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...interface{}
 func (_e *MockCmdable_Expecter) CMSIncrBy(ctx interface{}, key interface{}, elements ...interface{}) *MockCmdable_CMSIncrBy_Call {
 	return &MockCmdable_CMSIncrBy_Call{Call: _e.mock.On("CMSIncrBy",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -3330,8 +4373,25 @@ func (_e *MockCmdable_Expecter) CMSIncrBy(ctx interface{}, key interface{}, elem
 
 func (_c *MockCmdable_CMSIncrBy_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockCmdable_CMSIncrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -3371,15 +4431,26 @@ type MockCmdable_CMSInfo_Call struct {
 }
 
 // CMSInfo is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) CMSInfo(ctx interface{}, key interface{}) *MockCmdable_CMSInfo_Call {
 	return &MockCmdable_CMSInfo_Call{Call: _e.mock.On("CMSInfo", ctx, key)}
 }
 
 func (_c *MockCmdable_CMSInfo_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_CMSInfo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -3419,17 +4490,38 @@ type MockCmdable_CMSInitByDim_Call struct {
 }
 
 // CMSInitByDim is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - width
-//   - height
+//   - ctx context.Context
+//   - key string
+//   - width int64
+//   - height int64
 func (_e *MockCmdable_Expecter) CMSInitByDim(ctx interface{}, key interface{}, width interface{}, height interface{}) *MockCmdable_CMSInitByDim_Call {
 	return &MockCmdable_CMSInitByDim_Call{Call: _e.mock.On("CMSInitByDim", ctx, key, width, height)}
 }
 
 func (_c *MockCmdable_CMSInitByDim_Call) Run(run func(ctx context.Context, key string, width int64, height int64)) *MockCmdable_CMSInitByDim_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -3469,17 +4561,38 @@ type MockCmdable_CMSInitByProb_Call struct {
 }
 
 // CMSInitByProb is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - errorRate
-//   - probability
+//   - ctx context.Context
+//   - key string
+//   - errorRate float64
+//   - probability float64
 func (_e *MockCmdable_Expecter) CMSInitByProb(ctx interface{}, key interface{}, errorRate interface{}, probability interface{}) *MockCmdable_CMSInitByProb_Call {
 	return &MockCmdable_CMSInitByProb_Call{Call: _e.mock.On("CMSInitByProb", ctx, key, errorRate, probability)}
 }
 
 func (_c *MockCmdable_CMSInitByProb_Call) Run(run func(ctx context.Context, key string, errorRate float64, probability float64)) *MockCmdable_CMSInitByProb_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(float64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 float64
+		if args[3] != nil {
+			arg3 = args[3].(float64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -3525,9 +4638,9 @@ type MockCmdable_CMSMerge_Call struct {
 }
 
 // CMSMerge is a helper method to define mock.On call
-//   - ctx
-//   - destKey
-//   - sourceKeys
+//   - ctx context.Context
+//   - destKey string
+//   - sourceKeys ...string
 func (_e *MockCmdable_Expecter) CMSMerge(ctx interface{}, destKey interface{}, sourceKeys ...interface{}) *MockCmdable_CMSMerge_Call {
 	return &MockCmdable_CMSMerge_Call{Call: _e.mock.On("CMSMerge",
 		append([]interface{}{ctx, destKey}, sourceKeys...)...)}
@@ -3535,8 +4648,25 @@ func (_e *MockCmdable_Expecter) CMSMerge(ctx interface{}, destKey interface{}, s
 
 func (_c *MockCmdable_CMSMerge_Call) Run(run func(ctx context.Context, destKey string, sourceKeys ...string)) *MockCmdable_CMSMerge_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -3576,16 +4706,32 @@ type MockCmdable_CMSMergeWithWeight_Call struct {
 }
 
 // CMSMergeWithWeight is a helper method to define mock.On call
-//   - ctx
-//   - destKey
-//   - sourceKeys
+//   - ctx context.Context
+//   - destKey string
+//   - sourceKeys map[string]int64
 func (_e *MockCmdable_Expecter) CMSMergeWithWeight(ctx interface{}, destKey interface{}, sourceKeys interface{}) *MockCmdable_CMSMergeWithWeight_Call {
 	return &MockCmdable_CMSMergeWithWeight_Call{Call: _e.mock.On("CMSMergeWithWeight", ctx, destKey, sourceKeys)}
 }
 
 func (_c *MockCmdable_CMSMergeWithWeight_Call) Run(run func(ctx context.Context, destKey string, sourceKeys map[string]int64)) *MockCmdable_CMSMergeWithWeight_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(map[string]int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 map[string]int64
+		if args[2] != nil {
+			arg2 = args[2].(map[string]int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -3631,9 +4777,9 @@ type MockCmdable_CMSQuery_Call struct {
 }
 
 // CMSQuery is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...interface{}
 func (_e *MockCmdable_Expecter) CMSQuery(ctx interface{}, key interface{}, elements ...interface{}) *MockCmdable_CMSQuery_Call {
 	return &MockCmdable_CMSQuery_Call{Call: _e.mock.On("CMSQuery",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -3641,8 +4787,25 @@ func (_e *MockCmdable_Expecter) CMSQuery(ctx interface{}, key interface{}, eleme
 
 func (_c *MockCmdable_CMSQuery_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockCmdable_CMSQuery_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -3682,14 +4845,20 @@ type MockCmdable_ClientGetName_Call struct {
 }
 
 // ClientGetName is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ClientGetName(ctx interface{}) *MockCmdable_ClientGetName_Call {
 	return &MockCmdable_ClientGetName_Call{Call: _e.mock.On("ClientGetName", ctx)}
 }
 
 func (_c *MockCmdable_ClientGetName_Call) Run(run func(ctx context.Context)) *MockCmdable_ClientGetName_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -3729,14 +4898,20 @@ type MockCmdable_ClientID_Call struct {
 }
 
 // ClientID is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ClientID(ctx interface{}) *MockCmdable_ClientID_Call {
 	return &MockCmdable_ClientID_Call{Call: _e.mock.On("ClientID", ctx)}
 }
 
 func (_c *MockCmdable_ClientID_Call) Run(run func(ctx context.Context)) *MockCmdable_ClientID_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -3776,14 +4951,20 @@ type MockCmdable_ClientInfo_Call struct {
 }
 
 // ClientInfo is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ClientInfo(ctx interface{}) *MockCmdable_ClientInfo_Call {
 	return &MockCmdable_ClientInfo_Call{Call: _e.mock.On("ClientInfo", ctx)}
 }
 
 func (_c *MockCmdable_ClientInfo_Call) Run(run func(ctx context.Context)) *MockCmdable_ClientInfo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -3823,15 +5004,26 @@ type MockCmdable_ClientKill_Call struct {
 }
 
 // ClientKill is a helper method to define mock.On call
-//   - ctx
-//   - ipPort
+//   - ctx context.Context
+//   - ipPort string
 func (_e *MockCmdable_Expecter) ClientKill(ctx interface{}, ipPort interface{}) *MockCmdable_ClientKill_Call {
 	return &MockCmdable_ClientKill_Call{Call: _e.mock.On("ClientKill", ctx, ipPort)}
 }
 
 func (_c *MockCmdable_ClientKill_Call) Run(run func(ctx context.Context, ipPort string)) *MockCmdable_ClientKill_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -3877,8 +5069,8 @@ type MockCmdable_ClientKillByFilter_Call struct {
 }
 
 // ClientKillByFilter is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockCmdable_Expecter) ClientKillByFilter(ctx interface{}, keys ...interface{}) *MockCmdable_ClientKillByFilter_Call {
 	return &MockCmdable_ClientKillByFilter_Call{Call: _e.mock.On("ClientKillByFilter",
 		append([]interface{}{ctx}, keys...)...)}
@@ -3886,8 +5078,20 @@ func (_e *MockCmdable_Expecter) ClientKillByFilter(ctx interface{}, keys ...inte
 
 func (_c *MockCmdable_ClientKillByFilter_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_ClientKillByFilter_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -3927,14 +5131,20 @@ type MockCmdable_ClientList_Call struct {
 }
 
 // ClientList is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ClientList(ctx interface{}) *MockCmdable_ClientList_Call {
 	return &MockCmdable_ClientList_Call{Call: _e.mock.On("ClientList", ctx)}
 }
 
 func (_c *MockCmdable_ClientList_Call) Run(run func(ctx context.Context)) *MockCmdable_ClientList_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -3974,15 +5184,26 @@ type MockCmdable_ClientPause_Call struct {
 }
 
 // ClientPause is a helper method to define mock.On call
-//   - ctx
-//   - dur
+//   - ctx context.Context
+//   - dur time.Duration
 func (_e *MockCmdable_Expecter) ClientPause(ctx interface{}, dur interface{}) *MockCmdable_ClientPause_Call {
 	return &MockCmdable_ClientPause_Call{Call: _e.mock.On("ClientPause", ctx, dur)}
 }
 
 func (_c *MockCmdable_ClientPause_Call) Run(run func(ctx context.Context, dur time.Duration)) *MockCmdable_ClientPause_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 time.Duration
+		if args[1] != nil {
+			arg1 = args[1].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -4022,15 +5243,26 @@ type MockCmdable_ClientUnblock_Call struct {
 }
 
 // ClientUnblock is a helper method to define mock.On call
-//   - ctx
-//   - id
+//   - ctx context.Context
+//   - id int64
 func (_e *MockCmdable_Expecter) ClientUnblock(ctx interface{}, id interface{}) *MockCmdable_ClientUnblock_Call {
 	return &MockCmdable_ClientUnblock_Call{Call: _e.mock.On("ClientUnblock", ctx, id)}
 }
 
 func (_c *MockCmdable_ClientUnblock_Call) Run(run func(ctx context.Context, id int64)) *MockCmdable_ClientUnblock_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int64
+		if args[1] != nil {
+			arg1 = args[1].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -4070,15 +5302,26 @@ type MockCmdable_ClientUnblockWithError_Call struct {
 }
 
 // ClientUnblockWithError is a helper method to define mock.On call
-//   - ctx
-//   - id
+//   - ctx context.Context
+//   - id int64
 func (_e *MockCmdable_Expecter) ClientUnblockWithError(ctx interface{}, id interface{}) *MockCmdable_ClientUnblockWithError_Call {
 	return &MockCmdable_ClientUnblockWithError_Call{Call: _e.mock.On("ClientUnblockWithError", ctx, id)}
 }
 
 func (_c *MockCmdable_ClientUnblockWithError_Call) Run(run func(ctx context.Context, id int64)) *MockCmdable_ClientUnblockWithError_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int64
+		if args[1] != nil {
+			arg1 = args[1].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -4118,14 +5361,20 @@ type MockCmdable_ClientUnpause_Call struct {
 }
 
 // ClientUnpause is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ClientUnpause(ctx interface{}) *MockCmdable_ClientUnpause_Call {
 	return &MockCmdable_ClientUnpause_Call{Call: _e.mock.On("ClientUnpause", ctx)}
 }
 
 func (_c *MockCmdable_ClientUnpause_Call) Run(run func(ctx context.Context)) *MockCmdable_ClientUnpause_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -4171,8 +5420,8 @@ type MockCmdable_ClusterAddSlots_Call struct {
 }
 
 // ClusterAddSlots is a helper method to define mock.On call
-//   - ctx
-//   - slots
+//   - ctx context.Context
+//   - slots ...int
 func (_e *MockCmdable_Expecter) ClusterAddSlots(ctx interface{}, slots ...interface{}) *MockCmdable_ClusterAddSlots_Call {
 	return &MockCmdable_ClusterAddSlots_Call{Call: _e.mock.On("ClusterAddSlots",
 		append([]interface{}{ctx}, slots...)...)}
@@ -4180,8 +5429,20 @@ func (_e *MockCmdable_Expecter) ClusterAddSlots(ctx interface{}, slots ...interf
 
 func (_c *MockCmdable_ClusterAddSlots_Call) Run(run func(ctx context.Context, slots ...int)) *MockCmdable_ClusterAddSlots_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]int)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []int
+		var variadicArgs []int
+		if len(args) > 1 {
+			variadicArgs = args[1].([]int)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -4221,16 +5482,32 @@ type MockCmdable_ClusterAddSlotsRange_Call struct {
 }
 
 // ClusterAddSlotsRange is a helper method to define mock.On call
-//   - ctx
-//   - min
-//   - max
+//   - ctx context.Context
+//   - min int
+//   - max int
 func (_e *MockCmdable_Expecter) ClusterAddSlotsRange(ctx interface{}, min interface{}, max interface{}) *MockCmdable_ClusterAddSlotsRange_Call {
 	return &MockCmdable_ClusterAddSlotsRange_Call{Call: _e.mock.On("ClusterAddSlotsRange", ctx, min, max)}
 }
 
 func (_c *MockCmdable_ClusterAddSlotsRange_Call) Run(run func(ctx context.Context, min int, max int)) *MockCmdable_ClusterAddSlotsRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -4270,15 +5547,26 @@ type MockCmdable_ClusterCountFailureReports_Call struct {
 }
 
 // ClusterCountFailureReports is a helper method to define mock.On call
-//   - ctx
-//   - nodeID
+//   - ctx context.Context
+//   - nodeID string
 func (_e *MockCmdable_Expecter) ClusterCountFailureReports(ctx interface{}, nodeID interface{}) *MockCmdable_ClusterCountFailureReports_Call {
 	return &MockCmdable_ClusterCountFailureReports_Call{Call: _e.mock.On("ClusterCountFailureReports", ctx, nodeID)}
 }
 
 func (_c *MockCmdable_ClusterCountFailureReports_Call) Run(run func(ctx context.Context, nodeID string)) *MockCmdable_ClusterCountFailureReports_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -4318,15 +5606,26 @@ type MockCmdable_ClusterCountKeysInSlot_Call struct {
 }
 
 // ClusterCountKeysInSlot is a helper method to define mock.On call
-//   - ctx
-//   - slot
+//   - ctx context.Context
+//   - slot int
 func (_e *MockCmdable_Expecter) ClusterCountKeysInSlot(ctx interface{}, slot interface{}) *MockCmdable_ClusterCountKeysInSlot_Call {
 	return &MockCmdable_ClusterCountKeysInSlot_Call{Call: _e.mock.On("ClusterCountKeysInSlot", ctx, slot)}
 }
 
 func (_c *MockCmdable_ClusterCountKeysInSlot_Call) Run(run func(ctx context.Context, slot int)) *MockCmdable_ClusterCountKeysInSlot_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -4372,8 +5671,8 @@ type MockCmdable_ClusterDelSlots_Call struct {
 }
 
 // ClusterDelSlots is a helper method to define mock.On call
-//   - ctx
-//   - slots
+//   - ctx context.Context
+//   - slots ...int
 func (_e *MockCmdable_Expecter) ClusterDelSlots(ctx interface{}, slots ...interface{}) *MockCmdable_ClusterDelSlots_Call {
 	return &MockCmdable_ClusterDelSlots_Call{Call: _e.mock.On("ClusterDelSlots",
 		append([]interface{}{ctx}, slots...)...)}
@@ -4381,8 +5680,20 @@ func (_e *MockCmdable_Expecter) ClusterDelSlots(ctx interface{}, slots ...interf
 
 func (_c *MockCmdable_ClusterDelSlots_Call) Run(run func(ctx context.Context, slots ...int)) *MockCmdable_ClusterDelSlots_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]int)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []int
+		var variadicArgs []int
+		if len(args) > 1 {
+			variadicArgs = args[1].([]int)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -4422,16 +5733,32 @@ type MockCmdable_ClusterDelSlotsRange_Call struct {
 }
 
 // ClusterDelSlotsRange is a helper method to define mock.On call
-//   - ctx
-//   - min
-//   - max
+//   - ctx context.Context
+//   - min int
+//   - max int
 func (_e *MockCmdable_Expecter) ClusterDelSlotsRange(ctx interface{}, min interface{}, max interface{}) *MockCmdable_ClusterDelSlotsRange_Call {
 	return &MockCmdable_ClusterDelSlotsRange_Call{Call: _e.mock.On("ClusterDelSlotsRange", ctx, min, max)}
 }
 
 func (_c *MockCmdable_ClusterDelSlotsRange_Call) Run(run func(ctx context.Context, min int, max int)) *MockCmdable_ClusterDelSlotsRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -4471,14 +5798,20 @@ type MockCmdable_ClusterFailover_Call struct {
 }
 
 // ClusterFailover is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ClusterFailover(ctx interface{}) *MockCmdable_ClusterFailover_Call {
 	return &MockCmdable_ClusterFailover_Call{Call: _e.mock.On("ClusterFailover", ctx)}
 }
 
 func (_c *MockCmdable_ClusterFailover_Call) Run(run func(ctx context.Context)) *MockCmdable_ClusterFailover_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -4518,15 +5851,26 @@ type MockCmdable_ClusterForget_Call struct {
 }
 
 // ClusterForget is a helper method to define mock.On call
-//   - ctx
-//   - nodeID
+//   - ctx context.Context
+//   - nodeID string
 func (_e *MockCmdable_Expecter) ClusterForget(ctx interface{}, nodeID interface{}) *MockCmdable_ClusterForget_Call {
 	return &MockCmdable_ClusterForget_Call{Call: _e.mock.On("ClusterForget", ctx, nodeID)}
 }
 
 func (_c *MockCmdable_ClusterForget_Call) Run(run func(ctx context.Context, nodeID string)) *MockCmdable_ClusterForget_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -4566,16 +5910,32 @@ type MockCmdable_ClusterGetKeysInSlot_Call struct {
 }
 
 // ClusterGetKeysInSlot is a helper method to define mock.On call
-//   - ctx
-//   - slot
-//   - count
+//   - ctx context.Context
+//   - slot int
+//   - count int
 func (_e *MockCmdable_Expecter) ClusterGetKeysInSlot(ctx interface{}, slot interface{}, count interface{}) *MockCmdable_ClusterGetKeysInSlot_Call {
 	return &MockCmdable_ClusterGetKeysInSlot_Call{Call: _e.mock.On("ClusterGetKeysInSlot", ctx, slot, count)}
 }
 
 func (_c *MockCmdable_ClusterGetKeysInSlot_Call) Run(run func(ctx context.Context, slot int, count int)) *MockCmdable_ClusterGetKeysInSlot_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -4615,14 +5975,20 @@ type MockCmdable_ClusterInfo_Call struct {
 }
 
 // ClusterInfo is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ClusterInfo(ctx interface{}) *MockCmdable_ClusterInfo_Call {
 	return &MockCmdable_ClusterInfo_Call{Call: _e.mock.On("ClusterInfo", ctx)}
 }
 
 func (_c *MockCmdable_ClusterInfo_Call) Run(run func(ctx context.Context)) *MockCmdable_ClusterInfo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -4662,15 +6028,26 @@ type MockCmdable_ClusterKeySlot_Call struct {
 }
 
 // ClusterKeySlot is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) ClusterKeySlot(ctx interface{}, key interface{}) *MockCmdable_ClusterKeySlot_Call {
 	return &MockCmdable_ClusterKeySlot_Call{Call: _e.mock.On("ClusterKeySlot", ctx, key)}
 }
 
 func (_c *MockCmdable_ClusterKeySlot_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_ClusterKeySlot_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -4710,14 +6087,20 @@ type MockCmdable_ClusterLinks_Call struct {
 }
 
 // ClusterLinks is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ClusterLinks(ctx interface{}) *MockCmdable_ClusterLinks_Call {
 	return &MockCmdable_ClusterLinks_Call{Call: _e.mock.On("ClusterLinks", ctx)}
 }
 
 func (_c *MockCmdable_ClusterLinks_Call) Run(run func(ctx context.Context)) *MockCmdable_ClusterLinks_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -4757,16 +6140,32 @@ type MockCmdable_ClusterMeet_Call struct {
 }
 
 // ClusterMeet is a helper method to define mock.On call
-//   - ctx
-//   - host
-//   - port
+//   - ctx context.Context
+//   - host string
+//   - port string
 func (_e *MockCmdable_Expecter) ClusterMeet(ctx interface{}, host interface{}, port interface{}) *MockCmdable_ClusterMeet_Call {
 	return &MockCmdable_ClusterMeet_Call{Call: _e.mock.On("ClusterMeet", ctx, host, port)}
 }
 
 func (_c *MockCmdable_ClusterMeet_Call) Run(run func(ctx context.Context, host string, port string)) *MockCmdable_ClusterMeet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -4806,14 +6205,20 @@ type MockCmdable_ClusterMyID_Call struct {
 }
 
 // ClusterMyID is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ClusterMyID(ctx interface{}) *MockCmdable_ClusterMyID_Call {
 	return &MockCmdable_ClusterMyID_Call{Call: _e.mock.On("ClusterMyID", ctx)}
 }
 
 func (_c *MockCmdable_ClusterMyID_Call) Run(run func(ctx context.Context)) *MockCmdable_ClusterMyID_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -4853,14 +6258,20 @@ type MockCmdable_ClusterMyShardID_Call struct {
 }
 
 // ClusterMyShardID is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ClusterMyShardID(ctx interface{}) *MockCmdable_ClusterMyShardID_Call {
 	return &MockCmdable_ClusterMyShardID_Call{Call: _e.mock.On("ClusterMyShardID", ctx)}
 }
 
 func (_c *MockCmdable_ClusterMyShardID_Call) Run(run func(ctx context.Context)) *MockCmdable_ClusterMyShardID_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -4900,14 +6311,20 @@ type MockCmdable_ClusterNodes_Call struct {
 }
 
 // ClusterNodes is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ClusterNodes(ctx interface{}) *MockCmdable_ClusterNodes_Call {
 	return &MockCmdable_ClusterNodes_Call{Call: _e.mock.On("ClusterNodes", ctx)}
 }
 
 func (_c *MockCmdable_ClusterNodes_Call) Run(run func(ctx context.Context)) *MockCmdable_ClusterNodes_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -4947,15 +6364,26 @@ type MockCmdable_ClusterReplicate_Call struct {
 }
 
 // ClusterReplicate is a helper method to define mock.On call
-//   - ctx
-//   - nodeID
+//   - ctx context.Context
+//   - nodeID string
 func (_e *MockCmdable_Expecter) ClusterReplicate(ctx interface{}, nodeID interface{}) *MockCmdable_ClusterReplicate_Call {
 	return &MockCmdable_ClusterReplicate_Call{Call: _e.mock.On("ClusterReplicate", ctx, nodeID)}
 }
 
 func (_c *MockCmdable_ClusterReplicate_Call) Run(run func(ctx context.Context, nodeID string)) *MockCmdable_ClusterReplicate_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -4995,14 +6423,20 @@ type MockCmdable_ClusterResetHard_Call struct {
 }
 
 // ClusterResetHard is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ClusterResetHard(ctx interface{}) *MockCmdable_ClusterResetHard_Call {
 	return &MockCmdable_ClusterResetHard_Call{Call: _e.mock.On("ClusterResetHard", ctx)}
 }
 
 func (_c *MockCmdable_ClusterResetHard_Call) Run(run func(ctx context.Context)) *MockCmdable_ClusterResetHard_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5042,14 +6476,20 @@ type MockCmdable_ClusterResetSoft_Call struct {
 }
 
 // ClusterResetSoft is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ClusterResetSoft(ctx interface{}) *MockCmdable_ClusterResetSoft_Call {
 	return &MockCmdable_ClusterResetSoft_Call{Call: _e.mock.On("ClusterResetSoft", ctx)}
 }
 
 func (_c *MockCmdable_ClusterResetSoft_Call) Run(run func(ctx context.Context)) *MockCmdable_ClusterResetSoft_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5089,14 +6529,20 @@ type MockCmdable_ClusterSaveConfig_Call struct {
 }
 
 // ClusterSaveConfig is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ClusterSaveConfig(ctx interface{}) *MockCmdable_ClusterSaveConfig_Call {
 	return &MockCmdable_ClusterSaveConfig_Call{Call: _e.mock.On("ClusterSaveConfig", ctx)}
 }
 
 func (_c *MockCmdable_ClusterSaveConfig_Call) Run(run func(ctx context.Context)) *MockCmdable_ClusterSaveConfig_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5136,14 +6582,20 @@ type MockCmdable_ClusterShards_Call struct {
 }
 
 // ClusterShards is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ClusterShards(ctx interface{}) *MockCmdable_ClusterShards_Call {
 	return &MockCmdable_ClusterShards_Call{Call: _e.mock.On("ClusterShards", ctx)}
 }
 
 func (_c *MockCmdable_ClusterShards_Call) Run(run func(ctx context.Context)) *MockCmdable_ClusterShards_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5183,15 +6635,26 @@ type MockCmdable_ClusterSlaves_Call struct {
 }
 
 // ClusterSlaves is a helper method to define mock.On call
-//   - ctx
-//   - nodeID
+//   - ctx context.Context
+//   - nodeID string
 func (_e *MockCmdable_Expecter) ClusterSlaves(ctx interface{}, nodeID interface{}) *MockCmdable_ClusterSlaves_Call {
 	return &MockCmdable_ClusterSlaves_Call{Call: _e.mock.On("ClusterSlaves", ctx, nodeID)}
 }
 
 func (_c *MockCmdable_ClusterSlaves_Call) Run(run func(ctx context.Context, nodeID string)) *MockCmdable_ClusterSlaves_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -5231,14 +6694,20 @@ type MockCmdable_ClusterSlots_Call struct {
 }
 
 // ClusterSlots is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ClusterSlots(ctx interface{}) *MockCmdable_ClusterSlots_Call {
 	return &MockCmdable_ClusterSlots_Call{Call: _e.mock.On("ClusterSlots", ctx)}
 }
 
 func (_c *MockCmdable_ClusterSlots_Call) Run(run func(ctx context.Context)) *MockCmdable_ClusterSlots_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5278,14 +6747,20 @@ type MockCmdable_Command_Call struct {
 }
 
 // Command is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) Command(ctx interface{}) *MockCmdable_Command_Call {
 	return &MockCmdable_Command_Call{Call: _e.mock.On("Command", ctx)}
 }
 
 func (_c *MockCmdable_Command_Call) Run(run func(ctx context.Context)) *MockCmdable_Command_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5331,8 +6806,8 @@ type MockCmdable_CommandGetKeys_Call struct {
 }
 
 // CommandGetKeys is a helper method to define mock.On call
-//   - ctx
-//   - commands
+//   - ctx context.Context
+//   - commands ...interface{}
 func (_e *MockCmdable_Expecter) CommandGetKeys(ctx interface{}, commands ...interface{}) *MockCmdable_CommandGetKeys_Call {
 	return &MockCmdable_CommandGetKeys_Call{Call: _e.mock.On("CommandGetKeys",
 		append([]interface{}{ctx}, commands...)...)}
@@ -5340,8 +6815,20 @@ func (_e *MockCmdable_Expecter) CommandGetKeys(ctx interface{}, commands ...inte
 
 func (_c *MockCmdable_CommandGetKeys_Call) Run(run func(ctx context.Context, commands ...interface{})) *MockCmdable_CommandGetKeys_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]interface{})
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 1 {
+			variadicArgs = args[1].([]interface{})
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -5387,8 +6874,8 @@ type MockCmdable_CommandGetKeysAndFlags_Call struct {
 }
 
 // CommandGetKeysAndFlags is a helper method to define mock.On call
-//   - ctx
-//   - commands
+//   - ctx context.Context
+//   - commands ...interface{}
 func (_e *MockCmdable_Expecter) CommandGetKeysAndFlags(ctx interface{}, commands ...interface{}) *MockCmdable_CommandGetKeysAndFlags_Call {
 	return &MockCmdable_CommandGetKeysAndFlags_Call{Call: _e.mock.On("CommandGetKeysAndFlags",
 		append([]interface{}{ctx}, commands...)...)}
@@ -5396,8 +6883,20 @@ func (_e *MockCmdable_Expecter) CommandGetKeysAndFlags(ctx interface{}, commands
 
 func (_c *MockCmdable_CommandGetKeysAndFlags_Call) Run(run func(ctx context.Context, commands ...interface{})) *MockCmdable_CommandGetKeysAndFlags_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]interface{})
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 1 {
+			variadicArgs = args[1].([]interface{})
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -5437,15 +6936,26 @@ type MockCmdable_CommandList_Call struct {
 }
 
 // CommandList is a helper method to define mock.On call
-//   - ctx
-//   - filter
+//   - ctx context.Context
+//   - filter *redis.FilterBy
 func (_e *MockCmdable_Expecter) CommandList(ctx interface{}, filter interface{}) *MockCmdable_CommandList_Call {
 	return &MockCmdable_CommandList_Call{Call: _e.mock.On("CommandList", ctx, filter)}
 }
 
 func (_c *MockCmdable_CommandList_Call) Run(run func(ctx context.Context, filter *redis.FilterBy)) *MockCmdable_CommandList_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.FilterBy))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.FilterBy
+		if args[1] != nil {
+			arg1 = args[1].(*redis.FilterBy)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -5485,15 +6995,26 @@ type MockCmdable_ConfigGet_Call struct {
 }
 
 // ConfigGet is a helper method to define mock.On call
-//   - ctx
-//   - parameter
+//   - ctx context.Context
+//   - parameter string
 func (_e *MockCmdable_Expecter) ConfigGet(ctx interface{}, parameter interface{}) *MockCmdable_ConfigGet_Call {
 	return &MockCmdable_ConfigGet_Call{Call: _e.mock.On("ConfigGet", ctx, parameter)}
 }
 
 func (_c *MockCmdable_ConfigGet_Call) Run(run func(ctx context.Context, parameter string)) *MockCmdable_ConfigGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -5533,14 +7054,20 @@ type MockCmdable_ConfigResetStat_Call struct {
 }
 
 // ConfigResetStat is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ConfigResetStat(ctx interface{}) *MockCmdable_ConfigResetStat_Call {
 	return &MockCmdable_ConfigResetStat_Call{Call: _e.mock.On("ConfigResetStat", ctx)}
 }
 
 func (_c *MockCmdable_ConfigResetStat_Call) Run(run func(ctx context.Context)) *MockCmdable_ConfigResetStat_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5580,14 +7107,20 @@ type MockCmdable_ConfigRewrite_Call struct {
 }
 
 // ConfigRewrite is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ConfigRewrite(ctx interface{}) *MockCmdable_ConfigRewrite_Call {
 	return &MockCmdable_ConfigRewrite_Call{Call: _e.mock.On("ConfigRewrite", ctx)}
 }
 
 func (_c *MockCmdable_ConfigRewrite_Call) Run(run func(ctx context.Context)) *MockCmdable_ConfigRewrite_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5627,16 +7160,32 @@ type MockCmdable_ConfigSet_Call struct {
 }
 
 // ConfigSet is a helper method to define mock.On call
-//   - ctx
-//   - parameter
-//   - value
+//   - ctx context.Context
+//   - parameter string
+//   - value string
 func (_e *MockCmdable_Expecter) ConfigSet(ctx interface{}, parameter interface{}, value interface{}) *MockCmdable_ConfigSet_Call {
 	return &MockCmdable_ConfigSet_Call{Call: _e.mock.On("ConfigSet", ctx, parameter, value)}
 }
 
 func (_c *MockCmdable_ConfigSet_Call) Run(run func(ctx context.Context, parameter string, value string)) *MockCmdable_ConfigSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -5676,18 +7225,44 @@ type MockCmdable_Copy_Call struct {
 }
 
 // Copy is a helper method to define mock.On call
-//   - ctx
-//   - sourceKey
-//   - destKey
-//   - db
-//   - replace
+//   - ctx context.Context
+//   - sourceKey string
+//   - destKey string
+//   - db int
+//   - replace bool
 func (_e *MockCmdable_Expecter) Copy(ctx interface{}, sourceKey interface{}, destKey interface{}, db interface{}, replace interface{}) *MockCmdable_Copy_Call {
 	return &MockCmdable_Copy_Call{Call: _e.mock.On("Copy", ctx, sourceKey, destKey, db, replace)}
 }
 
 func (_c *MockCmdable_Copy_Call) Run(run func(ctx context.Context, sourceKey string, destKey string, db int, replace bool)) *MockCmdable_Copy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int), args[4].(bool))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int
+		if args[3] != nil {
+			arg3 = args[3].(int)
+		}
+		var arg4 bool
+		if args[4] != nil {
+			arg4 = args[4].(bool)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -5727,14 +7302,20 @@ type MockCmdable_DBSize_Call struct {
 }
 
 // DBSize is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) DBSize(ctx interface{}) *MockCmdable_DBSize_Call {
 	return &MockCmdable_DBSize_Call{Call: _e.mock.On("DBSize", ctx)}
 }
 
 func (_c *MockCmdable_DBSize_Call) Run(run func(ctx context.Context)) *MockCmdable_DBSize_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -5774,15 +7355,26 @@ type MockCmdable_DebugObject_Call struct {
 }
 
 // DebugObject is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) DebugObject(ctx interface{}, key interface{}) *MockCmdable_DebugObject_Call {
 	return &MockCmdable_DebugObject_Call{Call: _e.mock.On("DebugObject", ctx, key)}
 }
 
 func (_c *MockCmdable_DebugObject_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_DebugObject_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -5822,15 +7414,26 @@ type MockCmdable_Decr_Call struct {
 }
 
 // Decr is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) Decr(ctx interface{}, key interface{}) *MockCmdable_Decr_Call {
 	return &MockCmdable_Decr_Call{Call: _e.mock.On("Decr", ctx, key)}
 }
 
 func (_c *MockCmdable_Decr_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_Decr_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -5870,16 +7473,32 @@ type MockCmdable_DecrBy_Call struct {
 }
 
 // DecrBy is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - decrement
+//   - ctx context.Context
+//   - key string
+//   - decrement int64
 func (_e *MockCmdable_Expecter) DecrBy(ctx interface{}, key interface{}, decrement interface{}) *MockCmdable_DecrBy_Call {
 	return &MockCmdable_DecrBy_Call{Call: _e.mock.On("DecrBy", ctx, key, decrement)}
 }
 
 func (_c *MockCmdable_DecrBy_Call) Run(run func(ctx context.Context, key string, decrement int64)) *MockCmdable_DecrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -5925,8 +7544,8 @@ type MockCmdable_Del_Call struct {
 }
 
 // Del is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockCmdable_Expecter) Del(ctx interface{}, keys ...interface{}) *MockCmdable_Del_Call {
 	return &MockCmdable_Del_Call{Call: _e.mock.On("Del",
 		append([]interface{}{ctx}, keys...)...)}
@@ -5934,8 +7553,20 @@ func (_e *MockCmdable_Expecter) Del(ctx interface{}, keys ...interface{}) *MockC
 
 func (_c *MockCmdable_Del_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_Del_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -5975,15 +7606,26 @@ type MockCmdable_Dump_Call struct {
 }
 
 // Dump is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) Dump(ctx interface{}, key interface{}) *MockCmdable_Dump_Call {
 	return &MockCmdable_Dump_Call{Call: _e.mock.On("Dump", ctx, key)}
 }
 
 func (_c *MockCmdable_Dump_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_Dump_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -6023,15 +7665,26 @@ type MockCmdable_Echo_Call struct {
 }
 
 // Echo is a helper method to define mock.On call
-//   - ctx
-//   - message
+//   - ctx context.Context
+//   - message interface{}
 func (_e *MockCmdable_Expecter) Echo(ctx interface{}, message interface{}) *MockCmdable_Echo_Call {
 	return &MockCmdable_Echo_Call{Call: _e.mock.On("Echo", ctx, message)}
 }
 
 func (_c *MockCmdable_Echo_Call) Run(run func(ctx context.Context, message interface{})) *MockCmdable_Echo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 interface{}
+		if args[1] != nil {
+			arg1 = args[1].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -6077,10 +7730,10 @@ type MockCmdable_Eval_Call struct {
 }
 
 // Eval is a helper method to define mock.On call
-//   - ctx
-//   - script
-//   - keys
-//   - args
+//   - ctx context.Context
+//   - script string
+//   - keys []string
+//   - args ...interface{}
 func (_e *MockCmdable_Expecter) Eval(ctx interface{}, script interface{}, keys interface{}, args ...interface{}) *MockCmdable_Eval_Call {
 	return &MockCmdable_Eval_Call{Call: _e.mock.On("Eval",
 		append([]interface{}{ctx, script, keys}, args...)...)}
@@ -6088,8 +7741,30 @@ func (_e *MockCmdable_Expecter) Eval(ctx interface{}, script interface{}, keys i
 
 func (_c *MockCmdable_Eval_Call) Run(run func(ctx context.Context, script string, keys []string, args ...interface{})) *MockCmdable_Eval_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		if args[2] != nil {
+			arg2 = args[2].([]string)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -6135,10 +7810,10 @@ type MockCmdable_EvalRO_Call struct {
 }
 
 // EvalRO is a helper method to define mock.On call
-//   - ctx
-//   - script
-//   - keys
-//   - args
+//   - ctx context.Context
+//   - script string
+//   - keys []string
+//   - args ...interface{}
 func (_e *MockCmdable_Expecter) EvalRO(ctx interface{}, script interface{}, keys interface{}, args ...interface{}) *MockCmdable_EvalRO_Call {
 	return &MockCmdable_EvalRO_Call{Call: _e.mock.On("EvalRO",
 		append([]interface{}{ctx, script, keys}, args...)...)}
@@ -6146,8 +7821,30 @@ func (_e *MockCmdable_Expecter) EvalRO(ctx interface{}, script interface{}, keys
 
 func (_c *MockCmdable_EvalRO_Call) Run(run func(ctx context.Context, script string, keys []string, args ...interface{})) *MockCmdable_EvalRO_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		if args[2] != nil {
+			arg2 = args[2].([]string)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -6193,10 +7890,10 @@ type MockCmdable_EvalSha_Call struct {
 }
 
 // EvalSha is a helper method to define mock.On call
-//   - ctx
-//   - sha1
-//   - keys
-//   - args
+//   - ctx context.Context
+//   - sha1 string
+//   - keys []string
+//   - args ...interface{}
 func (_e *MockCmdable_Expecter) EvalSha(ctx interface{}, sha1 interface{}, keys interface{}, args ...interface{}) *MockCmdable_EvalSha_Call {
 	return &MockCmdable_EvalSha_Call{Call: _e.mock.On("EvalSha",
 		append([]interface{}{ctx, sha1, keys}, args...)...)}
@@ -6204,8 +7901,30 @@ func (_e *MockCmdable_Expecter) EvalSha(ctx interface{}, sha1 interface{}, keys 
 
 func (_c *MockCmdable_EvalSha_Call) Run(run func(ctx context.Context, sha1 string, keys []string, args ...interface{})) *MockCmdable_EvalSha_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		if args[2] != nil {
+			arg2 = args[2].([]string)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -6251,10 +7970,10 @@ type MockCmdable_EvalShaRO_Call struct {
 }
 
 // EvalShaRO is a helper method to define mock.On call
-//   - ctx
-//   - sha1
-//   - keys
-//   - args
+//   - ctx context.Context
+//   - sha1 string
+//   - keys []string
+//   - args ...interface{}
 func (_e *MockCmdable_Expecter) EvalShaRO(ctx interface{}, sha1 interface{}, keys interface{}, args ...interface{}) *MockCmdable_EvalShaRO_Call {
 	return &MockCmdable_EvalShaRO_Call{Call: _e.mock.On("EvalShaRO",
 		append([]interface{}{ctx, sha1, keys}, args...)...)}
@@ -6262,8 +7981,30 @@ func (_e *MockCmdable_Expecter) EvalShaRO(ctx interface{}, sha1 interface{}, key
 
 func (_c *MockCmdable_EvalShaRO_Call) Run(run func(ctx context.Context, sha1 string, keys []string, args ...interface{})) *MockCmdable_EvalShaRO_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		if args[2] != nil {
+			arg2 = args[2].([]string)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -6309,8 +8050,8 @@ type MockCmdable_Exists_Call struct {
 }
 
 // Exists is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockCmdable_Expecter) Exists(ctx interface{}, keys ...interface{}) *MockCmdable_Exists_Call {
 	return &MockCmdable_Exists_Call{Call: _e.mock.On("Exists",
 		append([]interface{}{ctx}, keys...)...)}
@@ -6318,8 +8059,20 @@ func (_e *MockCmdable_Expecter) Exists(ctx interface{}, keys ...interface{}) *Mo
 
 func (_c *MockCmdable_Exists_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_Exists_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -6359,16 +8112,32 @@ type MockCmdable_Expire_Call struct {
 }
 
 // Expire is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
 func (_e *MockCmdable_Expecter) Expire(ctx interface{}, key interface{}, expiration interface{}) *MockCmdable_Expire_Call {
 	return &MockCmdable_Expire_Call{Call: _e.mock.On("Expire", ctx, key, expiration)}
 }
 
 func (_c *MockCmdable_Expire_Call) Run(run func(ctx context.Context, key string, expiration time.Duration)) *MockCmdable_Expire_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -6408,16 +8177,32 @@ type MockCmdable_ExpireAt_Call struct {
 }
 
 // ExpireAt is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - tm
+//   - ctx context.Context
+//   - key string
+//   - tm time.Time
 func (_e *MockCmdable_Expecter) ExpireAt(ctx interface{}, key interface{}, tm interface{}) *MockCmdable_ExpireAt_Call {
 	return &MockCmdable_ExpireAt_Call{Call: _e.mock.On("ExpireAt", ctx, key, tm)}
 }
 
 func (_c *MockCmdable_ExpireAt_Call) Run(run func(ctx context.Context, key string, tm time.Time)) *MockCmdable_ExpireAt_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Time))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Time
+		if args[2] != nil {
+			arg2 = args[2].(time.Time)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -6457,16 +8242,32 @@ type MockCmdable_ExpireGT_Call struct {
 }
 
 // ExpireGT is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
 func (_e *MockCmdable_Expecter) ExpireGT(ctx interface{}, key interface{}, expiration interface{}) *MockCmdable_ExpireGT_Call {
 	return &MockCmdable_ExpireGT_Call{Call: _e.mock.On("ExpireGT", ctx, key, expiration)}
 }
 
 func (_c *MockCmdable_ExpireGT_Call) Run(run func(ctx context.Context, key string, expiration time.Duration)) *MockCmdable_ExpireGT_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -6506,16 +8307,32 @@ type MockCmdable_ExpireLT_Call struct {
 }
 
 // ExpireLT is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
 func (_e *MockCmdable_Expecter) ExpireLT(ctx interface{}, key interface{}, expiration interface{}) *MockCmdable_ExpireLT_Call {
 	return &MockCmdable_ExpireLT_Call{Call: _e.mock.On("ExpireLT", ctx, key, expiration)}
 }
 
 func (_c *MockCmdable_ExpireLT_Call) Run(run func(ctx context.Context, key string, expiration time.Duration)) *MockCmdable_ExpireLT_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -6555,16 +8372,32 @@ type MockCmdable_ExpireNX_Call struct {
 }
 
 // ExpireNX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
 func (_e *MockCmdable_Expecter) ExpireNX(ctx interface{}, key interface{}, expiration interface{}) *MockCmdable_ExpireNX_Call {
 	return &MockCmdable_ExpireNX_Call{Call: _e.mock.On("ExpireNX", ctx, key, expiration)}
 }
 
 func (_c *MockCmdable_ExpireNX_Call) Run(run func(ctx context.Context, key string, expiration time.Duration)) *MockCmdable_ExpireNX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -6604,15 +8437,26 @@ type MockCmdable_ExpireTime_Call struct {
 }
 
 // ExpireTime is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) ExpireTime(ctx interface{}, key interface{}) *MockCmdable_ExpireTime_Call {
 	return &MockCmdable_ExpireTime_Call{Call: _e.mock.On("ExpireTime", ctx, key)}
 }
 
 func (_c *MockCmdable_ExpireTime_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_ExpireTime_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -6652,16 +8496,32 @@ type MockCmdable_ExpireXX_Call struct {
 }
 
 // ExpireXX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
 func (_e *MockCmdable_Expecter) ExpireXX(ctx interface{}, key interface{}, expiration interface{}) *MockCmdable_ExpireXX_Call {
 	return &MockCmdable_ExpireXX_Call{Call: _e.mock.On("ExpireXX", ctx, key, expiration)}
 }
 
 func (_c *MockCmdable_ExpireXX_Call) Run(run func(ctx context.Context, key string, expiration time.Duration)) *MockCmdable_ExpireXX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -6707,10 +8567,10 @@ type MockCmdable_FCall_Call struct {
 }
 
 // FCall is a helper method to define mock.On call
-//   - ctx
-//   - function
-//   - keys
-//   - args
+//   - ctx context.Context
+//   - function string
+//   - keys []string
+//   - args ...interface{}
 func (_e *MockCmdable_Expecter) FCall(ctx interface{}, function interface{}, keys interface{}, args ...interface{}) *MockCmdable_FCall_Call {
 	return &MockCmdable_FCall_Call{Call: _e.mock.On("FCall",
 		append([]interface{}{ctx, function, keys}, args...)...)}
@@ -6718,8 +8578,30 @@ func (_e *MockCmdable_Expecter) FCall(ctx interface{}, function interface{}, key
 
 func (_c *MockCmdable_FCall_Call) Run(run func(ctx context.Context, function string, keys []string, args ...interface{})) *MockCmdable_FCall_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		if args[2] != nil {
+			arg2 = args[2].([]string)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -6765,10 +8647,10 @@ type MockCmdable_FCallRO_Call struct {
 }
 
 // FCallRO is a helper method to define mock.On call
-//   - ctx
-//   - function
-//   - keys
-//   - args
+//   - ctx context.Context
+//   - function string
+//   - keys []string
+//   - args ...interface{}
 func (_e *MockCmdable_Expecter) FCallRO(ctx interface{}, function interface{}, keys interface{}, args ...interface{}) *MockCmdable_FCallRO_Call {
 	return &MockCmdable_FCallRO_Call{Call: _e.mock.On("FCallRO",
 		append([]interface{}{ctx, function, keys}, args...)...)}
@@ -6776,8 +8658,30 @@ func (_e *MockCmdable_Expecter) FCallRO(ctx interface{}, function interface{}, k
 
 func (_c *MockCmdable_FCallRO_Call) Run(run func(ctx context.Context, function string, keys []string, args ...interface{})) *MockCmdable_FCallRO_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		if args[2] != nil {
+			arg2 = args[2].([]string)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -6823,10 +8727,10 @@ type MockCmdable_FCallRo_Call struct {
 }
 
 // FCallRo is a helper method to define mock.On call
-//   - ctx
-//   - function
-//   - keys
-//   - args
+//   - ctx context.Context
+//   - function string
+//   - keys []string
+//   - args ...interface{}
 func (_e *MockCmdable_Expecter) FCallRo(ctx interface{}, function interface{}, keys interface{}, args ...interface{}) *MockCmdable_FCallRo_Call {
 	return &MockCmdable_FCallRo_Call{Call: _e.mock.On("FCallRo",
 		append([]interface{}{ctx, function, keys}, args...)...)}
@@ -6834,8 +8738,30 @@ func (_e *MockCmdable_Expecter) FCallRo(ctx interface{}, function interface{}, k
 
 func (_c *MockCmdable_FCallRo_Call) Run(run func(ctx context.Context, function string, keys []string, args ...interface{})) *MockCmdable_FCallRo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].([]string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		if args[2] != nil {
+			arg2 = args[2].([]string)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -6875,16 +8801,32 @@ type MockCmdable_FTAggregate_Call struct {
 }
 
 // FTAggregate is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - query
+//   - ctx context.Context
+//   - index string
+//   - query string
 func (_e *MockCmdable_Expecter) FTAggregate(ctx interface{}, index interface{}, query interface{}) *MockCmdable_FTAggregate_Call {
 	return &MockCmdable_FTAggregate_Call{Call: _e.mock.On("FTAggregate", ctx, index, query)}
 }
 
 func (_c *MockCmdable_FTAggregate_Call) Run(run func(ctx context.Context, index string, query string)) *MockCmdable_FTAggregate_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -6924,17 +8866,38 @@ type MockCmdable_FTAggregateWithArgs_Call struct {
 }
 
 // FTAggregateWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - query
-//   - options
+//   - ctx context.Context
+//   - index string
+//   - query string
+//   - options *redis.FTAggregateOptions
 func (_e *MockCmdable_Expecter) FTAggregateWithArgs(ctx interface{}, index interface{}, query interface{}, options interface{}) *MockCmdable_FTAggregateWithArgs_Call {
 	return &MockCmdable_FTAggregateWithArgs_Call{Call: _e.mock.On("FTAggregateWithArgs", ctx, index, query, options)}
 }
 
 func (_c *MockCmdable_FTAggregateWithArgs_Call) Run(run func(ctx context.Context, index string, query string, options *redis.FTAggregateOptions)) *MockCmdable_FTAggregateWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.FTAggregateOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.FTAggregateOptions
+		if args[3] != nil {
+			arg3 = args[3].(*redis.FTAggregateOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -6974,16 +8937,32 @@ type MockCmdable_FTAliasAdd_Call struct {
 }
 
 // FTAliasAdd is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - alias
+//   - ctx context.Context
+//   - index string
+//   - alias string
 func (_e *MockCmdable_Expecter) FTAliasAdd(ctx interface{}, index interface{}, alias interface{}) *MockCmdable_FTAliasAdd_Call {
 	return &MockCmdable_FTAliasAdd_Call{Call: _e.mock.On("FTAliasAdd", ctx, index, alias)}
 }
 
 func (_c *MockCmdable_FTAliasAdd_Call) Run(run func(ctx context.Context, index string, alias string)) *MockCmdable_FTAliasAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -7023,15 +9002,26 @@ type MockCmdable_FTAliasDel_Call struct {
 }
 
 // FTAliasDel is a helper method to define mock.On call
-//   - ctx
-//   - alias
+//   - ctx context.Context
+//   - alias string
 func (_e *MockCmdable_Expecter) FTAliasDel(ctx interface{}, alias interface{}) *MockCmdable_FTAliasDel_Call {
 	return &MockCmdable_FTAliasDel_Call{Call: _e.mock.On("FTAliasDel", ctx, alias)}
 }
 
 func (_c *MockCmdable_FTAliasDel_Call) Run(run func(ctx context.Context, alias string)) *MockCmdable_FTAliasDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -7071,16 +9061,32 @@ type MockCmdable_FTAliasUpdate_Call struct {
 }
 
 // FTAliasUpdate is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - alias
+//   - ctx context.Context
+//   - index string
+//   - alias string
 func (_e *MockCmdable_Expecter) FTAliasUpdate(ctx interface{}, index interface{}, alias interface{}) *MockCmdable_FTAliasUpdate_Call {
 	return &MockCmdable_FTAliasUpdate_Call{Call: _e.mock.On("FTAliasUpdate", ctx, index, alias)}
 }
 
 func (_c *MockCmdable_FTAliasUpdate_Call) Run(run func(ctx context.Context, index string, alias string)) *MockCmdable_FTAliasUpdate_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -7120,17 +9126,38 @@ type MockCmdable_FTAlter_Call struct {
 }
 
 // FTAlter is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - skipInitialScan
-//   - definition
+//   - ctx context.Context
+//   - index string
+//   - skipInitialScan bool
+//   - definition []interface{}
 func (_e *MockCmdable_Expecter) FTAlter(ctx interface{}, index interface{}, skipInitialScan interface{}, definition interface{}) *MockCmdable_FTAlter_Call {
 	return &MockCmdable_FTAlter_Call{Call: _e.mock.On("FTAlter", ctx, index, skipInitialScan, definition)}
 }
 
 func (_c *MockCmdable_FTAlter_Call) Run(run func(ctx context.Context, index string, skipInitialScan bool, definition []interface{})) *MockCmdable_FTAlter_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(bool), args[3].([]interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 bool
+		if args[2] != nil {
+			arg2 = args[2].(bool)
+		}
+		var arg3 []interface{}
+		if args[3] != nil {
+			arg3 = args[3].([]interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -7170,15 +9197,26 @@ type MockCmdable_FTConfigGet_Call struct {
 }
 
 // FTConfigGet is a helper method to define mock.On call
-//   - ctx
-//   - option
+//   - ctx context.Context
+//   - option string
 func (_e *MockCmdable_Expecter) FTConfigGet(ctx interface{}, option interface{}) *MockCmdable_FTConfigGet_Call {
 	return &MockCmdable_FTConfigGet_Call{Call: _e.mock.On("FTConfigGet", ctx, option)}
 }
 
 func (_c *MockCmdable_FTConfigGet_Call) Run(run func(ctx context.Context, option string)) *MockCmdable_FTConfigGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -7218,16 +9256,32 @@ type MockCmdable_FTConfigSet_Call struct {
 }
 
 // FTConfigSet is a helper method to define mock.On call
-//   - ctx
-//   - option
-//   - value
+//   - ctx context.Context
+//   - option string
+//   - value interface{}
 func (_e *MockCmdable_Expecter) FTConfigSet(ctx interface{}, option interface{}, value interface{}) *MockCmdable_FTConfigSet_Call {
 	return &MockCmdable_FTConfigSet_Call{Call: _e.mock.On("FTConfigSet", ctx, option, value)}
 }
 
 func (_c *MockCmdable_FTConfigSet_Call) Run(run func(ctx context.Context, option string, value interface{})) *MockCmdable_FTConfigSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -7273,10 +9327,10 @@ type MockCmdable_FTCreate_Call struct {
 }
 
 // FTCreate is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - options
-//   - schema
+//   - ctx context.Context
+//   - index string
+//   - options *redis.FTCreateOptions
+//   - schema ...*redis.FieldSchema
 func (_e *MockCmdable_Expecter) FTCreate(ctx interface{}, index interface{}, options interface{}, schema ...interface{}) *MockCmdable_FTCreate_Call {
 	return &MockCmdable_FTCreate_Call{Call: _e.mock.On("FTCreate",
 		append([]interface{}{ctx, index, options}, schema...)...)}
@@ -7284,8 +9338,30 @@ func (_e *MockCmdable_Expecter) FTCreate(ctx interface{}, index interface{}, opt
 
 func (_c *MockCmdable_FTCreate_Call) Run(run func(ctx context.Context, index string, options *redis.FTCreateOptions, schema ...*redis.FieldSchema)) *MockCmdable_FTCreate_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]*redis.FieldSchema)
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.FTCreateOptions), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.FTCreateOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.FTCreateOptions)
+		}
+		var arg3 []*redis.FieldSchema
+		var variadicArgs []*redis.FieldSchema
+		if len(args) > 3 {
+			variadicArgs = args[3].([]*redis.FieldSchema)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -7325,16 +9401,32 @@ type MockCmdable_FTCursorDel_Call struct {
 }
 
 // FTCursorDel is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - cursorId
+//   - ctx context.Context
+//   - index string
+//   - cursorId int
 func (_e *MockCmdable_Expecter) FTCursorDel(ctx interface{}, index interface{}, cursorId interface{}) *MockCmdable_FTCursorDel_Call {
 	return &MockCmdable_FTCursorDel_Call{Call: _e.mock.On("FTCursorDel", ctx, index, cursorId)}
 }
 
 func (_c *MockCmdable_FTCursorDel_Call) Run(run func(ctx context.Context, index string, cursorId int)) *MockCmdable_FTCursorDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -7374,17 +9466,38 @@ type MockCmdable_FTCursorRead_Call struct {
 }
 
 // FTCursorRead is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - cursorId
-//   - count
+//   - ctx context.Context
+//   - index string
+//   - cursorId int
+//   - count int
 func (_e *MockCmdable_Expecter) FTCursorRead(ctx interface{}, index interface{}, cursorId interface{}, count interface{}) *MockCmdable_FTCursorRead_Call {
 	return &MockCmdable_FTCursorRead_Call{Call: _e.mock.On("FTCursorRead", ctx, index, cursorId, count)}
 }
 
 func (_c *MockCmdable_FTCursorRead_Call) Run(run func(ctx context.Context, index string, cursorId int, count int)) *MockCmdable_FTCursorRead_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int), args[3].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 int
+		if args[3] != nil {
+			arg3 = args[3].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -7430,9 +9543,9 @@ type MockCmdable_FTDictAdd_Call struct {
 }
 
 // FTDictAdd is a helper method to define mock.On call
-//   - ctx
-//   - dict
-//   - term
+//   - ctx context.Context
+//   - dict string
+//   - term ...interface{}
 func (_e *MockCmdable_Expecter) FTDictAdd(ctx interface{}, dict interface{}, term ...interface{}) *MockCmdable_FTDictAdd_Call {
 	return &MockCmdable_FTDictAdd_Call{Call: _e.mock.On("FTDictAdd",
 		append([]interface{}{ctx, dict}, term...)...)}
@@ -7440,8 +9553,25 @@ func (_e *MockCmdable_Expecter) FTDictAdd(ctx interface{}, dict interface{}, ter
 
 func (_c *MockCmdable_FTDictAdd_Call) Run(run func(ctx context.Context, dict string, term ...interface{})) *MockCmdable_FTDictAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -7487,9 +9617,9 @@ type MockCmdable_FTDictDel_Call struct {
 }
 
 // FTDictDel is a helper method to define mock.On call
-//   - ctx
-//   - dict
-//   - term
+//   - ctx context.Context
+//   - dict string
+//   - term ...interface{}
 func (_e *MockCmdable_Expecter) FTDictDel(ctx interface{}, dict interface{}, term ...interface{}) *MockCmdable_FTDictDel_Call {
 	return &MockCmdable_FTDictDel_Call{Call: _e.mock.On("FTDictDel",
 		append([]interface{}{ctx, dict}, term...)...)}
@@ -7497,8 +9627,25 @@ func (_e *MockCmdable_Expecter) FTDictDel(ctx interface{}, dict interface{}, ter
 
 func (_c *MockCmdable_FTDictDel_Call) Run(run func(ctx context.Context, dict string, term ...interface{})) *MockCmdable_FTDictDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -7538,15 +9685,26 @@ type MockCmdable_FTDictDump_Call struct {
 }
 
 // FTDictDump is a helper method to define mock.On call
-//   - ctx
-//   - dict
+//   - ctx context.Context
+//   - dict string
 func (_e *MockCmdable_Expecter) FTDictDump(ctx interface{}, dict interface{}) *MockCmdable_FTDictDump_Call {
 	return &MockCmdable_FTDictDump_Call{Call: _e.mock.On("FTDictDump", ctx, dict)}
 }
 
 func (_c *MockCmdable_FTDictDump_Call) Run(run func(ctx context.Context, dict string)) *MockCmdable_FTDictDump_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -7586,15 +9744,26 @@ type MockCmdable_FTDropIndex_Call struct {
 }
 
 // FTDropIndex is a helper method to define mock.On call
-//   - ctx
-//   - index
+//   - ctx context.Context
+//   - index string
 func (_e *MockCmdable_Expecter) FTDropIndex(ctx interface{}, index interface{}) *MockCmdable_FTDropIndex_Call {
 	return &MockCmdable_FTDropIndex_Call{Call: _e.mock.On("FTDropIndex", ctx, index)}
 }
 
 func (_c *MockCmdable_FTDropIndex_Call) Run(run func(ctx context.Context, index string)) *MockCmdable_FTDropIndex_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -7634,16 +9803,32 @@ type MockCmdable_FTDropIndexWithArgs_Call struct {
 }
 
 // FTDropIndexWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - options
+//   - ctx context.Context
+//   - index string
+//   - options *redis.FTDropIndexOptions
 func (_e *MockCmdable_Expecter) FTDropIndexWithArgs(ctx interface{}, index interface{}, options interface{}) *MockCmdable_FTDropIndexWithArgs_Call {
 	return &MockCmdable_FTDropIndexWithArgs_Call{Call: _e.mock.On("FTDropIndexWithArgs", ctx, index, options)}
 }
 
 func (_c *MockCmdable_FTDropIndexWithArgs_Call) Run(run func(ctx context.Context, index string, options *redis.FTDropIndexOptions)) *MockCmdable_FTDropIndexWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.FTDropIndexOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.FTDropIndexOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.FTDropIndexOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -7683,16 +9868,32 @@ type MockCmdable_FTExplain_Call struct {
 }
 
 // FTExplain is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - query
+//   - ctx context.Context
+//   - index string
+//   - query string
 func (_e *MockCmdable_Expecter) FTExplain(ctx interface{}, index interface{}, query interface{}) *MockCmdable_FTExplain_Call {
 	return &MockCmdable_FTExplain_Call{Call: _e.mock.On("FTExplain", ctx, index, query)}
 }
 
 func (_c *MockCmdable_FTExplain_Call) Run(run func(ctx context.Context, index string, query string)) *MockCmdable_FTExplain_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -7732,17 +9933,38 @@ type MockCmdable_FTExplainWithArgs_Call struct {
 }
 
 // FTExplainWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - query
-//   - options
+//   - ctx context.Context
+//   - index string
+//   - query string
+//   - options *redis.FTExplainOptions
 func (_e *MockCmdable_Expecter) FTExplainWithArgs(ctx interface{}, index interface{}, query interface{}, options interface{}) *MockCmdable_FTExplainWithArgs_Call {
 	return &MockCmdable_FTExplainWithArgs_Call{Call: _e.mock.On("FTExplainWithArgs", ctx, index, query, options)}
 }
 
 func (_c *MockCmdable_FTExplainWithArgs_Call) Run(run func(ctx context.Context, index string, query string, options *redis.FTExplainOptions)) *MockCmdable_FTExplainWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.FTExplainOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.FTExplainOptions
+		if args[3] != nil {
+			arg3 = args[3].(*redis.FTExplainOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -7782,15 +10004,26 @@ type MockCmdable_FTInfo_Call struct {
 }
 
 // FTInfo is a helper method to define mock.On call
-//   - ctx
-//   - index
+//   - ctx context.Context
+//   - index string
 func (_e *MockCmdable_Expecter) FTInfo(ctx interface{}, index interface{}) *MockCmdable_FTInfo_Call {
 	return &MockCmdable_FTInfo_Call{Call: _e.mock.On("FTInfo", ctx, index)}
 }
 
 func (_c *MockCmdable_FTInfo_Call) Run(run func(ctx context.Context, index string)) *MockCmdable_FTInfo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -7830,16 +10063,32 @@ type MockCmdable_FTSearch_Call struct {
 }
 
 // FTSearch is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - query
+//   - ctx context.Context
+//   - index string
+//   - query string
 func (_e *MockCmdable_Expecter) FTSearch(ctx interface{}, index interface{}, query interface{}) *MockCmdable_FTSearch_Call {
 	return &MockCmdable_FTSearch_Call{Call: _e.mock.On("FTSearch", ctx, index, query)}
 }
 
 func (_c *MockCmdable_FTSearch_Call) Run(run func(ctx context.Context, index string, query string)) *MockCmdable_FTSearch_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -7879,17 +10128,38 @@ type MockCmdable_FTSearchWithArgs_Call struct {
 }
 
 // FTSearchWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - query
-//   - options
+//   - ctx context.Context
+//   - index string
+//   - query string
+//   - options *redis.FTSearchOptions
 func (_e *MockCmdable_Expecter) FTSearchWithArgs(ctx interface{}, index interface{}, query interface{}, options interface{}) *MockCmdable_FTSearchWithArgs_Call {
 	return &MockCmdable_FTSearchWithArgs_Call{Call: _e.mock.On("FTSearchWithArgs", ctx, index, query, options)}
 }
 
 func (_c *MockCmdable_FTSearchWithArgs_Call) Run(run func(ctx context.Context, index string, query string, options *redis.FTSearchOptions)) *MockCmdable_FTSearchWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.FTSearchOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.FTSearchOptions
+		if args[3] != nil {
+			arg3 = args[3].(*redis.FTSearchOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -7929,16 +10199,32 @@ type MockCmdable_FTSpellCheck_Call struct {
 }
 
 // FTSpellCheck is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - query
+//   - ctx context.Context
+//   - index string
+//   - query string
 func (_e *MockCmdable_Expecter) FTSpellCheck(ctx interface{}, index interface{}, query interface{}) *MockCmdable_FTSpellCheck_Call {
 	return &MockCmdable_FTSpellCheck_Call{Call: _e.mock.On("FTSpellCheck", ctx, index, query)}
 }
 
 func (_c *MockCmdable_FTSpellCheck_Call) Run(run func(ctx context.Context, index string, query string)) *MockCmdable_FTSpellCheck_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -7978,17 +10264,38 @@ type MockCmdable_FTSpellCheckWithArgs_Call struct {
 }
 
 // FTSpellCheckWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - query
-//   - options
+//   - ctx context.Context
+//   - index string
+//   - query string
+//   - options *redis.FTSpellCheckOptions
 func (_e *MockCmdable_Expecter) FTSpellCheckWithArgs(ctx interface{}, index interface{}, query interface{}, options interface{}) *MockCmdable_FTSpellCheckWithArgs_Call {
 	return &MockCmdable_FTSpellCheckWithArgs_Call{Call: _e.mock.On("FTSpellCheckWithArgs", ctx, index, query, options)}
 }
 
 func (_c *MockCmdable_FTSpellCheckWithArgs_Call) Run(run func(ctx context.Context, index string, query string, options *redis.FTSpellCheckOptions)) *MockCmdable_FTSpellCheckWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.FTSpellCheckOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.FTSpellCheckOptions
+		if args[3] != nil {
+			arg3 = args[3].(*redis.FTSpellCheckOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -8028,15 +10335,26 @@ type MockCmdable_FTSynDump_Call struct {
 }
 
 // FTSynDump is a helper method to define mock.On call
-//   - ctx
-//   - index
+//   - ctx context.Context
+//   - index string
 func (_e *MockCmdable_Expecter) FTSynDump(ctx interface{}, index interface{}) *MockCmdable_FTSynDump_Call {
 	return &MockCmdable_FTSynDump_Call{Call: _e.mock.On("FTSynDump", ctx, index)}
 }
 
 func (_c *MockCmdable_FTSynDump_Call) Run(run func(ctx context.Context, index string)) *MockCmdable_FTSynDump_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -8076,17 +10394,38 @@ type MockCmdable_FTSynUpdate_Call struct {
 }
 
 // FTSynUpdate is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - synGroupId
-//   - terms
+//   - ctx context.Context
+//   - index string
+//   - synGroupId interface{}
+//   - terms []interface{}
 func (_e *MockCmdable_Expecter) FTSynUpdate(ctx interface{}, index interface{}, synGroupId interface{}, terms interface{}) *MockCmdable_FTSynUpdate_Call {
 	return &MockCmdable_FTSynUpdate_Call{Call: _e.mock.On("FTSynUpdate", ctx, index, synGroupId, terms)}
 }
 
 func (_c *MockCmdable_FTSynUpdate_Call) Run(run func(ctx context.Context, index string, synGroupId interface{}, terms []interface{})) *MockCmdable_FTSynUpdate_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].([]interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 []interface{}
+		if args[3] != nil {
+			arg3 = args[3].([]interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -8126,18 +10465,44 @@ type MockCmdable_FTSynUpdateWithArgs_Call struct {
 }
 
 // FTSynUpdateWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - synGroupId
-//   - options
-//   - terms
+//   - ctx context.Context
+//   - index string
+//   - synGroupId interface{}
+//   - options *redis.FTSynUpdateOptions
+//   - terms []interface{}
 func (_e *MockCmdable_Expecter) FTSynUpdateWithArgs(ctx interface{}, index interface{}, synGroupId interface{}, options interface{}, terms interface{}) *MockCmdable_FTSynUpdateWithArgs_Call {
 	return &MockCmdable_FTSynUpdateWithArgs_Call{Call: _e.mock.On("FTSynUpdateWithArgs", ctx, index, synGroupId, options, terms)}
 }
 
 func (_c *MockCmdable_FTSynUpdateWithArgs_Call) Run(run func(ctx context.Context, index string, synGroupId interface{}, options *redis.FTSynUpdateOptions, terms []interface{})) *MockCmdable_FTSynUpdateWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(*redis.FTSynUpdateOptions), args[4].([]interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 *redis.FTSynUpdateOptions
+		if args[3] != nil {
+			arg3 = args[3].(*redis.FTSynUpdateOptions)
+		}
+		var arg4 []interface{}
+		if args[4] != nil {
+			arg4 = args[4].([]interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -8177,16 +10542,32 @@ type MockCmdable_FTTagVals_Call struct {
 }
 
 // FTTagVals is a helper method to define mock.On call
-//   - ctx
-//   - index
-//   - field
+//   - ctx context.Context
+//   - index string
+//   - field string
 func (_e *MockCmdable_Expecter) FTTagVals(ctx interface{}, index interface{}, field interface{}) *MockCmdable_FTTagVals_Call {
 	return &MockCmdable_FTTagVals_Call{Call: _e.mock.On("FTTagVals", ctx, index, field)}
 }
 
 func (_c *MockCmdable_FTTagVals_Call) Run(run func(ctx context.Context, index string, field string)) *MockCmdable_FTTagVals_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -8226,14 +10607,20 @@ type MockCmdable_FT_List_Call struct {
 }
 
 // FT_List is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) FT_List(ctx interface{}) *MockCmdable_FT_List_Call {
 	return &MockCmdable_FT_List_Call{Call: _e.mock.On("FT_List", ctx)}
 }
 
 func (_c *MockCmdable_FT_List_Call) Run(run func(ctx context.Context)) *MockCmdable_FT_List_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -8273,14 +10660,20 @@ type MockCmdable_FlushAll_Call struct {
 }
 
 // FlushAll is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) FlushAll(ctx interface{}) *MockCmdable_FlushAll_Call {
 	return &MockCmdable_FlushAll_Call{Call: _e.mock.On("FlushAll", ctx)}
 }
 
 func (_c *MockCmdable_FlushAll_Call) Run(run func(ctx context.Context)) *MockCmdable_FlushAll_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -8320,14 +10713,20 @@ type MockCmdable_FlushAllAsync_Call struct {
 }
 
 // FlushAllAsync is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) FlushAllAsync(ctx interface{}) *MockCmdable_FlushAllAsync_Call {
 	return &MockCmdable_FlushAllAsync_Call{Call: _e.mock.On("FlushAllAsync", ctx)}
 }
 
 func (_c *MockCmdable_FlushAllAsync_Call) Run(run func(ctx context.Context)) *MockCmdable_FlushAllAsync_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -8367,14 +10766,20 @@ type MockCmdable_FlushDB_Call struct {
 }
 
 // FlushDB is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) FlushDB(ctx interface{}) *MockCmdable_FlushDB_Call {
 	return &MockCmdable_FlushDB_Call{Call: _e.mock.On("FlushDB", ctx)}
 }
 
 func (_c *MockCmdable_FlushDB_Call) Run(run func(ctx context.Context)) *MockCmdable_FlushDB_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -8414,14 +10819,20 @@ type MockCmdable_FlushDBAsync_Call struct {
 }
 
 // FlushDBAsync is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) FlushDBAsync(ctx interface{}) *MockCmdable_FlushDBAsync_Call {
 	return &MockCmdable_FlushDBAsync_Call{Call: _e.mock.On("FlushDBAsync", ctx)}
 }
 
 func (_c *MockCmdable_FlushDBAsync_Call) Run(run func(ctx context.Context)) *MockCmdable_FlushDBAsync_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -8461,15 +10872,26 @@ type MockCmdable_FunctionDelete_Call struct {
 }
 
 // FunctionDelete is a helper method to define mock.On call
-//   - ctx
-//   - libName
+//   - ctx context.Context
+//   - libName string
 func (_e *MockCmdable_Expecter) FunctionDelete(ctx interface{}, libName interface{}) *MockCmdable_FunctionDelete_Call {
 	return &MockCmdable_FunctionDelete_Call{Call: _e.mock.On("FunctionDelete", ctx, libName)}
 }
 
 func (_c *MockCmdable_FunctionDelete_Call) Run(run func(ctx context.Context, libName string)) *MockCmdable_FunctionDelete_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -8509,14 +10931,20 @@ type MockCmdable_FunctionDump_Call struct {
 }
 
 // FunctionDump is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) FunctionDump(ctx interface{}) *MockCmdable_FunctionDump_Call {
 	return &MockCmdable_FunctionDump_Call{Call: _e.mock.On("FunctionDump", ctx)}
 }
 
 func (_c *MockCmdable_FunctionDump_Call) Run(run func(ctx context.Context)) *MockCmdable_FunctionDump_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -8556,14 +10984,20 @@ type MockCmdable_FunctionFlush_Call struct {
 }
 
 // FunctionFlush is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) FunctionFlush(ctx interface{}) *MockCmdable_FunctionFlush_Call {
 	return &MockCmdable_FunctionFlush_Call{Call: _e.mock.On("FunctionFlush", ctx)}
 }
 
 func (_c *MockCmdable_FunctionFlush_Call) Run(run func(ctx context.Context)) *MockCmdable_FunctionFlush_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -8603,14 +11037,20 @@ type MockCmdable_FunctionFlushAsync_Call struct {
 }
 
 // FunctionFlushAsync is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) FunctionFlushAsync(ctx interface{}) *MockCmdable_FunctionFlushAsync_Call {
 	return &MockCmdable_FunctionFlushAsync_Call{Call: _e.mock.On("FunctionFlushAsync", ctx)}
 }
 
 func (_c *MockCmdable_FunctionFlushAsync_Call) Run(run func(ctx context.Context)) *MockCmdable_FunctionFlushAsync_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -8650,14 +11090,20 @@ type MockCmdable_FunctionKill_Call struct {
 }
 
 // FunctionKill is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) FunctionKill(ctx interface{}) *MockCmdable_FunctionKill_Call {
 	return &MockCmdable_FunctionKill_Call{Call: _e.mock.On("FunctionKill", ctx)}
 }
 
 func (_c *MockCmdable_FunctionKill_Call) Run(run func(ctx context.Context)) *MockCmdable_FunctionKill_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -8697,15 +11143,26 @@ type MockCmdable_FunctionList_Call struct {
 }
 
 // FunctionList is a helper method to define mock.On call
-//   - ctx
-//   - q
+//   - ctx context.Context
+//   - q redis.FunctionListQuery
 func (_e *MockCmdable_Expecter) FunctionList(ctx interface{}, q interface{}) *MockCmdable_FunctionList_Call {
 	return &MockCmdable_FunctionList_Call{Call: _e.mock.On("FunctionList", ctx, q)}
 }
 
 func (_c *MockCmdable_FunctionList_Call) Run(run func(ctx context.Context, q redis.FunctionListQuery)) *MockCmdable_FunctionList_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(redis.FunctionListQuery))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 redis.FunctionListQuery
+		if args[1] != nil {
+			arg1 = args[1].(redis.FunctionListQuery)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -8745,15 +11202,26 @@ type MockCmdable_FunctionLoad_Call struct {
 }
 
 // FunctionLoad is a helper method to define mock.On call
-//   - ctx
-//   - code
+//   - ctx context.Context
+//   - code string
 func (_e *MockCmdable_Expecter) FunctionLoad(ctx interface{}, code interface{}) *MockCmdable_FunctionLoad_Call {
 	return &MockCmdable_FunctionLoad_Call{Call: _e.mock.On("FunctionLoad", ctx, code)}
 }
 
 func (_c *MockCmdable_FunctionLoad_Call) Run(run func(ctx context.Context, code string)) *MockCmdable_FunctionLoad_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -8793,15 +11261,26 @@ type MockCmdable_FunctionLoadReplace_Call struct {
 }
 
 // FunctionLoadReplace is a helper method to define mock.On call
-//   - ctx
-//   - code
+//   - ctx context.Context
+//   - code string
 func (_e *MockCmdable_Expecter) FunctionLoadReplace(ctx interface{}, code interface{}) *MockCmdable_FunctionLoadReplace_Call {
 	return &MockCmdable_FunctionLoadReplace_Call{Call: _e.mock.On("FunctionLoadReplace", ctx, code)}
 }
 
 func (_c *MockCmdable_FunctionLoadReplace_Call) Run(run func(ctx context.Context, code string)) *MockCmdable_FunctionLoadReplace_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -8841,15 +11320,26 @@ type MockCmdable_FunctionRestore_Call struct {
 }
 
 // FunctionRestore is a helper method to define mock.On call
-//   - ctx
-//   - libDump
+//   - ctx context.Context
+//   - libDump string
 func (_e *MockCmdable_Expecter) FunctionRestore(ctx interface{}, libDump interface{}) *MockCmdable_FunctionRestore_Call {
 	return &MockCmdable_FunctionRestore_Call{Call: _e.mock.On("FunctionRestore", ctx, libDump)}
 }
 
 func (_c *MockCmdable_FunctionRestore_Call) Run(run func(ctx context.Context, libDump string)) *MockCmdable_FunctionRestore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -8889,14 +11379,20 @@ type MockCmdable_FunctionStats_Call struct {
 }
 
 // FunctionStats is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) FunctionStats(ctx interface{}) *MockCmdable_FunctionStats_Call {
 	return &MockCmdable_FunctionStats_Call{Call: _e.mock.On("FunctionStats", ctx)}
 }
 
 func (_c *MockCmdable_FunctionStats_Call) Run(run func(ctx context.Context)) *MockCmdable_FunctionStats_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -8942,9 +11438,9 @@ type MockCmdable_GeoAdd_Call struct {
 }
 
 // GeoAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - geoLocation
+//   - ctx context.Context
+//   - key string
+//   - geoLocation ...*redis.GeoLocation
 func (_e *MockCmdable_Expecter) GeoAdd(ctx interface{}, key interface{}, geoLocation ...interface{}) *MockCmdable_GeoAdd_Call {
 	return &MockCmdable_GeoAdd_Call{Call: _e.mock.On("GeoAdd",
 		append([]interface{}{ctx, key}, geoLocation...)...)}
@@ -8952,8 +11448,25 @@ func (_e *MockCmdable_Expecter) GeoAdd(ctx interface{}, key interface{}, geoLoca
 
 func (_c *MockCmdable_GeoAdd_Call) Run(run func(ctx context.Context, key string, geoLocation ...*redis.GeoLocation)) *MockCmdable_GeoAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]*redis.GeoLocation)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []*redis.GeoLocation
+		var variadicArgs []*redis.GeoLocation
+		if len(args) > 2 {
+			variadicArgs = args[2].([]*redis.GeoLocation)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -8993,18 +11506,44 @@ type MockCmdable_GeoDist_Call struct {
 }
 
 // GeoDist is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - member1
-//   - member2
-//   - unit
+//   - ctx context.Context
+//   - key string
+//   - member1 string
+//   - member2 string
+//   - unit string
 func (_e *MockCmdable_Expecter) GeoDist(ctx interface{}, key interface{}, member1 interface{}, member2 interface{}, unit interface{}) *MockCmdable_GeoDist_Call {
 	return &MockCmdable_GeoDist_Call{Call: _e.mock.On("GeoDist", ctx, key, member1, member2, unit)}
 }
 
 func (_c *MockCmdable_GeoDist_Call) Run(run func(ctx context.Context, key string, member1 string, member2 string, unit string)) *MockCmdable_GeoDist_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string), args[4].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 string
+		if args[4] != nil {
+			arg4 = args[4].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -9050,9 +11589,9 @@ type MockCmdable_GeoHash_Call struct {
 }
 
 // GeoHash is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...string
 func (_e *MockCmdable_Expecter) GeoHash(ctx interface{}, key interface{}, members ...interface{}) *MockCmdable_GeoHash_Call {
 	return &MockCmdable_GeoHash_Call{Call: _e.mock.On("GeoHash",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -9060,8 +11599,25 @@ func (_e *MockCmdable_Expecter) GeoHash(ctx interface{}, key interface{}, member
 
 func (_c *MockCmdable_GeoHash_Call) Run(run func(ctx context.Context, key string, members ...string)) *MockCmdable_GeoHash_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -9107,9 +11663,9 @@ type MockCmdable_GeoPos_Call struct {
 }
 
 // GeoPos is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...string
 func (_e *MockCmdable_Expecter) GeoPos(ctx interface{}, key interface{}, members ...interface{}) *MockCmdable_GeoPos_Call {
 	return &MockCmdable_GeoPos_Call{Call: _e.mock.On("GeoPos",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -9117,8 +11673,25 @@ func (_e *MockCmdable_Expecter) GeoPos(ctx interface{}, key interface{}, members
 
 func (_c *MockCmdable_GeoPos_Call) Run(run func(ctx context.Context, key string, members ...string)) *MockCmdable_GeoPos_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -9158,18 +11731,44 @@ type MockCmdable_GeoRadius_Call struct {
 }
 
 // GeoRadius is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - longitude
-//   - latitude
-//   - query
+//   - ctx context.Context
+//   - key string
+//   - longitude float64
+//   - latitude float64
+//   - query *redis.GeoRadiusQuery
 func (_e *MockCmdable_Expecter) GeoRadius(ctx interface{}, key interface{}, longitude interface{}, latitude interface{}, query interface{}) *MockCmdable_GeoRadius_Call {
 	return &MockCmdable_GeoRadius_Call{Call: _e.mock.On("GeoRadius", ctx, key, longitude, latitude, query)}
 }
 
 func (_c *MockCmdable_GeoRadius_Call) Run(run func(ctx context.Context, key string, longitude float64, latitude float64, query *redis.GeoRadiusQuery)) *MockCmdable_GeoRadius_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(float64), args[4].(*redis.GeoRadiusQuery))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 float64
+		if args[3] != nil {
+			arg3 = args[3].(float64)
+		}
+		var arg4 *redis.GeoRadiusQuery
+		if args[4] != nil {
+			arg4 = args[4].(*redis.GeoRadiusQuery)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -9209,17 +11808,38 @@ type MockCmdable_GeoRadiusByMember_Call struct {
 }
 
 // GeoRadiusByMember is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - member
-//   - query
+//   - ctx context.Context
+//   - key string
+//   - member string
+//   - query *redis.GeoRadiusQuery
 func (_e *MockCmdable_Expecter) GeoRadiusByMember(ctx interface{}, key interface{}, member interface{}, query interface{}) *MockCmdable_GeoRadiusByMember_Call {
 	return &MockCmdable_GeoRadiusByMember_Call{Call: _e.mock.On("GeoRadiusByMember", ctx, key, member, query)}
 }
 
 func (_c *MockCmdable_GeoRadiusByMember_Call) Run(run func(ctx context.Context, key string, member string, query *redis.GeoRadiusQuery)) *MockCmdable_GeoRadiusByMember_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.GeoRadiusQuery))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.GeoRadiusQuery
+		if args[3] != nil {
+			arg3 = args[3].(*redis.GeoRadiusQuery)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -9259,17 +11879,38 @@ type MockCmdable_GeoRadiusByMemberStore_Call struct {
 }
 
 // GeoRadiusByMemberStore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - member
-//   - query
+//   - ctx context.Context
+//   - key string
+//   - member string
+//   - query *redis.GeoRadiusQuery
 func (_e *MockCmdable_Expecter) GeoRadiusByMemberStore(ctx interface{}, key interface{}, member interface{}, query interface{}) *MockCmdable_GeoRadiusByMemberStore_Call {
 	return &MockCmdable_GeoRadiusByMemberStore_Call{Call: _e.mock.On("GeoRadiusByMemberStore", ctx, key, member, query)}
 }
 
 func (_c *MockCmdable_GeoRadiusByMemberStore_Call) Run(run func(ctx context.Context, key string, member string, query *redis.GeoRadiusQuery)) *MockCmdable_GeoRadiusByMemberStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.GeoRadiusQuery))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.GeoRadiusQuery
+		if args[3] != nil {
+			arg3 = args[3].(*redis.GeoRadiusQuery)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -9309,18 +11950,44 @@ type MockCmdable_GeoRadiusStore_Call struct {
 }
 
 // GeoRadiusStore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - longitude
-//   - latitude
-//   - query
+//   - ctx context.Context
+//   - key string
+//   - longitude float64
+//   - latitude float64
+//   - query *redis.GeoRadiusQuery
 func (_e *MockCmdable_Expecter) GeoRadiusStore(ctx interface{}, key interface{}, longitude interface{}, latitude interface{}, query interface{}) *MockCmdable_GeoRadiusStore_Call {
 	return &MockCmdable_GeoRadiusStore_Call{Call: _e.mock.On("GeoRadiusStore", ctx, key, longitude, latitude, query)}
 }
 
 func (_c *MockCmdable_GeoRadiusStore_Call) Run(run func(ctx context.Context, key string, longitude float64, latitude float64, query *redis.GeoRadiusQuery)) *MockCmdable_GeoRadiusStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(float64), args[4].(*redis.GeoRadiusQuery))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 float64
+		if args[3] != nil {
+			arg3 = args[3].(float64)
+		}
+		var arg4 *redis.GeoRadiusQuery
+		if args[4] != nil {
+			arg4 = args[4].(*redis.GeoRadiusQuery)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -9360,16 +12027,32 @@ type MockCmdable_GeoSearch_Call struct {
 }
 
 // GeoSearch is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - q
+//   - ctx context.Context
+//   - key string
+//   - q *redis.GeoSearchQuery
 func (_e *MockCmdable_Expecter) GeoSearch(ctx interface{}, key interface{}, q interface{}) *MockCmdable_GeoSearch_Call {
 	return &MockCmdable_GeoSearch_Call{Call: _e.mock.On("GeoSearch", ctx, key, q)}
 }
 
 func (_c *MockCmdable_GeoSearch_Call) Run(run func(ctx context.Context, key string, q *redis.GeoSearchQuery)) *MockCmdable_GeoSearch_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.GeoSearchQuery))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.GeoSearchQuery
+		if args[2] != nil {
+			arg2 = args[2].(*redis.GeoSearchQuery)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -9409,16 +12092,32 @@ type MockCmdable_GeoSearchLocation_Call struct {
 }
 
 // GeoSearchLocation is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - q
+//   - ctx context.Context
+//   - key string
+//   - q *redis.GeoSearchLocationQuery
 func (_e *MockCmdable_Expecter) GeoSearchLocation(ctx interface{}, key interface{}, q interface{}) *MockCmdable_GeoSearchLocation_Call {
 	return &MockCmdable_GeoSearchLocation_Call{Call: _e.mock.On("GeoSearchLocation", ctx, key, q)}
 }
 
 func (_c *MockCmdable_GeoSearchLocation_Call) Run(run func(ctx context.Context, key string, q *redis.GeoSearchLocationQuery)) *MockCmdable_GeoSearchLocation_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.GeoSearchLocationQuery))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.GeoSearchLocationQuery
+		if args[2] != nil {
+			arg2 = args[2].(*redis.GeoSearchLocationQuery)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -9458,17 +12157,38 @@ type MockCmdable_GeoSearchStore_Call struct {
 }
 
 // GeoSearchStore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - store
-//   - q
+//   - ctx context.Context
+//   - key string
+//   - store string
+//   - q *redis.GeoSearchStoreQuery
 func (_e *MockCmdable_Expecter) GeoSearchStore(ctx interface{}, key interface{}, store interface{}, q interface{}) *MockCmdable_GeoSearchStore_Call {
 	return &MockCmdable_GeoSearchStore_Call{Call: _e.mock.On("GeoSearchStore", ctx, key, store, q)}
 }
 
 func (_c *MockCmdable_GeoSearchStore_Call) Run(run func(ctx context.Context, key string, store string, q *redis.GeoSearchStoreQuery)) *MockCmdable_GeoSearchStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.GeoSearchStoreQuery))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.GeoSearchStoreQuery
+		if args[3] != nil {
+			arg3 = args[3].(*redis.GeoSearchStoreQuery)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -9508,15 +12228,26 @@ type MockCmdable_Get_Call struct {
 }
 
 // Get is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) Get(ctx interface{}, key interface{}) *MockCmdable_Get_Call {
 	return &MockCmdable_Get_Call{Call: _e.mock.On("Get", ctx, key)}
 }
 
 func (_c *MockCmdable_Get_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_Get_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -9556,16 +12287,32 @@ type MockCmdable_GetBit_Call struct {
 }
 
 // GetBit is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - offset
+//   - ctx context.Context
+//   - key string
+//   - offset int64
 func (_e *MockCmdable_Expecter) GetBit(ctx interface{}, key interface{}, offset interface{}) *MockCmdable_GetBit_Call {
 	return &MockCmdable_GetBit_Call{Call: _e.mock.On("GetBit", ctx, key, offset)}
 }
 
 func (_c *MockCmdable_GetBit_Call) Run(run func(ctx context.Context, key string, offset int64)) *MockCmdable_GetBit_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -9605,15 +12352,26 @@ type MockCmdable_GetDel_Call struct {
 }
 
 // GetDel is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) GetDel(ctx interface{}, key interface{}) *MockCmdable_GetDel_Call {
 	return &MockCmdable_GetDel_Call{Call: _e.mock.On("GetDel", ctx, key)}
 }
 
 func (_c *MockCmdable_GetDel_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_GetDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -9653,16 +12411,32 @@ type MockCmdable_GetEx_Call struct {
 }
 
 // GetEx is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
 func (_e *MockCmdable_Expecter) GetEx(ctx interface{}, key interface{}, expiration interface{}) *MockCmdable_GetEx_Call {
 	return &MockCmdable_GetEx_Call{Call: _e.mock.On("GetEx", ctx, key, expiration)}
 }
 
 func (_c *MockCmdable_GetEx_Call) Run(run func(ctx context.Context, key string, expiration time.Duration)) *MockCmdable_GetEx_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -9702,17 +12476,38 @@ type MockCmdable_GetRange_Call struct {
 }
 
 // GetRange is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - start
-//   - end
+//   - ctx context.Context
+//   - key string
+//   - start int64
+//   - end int64
 func (_e *MockCmdable_Expecter) GetRange(ctx interface{}, key interface{}, start interface{}, end interface{}) *MockCmdable_GetRange_Call {
 	return &MockCmdable_GetRange_Call{Call: _e.mock.On("GetRange", ctx, key, start, end)}
 }
 
 func (_c *MockCmdable_GetRange_Call) Run(run func(ctx context.Context, key string, start int64, end int64)) *MockCmdable_GetRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -9752,16 +12547,32 @@ type MockCmdable_GetSet_Call struct {
 }
 
 // GetSet is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
 func (_e *MockCmdable_Expecter) GetSet(ctx interface{}, key interface{}, value interface{}) *MockCmdable_GetSet_Call {
 	return &MockCmdable_GetSet_Call{Call: _e.mock.On("GetSet", ctx, key, value)}
 }
 
 func (_c *MockCmdable_GetSet_Call) Run(run func(ctx context.Context, key string, value interface{})) *MockCmdable_GetSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -9807,9 +12618,9 @@ type MockCmdable_HDel_Call struct {
 }
 
 // HDel is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - fields ...string
 func (_e *MockCmdable_Expecter) HDel(ctx interface{}, key interface{}, fields ...interface{}) *MockCmdable_HDel_Call {
 	return &MockCmdable_HDel_Call{Call: _e.mock.On("HDel",
 		append([]interface{}{ctx, key}, fields...)...)}
@@ -9817,8 +12628,25 @@ func (_e *MockCmdable_Expecter) HDel(ctx interface{}, key interface{}, fields ..
 
 func (_c *MockCmdable_HDel_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockCmdable_HDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -9858,16 +12686,32 @@ type MockCmdable_HExists_Call struct {
 }
 
 // HExists is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - field
+//   - ctx context.Context
+//   - key string
+//   - field string
 func (_e *MockCmdable_Expecter) HExists(ctx interface{}, key interface{}, field interface{}) *MockCmdable_HExists_Call {
 	return &MockCmdable_HExists_Call{Call: _e.mock.On("HExists", ctx, key, field)}
 }
 
 func (_c *MockCmdable_HExists_Call) Run(run func(ctx context.Context, key string, field string)) *MockCmdable_HExists_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -9913,10 +12757,10 @@ type MockCmdable_HExpire_Call struct {
 }
 
 // HExpire is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
+//   - fields ...string
 func (_e *MockCmdable_Expecter) HExpire(ctx interface{}, key interface{}, expiration interface{}, fields ...interface{}) *MockCmdable_HExpire_Call {
 	return &MockCmdable_HExpire_Call{Call: _e.mock.On("HExpire",
 		append([]interface{}{ctx, key, expiration}, fields...)...)}
@@ -9924,8 +12768,30 @@ func (_e *MockCmdable_Expecter) HExpire(ctx interface{}, key interface{}, expira
 
 func (_c *MockCmdable_HExpire_Call) Run(run func(ctx context.Context, key string, expiration time.Duration, fields ...string)) *MockCmdable_HExpire_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -9971,10 +12837,10 @@ type MockCmdable_HExpireAt_Call struct {
 }
 
 // HExpireAt is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - tm
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - tm time.Time
+//   - fields ...string
 func (_e *MockCmdable_Expecter) HExpireAt(ctx interface{}, key interface{}, tm interface{}, fields ...interface{}) *MockCmdable_HExpireAt_Call {
 	return &MockCmdable_HExpireAt_Call{Call: _e.mock.On("HExpireAt",
 		append([]interface{}{ctx, key, tm}, fields...)...)}
@@ -9982,8 +12848,30 @@ func (_e *MockCmdable_Expecter) HExpireAt(ctx interface{}, key interface{}, tm i
 
 func (_c *MockCmdable_HExpireAt_Call) Run(run func(ctx context.Context, key string, tm time.Time, fields ...string)) *MockCmdable_HExpireAt_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Time), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Time
+		if args[2] != nil {
+			arg2 = args[2].(time.Time)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -10029,11 +12917,11 @@ type MockCmdable_HExpireAtWithArgs_Call struct {
 }
 
 // HExpireAtWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - tm
-//   - expirationArgs
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - tm time.Time
+//   - expirationArgs redis.HExpireArgs
+//   - fields ...string
 func (_e *MockCmdable_Expecter) HExpireAtWithArgs(ctx interface{}, key interface{}, tm interface{}, expirationArgs interface{}, fields ...interface{}) *MockCmdable_HExpireAtWithArgs_Call {
 	return &MockCmdable_HExpireAtWithArgs_Call{Call: _e.mock.On("HExpireAtWithArgs",
 		append([]interface{}{ctx, key, tm, expirationArgs}, fields...)...)}
@@ -10041,8 +12929,35 @@ func (_e *MockCmdable_Expecter) HExpireAtWithArgs(ctx interface{}, key interface
 
 func (_c *MockCmdable_HExpireAtWithArgs_Call) Run(run func(ctx context.Context, key string, tm time.Time, expirationArgs redis.HExpireArgs, fields ...string)) *MockCmdable_HExpireAtWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[4].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Time), args[3].(redis.HExpireArgs), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Time
+		if args[2] != nil {
+			arg2 = args[2].(time.Time)
+		}
+		var arg3 redis.HExpireArgs
+		if args[3] != nil {
+			arg3 = args[3].(redis.HExpireArgs)
+		}
+		var arg4 []string
+		var variadicArgs []string
+		if len(args) > 4 {
+			variadicArgs = args[4].([]string)
+		}
+		arg4 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4...,
+		)
 	})
 	return _c
 }
@@ -10088,9 +13003,9 @@ type MockCmdable_HExpireTime_Call struct {
 }
 
 // HExpireTime is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - fields ...string
 func (_e *MockCmdable_Expecter) HExpireTime(ctx interface{}, key interface{}, fields ...interface{}) *MockCmdable_HExpireTime_Call {
 	return &MockCmdable_HExpireTime_Call{Call: _e.mock.On("HExpireTime",
 		append([]interface{}{ctx, key}, fields...)...)}
@@ -10098,8 +13013,25 @@ func (_e *MockCmdable_Expecter) HExpireTime(ctx interface{}, key interface{}, fi
 
 func (_c *MockCmdable_HExpireTime_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockCmdable_HExpireTime_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -10145,11 +13077,11 @@ type MockCmdable_HExpireWithArgs_Call struct {
 }
 
 // HExpireWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
-//   - expirationArgs
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
+//   - expirationArgs redis.HExpireArgs
+//   - fields ...string
 func (_e *MockCmdable_Expecter) HExpireWithArgs(ctx interface{}, key interface{}, expiration interface{}, expirationArgs interface{}, fields ...interface{}) *MockCmdable_HExpireWithArgs_Call {
 	return &MockCmdable_HExpireWithArgs_Call{Call: _e.mock.On("HExpireWithArgs",
 		append([]interface{}{ctx, key, expiration, expirationArgs}, fields...)...)}
@@ -10157,8 +13089,35 @@ func (_e *MockCmdable_Expecter) HExpireWithArgs(ctx interface{}, key interface{}
 
 func (_c *MockCmdable_HExpireWithArgs_Call) Run(run func(ctx context.Context, key string, expiration time.Duration, expirationArgs redis.HExpireArgs, fields ...string)) *MockCmdable_HExpireWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[4].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration), args[3].(redis.HExpireArgs), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		var arg3 redis.HExpireArgs
+		if args[3] != nil {
+			arg3 = args[3].(redis.HExpireArgs)
+		}
+		var arg4 []string
+		var variadicArgs []string
+		if len(args) > 4 {
+			variadicArgs = args[4].([]string)
+		}
+		arg4 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4...,
+		)
 	})
 	return _c
 }
@@ -10198,16 +13157,32 @@ type MockCmdable_HGet_Call struct {
 }
 
 // HGet is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - field
+//   - ctx context.Context
+//   - key string
+//   - field string
 func (_e *MockCmdable_Expecter) HGet(ctx interface{}, key interface{}, field interface{}) *MockCmdable_HGet_Call {
 	return &MockCmdable_HGet_Call{Call: _e.mock.On("HGet", ctx, key, field)}
 }
 
 func (_c *MockCmdable_HGet_Call) Run(run func(ctx context.Context, key string, field string)) *MockCmdable_HGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -10247,15 +13222,26 @@ type MockCmdable_HGetAll_Call struct {
 }
 
 // HGetAll is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) HGetAll(ctx interface{}, key interface{}) *MockCmdable_HGetAll_Call {
 	return &MockCmdable_HGetAll_Call{Call: _e.mock.On("HGetAll", ctx, key)}
 }
 
 func (_c *MockCmdable_HGetAll_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_HGetAll_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -10301,9 +13287,9 @@ type MockCmdable_HGetDel_Call struct {
 }
 
 // HGetDel is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - fields ...string
 func (_e *MockCmdable_Expecter) HGetDel(ctx interface{}, key interface{}, fields ...interface{}) *MockCmdable_HGetDel_Call {
 	return &MockCmdable_HGetDel_Call{Call: _e.mock.On("HGetDel",
 		append([]interface{}{ctx, key}, fields...)...)}
@@ -10311,8 +13297,25 @@ func (_e *MockCmdable_Expecter) HGetDel(ctx interface{}, key interface{}, fields
 
 func (_c *MockCmdable_HGetDel_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockCmdable_HGetDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -10358,9 +13361,9 @@ type MockCmdable_HGetEX_Call struct {
 }
 
 // HGetEX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - fields ...string
 func (_e *MockCmdable_Expecter) HGetEX(ctx interface{}, key interface{}, fields ...interface{}) *MockCmdable_HGetEX_Call {
 	return &MockCmdable_HGetEX_Call{Call: _e.mock.On("HGetEX",
 		append([]interface{}{ctx, key}, fields...)...)}
@@ -10368,8 +13371,25 @@ func (_e *MockCmdable_Expecter) HGetEX(ctx interface{}, key interface{}, fields 
 
 func (_c *MockCmdable_HGetEX_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockCmdable_HGetEX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -10415,10 +13435,10 @@ type MockCmdable_HGetEXWithArgs_Call struct {
 }
 
 // HGetEXWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - options *redis.HGetEXOptions
+//   - fields ...string
 func (_e *MockCmdable_Expecter) HGetEXWithArgs(ctx interface{}, key interface{}, options interface{}, fields ...interface{}) *MockCmdable_HGetEXWithArgs_Call {
 	return &MockCmdable_HGetEXWithArgs_Call{Call: _e.mock.On("HGetEXWithArgs",
 		append([]interface{}{ctx, key, options}, fields...)...)}
@@ -10426,8 +13446,30 @@ func (_e *MockCmdable_Expecter) HGetEXWithArgs(ctx interface{}, key interface{},
 
 func (_c *MockCmdable_HGetEXWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.HGetEXOptions, fields ...string)) *MockCmdable_HGetEXWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.HGetEXOptions), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.HGetEXOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.HGetEXOptions)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -10467,17 +13509,38 @@ type MockCmdable_HIncrBy_Call struct {
 }
 
 // HIncrBy is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - field
-//   - incr
+//   - ctx context.Context
+//   - key string
+//   - field string
+//   - incr int64
 func (_e *MockCmdable_Expecter) HIncrBy(ctx interface{}, key interface{}, field interface{}, incr interface{}) *MockCmdable_HIncrBy_Call {
 	return &MockCmdable_HIncrBy_Call{Call: _e.mock.On("HIncrBy", ctx, key, field, incr)}
 }
 
 func (_c *MockCmdable_HIncrBy_Call) Run(run func(ctx context.Context, key string, field string, incr int64)) *MockCmdable_HIncrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -10517,17 +13580,38 @@ type MockCmdable_HIncrByFloat_Call struct {
 }
 
 // HIncrByFloat is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - field
-//   - incr
+//   - ctx context.Context
+//   - key string
+//   - field string
+//   - incr float64
 func (_e *MockCmdable_Expecter) HIncrByFloat(ctx interface{}, key interface{}, field interface{}, incr interface{}) *MockCmdable_HIncrByFloat_Call {
 	return &MockCmdable_HIncrByFloat_Call{Call: _e.mock.On("HIncrByFloat", ctx, key, field, incr)}
 }
 
 func (_c *MockCmdable_HIncrByFloat_Call) Run(run func(ctx context.Context, key string, field string, incr float64)) *MockCmdable_HIncrByFloat_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(float64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 float64
+		if args[3] != nil {
+			arg3 = args[3].(float64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -10567,15 +13651,26 @@ type MockCmdable_HKeys_Call struct {
 }
 
 // HKeys is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) HKeys(ctx interface{}, key interface{}) *MockCmdable_HKeys_Call {
 	return &MockCmdable_HKeys_Call{Call: _e.mock.On("HKeys", ctx, key)}
 }
 
 func (_c *MockCmdable_HKeys_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_HKeys_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -10615,15 +13710,26 @@ type MockCmdable_HLen_Call struct {
 }
 
 // HLen is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) HLen(ctx interface{}, key interface{}) *MockCmdable_HLen_Call {
 	return &MockCmdable_HLen_Call{Call: _e.mock.On("HLen", ctx, key)}
 }
 
 func (_c *MockCmdable_HLen_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_HLen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -10669,9 +13775,9 @@ type MockCmdable_HMGet_Call struct {
 }
 
 // HMGet is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - fields ...string
 func (_e *MockCmdable_Expecter) HMGet(ctx interface{}, key interface{}, fields ...interface{}) *MockCmdable_HMGet_Call {
 	return &MockCmdable_HMGet_Call{Call: _e.mock.On("HMGet",
 		append([]interface{}{ctx, key}, fields...)...)}
@@ -10679,8 +13785,25 @@ func (_e *MockCmdable_Expecter) HMGet(ctx interface{}, key interface{}, fields .
 
 func (_c *MockCmdable_HMGet_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockCmdable_HMGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -10726,9 +13849,9 @@ type MockCmdable_HMSet_Call struct {
 }
 
 // HMSet is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
 func (_e *MockCmdable_Expecter) HMSet(ctx interface{}, key interface{}, values ...interface{}) *MockCmdable_HMSet_Call {
 	return &MockCmdable_HMSet_Call{Call: _e.mock.On("HMSet",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -10736,8 +13859,25 @@ func (_e *MockCmdable_Expecter) HMSet(ctx interface{}, key interface{}, values .
 
 func (_c *MockCmdable_HMSet_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockCmdable_HMSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -10783,10 +13923,10 @@ type MockCmdable_HPExpire_Call struct {
 }
 
 // HPExpire is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
+//   - fields ...string
 func (_e *MockCmdable_Expecter) HPExpire(ctx interface{}, key interface{}, expiration interface{}, fields ...interface{}) *MockCmdable_HPExpire_Call {
 	return &MockCmdable_HPExpire_Call{Call: _e.mock.On("HPExpire",
 		append([]interface{}{ctx, key, expiration}, fields...)...)}
@@ -10794,8 +13934,30 @@ func (_e *MockCmdable_Expecter) HPExpire(ctx interface{}, key interface{}, expir
 
 func (_c *MockCmdable_HPExpire_Call) Run(run func(ctx context.Context, key string, expiration time.Duration, fields ...string)) *MockCmdable_HPExpire_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -10841,10 +14003,10 @@ type MockCmdable_HPExpireAt_Call struct {
 }
 
 // HPExpireAt is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - tm
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - tm time.Time
+//   - fields ...string
 func (_e *MockCmdable_Expecter) HPExpireAt(ctx interface{}, key interface{}, tm interface{}, fields ...interface{}) *MockCmdable_HPExpireAt_Call {
 	return &MockCmdable_HPExpireAt_Call{Call: _e.mock.On("HPExpireAt",
 		append([]interface{}{ctx, key, tm}, fields...)...)}
@@ -10852,8 +14014,30 @@ func (_e *MockCmdable_Expecter) HPExpireAt(ctx interface{}, key interface{}, tm 
 
 func (_c *MockCmdable_HPExpireAt_Call) Run(run func(ctx context.Context, key string, tm time.Time, fields ...string)) *MockCmdable_HPExpireAt_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Time), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Time
+		if args[2] != nil {
+			arg2 = args[2].(time.Time)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -10899,11 +14083,11 @@ type MockCmdable_HPExpireAtWithArgs_Call struct {
 }
 
 // HPExpireAtWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - tm
-//   - expirationArgs
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - tm time.Time
+//   - expirationArgs redis.HExpireArgs
+//   - fields ...string
 func (_e *MockCmdable_Expecter) HPExpireAtWithArgs(ctx interface{}, key interface{}, tm interface{}, expirationArgs interface{}, fields ...interface{}) *MockCmdable_HPExpireAtWithArgs_Call {
 	return &MockCmdable_HPExpireAtWithArgs_Call{Call: _e.mock.On("HPExpireAtWithArgs",
 		append([]interface{}{ctx, key, tm, expirationArgs}, fields...)...)}
@@ -10911,8 +14095,35 @@ func (_e *MockCmdable_Expecter) HPExpireAtWithArgs(ctx interface{}, key interfac
 
 func (_c *MockCmdable_HPExpireAtWithArgs_Call) Run(run func(ctx context.Context, key string, tm time.Time, expirationArgs redis.HExpireArgs, fields ...string)) *MockCmdable_HPExpireAtWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[4].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Time), args[3].(redis.HExpireArgs), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Time
+		if args[2] != nil {
+			arg2 = args[2].(time.Time)
+		}
+		var arg3 redis.HExpireArgs
+		if args[3] != nil {
+			arg3 = args[3].(redis.HExpireArgs)
+		}
+		var arg4 []string
+		var variadicArgs []string
+		if len(args) > 4 {
+			variadicArgs = args[4].([]string)
+		}
+		arg4 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4...,
+		)
 	})
 	return _c
 }
@@ -10958,9 +14169,9 @@ type MockCmdable_HPExpireTime_Call struct {
 }
 
 // HPExpireTime is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - fields ...string
 func (_e *MockCmdable_Expecter) HPExpireTime(ctx interface{}, key interface{}, fields ...interface{}) *MockCmdable_HPExpireTime_Call {
 	return &MockCmdable_HPExpireTime_Call{Call: _e.mock.On("HPExpireTime",
 		append([]interface{}{ctx, key}, fields...)...)}
@@ -10968,8 +14179,25 @@ func (_e *MockCmdable_Expecter) HPExpireTime(ctx interface{}, key interface{}, f
 
 func (_c *MockCmdable_HPExpireTime_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockCmdable_HPExpireTime_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -11015,11 +14243,11 @@ type MockCmdable_HPExpireWithArgs_Call struct {
 }
 
 // HPExpireWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
-//   - expirationArgs
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
+//   - expirationArgs redis.HExpireArgs
+//   - fields ...string
 func (_e *MockCmdable_Expecter) HPExpireWithArgs(ctx interface{}, key interface{}, expiration interface{}, expirationArgs interface{}, fields ...interface{}) *MockCmdable_HPExpireWithArgs_Call {
 	return &MockCmdable_HPExpireWithArgs_Call{Call: _e.mock.On("HPExpireWithArgs",
 		append([]interface{}{ctx, key, expiration, expirationArgs}, fields...)...)}
@@ -11027,8 +14255,35 @@ func (_e *MockCmdable_Expecter) HPExpireWithArgs(ctx interface{}, key interface{
 
 func (_c *MockCmdable_HPExpireWithArgs_Call) Run(run func(ctx context.Context, key string, expiration time.Duration, expirationArgs redis.HExpireArgs, fields ...string)) *MockCmdable_HPExpireWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[4].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration), args[3].(redis.HExpireArgs), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		var arg3 redis.HExpireArgs
+		if args[3] != nil {
+			arg3 = args[3].(redis.HExpireArgs)
+		}
+		var arg4 []string
+		var variadicArgs []string
+		if len(args) > 4 {
+			variadicArgs = args[4].([]string)
+		}
+		arg4 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4...,
+		)
 	})
 	return _c
 }
@@ -11074,9 +14329,9 @@ type MockCmdable_HPTTL_Call struct {
 }
 
 // HPTTL is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - fields ...string
 func (_e *MockCmdable_Expecter) HPTTL(ctx interface{}, key interface{}, fields ...interface{}) *MockCmdable_HPTTL_Call {
 	return &MockCmdable_HPTTL_Call{Call: _e.mock.On("HPTTL",
 		append([]interface{}{ctx, key}, fields...)...)}
@@ -11084,8 +14339,25 @@ func (_e *MockCmdable_Expecter) HPTTL(ctx interface{}, key interface{}, fields .
 
 func (_c *MockCmdable_HPTTL_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockCmdable_HPTTL_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -11131,9 +14403,9 @@ type MockCmdable_HPersist_Call struct {
 }
 
 // HPersist is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - fields ...string
 func (_e *MockCmdable_Expecter) HPersist(ctx interface{}, key interface{}, fields ...interface{}) *MockCmdable_HPersist_Call {
 	return &MockCmdable_HPersist_Call{Call: _e.mock.On("HPersist",
 		append([]interface{}{ctx, key}, fields...)...)}
@@ -11141,8 +14413,25 @@ func (_e *MockCmdable_Expecter) HPersist(ctx interface{}, key interface{}, field
 
 func (_c *MockCmdable_HPersist_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockCmdable_HPersist_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -11182,16 +14471,32 @@ type MockCmdable_HRandField_Call struct {
 }
 
 // HRandField is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count int
 func (_e *MockCmdable_Expecter) HRandField(ctx interface{}, key interface{}, count interface{}) *MockCmdable_HRandField_Call {
 	return &MockCmdable_HRandField_Call{Call: _e.mock.On("HRandField", ctx, key, count)}
 }
 
 func (_c *MockCmdable_HRandField_Call) Run(run func(ctx context.Context, key string, count int)) *MockCmdable_HRandField_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -11231,16 +14536,32 @@ type MockCmdable_HRandFieldWithValues_Call struct {
 }
 
 // HRandFieldWithValues is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count int
 func (_e *MockCmdable_Expecter) HRandFieldWithValues(ctx interface{}, key interface{}, count interface{}) *MockCmdable_HRandFieldWithValues_Call {
 	return &MockCmdable_HRandFieldWithValues_Call{Call: _e.mock.On("HRandFieldWithValues", ctx, key, count)}
 }
 
 func (_c *MockCmdable_HRandFieldWithValues_Call) Run(run func(ctx context.Context, key string, count int)) *MockCmdable_HRandFieldWithValues_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -11280,18 +14601,44 @@ type MockCmdable_HScan_Call struct {
 }
 
 // HScan is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - cursor
-//   - match
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - cursor uint64
+//   - match string
+//   - count int64
 func (_e *MockCmdable_Expecter) HScan(ctx interface{}, key interface{}, cursor interface{}, match interface{}, count interface{}) *MockCmdable_HScan_Call {
 	return &MockCmdable_HScan_Call{Call: _e.mock.On("HScan", ctx, key, cursor, match, count)}
 }
 
 func (_c *MockCmdable_HScan_Call) Run(run func(ctx context.Context, key string, cursor uint64, match string, count int64)) *MockCmdable_HScan_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(uint64), args[3].(string), args[4].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 uint64
+		if args[2] != nil {
+			arg2 = args[2].(uint64)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -11331,18 +14678,44 @@ type MockCmdable_HScanNoValues_Call struct {
 }
 
 // HScanNoValues is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - cursor
-//   - match
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - cursor uint64
+//   - match string
+//   - count int64
 func (_e *MockCmdable_Expecter) HScanNoValues(ctx interface{}, key interface{}, cursor interface{}, match interface{}, count interface{}) *MockCmdable_HScanNoValues_Call {
 	return &MockCmdable_HScanNoValues_Call{Call: _e.mock.On("HScanNoValues", ctx, key, cursor, match, count)}
 }
 
 func (_c *MockCmdable_HScanNoValues_Call) Run(run func(ctx context.Context, key string, cursor uint64, match string, count int64)) *MockCmdable_HScanNoValues_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(uint64), args[3].(string), args[4].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 uint64
+		if args[2] != nil {
+			arg2 = args[2].(uint64)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -11388,9 +14761,9 @@ type MockCmdable_HSet_Call struct {
 }
 
 // HSet is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
 func (_e *MockCmdable_Expecter) HSet(ctx interface{}, key interface{}, values ...interface{}) *MockCmdable_HSet_Call {
 	return &MockCmdable_HSet_Call{Call: _e.mock.On("HSet",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -11398,8 +14771,25 @@ func (_e *MockCmdable_Expecter) HSet(ctx interface{}, key interface{}, values ..
 
 func (_c *MockCmdable_HSet_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockCmdable_HSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -11445,9 +14835,9 @@ type MockCmdable_HSetEX_Call struct {
 }
 
 // HSetEX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fieldsAndValues
+//   - ctx context.Context
+//   - key string
+//   - fieldsAndValues ...string
 func (_e *MockCmdable_Expecter) HSetEX(ctx interface{}, key interface{}, fieldsAndValues ...interface{}) *MockCmdable_HSetEX_Call {
 	return &MockCmdable_HSetEX_Call{Call: _e.mock.On("HSetEX",
 		append([]interface{}{ctx, key}, fieldsAndValues...)...)}
@@ -11455,8 +14845,25 @@ func (_e *MockCmdable_Expecter) HSetEX(ctx interface{}, key interface{}, fieldsA
 
 func (_c *MockCmdable_HSetEX_Call) Run(run func(ctx context.Context, key string, fieldsAndValues ...string)) *MockCmdable_HSetEX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -11502,10 +14909,10 @@ type MockCmdable_HSetEXWithArgs_Call struct {
 }
 
 // HSetEXWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
-//   - fieldsAndValues
+//   - ctx context.Context
+//   - key string
+//   - options *redis.HSetEXOptions
+//   - fieldsAndValues ...string
 func (_e *MockCmdable_Expecter) HSetEXWithArgs(ctx interface{}, key interface{}, options interface{}, fieldsAndValues ...interface{}) *MockCmdable_HSetEXWithArgs_Call {
 	return &MockCmdable_HSetEXWithArgs_Call{Call: _e.mock.On("HSetEXWithArgs",
 		append([]interface{}{ctx, key, options}, fieldsAndValues...)...)}
@@ -11513,8 +14920,30 @@ func (_e *MockCmdable_Expecter) HSetEXWithArgs(ctx interface{}, key interface{},
 
 func (_c *MockCmdable_HSetEXWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.HSetEXOptions, fieldsAndValues ...string)) *MockCmdable_HSetEXWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.HSetEXOptions), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.HSetEXOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.HSetEXOptions)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -11554,17 +14983,38 @@ type MockCmdable_HSetNX_Call struct {
 }
 
 // HSetNX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - field
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - field string
+//   - value interface{}
 func (_e *MockCmdable_Expecter) HSetNX(ctx interface{}, key interface{}, field interface{}, value interface{}) *MockCmdable_HSetNX_Call {
 	return &MockCmdable_HSetNX_Call{Call: _e.mock.On("HSetNX", ctx, key, field, value)}
 }
 
 func (_c *MockCmdable_HSetNX_Call) Run(run func(ctx context.Context, key string, field string, value interface{})) *MockCmdable_HSetNX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -11604,16 +15054,32 @@ type MockCmdable_HStrLen_Call struct {
 }
 
 // HStrLen is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - field
+//   - ctx context.Context
+//   - key string
+//   - field string
 func (_e *MockCmdable_Expecter) HStrLen(ctx interface{}, key interface{}, field interface{}) *MockCmdable_HStrLen_Call {
 	return &MockCmdable_HStrLen_Call{Call: _e.mock.On("HStrLen", ctx, key, field)}
 }
 
 func (_c *MockCmdable_HStrLen_Call) Run(run func(ctx context.Context, key string, field string)) *MockCmdable_HStrLen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -11659,9 +15125,9 @@ type MockCmdable_HTTL_Call struct {
 }
 
 // HTTL is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fields
+//   - ctx context.Context
+//   - key string
+//   - fields ...string
 func (_e *MockCmdable_Expecter) HTTL(ctx interface{}, key interface{}, fields ...interface{}) *MockCmdable_HTTL_Call {
 	return &MockCmdable_HTTL_Call{Call: _e.mock.On("HTTL",
 		append([]interface{}{ctx, key}, fields...)...)}
@@ -11669,8 +15135,25 @@ func (_e *MockCmdable_Expecter) HTTL(ctx interface{}, key interface{}, fields ..
 
 func (_c *MockCmdable_HTTL_Call) Run(run func(ctx context.Context, key string, fields ...string)) *MockCmdable_HTTL_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -11710,15 +15193,26 @@ type MockCmdable_HVals_Call struct {
 }
 
 // HVals is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) HVals(ctx interface{}, key interface{}) *MockCmdable_HVals_Call {
 	return &MockCmdable_HVals_Call{Call: _e.mock.On("HVals", ctx, key)}
 }
 
 func (_c *MockCmdable_HVals_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_HVals_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -11758,15 +15252,26 @@ type MockCmdable_Incr_Call struct {
 }
 
 // Incr is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) Incr(ctx interface{}, key interface{}) *MockCmdable_Incr_Call {
 	return &MockCmdable_Incr_Call{Call: _e.mock.On("Incr", ctx, key)}
 }
 
 func (_c *MockCmdable_Incr_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_Incr_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -11806,16 +15311,32 @@ type MockCmdable_IncrBy_Call struct {
 }
 
 // IncrBy is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - value int64
 func (_e *MockCmdable_Expecter) IncrBy(ctx interface{}, key interface{}, value interface{}) *MockCmdable_IncrBy_Call {
 	return &MockCmdable_IncrBy_Call{Call: _e.mock.On("IncrBy", ctx, key, value)}
 }
 
 func (_c *MockCmdable_IncrBy_Call) Run(run func(ctx context.Context, key string, value int64)) *MockCmdable_IncrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -11855,16 +15376,32 @@ type MockCmdable_IncrByFloat_Call struct {
 }
 
 // IncrByFloat is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - value float64
 func (_e *MockCmdable_Expecter) IncrByFloat(ctx interface{}, key interface{}, value interface{}) *MockCmdable_IncrByFloat_Call {
 	return &MockCmdable_IncrByFloat_Call{Call: _e.mock.On("IncrByFloat", ctx, key, value)}
 }
 
 func (_c *MockCmdable_IncrByFloat_Call) Run(run func(ctx context.Context, key string, value float64)) *MockCmdable_IncrByFloat_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -11910,8 +15447,8 @@ type MockCmdable_Info_Call struct {
 }
 
 // Info is a helper method to define mock.On call
-//   - ctx
-//   - section
+//   - ctx context.Context
+//   - section ...string
 func (_e *MockCmdable_Expecter) Info(ctx interface{}, section ...interface{}) *MockCmdable_Info_Call {
 	return &MockCmdable_Info_Call{Call: _e.mock.On("Info",
 		append([]interface{}{ctx}, section...)...)}
@@ -11919,8 +15456,20 @@ func (_e *MockCmdable_Expecter) Info(ctx interface{}, section ...interface{}) *M
 
 func (_c *MockCmdable_Info_Call) Run(run func(ctx context.Context, section ...string)) *MockCmdable_Info_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -11966,10 +15515,10 @@ type MockCmdable_JSONArrAppend_Call struct {
 }
 
 // JSONArrAppend is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - values ...interface{}
 func (_e *MockCmdable_Expecter) JSONArrAppend(ctx interface{}, key interface{}, path interface{}, values ...interface{}) *MockCmdable_JSONArrAppend_Call {
 	return &MockCmdable_JSONArrAppend_Call{Call: _e.mock.On("JSONArrAppend",
 		append([]interface{}{ctx, key, path}, values...)...)}
@@ -11977,8 +15526,30 @@ func (_e *MockCmdable_Expecter) JSONArrAppend(ctx interface{}, key interface{}, 
 
 func (_c *MockCmdable_JSONArrAppend_Call) Run(run func(ctx context.Context, key string, path string, values ...interface{})) *MockCmdable_JSONArrAppend_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -12024,10 +15595,10 @@ type MockCmdable_JSONArrIndex_Call struct {
 }
 
 // JSONArrIndex is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value ...interface{}
 func (_e *MockCmdable_Expecter) JSONArrIndex(ctx interface{}, key interface{}, path interface{}, value ...interface{}) *MockCmdable_JSONArrIndex_Call {
 	return &MockCmdable_JSONArrIndex_Call{Call: _e.mock.On("JSONArrIndex",
 		append([]interface{}{ctx, key, path}, value...)...)}
@@ -12035,8 +15606,30 @@ func (_e *MockCmdable_Expecter) JSONArrIndex(ctx interface{}, key interface{}, p
 
 func (_c *MockCmdable_JSONArrIndex_Call) Run(run func(ctx context.Context, key string, path string, value ...interface{})) *MockCmdable_JSONArrIndex_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 3 {
+			variadicArgs = args[3].([]interface{})
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -12082,11 +15675,11 @@ type MockCmdable_JSONArrIndexWithArgs_Call struct {
 }
 
 // JSONArrIndexWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - options
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - options *redis.JSONArrIndexArgs
+//   - value ...interface{}
 func (_e *MockCmdable_Expecter) JSONArrIndexWithArgs(ctx interface{}, key interface{}, path interface{}, options interface{}, value ...interface{}) *MockCmdable_JSONArrIndexWithArgs_Call {
 	return &MockCmdable_JSONArrIndexWithArgs_Call{Call: _e.mock.On("JSONArrIndexWithArgs",
 		append([]interface{}{ctx, key, path, options}, value...)...)}
@@ -12094,8 +15687,35 @@ func (_e *MockCmdable_Expecter) JSONArrIndexWithArgs(ctx interface{}, key interf
 
 func (_c *MockCmdable_JSONArrIndexWithArgs_Call) Run(run func(ctx context.Context, key string, path string, options *redis.JSONArrIndexArgs, value ...interface{})) *MockCmdable_JSONArrIndexWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[4].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.JSONArrIndexArgs), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.JSONArrIndexArgs
+		if args[3] != nil {
+			arg3 = args[3].(*redis.JSONArrIndexArgs)
+		}
+		var arg4 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 4 {
+			variadicArgs = args[4].([]interface{})
+		}
+		arg4 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4...,
+		)
 	})
 	return _c
 }
@@ -12141,11 +15761,11 @@ type MockCmdable_JSONArrInsert_Call struct {
 }
 
 // JSONArrInsert is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - index
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - index int64
+//   - values ...interface{}
 func (_e *MockCmdable_Expecter) JSONArrInsert(ctx interface{}, key interface{}, path interface{}, index interface{}, values ...interface{}) *MockCmdable_JSONArrInsert_Call {
 	return &MockCmdable_JSONArrInsert_Call{Call: _e.mock.On("JSONArrInsert",
 		append([]interface{}{ctx, key, path, index}, values...)...)}
@@ -12153,8 +15773,35 @@ func (_e *MockCmdable_Expecter) JSONArrInsert(ctx interface{}, key interface{}, 
 
 func (_c *MockCmdable_JSONArrInsert_Call) Run(run func(ctx context.Context, key string, path string, index int64, values ...interface{})) *MockCmdable_JSONArrInsert_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[4].([]interface{})
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int64), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		var arg4 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 4 {
+			variadicArgs = args[4].([]interface{})
+		}
+		arg4 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4...,
+		)
 	})
 	return _c
 }
@@ -12194,16 +15841,32 @@ type MockCmdable_JSONArrLen_Call struct {
 }
 
 // JSONArrLen is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockCmdable_Expecter) JSONArrLen(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONArrLen_Call {
 	return &MockCmdable_JSONArrLen_Call{Call: _e.mock.On("JSONArrLen", ctx, key, path)}
 }
 
 func (_c *MockCmdable_JSONArrLen_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONArrLen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -12243,17 +15906,38 @@ type MockCmdable_JSONArrPop_Call struct {
 }
 
 // JSONArrPop is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - index
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - index int
 func (_e *MockCmdable_Expecter) JSONArrPop(ctx interface{}, key interface{}, path interface{}, index interface{}) *MockCmdable_JSONArrPop_Call {
 	return &MockCmdable_JSONArrPop_Call{Call: _e.mock.On("JSONArrPop", ctx, key, path, index)}
 }
 
 func (_c *MockCmdable_JSONArrPop_Call) Run(run func(ctx context.Context, key string, path string, index int)) *MockCmdable_JSONArrPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int
+		if args[3] != nil {
+			arg3 = args[3].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -12293,16 +15977,32 @@ type MockCmdable_JSONArrTrim_Call struct {
 }
 
 // JSONArrTrim is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockCmdable_Expecter) JSONArrTrim(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONArrTrim_Call {
 	return &MockCmdable_JSONArrTrim_Call{Call: _e.mock.On("JSONArrTrim", ctx, key, path)}
 }
 
 func (_c *MockCmdable_JSONArrTrim_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONArrTrim_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -12342,17 +16042,38 @@ type MockCmdable_JSONArrTrimWithArgs_Call struct {
 }
 
 // JSONArrTrimWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - options *redis.JSONArrTrimArgs
 func (_e *MockCmdable_Expecter) JSONArrTrimWithArgs(ctx interface{}, key interface{}, path interface{}, options interface{}) *MockCmdable_JSONArrTrimWithArgs_Call {
 	return &MockCmdable_JSONArrTrimWithArgs_Call{Call: _e.mock.On("JSONArrTrimWithArgs", ctx, key, path, options)}
 }
 
 func (_c *MockCmdable_JSONArrTrimWithArgs_Call) Run(run func(ctx context.Context, key string, path string, options *redis.JSONArrTrimArgs)) *MockCmdable_JSONArrTrimWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.JSONArrTrimArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.JSONArrTrimArgs
+		if args[3] != nil {
+			arg3 = args[3].(*redis.JSONArrTrimArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -12392,16 +16113,32 @@ type MockCmdable_JSONClear_Call struct {
 }
 
 // JSONClear is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockCmdable_Expecter) JSONClear(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONClear_Call {
 	return &MockCmdable_JSONClear_Call{Call: _e.mock.On("JSONClear", ctx, key, path)}
 }
 
 func (_c *MockCmdable_JSONClear_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONClear_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -12441,16 +16178,32 @@ type MockCmdable_JSONDebugMemory_Call struct {
 }
 
 // JSONDebugMemory is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockCmdable_Expecter) JSONDebugMemory(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONDebugMemory_Call {
 	return &MockCmdable_JSONDebugMemory_Call{Call: _e.mock.On("JSONDebugMemory", ctx, key, path)}
 }
 
 func (_c *MockCmdable_JSONDebugMemory_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONDebugMemory_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -12490,16 +16243,32 @@ type MockCmdable_JSONDel_Call struct {
 }
 
 // JSONDel is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockCmdable_Expecter) JSONDel(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONDel_Call {
 	return &MockCmdable_JSONDel_Call{Call: _e.mock.On("JSONDel", ctx, key, path)}
 }
 
 func (_c *MockCmdable_JSONDel_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -12539,16 +16308,32 @@ type MockCmdable_JSONForget_Call struct {
 }
 
 // JSONForget is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockCmdable_Expecter) JSONForget(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONForget_Call {
 	return &MockCmdable_JSONForget_Call{Call: _e.mock.On("JSONForget", ctx, key, path)}
 }
 
 func (_c *MockCmdable_JSONForget_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONForget_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -12594,9 +16379,9 @@ type MockCmdable_JSONGet_Call struct {
 }
 
 // JSONGet is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - paths
+//   - ctx context.Context
+//   - key string
+//   - paths ...string
 func (_e *MockCmdable_Expecter) JSONGet(ctx interface{}, key interface{}, paths ...interface{}) *MockCmdable_JSONGet_Call {
 	return &MockCmdable_JSONGet_Call{Call: _e.mock.On("JSONGet",
 		append([]interface{}{ctx, key}, paths...)...)}
@@ -12604,8 +16389,25 @@ func (_e *MockCmdable_Expecter) JSONGet(ctx interface{}, key interface{}, paths 
 
 func (_c *MockCmdable_JSONGet_Call) Run(run func(ctx context.Context, key string, paths ...string)) *MockCmdable_JSONGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -12651,10 +16453,10 @@ type MockCmdable_JSONGetWithArgs_Call struct {
 }
 
 // JSONGetWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
-//   - paths
+//   - ctx context.Context
+//   - key string
+//   - options *redis.JSONGetArgs
+//   - paths ...string
 func (_e *MockCmdable_Expecter) JSONGetWithArgs(ctx interface{}, key interface{}, options interface{}, paths ...interface{}) *MockCmdable_JSONGetWithArgs_Call {
 	return &MockCmdable_JSONGetWithArgs_Call{Call: _e.mock.On("JSONGetWithArgs",
 		append([]interface{}{ctx, key, options}, paths...)...)}
@@ -12662,8 +16464,30 @@ func (_e *MockCmdable_Expecter) JSONGetWithArgs(ctx interface{}, key interface{}
 
 func (_c *MockCmdable_JSONGetWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.JSONGetArgs, paths ...string)) *MockCmdable_JSONGetWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.JSONGetArgs), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.JSONGetArgs
+		if args[2] != nil {
+			arg2 = args[2].(*redis.JSONGetArgs)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -12709,9 +16533,9 @@ type MockCmdable_JSONMGet_Call struct {
 }
 
 // JSONMGet is a helper method to define mock.On call
-//   - ctx
-//   - path
-//   - keys
+//   - ctx context.Context
+//   - path string
+//   - keys ...string
 func (_e *MockCmdable_Expecter) JSONMGet(ctx interface{}, path interface{}, keys ...interface{}) *MockCmdable_JSONMGet_Call {
 	return &MockCmdable_JSONMGet_Call{Call: _e.mock.On("JSONMGet",
 		append([]interface{}{ctx, path}, keys...)...)}
@@ -12719,8 +16543,25 @@ func (_e *MockCmdable_Expecter) JSONMGet(ctx interface{}, path interface{}, keys
 
 func (_c *MockCmdable_JSONMGet_Call) Run(run func(ctx context.Context, path string, keys ...string)) *MockCmdable_JSONMGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -12766,8 +16607,8 @@ type MockCmdable_JSONMSet_Call struct {
 }
 
 // JSONMSet is a helper method to define mock.On call
-//   - ctx
-//   - params
+//   - ctx context.Context
+//   - params ...interface{}
 func (_e *MockCmdable_Expecter) JSONMSet(ctx interface{}, params ...interface{}) *MockCmdable_JSONMSet_Call {
 	return &MockCmdable_JSONMSet_Call{Call: _e.mock.On("JSONMSet",
 		append([]interface{}{ctx}, params...)...)}
@@ -12775,8 +16616,20 @@ func (_e *MockCmdable_Expecter) JSONMSet(ctx interface{}, params ...interface{})
 
 func (_c *MockCmdable_JSONMSet_Call) Run(run func(ctx context.Context, params ...interface{})) *MockCmdable_JSONMSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]interface{})
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 1 {
+			variadicArgs = args[1].([]interface{})
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -12816,15 +16669,26 @@ type MockCmdable_JSONMSetArgs_Call struct {
 }
 
 // JSONMSetArgs is a helper method to define mock.On call
-//   - ctx
-//   - docs
+//   - ctx context.Context
+//   - docs []redis.JSONSetArgs
 func (_e *MockCmdable_Expecter) JSONMSetArgs(ctx interface{}, docs interface{}) *MockCmdable_JSONMSetArgs_Call {
 	return &MockCmdable_JSONMSetArgs_Call{Call: _e.mock.On("JSONMSetArgs", ctx, docs)}
 }
 
 func (_c *MockCmdable_JSONMSetArgs_Call) Run(run func(ctx context.Context, docs []redis.JSONSetArgs)) *MockCmdable_JSONMSetArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].([]redis.JSONSetArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []redis.JSONSetArgs
+		if args[1] != nil {
+			arg1 = args[1].([]redis.JSONSetArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -12864,17 +16728,38 @@ type MockCmdable_JSONMerge_Call struct {
 }
 
 // JSONMerge is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value string
 func (_e *MockCmdable_Expecter) JSONMerge(ctx interface{}, key interface{}, path interface{}, value interface{}) *MockCmdable_JSONMerge_Call {
 	return &MockCmdable_JSONMerge_Call{Call: _e.mock.On("JSONMerge", ctx, key, path, value)}
 }
 
 func (_c *MockCmdable_JSONMerge_Call) Run(run func(ctx context.Context, key string, path string, value string)) *MockCmdable_JSONMerge_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -12914,17 +16799,38 @@ type MockCmdable_JSONNumIncrBy_Call struct {
 }
 
 // JSONNumIncrBy is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value float64
 func (_e *MockCmdable_Expecter) JSONNumIncrBy(ctx interface{}, key interface{}, path interface{}, value interface{}) *MockCmdable_JSONNumIncrBy_Call {
 	return &MockCmdable_JSONNumIncrBy_Call{Call: _e.mock.On("JSONNumIncrBy", ctx, key, path, value)}
 }
 
 func (_c *MockCmdable_JSONNumIncrBy_Call) Run(run func(ctx context.Context, key string, path string, value float64)) *MockCmdable_JSONNumIncrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(float64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 float64
+		if args[3] != nil {
+			arg3 = args[3].(float64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -12964,16 +16870,32 @@ type MockCmdable_JSONObjKeys_Call struct {
 }
 
 // JSONObjKeys is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockCmdable_Expecter) JSONObjKeys(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONObjKeys_Call {
 	return &MockCmdable_JSONObjKeys_Call{Call: _e.mock.On("JSONObjKeys", ctx, key, path)}
 }
 
 func (_c *MockCmdable_JSONObjKeys_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONObjKeys_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -13013,16 +16935,32 @@ type MockCmdable_JSONObjLen_Call struct {
 }
 
 // JSONObjLen is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockCmdable_Expecter) JSONObjLen(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONObjLen_Call {
 	return &MockCmdable_JSONObjLen_Call{Call: _e.mock.On("JSONObjLen", ctx, key, path)}
 }
 
 func (_c *MockCmdable_JSONObjLen_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONObjLen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -13062,17 +17000,38 @@ type MockCmdable_JSONSet_Call struct {
 }
 
 // JSONSet is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value interface{}
 func (_e *MockCmdable_Expecter) JSONSet(ctx interface{}, key interface{}, path interface{}, value interface{}) *MockCmdable_JSONSet_Call {
 	return &MockCmdable_JSONSet_Call{Call: _e.mock.On("JSONSet", ctx, key, path, value)}
 }
 
 func (_c *MockCmdable_JSONSet_Call) Run(run func(ctx context.Context, key string, path string, value interface{})) *MockCmdable_JSONSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -13112,18 +17071,44 @@ type MockCmdable_JSONSetMode_Call struct {
 }
 
 // JSONSetMode is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - value
-//   - mode
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value interface{}
+//   - mode string
 func (_e *MockCmdable_Expecter) JSONSetMode(ctx interface{}, key interface{}, path interface{}, value interface{}, mode interface{}) *MockCmdable_JSONSetMode_Call {
 	return &MockCmdable_JSONSetMode_Call{Call: _e.mock.On("JSONSetMode", ctx, key, path, value, mode)}
 }
 
 func (_c *MockCmdable_JSONSetMode_Call) Run(run func(ctx context.Context, key string, path string, value interface{}, mode string)) *MockCmdable_JSONSetMode_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(interface{}), args[4].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		var arg4 string
+		if args[4] != nil {
+			arg4 = args[4].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -13163,17 +17148,38 @@ type MockCmdable_JSONStrAppend_Call struct {
 }
 
 // JSONStrAppend is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - path string
+//   - value string
 func (_e *MockCmdable_Expecter) JSONStrAppend(ctx interface{}, key interface{}, path interface{}, value interface{}) *MockCmdable_JSONStrAppend_Call {
 	return &MockCmdable_JSONStrAppend_Call{Call: _e.mock.On("JSONStrAppend", ctx, key, path, value)}
 }
 
 func (_c *MockCmdable_JSONStrAppend_Call) Run(run func(ctx context.Context, key string, path string, value string)) *MockCmdable_JSONStrAppend_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -13213,16 +17219,32 @@ type MockCmdable_JSONStrLen_Call struct {
 }
 
 // JSONStrLen is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockCmdable_Expecter) JSONStrLen(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONStrLen_Call {
 	return &MockCmdable_JSONStrLen_Call{Call: _e.mock.On("JSONStrLen", ctx, key, path)}
 }
 
 func (_c *MockCmdable_JSONStrLen_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONStrLen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -13262,16 +17284,32 @@ type MockCmdable_JSONToggle_Call struct {
 }
 
 // JSONToggle is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockCmdable_Expecter) JSONToggle(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONToggle_Call {
 	return &MockCmdable_JSONToggle_Call{Call: _e.mock.On("JSONToggle", ctx, key, path)}
 }
 
 func (_c *MockCmdable_JSONToggle_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONToggle_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -13311,16 +17349,32 @@ type MockCmdable_JSONType_Call struct {
 }
 
 // JSONType is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - path
+//   - ctx context.Context
+//   - key string
+//   - path string
 func (_e *MockCmdable_Expecter) JSONType(ctx interface{}, key interface{}, path interface{}) *MockCmdable_JSONType_Call {
 	return &MockCmdable_JSONType_Call{Call: _e.mock.On("JSONType", ctx, key, path)}
 }
 
 func (_c *MockCmdable_JSONType_Call) Run(run func(ctx context.Context, key string, path string)) *MockCmdable_JSONType_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -13360,15 +17414,26 @@ type MockCmdable_Keys_Call struct {
 }
 
 // Keys is a helper method to define mock.On call
-//   - ctx
-//   - pattern
+//   - ctx context.Context
+//   - pattern string
 func (_e *MockCmdable_Expecter) Keys(ctx interface{}, pattern interface{}) *MockCmdable_Keys_Call {
 	return &MockCmdable_Keys_Call{Call: _e.mock.On("Keys", ctx, pattern)}
 }
 
 func (_c *MockCmdable_Keys_Call) Run(run func(ctx context.Context, pattern string)) *MockCmdable_Keys_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -13408,15 +17473,26 @@ type MockCmdable_LCS_Call struct {
 }
 
 // LCS is a helper method to define mock.On call
-//   - ctx
-//   - q
+//   - ctx context.Context
+//   - q *redis.LCSQuery
 func (_e *MockCmdable_Expecter) LCS(ctx interface{}, q interface{}) *MockCmdable_LCS_Call {
 	return &MockCmdable_LCS_Call{Call: _e.mock.On("LCS", ctx, q)}
 }
 
 func (_c *MockCmdable_LCS_Call) Run(run func(ctx context.Context, q *redis.LCSQuery)) *MockCmdable_LCS_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.LCSQuery))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.LCSQuery
+		if args[1] != nil {
+			arg1 = args[1].(*redis.LCSQuery)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -13456,16 +17532,32 @@ type MockCmdable_LIndex_Call struct {
 }
 
 // LIndex is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - index
+//   - ctx context.Context
+//   - key string
+//   - index int64
 func (_e *MockCmdable_Expecter) LIndex(ctx interface{}, key interface{}, index interface{}) *MockCmdable_LIndex_Call {
 	return &MockCmdable_LIndex_Call{Call: _e.mock.On("LIndex", ctx, key, index)}
 }
 
 func (_c *MockCmdable_LIndex_Call) Run(run func(ctx context.Context, key string, index int64)) *MockCmdable_LIndex_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -13505,18 +17597,44 @@ type MockCmdable_LInsert_Call struct {
 }
 
 // LInsert is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - op
-//   - pivot
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - op string
+//   - pivot interface{}
+//   - value interface{}
 func (_e *MockCmdable_Expecter) LInsert(ctx interface{}, key interface{}, op interface{}, pivot interface{}, value interface{}) *MockCmdable_LInsert_Call {
 	return &MockCmdable_LInsert_Call{Call: _e.mock.On("LInsert", ctx, key, op, pivot, value)}
 }
 
 func (_c *MockCmdable_LInsert_Call) Run(run func(ctx context.Context, key string, op string, pivot interface{}, value interface{})) *MockCmdable_LInsert_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(interface{}), args[4].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		var arg4 interface{}
+		if args[4] != nil {
+			arg4 = args[4].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -13556,17 +17674,38 @@ type MockCmdable_LInsertAfter_Call struct {
 }
 
 // LInsertAfter is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - pivot
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - pivot interface{}
+//   - value interface{}
 func (_e *MockCmdable_Expecter) LInsertAfter(ctx interface{}, key interface{}, pivot interface{}, value interface{}) *MockCmdable_LInsertAfter_Call {
 	return &MockCmdable_LInsertAfter_Call{Call: _e.mock.On("LInsertAfter", ctx, key, pivot, value)}
 }
 
 func (_c *MockCmdable_LInsertAfter_Call) Run(run func(ctx context.Context, key string, pivot interface{}, value interface{})) *MockCmdable_LInsertAfter_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -13606,17 +17745,38 @@ type MockCmdable_LInsertBefore_Call struct {
 }
 
 // LInsertBefore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - pivot
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - pivot interface{}
+//   - value interface{}
 func (_e *MockCmdable_Expecter) LInsertBefore(ctx interface{}, key interface{}, pivot interface{}, value interface{}) *MockCmdable_LInsertBefore_Call {
 	return &MockCmdable_LInsertBefore_Call{Call: _e.mock.On("LInsertBefore", ctx, key, pivot, value)}
 }
 
 func (_c *MockCmdable_LInsertBefore_Call) Run(run func(ctx context.Context, key string, pivot interface{}, value interface{})) *MockCmdable_LInsertBefore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -13656,15 +17816,26 @@ type MockCmdable_LLen_Call struct {
 }
 
 // LLen is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) LLen(ctx interface{}, key interface{}) *MockCmdable_LLen_Call {
 	return &MockCmdable_LLen_Call{Call: _e.mock.On("LLen", ctx, key)}
 }
 
 func (_c *MockCmdable_LLen_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_LLen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -13710,10 +17881,10 @@ type MockCmdable_LMPop_Call struct {
 }
 
 // LMPop is a helper method to define mock.On call
-//   - ctx
-//   - direction
-//   - count
-//   - keys
+//   - ctx context.Context
+//   - direction string
+//   - count int64
+//   - keys ...string
 func (_e *MockCmdable_Expecter) LMPop(ctx interface{}, direction interface{}, count interface{}, keys ...interface{}) *MockCmdable_LMPop_Call {
 	return &MockCmdable_LMPop_Call{Call: _e.mock.On("LMPop",
 		append([]interface{}{ctx, direction, count}, keys...)...)}
@@ -13721,8 +17892,30 @@ func (_e *MockCmdable_Expecter) LMPop(ctx interface{}, direction interface{}, co
 
 func (_c *MockCmdable_LMPop_Call) Run(run func(ctx context.Context, direction string, count int64, keys ...string)) *MockCmdable_LMPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -13762,18 +17955,44 @@ type MockCmdable_LMove_Call struct {
 }
 
 // LMove is a helper method to define mock.On call
-//   - ctx
-//   - source
-//   - destination
-//   - srcpos
-//   - destpos
+//   - ctx context.Context
+//   - source string
+//   - destination string
+//   - srcpos string
+//   - destpos string
 func (_e *MockCmdable_Expecter) LMove(ctx interface{}, source interface{}, destination interface{}, srcpos interface{}, destpos interface{}) *MockCmdable_LMove_Call {
 	return &MockCmdable_LMove_Call{Call: _e.mock.On("LMove", ctx, source, destination, srcpos, destpos)}
 }
 
 func (_c *MockCmdable_LMove_Call) Run(run func(ctx context.Context, source string, destination string, srcpos string, destpos string)) *MockCmdable_LMove_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string), args[4].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 string
+		if args[4] != nil {
+			arg4 = args[4].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -13813,15 +18032,26 @@ type MockCmdable_LPop_Call struct {
 }
 
 // LPop is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) LPop(ctx interface{}, key interface{}) *MockCmdable_LPop_Call {
 	return &MockCmdable_LPop_Call{Call: _e.mock.On("LPop", ctx, key)}
 }
 
 func (_c *MockCmdable_LPop_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_LPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -13861,16 +18091,32 @@ type MockCmdable_LPopCount_Call struct {
 }
 
 // LPopCount is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count int
 func (_e *MockCmdable_Expecter) LPopCount(ctx interface{}, key interface{}, count interface{}) *MockCmdable_LPopCount_Call {
 	return &MockCmdable_LPopCount_Call{Call: _e.mock.On("LPopCount", ctx, key, count)}
 }
 
 func (_c *MockCmdable_LPopCount_Call) Run(run func(ctx context.Context, key string, count int)) *MockCmdable_LPopCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -13910,17 +18156,38 @@ type MockCmdable_LPos_Call struct {
 }
 
 // LPos is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
-//   - args
+//   - ctx context.Context
+//   - key string
+//   - value string
+//   - args redis.LPosArgs
 func (_e *MockCmdable_Expecter) LPos(ctx interface{}, key interface{}, value interface{}, args interface{}) *MockCmdable_LPos_Call {
 	return &MockCmdable_LPos_Call{Call: _e.mock.On("LPos", ctx, key, value, args)}
 }
 
 func (_c *MockCmdable_LPos_Call) Run(run func(ctx context.Context, key string, value string, args redis.LPosArgs)) *MockCmdable_LPos_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(redis.LPosArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 redis.LPosArgs
+		if args[3] != nil {
+			arg3 = args[3].(redis.LPosArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -13960,18 +18227,44 @@ type MockCmdable_LPosCount_Call struct {
 }
 
 // LPosCount is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
-//   - count
-//   - args
+//   - ctx context.Context
+//   - key string
+//   - value string
+//   - count int64
+//   - args redis.LPosArgs
 func (_e *MockCmdable_Expecter) LPosCount(ctx interface{}, key interface{}, value interface{}, count interface{}, args interface{}) *MockCmdable_LPosCount_Call {
 	return &MockCmdable_LPosCount_Call{Call: _e.mock.On("LPosCount", ctx, key, value, count, args)}
 }
 
 func (_c *MockCmdable_LPosCount_Call) Run(run func(ctx context.Context, key string, value string, count int64, args redis.LPosArgs)) *MockCmdable_LPosCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int64), args[4].(redis.LPosArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		var arg4 redis.LPosArgs
+		if args[4] != nil {
+			arg4 = args[4].(redis.LPosArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -14017,9 +18310,9 @@ type MockCmdable_LPush_Call struct {
 }
 
 // LPush is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
 func (_e *MockCmdable_Expecter) LPush(ctx interface{}, key interface{}, values ...interface{}) *MockCmdable_LPush_Call {
 	return &MockCmdable_LPush_Call{Call: _e.mock.On("LPush",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -14027,8 +18320,25 @@ func (_e *MockCmdable_Expecter) LPush(ctx interface{}, key interface{}, values .
 
 func (_c *MockCmdable_LPush_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockCmdable_LPush_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -14074,9 +18384,9 @@ type MockCmdable_LPushX_Call struct {
 }
 
 // LPushX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
 func (_e *MockCmdable_Expecter) LPushX(ctx interface{}, key interface{}, values ...interface{}) *MockCmdable_LPushX_Call {
 	return &MockCmdable_LPushX_Call{Call: _e.mock.On("LPushX",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -14084,8 +18394,25 @@ func (_e *MockCmdable_Expecter) LPushX(ctx interface{}, key interface{}, values 
 
 func (_c *MockCmdable_LPushX_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockCmdable_LPushX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -14125,17 +18452,38 @@ type MockCmdable_LRange_Call struct {
 }
 
 // LRange is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - start
-//   - stop
+//   - ctx context.Context
+//   - key string
+//   - start int64
+//   - stop int64
 func (_e *MockCmdable_Expecter) LRange(ctx interface{}, key interface{}, start interface{}, stop interface{}) *MockCmdable_LRange_Call {
 	return &MockCmdable_LRange_Call{Call: _e.mock.On("LRange", ctx, key, start, stop)}
 }
 
 func (_c *MockCmdable_LRange_Call) Run(run func(ctx context.Context, key string, start int64, stop int64)) *MockCmdable_LRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -14175,17 +18523,38 @@ type MockCmdable_LRem_Call struct {
 }
 
 // LRem is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - count int64
+//   - value interface{}
 func (_e *MockCmdable_Expecter) LRem(ctx interface{}, key interface{}, count interface{}, value interface{}) *MockCmdable_LRem_Call {
 	return &MockCmdable_LRem_Call{Call: _e.mock.On("LRem", ctx, key, count, value)}
 }
 
 func (_c *MockCmdable_LRem_Call) Run(run func(ctx context.Context, key string, count int64, value interface{})) *MockCmdable_LRem_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -14225,17 +18594,38 @@ type MockCmdable_LSet_Call struct {
 }
 
 // LSet is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - index
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - index int64
+//   - value interface{}
 func (_e *MockCmdable_Expecter) LSet(ctx interface{}, key interface{}, index interface{}, value interface{}) *MockCmdable_LSet_Call {
 	return &MockCmdable_LSet_Call{Call: _e.mock.On("LSet", ctx, key, index, value)}
 }
 
 func (_c *MockCmdable_LSet_Call) Run(run func(ctx context.Context, key string, index int64, value interface{})) *MockCmdable_LSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -14275,17 +18665,38 @@ type MockCmdable_LTrim_Call struct {
 }
 
 // LTrim is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - start
-//   - stop
+//   - ctx context.Context
+//   - key string
+//   - start int64
+//   - stop int64
 func (_e *MockCmdable_Expecter) LTrim(ctx interface{}, key interface{}, start interface{}, stop interface{}) *MockCmdable_LTrim_Call {
 	return &MockCmdable_LTrim_Call{Call: _e.mock.On("LTrim", ctx, key, start, stop)}
 }
 
 func (_c *MockCmdable_LTrim_Call) Run(run func(ctx context.Context, key string, start int64, stop int64)) *MockCmdable_LTrim_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -14325,14 +18736,20 @@ type MockCmdable_LastSave_Call struct {
 }
 
 // LastSave is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) LastSave(ctx interface{}) *MockCmdable_LastSave_Call {
 	return &MockCmdable_LastSave_Call{Call: _e.mock.On("LastSave", ctx)}
 }
 
 func (_c *MockCmdable_LastSave_Call) Run(run func(ctx context.Context)) *MockCmdable_LastSave_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -14378,8 +18795,8 @@ type MockCmdable_MGet_Call struct {
 }
 
 // MGet is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockCmdable_Expecter) MGet(ctx interface{}, keys ...interface{}) *MockCmdable_MGet_Call {
 	return &MockCmdable_MGet_Call{Call: _e.mock.On("MGet",
 		append([]interface{}{ctx}, keys...)...)}
@@ -14387,8 +18804,20 @@ func (_e *MockCmdable_Expecter) MGet(ctx interface{}, keys ...interface{}) *Mock
 
 func (_c *MockCmdable_MGet_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_MGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -14434,8 +18863,8 @@ type MockCmdable_MSet_Call struct {
 }
 
 // MSet is a helper method to define mock.On call
-//   - ctx
-//   - values
+//   - ctx context.Context
+//   - values ...interface{}
 func (_e *MockCmdable_Expecter) MSet(ctx interface{}, values ...interface{}) *MockCmdable_MSet_Call {
 	return &MockCmdable_MSet_Call{Call: _e.mock.On("MSet",
 		append([]interface{}{ctx}, values...)...)}
@@ -14443,8 +18872,20 @@ func (_e *MockCmdable_Expecter) MSet(ctx interface{}, values ...interface{}) *Mo
 
 func (_c *MockCmdable_MSet_Call) Run(run func(ctx context.Context, values ...interface{})) *MockCmdable_MSet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]interface{})
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 1 {
+			variadicArgs = args[1].([]interface{})
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -14490,8 +18931,8 @@ type MockCmdable_MSetNX_Call struct {
 }
 
 // MSetNX is a helper method to define mock.On call
-//   - ctx
-//   - values
+//   - ctx context.Context
+//   - values ...interface{}
 func (_e *MockCmdable_Expecter) MSetNX(ctx interface{}, values ...interface{}) *MockCmdable_MSetNX_Call {
 	return &MockCmdable_MSetNX_Call{Call: _e.mock.On("MSetNX",
 		append([]interface{}{ctx}, values...)...)}
@@ -14499,8 +18940,20 @@ func (_e *MockCmdable_Expecter) MSetNX(ctx interface{}, values ...interface{}) *
 
 func (_c *MockCmdable_MSetNX_Call) Run(run func(ctx context.Context, values ...interface{})) *MockCmdable_MSetNX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]interface{})
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 1 {
+			variadicArgs = args[1].([]interface{})
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -14546,9 +18999,9 @@ type MockCmdable_MemoryUsage_Call struct {
 }
 
 // MemoryUsage is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - samples
+//   - ctx context.Context
+//   - key string
+//   - samples ...int
 func (_e *MockCmdable_Expecter) MemoryUsage(ctx interface{}, key interface{}, samples ...interface{}) *MockCmdable_MemoryUsage_Call {
 	return &MockCmdable_MemoryUsage_Call{Call: _e.mock.On("MemoryUsage",
 		append([]interface{}{ctx, key}, samples...)...)}
@@ -14556,8 +19009,25 @@ func (_e *MockCmdable_Expecter) MemoryUsage(ctx interface{}, key interface{}, sa
 
 func (_c *MockCmdable_MemoryUsage_Call) Run(run func(ctx context.Context, key string, samples ...int)) *MockCmdable_MemoryUsage_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]int)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []int
+		var variadicArgs []int
+		if len(args) > 2 {
+			variadicArgs = args[2].([]int)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -14597,19 +19067,50 @@ type MockCmdable_Migrate_Call struct {
 }
 
 // Migrate is a helper method to define mock.On call
-//   - ctx
-//   - host
-//   - port
-//   - key
-//   - db
-//   - timeout
+//   - ctx context.Context
+//   - host string
+//   - port string
+//   - key string
+//   - db int
+//   - timeout time.Duration
 func (_e *MockCmdable_Expecter) Migrate(ctx interface{}, host interface{}, port interface{}, key interface{}, db interface{}, timeout interface{}) *MockCmdable_Migrate_Call {
 	return &MockCmdable_Migrate_Call{Call: _e.mock.On("Migrate", ctx, host, port, key, db, timeout)}
 }
 
 func (_c *MockCmdable_Migrate_Call) Run(run func(ctx context.Context, host string, port string, key string, db int, timeout time.Duration)) *MockCmdable_Migrate_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string), args[4].(int), args[5].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 int
+		if args[4] != nil {
+			arg4 = args[4].(int)
+		}
+		var arg5 time.Duration
+		if args[5] != nil {
+			arg5 = args[5].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+			arg5,
+		)
 	})
 	return _c
 }
@@ -14649,15 +19150,26 @@ type MockCmdable_ModuleLoadex_Call struct {
 }
 
 // ModuleLoadex is a helper method to define mock.On call
-//   - ctx
-//   - conf
+//   - ctx context.Context
+//   - conf *redis.ModuleLoadexConfig
 func (_e *MockCmdable_Expecter) ModuleLoadex(ctx interface{}, conf interface{}) *MockCmdable_ModuleLoadex_Call {
 	return &MockCmdable_ModuleLoadex_Call{Call: _e.mock.On("ModuleLoadex", ctx, conf)}
 }
 
 func (_c *MockCmdable_ModuleLoadex_Call) Run(run func(ctx context.Context, conf *redis.ModuleLoadexConfig)) *MockCmdable_ModuleLoadex_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.ModuleLoadexConfig))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.ModuleLoadexConfig
+		if args[1] != nil {
+			arg1 = args[1].(*redis.ModuleLoadexConfig)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -14697,16 +19209,32 @@ type MockCmdable_Move_Call struct {
 }
 
 // Move is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - db
+//   - ctx context.Context
+//   - key string
+//   - db int
 func (_e *MockCmdable_Expecter) Move(ctx interface{}, key interface{}, db interface{}) *MockCmdable_Move_Call {
 	return &MockCmdable_Move_Call{Call: _e.mock.On("Move", ctx, key, db)}
 }
 
 func (_c *MockCmdable_Move_Call) Run(run func(ctx context.Context, key string, db int)) *MockCmdable_Move_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -14746,15 +19274,26 @@ type MockCmdable_ObjectEncoding_Call struct {
 }
 
 // ObjectEncoding is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) ObjectEncoding(ctx interface{}, key interface{}) *MockCmdable_ObjectEncoding_Call {
 	return &MockCmdable_ObjectEncoding_Call{Call: _e.mock.On("ObjectEncoding", ctx, key)}
 }
 
 func (_c *MockCmdable_ObjectEncoding_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_ObjectEncoding_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -14794,15 +19333,26 @@ type MockCmdable_ObjectFreq_Call struct {
 }
 
 // ObjectFreq is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) ObjectFreq(ctx interface{}, key interface{}) *MockCmdable_ObjectFreq_Call {
 	return &MockCmdable_ObjectFreq_Call{Call: _e.mock.On("ObjectFreq", ctx, key)}
 }
 
 func (_c *MockCmdable_ObjectFreq_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_ObjectFreq_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -14842,15 +19392,26 @@ type MockCmdable_ObjectIdleTime_Call struct {
 }
 
 // ObjectIdleTime is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) ObjectIdleTime(ctx interface{}, key interface{}) *MockCmdable_ObjectIdleTime_Call {
 	return &MockCmdable_ObjectIdleTime_Call{Call: _e.mock.On("ObjectIdleTime", ctx, key)}
 }
 
 func (_c *MockCmdable_ObjectIdleTime_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_ObjectIdleTime_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -14890,15 +19451,26 @@ type MockCmdable_ObjectRefCount_Call struct {
 }
 
 // ObjectRefCount is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) ObjectRefCount(ctx interface{}, key interface{}) *MockCmdable_ObjectRefCount_Call {
 	return &MockCmdable_ObjectRefCount_Call{Call: _e.mock.On("ObjectRefCount", ctx, key)}
 }
 
 func (_c *MockCmdable_ObjectRefCount_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_ObjectRefCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -14938,16 +19510,32 @@ type MockCmdable_PExpire_Call struct {
 }
 
 // PExpire is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - expiration time.Duration
 func (_e *MockCmdable_Expecter) PExpire(ctx interface{}, key interface{}, expiration interface{}) *MockCmdable_PExpire_Call {
 	return &MockCmdable_PExpire_Call{Call: _e.mock.On("PExpire", ctx, key, expiration)}
 }
 
 func (_c *MockCmdable_PExpire_Call) Run(run func(ctx context.Context, key string, expiration time.Duration)) *MockCmdable_PExpire_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -14987,16 +19575,32 @@ type MockCmdable_PExpireAt_Call struct {
 }
 
 // PExpireAt is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - tm
+//   - ctx context.Context
+//   - key string
+//   - tm time.Time
 func (_e *MockCmdable_Expecter) PExpireAt(ctx interface{}, key interface{}, tm interface{}) *MockCmdable_PExpireAt_Call {
 	return &MockCmdable_PExpireAt_Call{Call: _e.mock.On("PExpireAt", ctx, key, tm)}
 }
 
 func (_c *MockCmdable_PExpireAt_Call) Run(run func(ctx context.Context, key string, tm time.Time)) *MockCmdable_PExpireAt_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Time))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Time
+		if args[2] != nil {
+			arg2 = args[2].(time.Time)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -15036,15 +19640,26 @@ type MockCmdable_PExpireTime_Call struct {
 }
 
 // PExpireTime is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) PExpireTime(ctx interface{}, key interface{}) *MockCmdable_PExpireTime_Call {
 	return &MockCmdable_PExpireTime_Call{Call: _e.mock.On("PExpireTime", ctx, key)}
 }
 
 func (_c *MockCmdable_PExpireTime_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_PExpireTime_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -15090,9 +19705,9 @@ type MockCmdable_PFAdd_Call struct {
 }
 
 // PFAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - els
+//   - ctx context.Context
+//   - key string
+//   - els ...interface{}
 func (_e *MockCmdable_Expecter) PFAdd(ctx interface{}, key interface{}, els ...interface{}) *MockCmdable_PFAdd_Call {
 	return &MockCmdable_PFAdd_Call{Call: _e.mock.On("PFAdd",
 		append([]interface{}{ctx, key}, els...)...)}
@@ -15100,8 +19715,25 @@ func (_e *MockCmdable_Expecter) PFAdd(ctx interface{}, key interface{}, els ...i
 
 func (_c *MockCmdable_PFAdd_Call) Run(run func(ctx context.Context, key string, els ...interface{})) *MockCmdable_PFAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -15147,8 +19779,8 @@ type MockCmdable_PFCount_Call struct {
 }
 
 // PFCount is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockCmdable_Expecter) PFCount(ctx interface{}, keys ...interface{}) *MockCmdable_PFCount_Call {
 	return &MockCmdable_PFCount_Call{Call: _e.mock.On("PFCount",
 		append([]interface{}{ctx}, keys...)...)}
@@ -15156,8 +19788,20 @@ func (_e *MockCmdable_Expecter) PFCount(ctx interface{}, keys ...interface{}) *M
 
 func (_c *MockCmdable_PFCount_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_PFCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -15203,9 +19847,9 @@ type MockCmdable_PFMerge_Call struct {
 }
 
 // PFMerge is a helper method to define mock.On call
-//   - ctx
-//   - dest
-//   - keys
+//   - ctx context.Context
+//   - dest string
+//   - keys ...string
 func (_e *MockCmdable_Expecter) PFMerge(ctx interface{}, dest interface{}, keys ...interface{}) *MockCmdable_PFMerge_Call {
 	return &MockCmdable_PFMerge_Call{Call: _e.mock.On("PFMerge",
 		append([]interface{}{ctx, dest}, keys...)...)}
@@ -15213,8 +19857,25 @@ func (_e *MockCmdable_Expecter) PFMerge(ctx interface{}, dest interface{}, keys 
 
 func (_c *MockCmdable_PFMerge_Call) Run(run func(ctx context.Context, dest string, keys ...string)) *MockCmdable_PFMerge_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -15254,15 +19915,26 @@ type MockCmdable_PTTL_Call struct {
 }
 
 // PTTL is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) PTTL(ctx interface{}, key interface{}) *MockCmdable_PTTL_Call {
 	return &MockCmdable_PTTL_Call{Call: _e.mock.On("PTTL", ctx, key)}
 }
 
 func (_c *MockCmdable_PTTL_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_PTTL_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -15302,15 +19974,26 @@ type MockCmdable_Persist_Call struct {
 }
 
 // Persist is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) Persist(ctx interface{}, key interface{}) *MockCmdable_Persist_Call {
 	return &MockCmdable_Persist_Call{Call: _e.mock.On("Persist", ctx, key)}
 }
 
 func (_c *MockCmdable_Persist_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_Persist_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -15350,14 +20033,20 @@ type MockCmdable_Ping_Call struct {
 }
 
 // Ping is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) Ping(ctx interface{}) *MockCmdable_Ping_Call {
 	return &MockCmdable_Ping_Call{Call: _e.mock.On("Ping", ctx)}
 }
 
 func (_c *MockCmdable_Ping_Call) Run(run func(ctx context.Context)) *MockCmdable_Ping_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -15452,15 +20141,26 @@ type MockCmdable_Pipelined_Call struct {
 }
 
 // Pipelined is a helper method to define mock.On call
-//   - ctx
-//   - fn
+//   - ctx context.Context
+//   - fn func(redis.Pipeliner) error
 func (_e *MockCmdable_Expecter) Pipelined(ctx interface{}, fn interface{}) *MockCmdable_Pipelined_Call {
 	return &MockCmdable_Pipelined_Call{Call: _e.mock.On("Pipelined", ctx, fn)}
 }
 
 func (_c *MockCmdable_Pipelined_Call) Run(run func(ctx context.Context, fn func(redis.Pipeliner) error)) *MockCmdable_Pipelined_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(func(redis.Pipeliner) error))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 func(redis.Pipeliner) error
+		if args[1] != nil {
+			arg1 = args[1].(func(redis.Pipeliner) error)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -15500,15 +20200,26 @@ type MockCmdable_PubSubChannels_Call struct {
 }
 
 // PubSubChannels is a helper method to define mock.On call
-//   - ctx
-//   - pattern
+//   - ctx context.Context
+//   - pattern string
 func (_e *MockCmdable_Expecter) PubSubChannels(ctx interface{}, pattern interface{}) *MockCmdable_PubSubChannels_Call {
 	return &MockCmdable_PubSubChannels_Call{Call: _e.mock.On("PubSubChannels", ctx, pattern)}
 }
 
 func (_c *MockCmdable_PubSubChannels_Call) Run(run func(ctx context.Context, pattern string)) *MockCmdable_PubSubChannels_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -15548,14 +20259,20 @@ type MockCmdable_PubSubNumPat_Call struct {
 }
 
 // PubSubNumPat is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) PubSubNumPat(ctx interface{}) *MockCmdable_PubSubNumPat_Call {
 	return &MockCmdable_PubSubNumPat_Call{Call: _e.mock.On("PubSubNumPat", ctx)}
 }
 
 func (_c *MockCmdable_PubSubNumPat_Call) Run(run func(ctx context.Context)) *MockCmdable_PubSubNumPat_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -15601,8 +20318,8 @@ type MockCmdable_PubSubNumSub_Call struct {
 }
 
 // PubSubNumSub is a helper method to define mock.On call
-//   - ctx
-//   - channels
+//   - ctx context.Context
+//   - channels ...string
 func (_e *MockCmdable_Expecter) PubSubNumSub(ctx interface{}, channels ...interface{}) *MockCmdable_PubSubNumSub_Call {
 	return &MockCmdable_PubSubNumSub_Call{Call: _e.mock.On("PubSubNumSub",
 		append([]interface{}{ctx}, channels...)...)}
@@ -15610,8 +20327,20 @@ func (_e *MockCmdable_Expecter) PubSubNumSub(ctx interface{}, channels ...interf
 
 func (_c *MockCmdable_PubSubNumSub_Call) Run(run func(ctx context.Context, channels ...string)) *MockCmdable_PubSubNumSub_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -15651,15 +20380,26 @@ type MockCmdable_PubSubShardChannels_Call struct {
 }
 
 // PubSubShardChannels is a helper method to define mock.On call
-//   - ctx
-//   - pattern
+//   - ctx context.Context
+//   - pattern string
 func (_e *MockCmdable_Expecter) PubSubShardChannels(ctx interface{}, pattern interface{}) *MockCmdable_PubSubShardChannels_Call {
 	return &MockCmdable_PubSubShardChannels_Call{Call: _e.mock.On("PubSubShardChannels", ctx, pattern)}
 }
 
 func (_c *MockCmdable_PubSubShardChannels_Call) Run(run func(ctx context.Context, pattern string)) *MockCmdable_PubSubShardChannels_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -15705,8 +20445,8 @@ type MockCmdable_PubSubShardNumSub_Call struct {
 }
 
 // PubSubShardNumSub is a helper method to define mock.On call
-//   - ctx
-//   - channels
+//   - ctx context.Context
+//   - channels ...string
 func (_e *MockCmdable_Expecter) PubSubShardNumSub(ctx interface{}, channels ...interface{}) *MockCmdable_PubSubShardNumSub_Call {
 	return &MockCmdable_PubSubShardNumSub_Call{Call: _e.mock.On("PubSubShardNumSub",
 		append([]interface{}{ctx}, channels...)...)}
@@ -15714,8 +20454,20 @@ func (_e *MockCmdable_Expecter) PubSubShardNumSub(ctx interface{}, channels ...i
 
 func (_c *MockCmdable_PubSubShardNumSub_Call) Run(run func(ctx context.Context, channels ...string)) *MockCmdable_PubSubShardNumSub_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -15755,16 +20507,32 @@ type MockCmdable_Publish_Call struct {
 }
 
 // Publish is a helper method to define mock.On call
-//   - ctx
-//   - channel
-//   - message
+//   - ctx context.Context
+//   - channel string
+//   - message interface{}
 func (_e *MockCmdable_Expecter) Publish(ctx interface{}, channel interface{}, message interface{}) *MockCmdable_Publish_Call {
 	return &MockCmdable_Publish_Call{Call: _e.mock.On("Publish", ctx, channel, message)}
 }
 
 func (_c *MockCmdable_Publish_Call) Run(run func(ctx context.Context, channel string, message interface{})) *MockCmdable_Publish_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -15804,14 +20572,20 @@ type MockCmdable_Quit_Call struct {
 }
 
 // Quit is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) Quit(ctx interface{}) *MockCmdable_Quit_Call {
 	return &MockCmdable_Quit_Call{Call: _e.mock.On("Quit", ctx)}
 }
 
 func (_c *MockCmdable_Quit_Call) Run(run func(ctx context.Context)) *MockCmdable_Quit_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -15851,15 +20625,26 @@ type MockCmdable_RPop_Call struct {
 }
 
 // RPop is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) RPop(ctx interface{}, key interface{}) *MockCmdable_RPop_Call {
 	return &MockCmdable_RPop_Call{Call: _e.mock.On("RPop", ctx, key)}
 }
 
 func (_c *MockCmdable_RPop_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_RPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -15899,16 +20684,32 @@ type MockCmdable_RPopCount_Call struct {
 }
 
 // RPopCount is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count int
 func (_e *MockCmdable_Expecter) RPopCount(ctx interface{}, key interface{}, count interface{}) *MockCmdable_RPopCount_Call {
 	return &MockCmdable_RPopCount_Call{Call: _e.mock.On("RPopCount", ctx, key, count)}
 }
 
 func (_c *MockCmdable_RPopCount_Call) Run(run func(ctx context.Context, key string, count int)) *MockCmdable_RPopCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -15948,16 +20749,32 @@ type MockCmdable_RPopLPush_Call struct {
 }
 
 // RPopLPush is a helper method to define mock.On call
-//   - ctx
-//   - source
-//   - destination
+//   - ctx context.Context
+//   - source string
+//   - destination string
 func (_e *MockCmdable_Expecter) RPopLPush(ctx interface{}, source interface{}, destination interface{}) *MockCmdable_RPopLPush_Call {
 	return &MockCmdable_RPopLPush_Call{Call: _e.mock.On("RPopLPush", ctx, source, destination)}
 }
 
 func (_c *MockCmdable_RPopLPush_Call) Run(run func(ctx context.Context, source string, destination string)) *MockCmdable_RPopLPush_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -16003,9 +20820,9 @@ type MockCmdable_RPush_Call struct {
 }
 
 // RPush is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
 func (_e *MockCmdable_Expecter) RPush(ctx interface{}, key interface{}, values ...interface{}) *MockCmdable_RPush_Call {
 	return &MockCmdable_RPush_Call{Call: _e.mock.On("RPush",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -16013,8 +20830,25 @@ func (_e *MockCmdable_Expecter) RPush(ctx interface{}, key interface{}, values .
 
 func (_c *MockCmdable_RPush_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockCmdable_RPush_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -16060,9 +20894,9 @@ type MockCmdable_RPushX_Call struct {
 }
 
 // RPushX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...interface{}
 func (_e *MockCmdable_Expecter) RPushX(ctx interface{}, key interface{}, values ...interface{}) *MockCmdable_RPushX_Call {
 	return &MockCmdable_RPushX_Call{Call: _e.mock.On("RPushX",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -16070,8 +20904,25 @@ func (_e *MockCmdable_Expecter) RPushX(ctx interface{}, key interface{}, values 
 
 func (_c *MockCmdable_RPushX_Call) Run(run func(ctx context.Context, key string, values ...interface{})) *MockCmdable_RPushX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -16111,14 +20962,20 @@ type MockCmdable_RandomKey_Call struct {
 }
 
 // RandomKey is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) RandomKey(ctx interface{}) *MockCmdable_RandomKey_Call {
 	return &MockCmdable_RandomKey_Call{Call: _e.mock.On("RandomKey", ctx)}
 }
 
 func (_c *MockCmdable_RandomKey_Call) Run(run func(ctx context.Context)) *MockCmdable_RandomKey_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -16158,14 +21015,20 @@ type MockCmdable_ReadOnly_Call struct {
 }
 
 // ReadOnly is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ReadOnly(ctx interface{}) *MockCmdable_ReadOnly_Call {
 	return &MockCmdable_ReadOnly_Call{Call: _e.mock.On("ReadOnly", ctx)}
 }
 
 func (_c *MockCmdable_ReadOnly_Call) Run(run func(ctx context.Context)) *MockCmdable_ReadOnly_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -16205,14 +21068,20 @@ type MockCmdable_ReadWrite_Call struct {
 }
 
 // ReadWrite is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ReadWrite(ctx interface{}) *MockCmdable_ReadWrite_Call {
 	return &MockCmdable_ReadWrite_Call{Call: _e.mock.On("ReadWrite", ctx)}
 }
 
 func (_c *MockCmdable_ReadWrite_Call) Run(run func(ctx context.Context)) *MockCmdable_ReadWrite_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -16252,16 +21121,32 @@ type MockCmdable_Rename_Call struct {
 }
 
 // Rename is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - newkey
+//   - ctx context.Context
+//   - key string
+//   - newkey string
 func (_e *MockCmdable_Expecter) Rename(ctx interface{}, key interface{}, newkey interface{}) *MockCmdable_Rename_Call {
 	return &MockCmdable_Rename_Call{Call: _e.mock.On("Rename", ctx, key, newkey)}
 }
 
 func (_c *MockCmdable_Rename_Call) Run(run func(ctx context.Context, key string, newkey string)) *MockCmdable_Rename_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -16301,16 +21186,32 @@ type MockCmdable_RenameNX_Call struct {
 }
 
 // RenameNX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - newkey
+//   - ctx context.Context
+//   - key string
+//   - newkey string
 func (_e *MockCmdable_Expecter) RenameNX(ctx interface{}, key interface{}, newkey interface{}) *MockCmdable_RenameNX_Call {
 	return &MockCmdable_RenameNX_Call{Call: _e.mock.On("RenameNX", ctx, key, newkey)}
 }
 
 func (_c *MockCmdable_RenameNX_Call) Run(run func(ctx context.Context, key string, newkey string)) *MockCmdable_RenameNX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -16350,17 +21251,38 @@ type MockCmdable_Restore_Call struct {
 }
 
 // Restore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - ttl
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - ttl time.Duration
+//   - value string
 func (_e *MockCmdable_Expecter) Restore(ctx interface{}, key interface{}, ttl interface{}, value interface{}) *MockCmdable_Restore_Call {
 	return &MockCmdable_Restore_Call{Call: _e.mock.On("Restore", ctx, key, ttl, value)}
 }
 
 func (_c *MockCmdable_Restore_Call) Run(run func(ctx context.Context, key string, ttl time.Duration, value string)) *MockCmdable_Restore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -16400,17 +21322,38 @@ type MockCmdable_RestoreReplace_Call struct {
 }
 
 // RestoreReplace is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - ttl
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - ttl time.Duration
+//   - value string
 func (_e *MockCmdable_Expecter) RestoreReplace(ctx interface{}, key interface{}, ttl interface{}, value interface{}) *MockCmdable_RestoreReplace_Call {
 	return &MockCmdable_RestoreReplace_Call{Call: _e.mock.On("RestoreReplace", ctx, key, ttl, value)}
 }
 
 func (_c *MockCmdable_RestoreReplace_Call) Run(run func(ctx context.Context, key string, ttl time.Duration, value string)) *MockCmdable_RestoreReplace_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(time.Duration), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 time.Duration
+		if args[2] != nil {
+			arg2 = args[2].(time.Duration)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -16456,9 +21399,9 @@ type MockCmdable_SAdd_Call struct {
 }
 
 // SAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...interface{}
 func (_e *MockCmdable_Expecter) SAdd(ctx interface{}, key interface{}, members ...interface{}) *MockCmdable_SAdd_Call {
 	return &MockCmdable_SAdd_Call{Call: _e.mock.On("SAdd",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -16466,8 +21409,25 @@ func (_e *MockCmdable_Expecter) SAdd(ctx interface{}, key interface{}, members .
 
 func (_c *MockCmdable_SAdd_Call) Run(run func(ctx context.Context, key string, members ...interface{})) *MockCmdable_SAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -16507,15 +21467,26 @@ type MockCmdable_SCard_Call struct {
 }
 
 // SCard is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) SCard(ctx interface{}, key interface{}) *MockCmdable_SCard_Call {
 	return &MockCmdable_SCard_Call{Call: _e.mock.On("SCard", ctx, key)}
 }
 
 func (_c *MockCmdable_SCard_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_SCard_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -16561,8 +21532,8 @@ type MockCmdable_SDiff_Call struct {
 }
 
 // SDiff is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockCmdable_Expecter) SDiff(ctx interface{}, keys ...interface{}) *MockCmdable_SDiff_Call {
 	return &MockCmdable_SDiff_Call{Call: _e.mock.On("SDiff",
 		append([]interface{}{ctx}, keys...)...)}
@@ -16570,8 +21541,20 @@ func (_e *MockCmdable_Expecter) SDiff(ctx interface{}, keys ...interface{}) *Moc
 
 func (_c *MockCmdable_SDiff_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_SDiff_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -16617,9 +21600,9 @@ type MockCmdable_SDiffStore_Call struct {
 }
 
 // SDiffStore is a helper method to define mock.On call
-//   - ctx
-//   - destination
-//   - keys
+//   - ctx context.Context
+//   - destination string
+//   - keys ...string
 func (_e *MockCmdable_Expecter) SDiffStore(ctx interface{}, destination interface{}, keys ...interface{}) *MockCmdable_SDiffStore_Call {
 	return &MockCmdable_SDiffStore_Call{Call: _e.mock.On("SDiffStore",
 		append([]interface{}{ctx, destination}, keys...)...)}
@@ -16627,8 +21610,25 @@ func (_e *MockCmdable_Expecter) SDiffStore(ctx interface{}, destination interfac
 
 func (_c *MockCmdable_SDiffStore_Call) Run(run func(ctx context.Context, destination string, keys ...string)) *MockCmdable_SDiffStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -16674,8 +21674,8 @@ type MockCmdable_SInter_Call struct {
 }
 
 // SInter is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockCmdable_Expecter) SInter(ctx interface{}, keys ...interface{}) *MockCmdable_SInter_Call {
 	return &MockCmdable_SInter_Call{Call: _e.mock.On("SInter",
 		append([]interface{}{ctx}, keys...)...)}
@@ -16683,8 +21683,20 @@ func (_e *MockCmdable_Expecter) SInter(ctx interface{}, keys ...interface{}) *Mo
 
 func (_c *MockCmdable_SInter_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_SInter_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -16730,9 +21742,9 @@ type MockCmdable_SInterCard_Call struct {
 }
 
 // SInterCard is a helper method to define mock.On call
-//   - ctx
-//   - limit
-//   - keys
+//   - ctx context.Context
+//   - limit int64
+//   - keys ...string
 func (_e *MockCmdable_Expecter) SInterCard(ctx interface{}, limit interface{}, keys ...interface{}) *MockCmdable_SInterCard_Call {
 	return &MockCmdable_SInterCard_Call{Call: _e.mock.On("SInterCard",
 		append([]interface{}{ctx, limit}, keys...)...)}
@@ -16740,8 +21752,25 @@ func (_e *MockCmdable_Expecter) SInterCard(ctx interface{}, limit interface{}, k
 
 func (_c *MockCmdable_SInterCard_Call) Run(run func(ctx context.Context, limit int64, keys ...string)) *MockCmdable_SInterCard_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(int64), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int64
+		if args[1] != nil {
+			arg1 = args[1].(int64)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -16787,9 +21816,9 @@ type MockCmdable_SInterStore_Call struct {
 }
 
 // SInterStore is a helper method to define mock.On call
-//   - ctx
-//   - destination
-//   - keys
+//   - ctx context.Context
+//   - destination string
+//   - keys ...string
 func (_e *MockCmdable_Expecter) SInterStore(ctx interface{}, destination interface{}, keys ...interface{}) *MockCmdable_SInterStore_Call {
 	return &MockCmdable_SInterStore_Call{Call: _e.mock.On("SInterStore",
 		append([]interface{}{ctx, destination}, keys...)...)}
@@ -16797,8 +21826,25 @@ func (_e *MockCmdable_Expecter) SInterStore(ctx interface{}, destination interfa
 
 func (_c *MockCmdable_SInterStore_Call) Run(run func(ctx context.Context, destination string, keys ...string)) *MockCmdable_SInterStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -16838,16 +21884,32 @@ type MockCmdable_SIsMember_Call struct {
 }
 
 // SIsMember is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - member
+//   - ctx context.Context
+//   - key string
+//   - member interface{}
 func (_e *MockCmdable_Expecter) SIsMember(ctx interface{}, key interface{}, member interface{}) *MockCmdable_SIsMember_Call {
 	return &MockCmdable_SIsMember_Call{Call: _e.mock.On("SIsMember", ctx, key, member)}
 }
 
 func (_c *MockCmdable_SIsMember_Call) Run(run func(ctx context.Context, key string, member interface{})) *MockCmdable_SIsMember_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -16893,9 +21955,9 @@ type MockCmdable_SMIsMember_Call struct {
 }
 
 // SMIsMember is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...interface{}
 func (_e *MockCmdable_Expecter) SMIsMember(ctx interface{}, key interface{}, members ...interface{}) *MockCmdable_SMIsMember_Call {
 	return &MockCmdable_SMIsMember_Call{Call: _e.mock.On("SMIsMember",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -16903,8 +21965,25 @@ func (_e *MockCmdable_Expecter) SMIsMember(ctx interface{}, key interface{}, mem
 
 func (_c *MockCmdable_SMIsMember_Call) Run(run func(ctx context.Context, key string, members ...interface{})) *MockCmdable_SMIsMember_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -16944,15 +22023,26 @@ type MockCmdable_SMembers_Call struct {
 }
 
 // SMembers is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) SMembers(ctx interface{}, key interface{}) *MockCmdable_SMembers_Call {
 	return &MockCmdable_SMembers_Call{Call: _e.mock.On("SMembers", ctx, key)}
 }
 
 func (_c *MockCmdable_SMembers_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_SMembers_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -16992,15 +22082,26 @@ type MockCmdable_SMembersMap_Call struct {
 }
 
 // SMembersMap is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) SMembersMap(ctx interface{}, key interface{}) *MockCmdable_SMembersMap_Call {
 	return &MockCmdable_SMembersMap_Call{Call: _e.mock.On("SMembersMap", ctx, key)}
 }
 
 func (_c *MockCmdable_SMembersMap_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_SMembersMap_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -17040,17 +22141,38 @@ type MockCmdable_SMove_Call struct {
 }
 
 // SMove is a helper method to define mock.On call
-//   - ctx
-//   - source
-//   - destination
-//   - member
+//   - ctx context.Context
+//   - source string
+//   - destination string
+//   - member interface{}
 func (_e *MockCmdable_Expecter) SMove(ctx interface{}, source interface{}, destination interface{}, member interface{}) *MockCmdable_SMove_Call {
 	return &MockCmdable_SMove_Call{Call: _e.mock.On("SMove", ctx, source, destination, member)}
 }
 
 func (_c *MockCmdable_SMove_Call) Run(run func(ctx context.Context, source string, destination string, member interface{})) *MockCmdable_SMove_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -17090,15 +22212,26 @@ type MockCmdable_SPop_Call struct {
 }
 
 // SPop is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) SPop(ctx interface{}, key interface{}) *MockCmdable_SPop_Call {
 	return &MockCmdable_SPop_Call{Call: _e.mock.On("SPop", ctx, key)}
 }
 
 func (_c *MockCmdable_SPop_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_SPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -17138,16 +22271,32 @@ type MockCmdable_SPopN_Call struct {
 }
 
 // SPopN is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count int64
 func (_e *MockCmdable_Expecter) SPopN(ctx interface{}, key interface{}, count interface{}) *MockCmdable_SPopN_Call {
 	return &MockCmdable_SPopN_Call{Call: _e.mock.On("SPopN", ctx, key, count)}
 }
 
 func (_c *MockCmdable_SPopN_Call) Run(run func(ctx context.Context, key string, count int64)) *MockCmdable_SPopN_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -17187,16 +22336,32 @@ type MockCmdable_SPublish_Call struct {
 }
 
 // SPublish is a helper method to define mock.On call
-//   - ctx
-//   - channel
-//   - message
+//   - ctx context.Context
+//   - channel string
+//   - message interface{}
 func (_e *MockCmdable_Expecter) SPublish(ctx interface{}, channel interface{}, message interface{}) *MockCmdable_SPublish_Call {
 	return &MockCmdable_SPublish_Call{Call: _e.mock.On("SPublish", ctx, channel, message)}
 }
 
 func (_c *MockCmdable_SPublish_Call) Run(run func(ctx context.Context, channel string, message interface{})) *MockCmdable_SPublish_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -17236,15 +22401,26 @@ type MockCmdable_SRandMember_Call struct {
 }
 
 // SRandMember is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) SRandMember(ctx interface{}, key interface{}) *MockCmdable_SRandMember_Call {
 	return &MockCmdable_SRandMember_Call{Call: _e.mock.On("SRandMember", ctx, key)}
 }
 
 func (_c *MockCmdable_SRandMember_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_SRandMember_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -17284,16 +22460,32 @@ type MockCmdable_SRandMemberN_Call struct {
 }
 
 // SRandMemberN is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count int64
 func (_e *MockCmdable_Expecter) SRandMemberN(ctx interface{}, key interface{}, count interface{}) *MockCmdable_SRandMemberN_Call {
 	return &MockCmdable_SRandMemberN_Call{Call: _e.mock.On("SRandMemberN", ctx, key, count)}
 }
 
 func (_c *MockCmdable_SRandMemberN_Call) Run(run func(ctx context.Context, key string, count int64)) *MockCmdable_SRandMemberN_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -17339,9 +22531,9 @@ type MockCmdable_SRem_Call struct {
 }
 
 // SRem is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...interface{}
 func (_e *MockCmdable_Expecter) SRem(ctx interface{}, key interface{}, members ...interface{}) *MockCmdable_SRem_Call {
 	return &MockCmdable_SRem_Call{Call: _e.mock.On("SRem",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -17349,8 +22541,25 @@ func (_e *MockCmdable_Expecter) SRem(ctx interface{}, key interface{}, members .
 
 func (_c *MockCmdable_SRem_Call) Run(run func(ctx context.Context, key string, members ...interface{})) *MockCmdable_SRem_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -17390,18 +22599,44 @@ type MockCmdable_SScan_Call struct {
 }
 
 // SScan is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - cursor
-//   - match
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - cursor uint64
+//   - match string
+//   - count int64
 func (_e *MockCmdable_Expecter) SScan(ctx interface{}, key interface{}, cursor interface{}, match interface{}, count interface{}) *MockCmdable_SScan_Call {
 	return &MockCmdable_SScan_Call{Call: _e.mock.On("SScan", ctx, key, cursor, match, count)}
 }
 
 func (_c *MockCmdable_SScan_Call) Run(run func(ctx context.Context, key string, cursor uint64, match string, count int64)) *MockCmdable_SScan_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(uint64), args[3].(string), args[4].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 uint64
+		if args[2] != nil {
+			arg2 = args[2].(uint64)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -17447,8 +22682,8 @@ type MockCmdable_SUnion_Call struct {
 }
 
 // SUnion is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockCmdable_Expecter) SUnion(ctx interface{}, keys ...interface{}) *MockCmdable_SUnion_Call {
 	return &MockCmdable_SUnion_Call{Call: _e.mock.On("SUnion",
 		append([]interface{}{ctx}, keys...)...)}
@@ -17456,8 +22691,20 @@ func (_e *MockCmdable_Expecter) SUnion(ctx interface{}, keys ...interface{}) *Mo
 
 func (_c *MockCmdable_SUnion_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_SUnion_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -17503,9 +22750,9 @@ type MockCmdable_SUnionStore_Call struct {
 }
 
 // SUnionStore is a helper method to define mock.On call
-//   - ctx
-//   - destination
-//   - keys
+//   - ctx context.Context
+//   - destination string
+//   - keys ...string
 func (_e *MockCmdable_Expecter) SUnionStore(ctx interface{}, destination interface{}, keys ...interface{}) *MockCmdable_SUnionStore_Call {
 	return &MockCmdable_SUnionStore_Call{Call: _e.mock.On("SUnionStore",
 		append([]interface{}{ctx, destination}, keys...)...)}
@@ -17513,8 +22760,25 @@ func (_e *MockCmdable_Expecter) SUnionStore(ctx interface{}, destination interfa
 
 func (_c *MockCmdable_SUnionStore_Call) Run(run func(ctx context.Context, destination string, keys ...string)) *MockCmdable_SUnionStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -17554,14 +22818,20 @@ type MockCmdable_Save_Call struct {
 }
 
 // Save is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) Save(ctx interface{}) *MockCmdable_Save_Call {
 	return &MockCmdable_Save_Call{Call: _e.mock.On("Save", ctx)}
 }
 
 func (_c *MockCmdable_Save_Call) Run(run func(ctx context.Context)) *MockCmdable_Save_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -17601,17 +22871,38 @@ type MockCmdable_Scan_Call struct {
 }
 
 // Scan is a helper method to define mock.On call
-//   - ctx
-//   - cursor
-//   - match
-//   - count
+//   - ctx context.Context
+//   - cursor uint64
+//   - match string
+//   - count int64
 func (_e *MockCmdable_Expecter) Scan(ctx interface{}, cursor interface{}, match interface{}, count interface{}) *MockCmdable_Scan_Call {
 	return &MockCmdable_Scan_Call{Call: _e.mock.On("Scan", ctx, cursor, match, count)}
 }
 
 func (_c *MockCmdable_Scan_Call) Run(run func(ctx context.Context, cursor uint64, match string, count int64)) *MockCmdable_Scan_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(uint64), args[2].(string), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 uint64
+		if args[1] != nil {
+			arg1 = args[1].(uint64)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -17651,18 +22942,44 @@ type MockCmdable_ScanType_Call struct {
 }
 
 // ScanType is a helper method to define mock.On call
-//   - ctx
-//   - cursor
-//   - match
-//   - count
-//   - keyType
+//   - ctx context.Context
+//   - cursor uint64
+//   - match string
+//   - count int64
+//   - keyType string
 func (_e *MockCmdable_Expecter) ScanType(ctx interface{}, cursor interface{}, match interface{}, count interface{}, keyType interface{}) *MockCmdable_ScanType_Call {
 	return &MockCmdable_ScanType_Call{Call: _e.mock.On("ScanType", ctx, cursor, match, count, keyType)}
 }
 
 func (_c *MockCmdable_ScanType_Call) Run(run func(ctx context.Context, cursor uint64, match string, count int64, keyType string)) *MockCmdable_ScanType_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(uint64), args[2].(string), args[3].(int64), args[4].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 uint64
+		if args[1] != nil {
+			arg1 = args[1].(uint64)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		var arg4 string
+		if args[4] != nil {
+			arg4 = args[4].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -17708,8 +23025,8 @@ type MockCmdable_ScriptExists_Call struct {
 }
 
 // ScriptExists is a helper method to define mock.On call
-//   - ctx
-//   - hashes
+//   - ctx context.Context
+//   - hashes ...string
 func (_e *MockCmdable_Expecter) ScriptExists(ctx interface{}, hashes ...interface{}) *MockCmdable_ScriptExists_Call {
 	return &MockCmdable_ScriptExists_Call{Call: _e.mock.On("ScriptExists",
 		append([]interface{}{ctx}, hashes...)...)}
@@ -17717,8 +23034,20 @@ func (_e *MockCmdable_Expecter) ScriptExists(ctx interface{}, hashes ...interfac
 
 func (_c *MockCmdable_ScriptExists_Call) Run(run func(ctx context.Context, hashes ...string)) *MockCmdable_ScriptExists_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -17758,14 +23087,20 @@ type MockCmdable_ScriptFlush_Call struct {
 }
 
 // ScriptFlush is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ScriptFlush(ctx interface{}) *MockCmdable_ScriptFlush_Call {
 	return &MockCmdable_ScriptFlush_Call{Call: _e.mock.On("ScriptFlush", ctx)}
 }
 
 func (_c *MockCmdable_ScriptFlush_Call) Run(run func(ctx context.Context)) *MockCmdable_ScriptFlush_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -17805,14 +23140,20 @@ type MockCmdable_ScriptKill_Call struct {
 }
 
 // ScriptKill is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ScriptKill(ctx interface{}) *MockCmdable_ScriptKill_Call {
 	return &MockCmdable_ScriptKill_Call{Call: _e.mock.On("ScriptKill", ctx)}
 }
 
 func (_c *MockCmdable_ScriptKill_Call) Run(run func(ctx context.Context)) *MockCmdable_ScriptKill_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -17852,15 +23193,26 @@ type MockCmdable_ScriptLoad_Call struct {
 }
 
 // ScriptLoad is a helper method to define mock.On call
-//   - ctx
-//   - script
+//   - ctx context.Context
+//   - script string
 func (_e *MockCmdable_Expecter) ScriptLoad(ctx interface{}, script interface{}) *MockCmdable_ScriptLoad_Call {
 	return &MockCmdable_ScriptLoad_Call{Call: _e.mock.On("ScriptLoad", ctx, script)}
 }
 
 func (_c *MockCmdable_ScriptLoad_Call) Run(run func(ctx context.Context, script string)) *MockCmdable_ScriptLoad_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -17900,17 +23252,38 @@ type MockCmdable_Set_Call struct {
 }
 
 // Set is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - expiration time.Duration
 func (_e *MockCmdable_Expecter) Set(ctx interface{}, key interface{}, value interface{}, expiration interface{}) *MockCmdable_Set_Call {
 	return &MockCmdable_Set_Call{Call: _e.mock.On("Set", ctx, key, value, expiration)}
 }
 
 func (_c *MockCmdable_Set_Call) Run(run func(ctx context.Context, key string, value interface{}, expiration time.Duration)) *MockCmdable_Set_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 time.Duration
+		if args[3] != nil {
+			arg3 = args[3].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -17950,17 +23323,38 @@ type MockCmdable_SetArgs_Call struct {
 }
 
 // SetArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
-//   - a
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - a redis.SetArgs
 func (_e *MockCmdable_Expecter) SetArgs(ctx interface{}, key interface{}, value interface{}, a interface{}) *MockCmdable_SetArgs_Call {
 	return &MockCmdable_SetArgs_Call{Call: _e.mock.On("SetArgs", ctx, key, value, a)}
 }
 
 func (_c *MockCmdable_SetArgs_Call) Run(run func(ctx context.Context, key string, value interface{}, a redis.SetArgs)) *MockCmdable_SetArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(redis.SetArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 redis.SetArgs
+		if args[3] != nil {
+			arg3 = args[3].(redis.SetArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -18000,17 +23394,38 @@ type MockCmdable_SetBit_Call struct {
 }
 
 // SetBit is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - offset
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - offset int64
+//   - value int
 func (_e *MockCmdable_Expecter) SetBit(ctx interface{}, key interface{}, offset interface{}, value interface{}) *MockCmdable_SetBit_Call {
 	return &MockCmdable_SetBit_Call{Call: _e.mock.On("SetBit", ctx, key, offset, value)}
 }
 
 func (_c *MockCmdable_SetBit_Call) Run(run func(ctx context.Context, key string, offset int64, value int)) *MockCmdable_SetBit_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int
+		if args[3] != nil {
+			arg3 = args[3].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -18050,17 +23465,38 @@ type MockCmdable_SetEx_Call struct {
 }
 
 // SetEx is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - expiration time.Duration
 func (_e *MockCmdable_Expecter) SetEx(ctx interface{}, key interface{}, value interface{}, expiration interface{}) *MockCmdable_SetEx_Call {
 	return &MockCmdable_SetEx_Call{Call: _e.mock.On("SetEx", ctx, key, value, expiration)}
 }
 
 func (_c *MockCmdable_SetEx_Call) Run(run func(ctx context.Context, key string, value interface{}, expiration time.Duration)) *MockCmdable_SetEx_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 time.Duration
+		if args[3] != nil {
+			arg3 = args[3].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -18100,17 +23536,38 @@ type MockCmdable_SetNX_Call struct {
 }
 
 // SetNX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - expiration time.Duration
 func (_e *MockCmdable_Expecter) SetNX(ctx interface{}, key interface{}, value interface{}, expiration interface{}) *MockCmdable_SetNX_Call {
 	return &MockCmdable_SetNX_Call{Call: _e.mock.On("SetNX", ctx, key, value, expiration)}
 }
 
 func (_c *MockCmdable_SetNX_Call) Run(run func(ctx context.Context, key string, value interface{}, expiration time.Duration)) *MockCmdable_SetNX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 time.Duration
+		if args[3] != nil {
+			arg3 = args[3].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -18150,17 +23607,38 @@ type MockCmdable_SetRange_Call struct {
 }
 
 // SetRange is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - offset
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - offset int64
+//   - value string
 func (_e *MockCmdable_Expecter) SetRange(ctx interface{}, key interface{}, offset interface{}, value interface{}) *MockCmdable_SetRange_Call {
 	return &MockCmdable_SetRange_Call{Call: _e.mock.On("SetRange", ctx, key, offset, value)}
 }
 
 func (_c *MockCmdable_SetRange_Call) Run(run func(ctx context.Context, key string, offset int64, value string)) *MockCmdable_SetRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -18200,17 +23678,38 @@ type MockCmdable_SetXX_Call struct {
 }
 
 // SetXX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - value
-//   - expiration
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - expiration time.Duration
 func (_e *MockCmdable_Expecter) SetXX(ctx interface{}, key interface{}, value interface{}, expiration interface{}) *MockCmdable_SetXX_Call {
 	return &MockCmdable_SetXX_Call{Call: _e.mock.On("SetXX", ctx, key, value, expiration)}
 }
 
 func (_c *MockCmdable_SetXX_Call) Run(run func(ctx context.Context, key string, value interface{}, expiration time.Duration)) *MockCmdable_SetXX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(time.Duration))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 time.Duration
+		if args[3] != nil {
+			arg3 = args[3].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -18250,14 +23749,20 @@ type MockCmdable_Shutdown_Call struct {
 }
 
 // Shutdown is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) Shutdown(ctx interface{}) *MockCmdable_Shutdown_Call {
 	return &MockCmdable_Shutdown_Call{Call: _e.mock.On("Shutdown", ctx)}
 }
 
 func (_c *MockCmdable_Shutdown_Call) Run(run func(ctx context.Context)) *MockCmdable_Shutdown_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -18297,14 +23802,20 @@ type MockCmdable_ShutdownNoSave_Call struct {
 }
 
 // ShutdownNoSave is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ShutdownNoSave(ctx interface{}) *MockCmdable_ShutdownNoSave_Call {
 	return &MockCmdable_ShutdownNoSave_Call{Call: _e.mock.On("ShutdownNoSave", ctx)}
 }
 
 func (_c *MockCmdable_ShutdownNoSave_Call) Run(run func(ctx context.Context)) *MockCmdable_ShutdownNoSave_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -18344,14 +23855,20 @@ type MockCmdable_ShutdownSave_Call struct {
 }
 
 // ShutdownSave is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) ShutdownSave(ctx interface{}) *MockCmdable_ShutdownSave_Call {
 	return &MockCmdable_ShutdownSave_Call{Call: _e.mock.On("ShutdownSave", ctx)}
 }
 
 func (_c *MockCmdable_ShutdownSave_Call) Run(run func(ctx context.Context)) *MockCmdable_ShutdownSave_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -18391,16 +23908,32 @@ type MockCmdable_SlaveOf_Call struct {
 }
 
 // SlaveOf is a helper method to define mock.On call
-//   - ctx
-//   - host
-//   - port
+//   - ctx context.Context
+//   - host string
+//   - port string
 func (_e *MockCmdable_Expecter) SlaveOf(ctx interface{}, host interface{}, port interface{}) *MockCmdable_SlaveOf_Call {
 	return &MockCmdable_SlaveOf_Call{Call: _e.mock.On("SlaveOf", ctx, host, port)}
 }
 
 func (_c *MockCmdable_SlaveOf_Call) Run(run func(ctx context.Context, host string, port string)) *MockCmdable_SlaveOf_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -18440,15 +23973,26 @@ type MockCmdable_SlowLogGet_Call struct {
 }
 
 // SlowLogGet is a helper method to define mock.On call
-//   - ctx
-//   - num
+//   - ctx context.Context
+//   - num int64
 func (_e *MockCmdable_Expecter) SlowLogGet(ctx interface{}, num interface{}) *MockCmdable_SlowLogGet_Call {
 	return &MockCmdable_SlowLogGet_Call{Call: _e.mock.On("SlowLogGet", ctx, num)}
 }
 
 func (_c *MockCmdable_SlowLogGet_Call) Run(run func(ctx context.Context, num int64)) *MockCmdable_SlowLogGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int64
+		if args[1] != nil {
+			arg1 = args[1].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -18488,16 +24032,32 @@ type MockCmdable_Sort_Call struct {
 }
 
 // Sort is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - sort
+//   - ctx context.Context
+//   - key string
+//   - sort *redis.Sort
 func (_e *MockCmdable_Expecter) Sort(ctx interface{}, key interface{}, sort interface{}) *MockCmdable_Sort_Call {
 	return &MockCmdable_Sort_Call{Call: _e.mock.On("Sort", ctx, key, sort)}
 }
 
 func (_c *MockCmdable_Sort_Call) Run(run func(ctx context.Context, key string, sort *redis.Sort)) *MockCmdable_Sort_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.Sort))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.Sort
+		if args[2] != nil {
+			arg2 = args[2].(*redis.Sort)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -18537,16 +24097,32 @@ type MockCmdable_SortInterfaces_Call struct {
 }
 
 // SortInterfaces is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - sort
+//   - ctx context.Context
+//   - key string
+//   - sort *redis.Sort
 func (_e *MockCmdable_Expecter) SortInterfaces(ctx interface{}, key interface{}, sort interface{}) *MockCmdable_SortInterfaces_Call {
 	return &MockCmdable_SortInterfaces_Call{Call: _e.mock.On("SortInterfaces", ctx, key, sort)}
 }
 
 func (_c *MockCmdable_SortInterfaces_Call) Run(run func(ctx context.Context, key string, sort *redis.Sort)) *MockCmdable_SortInterfaces_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.Sort))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.Sort
+		if args[2] != nil {
+			arg2 = args[2].(*redis.Sort)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -18586,16 +24162,32 @@ type MockCmdable_SortRO_Call struct {
 }
 
 // SortRO is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - sort
+//   - ctx context.Context
+//   - key string
+//   - sort *redis.Sort
 func (_e *MockCmdable_Expecter) SortRO(ctx interface{}, key interface{}, sort interface{}) *MockCmdable_SortRO_Call {
 	return &MockCmdable_SortRO_Call{Call: _e.mock.On("SortRO", ctx, key, sort)}
 }
 
 func (_c *MockCmdable_SortRO_Call) Run(run func(ctx context.Context, key string, sort *redis.Sort)) *MockCmdable_SortRO_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.Sort))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.Sort
+		if args[2] != nil {
+			arg2 = args[2].(*redis.Sort)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -18635,17 +24227,38 @@ type MockCmdable_SortStore_Call struct {
 }
 
 // SortStore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - store
-//   - sort
+//   - ctx context.Context
+//   - key string
+//   - store string
+//   - sort *redis.Sort
 func (_e *MockCmdable_Expecter) SortStore(ctx interface{}, key interface{}, store interface{}, sort interface{}) *MockCmdable_SortStore_Call {
 	return &MockCmdable_SortStore_Call{Call: _e.mock.On("SortStore", ctx, key, store, sort)}
 }
 
 func (_c *MockCmdable_SortStore_Call) Run(run func(ctx context.Context, key string, store string, sort *redis.Sort)) *MockCmdable_SortStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(*redis.Sort))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 *redis.Sort
+		if args[3] != nil {
+			arg3 = args[3].(*redis.Sort)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -18685,15 +24298,26 @@ type MockCmdable_StrLen_Call struct {
 }
 
 // StrLen is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) StrLen(ctx interface{}, key interface{}) *MockCmdable_StrLen_Call {
 	return &MockCmdable_StrLen_Call{Call: _e.mock.On("StrLen", ctx, key)}
 }
 
 func (_c *MockCmdable_StrLen_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_StrLen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -18739,8 +24363,8 @@ type MockCmdable_Subscribe_Call struct {
 }
 
 // Subscribe is a helper method to define mock.On call
-//   - ctx
-//   - channels
+//   - ctx context.Context
+//   - channels ...string
 func (_e *MockCmdable_Expecter) Subscribe(ctx interface{}, channels ...interface{}) *MockCmdable_Subscribe_Call {
 	return &MockCmdable_Subscribe_Call{Call: _e.mock.On("Subscribe",
 		append([]interface{}{ctx}, channels...)...)}
@@ -18748,8 +24372,20 @@ func (_e *MockCmdable_Expecter) Subscribe(ctx interface{}, channels ...interface
 
 func (_c *MockCmdable_Subscribe_Call) Run(run func(ctx context.Context, channels ...string)) *MockCmdable_Subscribe_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -18795,9 +24431,9 @@ type MockCmdable_TDigestAdd_Call struct {
 }
 
 // TDigestAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...float64
 func (_e *MockCmdable_Expecter) TDigestAdd(ctx interface{}, key interface{}, elements ...interface{}) *MockCmdable_TDigestAdd_Call {
 	return &MockCmdable_TDigestAdd_Call{Call: _e.mock.On("TDigestAdd",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -18805,8 +24441,25 @@ func (_e *MockCmdable_Expecter) TDigestAdd(ctx interface{}, key interface{}, ele
 
 func (_c *MockCmdable_TDigestAdd_Call) Run(run func(ctx context.Context, key string, elements ...float64)) *MockCmdable_TDigestAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]float64)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []float64
+		var variadicArgs []float64
+		if len(args) > 2 {
+			variadicArgs = args[2].([]float64)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -18852,9 +24505,9 @@ type MockCmdable_TDigestByRank_Call struct {
 }
 
 // TDigestByRank is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - rank
+//   - ctx context.Context
+//   - key string
+//   - rank ...uint64
 func (_e *MockCmdable_Expecter) TDigestByRank(ctx interface{}, key interface{}, rank ...interface{}) *MockCmdable_TDigestByRank_Call {
 	return &MockCmdable_TDigestByRank_Call{Call: _e.mock.On("TDigestByRank",
 		append([]interface{}{ctx, key}, rank...)...)}
@@ -18862,8 +24515,25 @@ func (_e *MockCmdable_Expecter) TDigestByRank(ctx interface{}, key interface{}, 
 
 func (_c *MockCmdable_TDigestByRank_Call) Run(run func(ctx context.Context, key string, rank ...uint64)) *MockCmdable_TDigestByRank_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]uint64)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []uint64
+		var variadicArgs []uint64
+		if len(args) > 2 {
+			variadicArgs = args[2].([]uint64)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -18909,9 +24579,9 @@ type MockCmdable_TDigestByRevRank_Call struct {
 }
 
 // TDigestByRevRank is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - rank
+//   - ctx context.Context
+//   - key string
+//   - rank ...uint64
 func (_e *MockCmdable_Expecter) TDigestByRevRank(ctx interface{}, key interface{}, rank ...interface{}) *MockCmdable_TDigestByRevRank_Call {
 	return &MockCmdable_TDigestByRevRank_Call{Call: _e.mock.On("TDigestByRevRank",
 		append([]interface{}{ctx, key}, rank...)...)}
@@ -18919,8 +24589,25 @@ func (_e *MockCmdable_Expecter) TDigestByRevRank(ctx interface{}, key interface{
 
 func (_c *MockCmdable_TDigestByRevRank_Call) Run(run func(ctx context.Context, key string, rank ...uint64)) *MockCmdable_TDigestByRevRank_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]uint64)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []uint64
+		var variadicArgs []uint64
+		if len(args) > 2 {
+			variadicArgs = args[2].([]uint64)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -18966,9 +24653,9 @@ type MockCmdable_TDigestCDF_Call struct {
 }
 
 // TDigestCDF is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...float64
 func (_e *MockCmdable_Expecter) TDigestCDF(ctx interface{}, key interface{}, elements ...interface{}) *MockCmdable_TDigestCDF_Call {
 	return &MockCmdable_TDigestCDF_Call{Call: _e.mock.On("TDigestCDF",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -18976,8 +24663,25 @@ func (_e *MockCmdable_Expecter) TDigestCDF(ctx interface{}, key interface{}, ele
 
 func (_c *MockCmdable_TDigestCDF_Call) Run(run func(ctx context.Context, key string, elements ...float64)) *MockCmdable_TDigestCDF_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]float64)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []float64
+		var variadicArgs []float64
+		if len(args) > 2 {
+			variadicArgs = args[2].([]float64)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -19017,15 +24721,26 @@ type MockCmdable_TDigestCreate_Call struct {
 }
 
 // TDigestCreate is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) TDigestCreate(ctx interface{}, key interface{}) *MockCmdable_TDigestCreate_Call {
 	return &MockCmdable_TDigestCreate_Call{Call: _e.mock.On("TDigestCreate", ctx, key)}
 }
 
 func (_c *MockCmdable_TDigestCreate_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_TDigestCreate_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -19065,16 +24780,32 @@ type MockCmdable_TDigestCreateWithCompression_Call struct {
 }
 
 // TDigestCreateWithCompression is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - compression
+//   - ctx context.Context
+//   - key string
+//   - compression int64
 func (_e *MockCmdable_Expecter) TDigestCreateWithCompression(ctx interface{}, key interface{}, compression interface{}) *MockCmdable_TDigestCreateWithCompression_Call {
 	return &MockCmdable_TDigestCreateWithCompression_Call{Call: _e.mock.On("TDigestCreateWithCompression", ctx, key, compression)}
 }
 
 func (_c *MockCmdable_TDigestCreateWithCompression_Call) Run(run func(ctx context.Context, key string, compression int64)) *MockCmdable_TDigestCreateWithCompression_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -19114,15 +24845,26 @@ type MockCmdable_TDigestInfo_Call struct {
 }
 
 // TDigestInfo is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) TDigestInfo(ctx interface{}, key interface{}) *MockCmdable_TDigestInfo_Call {
 	return &MockCmdable_TDigestInfo_Call{Call: _e.mock.On("TDigestInfo", ctx, key)}
 }
 
 func (_c *MockCmdable_TDigestInfo_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_TDigestInfo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -19162,15 +24904,26 @@ type MockCmdable_TDigestMax_Call struct {
 }
 
 // TDigestMax is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) TDigestMax(ctx interface{}, key interface{}) *MockCmdable_TDigestMax_Call {
 	return &MockCmdable_TDigestMax_Call{Call: _e.mock.On("TDigestMax", ctx, key)}
 }
 
 func (_c *MockCmdable_TDigestMax_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_TDigestMax_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -19216,10 +24969,10 @@ type MockCmdable_TDigestMerge_Call struct {
 }
 
 // TDigestMerge is a helper method to define mock.On call
-//   - ctx
-//   - destKey
-//   - options
-//   - sourceKeys
+//   - ctx context.Context
+//   - destKey string
+//   - options *redis.TDigestMergeOptions
+//   - sourceKeys ...string
 func (_e *MockCmdable_Expecter) TDigestMerge(ctx interface{}, destKey interface{}, options interface{}, sourceKeys ...interface{}) *MockCmdable_TDigestMerge_Call {
 	return &MockCmdable_TDigestMerge_Call{Call: _e.mock.On("TDigestMerge",
 		append([]interface{}{ctx, destKey, options}, sourceKeys...)...)}
@@ -19227,8 +24980,30 @@ func (_e *MockCmdable_Expecter) TDigestMerge(ctx interface{}, destKey interface{
 
 func (_c *MockCmdable_TDigestMerge_Call) Run(run func(ctx context.Context, destKey string, options *redis.TDigestMergeOptions, sourceKeys ...string)) *MockCmdable_TDigestMerge_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.TDigestMergeOptions), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.TDigestMergeOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.TDigestMergeOptions)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -19268,15 +25043,26 @@ type MockCmdable_TDigestMin_Call struct {
 }
 
 // TDigestMin is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) TDigestMin(ctx interface{}, key interface{}) *MockCmdable_TDigestMin_Call {
 	return &MockCmdable_TDigestMin_Call{Call: _e.mock.On("TDigestMin", ctx, key)}
 }
 
 func (_c *MockCmdable_TDigestMin_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_TDigestMin_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -19322,9 +25108,9 @@ type MockCmdable_TDigestQuantile_Call struct {
 }
 
 // TDigestQuantile is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...float64
 func (_e *MockCmdable_Expecter) TDigestQuantile(ctx interface{}, key interface{}, elements ...interface{}) *MockCmdable_TDigestQuantile_Call {
 	return &MockCmdable_TDigestQuantile_Call{Call: _e.mock.On("TDigestQuantile",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -19332,8 +25118,25 @@ func (_e *MockCmdable_Expecter) TDigestQuantile(ctx interface{}, key interface{}
 
 func (_c *MockCmdable_TDigestQuantile_Call) Run(run func(ctx context.Context, key string, elements ...float64)) *MockCmdable_TDigestQuantile_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]float64)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []float64
+		var variadicArgs []float64
+		if len(args) > 2 {
+			variadicArgs = args[2].([]float64)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -19379,9 +25182,9 @@ type MockCmdable_TDigestRank_Call struct {
 }
 
 // TDigestRank is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...float64
 func (_e *MockCmdable_Expecter) TDigestRank(ctx interface{}, key interface{}, values ...interface{}) *MockCmdable_TDigestRank_Call {
 	return &MockCmdable_TDigestRank_Call{Call: _e.mock.On("TDigestRank",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -19389,8 +25192,25 @@ func (_e *MockCmdable_Expecter) TDigestRank(ctx interface{}, key interface{}, va
 
 func (_c *MockCmdable_TDigestRank_Call) Run(run func(ctx context.Context, key string, values ...float64)) *MockCmdable_TDigestRank_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]float64)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []float64
+		var variadicArgs []float64
+		if len(args) > 2 {
+			variadicArgs = args[2].([]float64)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -19430,15 +25250,26 @@ type MockCmdable_TDigestReset_Call struct {
 }
 
 // TDigestReset is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) TDigestReset(ctx interface{}, key interface{}) *MockCmdable_TDigestReset_Call {
 	return &MockCmdable_TDigestReset_Call{Call: _e.mock.On("TDigestReset", ctx, key)}
 }
 
 func (_c *MockCmdable_TDigestReset_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_TDigestReset_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -19484,9 +25315,9 @@ type MockCmdable_TDigestRevRank_Call struct {
 }
 
 // TDigestRevRank is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - values
+//   - ctx context.Context
+//   - key string
+//   - values ...float64
 func (_e *MockCmdable_Expecter) TDigestRevRank(ctx interface{}, key interface{}, values ...interface{}) *MockCmdable_TDigestRevRank_Call {
 	return &MockCmdable_TDigestRevRank_Call{Call: _e.mock.On("TDigestRevRank",
 		append([]interface{}{ctx, key}, values...)...)}
@@ -19494,8 +25325,25 @@ func (_e *MockCmdable_Expecter) TDigestRevRank(ctx interface{}, key interface{},
 
 func (_c *MockCmdable_TDigestRevRank_Call) Run(run func(ctx context.Context, key string, values ...float64)) *MockCmdable_TDigestRevRank_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]float64)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []float64
+		var variadicArgs []float64
+		if len(args) > 2 {
+			variadicArgs = args[2].([]float64)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -19535,17 +25383,38 @@ type MockCmdable_TDigestTrimmedMean_Call struct {
 }
 
 // TDigestTrimmedMean is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - lowCutQuantile
-//   - highCutQuantile
+//   - ctx context.Context
+//   - key string
+//   - lowCutQuantile float64
+//   - highCutQuantile float64
 func (_e *MockCmdable_Expecter) TDigestTrimmedMean(ctx interface{}, key interface{}, lowCutQuantile interface{}, highCutQuantile interface{}) *MockCmdable_TDigestTrimmedMean_Call {
 	return &MockCmdable_TDigestTrimmedMean_Call{Call: _e.mock.On("TDigestTrimmedMean", ctx, key, lowCutQuantile, highCutQuantile)}
 }
 
 func (_c *MockCmdable_TDigestTrimmedMean_Call) Run(run func(ctx context.Context, key string, lowCutQuantile float64, highCutQuantile float64)) *MockCmdable_TDigestTrimmedMean_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(float64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 float64
+		if args[3] != nil {
+			arg3 = args[3].(float64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -19585,17 +25454,38 @@ type MockCmdable_TSAdd_Call struct {
 }
 
 // TSAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - timestamp
-//   - value
+//   - ctx context.Context
+//   - key string
+//   - timestamp interface{}
+//   - value float64
 func (_e *MockCmdable_Expecter) TSAdd(ctx interface{}, key interface{}, timestamp interface{}, value interface{}) *MockCmdable_TSAdd_Call {
 	return &MockCmdable_TSAdd_Call{Call: _e.mock.On("TSAdd", ctx, key, timestamp, value)}
 }
 
 func (_c *MockCmdable_TSAdd_Call) Run(run func(ctx context.Context, key string, timestamp interface{}, value float64)) *MockCmdable_TSAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(float64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 float64
+		if args[3] != nil {
+			arg3 = args[3].(float64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -19635,18 +25525,44 @@ type MockCmdable_TSAddWithArgs_Call struct {
 }
 
 // TSAddWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - timestamp
-//   - value
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - timestamp interface{}
+//   - value float64
+//   - options *redis.TSOptions
 func (_e *MockCmdable_Expecter) TSAddWithArgs(ctx interface{}, key interface{}, timestamp interface{}, value interface{}, options interface{}) *MockCmdable_TSAddWithArgs_Call {
 	return &MockCmdable_TSAddWithArgs_Call{Call: _e.mock.On("TSAddWithArgs", ctx, key, timestamp, value, options)}
 }
 
 func (_c *MockCmdable_TSAddWithArgs_Call) Run(run func(ctx context.Context, key string, timestamp interface{}, value float64, options *redis.TSOptions)) *MockCmdable_TSAddWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), args[3].(float64), args[4].(*redis.TSOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 float64
+		if args[3] != nil {
+			arg3 = args[3].(float64)
+		}
+		var arg4 *redis.TSOptions
+		if args[4] != nil {
+			arg4 = args[4].(*redis.TSOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -19686,16 +25602,32 @@ type MockCmdable_TSAlter_Call struct {
 }
 
 // TSAlter is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - options *redis.TSAlterOptions
 func (_e *MockCmdable_Expecter) TSAlter(ctx interface{}, key interface{}, options interface{}) *MockCmdable_TSAlter_Call {
 	return &MockCmdable_TSAlter_Call{Call: _e.mock.On("TSAlter", ctx, key, options)}
 }
 
 func (_c *MockCmdable_TSAlter_Call) Run(run func(ctx context.Context, key string, options *redis.TSAlterOptions)) *MockCmdable_TSAlter_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.TSAlterOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.TSAlterOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.TSAlterOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -19735,15 +25667,26 @@ type MockCmdable_TSCreate_Call struct {
 }
 
 // TSCreate is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) TSCreate(ctx interface{}, key interface{}) *MockCmdable_TSCreate_Call {
 	return &MockCmdable_TSCreate_Call{Call: _e.mock.On("TSCreate", ctx, key)}
 }
 
 func (_c *MockCmdable_TSCreate_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_TSCreate_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -19783,18 +25726,44 @@ type MockCmdable_TSCreateRule_Call struct {
 }
 
 // TSCreateRule is a helper method to define mock.On call
-//   - ctx
-//   - sourceKey
-//   - destKey
-//   - aggregator
-//   - bucketDuration
+//   - ctx context.Context
+//   - sourceKey string
+//   - destKey string
+//   - aggregator redis.Aggregator
+//   - bucketDuration int
 func (_e *MockCmdable_Expecter) TSCreateRule(ctx interface{}, sourceKey interface{}, destKey interface{}, aggregator interface{}, bucketDuration interface{}) *MockCmdable_TSCreateRule_Call {
 	return &MockCmdable_TSCreateRule_Call{Call: _e.mock.On("TSCreateRule", ctx, sourceKey, destKey, aggregator, bucketDuration)}
 }
 
 func (_c *MockCmdable_TSCreateRule_Call) Run(run func(ctx context.Context, sourceKey string, destKey string, aggregator redis.Aggregator, bucketDuration int)) *MockCmdable_TSCreateRule_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(redis.Aggregator), args[4].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 redis.Aggregator
+		if args[3] != nil {
+			arg3 = args[3].(redis.Aggregator)
+		}
+		var arg4 int
+		if args[4] != nil {
+			arg4 = args[4].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -19834,19 +25803,50 @@ type MockCmdable_TSCreateRuleWithArgs_Call struct {
 }
 
 // TSCreateRuleWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - sourceKey
-//   - destKey
-//   - aggregator
-//   - bucketDuration
-//   - options
+//   - ctx context.Context
+//   - sourceKey string
+//   - destKey string
+//   - aggregator redis.Aggregator
+//   - bucketDuration int
+//   - options *redis.TSCreateRuleOptions
 func (_e *MockCmdable_Expecter) TSCreateRuleWithArgs(ctx interface{}, sourceKey interface{}, destKey interface{}, aggregator interface{}, bucketDuration interface{}, options interface{}) *MockCmdable_TSCreateRuleWithArgs_Call {
 	return &MockCmdable_TSCreateRuleWithArgs_Call{Call: _e.mock.On("TSCreateRuleWithArgs", ctx, sourceKey, destKey, aggregator, bucketDuration, options)}
 }
 
 func (_c *MockCmdable_TSCreateRuleWithArgs_Call) Run(run func(ctx context.Context, sourceKey string, destKey string, aggregator redis.Aggregator, bucketDuration int, options *redis.TSCreateRuleOptions)) *MockCmdable_TSCreateRuleWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(redis.Aggregator), args[4].(int), args[5].(*redis.TSCreateRuleOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 redis.Aggregator
+		if args[3] != nil {
+			arg3 = args[3].(redis.Aggregator)
+		}
+		var arg4 int
+		if args[4] != nil {
+			arg4 = args[4].(int)
+		}
+		var arg5 *redis.TSCreateRuleOptions
+		if args[5] != nil {
+			arg5 = args[5].(*redis.TSCreateRuleOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+			arg5,
+		)
 	})
 	return _c
 }
@@ -19886,16 +25886,32 @@ type MockCmdable_TSCreateWithArgs_Call struct {
 }
 
 // TSCreateWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - options *redis.TSOptions
 func (_e *MockCmdable_Expecter) TSCreateWithArgs(ctx interface{}, key interface{}, options interface{}) *MockCmdable_TSCreateWithArgs_Call {
 	return &MockCmdable_TSCreateWithArgs_Call{Call: _e.mock.On("TSCreateWithArgs", ctx, key, options)}
 }
 
 func (_c *MockCmdable_TSCreateWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.TSOptions)) *MockCmdable_TSCreateWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.TSOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.TSOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.TSOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -19935,16 +25951,32 @@ type MockCmdable_TSDecrBy_Call struct {
 }
 
 // TSDecrBy is a helper method to define mock.On call
-//   - ctx
-//   - Key
-//   - timestamp
+//   - ctx context.Context
+//   - Key string
+//   - timestamp float64
 func (_e *MockCmdable_Expecter) TSDecrBy(ctx interface{}, Key interface{}, timestamp interface{}) *MockCmdable_TSDecrBy_Call {
 	return &MockCmdable_TSDecrBy_Call{Call: _e.mock.On("TSDecrBy", ctx, Key, timestamp)}
 }
 
 func (_c *MockCmdable_TSDecrBy_Call) Run(run func(ctx context.Context, Key string, timestamp float64)) *MockCmdable_TSDecrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -19984,17 +26016,38 @@ type MockCmdable_TSDecrByWithArgs_Call struct {
 }
 
 // TSDecrByWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - timestamp
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - timestamp float64
+//   - options *redis.TSIncrDecrOptions
 func (_e *MockCmdable_Expecter) TSDecrByWithArgs(ctx interface{}, key interface{}, timestamp interface{}, options interface{}) *MockCmdable_TSDecrByWithArgs_Call {
 	return &MockCmdable_TSDecrByWithArgs_Call{Call: _e.mock.On("TSDecrByWithArgs", ctx, key, timestamp, options)}
 }
 
 func (_c *MockCmdable_TSDecrByWithArgs_Call) Run(run func(ctx context.Context, key string, timestamp float64, options *redis.TSIncrDecrOptions)) *MockCmdable_TSDecrByWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(*redis.TSIncrDecrOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 *redis.TSIncrDecrOptions
+		if args[3] != nil {
+			arg3 = args[3].(*redis.TSIncrDecrOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -20034,17 +26087,38 @@ type MockCmdable_TSDel_Call struct {
 }
 
 // TSDel is a helper method to define mock.On call
-//   - ctx
-//   - Key
-//   - fromTimestamp
-//   - toTimestamp
+//   - ctx context.Context
+//   - Key string
+//   - fromTimestamp int
+//   - toTimestamp int
 func (_e *MockCmdable_Expecter) TSDel(ctx interface{}, Key interface{}, fromTimestamp interface{}, toTimestamp interface{}) *MockCmdable_TSDel_Call {
 	return &MockCmdable_TSDel_Call{Call: _e.mock.On("TSDel", ctx, Key, fromTimestamp, toTimestamp)}
 }
 
 func (_c *MockCmdable_TSDel_Call) Run(run func(ctx context.Context, Key string, fromTimestamp int, toTimestamp int)) *MockCmdable_TSDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int), args[3].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 int
+		if args[3] != nil {
+			arg3 = args[3].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -20084,16 +26158,32 @@ type MockCmdable_TSDeleteRule_Call struct {
 }
 
 // TSDeleteRule is a helper method to define mock.On call
-//   - ctx
-//   - sourceKey
-//   - destKey
+//   - ctx context.Context
+//   - sourceKey string
+//   - destKey string
 func (_e *MockCmdable_Expecter) TSDeleteRule(ctx interface{}, sourceKey interface{}, destKey interface{}) *MockCmdable_TSDeleteRule_Call {
 	return &MockCmdable_TSDeleteRule_Call{Call: _e.mock.On("TSDeleteRule", ctx, sourceKey, destKey)}
 }
 
 func (_c *MockCmdable_TSDeleteRule_Call) Run(run func(ctx context.Context, sourceKey string, destKey string)) *MockCmdable_TSDeleteRule_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -20133,15 +26223,26 @@ type MockCmdable_TSGet_Call struct {
 }
 
 // TSGet is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) TSGet(ctx interface{}, key interface{}) *MockCmdable_TSGet_Call {
 	return &MockCmdable_TSGet_Call{Call: _e.mock.On("TSGet", ctx, key)}
 }
 
 func (_c *MockCmdable_TSGet_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_TSGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -20181,16 +26282,32 @@ type MockCmdable_TSGetWithArgs_Call struct {
 }
 
 // TSGetWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - options *redis.TSGetOptions
 func (_e *MockCmdable_Expecter) TSGetWithArgs(ctx interface{}, key interface{}, options interface{}) *MockCmdable_TSGetWithArgs_Call {
 	return &MockCmdable_TSGetWithArgs_Call{Call: _e.mock.On("TSGetWithArgs", ctx, key, options)}
 }
 
 func (_c *MockCmdable_TSGetWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.TSGetOptions)) *MockCmdable_TSGetWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.TSGetOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.TSGetOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.TSGetOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -20230,16 +26347,32 @@ type MockCmdable_TSIncrBy_Call struct {
 }
 
 // TSIncrBy is a helper method to define mock.On call
-//   - ctx
-//   - Key
-//   - timestamp
+//   - ctx context.Context
+//   - Key string
+//   - timestamp float64
 func (_e *MockCmdable_Expecter) TSIncrBy(ctx interface{}, Key interface{}, timestamp interface{}) *MockCmdable_TSIncrBy_Call {
 	return &MockCmdable_TSIncrBy_Call{Call: _e.mock.On("TSIncrBy", ctx, Key, timestamp)}
 }
 
 func (_c *MockCmdable_TSIncrBy_Call) Run(run func(ctx context.Context, Key string, timestamp float64)) *MockCmdable_TSIncrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -20279,17 +26412,38 @@ type MockCmdable_TSIncrByWithArgs_Call struct {
 }
 
 // TSIncrByWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - timestamp
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - timestamp float64
+//   - options *redis.TSIncrDecrOptions
 func (_e *MockCmdable_Expecter) TSIncrByWithArgs(ctx interface{}, key interface{}, timestamp interface{}, options interface{}) *MockCmdable_TSIncrByWithArgs_Call {
 	return &MockCmdable_TSIncrByWithArgs_Call{Call: _e.mock.On("TSIncrByWithArgs", ctx, key, timestamp, options)}
 }
 
 func (_c *MockCmdable_TSIncrByWithArgs_Call) Run(run func(ctx context.Context, key string, timestamp float64, options *redis.TSIncrDecrOptions)) *MockCmdable_TSIncrByWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(*redis.TSIncrDecrOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 *redis.TSIncrDecrOptions
+		if args[3] != nil {
+			arg3 = args[3].(*redis.TSIncrDecrOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -20329,15 +26483,26 @@ type MockCmdable_TSInfo_Call struct {
 }
 
 // TSInfo is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) TSInfo(ctx interface{}, key interface{}) *MockCmdable_TSInfo_Call {
 	return &MockCmdable_TSInfo_Call{Call: _e.mock.On("TSInfo", ctx, key)}
 }
 
 func (_c *MockCmdable_TSInfo_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_TSInfo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -20377,16 +26542,32 @@ type MockCmdable_TSInfoWithArgs_Call struct {
 }
 
 // TSInfoWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - options *redis.TSInfoOptions
 func (_e *MockCmdable_Expecter) TSInfoWithArgs(ctx interface{}, key interface{}, options interface{}) *MockCmdable_TSInfoWithArgs_Call {
 	return &MockCmdable_TSInfoWithArgs_Call{Call: _e.mock.On("TSInfoWithArgs", ctx, key, options)}
 }
 
 func (_c *MockCmdable_TSInfoWithArgs_Call) Run(run func(ctx context.Context, key string, options *redis.TSInfoOptions)) *MockCmdable_TSInfoWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.TSInfoOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.TSInfoOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.TSInfoOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -20426,15 +26607,26 @@ type MockCmdable_TSMAdd_Call struct {
 }
 
 // TSMAdd is a helper method to define mock.On call
-//   - ctx
-//   - ktvSlices
+//   - ctx context.Context
+//   - ktvSlices [][]interface{}
 func (_e *MockCmdable_Expecter) TSMAdd(ctx interface{}, ktvSlices interface{}) *MockCmdable_TSMAdd_Call {
 	return &MockCmdable_TSMAdd_Call{Call: _e.mock.On("TSMAdd", ctx, ktvSlices)}
 }
 
 func (_c *MockCmdable_TSMAdd_Call) Run(run func(ctx context.Context, ktvSlices [][]interface{})) *MockCmdable_TSMAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].([][]interface{}))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 [][]interface{}
+		if args[1] != nil {
+			arg1 = args[1].([][]interface{})
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -20474,15 +26666,26 @@ type MockCmdable_TSMGet_Call struct {
 }
 
 // TSMGet is a helper method to define mock.On call
-//   - ctx
-//   - filters
+//   - ctx context.Context
+//   - filters []string
 func (_e *MockCmdable_Expecter) TSMGet(ctx interface{}, filters interface{}) *MockCmdable_TSMGet_Call {
 	return &MockCmdable_TSMGet_Call{Call: _e.mock.On("TSMGet", ctx, filters)}
 }
 
 func (_c *MockCmdable_TSMGet_Call) Run(run func(ctx context.Context, filters []string)) *MockCmdable_TSMGet_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].([]string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		if args[1] != nil {
+			arg1 = args[1].([]string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -20522,16 +26725,32 @@ type MockCmdable_TSMGetWithArgs_Call struct {
 }
 
 // TSMGetWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - filters
-//   - options
+//   - ctx context.Context
+//   - filters []string
+//   - options *redis.TSMGetOptions
 func (_e *MockCmdable_Expecter) TSMGetWithArgs(ctx interface{}, filters interface{}, options interface{}) *MockCmdable_TSMGetWithArgs_Call {
 	return &MockCmdable_TSMGetWithArgs_Call{Call: _e.mock.On("TSMGetWithArgs", ctx, filters, options)}
 }
 
 func (_c *MockCmdable_TSMGetWithArgs_Call) Run(run func(ctx context.Context, filters []string, options *redis.TSMGetOptions)) *MockCmdable_TSMGetWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].([]string), args[2].(*redis.TSMGetOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		if args[1] != nil {
+			arg1 = args[1].([]string)
+		}
+		var arg2 *redis.TSMGetOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.TSMGetOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -20571,17 +26790,38 @@ type MockCmdable_TSMRange_Call struct {
 }
 
 // TSMRange is a helper method to define mock.On call
-//   - ctx
-//   - fromTimestamp
-//   - toTimestamp
-//   - filterExpr
+//   - ctx context.Context
+//   - fromTimestamp int
+//   - toTimestamp int
+//   - filterExpr []string
 func (_e *MockCmdable_Expecter) TSMRange(ctx interface{}, fromTimestamp interface{}, toTimestamp interface{}, filterExpr interface{}) *MockCmdable_TSMRange_Call {
 	return &MockCmdable_TSMRange_Call{Call: _e.mock.On("TSMRange", ctx, fromTimestamp, toTimestamp, filterExpr)}
 }
 
 func (_c *MockCmdable_TSMRange_Call) Run(run func(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string)) *MockCmdable_TSMRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int), args[2].(int), args[3].([]string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 []string
+		if args[3] != nil {
+			arg3 = args[3].([]string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -20621,18 +26861,44 @@ type MockCmdable_TSMRangeWithArgs_Call struct {
 }
 
 // TSMRangeWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - fromTimestamp
-//   - toTimestamp
-//   - filterExpr
-//   - options
+//   - ctx context.Context
+//   - fromTimestamp int
+//   - toTimestamp int
+//   - filterExpr []string
+//   - options *redis.TSMRangeOptions
 func (_e *MockCmdable_Expecter) TSMRangeWithArgs(ctx interface{}, fromTimestamp interface{}, toTimestamp interface{}, filterExpr interface{}, options interface{}) *MockCmdable_TSMRangeWithArgs_Call {
 	return &MockCmdable_TSMRangeWithArgs_Call{Call: _e.mock.On("TSMRangeWithArgs", ctx, fromTimestamp, toTimestamp, filterExpr, options)}
 }
 
 func (_c *MockCmdable_TSMRangeWithArgs_Call) Run(run func(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string, options *redis.TSMRangeOptions)) *MockCmdable_TSMRangeWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int), args[2].(int), args[3].([]string), args[4].(*redis.TSMRangeOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 []string
+		if args[3] != nil {
+			arg3 = args[3].([]string)
+		}
+		var arg4 *redis.TSMRangeOptions
+		if args[4] != nil {
+			arg4 = args[4].(*redis.TSMRangeOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -20672,17 +26938,38 @@ type MockCmdable_TSMRevRange_Call struct {
 }
 
 // TSMRevRange is a helper method to define mock.On call
-//   - ctx
-//   - fromTimestamp
-//   - toTimestamp
-//   - filterExpr
+//   - ctx context.Context
+//   - fromTimestamp int
+//   - toTimestamp int
+//   - filterExpr []string
 func (_e *MockCmdable_Expecter) TSMRevRange(ctx interface{}, fromTimestamp interface{}, toTimestamp interface{}, filterExpr interface{}) *MockCmdable_TSMRevRange_Call {
 	return &MockCmdable_TSMRevRange_Call{Call: _e.mock.On("TSMRevRange", ctx, fromTimestamp, toTimestamp, filterExpr)}
 }
 
 func (_c *MockCmdable_TSMRevRange_Call) Run(run func(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string)) *MockCmdable_TSMRevRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int), args[2].(int), args[3].([]string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 []string
+		if args[3] != nil {
+			arg3 = args[3].([]string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -20722,18 +27009,44 @@ type MockCmdable_TSMRevRangeWithArgs_Call struct {
 }
 
 // TSMRevRangeWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - fromTimestamp
-//   - toTimestamp
-//   - filterExpr
-//   - options
+//   - ctx context.Context
+//   - fromTimestamp int
+//   - toTimestamp int
+//   - filterExpr []string
+//   - options *redis.TSMRevRangeOptions
 func (_e *MockCmdable_Expecter) TSMRevRangeWithArgs(ctx interface{}, fromTimestamp interface{}, toTimestamp interface{}, filterExpr interface{}, options interface{}) *MockCmdable_TSMRevRangeWithArgs_Call {
 	return &MockCmdable_TSMRevRangeWithArgs_Call{Call: _e.mock.On("TSMRevRangeWithArgs", ctx, fromTimestamp, toTimestamp, filterExpr, options)}
 }
 
 func (_c *MockCmdable_TSMRevRangeWithArgs_Call) Run(run func(ctx context.Context, fromTimestamp int, toTimestamp int, filterExpr []string, options *redis.TSMRevRangeOptions)) *MockCmdable_TSMRevRangeWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(int), args[2].(int), args[3].([]string), args[4].(*redis.TSMRevRangeOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 []string
+		if args[3] != nil {
+			arg3 = args[3].([]string)
+		}
+		var arg4 *redis.TSMRevRangeOptions
+		if args[4] != nil {
+			arg4 = args[4].(*redis.TSMRevRangeOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -20773,15 +27086,26 @@ type MockCmdable_TSQueryIndex_Call struct {
 }
 
 // TSQueryIndex is a helper method to define mock.On call
-//   - ctx
-//   - filterExpr
+//   - ctx context.Context
+//   - filterExpr []string
 func (_e *MockCmdable_Expecter) TSQueryIndex(ctx interface{}, filterExpr interface{}) *MockCmdable_TSQueryIndex_Call {
 	return &MockCmdable_TSQueryIndex_Call{Call: _e.mock.On("TSQueryIndex", ctx, filterExpr)}
 }
 
 func (_c *MockCmdable_TSQueryIndex_Call) Run(run func(ctx context.Context, filterExpr []string)) *MockCmdable_TSQueryIndex_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].([]string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		if args[1] != nil {
+			arg1 = args[1].([]string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -20821,17 +27145,38 @@ type MockCmdable_TSRange_Call struct {
 }
 
 // TSRange is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fromTimestamp
-//   - toTimestamp
+//   - ctx context.Context
+//   - key string
+//   - fromTimestamp int
+//   - toTimestamp int
 func (_e *MockCmdable_Expecter) TSRange(ctx interface{}, key interface{}, fromTimestamp interface{}, toTimestamp interface{}) *MockCmdable_TSRange_Call {
 	return &MockCmdable_TSRange_Call{Call: _e.mock.On("TSRange", ctx, key, fromTimestamp, toTimestamp)}
 }
 
 func (_c *MockCmdable_TSRange_Call) Run(run func(ctx context.Context, key string, fromTimestamp int, toTimestamp int)) *MockCmdable_TSRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int), args[3].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 int
+		if args[3] != nil {
+			arg3 = args[3].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -20871,18 +27216,44 @@ type MockCmdable_TSRangeWithArgs_Call struct {
 }
 
 // TSRangeWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fromTimestamp
-//   - toTimestamp
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - fromTimestamp int
+//   - toTimestamp int
+//   - options *redis.TSRangeOptions
 func (_e *MockCmdable_Expecter) TSRangeWithArgs(ctx interface{}, key interface{}, fromTimestamp interface{}, toTimestamp interface{}, options interface{}) *MockCmdable_TSRangeWithArgs_Call {
 	return &MockCmdable_TSRangeWithArgs_Call{Call: _e.mock.On("TSRangeWithArgs", ctx, key, fromTimestamp, toTimestamp, options)}
 }
 
 func (_c *MockCmdable_TSRangeWithArgs_Call) Run(run func(ctx context.Context, key string, fromTimestamp int, toTimestamp int, options *redis.TSRangeOptions)) *MockCmdable_TSRangeWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int), args[3].(int), args[4].(*redis.TSRangeOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 int
+		if args[3] != nil {
+			arg3 = args[3].(int)
+		}
+		var arg4 *redis.TSRangeOptions
+		if args[4] != nil {
+			arg4 = args[4].(*redis.TSRangeOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -20922,17 +27293,38 @@ type MockCmdable_TSRevRange_Call struct {
 }
 
 // TSRevRange is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fromTimestamp
-//   - toTimestamp
+//   - ctx context.Context
+//   - key string
+//   - fromTimestamp int
+//   - toTimestamp int
 func (_e *MockCmdable_Expecter) TSRevRange(ctx interface{}, key interface{}, fromTimestamp interface{}, toTimestamp interface{}) *MockCmdable_TSRevRange_Call {
 	return &MockCmdable_TSRevRange_Call{Call: _e.mock.On("TSRevRange", ctx, key, fromTimestamp, toTimestamp)}
 }
 
 func (_c *MockCmdable_TSRevRange_Call) Run(run func(ctx context.Context, key string, fromTimestamp int, toTimestamp int)) *MockCmdable_TSRevRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int), args[3].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 int
+		if args[3] != nil {
+			arg3 = args[3].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -20972,18 +27364,44 @@ type MockCmdable_TSRevRangeWithArgs_Call struct {
 }
 
 // TSRevRangeWithArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - fromTimestamp
-//   - toTimestamp
-//   - options
+//   - ctx context.Context
+//   - key string
+//   - fromTimestamp int
+//   - toTimestamp int
+//   - options *redis.TSRevRangeOptions
 func (_e *MockCmdable_Expecter) TSRevRangeWithArgs(ctx interface{}, key interface{}, fromTimestamp interface{}, toTimestamp interface{}, options interface{}) *MockCmdable_TSRevRangeWithArgs_Call {
 	return &MockCmdable_TSRevRangeWithArgs_Call{Call: _e.mock.On("TSRevRangeWithArgs", ctx, key, fromTimestamp, toTimestamp, options)}
 }
 
 func (_c *MockCmdable_TSRevRangeWithArgs_Call) Run(run func(ctx context.Context, key string, fromTimestamp int, toTimestamp int, options *redis.TSRevRangeOptions)) *MockCmdable_TSRevRangeWithArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int), args[3].(int), args[4].(*redis.TSRevRangeOptions))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		var arg3 int
+		if args[3] != nil {
+			arg3 = args[3].(int)
+		}
+		var arg4 *redis.TSRevRangeOptions
+		if args[4] != nil {
+			arg4 = args[4].(*redis.TSRevRangeOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -21023,15 +27441,26 @@ type MockCmdable_TTL_Call struct {
 }
 
 // TTL is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) TTL(ctx interface{}, key interface{}) *MockCmdable_TTL_Call {
 	return &MockCmdable_TTL_Call{Call: _e.mock.On("TTL", ctx, key)}
 }
 
 func (_c *MockCmdable_TTL_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_TTL_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -21071,14 +27500,20 @@ type MockCmdable_Time_Call struct {
 }
 
 // Time is a helper method to define mock.On call
-//   - ctx
+//   - ctx context.Context
 func (_e *MockCmdable_Expecter) Time(ctx interface{}) *MockCmdable_Time_Call {
 	return &MockCmdable_Time_Call{Call: _e.mock.On("Time", ctx)}
 }
 
 func (_c *MockCmdable_Time_Call) Run(run func(ctx context.Context)) *MockCmdable_Time_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
 	})
 	return _c
 }
@@ -21124,9 +27559,9 @@ type MockCmdable_TopKAdd_Call struct {
 }
 
 // TopKAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...interface{}
 func (_e *MockCmdable_Expecter) TopKAdd(ctx interface{}, key interface{}, elements ...interface{}) *MockCmdable_TopKAdd_Call {
 	return &MockCmdable_TopKAdd_Call{Call: _e.mock.On("TopKAdd",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -21134,8 +27569,25 @@ func (_e *MockCmdable_Expecter) TopKAdd(ctx interface{}, key interface{}, elemen
 
 func (_c *MockCmdable_TopKAdd_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockCmdable_TopKAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -21181,9 +27633,9 @@ type MockCmdable_TopKCount_Call struct {
 }
 
 // TopKCount is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...interface{}
 func (_e *MockCmdable_Expecter) TopKCount(ctx interface{}, key interface{}, elements ...interface{}) *MockCmdable_TopKCount_Call {
 	return &MockCmdable_TopKCount_Call{Call: _e.mock.On("TopKCount",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -21191,8 +27643,25 @@ func (_e *MockCmdable_Expecter) TopKCount(ctx interface{}, key interface{}, elem
 
 func (_c *MockCmdable_TopKCount_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockCmdable_TopKCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -21238,9 +27707,9 @@ type MockCmdable_TopKIncrBy_Call struct {
 }
 
 // TopKIncrBy is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...interface{}
 func (_e *MockCmdable_Expecter) TopKIncrBy(ctx interface{}, key interface{}, elements ...interface{}) *MockCmdable_TopKIncrBy_Call {
 	return &MockCmdable_TopKIncrBy_Call{Call: _e.mock.On("TopKIncrBy",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -21248,8 +27717,25 @@ func (_e *MockCmdable_Expecter) TopKIncrBy(ctx interface{}, key interface{}, ele
 
 func (_c *MockCmdable_TopKIncrBy_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockCmdable_TopKIncrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -21289,15 +27775,26 @@ type MockCmdable_TopKInfo_Call struct {
 }
 
 // TopKInfo is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) TopKInfo(ctx interface{}, key interface{}) *MockCmdable_TopKInfo_Call {
 	return &MockCmdable_TopKInfo_Call{Call: _e.mock.On("TopKInfo", ctx, key)}
 }
 
 func (_c *MockCmdable_TopKInfo_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_TopKInfo_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -21337,15 +27834,26 @@ type MockCmdable_TopKList_Call struct {
 }
 
 // TopKList is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) TopKList(ctx interface{}, key interface{}) *MockCmdable_TopKList_Call {
 	return &MockCmdable_TopKList_Call{Call: _e.mock.On("TopKList", ctx, key)}
 }
 
 func (_c *MockCmdable_TopKList_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_TopKList_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -21385,15 +27893,26 @@ type MockCmdable_TopKListWithCount_Call struct {
 }
 
 // TopKListWithCount is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) TopKListWithCount(ctx interface{}, key interface{}) *MockCmdable_TopKListWithCount_Call {
 	return &MockCmdable_TopKListWithCount_Call{Call: _e.mock.On("TopKListWithCount", ctx, key)}
 }
 
 func (_c *MockCmdable_TopKListWithCount_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_TopKListWithCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -21439,9 +27958,9 @@ type MockCmdable_TopKQuery_Call struct {
 }
 
 // TopKQuery is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - elements
+//   - ctx context.Context
+//   - key string
+//   - elements ...interface{}
 func (_e *MockCmdable_Expecter) TopKQuery(ctx interface{}, key interface{}, elements ...interface{}) *MockCmdable_TopKQuery_Call {
 	return &MockCmdable_TopKQuery_Call{Call: _e.mock.On("TopKQuery",
 		append([]interface{}{ctx, key}, elements...)...)}
@@ -21449,8 +27968,25 @@ func (_e *MockCmdable_Expecter) TopKQuery(ctx interface{}, key interface{}, elem
 
 func (_c *MockCmdable_TopKQuery_Call) Run(run func(ctx context.Context, key string, elements ...interface{})) *MockCmdable_TopKQuery_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -21490,16 +28026,32 @@ type MockCmdable_TopKReserve_Call struct {
 }
 
 // TopKReserve is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - k
+//   - ctx context.Context
+//   - key string
+//   - k int64
 func (_e *MockCmdable_Expecter) TopKReserve(ctx interface{}, key interface{}, k interface{}) *MockCmdable_TopKReserve_Call {
 	return &MockCmdable_TopKReserve_Call{Call: _e.mock.On("TopKReserve", ctx, key, k)}
 }
 
 func (_c *MockCmdable_TopKReserve_Call) Run(run func(ctx context.Context, key string, k int64)) *MockCmdable_TopKReserve_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -21539,19 +28091,50 @@ type MockCmdable_TopKReserveWithOptions_Call struct {
 }
 
 // TopKReserveWithOptions is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - k
-//   - width
-//   - depth
-//   - decay
+//   - ctx context.Context
+//   - key string
+//   - k int64
+//   - width int64
+//   - depth int64
+//   - decay float64
 func (_e *MockCmdable_Expecter) TopKReserveWithOptions(ctx interface{}, key interface{}, k interface{}, width interface{}, depth interface{}, decay interface{}) *MockCmdable_TopKReserveWithOptions_Call {
 	return &MockCmdable_TopKReserveWithOptions_Call{Call: _e.mock.On("TopKReserveWithOptions", ctx, key, k, width, depth, decay)}
 }
 
 func (_c *MockCmdable_TopKReserveWithOptions_Call) Run(run func(ctx context.Context, key string, k int64, width int64, depth int64, decay float64)) *MockCmdable_TopKReserveWithOptions_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64), args[4].(int64), args[5].(float64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		var arg5 float64
+		if args[5] != nil {
+			arg5 = args[5].(float64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+			arg5,
+		)
 	})
 	return _c
 }
@@ -21597,8 +28180,8 @@ type MockCmdable_Touch_Call struct {
 }
 
 // Touch is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockCmdable_Expecter) Touch(ctx interface{}, keys ...interface{}) *MockCmdable_Touch_Call {
 	return &MockCmdable_Touch_Call{Call: _e.mock.On("Touch",
 		append([]interface{}{ctx}, keys...)...)}
@@ -21606,8 +28189,20 @@ func (_e *MockCmdable_Expecter) Touch(ctx interface{}, keys ...interface{}) *Moc
 
 func (_c *MockCmdable_Touch_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_Touch_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -21702,15 +28297,26 @@ type MockCmdable_TxPipelined_Call struct {
 }
 
 // TxPipelined is a helper method to define mock.On call
-//   - ctx
-//   - fn
+//   - ctx context.Context
+//   - fn func(redis.Pipeliner) error
 func (_e *MockCmdable_Expecter) TxPipelined(ctx interface{}, fn interface{}) *MockCmdable_TxPipelined_Call {
 	return &MockCmdable_TxPipelined_Call{Call: _e.mock.On("TxPipelined", ctx, fn)}
 }
 
 func (_c *MockCmdable_TxPipelined_Call) Run(run func(ctx context.Context, fn func(redis.Pipeliner) error)) *MockCmdable_TxPipelined_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(func(redis.Pipeliner) error))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 func(redis.Pipeliner) error
+		if args[1] != nil {
+			arg1 = args[1].(func(redis.Pipeliner) error)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -21750,15 +28356,26 @@ type MockCmdable_Type_Call struct {
 }
 
 // Type is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) Type(ctx interface{}, key interface{}) *MockCmdable_Type_Call {
 	return &MockCmdable_Type_Call{Call: _e.mock.On("Type", ctx, key)}
 }
 
 func (_c *MockCmdable_Type_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_Type_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -21804,8 +28421,8 @@ type MockCmdable_Unlink_Call struct {
 }
 
 // Unlink is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockCmdable_Expecter) Unlink(ctx interface{}, keys ...interface{}) *MockCmdable_Unlink_Call {
 	return &MockCmdable_Unlink_Call{Call: _e.mock.On("Unlink",
 		append([]interface{}{ctx}, keys...)...)}
@@ -21813,8 +28430,20 @@ func (_e *MockCmdable_Expecter) Unlink(ctx interface{}, keys ...interface{}) *Mo
 
 func (_c *MockCmdable_Unlink_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_Unlink_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -21860,10 +28489,10 @@ type MockCmdable_XAck_Call struct {
 }
 
 // XAck is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - group
-//   - ids
+//   - ctx context.Context
+//   - stream string
+//   - group string
+//   - ids ...string
 func (_e *MockCmdable_Expecter) XAck(ctx interface{}, stream interface{}, group interface{}, ids ...interface{}) *MockCmdable_XAck_Call {
 	return &MockCmdable_XAck_Call{Call: _e.mock.On("XAck",
 		append([]interface{}{ctx, stream, group}, ids...)...)}
@@ -21871,8 +28500,30 @@ func (_e *MockCmdable_Expecter) XAck(ctx interface{}, stream interface{}, group 
 
 func (_c *MockCmdable_XAck_Call) Run(run func(ctx context.Context, stream string, group string, ids ...string)) *MockCmdable_XAck_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -21912,15 +28563,26 @@ type MockCmdable_XAdd_Call struct {
 }
 
 // XAdd is a helper method to define mock.On call
-//   - ctx
-//   - a
+//   - ctx context.Context
+//   - a *redis.XAddArgs
 func (_e *MockCmdable_Expecter) XAdd(ctx interface{}, a interface{}) *MockCmdable_XAdd_Call {
 	return &MockCmdable_XAdd_Call{Call: _e.mock.On("XAdd", ctx, a)}
 }
 
 func (_c *MockCmdable_XAdd_Call) Run(run func(ctx context.Context, a *redis.XAddArgs)) *MockCmdable_XAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XAddArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.XAddArgs
+		if args[1] != nil {
+			arg1 = args[1].(*redis.XAddArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -21960,15 +28622,26 @@ type MockCmdable_XAutoClaim_Call struct {
 }
 
 // XAutoClaim is a helper method to define mock.On call
-//   - ctx
-//   - a
+//   - ctx context.Context
+//   - a *redis.XAutoClaimArgs
 func (_e *MockCmdable_Expecter) XAutoClaim(ctx interface{}, a interface{}) *MockCmdable_XAutoClaim_Call {
 	return &MockCmdable_XAutoClaim_Call{Call: _e.mock.On("XAutoClaim", ctx, a)}
 }
 
 func (_c *MockCmdable_XAutoClaim_Call) Run(run func(ctx context.Context, a *redis.XAutoClaimArgs)) *MockCmdable_XAutoClaim_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XAutoClaimArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.XAutoClaimArgs
+		if args[1] != nil {
+			arg1 = args[1].(*redis.XAutoClaimArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -22008,15 +28681,26 @@ type MockCmdable_XAutoClaimJustID_Call struct {
 }
 
 // XAutoClaimJustID is a helper method to define mock.On call
-//   - ctx
-//   - a
+//   - ctx context.Context
+//   - a *redis.XAutoClaimArgs
 func (_e *MockCmdable_Expecter) XAutoClaimJustID(ctx interface{}, a interface{}) *MockCmdable_XAutoClaimJustID_Call {
 	return &MockCmdable_XAutoClaimJustID_Call{Call: _e.mock.On("XAutoClaimJustID", ctx, a)}
 }
 
 func (_c *MockCmdable_XAutoClaimJustID_Call) Run(run func(ctx context.Context, a *redis.XAutoClaimArgs)) *MockCmdable_XAutoClaimJustID_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XAutoClaimArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.XAutoClaimArgs
+		if args[1] != nil {
+			arg1 = args[1].(*redis.XAutoClaimArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -22056,15 +28740,26 @@ type MockCmdable_XClaim_Call struct {
 }
 
 // XClaim is a helper method to define mock.On call
-//   - ctx
-//   - a
+//   - ctx context.Context
+//   - a *redis.XClaimArgs
 func (_e *MockCmdable_Expecter) XClaim(ctx interface{}, a interface{}) *MockCmdable_XClaim_Call {
 	return &MockCmdable_XClaim_Call{Call: _e.mock.On("XClaim", ctx, a)}
 }
 
 func (_c *MockCmdable_XClaim_Call) Run(run func(ctx context.Context, a *redis.XClaimArgs)) *MockCmdable_XClaim_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XClaimArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.XClaimArgs
+		if args[1] != nil {
+			arg1 = args[1].(*redis.XClaimArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -22104,15 +28799,26 @@ type MockCmdable_XClaimJustID_Call struct {
 }
 
 // XClaimJustID is a helper method to define mock.On call
-//   - ctx
-//   - a
+//   - ctx context.Context
+//   - a *redis.XClaimArgs
 func (_e *MockCmdable_Expecter) XClaimJustID(ctx interface{}, a interface{}) *MockCmdable_XClaimJustID_Call {
 	return &MockCmdable_XClaimJustID_Call{Call: _e.mock.On("XClaimJustID", ctx, a)}
 }
 
 func (_c *MockCmdable_XClaimJustID_Call) Run(run func(ctx context.Context, a *redis.XClaimArgs)) *MockCmdable_XClaimJustID_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XClaimArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.XClaimArgs
+		if args[1] != nil {
+			arg1 = args[1].(*redis.XClaimArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -22158,9 +28864,9 @@ type MockCmdable_XDel_Call struct {
 }
 
 // XDel is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - ids
+//   - ctx context.Context
+//   - stream string
+//   - ids ...string
 func (_e *MockCmdable_Expecter) XDel(ctx interface{}, stream interface{}, ids ...interface{}) *MockCmdable_XDel_Call {
 	return &MockCmdable_XDel_Call{Call: _e.mock.On("XDel",
 		append([]interface{}{ctx, stream}, ids...)...)}
@@ -22168,8 +28874,25 @@ func (_e *MockCmdable_Expecter) XDel(ctx interface{}, stream interface{}, ids ..
 
 func (_c *MockCmdable_XDel_Call) Run(run func(ctx context.Context, stream string, ids ...string)) *MockCmdable_XDel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -22209,17 +28932,38 @@ type MockCmdable_XGroupCreate_Call struct {
 }
 
 // XGroupCreate is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - group
-//   - start
+//   - ctx context.Context
+//   - stream string
+//   - group string
+//   - start string
 func (_e *MockCmdable_Expecter) XGroupCreate(ctx interface{}, stream interface{}, group interface{}, start interface{}) *MockCmdable_XGroupCreate_Call {
 	return &MockCmdable_XGroupCreate_Call{Call: _e.mock.On("XGroupCreate", ctx, stream, group, start)}
 }
 
 func (_c *MockCmdable_XGroupCreate_Call) Run(run func(ctx context.Context, stream string, group string, start string)) *MockCmdable_XGroupCreate_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -22259,17 +29003,38 @@ type MockCmdable_XGroupCreateConsumer_Call struct {
 }
 
 // XGroupCreateConsumer is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - group
-//   - consumer
+//   - ctx context.Context
+//   - stream string
+//   - group string
+//   - consumer string
 func (_e *MockCmdable_Expecter) XGroupCreateConsumer(ctx interface{}, stream interface{}, group interface{}, consumer interface{}) *MockCmdable_XGroupCreateConsumer_Call {
 	return &MockCmdable_XGroupCreateConsumer_Call{Call: _e.mock.On("XGroupCreateConsumer", ctx, stream, group, consumer)}
 }
 
 func (_c *MockCmdable_XGroupCreateConsumer_Call) Run(run func(ctx context.Context, stream string, group string, consumer string)) *MockCmdable_XGroupCreateConsumer_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -22309,17 +29074,38 @@ type MockCmdable_XGroupCreateMkStream_Call struct {
 }
 
 // XGroupCreateMkStream is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - group
-//   - start
+//   - ctx context.Context
+//   - stream string
+//   - group string
+//   - start string
 func (_e *MockCmdable_Expecter) XGroupCreateMkStream(ctx interface{}, stream interface{}, group interface{}, start interface{}) *MockCmdable_XGroupCreateMkStream_Call {
 	return &MockCmdable_XGroupCreateMkStream_Call{Call: _e.mock.On("XGroupCreateMkStream", ctx, stream, group, start)}
 }
 
 func (_c *MockCmdable_XGroupCreateMkStream_Call) Run(run func(ctx context.Context, stream string, group string, start string)) *MockCmdable_XGroupCreateMkStream_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -22359,17 +29145,38 @@ type MockCmdable_XGroupDelConsumer_Call struct {
 }
 
 // XGroupDelConsumer is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - group
-//   - consumer
+//   - ctx context.Context
+//   - stream string
+//   - group string
+//   - consumer string
 func (_e *MockCmdable_Expecter) XGroupDelConsumer(ctx interface{}, stream interface{}, group interface{}, consumer interface{}) *MockCmdable_XGroupDelConsumer_Call {
 	return &MockCmdable_XGroupDelConsumer_Call{Call: _e.mock.On("XGroupDelConsumer", ctx, stream, group, consumer)}
 }
 
 func (_c *MockCmdable_XGroupDelConsumer_Call) Run(run func(ctx context.Context, stream string, group string, consumer string)) *MockCmdable_XGroupDelConsumer_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -22409,16 +29216,32 @@ type MockCmdable_XGroupDestroy_Call struct {
 }
 
 // XGroupDestroy is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - group
+//   - ctx context.Context
+//   - stream string
+//   - group string
 func (_e *MockCmdable_Expecter) XGroupDestroy(ctx interface{}, stream interface{}, group interface{}) *MockCmdable_XGroupDestroy_Call {
 	return &MockCmdable_XGroupDestroy_Call{Call: _e.mock.On("XGroupDestroy", ctx, stream, group)}
 }
 
 func (_c *MockCmdable_XGroupDestroy_Call) Run(run func(ctx context.Context, stream string, group string)) *MockCmdable_XGroupDestroy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -22458,17 +29281,38 @@ type MockCmdable_XGroupSetID_Call struct {
 }
 
 // XGroupSetID is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - group
-//   - start
+//   - ctx context.Context
+//   - stream string
+//   - group string
+//   - start string
 func (_e *MockCmdable_Expecter) XGroupSetID(ctx interface{}, stream interface{}, group interface{}, start interface{}) *MockCmdable_XGroupSetID_Call {
 	return &MockCmdable_XGroupSetID_Call{Call: _e.mock.On("XGroupSetID", ctx, stream, group, start)}
 }
 
 func (_c *MockCmdable_XGroupSetID_Call) Run(run func(ctx context.Context, stream string, group string, start string)) *MockCmdable_XGroupSetID_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -22508,16 +29352,32 @@ type MockCmdable_XInfoConsumers_Call struct {
 }
 
 // XInfoConsumers is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - group
+//   - ctx context.Context
+//   - key string
+//   - group string
 func (_e *MockCmdable_Expecter) XInfoConsumers(ctx interface{}, key interface{}, group interface{}) *MockCmdable_XInfoConsumers_Call {
 	return &MockCmdable_XInfoConsumers_Call{Call: _e.mock.On("XInfoConsumers", ctx, key, group)}
 }
 
 func (_c *MockCmdable_XInfoConsumers_Call) Run(run func(ctx context.Context, key string, group string)) *MockCmdable_XInfoConsumers_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -22557,15 +29417,26 @@ type MockCmdable_XInfoGroups_Call struct {
 }
 
 // XInfoGroups is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) XInfoGroups(ctx interface{}, key interface{}) *MockCmdable_XInfoGroups_Call {
 	return &MockCmdable_XInfoGroups_Call{Call: _e.mock.On("XInfoGroups", ctx, key)}
 }
 
 func (_c *MockCmdable_XInfoGroups_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_XInfoGroups_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -22605,15 +29476,26 @@ type MockCmdable_XInfoStream_Call struct {
 }
 
 // XInfoStream is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) XInfoStream(ctx interface{}, key interface{}) *MockCmdable_XInfoStream_Call {
 	return &MockCmdable_XInfoStream_Call{Call: _e.mock.On("XInfoStream", ctx, key)}
 }
 
 func (_c *MockCmdable_XInfoStream_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_XInfoStream_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -22653,16 +29535,32 @@ type MockCmdable_XInfoStreamFull_Call struct {
 }
 
 // XInfoStreamFull is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count int
 func (_e *MockCmdable_Expecter) XInfoStreamFull(ctx interface{}, key interface{}, count interface{}) *MockCmdable_XInfoStreamFull_Call {
 	return &MockCmdable_XInfoStreamFull_Call{Call: _e.mock.On("XInfoStreamFull", ctx, key, count)}
 }
 
 func (_c *MockCmdable_XInfoStreamFull_Call) Run(run func(ctx context.Context, key string, count int)) *MockCmdable_XInfoStreamFull_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -22702,15 +29600,26 @@ type MockCmdable_XLen_Call struct {
 }
 
 // XLen is a helper method to define mock.On call
-//   - ctx
-//   - stream
+//   - ctx context.Context
+//   - stream string
 func (_e *MockCmdable_Expecter) XLen(ctx interface{}, stream interface{}) *MockCmdable_XLen_Call {
 	return &MockCmdable_XLen_Call{Call: _e.mock.On("XLen", ctx, stream)}
 }
 
 func (_c *MockCmdable_XLen_Call) Run(run func(ctx context.Context, stream string)) *MockCmdable_XLen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -22750,16 +29659,32 @@ type MockCmdable_XPending_Call struct {
 }
 
 // XPending is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - group
+//   - ctx context.Context
+//   - stream string
+//   - group string
 func (_e *MockCmdable_Expecter) XPending(ctx interface{}, stream interface{}, group interface{}) *MockCmdable_XPending_Call {
 	return &MockCmdable_XPending_Call{Call: _e.mock.On("XPending", ctx, stream, group)}
 }
 
 func (_c *MockCmdable_XPending_Call) Run(run func(ctx context.Context, stream string, group string)) *MockCmdable_XPending_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -22799,15 +29724,26 @@ type MockCmdable_XPendingExt_Call struct {
 }
 
 // XPendingExt is a helper method to define mock.On call
-//   - ctx
-//   - a
+//   - ctx context.Context
+//   - a *redis.XPendingExtArgs
 func (_e *MockCmdable_Expecter) XPendingExt(ctx interface{}, a interface{}) *MockCmdable_XPendingExt_Call {
 	return &MockCmdable_XPendingExt_Call{Call: _e.mock.On("XPendingExt", ctx, a)}
 }
 
 func (_c *MockCmdable_XPendingExt_Call) Run(run func(ctx context.Context, a *redis.XPendingExtArgs)) *MockCmdable_XPendingExt_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XPendingExtArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.XPendingExtArgs
+		if args[1] != nil {
+			arg1 = args[1].(*redis.XPendingExtArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -22847,17 +29783,38 @@ type MockCmdable_XRange_Call struct {
 }
 
 // XRange is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - start
-//   - stop
+//   - ctx context.Context
+//   - stream string
+//   - start string
+//   - stop string
 func (_e *MockCmdable_Expecter) XRange(ctx interface{}, stream interface{}, start interface{}, stop interface{}) *MockCmdable_XRange_Call {
 	return &MockCmdable_XRange_Call{Call: _e.mock.On("XRange", ctx, stream, start, stop)}
 }
 
 func (_c *MockCmdable_XRange_Call) Run(run func(ctx context.Context, stream string, start string, stop string)) *MockCmdable_XRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -22897,18 +29854,44 @@ type MockCmdable_XRangeN_Call struct {
 }
 
 // XRangeN is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - start
-//   - stop
-//   - count
+//   - ctx context.Context
+//   - stream string
+//   - start string
+//   - stop string
+//   - count int64
 func (_e *MockCmdable_Expecter) XRangeN(ctx interface{}, stream interface{}, start interface{}, stop interface{}, count interface{}) *MockCmdable_XRangeN_Call {
 	return &MockCmdable_XRangeN_Call{Call: _e.mock.On("XRangeN", ctx, stream, start, stop, count)}
 }
 
 func (_c *MockCmdable_XRangeN_Call) Run(run func(ctx context.Context, stream string, start string, stop string, count int64)) *MockCmdable_XRangeN_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string), args[4].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -22948,15 +29931,26 @@ type MockCmdable_XRead_Call struct {
 }
 
 // XRead is a helper method to define mock.On call
-//   - ctx
-//   - a
+//   - ctx context.Context
+//   - a *redis.XReadArgs
 func (_e *MockCmdable_Expecter) XRead(ctx interface{}, a interface{}) *MockCmdable_XRead_Call {
 	return &MockCmdable_XRead_Call{Call: _e.mock.On("XRead", ctx, a)}
 }
 
 func (_c *MockCmdable_XRead_Call) Run(run func(ctx context.Context, a *redis.XReadArgs)) *MockCmdable_XRead_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XReadArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.XReadArgs
+		if args[1] != nil {
+			arg1 = args[1].(*redis.XReadArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -22996,15 +29990,26 @@ type MockCmdable_XReadGroup_Call struct {
 }
 
 // XReadGroup is a helper method to define mock.On call
-//   - ctx
-//   - a
+//   - ctx context.Context
+//   - a *redis.XReadGroupArgs
 func (_e *MockCmdable_Expecter) XReadGroup(ctx interface{}, a interface{}) *MockCmdable_XReadGroup_Call {
 	return &MockCmdable_XReadGroup_Call{Call: _e.mock.On("XReadGroup", ctx, a)}
 }
 
 func (_c *MockCmdable_XReadGroup_Call) Run(run func(ctx context.Context, a *redis.XReadGroupArgs)) *MockCmdable_XReadGroup_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.XReadGroupArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.XReadGroupArgs
+		if args[1] != nil {
+			arg1 = args[1].(*redis.XReadGroupArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -23050,8 +30055,8 @@ type MockCmdable_XReadStreams_Call struct {
 }
 
 // XReadStreams is a helper method to define mock.On call
-//   - ctx
-//   - streams
+//   - ctx context.Context
+//   - streams ...string
 func (_e *MockCmdable_Expecter) XReadStreams(ctx interface{}, streams ...interface{}) *MockCmdable_XReadStreams_Call {
 	return &MockCmdable_XReadStreams_Call{Call: _e.mock.On("XReadStreams",
 		append([]interface{}{ctx}, streams...)...)}
@@ -23059,8 +30064,20 @@ func (_e *MockCmdable_Expecter) XReadStreams(ctx interface{}, streams ...interfa
 
 func (_c *MockCmdable_XReadStreams_Call) Run(run func(ctx context.Context, streams ...string)) *MockCmdable_XReadStreams_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -23100,17 +30117,38 @@ type MockCmdable_XRevRange_Call struct {
 }
 
 // XRevRange is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - start
-//   - stop
+//   - ctx context.Context
+//   - stream string
+//   - start string
+//   - stop string
 func (_e *MockCmdable_Expecter) XRevRange(ctx interface{}, stream interface{}, start interface{}, stop interface{}) *MockCmdable_XRevRange_Call {
 	return &MockCmdable_XRevRange_Call{Call: _e.mock.On("XRevRange", ctx, stream, start, stop)}
 }
 
 func (_c *MockCmdable_XRevRange_Call) Run(run func(ctx context.Context, stream string, start string, stop string)) *MockCmdable_XRevRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -23150,18 +30188,44 @@ type MockCmdable_XRevRangeN_Call struct {
 }
 
 // XRevRangeN is a helper method to define mock.On call
-//   - ctx
-//   - stream
-//   - start
-//   - stop
-//   - count
+//   - ctx context.Context
+//   - stream string
+//   - start string
+//   - stop string
+//   - count int64
 func (_e *MockCmdable_Expecter) XRevRangeN(ctx interface{}, stream interface{}, start interface{}, stop interface{}, count interface{}) *MockCmdable_XRevRangeN_Call {
 	return &MockCmdable_XRevRangeN_Call{Call: _e.mock.On("XRevRangeN", ctx, stream, start, stop, count)}
 }
 
 func (_c *MockCmdable_XRevRangeN_Call) Run(run func(ctx context.Context, stream string, start string, stop string, count int64)) *MockCmdable_XRevRangeN_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string), args[4].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -23201,16 +30265,32 @@ type MockCmdable_XTrimMaxLen_Call struct {
 }
 
 // XTrimMaxLen is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - maxLen
+//   - ctx context.Context
+//   - key string
+//   - maxLen int64
 func (_e *MockCmdable_Expecter) XTrimMaxLen(ctx interface{}, key interface{}, maxLen interface{}) *MockCmdable_XTrimMaxLen_Call {
 	return &MockCmdable_XTrimMaxLen_Call{Call: _e.mock.On("XTrimMaxLen", ctx, key, maxLen)}
 }
 
 func (_c *MockCmdable_XTrimMaxLen_Call) Run(run func(ctx context.Context, key string, maxLen int64)) *MockCmdable_XTrimMaxLen_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -23250,17 +30330,38 @@ type MockCmdable_XTrimMaxLenApprox_Call struct {
 }
 
 // XTrimMaxLenApprox is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - maxLen
-//   - limit
+//   - ctx context.Context
+//   - key string
+//   - maxLen int64
+//   - limit int64
 func (_e *MockCmdable_Expecter) XTrimMaxLenApprox(ctx interface{}, key interface{}, maxLen interface{}, limit interface{}) *MockCmdable_XTrimMaxLenApprox_Call {
 	return &MockCmdable_XTrimMaxLenApprox_Call{Call: _e.mock.On("XTrimMaxLenApprox", ctx, key, maxLen, limit)}
 }
 
 func (_c *MockCmdable_XTrimMaxLenApprox_Call) Run(run func(ctx context.Context, key string, maxLen int64, limit int64)) *MockCmdable_XTrimMaxLenApprox_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -23300,16 +30401,32 @@ type MockCmdable_XTrimMinID_Call struct {
 }
 
 // XTrimMinID is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - minID
+//   - ctx context.Context
+//   - key string
+//   - minID string
 func (_e *MockCmdable_Expecter) XTrimMinID(ctx interface{}, key interface{}, minID interface{}) *MockCmdable_XTrimMinID_Call {
 	return &MockCmdable_XTrimMinID_Call{Call: _e.mock.On("XTrimMinID", ctx, key, minID)}
 }
 
 func (_c *MockCmdable_XTrimMinID_Call) Run(run func(ctx context.Context, key string, minID string)) *MockCmdable_XTrimMinID_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -23349,17 +30466,38 @@ type MockCmdable_XTrimMinIDApprox_Call struct {
 }
 
 // XTrimMinIDApprox is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - minID
-//   - limit
+//   - ctx context.Context
+//   - key string
+//   - minID string
+//   - limit int64
 func (_e *MockCmdable_Expecter) XTrimMinIDApprox(ctx interface{}, key interface{}, minID interface{}, limit interface{}) *MockCmdable_XTrimMinIDApprox_Call {
 	return &MockCmdable_XTrimMinIDApprox_Call{Call: _e.mock.On("XTrimMinIDApprox", ctx, key, minID, limit)}
 }
 
 func (_c *MockCmdable_XTrimMinIDApprox_Call) Run(run func(ctx context.Context, key string, minID string, limit int64)) *MockCmdable_XTrimMinIDApprox_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -23405,9 +30543,9 @@ type MockCmdable_ZAdd_Call struct {
 }
 
 // ZAdd is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...redis.Z
 func (_e *MockCmdable_Expecter) ZAdd(ctx interface{}, key interface{}, members ...interface{}) *MockCmdable_ZAdd_Call {
 	return &MockCmdable_ZAdd_Call{Call: _e.mock.On("ZAdd",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -23415,8 +30553,25 @@ func (_e *MockCmdable_Expecter) ZAdd(ctx interface{}, key interface{}, members .
 
 func (_c *MockCmdable_ZAdd_Call) Run(run func(ctx context.Context, key string, members ...redis.Z)) *MockCmdable_ZAdd_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]redis.Z)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []redis.Z
+		var variadicArgs []redis.Z
+		if len(args) > 2 {
+			variadicArgs = args[2].([]redis.Z)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -23456,16 +30611,32 @@ type MockCmdable_ZAddArgs_Call struct {
 }
 
 // ZAddArgs is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - args
+//   - ctx context.Context
+//   - key string
+//   - args redis.ZAddArgs
 func (_e *MockCmdable_Expecter) ZAddArgs(ctx interface{}, key interface{}, args interface{}) *MockCmdable_ZAddArgs_Call {
 	return &MockCmdable_ZAddArgs_Call{Call: _e.mock.On("ZAddArgs", ctx, key, args)}
 }
 
 func (_c *MockCmdable_ZAddArgs_Call) Run(run func(ctx context.Context, key string, args redis.ZAddArgs)) *MockCmdable_ZAddArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(redis.ZAddArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 redis.ZAddArgs
+		if args[2] != nil {
+			arg2 = args[2].(redis.ZAddArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -23505,16 +30676,32 @@ type MockCmdable_ZAddArgsIncr_Call struct {
 }
 
 // ZAddArgsIncr is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - args
+//   - ctx context.Context
+//   - key string
+//   - args redis.ZAddArgs
 func (_e *MockCmdable_Expecter) ZAddArgsIncr(ctx interface{}, key interface{}, args interface{}) *MockCmdable_ZAddArgsIncr_Call {
 	return &MockCmdable_ZAddArgsIncr_Call{Call: _e.mock.On("ZAddArgsIncr", ctx, key, args)}
 }
 
 func (_c *MockCmdable_ZAddArgsIncr_Call) Run(run func(ctx context.Context, key string, args redis.ZAddArgs)) *MockCmdable_ZAddArgsIncr_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(redis.ZAddArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 redis.ZAddArgs
+		if args[2] != nil {
+			arg2 = args[2].(redis.ZAddArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -23560,9 +30747,9 @@ type MockCmdable_ZAddGT_Call struct {
 }
 
 // ZAddGT is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...redis.Z
 func (_e *MockCmdable_Expecter) ZAddGT(ctx interface{}, key interface{}, members ...interface{}) *MockCmdable_ZAddGT_Call {
 	return &MockCmdable_ZAddGT_Call{Call: _e.mock.On("ZAddGT",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -23570,8 +30757,25 @@ func (_e *MockCmdable_Expecter) ZAddGT(ctx interface{}, key interface{}, members
 
 func (_c *MockCmdable_ZAddGT_Call) Run(run func(ctx context.Context, key string, members ...redis.Z)) *MockCmdable_ZAddGT_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]redis.Z)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []redis.Z
+		var variadicArgs []redis.Z
+		if len(args) > 2 {
+			variadicArgs = args[2].([]redis.Z)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -23617,9 +30821,9 @@ type MockCmdable_ZAddLT_Call struct {
 }
 
 // ZAddLT is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...redis.Z
 func (_e *MockCmdable_Expecter) ZAddLT(ctx interface{}, key interface{}, members ...interface{}) *MockCmdable_ZAddLT_Call {
 	return &MockCmdable_ZAddLT_Call{Call: _e.mock.On("ZAddLT",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -23627,8 +30831,25 @@ func (_e *MockCmdable_Expecter) ZAddLT(ctx interface{}, key interface{}, members
 
 func (_c *MockCmdable_ZAddLT_Call) Run(run func(ctx context.Context, key string, members ...redis.Z)) *MockCmdable_ZAddLT_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]redis.Z)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []redis.Z
+		var variadicArgs []redis.Z
+		if len(args) > 2 {
+			variadicArgs = args[2].([]redis.Z)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -23674,9 +30895,9 @@ type MockCmdable_ZAddNX_Call struct {
 }
 
 // ZAddNX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...redis.Z
 func (_e *MockCmdable_Expecter) ZAddNX(ctx interface{}, key interface{}, members ...interface{}) *MockCmdable_ZAddNX_Call {
 	return &MockCmdable_ZAddNX_Call{Call: _e.mock.On("ZAddNX",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -23684,8 +30905,25 @@ func (_e *MockCmdable_Expecter) ZAddNX(ctx interface{}, key interface{}, members
 
 func (_c *MockCmdable_ZAddNX_Call) Run(run func(ctx context.Context, key string, members ...redis.Z)) *MockCmdable_ZAddNX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]redis.Z)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []redis.Z
+		var variadicArgs []redis.Z
+		if len(args) > 2 {
+			variadicArgs = args[2].([]redis.Z)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -23731,9 +30969,9 @@ type MockCmdable_ZAddXX_Call struct {
 }
 
 // ZAddXX is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...redis.Z
 func (_e *MockCmdable_Expecter) ZAddXX(ctx interface{}, key interface{}, members ...interface{}) *MockCmdable_ZAddXX_Call {
 	return &MockCmdable_ZAddXX_Call{Call: _e.mock.On("ZAddXX",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -23741,8 +30979,25 @@ func (_e *MockCmdable_Expecter) ZAddXX(ctx interface{}, key interface{}, members
 
 func (_c *MockCmdable_ZAddXX_Call) Run(run func(ctx context.Context, key string, members ...redis.Z)) *MockCmdable_ZAddXX_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]redis.Z)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []redis.Z
+		var variadicArgs []redis.Z
+		if len(args) > 2 {
+			variadicArgs = args[2].([]redis.Z)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -23782,15 +31037,26 @@ type MockCmdable_ZCard_Call struct {
 }
 
 // ZCard is a helper method to define mock.On call
-//   - ctx
-//   - key
+//   - ctx context.Context
+//   - key string
 func (_e *MockCmdable_Expecter) ZCard(ctx interface{}, key interface{}) *MockCmdable_ZCard_Call {
 	return &MockCmdable_ZCard_Call{Call: _e.mock.On("ZCard", ctx, key)}
 }
 
 func (_c *MockCmdable_ZCard_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_ZCard_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -23830,17 +31096,38 @@ type MockCmdable_ZCount_Call struct {
 }
 
 // ZCount is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - min
-//   - max
+//   - ctx context.Context
+//   - key string
+//   - min string
+//   - max string
 func (_e *MockCmdable_Expecter) ZCount(ctx interface{}, key interface{}, min interface{}, max interface{}) *MockCmdable_ZCount_Call {
 	return &MockCmdable_ZCount_Call{Call: _e.mock.On("ZCount", ctx, key, min, max)}
 }
 
 func (_c *MockCmdable_ZCount_Call) Run(run func(ctx context.Context, key string, min string, max string)) *MockCmdable_ZCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -23886,8 +31173,8 @@ type MockCmdable_ZDiff_Call struct {
 }
 
 // ZDiff is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockCmdable_Expecter) ZDiff(ctx interface{}, keys ...interface{}) *MockCmdable_ZDiff_Call {
 	return &MockCmdable_ZDiff_Call{Call: _e.mock.On("ZDiff",
 		append([]interface{}{ctx}, keys...)...)}
@@ -23895,8 +31182,20 @@ func (_e *MockCmdable_Expecter) ZDiff(ctx interface{}, keys ...interface{}) *Moc
 
 func (_c *MockCmdable_ZDiff_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_ZDiff_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -23942,9 +31241,9 @@ type MockCmdable_ZDiffStore_Call struct {
 }
 
 // ZDiffStore is a helper method to define mock.On call
-//   - ctx
-//   - destination
-//   - keys
+//   - ctx context.Context
+//   - destination string
+//   - keys ...string
 func (_e *MockCmdable_Expecter) ZDiffStore(ctx interface{}, destination interface{}, keys ...interface{}) *MockCmdable_ZDiffStore_Call {
 	return &MockCmdable_ZDiffStore_Call{Call: _e.mock.On("ZDiffStore",
 		append([]interface{}{ctx, destination}, keys...)...)}
@@ -23952,8 +31251,25 @@ func (_e *MockCmdable_Expecter) ZDiffStore(ctx interface{}, destination interfac
 
 func (_c *MockCmdable_ZDiffStore_Call) Run(run func(ctx context.Context, destination string, keys ...string)) *MockCmdable_ZDiffStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -23999,8 +31315,8 @@ type MockCmdable_ZDiffWithScores_Call struct {
 }
 
 // ZDiffWithScores is a helper method to define mock.On call
-//   - ctx
-//   - keys
+//   - ctx context.Context
+//   - keys ...string
 func (_e *MockCmdable_Expecter) ZDiffWithScores(ctx interface{}, keys ...interface{}) *MockCmdable_ZDiffWithScores_Call {
 	return &MockCmdable_ZDiffWithScores_Call{Call: _e.mock.On("ZDiffWithScores",
 		append([]interface{}{ctx}, keys...)...)}
@@ -24008,8 +31324,20 @@ func (_e *MockCmdable_Expecter) ZDiffWithScores(ctx interface{}, keys ...interfa
 
 func (_c *MockCmdable_ZDiffWithScores_Call) Run(run func(ctx context.Context, keys ...string)) *MockCmdable_ZDiffWithScores_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[1].([]string)
-		run(args[0].(context.Context), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []string
+		var variadicArgs []string
+		if len(args) > 1 {
+			variadicArgs = args[1].([]string)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
 	})
 	return _c
 }
@@ -24049,17 +31377,38 @@ type MockCmdable_ZIncrBy_Call struct {
 }
 
 // ZIncrBy is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - increment
-//   - member
+//   - ctx context.Context
+//   - key string
+//   - increment float64
+//   - member string
 func (_e *MockCmdable_Expecter) ZIncrBy(ctx interface{}, key interface{}, increment interface{}, member interface{}) *MockCmdable_ZIncrBy_Call {
 	return &MockCmdable_ZIncrBy_Call{Call: _e.mock.On("ZIncrBy", ctx, key, increment, member)}
 }
 
 func (_c *MockCmdable_ZIncrBy_Call) Run(run func(ctx context.Context, key string, increment float64, member string)) *MockCmdable_ZIncrBy_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(float64), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 float64
+		if args[2] != nil {
+			arg2 = args[2].(float64)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -24099,15 +31448,26 @@ type MockCmdable_ZInter_Call struct {
 }
 
 // ZInter is a helper method to define mock.On call
-//   - ctx
-//   - store
+//   - ctx context.Context
+//   - store *redis.ZStore
 func (_e *MockCmdable_Expecter) ZInter(ctx interface{}, store interface{}) *MockCmdable_ZInter_Call {
 	return &MockCmdable_ZInter_Call{Call: _e.mock.On("ZInter", ctx, store)}
 }
 
 func (_c *MockCmdable_ZInter_Call) Run(run func(ctx context.Context, store *redis.ZStore)) *MockCmdable_ZInter_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.ZStore))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.ZStore
+		if args[1] != nil {
+			arg1 = args[1].(*redis.ZStore)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -24153,9 +31513,9 @@ type MockCmdable_ZInterCard_Call struct {
 }
 
 // ZInterCard is a helper method to define mock.On call
-//   - ctx
-//   - limit
-//   - keys
+//   - ctx context.Context
+//   - limit int64
+//   - keys ...string
 func (_e *MockCmdable_Expecter) ZInterCard(ctx interface{}, limit interface{}, keys ...interface{}) *MockCmdable_ZInterCard_Call {
 	return &MockCmdable_ZInterCard_Call{Call: _e.mock.On("ZInterCard",
 		append([]interface{}{ctx, limit}, keys...)...)}
@@ -24163,8 +31523,25 @@ func (_e *MockCmdable_Expecter) ZInterCard(ctx interface{}, limit interface{}, k
 
 func (_c *MockCmdable_ZInterCard_Call) Run(run func(ctx context.Context, limit int64, keys ...string)) *MockCmdable_ZInterCard_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(int64), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int64
+		if args[1] != nil {
+			arg1 = args[1].(int64)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -24204,16 +31581,32 @@ type MockCmdable_ZInterStore_Call struct {
 }
 
 // ZInterStore is a helper method to define mock.On call
-//   - ctx
-//   - destination
-//   - store
+//   - ctx context.Context
+//   - destination string
+//   - store *redis.ZStore
 func (_e *MockCmdable_Expecter) ZInterStore(ctx interface{}, destination interface{}, store interface{}) *MockCmdable_ZInterStore_Call {
 	return &MockCmdable_ZInterStore_Call{Call: _e.mock.On("ZInterStore", ctx, destination, store)}
 }
 
 func (_c *MockCmdable_ZInterStore_Call) Run(run func(ctx context.Context, destination string, store *redis.ZStore)) *MockCmdable_ZInterStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.ZStore))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.ZStore
+		if args[2] != nil {
+			arg2 = args[2].(*redis.ZStore)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -24253,15 +31646,26 @@ type MockCmdable_ZInterWithScores_Call struct {
 }
 
 // ZInterWithScores is a helper method to define mock.On call
-//   - ctx
-//   - store
+//   - ctx context.Context
+//   - store *redis.ZStore
 func (_e *MockCmdable_Expecter) ZInterWithScores(ctx interface{}, store interface{}) *MockCmdable_ZInterWithScores_Call {
 	return &MockCmdable_ZInterWithScores_Call{Call: _e.mock.On("ZInterWithScores", ctx, store)}
 }
 
 func (_c *MockCmdable_ZInterWithScores_Call) Run(run func(ctx context.Context, store *redis.ZStore)) *MockCmdable_ZInterWithScores_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(*redis.ZStore))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.ZStore
+		if args[1] != nil {
+			arg1 = args[1].(*redis.ZStore)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -24301,17 +31705,38 @@ type MockCmdable_ZLexCount_Call struct {
 }
 
 // ZLexCount is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - min
-//   - max
+//   - ctx context.Context
+//   - key string
+//   - min string
+//   - max string
 func (_e *MockCmdable_Expecter) ZLexCount(ctx interface{}, key interface{}, min interface{}, max interface{}) *MockCmdable_ZLexCount_Call {
 	return &MockCmdable_ZLexCount_Call{Call: _e.mock.On("ZLexCount", ctx, key, min, max)}
 }
 
 func (_c *MockCmdable_ZLexCount_Call) Run(run func(ctx context.Context, key string, min string, max string)) *MockCmdable_ZLexCount_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -24357,10 +31782,10 @@ type MockCmdable_ZMPop_Call struct {
 }
 
 // ZMPop is a helper method to define mock.On call
-//   - ctx
-//   - order
-//   - count
-//   - keys
+//   - ctx context.Context
+//   - order string
+//   - count int64
+//   - keys ...string
 func (_e *MockCmdable_Expecter) ZMPop(ctx interface{}, order interface{}, count interface{}, keys ...interface{}) *MockCmdable_ZMPop_Call {
 	return &MockCmdable_ZMPop_Call{Call: _e.mock.On("ZMPop",
 		append([]interface{}{ctx, order, count}, keys...)...)}
@@ -24368,8 +31793,30 @@ func (_e *MockCmdable_Expecter) ZMPop(ctx interface{}, order interface{}, count 
 
 func (_c *MockCmdable_ZMPop_Call) Run(run func(ctx context.Context, order string, count int64, keys ...string)) *MockCmdable_ZMPop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[3].([]string)
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 []string
+		var variadicArgs []string
+		if len(args) > 3 {
+			variadicArgs = args[3].([]string)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
 	})
 	return _c
 }
@@ -24415,9 +31862,9 @@ type MockCmdable_ZMScore_Call struct {
 }
 
 // ZMScore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...string
 func (_e *MockCmdable_Expecter) ZMScore(ctx interface{}, key interface{}, members ...interface{}) *MockCmdable_ZMScore_Call {
 	return &MockCmdable_ZMScore_Call{Call: _e.mock.On("ZMScore",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -24425,8 +31872,25 @@ func (_e *MockCmdable_Expecter) ZMScore(ctx interface{}, key interface{}, member
 
 func (_c *MockCmdable_ZMScore_Call) Run(run func(ctx context.Context, key string, members ...string)) *MockCmdable_ZMScore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]string)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []string
+		var variadicArgs []string
+		if len(args) > 2 {
+			variadicArgs = args[2].([]string)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -24472,9 +31936,9 @@ type MockCmdable_ZPopMax_Call struct {
 }
 
 // ZPopMax is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count ...int64
 func (_e *MockCmdable_Expecter) ZPopMax(ctx interface{}, key interface{}, count ...interface{}) *MockCmdable_ZPopMax_Call {
 	return &MockCmdable_ZPopMax_Call{Call: _e.mock.On("ZPopMax",
 		append([]interface{}{ctx, key}, count...)...)}
@@ -24482,8 +31946,25 @@ func (_e *MockCmdable_Expecter) ZPopMax(ctx interface{}, key interface{}, count 
 
 func (_c *MockCmdable_ZPopMax_Call) Run(run func(ctx context.Context, key string, count ...int64)) *MockCmdable_ZPopMax_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]int64)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []int64
+		var variadicArgs []int64
+		if len(args) > 2 {
+			variadicArgs = args[2].([]int64)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -24529,9 +32010,9 @@ type MockCmdable_ZPopMin_Call struct {
 }
 
 // ZPopMin is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count ...int64
 func (_e *MockCmdable_Expecter) ZPopMin(ctx interface{}, key interface{}, count ...interface{}) *MockCmdable_ZPopMin_Call {
 	return &MockCmdable_ZPopMin_Call{Call: _e.mock.On("ZPopMin",
 		append([]interface{}{ctx, key}, count...)...)}
@@ -24539,8 +32020,25 @@ func (_e *MockCmdable_Expecter) ZPopMin(ctx interface{}, key interface{}, count 
 
 func (_c *MockCmdable_ZPopMin_Call) Run(run func(ctx context.Context, key string, count ...int64)) *MockCmdable_ZPopMin_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]int64)
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []int64
+		var variadicArgs []int64
+		if len(args) > 2 {
+			variadicArgs = args[2].([]int64)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -24580,16 +32078,32 @@ type MockCmdable_ZRandMember_Call struct {
 }
 
 // ZRandMember is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count int
 func (_e *MockCmdable_Expecter) ZRandMember(ctx interface{}, key interface{}, count interface{}) *MockCmdable_ZRandMember_Call {
 	return &MockCmdable_ZRandMember_Call{Call: _e.mock.On("ZRandMember", ctx, key, count)}
 }
 
 func (_c *MockCmdable_ZRandMember_Call) Run(run func(ctx context.Context, key string, count int)) *MockCmdable_ZRandMember_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -24629,16 +32143,32 @@ type MockCmdable_ZRandMemberWithScores_Call struct {
 }
 
 // ZRandMemberWithScores is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - count int
 func (_e *MockCmdable_Expecter) ZRandMemberWithScores(ctx interface{}, key interface{}, count interface{}) *MockCmdable_ZRandMemberWithScores_Call {
 	return &MockCmdable_ZRandMemberWithScores_Call{Call: _e.mock.On("ZRandMemberWithScores", ctx, key, count)}
 }
 
 func (_c *MockCmdable_ZRandMemberWithScores_Call) Run(run func(ctx context.Context, key string, count int)) *MockCmdable_ZRandMemberWithScores_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -24678,17 +32208,38 @@ type MockCmdable_ZRange_Call struct {
 }
 
 // ZRange is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - start
-//   - stop
+//   - ctx context.Context
+//   - key string
+//   - start int64
+//   - stop int64
 func (_e *MockCmdable_Expecter) ZRange(ctx interface{}, key interface{}, start interface{}, stop interface{}) *MockCmdable_ZRange_Call {
 	return &MockCmdable_ZRange_Call{Call: _e.mock.On("ZRange", ctx, key, start, stop)}
 }
 
 func (_c *MockCmdable_ZRange_Call) Run(run func(ctx context.Context, key string, start int64, stop int64)) *MockCmdable_ZRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -24728,15 +32279,26 @@ type MockCmdable_ZRangeArgs_Call struct {
 }
 
 // ZRangeArgs is a helper method to define mock.On call
-//   - ctx
-//   - z
+//   - ctx context.Context
+//   - z redis.ZRangeArgs
 func (_e *MockCmdable_Expecter) ZRangeArgs(ctx interface{}, z interface{}) *MockCmdable_ZRangeArgs_Call {
 	return &MockCmdable_ZRangeArgs_Call{Call: _e.mock.On("ZRangeArgs", ctx, z)}
 }
 
 func (_c *MockCmdable_ZRangeArgs_Call) Run(run func(ctx context.Context, z redis.ZRangeArgs)) *MockCmdable_ZRangeArgs_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(redis.ZRangeArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 redis.ZRangeArgs
+		if args[1] != nil {
+			arg1 = args[1].(redis.ZRangeArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -24776,15 +32338,26 @@ type MockCmdable_ZRangeArgsWithScores_Call struct {
 }
 
 // ZRangeArgsWithScores is a helper method to define mock.On call
-//   - ctx
-//   - z
+//   - ctx context.Context
+//   - z redis.ZRangeArgs
 func (_e *MockCmdable_Expecter) ZRangeArgsWithScores(ctx interface{}, z interface{}) *MockCmdable_ZRangeArgsWithScores_Call {
 	return &MockCmdable_ZRangeArgsWithScores_Call{Call: _e.mock.On("ZRangeArgsWithScores", ctx, z)}
 }
 
 func (_c *MockCmdable_ZRangeArgsWithScores_Call) Run(run func(ctx context.Context, z redis.ZRangeArgs)) *MockCmdable_ZRangeArgsWithScores_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(redis.ZRangeArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 redis.ZRangeArgs
+		if args[1] != nil {
+			arg1 = args[1].(redis.ZRangeArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -24824,16 +32397,32 @@ type MockCmdable_ZRangeByLex_Call struct {
 }
 
 // ZRangeByLex is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - opt
+//   - ctx context.Context
+//   - key string
+//   - opt *redis.ZRangeBy
 func (_e *MockCmdable_Expecter) ZRangeByLex(ctx interface{}, key interface{}, opt interface{}) *MockCmdable_ZRangeByLex_Call {
 	return &MockCmdable_ZRangeByLex_Call{Call: _e.mock.On("ZRangeByLex", ctx, key, opt)}
 }
 
 func (_c *MockCmdable_ZRangeByLex_Call) Run(run func(ctx context.Context, key string, opt *redis.ZRangeBy)) *MockCmdable_ZRangeByLex_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.ZRangeBy))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.ZRangeBy
+		if args[2] != nil {
+			arg2 = args[2].(*redis.ZRangeBy)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -24873,16 +32462,32 @@ type MockCmdable_ZRangeByScore_Call struct {
 }
 
 // ZRangeByScore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - opt
+//   - ctx context.Context
+//   - key string
+//   - opt *redis.ZRangeBy
 func (_e *MockCmdable_Expecter) ZRangeByScore(ctx interface{}, key interface{}, opt interface{}) *MockCmdable_ZRangeByScore_Call {
 	return &MockCmdable_ZRangeByScore_Call{Call: _e.mock.On("ZRangeByScore", ctx, key, opt)}
 }
 
 func (_c *MockCmdable_ZRangeByScore_Call) Run(run func(ctx context.Context, key string, opt *redis.ZRangeBy)) *MockCmdable_ZRangeByScore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.ZRangeBy))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.ZRangeBy
+		if args[2] != nil {
+			arg2 = args[2].(*redis.ZRangeBy)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -24922,16 +32527,32 @@ type MockCmdable_ZRangeByScoreWithScores_Call struct {
 }
 
 // ZRangeByScoreWithScores is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - opt
+//   - ctx context.Context
+//   - key string
+//   - opt *redis.ZRangeBy
 func (_e *MockCmdable_Expecter) ZRangeByScoreWithScores(ctx interface{}, key interface{}, opt interface{}) *MockCmdable_ZRangeByScoreWithScores_Call {
 	return &MockCmdable_ZRangeByScoreWithScores_Call{Call: _e.mock.On("ZRangeByScoreWithScores", ctx, key, opt)}
 }
 
 func (_c *MockCmdable_ZRangeByScoreWithScores_Call) Run(run func(ctx context.Context, key string, opt *redis.ZRangeBy)) *MockCmdable_ZRangeByScoreWithScores_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.ZRangeBy))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.ZRangeBy
+		if args[2] != nil {
+			arg2 = args[2].(*redis.ZRangeBy)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -24971,16 +32592,32 @@ type MockCmdable_ZRangeStore_Call struct {
 }
 
 // ZRangeStore is a helper method to define mock.On call
-//   - ctx
-//   - dst
-//   - z
+//   - ctx context.Context
+//   - dst string
+//   - z redis.ZRangeArgs
 func (_e *MockCmdable_Expecter) ZRangeStore(ctx interface{}, dst interface{}, z interface{}) *MockCmdable_ZRangeStore_Call {
 	return &MockCmdable_ZRangeStore_Call{Call: _e.mock.On("ZRangeStore", ctx, dst, z)}
 }
 
 func (_c *MockCmdable_ZRangeStore_Call) Run(run func(ctx context.Context, dst string, z redis.ZRangeArgs)) *MockCmdable_ZRangeStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(redis.ZRangeArgs))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 redis.ZRangeArgs
+		if args[2] != nil {
+			arg2 = args[2].(redis.ZRangeArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -25020,17 +32657,38 @@ type MockCmdable_ZRangeWithScores_Call struct {
 }
 
 // ZRangeWithScores is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - start
-//   - stop
+//   - ctx context.Context
+//   - key string
+//   - start int64
+//   - stop int64
 func (_e *MockCmdable_Expecter) ZRangeWithScores(ctx interface{}, key interface{}, start interface{}, stop interface{}) *MockCmdable_ZRangeWithScores_Call {
 	return &MockCmdable_ZRangeWithScores_Call{Call: _e.mock.On("ZRangeWithScores", ctx, key, start, stop)}
 }
 
 func (_c *MockCmdable_ZRangeWithScores_Call) Run(run func(ctx context.Context, key string, start int64, stop int64)) *MockCmdable_ZRangeWithScores_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -25070,16 +32728,32 @@ type MockCmdable_ZRank_Call struct {
 }
 
 // ZRank is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - member
+//   - ctx context.Context
+//   - key string
+//   - member string
 func (_e *MockCmdable_Expecter) ZRank(ctx interface{}, key interface{}, member interface{}) *MockCmdable_ZRank_Call {
 	return &MockCmdable_ZRank_Call{Call: _e.mock.On("ZRank", ctx, key, member)}
 }
 
 func (_c *MockCmdable_ZRank_Call) Run(run func(ctx context.Context, key string, member string)) *MockCmdable_ZRank_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -25119,16 +32793,32 @@ type MockCmdable_ZRankWithScore_Call struct {
 }
 
 // ZRankWithScore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - member
+//   - ctx context.Context
+//   - key string
+//   - member string
 func (_e *MockCmdable_Expecter) ZRankWithScore(ctx interface{}, key interface{}, member interface{}) *MockCmdable_ZRankWithScore_Call {
 	return &MockCmdable_ZRankWithScore_Call{Call: _e.mock.On("ZRankWithScore", ctx, key, member)}
 }
 
 func (_c *MockCmdable_ZRankWithScore_Call) Run(run func(ctx context.Context, key string, member string)) *MockCmdable_ZRankWithScore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -25174,9 +32864,9 @@ type MockCmdable_ZRem_Call struct {
 }
 
 // ZRem is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - members
+//   - ctx context.Context
+//   - key string
+//   - members ...interface{}
 func (_e *MockCmdable_Expecter) ZRem(ctx interface{}, key interface{}, members ...interface{}) *MockCmdable_ZRem_Call {
 	return &MockCmdable_ZRem_Call{Call: _e.mock.On("ZRem",
 		append([]interface{}{ctx, key}, members...)...)}
@@ -25184,8 +32874,25 @@ func (_e *MockCmdable_Expecter) ZRem(ctx interface{}, key interface{}, members .
 
 func (_c *MockCmdable_ZRem_Call) Run(run func(ctx context.Context, key string, members ...interface{})) *MockCmdable_ZRem_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		variadicArgs := args[2].([]interface{})
-		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
 	})
 	return _c
 }
@@ -25225,17 +32932,38 @@ type MockCmdable_ZRemRangeByLex_Call struct {
 }
 
 // ZRemRangeByLex is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - min
-//   - max
+//   - ctx context.Context
+//   - key string
+//   - min string
+//   - max string
 func (_e *MockCmdable_Expecter) ZRemRangeByLex(ctx interface{}, key interface{}, min interface{}, max interface{}) *MockCmdable_ZRemRangeByLex_Call {
 	return &MockCmdable_ZRemRangeByLex_Call{Call: _e.mock.On("ZRemRangeByLex", ctx, key, min, max)}
 }
 
 func (_c *MockCmdable_ZRemRangeByLex_Call) Run(run func(ctx context.Context, key string, min string, max string)) *MockCmdable_ZRemRangeByLex_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -25275,17 +33003,38 @@ type MockCmdable_ZRemRangeByRank_Call struct {
 }
 
 // ZRemRangeByRank is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - start
-//   - stop
+//   - ctx context.Context
+//   - key string
+//   - start int64
+//   - stop int64
 func (_e *MockCmdable_Expecter) ZRemRangeByRank(ctx interface{}, key interface{}, start interface{}, stop interface{}) *MockCmdable_ZRemRangeByRank_Call {
 	return &MockCmdable_ZRemRangeByRank_Call{Call: _e.mock.On("ZRemRangeByRank", ctx, key, start, stop)}
 }
 
 func (_c *MockCmdable_ZRemRangeByRank_Call) Run(run func(ctx context.Context, key string, start int64, stop int64)) *MockCmdable_ZRemRangeByRank_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -25325,17 +33074,38 @@ type MockCmdable_ZRemRangeByScore_Call struct {
 }
 
 // ZRemRangeByScore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - min
-//   - max
+//   - ctx context.Context
+//   - key string
+//   - min string
+//   - max string
 func (_e *MockCmdable_Expecter) ZRemRangeByScore(ctx interface{}, key interface{}, min interface{}, max interface{}) *MockCmdable_ZRemRangeByScore_Call {
 	return &MockCmdable_ZRemRangeByScore_Call{Call: _e.mock.On("ZRemRangeByScore", ctx, key, min, max)}
 }
 
 func (_c *MockCmdable_ZRemRangeByScore_Call) Run(run func(ctx context.Context, key string, min string, max string)) *MockCmdable_ZRemRangeByScore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -25375,17 +33145,38 @@ type MockCmdable_ZRevRange_Call struct {
 }
 
 // ZRevRange is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - start
-//   - stop
+//   - ctx context.Context
+//   - key string
+//   - start int64
+//   - stop int64
 func (_e *MockCmdable_Expecter) ZRevRange(ctx interface{}, key interface{}, start interface{}, stop interface{}) *MockCmdable_ZRevRange_Call {
 	return &MockCmdable_ZRevRange_Call{Call: _e.mock.On("ZRevRange", ctx, key, start, stop)}
 }
 
 func (_c *MockCmdable_ZRevRange_Call) Run(run func(ctx context.Context, key string, start int64, stop int64)) *MockCmdable_ZRevRange_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -25425,16 +33216,32 @@ type MockCmdable_ZRevRangeByLex_Call struct {
 }
 
 // ZRevRangeByLex is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - opt
+//   - ctx context.Context
+//   - key string
+//   - opt *redis.ZRangeBy
 func (_e *MockCmdable_Expecter) ZRevRangeByLex(ctx interface{}, key interface{}, opt interface{}) *MockCmdable_ZRevRangeByLex_Call {
 	return &MockCmdable_ZRevRangeByLex_Call{Call: _e.mock.On("ZRevRangeByLex", ctx, key, opt)}
 }
 
 func (_c *MockCmdable_ZRevRangeByLex_Call) Run(run func(ctx context.Context, key string, opt *redis.ZRangeBy)) *MockCmdable_ZRevRangeByLex_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.ZRangeBy))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.ZRangeBy
+		if args[2] != nil {
+			arg2 = args[2].(*redis.ZRangeBy)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -25474,16 +33281,32 @@ type MockCmdable_ZRevRangeByScore_Call struct {
 }
 
 // ZRevRangeByScore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - opt
+//   - ctx context.Context
+//   - key string
+//   - opt *redis.ZRangeBy
 func (_e *MockCmdable_Expecter) ZRevRangeByScore(ctx interface{}, key interface{}, opt interface{}) *MockCmdable_ZRevRangeByScore_Call {
 	return &MockCmdable_ZRevRangeByScore_Call{Call: _e.mock.On("ZRevRangeByScore", ctx, key, opt)}
 }
 
 func (_c *MockCmdable_ZRevRangeByScore_Call) Run(run func(ctx context.Context, key string, opt *redis.ZRangeBy)) *MockCmdable_ZRevRangeByScore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.ZRangeBy))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.ZRangeBy
+		if args[2] != nil {
+			arg2 = args[2].(*redis.ZRangeBy)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -25523,16 +33346,32 @@ type MockCmdable_ZRevRangeByScoreWithScores_Call struct {
 }
 
 // ZRevRangeByScoreWithScores is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - opt
+//   - ctx context.Context
+//   - key string
+//   - opt *redis.ZRangeBy
 func (_e *MockCmdable_Expecter) ZRevRangeByScoreWithScores(ctx interface{}, key interface{}, opt interface{}) *MockCmdable_ZRevRangeByScoreWithScores_Call {
 	return &MockCmdable_ZRevRangeByScoreWithScores_Call{Call: _e.mock.On("ZRevRangeByScoreWithScores", ctx, key, opt)}
 }
 
 func (_c *MockCmdable_ZRevRangeByScoreWithScores_Call) Run(run func(ctx context.Context, key string, opt *redis.ZRangeBy)) *MockCmdable_ZRevRangeByScoreWithScores_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.ZRangeBy))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.ZRangeBy
+		if args[2] != nil {
+			arg2 = args[2].(*redis.ZRangeBy)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -25572,17 +33411,38 @@ type MockCmdable_ZRevRangeWithScores_Call struct {
 }
 
 // ZRevRangeWithScores is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - start
-//   - stop
+//   - ctx context.Context
+//   - key string
+//   - start int64
+//   - stop int64
 func (_e *MockCmdable_Expecter) ZRevRangeWithScores(ctx interface{}, key interface{}, start interface{}, stop interface{}) *MockCmdable_ZRevRangeWithScores_Call {
 	return &MockCmdable_ZRevRangeWithScores_Call{Call: _e.mock.On("ZRevRangeWithScores", ctx, key, start, stop)}
 }
 
 func (_c *MockCmdable_ZRevRangeWithScores_Call) Run(run func(ctx context.Context, key string, start int64, stop int64)) *MockCmdable_ZRevRangeWithScores_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(int64), args[3].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int64
+		if args[2] != nil {
+			arg2 = args[2].(int64)
+		}
+		var arg3 int64
+		if args[3] != nil {
+			arg3 = args[3].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
 	})
 	return _c
 }
@@ -25622,16 +33482,32 @@ type MockCmdable_ZRevRank_Call struct {
 }
 
 // ZRevRank is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - member
+//   - ctx context.Context
+//   - key string
+//   - member string
 func (_e *MockCmdable_Expecter) ZRevRank(ctx interface{}, key interface{}, member interface{}) *MockCmdable_ZRevRank_Call {
 	return &MockCmdable_ZRevRank_Call{Call: _e.mock.On("ZRevRank", ctx, key, member)}
 }
 
 func (_c *MockCmdable_ZRevRank_Call) Run(run func(ctx context.Context, key string, member string)) *MockCmdable_ZRevRank_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -25671,16 +33547,32 @@ type MockCmdable_ZRevRankWithScore_Call struct {
 }
 
 // ZRevRankWithScore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - member
+//   - ctx context.Context
+//   - key string
+//   - member string
 func (_e *MockCmdable_Expecter) ZRevRankWithScore(ctx interface{}, key interface{}, member interface{}) *MockCmdable_ZRevRankWithScore_Call {
 	return &MockCmdable_ZRevRankWithScore_Call{Call: _e.mock.On("ZRevRankWithScore", ctx, key, member)}
 }
 
 func (_c *MockCmdable_ZRevRankWithScore_Call) Run(run func(ctx context.Context, key string, member string)) *MockCmdable_ZRevRankWithScore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -25720,18 +33612,44 @@ type MockCmdable_ZScan_Call struct {
 }
 
 // ZScan is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - cursor
-//   - match
-//   - count
+//   - ctx context.Context
+//   - key string
+//   - cursor uint64
+//   - match string
+//   - count int64
 func (_e *MockCmdable_Expecter) ZScan(ctx interface{}, key interface{}, cursor interface{}, match interface{}, count interface{}) *MockCmdable_ZScan_Call {
 	return &MockCmdable_ZScan_Call{Call: _e.mock.On("ZScan", ctx, key, cursor, match, count)}
 }
 
 func (_c *MockCmdable_ZScan_Call) Run(run func(ctx context.Context, key string, cursor uint64, match string, count int64)) *MockCmdable_ZScan_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(uint64), args[3].(string), args[4].(int64))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 uint64
+		if args[2] != nil {
+			arg2 = args[2].(uint64)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
 	})
 	return _c
 }
@@ -25771,16 +33689,32 @@ type MockCmdable_ZScore_Call struct {
 }
 
 // ZScore is a helper method to define mock.On call
-//   - ctx
-//   - key
-//   - member
+//   - ctx context.Context
+//   - key string
+//   - member string
 func (_e *MockCmdable_Expecter) ZScore(ctx interface{}, key interface{}, member interface{}) *MockCmdable_ZScore_Call {
 	return &MockCmdable_ZScore_Call{Call: _e.mock.On("ZScore", ctx, key, member)}
 }
 
 func (_c *MockCmdable_ZScore_Call) Run(run func(ctx context.Context, key string, member string)) *MockCmdable_ZScore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(string))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -25820,15 +33754,26 @@ type MockCmdable_ZUnion_Call struct {
 }
 
 // ZUnion is a helper method to define mock.On call
-//   - ctx
-//   - store
+//   - ctx context.Context
+//   - store redis.ZStore
 func (_e *MockCmdable_Expecter) ZUnion(ctx interface{}, store interface{}) *MockCmdable_ZUnion_Call {
 	return &MockCmdable_ZUnion_Call{Call: _e.mock.On("ZUnion", ctx, store)}
 }
 
 func (_c *MockCmdable_ZUnion_Call) Run(run func(ctx context.Context, store redis.ZStore)) *MockCmdable_ZUnion_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(redis.ZStore))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 redis.ZStore
+		if args[1] != nil {
+			arg1 = args[1].(redis.ZStore)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
@@ -25868,16 +33813,32 @@ type MockCmdable_ZUnionStore_Call struct {
 }
 
 // ZUnionStore is a helper method to define mock.On call
-//   - ctx
-//   - dest
-//   - store
+//   - ctx context.Context
+//   - dest string
+//   - store *redis.ZStore
 func (_e *MockCmdable_Expecter) ZUnionStore(ctx interface{}, dest interface{}, store interface{}) *MockCmdable_ZUnionStore_Call {
 	return &MockCmdable_ZUnionStore_Call{Call: _e.mock.On("ZUnionStore", ctx, dest, store)}
 }
 
 func (_c *MockCmdable_ZUnionStore_Call) Run(run func(ctx context.Context, dest string, store *redis.ZStore)) *MockCmdable_ZUnionStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(string), args[2].(*redis.ZStore))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.ZStore
+		if args[2] != nil {
+			arg2 = args[2].(*redis.ZStore)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
 	})
 	return _c
 }
@@ -25917,15 +33878,26 @@ type MockCmdable_ZUnionWithScores_Call struct {
 }
 
 // ZUnionWithScores is a helper method to define mock.On call
-//   - ctx
-//   - store
+//   - ctx context.Context
+//   - store redis.ZStore
 func (_e *MockCmdable_Expecter) ZUnionWithScores(ctx interface{}, store interface{}) *MockCmdable_ZUnionWithScores_Call {
 	return &MockCmdable_ZUnionWithScores_Call{Call: _e.mock.On("ZUnionWithScores", ctx, store)}
 }
 
 func (_c *MockCmdable_ZUnionWithScores_Call) Run(run func(ctx context.Context, store redis.ZStore)) *MockCmdable_ZUnionWithScores_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context), args[1].(redis.ZStore))
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 redis.ZStore
+		if args[1] != nil {
+			arg1 = args[1].(redis.ZStore)
+		}
+		run(
+			arg0,
+			arg1,
+		)
 	})
 	return _c
 }
