@@ -7,10 +7,10 @@ require (
 	github.com/dsh2dsh/expx-dotenv v1.4.0
 	github.com/dsh2dsh/go-tinylfu v1.0.3
 	github.com/klauspost/compress v1.18.0
-	github.com/redis/go-redis/v9 v9.9.0
+	github.com/redis/go-redis/v9 v9.10.0
 	github.com/stretchr/testify v1.10.0
 	github.com/vmihailenco/msgpack/v5 v5.4.1
-	golang.org/x/sync v0.14.0
+	golang.org/x/sync v0.15.0
 )
 
 require (

@@ -28458,6 +28458,1194 @@ func (_c *MockCmdable_Unlink_Call) RunAndReturn(run func(ctx context.Context, ke
 	return _c
 }
 
+// VAdd provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) VAdd(ctx context.Context, key string, element string, val redis.Vector) *redis.BoolCmd {
+	ret := _mock.Called(ctx, key, element, val)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VAdd")
+	}
+
+	var r0 *redis.BoolCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, redis.Vector) *redis.BoolCmd); ok {
+		r0 = returnFunc(ctx, key, element, val)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.BoolCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_VAdd_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VAdd'
+type MockCmdable_VAdd_Call struct {
+	*mock.Call
+}
+
+// VAdd is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - element string
+//   - val redis.Vector
+func (_e *MockCmdable_Expecter) VAdd(ctx interface{}, key interface{}, element interface{}, val interface{}) *MockCmdable_VAdd_Call {
+	return &MockCmdable_VAdd_Call{Call: _e.mock.On("VAdd", ctx, key, element, val)}
+}
+
+func (_c *MockCmdable_VAdd_Call) Run(run func(ctx context.Context, key string, element string, val redis.Vector)) *MockCmdable_VAdd_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 redis.Vector
+		if args[3] != nil {
+			arg3 = args[3].(redis.Vector)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_VAdd_Call) Return(boolCmd *redis.BoolCmd) *MockCmdable_VAdd_Call {
+	_c.Call.Return(boolCmd)
+	return _c
+}
+
+func (_c *MockCmdable_VAdd_Call) RunAndReturn(run func(ctx context.Context, key string, element string, val redis.Vector) *redis.BoolCmd) *MockCmdable_VAdd_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VAddWithArgs provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) VAddWithArgs(ctx context.Context, key string, element string, val redis.Vector, addArgs *redis.VAddArgs) *redis.BoolCmd {
+	ret := _mock.Called(ctx, key, element, val, addArgs)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VAddWithArgs")
+	}
+
+	var r0 *redis.BoolCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, redis.Vector, *redis.VAddArgs) *redis.BoolCmd); ok {
+		r0 = returnFunc(ctx, key, element, val, addArgs)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.BoolCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_VAddWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VAddWithArgs'
+type MockCmdable_VAddWithArgs_Call struct {
+	*mock.Call
+}
+
+// VAddWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - element string
+//   - val redis.Vector
+//   - addArgs *redis.VAddArgs
+func (_e *MockCmdable_Expecter) VAddWithArgs(ctx interface{}, key interface{}, element interface{}, val interface{}, addArgs interface{}) *MockCmdable_VAddWithArgs_Call {
+	return &MockCmdable_VAddWithArgs_Call{Call: _e.mock.On("VAddWithArgs", ctx, key, element, val, addArgs)}
+}
+
+func (_c *MockCmdable_VAddWithArgs_Call) Run(run func(ctx context.Context, key string, element string, val redis.Vector, addArgs *redis.VAddArgs)) *MockCmdable_VAddWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 redis.Vector
+		if args[3] != nil {
+			arg3 = args[3].(redis.Vector)
+		}
+		var arg4 *redis.VAddArgs
+		if args[4] != nil {
+			arg4 = args[4].(*redis.VAddArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_VAddWithArgs_Call) Return(boolCmd *redis.BoolCmd) *MockCmdable_VAddWithArgs_Call {
+	_c.Call.Return(boolCmd)
+	return _c
+}
+
+func (_c *MockCmdable_VAddWithArgs_Call) RunAndReturn(run func(ctx context.Context, key string, element string, val redis.Vector, addArgs *redis.VAddArgs) *redis.BoolCmd) *MockCmdable_VAddWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VCard provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) VCard(ctx context.Context, key string) *redis.IntCmd {
+	ret := _mock.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VCard")
+	}
+
+	var r0 *redis.IntCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
+		r0 = returnFunc(ctx, key)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_VCard_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VCard'
+type MockCmdable_VCard_Call struct {
+	*mock.Call
+}
+
+// VCard is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+func (_e *MockCmdable_Expecter) VCard(ctx interface{}, key interface{}) *MockCmdable_VCard_Call {
+	return &MockCmdable_VCard_Call{Call: _e.mock.On("VCard", ctx, key)}
+}
+
+func (_c *MockCmdable_VCard_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_VCard_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_VCard_Call) Return(intCmd *redis.IntCmd) *MockCmdable_VCard_Call {
+	_c.Call.Return(intCmd)
+	return _c
+}
+
+func (_c *MockCmdable_VCard_Call) RunAndReturn(run func(ctx context.Context, key string) *redis.IntCmd) *MockCmdable_VCard_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VClearAttributes provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) VClearAttributes(ctx context.Context, key string, element string) *redis.BoolCmd {
+	ret := _mock.Called(ctx, key, element)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VClearAttributes")
+	}
+
+	var r0 *redis.BoolCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string) *redis.BoolCmd); ok {
+		r0 = returnFunc(ctx, key, element)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.BoolCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_VClearAttributes_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VClearAttributes'
+type MockCmdable_VClearAttributes_Call struct {
+	*mock.Call
+}
+
+// VClearAttributes is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - element string
+func (_e *MockCmdable_Expecter) VClearAttributes(ctx interface{}, key interface{}, element interface{}) *MockCmdable_VClearAttributes_Call {
+	return &MockCmdable_VClearAttributes_Call{Call: _e.mock.On("VClearAttributes", ctx, key, element)}
+}
+
+func (_c *MockCmdable_VClearAttributes_Call) Run(run func(ctx context.Context, key string, element string)) *MockCmdable_VClearAttributes_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_VClearAttributes_Call) Return(boolCmd *redis.BoolCmd) *MockCmdable_VClearAttributes_Call {
+	_c.Call.Return(boolCmd)
+	return _c
+}
+
+func (_c *MockCmdable_VClearAttributes_Call) RunAndReturn(run func(ctx context.Context, key string, element string) *redis.BoolCmd) *MockCmdable_VClearAttributes_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VDim provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) VDim(ctx context.Context, key string) *redis.IntCmd {
+	ret := _mock.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VDim")
+	}
+
+	var r0 *redis.IntCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
+		r0 = returnFunc(ctx, key)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_VDim_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VDim'
+type MockCmdable_VDim_Call struct {
+	*mock.Call
+}
+
+// VDim is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+func (_e *MockCmdable_Expecter) VDim(ctx interface{}, key interface{}) *MockCmdable_VDim_Call {
+	return &MockCmdable_VDim_Call{Call: _e.mock.On("VDim", ctx, key)}
+}
+
+func (_c *MockCmdable_VDim_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_VDim_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_VDim_Call) Return(intCmd *redis.IntCmd) *MockCmdable_VDim_Call {
+	_c.Call.Return(intCmd)
+	return _c
+}
+
+func (_c *MockCmdable_VDim_Call) RunAndReturn(run func(ctx context.Context, key string) *redis.IntCmd) *MockCmdable_VDim_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VEmb provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) VEmb(ctx context.Context, key string, element string, raw bool) *redis.SliceCmd {
+	ret := _mock.Called(ctx, key, element, raw)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VEmb")
+	}
+
+	var r0 *redis.SliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, bool) *redis.SliceCmd); ok {
+		r0 = returnFunc(ctx, key, element, raw)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.SliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_VEmb_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VEmb'
+type MockCmdable_VEmb_Call struct {
+	*mock.Call
+}
+
+// VEmb is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - element string
+//   - raw bool
+func (_e *MockCmdable_Expecter) VEmb(ctx interface{}, key interface{}, element interface{}, raw interface{}) *MockCmdable_VEmb_Call {
+	return &MockCmdable_VEmb_Call{Call: _e.mock.On("VEmb", ctx, key, element, raw)}
+}
+
+func (_c *MockCmdable_VEmb_Call) Run(run func(ctx context.Context, key string, element string, raw bool)) *MockCmdable_VEmb_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 bool
+		if args[3] != nil {
+			arg3 = args[3].(bool)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_VEmb_Call) Return(sliceCmd *redis.SliceCmd) *MockCmdable_VEmb_Call {
+	_c.Call.Return(sliceCmd)
+	return _c
+}
+
+func (_c *MockCmdable_VEmb_Call) RunAndReturn(run func(ctx context.Context, key string, element string, raw bool) *redis.SliceCmd) *MockCmdable_VEmb_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VGetAttr provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) VGetAttr(ctx context.Context, key string, element string) *redis.StringCmd {
+	ret := _mock.Called(ctx, key, element)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VGetAttr")
+	}
+
+	var r0 *redis.StringCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string) *redis.StringCmd); ok {
+		r0 = returnFunc(ctx, key, element)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_VGetAttr_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VGetAttr'
+type MockCmdable_VGetAttr_Call struct {
+	*mock.Call
+}
+
+// VGetAttr is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - element string
+func (_e *MockCmdable_Expecter) VGetAttr(ctx interface{}, key interface{}, element interface{}) *MockCmdable_VGetAttr_Call {
+	return &MockCmdable_VGetAttr_Call{Call: _e.mock.On("VGetAttr", ctx, key, element)}
+}
+
+func (_c *MockCmdable_VGetAttr_Call) Run(run func(ctx context.Context, key string, element string)) *MockCmdable_VGetAttr_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_VGetAttr_Call) Return(stringCmd *redis.StringCmd) *MockCmdable_VGetAttr_Call {
+	_c.Call.Return(stringCmd)
+	return _c
+}
+
+func (_c *MockCmdable_VGetAttr_Call) RunAndReturn(run func(ctx context.Context, key string, element string) *redis.StringCmd) *MockCmdable_VGetAttr_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VInfo provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) VInfo(ctx context.Context, key string) *redis.MapStringInterfaceCmd {
+	ret := _mock.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VInfo")
+	}
+
+	var r0 *redis.MapStringInterfaceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string) *redis.MapStringInterfaceCmd); ok {
+		r0 = returnFunc(ctx, key)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.MapStringInterfaceCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_VInfo_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VInfo'
+type MockCmdable_VInfo_Call struct {
+	*mock.Call
+}
+
+// VInfo is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+func (_e *MockCmdable_Expecter) VInfo(ctx interface{}, key interface{}) *MockCmdable_VInfo_Call {
+	return &MockCmdable_VInfo_Call{Call: _e.mock.On("VInfo", ctx, key)}
+}
+
+func (_c *MockCmdable_VInfo_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_VInfo_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_VInfo_Call) Return(mapStringInterfaceCmd *redis.MapStringInterfaceCmd) *MockCmdable_VInfo_Call {
+	_c.Call.Return(mapStringInterfaceCmd)
+	return _c
+}
+
+func (_c *MockCmdable_VInfo_Call) RunAndReturn(run func(ctx context.Context, key string) *redis.MapStringInterfaceCmd) *MockCmdable_VInfo_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VLinks provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) VLinks(ctx context.Context, key string, element string) *redis.StringSliceCmd {
+	ret := _mock.Called(ctx, key, element)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VLinks")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string) *redis.StringSliceCmd); ok {
+		r0 = returnFunc(ctx, key, element)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_VLinks_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VLinks'
+type MockCmdable_VLinks_Call struct {
+	*mock.Call
+}
+
+// VLinks is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - element string
+func (_e *MockCmdable_Expecter) VLinks(ctx interface{}, key interface{}, element interface{}) *MockCmdable_VLinks_Call {
+	return &MockCmdable_VLinks_Call{Call: _e.mock.On("VLinks", ctx, key, element)}
+}
+
+func (_c *MockCmdable_VLinks_Call) Run(run func(ctx context.Context, key string, element string)) *MockCmdable_VLinks_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_VLinks_Call) Return(stringSliceCmd *redis.StringSliceCmd) *MockCmdable_VLinks_Call {
+	_c.Call.Return(stringSliceCmd)
+	return _c
+}
+
+func (_c *MockCmdable_VLinks_Call) RunAndReturn(run func(ctx context.Context, key string, element string) *redis.StringSliceCmd) *MockCmdable_VLinks_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VLinksWithScores provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) VLinksWithScores(ctx context.Context, key string, element string) *redis.VectorScoreSliceCmd {
+	ret := _mock.Called(ctx, key, element)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VLinksWithScores")
+	}
+
+	var r0 *redis.VectorScoreSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string) *redis.VectorScoreSliceCmd); ok {
+		r0 = returnFunc(ctx, key, element)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.VectorScoreSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_VLinksWithScores_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VLinksWithScores'
+type MockCmdable_VLinksWithScores_Call struct {
+	*mock.Call
+}
+
+// VLinksWithScores is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - element string
+func (_e *MockCmdable_Expecter) VLinksWithScores(ctx interface{}, key interface{}, element interface{}) *MockCmdable_VLinksWithScores_Call {
+	return &MockCmdable_VLinksWithScores_Call{Call: _e.mock.On("VLinksWithScores", ctx, key, element)}
+}
+
+func (_c *MockCmdable_VLinksWithScores_Call) Run(run func(ctx context.Context, key string, element string)) *MockCmdable_VLinksWithScores_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_VLinksWithScores_Call) Return(vectorScoreSliceCmd *redis.VectorScoreSliceCmd) *MockCmdable_VLinksWithScores_Call {
+	_c.Call.Return(vectorScoreSliceCmd)
+	return _c
+}
+
+func (_c *MockCmdable_VLinksWithScores_Call) RunAndReturn(run func(ctx context.Context, key string, element string) *redis.VectorScoreSliceCmd) *MockCmdable_VLinksWithScores_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VRandMember provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) VRandMember(ctx context.Context, key string) *redis.StringCmd {
+	ret := _mock.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VRandMember")
+	}
+
+	var r0 *redis.StringCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string) *redis.StringCmd); ok {
+		r0 = returnFunc(ctx, key)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_VRandMember_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VRandMember'
+type MockCmdable_VRandMember_Call struct {
+	*mock.Call
+}
+
+// VRandMember is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+func (_e *MockCmdable_Expecter) VRandMember(ctx interface{}, key interface{}) *MockCmdable_VRandMember_Call {
+	return &MockCmdable_VRandMember_Call{Call: _e.mock.On("VRandMember", ctx, key)}
+}
+
+func (_c *MockCmdable_VRandMember_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_VRandMember_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_VRandMember_Call) Return(stringCmd *redis.StringCmd) *MockCmdable_VRandMember_Call {
+	_c.Call.Return(stringCmd)
+	return _c
+}
+
+func (_c *MockCmdable_VRandMember_Call) RunAndReturn(run func(ctx context.Context, key string) *redis.StringCmd) *MockCmdable_VRandMember_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VRandMemberCount provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) VRandMemberCount(ctx context.Context, key string, count int) *redis.StringSliceCmd {
+	ret := _mock.Called(ctx, key, count)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VRandMemberCount")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, int) *redis.StringSliceCmd); ok {
+		r0 = returnFunc(ctx, key, count)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_VRandMemberCount_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VRandMemberCount'
+type MockCmdable_VRandMemberCount_Call struct {
+	*mock.Call
+}
+
+// VRandMemberCount is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - count int
+func (_e *MockCmdable_Expecter) VRandMemberCount(ctx interface{}, key interface{}, count interface{}) *MockCmdable_VRandMemberCount_Call {
+	return &MockCmdable_VRandMemberCount_Call{Call: _e.mock.On("VRandMemberCount", ctx, key, count)}
+}
+
+func (_c *MockCmdable_VRandMemberCount_Call) Run(run func(ctx context.Context, key string, count int)) *MockCmdable_VRandMemberCount_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_VRandMemberCount_Call) Return(stringSliceCmd *redis.StringSliceCmd) *MockCmdable_VRandMemberCount_Call {
+	_c.Call.Return(stringSliceCmd)
+	return _c
+}
+
+func (_c *MockCmdable_VRandMemberCount_Call) RunAndReturn(run func(ctx context.Context, key string, count int) *redis.StringSliceCmd) *MockCmdable_VRandMemberCount_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VRem provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) VRem(ctx context.Context, key string, element string) *redis.BoolCmd {
+	ret := _mock.Called(ctx, key, element)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VRem")
+	}
+
+	var r0 *redis.BoolCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string) *redis.BoolCmd); ok {
+		r0 = returnFunc(ctx, key, element)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.BoolCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_VRem_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VRem'
+type MockCmdable_VRem_Call struct {
+	*mock.Call
+}
+
+// VRem is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - element string
+func (_e *MockCmdable_Expecter) VRem(ctx interface{}, key interface{}, element interface{}) *MockCmdable_VRem_Call {
+	return &MockCmdable_VRem_Call{Call: _e.mock.On("VRem", ctx, key, element)}
+}
+
+func (_c *MockCmdable_VRem_Call) Run(run func(ctx context.Context, key string, element string)) *MockCmdable_VRem_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_VRem_Call) Return(boolCmd *redis.BoolCmd) *MockCmdable_VRem_Call {
+	_c.Call.Return(boolCmd)
+	return _c
+}
+
+func (_c *MockCmdable_VRem_Call) RunAndReturn(run func(ctx context.Context, key string, element string) *redis.BoolCmd) *MockCmdable_VRem_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VSetAttr provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) VSetAttr(ctx context.Context, key string, element string, attr interface{}) *redis.BoolCmd {
+	ret := _mock.Called(ctx, key, element, attr)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VSetAttr")
+	}
+
+	var r0 *redis.BoolCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, interface{}) *redis.BoolCmd); ok {
+		r0 = returnFunc(ctx, key, element, attr)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.BoolCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_VSetAttr_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VSetAttr'
+type MockCmdable_VSetAttr_Call struct {
+	*mock.Call
+}
+
+// VSetAttr is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - element string
+//   - attr interface{}
+func (_e *MockCmdable_Expecter) VSetAttr(ctx interface{}, key interface{}, element interface{}, attr interface{}) *MockCmdable_VSetAttr_Call {
+	return &MockCmdable_VSetAttr_Call{Call: _e.mock.On("VSetAttr", ctx, key, element, attr)}
+}
+
+func (_c *MockCmdable_VSetAttr_Call) Run(run func(ctx context.Context, key string, element string, attr interface{})) *MockCmdable_VSetAttr_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_VSetAttr_Call) Return(boolCmd *redis.BoolCmd) *MockCmdable_VSetAttr_Call {
+	_c.Call.Return(boolCmd)
+	return _c
+}
+
+func (_c *MockCmdable_VSetAttr_Call) RunAndReturn(run func(ctx context.Context, key string, element string, attr interface{}) *redis.BoolCmd) *MockCmdable_VSetAttr_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VSim provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) VSim(ctx context.Context, key string, val redis.Vector) *redis.StringSliceCmd {
+	ret := _mock.Called(ctx, key, val)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VSim")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, redis.Vector) *redis.StringSliceCmd); ok {
+		r0 = returnFunc(ctx, key, val)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_VSim_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VSim'
+type MockCmdable_VSim_Call struct {
+	*mock.Call
+}
+
+// VSim is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - val redis.Vector
+func (_e *MockCmdable_Expecter) VSim(ctx interface{}, key interface{}, val interface{}) *MockCmdable_VSim_Call {
+	return &MockCmdable_VSim_Call{Call: _e.mock.On("VSim", ctx, key, val)}
+}
+
+func (_c *MockCmdable_VSim_Call) Run(run func(ctx context.Context, key string, val redis.Vector)) *MockCmdable_VSim_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 redis.Vector
+		if args[2] != nil {
+			arg2 = args[2].(redis.Vector)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_VSim_Call) Return(stringSliceCmd *redis.StringSliceCmd) *MockCmdable_VSim_Call {
+	_c.Call.Return(stringSliceCmd)
+	return _c
+}
+
+func (_c *MockCmdable_VSim_Call) RunAndReturn(run func(ctx context.Context, key string, val redis.Vector) *redis.StringSliceCmd) *MockCmdable_VSim_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VSimWithArgs provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) VSimWithArgs(ctx context.Context, key string, val redis.Vector, args *redis.VSimArgs) *redis.StringSliceCmd {
+	ret := _mock.Called(ctx, key, val, args)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VSimWithArgs")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, redis.Vector, *redis.VSimArgs) *redis.StringSliceCmd); ok {
+		r0 = returnFunc(ctx, key, val, args)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_VSimWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VSimWithArgs'
+type MockCmdable_VSimWithArgs_Call struct {
+	*mock.Call
+}
+
+// VSimWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - val redis.Vector
+//   - args *redis.VSimArgs
+func (_e *MockCmdable_Expecter) VSimWithArgs(ctx interface{}, key interface{}, val interface{}, args interface{}) *MockCmdable_VSimWithArgs_Call {
+	return &MockCmdable_VSimWithArgs_Call{Call: _e.mock.On("VSimWithArgs", ctx, key, val, args)}
+}
+
+func (_c *MockCmdable_VSimWithArgs_Call) Run(run func(ctx context.Context, key string, val redis.Vector, args *redis.VSimArgs)) *MockCmdable_VSimWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 redis.Vector
+		if args[2] != nil {
+			arg2 = args[2].(redis.Vector)
+		}
+		var arg3 *redis.VSimArgs
+		if args[3] != nil {
+			arg3 = args[3].(*redis.VSimArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_VSimWithArgs_Call) Return(stringSliceCmd *redis.StringSliceCmd) *MockCmdable_VSimWithArgs_Call {
+	_c.Call.Return(stringSliceCmd)
+	return _c
+}
+
+func (_c *MockCmdable_VSimWithArgs_Call) RunAndReturn(run func(ctx context.Context, key string, val redis.Vector, args *redis.VSimArgs) *redis.StringSliceCmd) *MockCmdable_VSimWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VSimWithArgsWithScores provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) VSimWithArgsWithScores(ctx context.Context, key string, val redis.Vector, args *redis.VSimArgs) *redis.VectorScoreSliceCmd {
+	ret := _mock.Called(ctx, key, val, args)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VSimWithArgsWithScores")
+	}
+
+	var r0 *redis.VectorScoreSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, redis.Vector, *redis.VSimArgs) *redis.VectorScoreSliceCmd); ok {
+		r0 = returnFunc(ctx, key, val, args)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.VectorScoreSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_VSimWithArgsWithScores_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VSimWithArgsWithScores'
+type MockCmdable_VSimWithArgsWithScores_Call struct {
+	*mock.Call
+}
+
+// VSimWithArgsWithScores is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - val redis.Vector
+//   - args *redis.VSimArgs
+func (_e *MockCmdable_Expecter) VSimWithArgsWithScores(ctx interface{}, key interface{}, val interface{}, args interface{}) *MockCmdable_VSimWithArgsWithScores_Call {
+	return &MockCmdable_VSimWithArgsWithScores_Call{Call: _e.mock.On("VSimWithArgsWithScores", ctx, key, val, args)}
+}
+
+func (_c *MockCmdable_VSimWithArgsWithScores_Call) Run(run func(ctx context.Context, key string, val redis.Vector, args *redis.VSimArgs)) *MockCmdable_VSimWithArgsWithScores_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 redis.Vector
+		if args[2] != nil {
+			arg2 = args[2].(redis.Vector)
+		}
+		var arg3 *redis.VSimArgs
+		if args[3] != nil {
+			arg3 = args[3].(*redis.VSimArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_VSimWithArgsWithScores_Call) Return(vectorScoreSliceCmd *redis.VectorScoreSliceCmd) *MockCmdable_VSimWithArgsWithScores_Call {
+	_c.Call.Return(vectorScoreSliceCmd)
+	return _c
+}
+
+func (_c *MockCmdable_VSimWithArgsWithScores_Call) RunAndReturn(run func(ctx context.Context, key string, val redis.Vector, args *redis.VSimArgs) *redis.VectorScoreSliceCmd) *MockCmdable_VSimWithArgsWithScores_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VSimWithScores provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) VSimWithScores(ctx context.Context, key string, val redis.Vector) *redis.VectorScoreSliceCmd {
+	ret := _mock.Called(ctx, key, val)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VSimWithScores")
+	}
+
+	var r0 *redis.VectorScoreSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, redis.Vector) *redis.VectorScoreSliceCmd); ok {
+		r0 = returnFunc(ctx, key, val)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.VectorScoreSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_VSimWithScores_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VSimWithScores'
+type MockCmdable_VSimWithScores_Call struct {
+	*mock.Call
+}
+
+// VSimWithScores is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - val redis.Vector
+func (_e *MockCmdable_Expecter) VSimWithScores(ctx interface{}, key interface{}, val interface{}) *MockCmdable_VSimWithScores_Call {
+	return &MockCmdable_VSimWithScores_Call{Call: _e.mock.On("VSimWithScores", ctx, key, val)}
+}
+
+func (_c *MockCmdable_VSimWithScores_Call) Run(run func(ctx context.Context, key string, val redis.Vector)) *MockCmdable_VSimWithScores_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 redis.Vector
+		if args[2] != nil {
+			arg2 = args[2].(redis.Vector)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_VSimWithScores_Call) Return(vectorScoreSliceCmd *redis.VectorScoreSliceCmd) *MockCmdable_VSimWithScores_Call {
+	_c.Call.Return(vectorScoreSliceCmd)
+	return _c
+}
+
+func (_c *MockCmdable_VSimWithScores_Call) RunAndReturn(run func(ctx context.Context, key string, val redis.Vector) *redis.VectorScoreSliceCmd) *MockCmdable_VSimWithScores_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // XAck provides a mock function for the type MockCmdable
 func (_mock *MockCmdable) XAck(ctx context.Context, stream string, group string, ids ...string) *redis.IntCmd {
 	var tmpRet mock.Arguments

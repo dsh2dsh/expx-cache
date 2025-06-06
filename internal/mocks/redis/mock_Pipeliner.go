@@ -29097,6 +29097,1194 @@ func (_c *MockPipeliner_Unlink_Call) RunAndReturn(run func(ctx context.Context, 
 	return _c
 }
 
+// VAdd provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) VAdd(ctx context.Context, key string, element string, val redis.Vector) *redis.BoolCmd {
+	ret := _mock.Called(ctx, key, element, val)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VAdd")
+	}
+
+	var r0 *redis.BoolCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, redis.Vector) *redis.BoolCmd); ok {
+		r0 = returnFunc(ctx, key, element, val)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.BoolCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_VAdd_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VAdd'
+type MockPipeliner_VAdd_Call struct {
+	*mock.Call
+}
+
+// VAdd is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - element string
+//   - val redis.Vector
+func (_e *MockPipeliner_Expecter) VAdd(ctx interface{}, key interface{}, element interface{}, val interface{}) *MockPipeliner_VAdd_Call {
+	return &MockPipeliner_VAdd_Call{Call: _e.mock.On("VAdd", ctx, key, element, val)}
+}
+
+func (_c *MockPipeliner_VAdd_Call) Run(run func(ctx context.Context, key string, element string, val redis.Vector)) *MockPipeliner_VAdd_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 redis.Vector
+		if args[3] != nil {
+			arg3 = args[3].(redis.Vector)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_VAdd_Call) Return(boolCmd *redis.BoolCmd) *MockPipeliner_VAdd_Call {
+	_c.Call.Return(boolCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_VAdd_Call) RunAndReturn(run func(ctx context.Context, key string, element string, val redis.Vector) *redis.BoolCmd) *MockPipeliner_VAdd_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VAddWithArgs provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) VAddWithArgs(ctx context.Context, key string, element string, val redis.Vector, addArgs *redis.VAddArgs) *redis.BoolCmd {
+	ret := _mock.Called(ctx, key, element, val, addArgs)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VAddWithArgs")
+	}
+
+	var r0 *redis.BoolCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, redis.Vector, *redis.VAddArgs) *redis.BoolCmd); ok {
+		r0 = returnFunc(ctx, key, element, val, addArgs)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.BoolCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_VAddWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VAddWithArgs'
+type MockPipeliner_VAddWithArgs_Call struct {
+	*mock.Call
+}
+
+// VAddWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - element string
+//   - val redis.Vector
+//   - addArgs *redis.VAddArgs
+func (_e *MockPipeliner_Expecter) VAddWithArgs(ctx interface{}, key interface{}, element interface{}, val interface{}, addArgs interface{}) *MockPipeliner_VAddWithArgs_Call {
+	return &MockPipeliner_VAddWithArgs_Call{Call: _e.mock.On("VAddWithArgs", ctx, key, element, val, addArgs)}
+}
+
+func (_c *MockPipeliner_VAddWithArgs_Call) Run(run func(ctx context.Context, key string, element string, val redis.Vector, addArgs *redis.VAddArgs)) *MockPipeliner_VAddWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 redis.Vector
+		if args[3] != nil {
+			arg3 = args[3].(redis.Vector)
+		}
+		var arg4 *redis.VAddArgs
+		if args[4] != nil {
+			arg4 = args[4].(*redis.VAddArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_VAddWithArgs_Call) Return(boolCmd *redis.BoolCmd) *MockPipeliner_VAddWithArgs_Call {
+	_c.Call.Return(boolCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_VAddWithArgs_Call) RunAndReturn(run func(ctx context.Context, key string, element string, val redis.Vector, addArgs *redis.VAddArgs) *redis.BoolCmd) *MockPipeliner_VAddWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VCard provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) VCard(ctx context.Context, key string) *redis.IntCmd {
+	ret := _mock.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VCard")
+	}
+
+	var r0 *redis.IntCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
+		r0 = returnFunc(ctx, key)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_VCard_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VCard'
+type MockPipeliner_VCard_Call struct {
+	*mock.Call
+}
+
+// VCard is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+func (_e *MockPipeliner_Expecter) VCard(ctx interface{}, key interface{}) *MockPipeliner_VCard_Call {
+	return &MockPipeliner_VCard_Call{Call: _e.mock.On("VCard", ctx, key)}
+}
+
+func (_c *MockPipeliner_VCard_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_VCard_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_VCard_Call) Return(intCmd *redis.IntCmd) *MockPipeliner_VCard_Call {
+	_c.Call.Return(intCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_VCard_Call) RunAndReturn(run func(ctx context.Context, key string) *redis.IntCmd) *MockPipeliner_VCard_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VClearAttributes provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) VClearAttributes(ctx context.Context, key string, element string) *redis.BoolCmd {
+	ret := _mock.Called(ctx, key, element)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VClearAttributes")
+	}
+
+	var r0 *redis.BoolCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string) *redis.BoolCmd); ok {
+		r0 = returnFunc(ctx, key, element)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.BoolCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_VClearAttributes_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VClearAttributes'
+type MockPipeliner_VClearAttributes_Call struct {
+	*mock.Call
+}
+
+// VClearAttributes is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - element string
+func (_e *MockPipeliner_Expecter) VClearAttributes(ctx interface{}, key interface{}, element interface{}) *MockPipeliner_VClearAttributes_Call {
+	return &MockPipeliner_VClearAttributes_Call{Call: _e.mock.On("VClearAttributes", ctx, key, element)}
+}
+
+func (_c *MockPipeliner_VClearAttributes_Call) Run(run func(ctx context.Context, key string, element string)) *MockPipeliner_VClearAttributes_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_VClearAttributes_Call) Return(boolCmd *redis.BoolCmd) *MockPipeliner_VClearAttributes_Call {
+	_c.Call.Return(boolCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_VClearAttributes_Call) RunAndReturn(run func(ctx context.Context, key string, element string) *redis.BoolCmd) *MockPipeliner_VClearAttributes_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VDim provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) VDim(ctx context.Context, key string) *redis.IntCmd {
+	ret := _mock.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VDim")
+	}
+
+	var r0 *redis.IntCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string) *redis.IntCmd); ok {
+		r0 = returnFunc(ctx, key)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_VDim_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VDim'
+type MockPipeliner_VDim_Call struct {
+	*mock.Call
+}
+
+// VDim is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+func (_e *MockPipeliner_Expecter) VDim(ctx interface{}, key interface{}) *MockPipeliner_VDim_Call {
+	return &MockPipeliner_VDim_Call{Call: _e.mock.On("VDim", ctx, key)}
+}
+
+func (_c *MockPipeliner_VDim_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_VDim_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_VDim_Call) Return(intCmd *redis.IntCmd) *MockPipeliner_VDim_Call {
+	_c.Call.Return(intCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_VDim_Call) RunAndReturn(run func(ctx context.Context, key string) *redis.IntCmd) *MockPipeliner_VDim_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VEmb provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) VEmb(ctx context.Context, key string, element string, raw bool) *redis.SliceCmd {
+	ret := _mock.Called(ctx, key, element, raw)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VEmb")
+	}
+
+	var r0 *redis.SliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, bool) *redis.SliceCmd); ok {
+		r0 = returnFunc(ctx, key, element, raw)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.SliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_VEmb_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VEmb'
+type MockPipeliner_VEmb_Call struct {
+	*mock.Call
+}
+
+// VEmb is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - element string
+//   - raw bool
+func (_e *MockPipeliner_Expecter) VEmb(ctx interface{}, key interface{}, element interface{}, raw interface{}) *MockPipeliner_VEmb_Call {
+	return &MockPipeliner_VEmb_Call{Call: _e.mock.On("VEmb", ctx, key, element, raw)}
+}
+
+func (_c *MockPipeliner_VEmb_Call) Run(run func(ctx context.Context, key string, element string, raw bool)) *MockPipeliner_VEmb_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 bool
+		if args[3] != nil {
+			arg3 = args[3].(bool)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_VEmb_Call) Return(sliceCmd *redis.SliceCmd) *MockPipeliner_VEmb_Call {
+	_c.Call.Return(sliceCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_VEmb_Call) RunAndReturn(run func(ctx context.Context, key string, element string, raw bool) *redis.SliceCmd) *MockPipeliner_VEmb_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VGetAttr provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) VGetAttr(ctx context.Context, key string, element string) *redis.StringCmd {
+	ret := _mock.Called(ctx, key, element)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VGetAttr")
+	}
+
+	var r0 *redis.StringCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string) *redis.StringCmd); ok {
+		r0 = returnFunc(ctx, key, element)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_VGetAttr_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VGetAttr'
+type MockPipeliner_VGetAttr_Call struct {
+	*mock.Call
+}
+
+// VGetAttr is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - element string
+func (_e *MockPipeliner_Expecter) VGetAttr(ctx interface{}, key interface{}, element interface{}) *MockPipeliner_VGetAttr_Call {
+	return &MockPipeliner_VGetAttr_Call{Call: _e.mock.On("VGetAttr", ctx, key, element)}
+}
+
+func (_c *MockPipeliner_VGetAttr_Call) Run(run func(ctx context.Context, key string, element string)) *MockPipeliner_VGetAttr_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_VGetAttr_Call) Return(stringCmd *redis.StringCmd) *MockPipeliner_VGetAttr_Call {
+	_c.Call.Return(stringCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_VGetAttr_Call) RunAndReturn(run func(ctx context.Context, key string, element string) *redis.StringCmd) *MockPipeliner_VGetAttr_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VInfo provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) VInfo(ctx context.Context, key string) *redis.MapStringInterfaceCmd {
+	ret := _mock.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VInfo")
+	}
+
+	var r0 *redis.MapStringInterfaceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string) *redis.MapStringInterfaceCmd); ok {
+		r0 = returnFunc(ctx, key)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.MapStringInterfaceCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_VInfo_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VInfo'
+type MockPipeliner_VInfo_Call struct {
+	*mock.Call
+}
+
+// VInfo is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+func (_e *MockPipeliner_Expecter) VInfo(ctx interface{}, key interface{}) *MockPipeliner_VInfo_Call {
+	return &MockPipeliner_VInfo_Call{Call: _e.mock.On("VInfo", ctx, key)}
+}
+
+func (_c *MockPipeliner_VInfo_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_VInfo_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_VInfo_Call) Return(mapStringInterfaceCmd *redis.MapStringInterfaceCmd) *MockPipeliner_VInfo_Call {
+	_c.Call.Return(mapStringInterfaceCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_VInfo_Call) RunAndReturn(run func(ctx context.Context, key string) *redis.MapStringInterfaceCmd) *MockPipeliner_VInfo_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VLinks provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) VLinks(ctx context.Context, key string, element string) *redis.StringSliceCmd {
+	ret := _mock.Called(ctx, key, element)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VLinks")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string) *redis.StringSliceCmd); ok {
+		r0 = returnFunc(ctx, key, element)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_VLinks_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VLinks'
+type MockPipeliner_VLinks_Call struct {
+	*mock.Call
+}
+
+// VLinks is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - element string
+func (_e *MockPipeliner_Expecter) VLinks(ctx interface{}, key interface{}, element interface{}) *MockPipeliner_VLinks_Call {
+	return &MockPipeliner_VLinks_Call{Call: _e.mock.On("VLinks", ctx, key, element)}
+}
+
+func (_c *MockPipeliner_VLinks_Call) Run(run func(ctx context.Context, key string, element string)) *MockPipeliner_VLinks_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_VLinks_Call) Return(stringSliceCmd *redis.StringSliceCmd) *MockPipeliner_VLinks_Call {
+	_c.Call.Return(stringSliceCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_VLinks_Call) RunAndReturn(run func(ctx context.Context, key string, element string) *redis.StringSliceCmd) *MockPipeliner_VLinks_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VLinksWithScores provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) VLinksWithScores(ctx context.Context, key string, element string) *redis.VectorScoreSliceCmd {
+	ret := _mock.Called(ctx, key, element)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VLinksWithScores")
+	}
+
+	var r0 *redis.VectorScoreSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string) *redis.VectorScoreSliceCmd); ok {
+		r0 = returnFunc(ctx, key, element)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.VectorScoreSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_VLinksWithScores_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VLinksWithScores'
+type MockPipeliner_VLinksWithScores_Call struct {
+	*mock.Call
+}
+
+// VLinksWithScores is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - element string
+func (_e *MockPipeliner_Expecter) VLinksWithScores(ctx interface{}, key interface{}, element interface{}) *MockPipeliner_VLinksWithScores_Call {
+	return &MockPipeliner_VLinksWithScores_Call{Call: _e.mock.On("VLinksWithScores", ctx, key, element)}
+}
+
+func (_c *MockPipeliner_VLinksWithScores_Call) Run(run func(ctx context.Context, key string, element string)) *MockPipeliner_VLinksWithScores_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_VLinksWithScores_Call) Return(vectorScoreSliceCmd *redis.VectorScoreSliceCmd) *MockPipeliner_VLinksWithScores_Call {
+	_c.Call.Return(vectorScoreSliceCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_VLinksWithScores_Call) RunAndReturn(run func(ctx context.Context, key string, element string) *redis.VectorScoreSliceCmd) *MockPipeliner_VLinksWithScores_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VRandMember provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) VRandMember(ctx context.Context, key string) *redis.StringCmd {
+	ret := _mock.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VRandMember")
+	}
+
+	var r0 *redis.StringCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string) *redis.StringCmd); ok {
+		r0 = returnFunc(ctx, key)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_VRandMember_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VRandMember'
+type MockPipeliner_VRandMember_Call struct {
+	*mock.Call
+}
+
+// VRandMember is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+func (_e *MockPipeliner_Expecter) VRandMember(ctx interface{}, key interface{}) *MockPipeliner_VRandMember_Call {
+	return &MockPipeliner_VRandMember_Call{Call: _e.mock.On("VRandMember", ctx, key)}
+}
+
+func (_c *MockPipeliner_VRandMember_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_VRandMember_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_VRandMember_Call) Return(stringCmd *redis.StringCmd) *MockPipeliner_VRandMember_Call {
+	_c.Call.Return(stringCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_VRandMember_Call) RunAndReturn(run func(ctx context.Context, key string) *redis.StringCmd) *MockPipeliner_VRandMember_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VRandMemberCount provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) VRandMemberCount(ctx context.Context, key string, count int) *redis.StringSliceCmd {
+	ret := _mock.Called(ctx, key, count)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VRandMemberCount")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, int) *redis.StringSliceCmd); ok {
+		r0 = returnFunc(ctx, key, count)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_VRandMemberCount_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VRandMemberCount'
+type MockPipeliner_VRandMemberCount_Call struct {
+	*mock.Call
+}
+
+// VRandMemberCount is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - count int
+func (_e *MockPipeliner_Expecter) VRandMemberCount(ctx interface{}, key interface{}, count interface{}) *MockPipeliner_VRandMemberCount_Call {
+	return &MockPipeliner_VRandMemberCount_Call{Call: _e.mock.On("VRandMemberCount", ctx, key, count)}
+}
+
+func (_c *MockPipeliner_VRandMemberCount_Call) Run(run func(ctx context.Context, key string, count int)) *MockPipeliner_VRandMemberCount_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 int
+		if args[2] != nil {
+			arg2 = args[2].(int)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_VRandMemberCount_Call) Return(stringSliceCmd *redis.StringSliceCmd) *MockPipeliner_VRandMemberCount_Call {
+	_c.Call.Return(stringSliceCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_VRandMemberCount_Call) RunAndReturn(run func(ctx context.Context, key string, count int) *redis.StringSliceCmd) *MockPipeliner_VRandMemberCount_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VRem provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) VRem(ctx context.Context, key string, element string) *redis.BoolCmd {
+	ret := _mock.Called(ctx, key, element)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VRem")
+	}
+
+	var r0 *redis.BoolCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string) *redis.BoolCmd); ok {
+		r0 = returnFunc(ctx, key, element)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.BoolCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_VRem_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VRem'
+type MockPipeliner_VRem_Call struct {
+	*mock.Call
+}
+
+// VRem is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - element string
+func (_e *MockPipeliner_Expecter) VRem(ctx interface{}, key interface{}, element interface{}) *MockPipeliner_VRem_Call {
+	return &MockPipeliner_VRem_Call{Call: _e.mock.On("VRem", ctx, key, element)}
+}
+
+func (_c *MockPipeliner_VRem_Call) Run(run func(ctx context.Context, key string, element string)) *MockPipeliner_VRem_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_VRem_Call) Return(boolCmd *redis.BoolCmd) *MockPipeliner_VRem_Call {
+	_c.Call.Return(boolCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_VRem_Call) RunAndReturn(run func(ctx context.Context, key string, element string) *redis.BoolCmd) *MockPipeliner_VRem_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VSetAttr provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) VSetAttr(ctx context.Context, key string, element string, attr interface{}) *redis.BoolCmd {
+	ret := _mock.Called(ctx, key, element, attr)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VSetAttr")
+	}
+
+	var r0 *redis.BoolCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, interface{}) *redis.BoolCmd); ok {
+		r0 = returnFunc(ctx, key, element, attr)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.BoolCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_VSetAttr_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VSetAttr'
+type MockPipeliner_VSetAttr_Call struct {
+	*mock.Call
+}
+
+// VSetAttr is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - element string
+//   - attr interface{}
+func (_e *MockPipeliner_Expecter) VSetAttr(ctx interface{}, key interface{}, element interface{}, attr interface{}) *MockPipeliner_VSetAttr_Call {
+	return &MockPipeliner_VSetAttr_Call{Call: _e.mock.On("VSetAttr", ctx, key, element, attr)}
+}
+
+func (_c *MockPipeliner_VSetAttr_Call) Run(run func(ctx context.Context, key string, element string, attr interface{})) *MockPipeliner_VSetAttr_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_VSetAttr_Call) Return(boolCmd *redis.BoolCmd) *MockPipeliner_VSetAttr_Call {
+	_c.Call.Return(boolCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_VSetAttr_Call) RunAndReturn(run func(ctx context.Context, key string, element string, attr interface{}) *redis.BoolCmd) *MockPipeliner_VSetAttr_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VSim provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) VSim(ctx context.Context, key string, val redis.Vector) *redis.StringSliceCmd {
+	ret := _mock.Called(ctx, key, val)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VSim")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, redis.Vector) *redis.StringSliceCmd); ok {
+		r0 = returnFunc(ctx, key, val)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_VSim_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VSim'
+type MockPipeliner_VSim_Call struct {
+	*mock.Call
+}
+
+// VSim is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - val redis.Vector
+func (_e *MockPipeliner_Expecter) VSim(ctx interface{}, key interface{}, val interface{}) *MockPipeliner_VSim_Call {
+	return &MockPipeliner_VSim_Call{Call: _e.mock.On("VSim", ctx, key, val)}
+}
+
+func (_c *MockPipeliner_VSim_Call) Run(run func(ctx context.Context, key string, val redis.Vector)) *MockPipeliner_VSim_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 redis.Vector
+		if args[2] != nil {
+			arg2 = args[2].(redis.Vector)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_VSim_Call) Return(stringSliceCmd *redis.StringSliceCmd) *MockPipeliner_VSim_Call {
+	_c.Call.Return(stringSliceCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_VSim_Call) RunAndReturn(run func(ctx context.Context, key string, val redis.Vector) *redis.StringSliceCmd) *MockPipeliner_VSim_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VSimWithArgs provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) VSimWithArgs(ctx context.Context, key string, val redis.Vector, args *redis.VSimArgs) *redis.StringSliceCmd {
+	ret := _mock.Called(ctx, key, val, args)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VSimWithArgs")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, redis.Vector, *redis.VSimArgs) *redis.StringSliceCmd); ok {
+		r0 = returnFunc(ctx, key, val, args)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_VSimWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VSimWithArgs'
+type MockPipeliner_VSimWithArgs_Call struct {
+	*mock.Call
+}
+
+// VSimWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - val redis.Vector
+//   - args *redis.VSimArgs
+func (_e *MockPipeliner_Expecter) VSimWithArgs(ctx interface{}, key interface{}, val interface{}, args interface{}) *MockPipeliner_VSimWithArgs_Call {
+	return &MockPipeliner_VSimWithArgs_Call{Call: _e.mock.On("VSimWithArgs", ctx, key, val, args)}
+}
+
+func (_c *MockPipeliner_VSimWithArgs_Call) Run(run func(ctx context.Context, key string, val redis.Vector, args *redis.VSimArgs)) *MockPipeliner_VSimWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 redis.Vector
+		if args[2] != nil {
+			arg2 = args[2].(redis.Vector)
+		}
+		var arg3 *redis.VSimArgs
+		if args[3] != nil {
+			arg3 = args[3].(*redis.VSimArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_VSimWithArgs_Call) Return(stringSliceCmd *redis.StringSliceCmd) *MockPipeliner_VSimWithArgs_Call {
+	_c.Call.Return(stringSliceCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_VSimWithArgs_Call) RunAndReturn(run func(ctx context.Context, key string, val redis.Vector, args *redis.VSimArgs) *redis.StringSliceCmd) *MockPipeliner_VSimWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VSimWithArgsWithScores provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) VSimWithArgsWithScores(ctx context.Context, key string, val redis.Vector, args *redis.VSimArgs) *redis.VectorScoreSliceCmd {
+	ret := _mock.Called(ctx, key, val, args)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VSimWithArgsWithScores")
+	}
+
+	var r0 *redis.VectorScoreSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, redis.Vector, *redis.VSimArgs) *redis.VectorScoreSliceCmd); ok {
+		r0 = returnFunc(ctx, key, val, args)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.VectorScoreSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_VSimWithArgsWithScores_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VSimWithArgsWithScores'
+type MockPipeliner_VSimWithArgsWithScores_Call struct {
+	*mock.Call
+}
+
+// VSimWithArgsWithScores is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - val redis.Vector
+//   - args *redis.VSimArgs
+func (_e *MockPipeliner_Expecter) VSimWithArgsWithScores(ctx interface{}, key interface{}, val interface{}, args interface{}) *MockPipeliner_VSimWithArgsWithScores_Call {
+	return &MockPipeliner_VSimWithArgsWithScores_Call{Call: _e.mock.On("VSimWithArgsWithScores", ctx, key, val, args)}
+}
+
+func (_c *MockPipeliner_VSimWithArgsWithScores_Call) Run(run func(ctx context.Context, key string, val redis.Vector, args *redis.VSimArgs)) *MockPipeliner_VSimWithArgsWithScores_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 redis.Vector
+		if args[2] != nil {
+			arg2 = args[2].(redis.Vector)
+		}
+		var arg3 *redis.VSimArgs
+		if args[3] != nil {
+			arg3 = args[3].(*redis.VSimArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_VSimWithArgsWithScores_Call) Return(vectorScoreSliceCmd *redis.VectorScoreSliceCmd) *MockPipeliner_VSimWithArgsWithScores_Call {
+	_c.Call.Return(vectorScoreSliceCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_VSimWithArgsWithScores_Call) RunAndReturn(run func(ctx context.Context, key string, val redis.Vector, args *redis.VSimArgs) *redis.VectorScoreSliceCmd) *MockPipeliner_VSimWithArgsWithScores_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VSimWithScores provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) VSimWithScores(ctx context.Context, key string, val redis.Vector) *redis.VectorScoreSliceCmd {
+	ret := _mock.Called(ctx, key, val)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VSimWithScores")
+	}
+
+	var r0 *redis.VectorScoreSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, redis.Vector) *redis.VectorScoreSliceCmd); ok {
+		r0 = returnFunc(ctx, key, val)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.VectorScoreSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_VSimWithScores_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VSimWithScores'
+type MockPipeliner_VSimWithScores_Call struct {
+	*mock.Call
+}
+
+// VSimWithScores is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - val redis.Vector
+func (_e *MockPipeliner_Expecter) VSimWithScores(ctx interface{}, key interface{}, val interface{}) *MockPipeliner_VSimWithScores_Call {
+	return &MockPipeliner_VSimWithScores_Call{Call: _e.mock.On("VSimWithScores", ctx, key, val)}
+}
+
+func (_c *MockPipeliner_VSimWithScores_Call) Run(run func(ctx context.Context, key string, val redis.Vector)) *MockPipeliner_VSimWithScores_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 redis.Vector
+		if args[2] != nil {
+			arg2 = args[2].(redis.Vector)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_VSimWithScores_Call) Return(vectorScoreSliceCmd *redis.VectorScoreSliceCmd) *MockPipeliner_VSimWithScores_Call {
+	_c.Call.Return(vectorScoreSliceCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_VSimWithScores_Call) RunAndReturn(run func(ctx context.Context, key string, val redis.Vector) *redis.VectorScoreSliceCmd) *MockPipeliner_VSimWithScores_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // XAck provides a mock function for the type MockPipeliner
 func (_mock *MockPipeliner) XAck(ctx context.Context, stream string, group string, ids ...string) *redis.IntCmd {
 	var tmpRet mock.Arguments
