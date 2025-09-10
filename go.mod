@@ -1,16 +1,16 @@
 module github.com/dsh2dsh/expx-cache
 
-go 1.24
+go 1.25
 
 require (
 	github.com/caarlos0/env/v10 v10.0.0
 	github.com/dsh2dsh/expx-dotenv v1.4.0
 	github.com/dsh2dsh/go-tinylfu v1.0.3
 	github.com/klauspost/compress v1.18.0
-	github.com/redis/go-redis/v9 v9.12.1
-	github.com/stretchr/testify v1.11.0
+	github.com/redis/go-redis/v9 v9.14.0
+	github.com/stretchr/testify v1.11.1
 	github.com/vmihailenco/msgpack/v5 v5.4.1
-	golang.org/x/sync v0.16.0
+	golang.org/x/sync v0.17.0
 )
 
 require (

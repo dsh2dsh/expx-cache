@@ -2590,6 +2590,72 @@ func (_c *MockPipeliner_BZPopMin_Call) RunAndReturn(run func(ctx context.Context
 	return _c
 }
 
+// BatchProcess provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) BatchProcess(ctx context.Context, cmd ...redis.Cmder) error {
+	var tmpRet mock.Arguments
+	if len(cmd) > 0 {
+		tmpRet = _mock.Called(ctx, cmd)
+	} else {
+		tmpRet = _mock.Called(ctx)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for BatchProcess")
+	}
+
+	var r0 error
+	if returnFunc, ok := ret.Get(0).(func(context.Context, ...redis.Cmder) error); ok {
+		r0 = returnFunc(ctx, cmd...)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
+// MockPipeliner_BatchProcess_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BatchProcess'
+type MockPipeliner_BatchProcess_Call struct {
+	*mock.Call
+}
+
+// BatchProcess is a helper method to define mock.On call
+//   - ctx context.Context
+//   - cmd ...redis.Cmder
+func (_e *MockPipeliner_Expecter) BatchProcess(ctx interface{}, cmd ...interface{}) *MockPipeliner_BatchProcess_Call {
+	return &MockPipeliner_BatchProcess_Call{Call: _e.mock.On("BatchProcess",
+		append([]interface{}{ctx}, cmd...)...)}
+}
+
+func (_c *MockPipeliner_BatchProcess_Call) Run(run func(ctx context.Context, cmd ...redis.Cmder)) *MockPipeliner_BatchProcess_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []redis.Cmder
+		var variadicArgs []redis.Cmder
+		if len(args) > 1 {
+			variadicArgs = args[1].([]redis.Cmder)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_BatchProcess_Call) Return(err error) *MockPipeliner_BatchProcess_Call {
+	_c.Call.Return(err)
+	return _c
+}
+
+func (_c *MockPipeliner_BatchProcess_Call) RunAndReturn(run func(ctx context.Context, cmd ...redis.Cmder) error) *MockPipeliner_BatchProcess_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // BgRewriteAOF provides a mock function for the type MockPipeliner
 func (_mock *MockPipeliner) BgRewriteAOF(ctx context.Context) *redis.StatusCmd {
 	ret := _mock.Called(ctx)
@@ -7256,6 +7322,52 @@ func (_c *MockPipeliner_ClusterSlots_Call) Return(clusterSlotsCmd *redis.Cluster
 }
 
 func (_c *MockPipeliner_ClusterSlots_Call) RunAndReturn(run func(ctx context.Context) *redis.ClusterSlotsCmd) *MockPipeliner_ClusterSlots_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// Cmds provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) Cmds() []redis.Cmder {
+	ret := _mock.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for Cmds")
+	}
+
+	var r0 []redis.Cmder
+	if returnFunc, ok := ret.Get(0).(func() []redis.Cmder); ok {
+		r0 = returnFunc()
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).([]redis.Cmder)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_Cmds_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Cmds'
+type MockPipeliner_Cmds_Call struct {
+	*mock.Call
+}
+
+// Cmds is a helper method to define mock.On call
+func (_e *MockPipeliner_Expecter) Cmds() *MockPipeliner_Cmds_Call {
+	return &MockPipeliner_Cmds_Call{Call: _e.mock.On("Cmds")}
+}
+
+func (_c *MockPipeliner_Cmds_Call) Run(run func()) *MockPipeliner_Cmds_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_Cmds_Call) Return(cmders []redis.Cmder) *MockPipeliner_Cmds_Call {
+	_c.Call.Return(cmders)
+	return _c
+}
+
+func (_c *MockPipeliner_Cmds_Call) RunAndReturn(run func() []redis.Cmder) *MockPipeliner_Cmds_Call {
 	_c.Call.Return(run)
 	return _c
 }
