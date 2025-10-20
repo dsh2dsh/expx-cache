@@ -66,7 +66,7 @@ func (self *Cache) unmarshalItems(ctx context.Context, bytes [][]byte,
 	} else if err != nil {
 		err = fmt.Errorf(errMsg, err)
 	}
-	return
+	return err
 }
 
 // --------------------------------------------------

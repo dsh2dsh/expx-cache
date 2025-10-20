@@ -94,9 +94,9 @@ func (self *Cache) redisLockGetSet(ctx context.Context, item *Item,
 		if self.Failed() {
 			b, err = self.set(ctx, item)
 		}
-		return
+		return b, err
 	} else if len(b) != 0 {
-		return
+		return b, err
 	}
 
 	err = l.WithLock(ctx, self.cfgLock.TTL, self.cfgLock.Tick, func() error {
@@ -106,7 +106,7 @@ func (self *Cache) redisLockGetSet(ctx context.Context, item *Item,
 	if self.Failed() {
 		err = nil
 	}
-	return
+	return b, err
 }
 
 func (self *Cache) redisLockGet(ctx context.Context, item *Item,
@@ -117,14 +117,14 @@ func (self *Cache) redisLockGet(ctx context.Context, item *Item,
 	b, err = l.Get(ctx, self.cfgLock.TTL, self.cfgLock.Iter())
 	if err != nil || len(b) == 0 {
 		self.addMiss()
-		return
+		return l, b, err
 	}
 	self.addHit()
 
 	if self.useLocalCache(item) {
 		self.localCache.Set(keyGet, b)
 	}
-	return
+	return l, b, err
 }
 
 func (self *Cache) ResolveKeyLock(key string) string {
@@ -209,7 +209,7 @@ func (self *lock) lockGet(ctx context.Context, ttl time.Duration,
 		return err != nil || ok || b != nil
 	}
 	if get() {
-		return
+		return ok, b, err
 	}
 
 	unlockChan := self.subscribe(ctx)
@@ -220,7 +220,7 @@ func (self *lock) lockGet(ctx context.Context, ttl time.Duration,
 
 	cancel()
 	<-unlockChan
-	return
+	return ok, b, err
 }
 
 func (self *lock) redisLockGet(ctx context.Context, ttl time.Duration,
@@ -229,7 +229,7 @@ func (self *lock) redisLockGet(ctx context.Context, ttl time.Duration,
 	if err != nil {
 		err = self.redisCacheError(fmt.Errorf("lock get: %w", err))
 	}
-	return
+	return ok, b, err
 }
 
 func (self *lock) subscribe(ctx context.Context) <-chan unlockMessage {
@@ -286,7 +286,7 @@ func (self *lock) waitUnlock(ctx context.Context,
 		}
 		t.Reset(waitIter())
 	}
-	return
+	return err
 }
 
 func (self *lock) release(ctx context.Context) error {
