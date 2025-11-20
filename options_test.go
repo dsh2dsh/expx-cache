@@ -43,12 +43,10 @@ func TestWithMarshalMaxProcs(t *testing.T) {
 			var callCount uint64
 			var wg sync.WaitGroup
 			for cache.marshalers.TryAcquire(1) {
-				wg.Add(1)
-				go func() {
-					defer wg.Done()
+				wg.Go(func() {
 					atomic.AddUint64(&callCount, 1)
 					<-ctx.Done()
-				}()
+				})
 			}
 			cancel()
 
