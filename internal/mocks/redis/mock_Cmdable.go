@@ -284,6 +284,65 @@ func (_c *MockCmdable_ACLDryRun_Call) RunAndReturn(run func(ctx context.Context,
 	return _c
 }
 
+// ACLGenPass provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) ACLGenPass(ctx context.Context, bit int) *redis.StringCmd {
+	ret := _mock.Called(ctx, bit)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ACLGenPass")
+	}
+
+	var r0 *redis.StringCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, int) *redis.StringCmd); ok {
+		r0 = returnFunc(ctx, bit)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_ACLGenPass_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ACLGenPass'
+type MockCmdable_ACLGenPass_Call struct {
+	*mock.Call
+}
+
+// ACLGenPass is a helper method to define mock.On call
+//   - ctx context.Context
+//   - bit int
+func (_e *MockCmdable_Expecter) ACLGenPass(ctx interface{}, bit interface{}) *MockCmdable_ACLGenPass_Call {
+	return &MockCmdable_ACLGenPass_Call{Call: _e.mock.On("ACLGenPass", ctx, bit)}
+}
+
+func (_c *MockCmdable_ACLGenPass_Call) Run(run func(ctx context.Context, bit int)) *MockCmdable_ACLGenPass_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		run(
+			arg0,
+			arg1,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_ACLGenPass_Call) Return(stringCmd *redis.StringCmd) *MockCmdable_ACLGenPass_Call {
+	_c.Call.Return(stringCmd)
+	return _c
+}
+
+func (_c *MockCmdable_ACLGenPass_Call) RunAndReturn(run func(ctx context.Context, bit int) *redis.StringCmd) *MockCmdable_ACLGenPass_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // ACLList provides a mock function for the type MockCmdable
 func (_mock *MockCmdable) ACLList(ctx context.Context) *redis.StringSliceCmd {
 	ret := _mock.Called(ctx)
@@ -519,6 +578,112 @@ func (_c *MockCmdable_ACLSetUser_Call) Return(statusCmd *redis.StatusCmd) *MockC
 }
 
 func (_c *MockCmdable_ACLSetUser_Call) RunAndReturn(run func(ctx context.Context, username string, rules ...string) *redis.StatusCmd) *MockCmdable_ACLSetUser_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// ACLUsers provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) ACLUsers(ctx context.Context) *redis.StringSliceCmd {
+	ret := _mock.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ACLUsers")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context) *redis.StringSliceCmd); ok {
+		r0 = returnFunc(ctx)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_ACLUsers_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ACLUsers'
+type MockCmdable_ACLUsers_Call struct {
+	*mock.Call
+}
+
+// ACLUsers is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *MockCmdable_Expecter) ACLUsers(ctx interface{}) *MockCmdable_ACLUsers_Call {
+	return &MockCmdable_ACLUsers_Call{Call: _e.mock.On("ACLUsers", ctx)}
+}
+
+func (_c *MockCmdable_ACLUsers_Call) Run(run func(ctx context.Context)) *MockCmdable_ACLUsers_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_ACLUsers_Call) Return(stringSliceCmd *redis.StringSliceCmd) *MockCmdable_ACLUsers_Call {
+	_c.Call.Return(stringSliceCmd)
+	return _c
+}
+
+func (_c *MockCmdable_ACLUsers_Call) RunAndReturn(run func(ctx context.Context) *redis.StringSliceCmd) *MockCmdable_ACLUsers_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// ACLWhoAmI provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) ACLWhoAmI(ctx context.Context) *redis.StringCmd {
+	ret := _mock.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ACLWhoAmI")
+	}
+
+	var r0 *redis.StringCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context) *redis.StringCmd); ok {
+		r0 = returnFunc(ctx)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_ACLWhoAmI_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ACLWhoAmI'
+type MockCmdable_ACLWhoAmI_Call struct {
+	*mock.Call
+}
+
+// ACLWhoAmI is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *MockCmdable_Expecter) ACLWhoAmI(ctx interface{}) *MockCmdable_ACLWhoAmI_Call {
+	return &MockCmdable_ACLWhoAmI_Call{Call: _e.mock.On("ACLWhoAmI", ctx)}
+}
+
+func (_c *MockCmdable_ACLWhoAmI_Call) Run(run func(ctx context.Context)) *MockCmdable_ACLWhoAmI_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_ACLWhoAmI_Call) Return(stringCmd *redis.StringCmd) *MockCmdable_ACLWhoAmI_Call {
+	_c.Call.Return(stringCmd)
+	return _c
+}
+
+func (_c *MockCmdable_ACLWhoAmI_Call) RunAndReturn(run func(ctx context.Context) *redis.StringCmd) *MockCmdable_ACLWhoAmI_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -7942,6 +8107,130 @@ func (_c *MockCmdable_Del_Call) RunAndReturn(run func(ctx context.Context, keys 
 	return _c
 }
 
+// DelExArgs provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) DelExArgs(ctx context.Context, key string, a redis.DelExArgs) *redis.IntCmd {
+	ret := _mock.Called(ctx, key, a)
+
+	if len(ret) == 0 {
+		panic("no return value specified for DelExArgs")
+	}
+
+	var r0 *redis.IntCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, redis.DelExArgs) *redis.IntCmd); ok {
+		r0 = returnFunc(ctx, key, a)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_DelExArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DelExArgs'
+type MockCmdable_DelExArgs_Call struct {
+	*mock.Call
+}
+
+// DelExArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - a redis.DelExArgs
+func (_e *MockCmdable_Expecter) DelExArgs(ctx interface{}, key interface{}, a interface{}) *MockCmdable_DelExArgs_Call {
+	return &MockCmdable_DelExArgs_Call{Call: _e.mock.On("DelExArgs", ctx, key, a)}
+}
+
+func (_c *MockCmdable_DelExArgs_Call) Run(run func(ctx context.Context, key string, a redis.DelExArgs)) *MockCmdable_DelExArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 redis.DelExArgs
+		if args[2] != nil {
+			arg2 = args[2].(redis.DelExArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_DelExArgs_Call) Return(intCmd *redis.IntCmd) *MockCmdable_DelExArgs_Call {
+	_c.Call.Return(intCmd)
+	return _c
+}
+
+func (_c *MockCmdable_DelExArgs_Call) RunAndReturn(run func(ctx context.Context, key string, a redis.DelExArgs) *redis.IntCmd) *MockCmdable_DelExArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// Digest provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) Digest(ctx context.Context, key string) *redis.DigestCmd {
+	ret := _mock.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Digest")
+	}
+
+	var r0 *redis.DigestCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string) *redis.DigestCmd); ok {
+		r0 = returnFunc(ctx, key)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.DigestCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_Digest_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Digest'
+type MockCmdable_Digest_Call struct {
+	*mock.Call
+}
+
+// Digest is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+func (_e *MockCmdable_Expecter) Digest(ctx interface{}, key interface{}) *MockCmdable_Digest_Call {
+	return &MockCmdable_Digest_Call{Call: _e.mock.On("Digest", ctx, key)}
+}
+
+func (_c *MockCmdable_Digest_Call) Run(run func(ctx context.Context, key string)) *MockCmdable_Digest_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_Digest_Call) Return(digestCmd *redis.DigestCmd) *MockCmdable_Digest_Call {
+	_c.Call.Return(digestCmd)
+	return _c
+}
+
+func (_c *MockCmdable_Digest_Call) RunAndReturn(run func(ctx context.Context, key string) *redis.DigestCmd) *MockCmdable_Digest_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Dump provides a mock function for the type MockCmdable
 func (_mock *MockCmdable) Dump(ctx context.Context, key string) *redis.StringCmd {
 	ret := _mock.Called(ctx, key)
@@ -10336,6 +10625,148 @@ func (_c *MockCmdable_FTExplainWithArgs_Call) Return(stringCmd *redis.StringCmd)
 }
 
 func (_c *MockCmdable_FTExplainWithArgs_Call) RunAndReturn(run func(ctx context.Context, index string, query string, options *redis.FTExplainOptions) *redis.StringCmd) *MockCmdable_FTExplainWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTHybrid provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) FTHybrid(ctx context.Context, index string, searchExpr string, vectorField string, vectorData redis.Vector) *redis.FTHybridCmd {
+	ret := _mock.Called(ctx, index, searchExpr, vectorField, vectorData)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTHybrid")
+	}
+
+	var r0 *redis.FTHybridCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, string, redis.Vector) *redis.FTHybridCmd); ok {
+		r0 = returnFunc(ctx, index, searchExpr, vectorField, vectorData)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.FTHybridCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_FTHybrid_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTHybrid'
+type MockCmdable_FTHybrid_Call struct {
+	*mock.Call
+}
+
+// FTHybrid is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - searchExpr string
+//   - vectorField string
+//   - vectorData redis.Vector
+func (_e *MockCmdable_Expecter) FTHybrid(ctx interface{}, index interface{}, searchExpr interface{}, vectorField interface{}, vectorData interface{}) *MockCmdable_FTHybrid_Call {
+	return &MockCmdable_FTHybrid_Call{Call: _e.mock.On("FTHybrid", ctx, index, searchExpr, vectorField, vectorData)}
+}
+
+func (_c *MockCmdable_FTHybrid_Call) Run(run func(ctx context.Context, index string, searchExpr string, vectorField string, vectorData redis.Vector)) *MockCmdable_FTHybrid_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 redis.Vector
+		if args[4] != nil {
+			arg4 = args[4].(redis.Vector)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTHybrid_Call) Return(fTHybridCmd *redis.FTHybridCmd) *MockCmdable_FTHybrid_Call {
+	_c.Call.Return(fTHybridCmd)
+	return _c
+}
+
+func (_c *MockCmdable_FTHybrid_Call) RunAndReturn(run func(ctx context.Context, index string, searchExpr string, vectorField string, vectorData redis.Vector) *redis.FTHybridCmd) *MockCmdable_FTHybrid_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTHybridWithArgs provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) FTHybridWithArgs(ctx context.Context, index string, options *redis.FTHybridOptions) *redis.FTHybridCmd {
+	ret := _mock.Called(ctx, index, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTHybridWithArgs")
+	}
+
+	var r0 *redis.FTHybridCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, *redis.FTHybridOptions) *redis.FTHybridCmd); ok {
+		r0 = returnFunc(ctx, index, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.FTHybridCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_FTHybridWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTHybridWithArgs'
+type MockCmdable_FTHybridWithArgs_Call struct {
+	*mock.Call
+}
+
+// FTHybridWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - options *redis.FTHybridOptions
+func (_e *MockCmdable_Expecter) FTHybridWithArgs(ctx interface{}, index interface{}, options interface{}) *MockCmdable_FTHybridWithArgs_Call {
+	return &MockCmdable_FTHybridWithArgs_Call{Call: _e.mock.On("FTHybridWithArgs", ctx, index, options)}
+}
+
+func (_c *MockCmdable_FTHybridWithArgs_Call) Run(run func(ctx context.Context, index string, options *redis.FTHybridOptions)) *MockCmdable_FTHybridWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.FTHybridOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.FTHybridOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_FTHybridWithArgs_Call) Return(fTHybridCmd *redis.FTHybridCmd) *MockCmdable_FTHybridWithArgs_Call {
+	_c.Call.Return(fTHybridCmd)
+	return _c
+}
+
+func (_c *MockCmdable_FTHybridWithArgs_Call) RunAndReturn(run func(ctx context.Context, index string, options *redis.FTHybridOptions) *redis.FTHybridCmd) *MockCmdable_FTHybridWithArgs_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -19125,6 +19556,127 @@ func (_c *MockCmdable_LastSave_Call) RunAndReturn(run func(ctx context.Context) 
 	return _c
 }
 
+// Latency provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) Latency(ctx context.Context) *redis.LatencyCmd {
+	ret := _mock.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Latency")
+	}
+
+	var r0 *redis.LatencyCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context) *redis.LatencyCmd); ok {
+		r0 = returnFunc(ctx)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.LatencyCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_Latency_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Latency'
+type MockCmdable_Latency_Call struct {
+	*mock.Call
+}
+
+// Latency is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *MockCmdable_Expecter) Latency(ctx interface{}) *MockCmdable_Latency_Call {
+	return &MockCmdable_Latency_Call{Call: _e.mock.On("Latency", ctx)}
+}
+
+func (_c *MockCmdable_Latency_Call) Run(run func(ctx context.Context)) *MockCmdable_Latency_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_Latency_Call) Return(latencyCmd *redis.LatencyCmd) *MockCmdable_Latency_Call {
+	_c.Call.Return(latencyCmd)
+	return _c
+}
+
+func (_c *MockCmdable_Latency_Call) RunAndReturn(run func(ctx context.Context) *redis.LatencyCmd) *MockCmdable_Latency_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// LatencyReset provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) LatencyReset(ctx context.Context, events ...interface{}) *redis.StatusCmd {
+	var tmpRet mock.Arguments
+	if len(events) > 0 {
+		tmpRet = _mock.Called(ctx, events)
+	} else {
+		tmpRet = _mock.Called(ctx)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for LatencyReset")
+	}
+
+	var r0 *redis.StatusCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, ...interface{}) *redis.StatusCmd); ok {
+		r0 = returnFunc(ctx, events...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_LatencyReset_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'LatencyReset'
+type MockCmdable_LatencyReset_Call struct {
+	*mock.Call
+}
+
+// LatencyReset is a helper method to define mock.On call
+//   - ctx context.Context
+//   - events ...interface{}
+func (_e *MockCmdable_Expecter) LatencyReset(ctx interface{}, events ...interface{}) *MockCmdable_LatencyReset_Call {
+	return &MockCmdable_LatencyReset_Call{Call: _e.mock.On("LatencyReset",
+		append([]interface{}{ctx}, events...)...)}
+}
+
+func (_c *MockCmdable_LatencyReset_Call) Run(run func(ctx context.Context, events ...interface{})) *MockCmdable_LatencyReset_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 1 {
+			variadicArgs = args[1].([]interface{})
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_LatencyReset_Call) Return(statusCmd *redis.StatusCmd) *MockCmdable_LatencyReset_Call {
+	_c.Call.Return(statusCmd)
+	return _c
+}
+
+func (_c *MockCmdable_LatencyReset_Call) RunAndReturn(run func(ctx context.Context, events ...interface{}) *redis.StatusCmd) *MockCmdable_LatencyReset_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // MGet provides a mock function for the type MockCmdable
 func (_mock *MockCmdable) MGet(ctx context.Context, keys ...string) *redis.SliceCmd {
 	var tmpRet mock.Arguments
@@ -19257,6 +19809,80 @@ func (_c *MockCmdable_MSet_Call) Return(statusCmd *redis.StatusCmd) *MockCmdable
 }
 
 func (_c *MockCmdable_MSet_Call) RunAndReturn(run func(ctx context.Context, values ...interface{}) *redis.StatusCmd) *MockCmdable_MSet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// MSetEX provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) MSetEX(ctx context.Context, args redis.MSetEXArgs, values ...interface{}) *redis.IntCmd {
+	var tmpRet mock.Arguments
+	if len(values) > 0 {
+		tmpRet = _mock.Called(ctx, args, values)
+	} else {
+		tmpRet = _mock.Called(ctx, args)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for MSetEX")
+	}
+
+	var r0 *redis.IntCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, redis.MSetEXArgs, ...interface{}) *redis.IntCmd); ok {
+		r0 = returnFunc(ctx, args, values...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_MSetEX_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'MSetEX'
+type MockCmdable_MSetEX_Call struct {
+	*mock.Call
+}
+
+// MSetEX is a helper method to define mock.On call
+//   - ctx context.Context
+//   - args redis.MSetEXArgs
+//   - values ...interface{}
+func (_e *MockCmdable_Expecter) MSetEX(ctx interface{}, args interface{}, values ...interface{}) *MockCmdable_MSetEX_Call {
+	return &MockCmdable_MSetEX_Call{Call: _e.mock.On("MSetEX",
+		append([]interface{}{ctx, args}, values...)...)}
+}
+
+func (_c *MockCmdable_MSetEX_Call) Run(run func(ctx context.Context, args redis.MSetEXArgs, values ...interface{})) *MockCmdable_MSetEX_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 redis.MSetEXArgs
+		if args[1] != nil {
+			arg1 = args[1].(redis.MSetEXArgs)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_MSetEX_Call) Return(intCmd *redis.IntCmd) *MockCmdable_MSetEX_Call {
+	_c.Call.Return(intCmd)
+	return _c
+}
+
+func (_c *MockCmdable_MSetEX_Call) RunAndReturn(run func(ctx context.Context, args redis.MSetEXArgs, values ...interface{}) *redis.IntCmd) *MockCmdable_MSetEX_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -23872,6 +24498,622 @@ func (_c *MockCmdable_SetEx_Call) RunAndReturn(run func(ctx context.Context, key
 	return _c
 }
 
+// SetIFDEQ provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) SetIFDEQ(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration) *redis.StatusCmd {
+	ret := _mock.Called(ctx, key, value, matchDigest, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetIFDEQ")
+	}
+
+	var r0 *redis.StatusCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, interface{}, uint64, time.Duration) *redis.StatusCmd); ok {
+		r0 = returnFunc(ctx, key, value, matchDigest, expiration)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_SetIFDEQ_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetIFDEQ'
+type MockCmdable_SetIFDEQ_Call struct {
+	*mock.Call
+}
+
+// SetIFDEQ is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - matchDigest uint64
+//   - expiration time.Duration
+func (_e *MockCmdable_Expecter) SetIFDEQ(ctx interface{}, key interface{}, value interface{}, matchDigest interface{}, expiration interface{}) *MockCmdable_SetIFDEQ_Call {
+	return &MockCmdable_SetIFDEQ_Call{Call: _e.mock.On("SetIFDEQ", ctx, key, value, matchDigest, expiration)}
+}
+
+func (_c *MockCmdable_SetIFDEQ_Call) Run(run func(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration)) *MockCmdable_SetIFDEQ_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 uint64
+		if args[3] != nil {
+			arg3 = args[3].(uint64)
+		}
+		var arg4 time.Duration
+		if args[4] != nil {
+			arg4 = args[4].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_SetIFDEQ_Call) Return(statusCmd *redis.StatusCmd) *MockCmdable_SetIFDEQ_Call {
+	_c.Call.Return(statusCmd)
+	return _c
+}
+
+func (_c *MockCmdable_SetIFDEQ_Call) RunAndReturn(run func(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration) *redis.StatusCmd) *MockCmdable_SetIFDEQ_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SetIFDEQGet provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) SetIFDEQGet(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration) *redis.StringCmd {
+	ret := _mock.Called(ctx, key, value, matchDigest, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetIFDEQGet")
+	}
+
+	var r0 *redis.StringCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, interface{}, uint64, time.Duration) *redis.StringCmd); ok {
+		r0 = returnFunc(ctx, key, value, matchDigest, expiration)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_SetIFDEQGet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetIFDEQGet'
+type MockCmdable_SetIFDEQGet_Call struct {
+	*mock.Call
+}
+
+// SetIFDEQGet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - matchDigest uint64
+//   - expiration time.Duration
+func (_e *MockCmdable_Expecter) SetIFDEQGet(ctx interface{}, key interface{}, value interface{}, matchDigest interface{}, expiration interface{}) *MockCmdable_SetIFDEQGet_Call {
+	return &MockCmdable_SetIFDEQGet_Call{Call: _e.mock.On("SetIFDEQGet", ctx, key, value, matchDigest, expiration)}
+}
+
+func (_c *MockCmdable_SetIFDEQGet_Call) Run(run func(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration)) *MockCmdable_SetIFDEQGet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 uint64
+		if args[3] != nil {
+			arg3 = args[3].(uint64)
+		}
+		var arg4 time.Duration
+		if args[4] != nil {
+			arg4 = args[4].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_SetIFDEQGet_Call) Return(stringCmd *redis.StringCmd) *MockCmdable_SetIFDEQGet_Call {
+	_c.Call.Return(stringCmd)
+	return _c
+}
+
+func (_c *MockCmdable_SetIFDEQGet_Call) RunAndReturn(run func(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration) *redis.StringCmd) *MockCmdable_SetIFDEQGet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SetIFDNE provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) SetIFDNE(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration) *redis.StatusCmd {
+	ret := _mock.Called(ctx, key, value, matchDigest, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetIFDNE")
+	}
+
+	var r0 *redis.StatusCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, interface{}, uint64, time.Duration) *redis.StatusCmd); ok {
+		r0 = returnFunc(ctx, key, value, matchDigest, expiration)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_SetIFDNE_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetIFDNE'
+type MockCmdable_SetIFDNE_Call struct {
+	*mock.Call
+}
+
+// SetIFDNE is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - matchDigest uint64
+//   - expiration time.Duration
+func (_e *MockCmdable_Expecter) SetIFDNE(ctx interface{}, key interface{}, value interface{}, matchDigest interface{}, expiration interface{}) *MockCmdable_SetIFDNE_Call {
+	return &MockCmdable_SetIFDNE_Call{Call: _e.mock.On("SetIFDNE", ctx, key, value, matchDigest, expiration)}
+}
+
+func (_c *MockCmdable_SetIFDNE_Call) Run(run func(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration)) *MockCmdable_SetIFDNE_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 uint64
+		if args[3] != nil {
+			arg3 = args[3].(uint64)
+		}
+		var arg4 time.Duration
+		if args[4] != nil {
+			arg4 = args[4].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_SetIFDNE_Call) Return(statusCmd *redis.StatusCmd) *MockCmdable_SetIFDNE_Call {
+	_c.Call.Return(statusCmd)
+	return _c
+}
+
+func (_c *MockCmdable_SetIFDNE_Call) RunAndReturn(run func(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration) *redis.StatusCmd) *MockCmdable_SetIFDNE_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SetIFDNEGet provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) SetIFDNEGet(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration) *redis.StringCmd {
+	ret := _mock.Called(ctx, key, value, matchDigest, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetIFDNEGet")
+	}
+
+	var r0 *redis.StringCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, interface{}, uint64, time.Duration) *redis.StringCmd); ok {
+		r0 = returnFunc(ctx, key, value, matchDigest, expiration)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_SetIFDNEGet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetIFDNEGet'
+type MockCmdable_SetIFDNEGet_Call struct {
+	*mock.Call
+}
+
+// SetIFDNEGet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - matchDigest uint64
+//   - expiration time.Duration
+func (_e *MockCmdable_Expecter) SetIFDNEGet(ctx interface{}, key interface{}, value interface{}, matchDigest interface{}, expiration interface{}) *MockCmdable_SetIFDNEGet_Call {
+	return &MockCmdable_SetIFDNEGet_Call{Call: _e.mock.On("SetIFDNEGet", ctx, key, value, matchDigest, expiration)}
+}
+
+func (_c *MockCmdable_SetIFDNEGet_Call) Run(run func(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration)) *MockCmdable_SetIFDNEGet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 uint64
+		if args[3] != nil {
+			arg3 = args[3].(uint64)
+		}
+		var arg4 time.Duration
+		if args[4] != nil {
+			arg4 = args[4].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_SetIFDNEGet_Call) Return(stringCmd *redis.StringCmd) *MockCmdable_SetIFDNEGet_Call {
+	_c.Call.Return(stringCmd)
+	return _c
+}
+
+func (_c *MockCmdable_SetIFDNEGet_Call) RunAndReturn(run func(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration) *redis.StringCmd) *MockCmdable_SetIFDNEGet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SetIFEQ provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) SetIFEQ(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration) *redis.StatusCmd {
+	ret := _mock.Called(ctx, key, value, matchValue, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetIFEQ")
+	}
+
+	var r0 *redis.StatusCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, interface{}, interface{}, time.Duration) *redis.StatusCmd); ok {
+		r0 = returnFunc(ctx, key, value, matchValue, expiration)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_SetIFEQ_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetIFEQ'
+type MockCmdable_SetIFEQ_Call struct {
+	*mock.Call
+}
+
+// SetIFEQ is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - matchValue interface{}
+//   - expiration time.Duration
+func (_e *MockCmdable_Expecter) SetIFEQ(ctx interface{}, key interface{}, value interface{}, matchValue interface{}, expiration interface{}) *MockCmdable_SetIFEQ_Call {
+	return &MockCmdable_SetIFEQ_Call{Call: _e.mock.On("SetIFEQ", ctx, key, value, matchValue, expiration)}
+}
+
+func (_c *MockCmdable_SetIFEQ_Call) Run(run func(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration)) *MockCmdable_SetIFEQ_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		var arg4 time.Duration
+		if args[4] != nil {
+			arg4 = args[4].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_SetIFEQ_Call) Return(statusCmd *redis.StatusCmd) *MockCmdable_SetIFEQ_Call {
+	_c.Call.Return(statusCmd)
+	return _c
+}
+
+func (_c *MockCmdable_SetIFEQ_Call) RunAndReturn(run func(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration) *redis.StatusCmd) *MockCmdable_SetIFEQ_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SetIFEQGet provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) SetIFEQGet(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration) *redis.StringCmd {
+	ret := _mock.Called(ctx, key, value, matchValue, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetIFEQGet")
+	}
+
+	var r0 *redis.StringCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, interface{}, interface{}, time.Duration) *redis.StringCmd); ok {
+		r0 = returnFunc(ctx, key, value, matchValue, expiration)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_SetIFEQGet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetIFEQGet'
+type MockCmdable_SetIFEQGet_Call struct {
+	*mock.Call
+}
+
+// SetIFEQGet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - matchValue interface{}
+//   - expiration time.Duration
+func (_e *MockCmdable_Expecter) SetIFEQGet(ctx interface{}, key interface{}, value interface{}, matchValue interface{}, expiration interface{}) *MockCmdable_SetIFEQGet_Call {
+	return &MockCmdable_SetIFEQGet_Call{Call: _e.mock.On("SetIFEQGet", ctx, key, value, matchValue, expiration)}
+}
+
+func (_c *MockCmdable_SetIFEQGet_Call) Run(run func(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration)) *MockCmdable_SetIFEQGet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		var arg4 time.Duration
+		if args[4] != nil {
+			arg4 = args[4].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_SetIFEQGet_Call) Return(stringCmd *redis.StringCmd) *MockCmdable_SetIFEQGet_Call {
+	_c.Call.Return(stringCmd)
+	return _c
+}
+
+func (_c *MockCmdable_SetIFEQGet_Call) RunAndReturn(run func(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration) *redis.StringCmd) *MockCmdable_SetIFEQGet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SetIFNE provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) SetIFNE(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration) *redis.StatusCmd {
+	ret := _mock.Called(ctx, key, value, matchValue, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetIFNE")
+	}
+
+	var r0 *redis.StatusCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, interface{}, interface{}, time.Duration) *redis.StatusCmd); ok {
+		r0 = returnFunc(ctx, key, value, matchValue, expiration)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_SetIFNE_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetIFNE'
+type MockCmdable_SetIFNE_Call struct {
+	*mock.Call
+}
+
+// SetIFNE is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - matchValue interface{}
+//   - expiration time.Duration
+func (_e *MockCmdable_Expecter) SetIFNE(ctx interface{}, key interface{}, value interface{}, matchValue interface{}, expiration interface{}) *MockCmdable_SetIFNE_Call {
+	return &MockCmdable_SetIFNE_Call{Call: _e.mock.On("SetIFNE", ctx, key, value, matchValue, expiration)}
+}
+
+func (_c *MockCmdable_SetIFNE_Call) Run(run func(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration)) *MockCmdable_SetIFNE_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		var arg4 time.Duration
+		if args[4] != nil {
+			arg4 = args[4].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_SetIFNE_Call) Return(statusCmd *redis.StatusCmd) *MockCmdable_SetIFNE_Call {
+	_c.Call.Return(statusCmd)
+	return _c
+}
+
+func (_c *MockCmdable_SetIFNE_Call) RunAndReturn(run func(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration) *redis.StatusCmd) *MockCmdable_SetIFNE_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SetIFNEGet provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) SetIFNEGet(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration) *redis.StringCmd {
+	ret := _mock.Called(ctx, key, value, matchValue, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetIFNEGet")
+	}
+
+	var r0 *redis.StringCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, interface{}, interface{}, time.Duration) *redis.StringCmd); ok {
+		r0 = returnFunc(ctx, key, value, matchValue, expiration)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_SetIFNEGet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetIFNEGet'
+type MockCmdable_SetIFNEGet_Call struct {
+	*mock.Call
+}
+
+// SetIFNEGet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - matchValue interface{}
+//   - expiration time.Duration
+func (_e *MockCmdable_Expecter) SetIFNEGet(ctx interface{}, key interface{}, value interface{}, matchValue interface{}, expiration interface{}) *MockCmdable_SetIFNEGet_Call {
+	return &MockCmdable_SetIFNEGet_Call{Call: _e.mock.On("SetIFNEGet", ctx, key, value, matchValue, expiration)}
+}
+
+func (_c *MockCmdable_SetIFNEGet_Call) Run(run func(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration)) *MockCmdable_SetIFNEGet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		var arg4 time.Duration
+		if args[4] != nil {
+			arg4 = args[4].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_SetIFNEGet_Call) Return(stringCmd *redis.StringCmd) *MockCmdable_SetIFNEGet_Call {
+	_c.Call.Return(stringCmd)
+	return _c
+}
+
+func (_c *MockCmdable_SetIFNEGet_Call) RunAndReturn(run func(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration) *redis.StringCmd) *MockCmdable_SetIFNEGet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // SetNX provides a mock function for the type MockCmdable
 func (_mock *MockCmdable) SetNX(ctx context.Context, key string, value interface{}, expiration time.Duration) *redis.BoolCmd {
 	ret := _mock.Called(ctx, key, value, expiration)
@@ -24364,6 +25606,112 @@ func (_c *MockCmdable_SlowLogGet_Call) Return(slowLogCmd *redis.SlowLogCmd) *Moc
 }
 
 func (_c *MockCmdable_SlowLogGet_Call) RunAndReturn(run func(ctx context.Context, num int64) *redis.SlowLogCmd) *MockCmdable_SlowLogGet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SlowLogLen provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) SlowLogLen(ctx context.Context) *redis.IntCmd {
+	ret := _mock.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SlowLogLen")
+	}
+
+	var r0 *redis.IntCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context) *redis.IntCmd); ok {
+		r0 = returnFunc(ctx)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_SlowLogLen_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SlowLogLen'
+type MockCmdable_SlowLogLen_Call struct {
+	*mock.Call
+}
+
+// SlowLogLen is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *MockCmdable_Expecter) SlowLogLen(ctx interface{}) *MockCmdable_SlowLogLen_Call {
+	return &MockCmdable_SlowLogLen_Call{Call: _e.mock.On("SlowLogLen", ctx)}
+}
+
+func (_c *MockCmdable_SlowLogLen_Call) Run(run func(ctx context.Context)) *MockCmdable_SlowLogLen_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_SlowLogLen_Call) Return(intCmd *redis.IntCmd) *MockCmdable_SlowLogLen_Call {
+	_c.Call.Return(intCmd)
+	return _c
+}
+
+func (_c *MockCmdable_SlowLogLen_Call) RunAndReturn(run func(ctx context.Context) *redis.IntCmd) *MockCmdable_SlowLogLen_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SlowLogReset provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) SlowLogReset(ctx context.Context) *redis.StatusCmd {
+	ret := _mock.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SlowLogReset")
+	}
+
+	var r0 *redis.StatusCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
+		r0 = returnFunc(ctx)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_SlowLogReset_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SlowLogReset'
+type MockCmdable_SlowLogReset_Call struct {
+	*mock.Call
+}
+
+// SlowLogReset is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *MockCmdable_Expecter) SlowLogReset(ctx interface{}) *MockCmdable_SlowLogReset_Call {
+	return &MockCmdable_SlowLogReset_Call{Call: _e.mock.On("SlowLogReset", ctx)}
+}
+
+func (_c *MockCmdable_SlowLogReset_Call) Run(run func(ctx context.Context)) *MockCmdable_SlowLogReset_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_SlowLogReset_Call) Return(statusCmd *redis.StatusCmd) *MockCmdable_SlowLogReset_Call {
+	_c.Call.Return(statusCmd)
+	return _c
+}
+
+func (_c *MockCmdable_SlowLogReset_Call) RunAndReturn(run func(ctx context.Context) *redis.StatusCmd) *MockCmdable_SlowLogReset_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -29595,6 +30943,83 @@ func (_c *MockCmdable_VRandMemberCount_Call) Return(stringSliceCmd *redis.String
 }
 
 func (_c *MockCmdable_VRandMemberCount_Call) RunAndReturn(run func(ctx context.Context, key string, count int) *redis.StringSliceCmd) *MockCmdable_VRandMemberCount_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VRange provides a mock function for the type MockCmdable
+func (_mock *MockCmdable) VRange(ctx context.Context, key string, start string, end string, count int64) *redis.StringSliceCmd {
+	ret := _mock.Called(ctx, key, start, end, count)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VRange")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, string, int64) *redis.StringSliceCmd); ok {
+		r0 = returnFunc(ctx, key, start, end, count)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockCmdable_VRange_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VRange'
+type MockCmdable_VRange_Call struct {
+	*mock.Call
+}
+
+// VRange is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - start string
+//   - end string
+//   - count int64
+func (_e *MockCmdable_Expecter) VRange(ctx interface{}, key interface{}, start interface{}, end interface{}, count interface{}) *MockCmdable_VRange_Call {
+	return &MockCmdable_VRange_Call{Call: _e.mock.On("VRange", ctx, key, start, end, count)}
+}
+
+func (_c *MockCmdable_VRange_Call) Run(run func(ctx context.Context, key string, start string, end string, count int64)) *MockCmdable_VRange_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockCmdable_VRange_Call) Return(stringSliceCmd *redis.StringSliceCmd) *MockCmdable_VRange_Call {
+	_c.Call.Return(stringSliceCmd)
+	return _c
+}
+
+func (_c *MockCmdable_VRange_Call) RunAndReturn(run func(ctx context.Context, key string, start string, end string, count int64) *redis.StringSliceCmd) *MockCmdable_VRange_Call {
 	_c.Call.Return(run)
 	return _c
 }

@@ -284,6 +284,65 @@ func (_c *MockPipeliner_ACLDryRun_Call) RunAndReturn(run func(ctx context.Contex
 	return _c
 }
 
+// ACLGenPass provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) ACLGenPass(ctx context.Context, bit int) *redis.StringCmd {
+	ret := _mock.Called(ctx, bit)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ACLGenPass")
+	}
+
+	var r0 *redis.StringCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, int) *redis.StringCmd); ok {
+		r0 = returnFunc(ctx, bit)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_ACLGenPass_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ACLGenPass'
+type MockPipeliner_ACLGenPass_Call struct {
+	*mock.Call
+}
+
+// ACLGenPass is a helper method to define mock.On call
+//   - ctx context.Context
+//   - bit int
+func (_e *MockPipeliner_Expecter) ACLGenPass(ctx interface{}, bit interface{}) *MockPipeliner_ACLGenPass_Call {
+	return &MockPipeliner_ACLGenPass_Call{Call: _e.mock.On("ACLGenPass", ctx, bit)}
+}
+
+func (_c *MockPipeliner_ACLGenPass_Call) Run(run func(ctx context.Context, bit int)) *MockPipeliner_ACLGenPass_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 int
+		if args[1] != nil {
+			arg1 = args[1].(int)
+		}
+		run(
+			arg0,
+			arg1,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_ACLGenPass_Call) Return(stringCmd *redis.StringCmd) *MockPipeliner_ACLGenPass_Call {
+	_c.Call.Return(stringCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_ACLGenPass_Call) RunAndReturn(run func(ctx context.Context, bit int) *redis.StringCmd) *MockPipeliner_ACLGenPass_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // ACLList provides a mock function for the type MockPipeliner
 func (_mock *MockPipeliner) ACLList(ctx context.Context) *redis.StringSliceCmd {
 	ret := _mock.Called(ctx)
@@ -519,6 +578,112 @@ func (_c *MockPipeliner_ACLSetUser_Call) Return(statusCmd *redis.StatusCmd) *Moc
 }
 
 func (_c *MockPipeliner_ACLSetUser_Call) RunAndReturn(run func(ctx context.Context, username string, rules ...string) *redis.StatusCmd) *MockPipeliner_ACLSetUser_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// ACLUsers provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) ACLUsers(ctx context.Context) *redis.StringSliceCmd {
+	ret := _mock.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ACLUsers")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context) *redis.StringSliceCmd); ok {
+		r0 = returnFunc(ctx)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_ACLUsers_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ACLUsers'
+type MockPipeliner_ACLUsers_Call struct {
+	*mock.Call
+}
+
+// ACLUsers is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *MockPipeliner_Expecter) ACLUsers(ctx interface{}) *MockPipeliner_ACLUsers_Call {
+	return &MockPipeliner_ACLUsers_Call{Call: _e.mock.On("ACLUsers", ctx)}
+}
+
+func (_c *MockPipeliner_ACLUsers_Call) Run(run func(ctx context.Context)) *MockPipeliner_ACLUsers_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_ACLUsers_Call) Return(stringSliceCmd *redis.StringSliceCmd) *MockPipeliner_ACLUsers_Call {
+	_c.Call.Return(stringSliceCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_ACLUsers_Call) RunAndReturn(run func(ctx context.Context) *redis.StringSliceCmd) *MockPipeliner_ACLUsers_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// ACLWhoAmI provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) ACLWhoAmI(ctx context.Context) *redis.StringCmd {
+	ret := _mock.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ACLWhoAmI")
+	}
+
+	var r0 *redis.StringCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context) *redis.StringCmd); ok {
+		r0 = returnFunc(ctx)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_ACLWhoAmI_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ACLWhoAmI'
+type MockPipeliner_ACLWhoAmI_Call struct {
+	*mock.Call
+}
+
+// ACLWhoAmI is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *MockPipeliner_Expecter) ACLWhoAmI(ctx interface{}) *MockPipeliner_ACLWhoAmI_Call {
+	return &MockPipeliner_ACLWhoAmI_Call{Call: _e.mock.On("ACLWhoAmI", ctx)}
+}
+
+func (_c *MockPipeliner_ACLWhoAmI_Call) Run(run func(ctx context.Context)) *MockPipeliner_ACLWhoAmI_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_ACLWhoAmI_Call) Return(stringCmd *redis.StringCmd) *MockPipeliner_ACLWhoAmI_Call {
+	_c.Call.Return(stringCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_ACLWhoAmI_Call) RunAndReturn(run func(ctx context.Context) *redis.StringCmd) *MockPipeliner_ACLWhoAmI_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -8296,6 +8461,130 @@ func (_c *MockPipeliner_Del_Call) RunAndReturn(run func(ctx context.Context, key
 	return _c
 }
 
+// DelExArgs provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) DelExArgs(ctx context.Context, key string, a redis.DelExArgs) *redis.IntCmd {
+	ret := _mock.Called(ctx, key, a)
+
+	if len(ret) == 0 {
+		panic("no return value specified for DelExArgs")
+	}
+
+	var r0 *redis.IntCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, redis.DelExArgs) *redis.IntCmd); ok {
+		r0 = returnFunc(ctx, key, a)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_DelExArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DelExArgs'
+type MockPipeliner_DelExArgs_Call struct {
+	*mock.Call
+}
+
+// DelExArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - a redis.DelExArgs
+func (_e *MockPipeliner_Expecter) DelExArgs(ctx interface{}, key interface{}, a interface{}) *MockPipeliner_DelExArgs_Call {
+	return &MockPipeliner_DelExArgs_Call{Call: _e.mock.On("DelExArgs", ctx, key, a)}
+}
+
+func (_c *MockPipeliner_DelExArgs_Call) Run(run func(ctx context.Context, key string, a redis.DelExArgs)) *MockPipeliner_DelExArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 redis.DelExArgs
+		if args[2] != nil {
+			arg2 = args[2].(redis.DelExArgs)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_DelExArgs_Call) Return(intCmd *redis.IntCmd) *MockPipeliner_DelExArgs_Call {
+	_c.Call.Return(intCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_DelExArgs_Call) RunAndReturn(run func(ctx context.Context, key string, a redis.DelExArgs) *redis.IntCmd) *MockPipeliner_DelExArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// Digest provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) Digest(ctx context.Context, key string) *redis.DigestCmd {
+	ret := _mock.Called(ctx, key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Digest")
+	}
+
+	var r0 *redis.DigestCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string) *redis.DigestCmd); ok {
+		r0 = returnFunc(ctx, key)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.DigestCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_Digest_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Digest'
+type MockPipeliner_Digest_Call struct {
+	*mock.Call
+}
+
+// Digest is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+func (_e *MockPipeliner_Expecter) Digest(ctx interface{}, key interface{}) *MockPipeliner_Digest_Call {
+	return &MockPipeliner_Digest_Call{Call: _e.mock.On("Digest", ctx, key)}
+}
+
+func (_c *MockPipeliner_Digest_Call) Run(run func(ctx context.Context, key string)) *MockPipeliner_Digest_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		run(
+			arg0,
+			arg1,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_Digest_Call) Return(digestCmd *redis.DigestCmd) *MockPipeliner_Digest_Call {
+	_c.Call.Return(digestCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_Digest_Call) RunAndReturn(run func(ctx context.Context, key string) *redis.DigestCmd) *MockPipeliner_Digest_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Discard provides a mock function for the type MockPipeliner
 func (_mock *MockPipeliner) Discard() {
 	_mock.Called()
@@ -10853,6 +11142,148 @@ func (_c *MockPipeliner_FTExplainWithArgs_Call) Return(stringCmd *redis.StringCm
 }
 
 func (_c *MockPipeliner_FTExplainWithArgs_Call) RunAndReturn(run func(ctx context.Context, index string, query string, options *redis.FTExplainOptions) *redis.StringCmd) *MockPipeliner_FTExplainWithArgs_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTHybrid provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) FTHybrid(ctx context.Context, index string, searchExpr string, vectorField string, vectorData redis.Vector) *redis.FTHybridCmd {
+	ret := _mock.Called(ctx, index, searchExpr, vectorField, vectorData)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTHybrid")
+	}
+
+	var r0 *redis.FTHybridCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, string, redis.Vector) *redis.FTHybridCmd); ok {
+		r0 = returnFunc(ctx, index, searchExpr, vectorField, vectorData)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.FTHybridCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_FTHybrid_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTHybrid'
+type MockPipeliner_FTHybrid_Call struct {
+	*mock.Call
+}
+
+// FTHybrid is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - searchExpr string
+//   - vectorField string
+//   - vectorData redis.Vector
+func (_e *MockPipeliner_Expecter) FTHybrid(ctx interface{}, index interface{}, searchExpr interface{}, vectorField interface{}, vectorData interface{}) *MockPipeliner_FTHybrid_Call {
+	return &MockPipeliner_FTHybrid_Call{Call: _e.mock.On("FTHybrid", ctx, index, searchExpr, vectorField, vectorData)}
+}
+
+func (_c *MockPipeliner_FTHybrid_Call) Run(run func(ctx context.Context, index string, searchExpr string, vectorField string, vectorData redis.Vector)) *MockPipeliner_FTHybrid_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 redis.Vector
+		if args[4] != nil {
+			arg4 = args[4].(redis.Vector)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_FTHybrid_Call) Return(fTHybridCmd *redis.FTHybridCmd) *MockPipeliner_FTHybrid_Call {
+	_c.Call.Return(fTHybridCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_FTHybrid_Call) RunAndReturn(run func(ctx context.Context, index string, searchExpr string, vectorField string, vectorData redis.Vector) *redis.FTHybridCmd) *MockPipeliner_FTHybrid_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// FTHybridWithArgs provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) FTHybridWithArgs(ctx context.Context, index string, options *redis.FTHybridOptions) *redis.FTHybridCmd {
+	ret := _mock.Called(ctx, index, options)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FTHybridWithArgs")
+	}
+
+	var r0 *redis.FTHybridCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, *redis.FTHybridOptions) *redis.FTHybridCmd); ok {
+		r0 = returnFunc(ctx, index, options)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.FTHybridCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_FTHybridWithArgs_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FTHybridWithArgs'
+type MockPipeliner_FTHybridWithArgs_Call struct {
+	*mock.Call
+}
+
+// FTHybridWithArgs is a helper method to define mock.On call
+//   - ctx context.Context
+//   - index string
+//   - options *redis.FTHybridOptions
+func (_e *MockPipeliner_Expecter) FTHybridWithArgs(ctx interface{}, index interface{}, options interface{}) *MockPipeliner_FTHybridWithArgs_Call {
+	return &MockPipeliner_FTHybridWithArgs_Call{Call: _e.mock.On("FTHybridWithArgs", ctx, index, options)}
+}
+
+func (_c *MockPipeliner_FTHybridWithArgs_Call) Run(run func(ctx context.Context, index string, options *redis.FTHybridOptions)) *MockPipeliner_FTHybridWithArgs_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 *redis.FTHybridOptions
+		if args[2] != nil {
+			arg2 = args[2].(*redis.FTHybridOptions)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_FTHybridWithArgs_Call) Return(fTHybridCmd *redis.FTHybridCmd) *MockPipeliner_FTHybridWithArgs_Call {
+	_c.Call.Return(fTHybridCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_FTHybridWithArgs_Call) RunAndReturn(run func(ctx context.Context, index string, options *redis.FTHybridOptions) *redis.FTHybridCmd) *MockPipeliner_FTHybridWithArgs_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -19719,6 +20150,127 @@ func (_c *MockPipeliner_LastSave_Call) RunAndReturn(run func(ctx context.Context
 	return _c
 }
 
+// Latency provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) Latency(ctx context.Context) *redis.LatencyCmd {
+	ret := _mock.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Latency")
+	}
+
+	var r0 *redis.LatencyCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context) *redis.LatencyCmd); ok {
+		r0 = returnFunc(ctx)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.LatencyCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_Latency_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Latency'
+type MockPipeliner_Latency_Call struct {
+	*mock.Call
+}
+
+// Latency is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *MockPipeliner_Expecter) Latency(ctx interface{}) *MockPipeliner_Latency_Call {
+	return &MockPipeliner_Latency_Call{Call: _e.mock.On("Latency", ctx)}
+}
+
+func (_c *MockPipeliner_Latency_Call) Run(run func(ctx context.Context)) *MockPipeliner_Latency_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_Latency_Call) Return(latencyCmd *redis.LatencyCmd) *MockPipeliner_Latency_Call {
+	_c.Call.Return(latencyCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_Latency_Call) RunAndReturn(run func(ctx context.Context) *redis.LatencyCmd) *MockPipeliner_Latency_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// LatencyReset provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) LatencyReset(ctx context.Context, events ...interface{}) *redis.StatusCmd {
+	var tmpRet mock.Arguments
+	if len(events) > 0 {
+		tmpRet = _mock.Called(ctx, events)
+	} else {
+		tmpRet = _mock.Called(ctx)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for LatencyReset")
+	}
+
+	var r0 *redis.StatusCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, ...interface{}) *redis.StatusCmd); ok {
+		r0 = returnFunc(ctx, events...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_LatencyReset_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'LatencyReset'
+type MockPipeliner_LatencyReset_Call struct {
+	*mock.Call
+}
+
+// LatencyReset is a helper method to define mock.On call
+//   - ctx context.Context
+//   - events ...interface{}
+func (_e *MockPipeliner_Expecter) LatencyReset(ctx interface{}, events ...interface{}) *MockPipeliner_LatencyReset_Call {
+	return &MockPipeliner_LatencyReset_Call{Call: _e.mock.On("LatencyReset",
+		append([]interface{}{ctx}, events...)...)}
+}
+
+func (_c *MockPipeliner_LatencyReset_Call) Run(run func(ctx context.Context, events ...interface{})) *MockPipeliner_LatencyReset_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 1 {
+			variadicArgs = args[1].([]interface{})
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_LatencyReset_Call) Return(statusCmd *redis.StatusCmd) *MockPipeliner_LatencyReset_Call {
+	_c.Call.Return(statusCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_LatencyReset_Call) RunAndReturn(run func(ctx context.Context, events ...interface{}) *redis.StatusCmd) *MockPipeliner_LatencyReset_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Len provides a mock function for the type MockPipeliner
 func (_mock *MockPipeliner) Len() int {
 	ret := _mock.Called()
@@ -19895,6 +20447,80 @@ func (_c *MockPipeliner_MSet_Call) Return(statusCmd *redis.StatusCmd) *MockPipel
 }
 
 func (_c *MockPipeliner_MSet_Call) RunAndReturn(run func(ctx context.Context, values ...interface{}) *redis.StatusCmd) *MockPipeliner_MSet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// MSetEX provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) MSetEX(ctx context.Context, args redis.MSetEXArgs, values ...interface{}) *redis.IntCmd {
+	var tmpRet mock.Arguments
+	if len(values) > 0 {
+		tmpRet = _mock.Called(ctx, args, values)
+	} else {
+		tmpRet = _mock.Called(ctx, args)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for MSetEX")
+	}
+
+	var r0 *redis.IntCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, redis.MSetEXArgs, ...interface{}) *redis.IntCmd); ok {
+		r0 = returnFunc(ctx, args, values...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_MSetEX_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'MSetEX'
+type MockPipeliner_MSetEX_Call struct {
+	*mock.Call
+}
+
+// MSetEX is a helper method to define mock.On call
+//   - ctx context.Context
+//   - args redis.MSetEXArgs
+//   - values ...interface{}
+func (_e *MockPipeliner_Expecter) MSetEX(ctx interface{}, args interface{}, values ...interface{}) *MockPipeliner_MSetEX_Call {
+	return &MockPipeliner_MSetEX_Call{Call: _e.mock.On("MSetEX",
+		append([]interface{}{ctx, args}, values...)...)}
+}
+
+func (_c *MockPipeliner_MSetEX_Call) Run(run func(ctx context.Context, args redis.MSetEXArgs, values ...interface{})) *MockPipeliner_MSetEX_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 redis.MSetEXArgs
+		if args[1] != nil {
+			arg1 = args[1].(redis.MSetEXArgs)
+		}
+		var arg2 []interface{}
+		var variadicArgs []interface{}
+		if len(args) > 2 {
+			variadicArgs = args[2].([]interface{})
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_MSetEX_Call) Return(intCmd *redis.IntCmd) *MockPipeliner_MSetEX_Call {
+	_c.Call.Return(intCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_MSetEX_Call) RunAndReturn(run func(ctx context.Context, args redis.MSetEXArgs, values ...interface{}) *redis.IntCmd) *MockPipeliner_MSetEX_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -24626,6 +25252,622 @@ func (_c *MockPipeliner_SetEx_Call) RunAndReturn(run func(ctx context.Context, k
 	return _c
 }
 
+// SetIFDEQ provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) SetIFDEQ(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration) *redis.StatusCmd {
+	ret := _mock.Called(ctx, key, value, matchDigest, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetIFDEQ")
+	}
+
+	var r0 *redis.StatusCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, interface{}, uint64, time.Duration) *redis.StatusCmd); ok {
+		r0 = returnFunc(ctx, key, value, matchDigest, expiration)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_SetIFDEQ_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetIFDEQ'
+type MockPipeliner_SetIFDEQ_Call struct {
+	*mock.Call
+}
+
+// SetIFDEQ is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - matchDigest uint64
+//   - expiration time.Duration
+func (_e *MockPipeliner_Expecter) SetIFDEQ(ctx interface{}, key interface{}, value interface{}, matchDigest interface{}, expiration interface{}) *MockPipeliner_SetIFDEQ_Call {
+	return &MockPipeliner_SetIFDEQ_Call{Call: _e.mock.On("SetIFDEQ", ctx, key, value, matchDigest, expiration)}
+}
+
+func (_c *MockPipeliner_SetIFDEQ_Call) Run(run func(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration)) *MockPipeliner_SetIFDEQ_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 uint64
+		if args[3] != nil {
+			arg3 = args[3].(uint64)
+		}
+		var arg4 time.Duration
+		if args[4] != nil {
+			arg4 = args[4].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_SetIFDEQ_Call) Return(statusCmd *redis.StatusCmd) *MockPipeliner_SetIFDEQ_Call {
+	_c.Call.Return(statusCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_SetIFDEQ_Call) RunAndReturn(run func(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration) *redis.StatusCmd) *MockPipeliner_SetIFDEQ_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SetIFDEQGet provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) SetIFDEQGet(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration) *redis.StringCmd {
+	ret := _mock.Called(ctx, key, value, matchDigest, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetIFDEQGet")
+	}
+
+	var r0 *redis.StringCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, interface{}, uint64, time.Duration) *redis.StringCmd); ok {
+		r0 = returnFunc(ctx, key, value, matchDigest, expiration)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_SetIFDEQGet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetIFDEQGet'
+type MockPipeliner_SetIFDEQGet_Call struct {
+	*mock.Call
+}
+
+// SetIFDEQGet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - matchDigest uint64
+//   - expiration time.Duration
+func (_e *MockPipeliner_Expecter) SetIFDEQGet(ctx interface{}, key interface{}, value interface{}, matchDigest interface{}, expiration interface{}) *MockPipeliner_SetIFDEQGet_Call {
+	return &MockPipeliner_SetIFDEQGet_Call{Call: _e.mock.On("SetIFDEQGet", ctx, key, value, matchDigest, expiration)}
+}
+
+func (_c *MockPipeliner_SetIFDEQGet_Call) Run(run func(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration)) *MockPipeliner_SetIFDEQGet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 uint64
+		if args[3] != nil {
+			arg3 = args[3].(uint64)
+		}
+		var arg4 time.Duration
+		if args[4] != nil {
+			arg4 = args[4].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_SetIFDEQGet_Call) Return(stringCmd *redis.StringCmd) *MockPipeliner_SetIFDEQGet_Call {
+	_c.Call.Return(stringCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_SetIFDEQGet_Call) RunAndReturn(run func(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration) *redis.StringCmd) *MockPipeliner_SetIFDEQGet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SetIFDNE provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) SetIFDNE(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration) *redis.StatusCmd {
+	ret := _mock.Called(ctx, key, value, matchDigest, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetIFDNE")
+	}
+
+	var r0 *redis.StatusCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, interface{}, uint64, time.Duration) *redis.StatusCmd); ok {
+		r0 = returnFunc(ctx, key, value, matchDigest, expiration)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_SetIFDNE_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetIFDNE'
+type MockPipeliner_SetIFDNE_Call struct {
+	*mock.Call
+}
+
+// SetIFDNE is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - matchDigest uint64
+//   - expiration time.Duration
+func (_e *MockPipeliner_Expecter) SetIFDNE(ctx interface{}, key interface{}, value interface{}, matchDigest interface{}, expiration interface{}) *MockPipeliner_SetIFDNE_Call {
+	return &MockPipeliner_SetIFDNE_Call{Call: _e.mock.On("SetIFDNE", ctx, key, value, matchDigest, expiration)}
+}
+
+func (_c *MockPipeliner_SetIFDNE_Call) Run(run func(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration)) *MockPipeliner_SetIFDNE_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 uint64
+		if args[3] != nil {
+			arg3 = args[3].(uint64)
+		}
+		var arg4 time.Duration
+		if args[4] != nil {
+			arg4 = args[4].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_SetIFDNE_Call) Return(statusCmd *redis.StatusCmd) *MockPipeliner_SetIFDNE_Call {
+	_c.Call.Return(statusCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_SetIFDNE_Call) RunAndReturn(run func(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration) *redis.StatusCmd) *MockPipeliner_SetIFDNE_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SetIFDNEGet provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) SetIFDNEGet(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration) *redis.StringCmd {
+	ret := _mock.Called(ctx, key, value, matchDigest, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetIFDNEGet")
+	}
+
+	var r0 *redis.StringCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, interface{}, uint64, time.Duration) *redis.StringCmd); ok {
+		r0 = returnFunc(ctx, key, value, matchDigest, expiration)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_SetIFDNEGet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetIFDNEGet'
+type MockPipeliner_SetIFDNEGet_Call struct {
+	*mock.Call
+}
+
+// SetIFDNEGet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - matchDigest uint64
+//   - expiration time.Duration
+func (_e *MockPipeliner_Expecter) SetIFDNEGet(ctx interface{}, key interface{}, value interface{}, matchDigest interface{}, expiration interface{}) *MockPipeliner_SetIFDNEGet_Call {
+	return &MockPipeliner_SetIFDNEGet_Call{Call: _e.mock.On("SetIFDNEGet", ctx, key, value, matchDigest, expiration)}
+}
+
+func (_c *MockPipeliner_SetIFDNEGet_Call) Run(run func(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration)) *MockPipeliner_SetIFDNEGet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 uint64
+		if args[3] != nil {
+			arg3 = args[3].(uint64)
+		}
+		var arg4 time.Duration
+		if args[4] != nil {
+			arg4 = args[4].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_SetIFDNEGet_Call) Return(stringCmd *redis.StringCmd) *MockPipeliner_SetIFDNEGet_Call {
+	_c.Call.Return(stringCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_SetIFDNEGet_Call) RunAndReturn(run func(ctx context.Context, key string, value interface{}, matchDigest uint64, expiration time.Duration) *redis.StringCmd) *MockPipeliner_SetIFDNEGet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SetIFEQ provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) SetIFEQ(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration) *redis.StatusCmd {
+	ret := _mock.Called(ctx, key, value, matchValue, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetIFEQ")
+	}
+
+	var r0 *redis.StatusCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, interface{}, interface{}, time.Duration) *redis.StatusCmd); ok {
+		r0 = returnFunc(ctx, key, value, matchValue, expiration)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_SetIFEQ_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetIFEQ'
+type MockPipeliner_SetIFEQ_Call struct {
+	*mock.Call
+}
+
+// SetIFEQ is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - matchValue interface{}
+//   - expiration time.Duration
+func (_e *MockPipeliner_Expecter) SetIFEQ(ctx interface{}, key interface{}, value interface{}, matchValue interface{}, expiration interface{}) *MockPipeliner_SetIFEQ_Call {
+	return &MockPipeliner_SetIFEQ_Call{Call: _e.mock.On("SetIFEQ", ctx, key, value, matchValue, expiration)}
+}
+
+func (_c *MockPipeliner_SetIFEQ_Call) Run(run func(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration)) *MockPipeliner_SetIFEQ_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		var arg4 time.Duration
+		if args[4] != nil {
+			arg4 = args[4].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_SetIFEQ_Call) Return(statusCmd *redis.StatusCmd) *MockPipeliner_SetIFEQ_Call {
+	_c.Call.Return(statusCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_SetIFEQ_Call) RunAndReturn(run func(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration) *redis.StatusCmd) *MockPipeliner_SetIFEQ_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SetIFEQGet provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) SetIFEQGet(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration) *redis.StringCmd {
+	ret := _mock.Called(ctx, key, value, matchValue, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetIFEQGet")
+	}
+
+	var r0 *redis.StringCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, interface{}, interface{}, time.Duration) *redis.StringCmd); ok {
+		r0 = returnFunc(ctx, key, value, matchValue, expiration)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_SetIFEQGet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetIFEQGet'
+type MockPipeliner_SetIFEQGet_Call struct {
+	*mock.Call
+}
+
+// SetIFEQGet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - matchValue interface{}
+//   - expiration time.Duration
+func (_e *MockPipeliner_Expecter) SetIFEQGet(ctx interface{}, key interface{}, value interface{}, matchValue interface{}, expiration interface{}) *MockPipeliner_SetIFEQGet_Call {
+	return &MockPipeliner_SetIFEQGet_Call{Call: _e.mock.On("SetIFEQGet", ctx, key, value, matchValue, expiration)}
+}
+
+func (_c *MockPipeliner_SetIFEQGet_Call) Run(run func(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration)) *MockPipeliner_SetIFEQGet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		var arg4 time.Duration
+		if args[4] != nil {
+			arg4 = args[4].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_SetIFEQGet_Call) Return(stringCmd *redis.StringCmd) *MockPipeliner_SetIFEQGet_Call {
+	_c.Call.Return(stringCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_SetIFEQGet_Call) RunAndReturn(run func(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration) *redis.StringCmd) *MockPipeliner_SetIFEQGet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SetIFNE provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) SetIFNE(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration) *redis.StatusCmd {
+	ret := _mock.Called(ctx, key, value, matchValue, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetIFNE")
+	}
+
+	var r0 *redis.StatusCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, interface{}, interface{}, time.Duration) *redis.StatusCmd); ok {
+		r0 = returnFunc(ctx, key, value, matchValue, expiration)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_SetIFNE_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetIFNE'
+type MockPipeliner_SetIFNE_Call struct {
+	*mock.Call
+}
+
+// SetIFNE is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - matchValue interface{}
+//   - expiration time.Duration
+func (_e *MockPipeliner_Expecter) SetIFNE(ctx interface{}, key interface{}, value interface{}, matchValue interface{}, expiration interface{}) *MockPipeliner_SetIFNE_Call {
+	return &MockPipeliner_SetIFNE_Call{Call: _e.mock.On("SetIFNE", ctx, key, value, matchValue, expiration)}
+}
+
+func (_c *MockPipeliner_SetIFNE_Call) Run(run func(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration)) *MockPipeliner_SetIFNE_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		var arg4 time.Duration
+		if args[4] != nil {
+			arg4 = args[4].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_SetIFNE_Call) Return(statusCmd *redis.StatusCmd) *MockPipeliner_SetIFNE_Call {
+	_c.Call.Return(statusCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_SetIFNE_Call) RunAndReturn(run func(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration) *redis.StatusCmd) *MockPipeliner_SetIFNE_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SetIFNEGet provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) SetIFNEGet(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration) *redis.StringCmd {
+	ret := _mock.Called(ctx, key, value, matchValue, expiration)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SetIFNEGet")
+	}
+
+	var r0 *redis.StringCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, interface{}, interface{}, time.Duration) *redis.StringCmd); ok {
+		r0 = returnFunc(ctx, key, value, matchValue, expiration)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_SetIFNEGet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetIFNEGet'
+type MockPipeliner_SetIFNEGet_Call struct {
+	*mock.Call
+}
+
+// SetIFNEGet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - value interface{}
+//   - matchValue interface{}
+//   - expiration time.Duration
+func (_e *MockPipeliner_Expecter) SetIFNEGet(ctx interface{}, key interface{}, value interface{}, matchValue interface{}, expiration interface{}) *MockPipeliner_SetIFNEGet_Call {
+	return &MockPipeliner_SetIFNEGet_Call{Call: _e.mock.On("SetIFNEGet", ctx, key, value, matchValue, expiration)}
+}
+
+func (_c *MockPipeliner_SetIFNEGet_Call) Run(run func(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration)) *MockPipeliner_SetIFNEGet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 interface{}
+		if args[2] != nil {
+			arg2 = args[2].(interface{})
+		}
+		var arg3 interface{}
+		if args[3] != nil {
+			arg3 = args[3].(interface{})
+		}
+		var arg4 time.Duration
+		if args[4] != nil {
+			arg4 = args[4].(time.Duration)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_SetIFNEGet_Call) Return(stringCmd *redis.StringCmd) *MockPipeliner_SetIFNEGet_Call {
+	_c.Call.Return(stringCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_SetIFNEGet_Call) RunAndReturn(run func(ctx context.Context, key string, value interface{}, matchValue interface{}, expiration time.Duration) *redis.StringCmd) *MockPipeliner_SetIFNEGet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // SetNX provides a mock function for the type MockPipeliner
 func (_mock *MockPipeliner) SetNX(ctx context.Context, key string, value interface{}, expiration time.Duration) *redis.BoolCmd {
 	ret := _mock.Called(ctx, key, value, expiration)
@@ -25118,6 +26360,112 @@ func (_c *MockPipeliner_SlowLogGet_Call) Return(slowLogCmd *redis.SlowLogCmd) *M
 }
 
 func (_c *MockPipeliner_SlowLogGet_Call) RunAndReturn(run func(ctx context.Context, num int64) *redis.SlowLogCmd) *MockPipeliner_SlowLogGet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SlowLogLen provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) SlowLogLen(ctx context.Context) *redis.IntCmd {
+	ret := _mock.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SlowLogLen")
+	}
+
+	var r0 *redis.IntCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context) *redis.IntCmd); ok {
+		r0 = returnFunc(ctx)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.IntCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_SlowLogLen_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SlowLogLen'
+type MockPipeliner_SlowLogLen_Call struct {
+	*mock.Call
+}
+
+// SlowLogLen is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *MockPipeliner_Expecter) SlowLogLen(ctx interface{}) *MockPipeliner_SlowLogLen_Call {
+	return &MockPipeliner_SlowLogLen_Call{Call: _e.mock.On("SlowLogLen", ctx)}
+}
+
+func (_c *MockPipeliner_SlowLogLen_Call) Run(run func(ctx context.Context)) *MockPipeliner_SlowLogLen_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_SlowLogLen_Call) Return(intCmd *redis.IntCmd) *MockPipeliner_SlowLogLen_Call {
+	_c.Call.Return(intCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_SlowLogLen_Call) RunAndReturn(run func(ctx context.Context) *redis.IntCmd) *MockPipeliner_SlowLogLen_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// SlowLogReset provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) SlowLogReset(ctx context.Context) *redis.StatusCmd {
+	ret := _mock.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for SlowLogReset")
+	}
+
+	var r0 *redis.StatusCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context) *redis.StatusCmd); ok {
+		r0 = returnFunc(ctx)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_SlowLogReset_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SlowLogReset'
+type MockPipeliner_SlowLogReset_Call struct {
+	*mock.Call
+}
+
+// SlowLogReset is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *MockPipeliner_Expecter) SlowLogReset(ctx interface{}) *MockPipeliner_SlowLogReset_Call {
+	return &MockPipeliner_SlowLogReset_Call{Call: _e.mock.On("SlowLogReset", ctx)}
+}
+
+func (_c *MockPipeliner_SlowLogReset_Call) Run(run func(ctx context.Context)) *MockPipeliner_SlowLogReset_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		run(
+			arg0,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_SlowLogReset_Call) Return(statusCmd *redis.StatusCmd) *MockPipeliner_SlowLogReset_Call {
+	_c.Call.Return(statusCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_SlowLogReset_Call) RunAndReturn(run func(ctx context.Context) *redis.StatusCmd) *MockPipeliner_SlowLogReset_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -30346,6 +31694,83 @@ func (_c *MockPipeliner_VRandMemberCount_Call) Return(stringSliceCmd *redis.Stri
 }
 
 func (_c *MockPipeliner_VRandMemberCount_Call) RunAndReturn(run func(ctx context.Context, key string, count int) *redis.StringSliceCmd) *MockPipeliner_VRandMemberCount_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// VRange provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) VRange(ctx context.Context, key string, start string, end string, count int64) *redis.StringSliceCmd {
+	ret := _mock.Called(ctx, key, start, end, count)
+
+	if len(ret) == 0 {
+		panic("no return value specified for VRange")
+	}
+
+	var r0 *redis.StringSliceCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, string, int64) *redis.StringSliceCmd); ok {
+		r0 = returnFunc(ctx, key, start, end, count)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StringSliceCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_VRange_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'VRange'
+type MockPipeliner_VRange_Call struct {
+	*mock.Call
+}
+
+// VRange is a helper method to define mock.On call
+//   - ctx context.Context
+//   - key string
+//   - start string
+//   - end string
+//   - count int64
+func (_e *MockPipeliner_Expecter) VRange(ctx interface{}, key interface{}, start interface{}, end interface{}, count interface{}) *MockPipeliner_VRange_Call {
+	return &MockPipeliner_VRange_Call{Call: _e.mock.On("VRange", ctx, key, start, end, count)}
+}
+
+func (_c *MockPipeliner_VRange_Call) Run(run func(ctx context.Context, key string, start string, end string, count int64)) *MockPipeliner_VRange_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 string
+		if args[3] != nil {
+			arg3 = args[3].(string)
+		}
+		var arg4 int64
+		if args[4] != nil {
+			arg4 = args[4].(int64)
+		}
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3,
+			arg4,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_VRange_Call) Return(stringSliceCmd *redis.StringSliceCmd) *MockPipeliner_VRange_Call {
+	_c.Call.Return(stringSliceCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_VRange_Call) RunAndReturn(run func(ctx context.Context, key string, start string, end string, count int64) *redis.StringSliceCmd) *MockPipeliner_VRange_Call {
 	_c.Call.Return(run)
 	return _c
 }
