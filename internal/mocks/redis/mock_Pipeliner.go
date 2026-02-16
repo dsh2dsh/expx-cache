@@ -32526,6 +32526,65 @@ func (_c *MockPipeliner_XAutoClaimJustID_Call) RunAndReturn(run func(ctx context
 	return _c
 }
 
+// XCfgSet provides a mock function for the type MockPipeliner
+func (_mock *MockPipeliner) XCfgSet(ctx context.Context, a *redis.XCfgSetArgs) *redis.StatusCmd {
+	ret := _mock.Called(ctx, a)
+
+	if len(ret) == 0 {
+		panic("no return value specified for XCfgSet")
+	}
+
+	var r0 *redis.StatusCmd
+	if returnFunc, ok := ret.Get(0).(func(context.Context, *redis.XCfgSetArgs) *redis.StatusCmd); ok {
+		r0 = returnFunc(ctx, a)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*redis.StatusCmd)
+		}
+	}
+	return r0
+}
+
+// MockPipeliner_XCfgSet_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'XCfgSet'
+type MockPipeliner_XCfgSet_Call struct {
+	*mock.Call
+}
+
+// XCfgSet is a helper method to define mock.On call
+//   - ctx context.Context
+//   - a *redis.XCfgSetArgs
+func (_e *MockPipeliner_Expecter) XCfgSet(ctx interface{}, a interface{}) *MockPipeliner_XCfgSet_Call {
+	return &MockPipeliner_XCfgSet_Call{Call: _e.mock.On("XCfgSet", ctx, a)}
+}
+
+func (_c *MockPipeliner_XCfgSet_Call) Run(run func(ctx context.Context, a *redis.XCfgSetArgs)) *MockPipeliner_XCfgSet_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 *redis.XCfgSetArgs
+		if args[1] != nil {
+			arg1 = args[1].(*redis.XCfgSetArgs)
+		}
+		run(
+			arg0,
+			arg1,
+		)
+	})
+	return _c
+}
+
+func (_c *MockPipeliner_XCfgSet_Call) Return(statusCmd *redis.StatusCmd) *MockPipeliner_XCfgSet_Call {
+	_c.Call.Return(statusCmd)
+	return _c
+}
+
+func (_c *MockPipeliner_XCfgSet_Call) RunAndReturn(run func(ctx context.Context, a *redis.XCfgSetArgs) *redis.StatusCmd) *MockPipeliner_XCfgSet_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // XClaim provides a mock function for the type MockPipeliner
 func (_mock *MockPipeliner) XClaim(ctx context.Context, a *redis.XClaimArgs) *redis.XMessageSliceCmd {
 	ret := _mock.Called(ctx, a)
