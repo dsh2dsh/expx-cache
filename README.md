@@ -1,6 +1,7 @@
-# Cache library for Go
+# Cache framework for Go
 
 [![Go](https://github.com/dsh2dsh/expx-cache/actions/workflows/go.yml/badge.svg)](https://github.com/dsh2dsh/expx-cache/actions/workflows/go.yml)
+[![GoDoc](https://godoc.org/github.com/dsh2dsh/expx-cache?status.png)](https://godoc.org/github.com/dsh2dsh/expx-cache)
 
 Right now this project is under constraction.
 
@@ -13,7 +14,7 @@ it.
 For launching all tests a redis instance required
 
 ```
-WITH_REDIS="redis://localhost:6379" make test
+WITH_REDIS="redis://localhost:6379" go test ./...
 ```
 
 or create file named `.env.local` with next content
@@ -25,7 +26,7 @@ WITH_REDIS=redis://localhost:6379
 and run tests by
 
 ```
-make test
+go test ./...
 ```
 
 If this redis instance is in production, tests should be pointed to another

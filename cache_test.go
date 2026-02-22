@@ -14,14 +14,13 @@ import (
 	"time"
 
 	"github.com/caarlos0/env/v10"
+	lfu "github.com/dsh2dsh/expx-cache-lfu"
+	cacheRedis "github.com/dsh2dsh/expx-cache-redis"
 	dotenv "github.com/dsh2dsh/expx-dotenv"
 	"github.com/redis/go-redis/v9"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
-
-	"github.com/dsh2dsh/expx-cache/local"
-	cacheRedis "github.com/dsh2dsh/expx-cache/redis"
 )
 
 const (
@@ -29,7 +28,7 @@ const (
 	testKey   = "test-key"
 )
 
-func valueNoError[V any](t *testing.T) func(val V, err error) V {
+func mustValue[V any](t *testing.T) func(val V, err error) V {
 	return func(val V, err error) V {
 		require.NoError(t, err)
 		return val
@@ -133,11 +132,11 @@ func (self *CacheTestSuite) TestCache_GetSet_nil() {
 	item := Item{Key: testKey}
 	self.Require().NoError(self.cache.Set(ctx, item))
 
-	self.Equal([]Item{item}, valueNoError[[]Item](self.T())(
+	self.Equal([]Item{item}, mustValue[[]Item](self.T())(
 		self.cache.Get(ctx, item)))
 	self.expectCacheMiss()
 
-	self.False(valueNoError[bool](self.T())(self.cache.Exists(ctx, item.Key)),
+	self.False(mustValue[bool](self.T())(self.cache.Exists(ctx, item.Key)),
 		"nil value shouldn't be cached")
 	self.expectCacheMiss()
 
@@ -152,7 +151,7 @@ func (self *CacheTestSuite) TestCache_GetSet_data() {
 
 	var gotValue CacheableObject
 	item.Value = &gotValue
-	self.Require().Empty(valueNoError[[]Item](self.T())(self.cache.Get(ctx, item)))
+	self.Require().Empty(mustValue[[]Item](self.T())(self.cache.Get(ctx, item)))
 	self.expectCacheHit()
 	self.Equal(&val, &gotValue)
 
@@ -169,7 +168,7 @@ func (self *CacheTestSuite) TestCache_GetSet_stringAsIs() {
 
 	var gotValue string
 	item.Value = &gotValue
-	self.Require().Empty(valueNoError[[]Item](self.T())(self.cache.Get(ctx, item)))
+	self.Require().Empty(mustValue[[]Item](self.T())(self.cache.Get(ctx, item)))
 	self.expectCacheHit()
 	self.Equal(value, gotValue)
 	self.assertStats()
@@ -183,7 +182,7 @@ func (self *CacheTestSuite) TestCache_GetSet_bytesAsIs() {
 
 	var gotValue []byte
 	item.Value = &gotValue
-	self.Require().Empty(valueNoError[[]Item](self.T())(self.cache.Get(ctx, item)))
+	self.Require().Empty(mustValue[[]Item](self.T())(self.cache.Get(ctx, item)))
 	self.expectCacheHit()
 	self.Equal(value, gotValue)
 	self.assertStats()
@@ -211,7 +210,7 @@ func (self *CacheTestSuite) TestCache_setGetItems() {
 		item.Value = &gotValues[i]
 		self.expectCacheHit()
 	}
-	missed := valueNoError[[]Item](self.T())(self.cache.Get(ctx, allItems[:]...))
+	missed := mustValue[[]Item](self.T())(self.cache.Get(ctx, allItems[:]...))
 	for range missed {
 		self.expectCacheMiss()
 	}
@@ -222,7 +221,7 @@ func (self *CacheTestSuite) TestCache_setGetItems() {
 
 	clear(gotValues[:])
 	var expectedValues [maxItems]CacheableObject
-	missed = valueNoError[[]Item](self.T())(self.cache.Get(ctx, allItems[:]...))
+	missed = mustValue[[]Item](self.T())(self.cache.Get(ctx, allItems[:]...))
 	for range missed {
 		self.expectCacheMiss()
 	}
@@ -296,7 +295,7 @@ func (self *CacheTestSuite) TestCache_WithKeyWrapper() {
 		{
 			name: "Exists",
 			assert: func() {
-				self.True(valueNoError[bool](self.T())(cache.Exists(ctx, testKey)))
+				self.True(mustValue[bool](self.T())(cache.Exists(ctx, testKey)))
 			},
 		},
 		{
@@ -304,7 +303,7 @@ func (self *CacheTestSuite) TestCache_WithKeyWrapper() {
 			assert: func() {
 				got := CacheableObject{}
 				item := Item{Key: testKey, Value: &got}
-				self.Empty(valueNoError[[]Item](self.T())(cache.Get(ctx, item)))
+				self.Empty(mustValue[[]Item](self.T())(cache.Get(ctx, item)))
 				self.Equal(self.CacheableValue(), got)
 			},
 		},
@@ -315,7 +314,7 @@ func (self *CacheTestSuite) TestCache_WithKeyWrapper() {
 				got2 := CacheableObject{}
 				item1 := Item{Key: testKey, Value: &got1}
 				item2 := Item{Key: testKey, Value: &got2}
-				self.Empty(valueNoError[[]Item](self.T())(cache.Get(ctx, item1, item2)))
+				self.Empty(mustValue[[]Item](self.T())(cache.Get(ctx, item1, item2)))
 				self.Equal(self.CacheableValue(), got1)
 				self.Equal(self.CacheableValue(), got2)
 			},
@@ -464,7 +463,7 @@ func TestCacheSuite(t *testing.T) {
 			t.Parallel()
 			var rdbCmdable cacheRedis.Cmdable
 			if tt.needsRedis {
-				rdb := valueNoError[*redis.Client](t)(NewRedisClient(i))
+				rdb := mustValue[*redis.Client](t)(NewRedisClient(i))
 				t.Logf("env WITH_REDIS: %q", os.Getenv("WITH_REDIS"))
 				if rdb != nil {
 					t.Cleanup(func() { require.NoError(t, rdb.Close()) })
@@ -530,7 +529,7 @@ func TestWithLocalCache(t *testing.T) {
 	require.NotNil(t, cache)
 	assert.Nil(t, cache.localCache)
 
-	localCache := local.NewTinyLFU(1000, time.Minute)
+	localCache := lfu.New(1000, time.Minute)
 	assert.Same(t, cache, cache.WithLocalCache(localCache))
 	assert.NotNil(t, cache.localCache)
 	assert.Same(t, localCache, cache.localCache)

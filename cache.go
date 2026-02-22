@@ -7,11 +7,10 @@ import (
 	"sync/atomic"
 	"time"
 
+	lfu "github.com/dsh2dsh/expx-cache-lfu"
+	redis "github.com/dsh2dsh/expx-cache-redis"
 	"golang.org/x/sync/semaphore"
 	"golang.org/x/sync/singleflight"
-
-	"github.com/dsh2dsh/expx-cache/local"
-	"github.com/dsh2dsh/expx-cache/redis"
 )
 
 const defaultTTL = time.Hour
@@ -131,7 +130,7 @@ func (self *Cache) WithRedisCache(client RedisCache) *Cache {
 }
 
 func (self *Cache) WithTinyLFU(size int, ttl time.Duration) *Cache {
-	self.localCache = local.NewTinyLFU(size, ttl)
+	self.localCache = lfu.New(size, ttl)
 	return self
 }
 

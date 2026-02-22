@@ -4,16 +4,16 @@ import (
 	"context"
 	"errors"
 	"io"
+	"iter"
 	"sync"
 	"sync/atomic"
 	"testing"
 	"time"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 
-	mocks "github.com/dsh2dsh/expx-cache/internal/mocks/cache"
+	redis "github.com/dsh2dsh/expx-cache-redis"
 )
 
 func (self *CacheTestSuite) TestOnce_funcFails() {
@@ -36,7 +36,7 @@ func (self *CacheTestSuite) TestOnce_funcFails() {
 	var got bool
 	item := Item{Key: testKey, Value: &got}
 	self.Equal([]Item{item},
-		valueNoError[[]Item](self.T())(self.cache.Get(ctx, item)))
+		mustValue[[]Item](self.T())(self.cache.Get(ctx, item)))
 	self.expectCacheMiss()
 
 	err := self.cache.Once(ctx, Item{
@@ -287,7 +287,7 @@ func (self *CacheTestSuite) TestOnce_withNegTTL() {
 	self.expectCacheMiss()
 
 	if self.rdb != nil {
-		ttl := valueNoError[time.Duration](self.T())(self.rdb.TTL(
+		ttl := mustValue[time.Duration](self.T())(self.rdb.TTL(
 			ctx, self.cache.ResolveKey(key)).Result())
 		self.Equal(self.cache.DefaultTTL(), ttl)
 	}
@@ -295,13 +295,14 @@ func (self *CacheTestSuite) TestOnce_withNegTTL() {
 }
 
 func TestOnce_errUnmarshal(t *testing.T) {
-	localCache := mocks.NewMockLocalCache(t)
-	localCache.EXPECT().Get(mock.Anything).Return(nil)
-	localCache.EXPECT().Set(mock.Anything, mock.Anything).Once()
+	localCache := &MoqLocalCache{
+		GetFunc: func(key string) []byte { return nil },
+		SetFunc: func(key string, data []byte) {},
+	}
 
-	cache := New().WithLocalCache(localCache)
+	c := New().WithLocalCache(localCache)
 	var got bool
-	err := cache.Once(t.Context(), Item{
+	err := c.Once(t.Context(), Item{
 		Key:   testKey,
 		Value: &got,
 		Do: func(ctx context.Context) (any, error) {
@@ -310,6 +311,7 @@ func TestOnce_errUnmarshal(t *testing.T) {
 	})
 	require.Error(t, err)
 	assert.False(t, got)
+	assert.Len(t, localCache.SetCalls(), 1)
 }
 
 func TestOnce_withoutCache(t *testing.T) {
@@ -371,50 +373,82 @@ func TestCache_Once_withErrRedisCache(t *testing.T) {
 	testErr := errors.New("test error")
 
 	tests := []struct {
-		name   string
-		cache  func() *Cache
-		itemDo func()
+		name      string
+		configure func(t *testing.T, c *Cache) func()
+		cache     func() *Cache
+		itemDo    func()
 	}{
 		{
 			name: "with Err set",
-			cache: func() *Cache {
-				redisCache := mocks.NewMockRedisCache(t)
-				cache := New().WithRedisCache(redisCache)
-				_ = cache.redisCacheError(testErr)
-				return cache
+			configure: func(t *testing.T, c *Cache) func() {
+				redisCache := &MoqRedisCache{}
+				c.WithRedisCache(redisCache).redisCacheError(testErr)
+				return nil
 			},
 		},
 		{
 			name: "redisGet ErrRedisCache",
-			cache: func() *Cache {
-				redisCache := mocks.NewMockRedisCache(t)
-				cache := New().WithRedisCache(redisCache)
-				redisCache.EXPECT().Get(ctx, 1, mock.Anything).
-					Return(makeBytesIter(nil, testErr))
-				return cache
+			configure: func(t *testing.T, c *Cache) func() {
+				redisCache := &MoqRedisCache{
+					GetFunc: func(ctx context.Context, maxItems int,
+						keys iter.Seq[string],
+					) iter.Seq2[[]byte, error] {
+						assert.Equal(t, 1, maxItems)
+						return makeBytesIter(nil, testErr)
+					},
+				}
+				c.WithRedisCache(redisCache)
+
+				return func() { assert.Len(t, redisCache.GetCalls(), 1) }
 			},
 		},
 		{
 			name: "redisSet ErrRedisCache",
-			cache: func() *Cache {
-				localCache := mocks.NewMockLocalCache(t)
-				localCache.EXPECT().Get(testKey).Return(nil)
-				localCache.EXPECT().Set(testKey, []byte(foobar))
-				redisCache := mocks.NewMockRedisCache(t)
-				cache := New().WithLocalCache(localCache).WithRedisCache(redisCache)
-				redisCache.EXPECT().Get(ctx, 1, mock.Anything).
-					Return(makeBytesIter([][]byte{nil}, nil))
-				redisCache.EXPECT().Set(ctx, 1, mock.Anything).Return(testErr)
-				return cache
+			configure: func(t *testing.T, c *Cache) func() {
+				localCache := &MoqLocalCache{
+					GetFunc: func(key string) []byte {
+						assert.Equal(t, testKey, key)
+						return nil
+					},
+					SetFunc: func(key string, data []byte) {
+						assert.Equal(t, testKey, key)
+						assert.Equal(t, []byte(foobar), data)
+					},
+				}
+				c.WithLocalCache(localCache)
+
+				redisCache := &MoqRedisCache{
+					GetFunc: func(ctx context.Context, maxItems int,
+						keys iter.Seq[string],
+					) iter.Seq2[[]byte, error] {
+						assert.Equal(t, 1, maxItems)
+						return makeBytesIter([][]byte{nil}, nil)
+					},
+					SetFunc: func(ctx context.Context, maxItems int,
+						items iter.Seq[redis.Item],
+					) error {
+						assert.Equal(t, 1, maxItems)
+						return testErr
+					},
+				}
+				c.WithRedisCache(redisCache)
+
+				return func() {
+					assert.Len(t, localCache.GetCalls(), 1)
+					assert.Len(t, redisCache.GetCalls(), 1)
+					assert.Len(t, localCache.SetCalls(), 1)
+					assert.Len(t, redisCache.SetCalls(), 1)
+				}
 			},
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			cache := tt.cache()
+			c := New()
+			assertFunc := tt.configure(t, c)
 			var got string
-			err := cache.Once(ctx, Item{
+			err := c.Once(ctx, Item{
 				Key:   testKey,
 				Value: &got,
 				Do: func(ctx context.Context) (any, error) {
@@ -425,8 +459,13 @@ func TestCache_Once_withErrRedisCache(t *testing.T) {
 				},
 			})
 			require.NoError(t, err)
-			assert.True(t, cache.Failed())
+
+			assert.True(t, c.Failed())
 			assert.Equal(t, foobar, got)
+
+			if assertFunc != nil {
+				assertFunc()
+			}
 		})
 	}
 }

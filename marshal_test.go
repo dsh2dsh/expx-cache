@@ -46,14 +46,14 @@ func TestCache_WithUnmarshal(t *testing.T) {
 		return unmarshal(b, v)
 	})
 	item.Value = &value
-	assert.Empty(t, valueNoError[[]Item](t)(cache.Get(ctx, item)))
+	assert.Empty(t, mustValue[[]Item](t)(cache.Get(ctx, item)))
 	assert.True(t, called, "custom unmarshall func wasn't called")
 }
 
 func TestCache_Marshal_nil(t *testing.T) {
 	cache := New().WithTinyLFU(1000, time.Minute)
 	require.NotNil(t, cache)
-	assert.Nil(t, valueNoError[[]byte](t)(cache.Marshal(nil)))
+	assert.Nil(t, mustValue[[]byte](t)(cache.Marshal(nil)))
 }
 
 func TestCache_Marshal_compression(t *testing.T) {
@@ -61,7 +61,7 @@ func TestCache_Marshal_compression(t *testing.T) {
 	require.NotNil(t, cache)
 
 	s := strings.Repeat("foobar", 100)
-	b := valueNoError[[]byte](t)(cache.Marshal(&s))
+	b := mustValue[[]byte](t)(cache.Marshal(&s))
 	assert.NotNil(t, b)
 	assert.Equal(t, s2Compression, int(b[len(b)-1]))
 }
@@ -71,7 +71,7 @@ func TestCache_Marshal_noCompression(t *testing.T) {
 	require.NotNil(t, cache)
 
 	s := "foobar"
-	b := valueNoError[[]byte](t)(cache.Marshal(&s))
+	b := mustValue[[]byte](t)(cache.Marshal(&s))
 	assert.NotNil(t, b)
 	assert.Equal(t, noCompression, int(b[len(b)-1]))
 }
@@ -114,7 +114,7 @@ func TestCache_Unmarshal_compression(t *testing.T) {
 		Foo: strings.Repeat("foobar", 100),
 	}
 
-	b := valueNoError[[]byte](t)(cache.Marshal(&item))
+	b := mustValue[[]byte](t)(cache.Marshal(&item))
 	assert.Equal(t, s2Compression, int(b[len(b)-1]))
 
 	gotItem := fooItem{}
@@ -260,7 +260,7 @@ func TestCache_marshalErrGroup(t *testing.T) {
 				c.WithUnmarshal(func(b []byte, v any) error {
 					return wantErr
 				})
-				b := valueNoError[[]byte](t)(marshal(foobar))
+				b := mustValue[[]byte](t)(marshal(foobar))
 				g := c.unmarshalGroup(ctx)
 				require.NoError(t, g.GoUnmarshal(b, nil))
 				require.ErrorIs(t, g.Wait(), wantErr)
@@ -273,7 +273,7 @@ func TestCache_marshalErrGroup(t *testing.T) {
 				c.WithUnmarshal(func(b []byte, v any) error {
 					return wantErr
 				})
-				b := valueNoError[[]byte](t)(marshal(foobar))
+				b := mustValue[[]byte](t)(marshal(foobar))
 				err := c.unmarshalItems(ctx, [][]byte{b, b}, []Item{item, item})
 				require.ErrorIs(t, err, wantErr)
 			},

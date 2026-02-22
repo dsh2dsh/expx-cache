@@ -6,7 +6,7 @@ import (
 	"slices"
 	"time"
 
-	"github.com/dsh2dsh/expx-cache/redis"
+	redis "github.com/dsh2dsh/expx-cache-redis"
 )
 
 // Set caches the item.

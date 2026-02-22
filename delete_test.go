@@ -9,8 +9,6 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-
-	mocks "github.com/dsh2dsh/expx-cache/internal/mocks/cache"
 )
 
 func (self *CacheTestSuite) TestCache_Delete() {
@@ -22,7 +20,7 @@ func (self *CacheTestSuite) TestCache_Delete() {
 
 	self.Require().NoError(self.cache.Delete(ctx, item.Key))
 	self.Equal([]Item{item},
-		valueNoError[[]Item](self.T())(self.cache.Get(ctx, item)))
+		mustValue[[]Item](self.T())(self.cache.Get(ctx, item)))
 	self.expectCacheMiss()
 	self.False(self.cache.Exists(ctx, testKey))
 	self.expectCacheMiss()
@@ -96,9 +94,13 @@ func TestDelete_errFromRedis(t *testing.T) {
 	wantErr := errors.New("test error")
 	ctx := t.Context()
 
-	redisClient := mocks.NewMockRedisCache(t)
-	redisClient.EXPECT().Del(ctx, []string{testKey}).Return(wantErr)
-	cache := New().WithRedisCache(redisClient)
+	redisCache := &MoqRedisCache{
+		DelFunc: func(ctx context.Context, keys []string) error {
+			assert.Equal(t, []string{testKey}, keys)
+			return wantErr
+		},
+	}
+	cache := New().WithRedisCache(redisCache)
 
 	err := cache.Delete(ctx, testKey)
 	require.ErrorIs(t, err, wantErr)
@@ -117,35 +119,56 @@ func TestCache_Delete_withKeyWrapper(t *testing.T) {
 	wantKey := keyPrefix + testKey
 
 	tests := []struct {
-		name     string
-		expecter func(t *testing.T, c *Cache) *Cache
+		name      string
+		configure func(t *testing.T, c *Cache) func()
 	}{
 		{
 			name: "WithLocalCache",
-			expecter: func(t *testing.T, c *Cache) *Cache {
-				localCache := mocks.NewMockLocalCache(t)
-				localCache.EXPECT().Del(wantKey)
-				return c.WithLocalCache(localCache)
+			configure: func(t *testing.T, c *Cache) func() {
+				local := &MoqLocalCache{
+					DelFunc: func(key string) { assert.Equal(t, wantKey, key) },
+				}
+				c.WithLocalCache(local)
+				return func() {
+					assert.Len(t, local.DelCalls(), 1)
+				}
 			},
 		},
 		{
 			name: "WithRedisCache",
-			expecter: func(t *testing.T, c *Cache) *Cache {
-				redisCache := mocks.NewMockRedisCache(t)
-				redisCache.EXPECT().Del(ctx, []string{wantKey}).Return(nil)
-				return c.WithRedisCache(redisCache)
+			configure: func(t *testing.T, c *Cache) func() {
+				redis := &MoqRedisCache{
+					DelFunc: func(ctx context.Context, keys []string) error {
+						assert.Equal(t, []string{wantKey}, keys)
+						return nil
+					},
+				}
+				c.WithRedisCache(redis)
+				return func() {
+					assert.Len(t, redis.DelCalls(), 1)
+				}
 			},
 		},
 		{
 			name: "with both",
-			expecter: func(t *testing.T, c *Cache) *Cache {
-				localCache := mocks.NewMockLocalCache(t)
-				localCache.EXPECT().Del(wantKey)
+			configure: func(t *testing.T, c *Cache) func() {
+				local := &MoqLocalCache{
+					DelFunc: func(key string) { assert.Equal(t, wantKey, key) },
+				}
+				c.WithLocalCache(local)
 
-				redisCache := mocks.NewMockRedisCache(t)
-				redisCache.EXPECT().Del(ctx, []string{wantKey}).Return(nil)
+				redis := &MoqRedisCache{
+					DelFunc: func(ctx context.Context, keys []string) error {
+						assert.Equal(t, []string{wantKey}, keys)
+						return nil
+					},
+				}
+				c.WithRedisCache(redis)
 
-				return c.WithLocalCache(localCache).WithRedisCache(redisCache)
+				return func() {
+					assert.Len(t, local.DelCalls(), 1)
+					assert.Len(t, redis.DelCalls(), 1)
+				}
 			},
 		},
 	}
@@ -156,8 +179,9 @@ func TestCache_Delete_withKeyWrapper(t *testing.T) {
 				return keyPrefix + key
 			})
 			require.NotNil(t, cache)
-			cache = tt.expecter(t, cache)
+			assertFunc := tt.configure(t, cache)
 			require.NoError(t, cache.Delete(ctx, testKey))
+			assertFunc()
 		})
 	}
 }

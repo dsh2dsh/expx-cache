@@ -3,16 +3,15 @@ package cache
 import (
 	"context"
 	"errors"
+	"iter"
 	"strings"
 	"sync/atomic"
 	"testing"
 	"time"
 
+	redis "github.com/dsh2dsh/expx-cache-redis"
 	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
-
-	mocks "github.com/dsh2dsh/expx-cache/internal/mocks/cache"
 )
 
 func (self *CacheTestSuite) TestOnceLock() {
@@ -491,38 +490,43 @@ func TestLock_releaseNoValue(t *testing.T) {
 func TestLock_lockGet_getAfterSubscribe(t *testing.T) {
 	ctx := t.Context()
 
-	redisCache := mocks.NewMockRedisCache(t)
+	redisCache := &MoqRedisCache{}
 	cache := New().WithRedisCache(redisCache)
 
 	keyLock := cache.ResolveKeyLock(testKey)
 	keyGet := cache.ResolveKey(testKey)
-
-	redisCache.EXPECT().
-		LockGet(mock.Anything, keyLock, mock.Anything, lockTTL, keyGet).
-		Return(false, nil, nil).Once()
-
-	redisCache.EXPECT().Listen(mock.Anything, keyLock, mock.Anything).
-		RunAndReturn(
-			func(ctx context.Context, key string, ready ...func() error,
-			) (string, error) {
-				for _, fn := range ready {
-					if err := fn(); err != nil {
-						return "", err
-					}
-				}
-				return "", nil
-			}).Once()
-
 	const foobar = "foobar"
-	redisCache.EXPECT().
-		LockGet(mock.Anything, keyLock, mock.Anything, lockTTL, keyGet).
-		Return(false, []byte(foobar), nil).Once()
+
+	redisCache.LockGetFunc = func(ctx context.Context, keySet string,
+		value string, ttl time.Duration, gotKeyGet string,
+	) (bool, []byte, error) {
+		assert.Equal(t, keyLock, keySet)
+		assert.Equal(t, lockTTL, ttl)
+		assert.Equal(t, keyGet, gotKeyGet)
+		if len(redisCache.LockGetCalls()) == 2 {
+			return false, []byte(foobar), nil
+		}
+		return false, nil, nil
+	}
+
+	redisCache.ListenFunc = func(ctx context.Context, key string,
+		ready ...func() error,
+	) (string, error) {
+		for _, fn := range ready {
+			if err := fn(); err != nil {
+				return "", err
+			}
+		}
+		return "", nil
+	}
 
 	l := cache.lock(keyLock, keyGet)
 	ok, b, err := l.lockGet(ctx, lockTTL, NewWaitLockIter(time.Second))
 	require.NoError(t, err)
 	assert.False(t, ok)
 	assert.Equal(t, []byte(foobar), b)
+	assert.Len(t, redisCache.LockGetCalls(), 2)
+	assert.Len(t, redisCache.ListenCalls(), 1)
 }
 
 func TestLock_WithLock_canceledBeforeRelease(t *testing.T) {
@@ -531,15 +535,16 @@ func TestLock_WithLock_canceledBeforeRelease(t *testing.T) {
 	sig := make(chan struct{})
 	ttl := time.Second
 
-	redisCache := mocks.NewMockRedisCache(t)
+	redisCache := &MoqRedisCache{
+		ExpireFunc: func(ctx context.Context, key string, ttl time.Duration) (bool,
+			error,
+		) {
+			sig <- struct{}{}
+			cancel()
+			return true, nil
+		},
+	}
 	cache := New().WithRedisCache(redisCache)
-	redisCache.EXPECT().Expire(mock.Anything, cache.ResolveKeyLock(testKey), ttl).
-		RunAndReturn(
-			func(ctx context.Context, key string, ttl time.Duration) (bool, error) {
-				sig <- struct{}{}
-				cancel()
-				return true, nil
-			})
 
 	l := cache.lock(cache.ResolveKeyLock(testKey), cache.ResolveKey(testKey))
 	err := l.WithLock(ctx, ttl, 10*time.Millisecond, func() error {
@@ -555,188 +560,295 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 	testErr := errors.New("test error")
 
 	tests := []struct {
-		name   string
-		cache  func() *Cache
-		itemDo func()
-		failed bool
+		name      string
+		configure func(t *testing.T, c *Cache) func()
+		itemDo    func()
+		failed    bool
 	}{
 		{
 			name: "with Err set",
-			cache: func() *Cache {
-				redisCache := mocks.NewMockRedisCache(t)
-				cache := New().WithRedisCache(redisCache)
-				_ = cache.redisCacheError(testErr)
-				return cache
+			configure: func(t *testing.T, c *Cache) func() {
+				redisCache := &MoqRedisCache{}
+				c.WithRedisCache(redisCache).redisCacheError(testErr)
+				return nil
 			},
 			failed: true,
 		},
 		{
 			name: "redisLockGet ErrRedisCache 1",
-			cache: func() *Cache {
-				redisCache := mocks.NewMockRedisCache(t)
-				cache := New().WithRedisCache(redisCache)
-				redisCache.EXPECT().
-					LockGet(mock.Anything, cache.ResolveKeyLock(testKey), mock.Anything,
-						lockTTL, testKey).
-					Return(false, nil, testErr)
-				return cache
+			configure: func(t *testing.T, c *Cache) func() {
+				redisCache := &MoqRedisCache{
+					LockGetFunc: func(ctx context.Context, keySet, value string,
+						ttl time.Duration, keyGet string,
+					) (bool, []byte, error) {
+						assert.Equal(t, c.ResolveKeyLock(testKey), keySet)
+						assert.Equal(t, lockTTL, ttl)
+						assert.Equal(t, testKey, keyGet)
+						return false, nil, testErr
+					},
+				}
+				c.WithRedisCache(redisCache)
+				return func() { assert.Len(t, redisCache.LockGetCalls(), 1) }
 			},
 			failed: true,
 		},
 		{
 			name: "redisLockGet ErrRedisCache 2",
-			cache: func() *Cache {
-				redisCache := mocks.NewMockRedisCache(t)
-				cache := New().WithRedisCache(redisCache)
-				redisCache.EXPECT().
-					LockGet(mock.Anything, cache.ResolveKeyLock(testKey), mock.Anything,
-						lockTTL, testKey).
-					Return(true, []byte(foobar), nil)
-				redisCache.EXPECT().Unlock(ctx, cache.ResolveKeyLock(testKey),
-					mock.Anything).
-					Return(false, testErr)
-				return cache
+			configure: func(t *testing.T, c *Cache) func() {
+				redisCache := &MoqRedisCache{
+					LockGetFunc: func(ctx context.Context, keySet, value string,
+						ttl time.Duration, keyGet string,
+					) (bool, []byte, error) {
+						assert.Equal(t, c.ResolveKeyLock(testKey), keySet)
+						assert.Equal(t, lockTTL, ttl)
+						assert.Equal(t, testKey, keyGet)
+						return true, []byte(foobar), nil
+					},
+					UnlockFunc: func(ctx context.Context, key, value string) (bool, error) {
+						assert.Equal(t, c.ResolveKeyLock(testKey), key)
+						return false, testErr
+					},
+				}
+				c.WithRedisCache(redisCache)
+
+				return func() {
+					assert.Len(t, redisCache.LockGetCalls(), 1)
+					assert.Len(t, redisCache.UnlockCalls(), 1)
+				}
 			},
 			failed: true,
 		},
 		{
 			name: "waitUnlock ErrRedisCache 1",
-			cache: func() *Cache {
-				redisCache := mocks.NewMockRedisCache(t)
-				cache := New().WithRedisCache(redisCache)
-
-				redisCache.EXPECT().
-					LockGet(mock.Anything, cache.ResolveKeyLock(testKey), mock.Anything,
-						lockTTL, testKey).
-					Return(false, nil, nil)
-
-				redisCache.EXPECT().
-					Listen(mock.Anything, cache.ResolveKeyLock(testKey), mock.Anything).
-					RunAndReturn(
-						func(ctx context.Context, key string, ready ...func() error,
-						) (string, error) {
-							for _, fn := range ready {
-								if err := fn(); err != nil {
-									return "", err
-								}
+			configure: func(t *testing.T, c *Cache) func() {
+				redisCache := &MoqRedisCache{
+					LockGetFunc: func(ctx context.Context, keySet, value string,
+						ttl time.Duration, keyGet string,
+					) (bool, []byte, error) {
+						assert.Equal(t, c.ResolveKeyLock(testKey), keySet)
+						assert.Equal(t, lockTTL, ttl)
+						assert.Equal(t, testKey, keyGet)
+						return false, nil, nil
+					},
+					ListenFunc: func(ctx context.Context, key string,
+						ready ...func() error,
+					) (string, error) {
+						assert.Equal(t, c.ResolveKeyLock(testKey), key)
+						for _, fn := range ready {
+							if err := fn(); err != nil {
+								return "", err
 							}
-							return "", testErr
-						}).Once()
+						}
+						return "", testErr
+					},
+				}
+				c.WithRedisCache(redisCache)
 
-				return cache
+				return func() {
+					assert.Len(t, redisCache.LockGetCalls(), 1)
+					assert.Len(t, redisCache.ListenCalls(), 1)
+				}
 			},
 			failed: true,
 		},
 		{
 			name: "waitUnlock ErrRedisCache 2",
-			cache: func() *Cache {
-				redisCache := mocks.NewMockRedisCache(t)
-				cache := New().WithRedisCache(redisCache)
-
-				redisCache.EXPECT().
-					LockGet(mock.Anything, cache.ResolveKeyLock(testKey), mock.Anything,
-						lockTTL, testKey).
-					Return(false, nil, nil)
-
-				redisCache.EXPECT().
-					Listen(mock.Anything, cache.ResolveKeyLock(testKey), mock.Anything).
-					RunAndReturn(
-						func(ctx context.Context, key string, ready ...func() error,
-						) (string, error) {
-							for _, fn := range ready {
-								if err := fn(); err != nil {
-									return "", err
-								}
+			configure: func(t *testing.T, c *Cache) func() {
+				redisCache := &MoqRedisCache{
+					LockGetFunc: func(ctx context.Context, keySet, value string,
+						ttl time.Duration, keyGet string,
+					) (bool, []byte, error) {
+						assert.Equal(t, c.ResolveKeyLock(testKey), keySet)
+						assert.Equal(t, lockTTL, ttl)
+						assert.Equal(t, testKey, keyGet)
+						return false, nil, nil
+					},
+					ListenFunc: func(ctx context.Context, key string,
+						ready ...func() error,
+					) (string, error) {
+						assert.Equal(t, c.ResolveKeyLock(testKey), key)
+						for _, fn := range ready {
+							if err := fn(); err != nil {
+								return "", err
 							}
-							return "fake", nil
-						}).Once()
+						}
+						return "fake", nil
+					},
+				}
+				c.WithRedisCache(redisCache)
 
-				return cache
+				return func() {
+					assert.Len(t, redisCache.LockGetCalls(), 2)
+					assert.Len(t, redisCache.ListenCalls(), 1)
+				}
 			},
 			failed: true,
 		},
 		{
 			name: "redisLockGet notFound",
-			cache: func() *Cache {
-				localCache := mocks.NewMockLocalCache(t)
-				localCache.EXPECT().Get(testKey).Return(nil)
-				localCache.EXPECT().Set(testKey, []byte(foobar))
-				redisCache := mocks.NewMockRedisCache(t)
-				cache := New().WithLocalCache(localCache).WithRedisCache(redisCache)
-				redisCache.EXPECT().
-					LockGet(mock.Anything, cache.ResolveKeyLock(testKey), mock.Anything,
-						lockTTL, testKey).
-					Return(true, []byte(foobar), nil)
-				redisCache.EXPECT().Unlock(ctx, cache.ResolveKeyLock(testKey),
-					mock.Anything).
-					Return(false, nil)
-				return cache
+			configure: func(t *testing.T, c *Cache) func() {
+				localCache := &MoqLocalCache{
+					GetFunc: func(key string) []byte {
+						assert.Equal(t, testKey, key)
+						return nil
+					},
+					SetFunc: func(key string, data []byte) {
+						assert.Equal(t, testKey, key)
+						assert.Equal(t, []byte(foobar), data)
+					},
+				}
+				c.WithLocalCache(localCache)
+
+				redisCache := &MoqRedisCache{
+					LockGetFunc: func(ctx context.Context, keySet, value string,
+						ttl time.Duration, keyGet string,
+					) (bool, []byte, error) {
+						assert.Equal(t, c.ResolveKeyLock(testKey), keySet)
+						assert.Equal(t, lockTTL, ttl)
+						assert.Equal(t, testKey, keyGet)
+						return true, []byte(foobar), nil
+					},
+					UnlockFunc: func(ctx context.Context, key, value string) (bool, error) {
+						assert.Equal(t, c.ResolveKeyLock(testKey), key)
+						return false, nil
+					},
+				}
+				c.WithRedisCache(redisCache)
+
+				return func() {
+					assert.Len(t, localCache.GetCalls(), 1)
+					assert.Len(t, redisCache.LockGetCalls(), 1)
+					assert.Len(t, localCache.SetCalls(), 1)
+					assert.Len(t, redisCache.UnlockCalls(), 1)
+				}
 			},
 		},
 		{
 			name: "WithLock ErrRedisCache 1",
-			cache: func() *Cache {
-				redisCache := mocks.NewMockRedisCache(t)
-				cache := New().WithRedisCache(redisCache)
-				redisCache.EXPECT().
-					LockGet(mock.Anything, cache.ResolveKeyLock(testKey), mock.Anything,
-						lockTTL, testKey).
-					Return(true, nil, nil)
-				redisCache.EXPECT().Set(ctx, 1, mock.Anything).Return(testErr)
-				return cache
+			configure: func(t *testing.T, c *Cache) func() {
+				redisCache := &MoqRedisCache{
+					LockGetFunc: func(ctx context.Context, keySet, value string,
+						ttl time.Duration, keyGet string,
+					) (bool, []byte, error) {
+						assert.Equal(t, c.ResolveKeyLock(testKey), keySet)
+						assert.Equal(t, lockTTL, ttl)
+						assert.Equal(t, testKey, keyGet)
+						return true, nil, nil
+					},
+					SetFunc: func(ctx context.Context, maxItems int,
+						items iter.Seq[redis.Item],
+					) error {
+						assert.Equal(t, 1, maxItems)
+						return testErr
+					},
+				}
+				c.WithRedisCache(redisCache)
+
+				return func() {
+					assert.Len(t, redisCache.LockGetCalls(), 1)
+					assert.Len(t, redisCache.SetCalls(), 1)
+				}
 			},
 			failed: true,
 		},
 		{
 			name: "WithLock ErrRedisCache 2",
-			cache: func() *Cache {
-				redisCache := mocks.NewMockRedisCache(t)
-				cache := New().WithRedisCache(redisCache)
-				redisCache.EXPECT().
-					LockGet(mock.Anything, cache.ResolveKeyLock(testKey), mock.Anything,
-						lockTTL, testKey).
-					Return(true, nil, nil)
-				redisCache.EXPECT().
-					Expire(mock.Anything, cache.ResolveKeyLock(testKey), lockTTL).
-					Return(false, testErr)
-				return cache
+			configure: func(t *testing.T, c *Cache) func() {
+				redisCache := &MoqRedisCache{
+					LockGetFunc: func(ctx context.Context, keySet, value string,
+						ttl time.Duration, keyGet string,
+					) (bool, []byte, error) {
+						assert.Equal(t, c.ResolveKeyLock(testKey), keySet)
+						assert.Equal(t, lockTTL, ttl)
+						assert.Equal(t, testKey, keyGet)
+						return true, nil, nil
+					},
+					ExpireFunc: func(ctx context.Context, key string, ttl time.Duration,
+					) (bool, error) {
+						assert.Equal(t, c.ResolveKeyLock(testKey), key)
+						assert.Equal(t, lockTTL, ttl)
+						return false, testErr
+					},
+				}
+				c.WithRedisCache(redisCache)
+
+				return func() {
+					assert.Len(t, redisCache.LockGetCalls(), 1)
+					assert.Len(t, redisCache.ExpireCalls(), 1)
+				}
 			},
 			itemDo: func() { time.Sleep(10 * time.Millisecond) },
 			failed: true,
 		},
 		{
 			name: "WithLock notFound 1",
-			cache: func() *Cache {
-				redisCache := mocks.NewMockRedisCache(t)
-				cache := New().WithRedisCache(redisCache)
-				redisCache.EXPECT().
-					LockGet(mock.Anything, cache.ResolveKeyLock(testKey), mock.Anything,
-						lockTTL, testKey).
-					Return(true, nil, nil)
-				redisCache.EXPECT().Set(ctx, 1, mock.Anything).Return(nil)
-				redisCache.EXPECT().
-					Unlock(ctx, cache.ResolveKeyLock(testKey), mock.Anything).
-					Return(false, nil)
-				return cache
+			configure: func(t *testing.T, c *Cache) func() {
+				redisCache := &MoqRedisCache{
+					LockGetFunc: func(ctx context.Context, keySet, value string,
+						ttl time.Duration, keyGet string,
+					) (bool, []byte, error) {
+						assert.Equal(t, c.ResolveKeyLock(testKey), keySet)
+						assert.Equal(t, lockTTL, ttl)
+						assert.Equal(t, testKey, keyGet)
+						return true, nil, nil
+					},
+					SetFunc: func(ctx context.Context, maxItems int,
+						items iter.Seq[redis.Item],
+					) error {
+						assert.Equal(t, 1, maxItems)
+						return nil
+					},
+					UnlockFunc: func(ctx context.Context, key, value string) (bool, error) {
+						assert.Equal(t, c.ResolveKeyLock(testKey), key)
+						return false, nil
+					},
+				}
+				c.WithRedisCache(redisCache)
+
+				return func() {
+					assert.Len(t, redisCache.LockGetCalls(), 1)
+					assert.Len(t, redisCache.SetCalls(), 1)
+					assert.Len(t, redisCache.UnlockCalls(), 1)
+				}
 			},
 		},
 		{
 			name: "WithLock notFound 2",
-			cache: func() *Cache {
-				redisCache := mocks.NewMockRedisCache(t)
-				cache := New().WithRedisCache(redisCache)
-				redisCache.EXPECT().
-					LockGet(mock.Anything, cache.ResolveKeyLock(testKey), mock.Anything,
-						lockTTL, testKey).
-					Return(true, nil, nil)
-				redisCache.EXPECT().
-					Expire(mock.Anything, cache.ResolveKeyLock(testKey), lockTTL).
-					Return(false, nil)
-				redisCache.EXPECT().Set(ctx, 1, mock.Anything).Return(nil)
-				redisCache.EXPECT().
-					Unlock(ctx, cache.ResolveKeyLock(testKey), mock.Anything).
-					Return(false, nil)
-				return cache
+			configure: func(t *testing.T, c *Cache) func() {
+				redisCache := &MoqRedisCache{
+					LockGetFunc: func(ctx context.Context, keySet, value string,
+						ttl time.Duration, keyGet string,
+					) (bool, []byte, error) {
+						assert.Equal(t, c.ResolveKeyLock(testKey), keySet)
+						assert.Equal(t, lockTTL, ttl)
+						assert.Equal(t, testKey, keyGet)
+						return true, nil, nil
+					},
+					ExpireFunc: func(ctx context.Context, key string, ttl time.Duration,
+					) (bool, error) {
+						assert.Equal(t, c.ResolveKeyLock(testKey), key)
+						assert.Equal(t, lockTTL, ttl)
+						return false, nil
+					},
+					SetFunc: func(ctx context.Context, maxItems int,
+						items iter.Seq[redis.Item],
+					) error {
+						assert.Equal(t, 1, maxItems)
+						return nil
+					},
+					UnlockFunc: func(ctx context.Context, key, value string) (bool, error) {
+						assert.Equal(t, c.ResolveKeyLock(testKey), key)
+						return false, nil
+					},
+				}
+				c.WithRedisCache(redisCache)
+
+				return func() {
+					assert.Len(t, redisCache.LockGetCalls(), 1)
+					assert.Len(t, redisCache.ExpireCalls(), 1)
+					assert.Len(t, redisCache.SetCalls(), 1)
+					assert.Len(t, redisCache.UnlockCalls(), 1)
+				}
 			},
 			itemDo: func() { time.Sleep(10 * time.Millisecond) },
 		},
@@ -744,11 +856,12 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			cache := tt.cache()
-			cache = cache.New(WithLock(cache.cfgLock.TTL, time.Millisecond,
-				cache.cfgLock.Iter))
+			c := New()
+			assertFunc := tt.configure(t, c)
+			c = c.New(WithLock(c.cfgLock.TTL, time.Millisecond, c.cfgLock.Iter))
+
 			var got string
-			err := cache.OnceLock(ctx, Item{
+			err := c.OnceLock(ctx, Item{
 				Key:   testKey,
 				Value: &got,
 				Do: func(ctx context.Context) (any, error) {
@@ -759,8 +872,13 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 				},
 			})
 			require.NoError(t, err)
-			assert.Equal(t, tt.failed, cache.Failed())
+
+			assert.Equal(t, tt.failed, c.Failed())
 			assert.Equal(t, foobar, got)
+
+			if assertFunc != nil {
+				assertFunc()
+			}
 		})
 	}
 }
