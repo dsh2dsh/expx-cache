@@ -3,7 +3,7 @@ module github.com/dsh2dsh/expx-cache
 go 1.26
 
 require (
-	github.com/caarlos0/env/v10 v10.0.0
+	github.com/caarlos0/env/v11 v11.4.0
 	github.com/dsh2dsh/expx-cache-lfu v0.0.1
 	github.com/dsh2dsh/expx-cache-redis v0.0.1
 	github.com/dsh2dsh/expx-dotenv v1.4.0

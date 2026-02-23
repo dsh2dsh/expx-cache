@@ -13,7 +13,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/caarlos0/env/v10"
+	"github.com/caarlos0/env/v11"
 	cacheLFU "github.com/dsh2dsh/expx-cache-lfu"
 	cacheRedis "github.com/dsh2dsh/expx-cache-redis"
 	dotenv "github.com/dsh2dsh/expx-dotenv"
