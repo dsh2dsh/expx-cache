@@ -5,7 +5,7 @@ go 1.26
 require (
 	github.com/caarlos0/env/v11 v11.4.0
 	github.com/dsh2dsh/expx-cache-lfu v0.0.1
-	github.com/dsh2dsh/expx-cache-redis v0.0.1
+	github.com/dsh2dsh/expx-cache-redis v0.0.2
 	github.com/dsh2dsh/expx-dotenv v1.4.0
 	github.com/klauspost/compress v1.18.4
 	github.com/redis/go-redis/v9 v9.18.0
