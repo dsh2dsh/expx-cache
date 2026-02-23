@@ -7,8 +7,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	lfu "github.com/dsh2dsh/expx-cache-lfu"
-	redis "github.com/dsh2dsh/expx-cache-redis"
+	cacheLFU "github.com/dsh2dsh/expx-cache-lfu"
+	cacheRedis "github.com/dsh2dsh/expx-cache-redis"
 	"golang.org/x/sync/semaphore"
 	"golang.org/x/sync/singleflight"
 
@@ -117,9 +117,9 @@ func (self *Cache) WithMarshal(fn MarshalFunc) *Cache {
 	return self
 }
 
-func (self *Cache) WithRedis(rdb redis.Cmdable) *Cache {
+func (self *Cache) WithRedis(rdb cacheRedis.Cmdable) *Cache {
 	if rdb != nil {
-		self.redis = redis.New(rdb)
+		self.redis = cacheRedis.New(rdb)
 	} else {
 		self.redis = nil
 	}
@@ -132,7 +132,7 @@ func (self *Cache) WithRedisCache(client RedisCache) *Cache {
 }
 
 func (self *Cache) WithTinyLFU(size int, ttl time.Duration) *Cache {
-	self.localCache = lfu.New(size, ttl)
+	self.localCache = cacheLFU.New(size, ttl)
 	return self
 }
 

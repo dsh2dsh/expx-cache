@@ -14,7 +14,7 @@ import (
 	"time"
 
 	"github.com/caarlos0/env/v10"
-	lfu "github.com/dsh2dsh/expx-cache-lfu"
+	cacheLFU "github.com/dsh2dsh/expx-cache-lfu"
 	cacheRedis "github.com/dsh2dsh/expx-cache-redis"
 	dotenv "github.com/dsh2dsh/expx-dotenv"
 	"github.com/redis/go-redis/v9"
@@ -529,7 +529,7 @@ func TestWithLocalCache(t *testing.T) {
 	require.NotNil(t, cache)
 	assert.Nil(t, cache.localCache)
 
-	localCache := lfu.New(1000, time.Minute)
+	localCache := cacheLFU.New(1000, time.Minute)
 	assert.Same(t, cache, cache.WithLocalCache(localCache))
 	assert.NotNil(t, cache.localCache)
 	assert.Same(t, localCache, cache.localCache)
