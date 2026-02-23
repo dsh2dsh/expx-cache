@@ -84,7 +84,7 @@ func (self *Cache) OnceLock(ctx context.Context, item Item) error {
 	if err != nil || len(b) == 0 {
 		return err
 	}
-	return self.unmarshal(b, item.Value)
+	return self.Unmarshal(b, item.Value)
 }
 
 func (self *Cache) redisLockGetSet(ctx context.Context, item *Item,

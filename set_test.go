@@ -19,7 +19,7 @@ func TestCache_Set_errorMarshal(t *testing.T) {
 		func(v any) ([]byte, error) { return nil, wantErr })
 
 	ctx := t.Context()
-	item := Item{Key: testKey, Value: "foobar"}
+	item := Item{Key: testKey, Value: &struct{ Foo string }{"foobar"}}
 
 	require.ErrorIs(t, cache.Set(ctx, item), wantErr)
 	require.ErrorIs(t, cache.Set(ctx, item, item), wantErr)

@@ -86,7 +86,7 @@ func (self *Cache) getOneItems(ctx context.Context, items []Item,
 	} else if len(b) == 0 {
 		return items, nil
 	}
-	return nil, self.unmarshal(b, item.Value)
+	return nil, self.Unmarshal(b, item.Value)
 }
 
 func (self *Cache) localGetItems(g *marshalGroup, items []Item) ([]Item,
@@ -176,7 +176,7 @@ func (self *Cache) GetSet(ctx context.Context, items ...Item) error {
 		} else if err != nil || len(b) == 0 {
 			return err
 		}
-		return self.unmarshal(b, items[0].Value)
+		return self.Unmarshal(b, items[0].Value)
 	}
 
 	bytes, err := self.setItems(ctx, items)

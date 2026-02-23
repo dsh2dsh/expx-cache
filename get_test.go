@@ -228,8 +228,11 @@ func TestCache_GetSet_errorGetCanceled(t *testing.T) {
 func TestCache_Get_errorRedisCanceled(t *testing.T) {
 	t.Parallel()
 
+	c := New()
+	assert.NotNil(t, c)
+
 	obj := CacheableObject{Str: "mystring", Num: 42}
-	blob := mustValue[[]byte](t)(marshal(&obj))
+	blob := mustValue[[]byte](t)(c.Marshal(&obj))
 
 	redisCache := &MoqRedisCache{
 		GetFunc: func(ctx context.Context, maxItems int, keys iter.Seq[string],
@@ -238,12 +241,10 @@ func TestCache_Get_errorRedisCanceled(t *testing.T) {
 			return makeBytesIter([][]byte{blob, blob}, nil)
 		},
 	}
-
-	cache := New().WithRedisCache(redisCache)
-	assert.NotNil(t, cache)
+	c.WithRedisCache(redisCache)
 
 	ctx, cancel := context.WithCancel(t.Context())
-	for cache.marshalers.TryAcquire(1) {
+	for c.marshalers.TryAcquire(1) {
 	}
 
 	sig := make(chan struct{})
@@ -256,7 +257,7 @@ func TestCache_Get_errorRedisCanceled(t *testing.T) {
 	got := CacheableObject{}
 	item := Item{Key: testKey, Value: &got}
 	sig <- struct{}{}
-	missed, err := cache.Get(ctx, item, item)
+	missed, err := c.Get(ctx, item, item)
 	require.ErrorIs(t, err, context.Canceled)
 	assert.Nil(t, missed)
 	assert.Len(t, redisCache.GetCalls(), 1)
@@ -276,8 +277,11 @@ func TestCache_Get_localGetItemsCanceled(t *testing.T) {
 }
 
 func TestCache_Get_redisGetItemsCanceled(t *testing.T) {
+	c := New()
+	assert.NotNil(t, c)
+
 	obj := CacheableObject{Str: "mystring", Num: 42}
-	blob := mustValue[[]byte](t)(marshal(&obj))
+	blob := mustValue[[]byte](t)(c.Marshal(&obj))
 
 	redisCache := &MoqRedisCache{
 		GetFunc: func(ctx context.Context, maxItems int, keys iter.Seq[string],
@@ -286,16 +290,14 @@ func TestCache_Get_redisGetItemsCanceled(t *testing.T) {
 			return makeBytesIter([][]byte{blob, blob}, nil)
 		},
 	}
-
-	cache := New().WithRedisCache(redisCache)
-	assert.NotNil(t, cache)
+	c.WithRedisCache(redisCache)
 
 	got := CacheableObject{}
 	item := Item{Key: testKey, Value: &got}
 
 	ctx, cancel := context.WithCancel(t.Context())
 	cancel()
-	_, err := cache.Get(ctx, item, item)
+	_, err := c.Get(ctx, item, item)
 	require.ErrorIs(t, err, context.Canceled)
 	assert.Len(t, redisCache.GetCalls(), 1)
 }

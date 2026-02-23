@@ -3,6 +3,7 @@ package cache
 
 import (
 	"context"
+	"encoding/json"
 	"iter"
 	"sync/atomic"
 	"time"
@@ -44,8 +45,8 @@ type (
 func New(opts ...Option) *Cache {
 	c := &Cache{
 		defaultTTL: defaultTTL,
-		marshal:    marshal,
-		unmarshal:  unmarshal,
+		marshal:    json.Marshal,
+		unmarshal:  json.Unmarshal,
 
 		stats:      new(Stats),
 		group:      new(singleflight.Group),

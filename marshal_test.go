@@ -11,42 +11,43 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/vmihailenco/msgpack/v5"
 )
 
 func TestCache_WithMarshal(t *testing.T) {
-	cache := New().WithTinyLFU(1000, time.Minute)
-	require.NotNil(t, cache)
+	c := New().WithTinyLFU(1000, time.Minute)
+	require.NotNil(t, c)
 
 	var called bool
-	cache.WithMarshal(func(v any) ([]byte, error) {
+	marshalFunc := c.marshal
+	c.WithMarshal(func(v any) ([]byte, error) {
 		called = true
-		return marshal(v)
+		return marshalFunc(v)
 	})
 
 	ctx := t.Context()
 	value := "abc"
-	require.NoError(t, cache.Set(ctx, Item{Key: testKey, Value: &value}))
+	require.NoError(t, c.Set(ctx, Item{Key: testKey, Value: &value}))
 
 	assert.True(t, called, "custom marshall func wasn't called")
 }
 
 func TestCache_WithUnmarshal(t *testing.T) {
-	cache := New().WithTinyLFU(1000, time.Minute)
-	require.NotNil(t, cache)
+	c := New().WithTinyLFU(1000, time.Minute)
+	require.NotNil(t, c)
 
 	ctx := t.Context()
-	value := "abc"
-	item := Item{Key: testKey, Value: &value}
-	require.NoError(t, cache.Set(ctx, item))
+	fooObj := struct{ Foo string }{"foobar"}
+	item := Item{Key: testKey, Value: &fooObj}
+	require.NoError(t, c.Set(ctx, item))
 
 	var called bool
-	cache.WithUnmarshal(func(b []byte, v any) error {
+	unmarshalFunc := c.unmarshal
+	c.WithUnmarshal(func(b []byte, v any) error {
 		called = true
-		return unmarshal(b, v)
+		return unmarshalFunc(b, v)
 	})
-	item.Value = &value
-	assert.Empty(t, mustValue[[]Item](t)(cache.Get(ctx, item)))
+	item.Value = &fooObj
+	assert.Empty(t, mustValue[[]Item](t)(c.Get(ctx, item)))
 	assert.True(t, called, "custom unmarshall func wasn't called")
 }
 
@@ -76,21 +77,21 @@ func TestCache_Marshal_noCompression(t *testing.T) {
 	assert.Equal(t, noCompression, int(b[len(b)-1]))
 }
 
-type msgpackErrItem struct {
+type jsonErrItem struct {
 	Foo string
 	err error
 }
 
-func (self *msgpackErrItem) EncodeMsgpack(enc *msgpack.Encoder) error {
-	return self.err
+func (self *jsonErrItem) MarshalJSON() ([]byte, error) {
+	return nil, self.err
 }
 
-func TestCache_Marshal_msgpackErr(t *testing.T) {
+func TestCache_Marshal_jsonErr(t *testing.T) {
 	cache := New().WithTinyLFU(1000, time.Minute)
 	require.NotNil(t, cache)
 
 	wantErr := errors.New("expected error")
-	b, err := cache.Marshal(&msgpackErrItem{Foo: "bar", err: wantErr})
+	b, err := cache.Marshal(&jsonErrItem{Foo: "bar", err: wantErr})
 	require.ErrorIs(t, err, wantErr)
 	assert.Nil(t, b)
 }
@@ -132,6 +133,8 @@ func TestCache_marshalersAcquireCanceled(t *testing.T) {
 	t.Parallel()
 
 	const foobar = "foobar"
+	fooObj := struct{ Foo string }{foobar}
+
 	assertMarshal := func(ctx context.Context, t *testing.T, c *Cache, item Item) {
 		var callCount uint32
 		c.WithMarshal(func(v any) ([]byte, error) {
@@ -151,13 +154,13 @@ func TestCache_marshalersAcquireCanceled(t *testing.T) {
 	}{
 		{
 			name:   "marshalItems with Value",
-			item:   Item{Key: testKey, Value: foobar},
+			item:   Item{Key: testKey, Value: &fooObj},
 			assert: assertMarshal,
 		},
 		{
 			name: "marshalItems with Do",
 			item: Item{Key: testKey, Do: func(ctx context.Context) (any, error) {
-				return foobar, nil
+				return &fooObj, nil
 			}},
 			assert: assertMarshal,
 		},
@@ -224,13 +227,11 @@ func TestCache_marshalersAcquireCanceled(t *testing.T) {
 }
 
 func TestCache_marshalErrGroup(t *testing.T) {
-	const foobar = "foobar"
+	fooObj := struct{ Foo string }{"foobar"}
 	wantErr := errors.New("expected error")
 
 	marshalAssert := func(ctx context.Context, t *testing.T, c *Cache, item Item) {
-		c.WithMarshal(func(v any) ([]byte, error) {
-			return nil, wantErr
-		})
+		c.WithMarshal(func(v any) ([]byte, error) { return nil, wantErr })
 		b, err := c.marshalItems(ctx, []Item{item})
 		require.ErrorIs(t, err, wantErr)
 		assert.Nil(t, b)
@@ -243,13 +244,13 @@ func TestCache_marshalErrGroup(t *testing.T) {
 	}{
 		{
 			name:   "marshalItems with Value",
-			item:   Item{Key: testKey, Value: foobar},
+			item:   Item{Key: testKey, Value: &fooObj},
 			assert: marshalAssert,
 		},
 		{
 			name: "marshalItems with Do",
 			item: Item{Key: testKey, Do: func(ctx context.Context) (any, error) {
-				return foobar, nil
+				return &fooObj, nil
 			}},
 			assert: marshalAssert,
 		},
@@ -260,20 +261,20 @@ func TestCache_marshalErrGroup(t *testing.T) {
 				c.WithUnmarshal(func(b []byte, v any) error {
 					return wantErr
 				})
-				b := mustValue[[]byte](t)(marshal(foobar))
+				b := mustValue[[]byte](t)(c.Marshal(&fooObj))
 				g := c.unmarshalGroup(ctx)
-				require.NoError(t, g.GoUnmarshal(b, nil))
+				require.NoError(t, g.GoUnmarshal(b, &fooObj))
 				require.ErrorIs(t, g.Wait(), wantErr)
 			},
 		},
 		{
 			name: "unmarshalItems",
-			item: Item{Key: testKey},
+			item: Item{Key: testKey, Value: &fooObj},
 			assert: func(ctx context.Context, t *testing.T, c *Cache, item Item) {
 				c.WithUnmarshal(func(b []byte, v any) error {
 					return wantErr
 				})
-				b := mustValue[[]byte](t)(marshal(foobar))
+				b := mustValue[[]byte](t)(c.Marshal(&fooObj))
 				err := c.unmarshalItems(ctx, [][]byte{b, b}, []Item{item, item})
 				require.ErrorIs(t, err, wantErr)
 			},
@@ -391,22 +392,20 @@ func TestCache_marshalGroup_limit(t *testing.T) {
 
 func TestCache_unmarshalItems_gCanceled(t *testing.T) {
 	const maxItems = 3
-	var bytes [maxItems][]byte
+	var blobs [maxItems][]byte
 	var items [maxItems]Item
+	fooObj := struct{ Foo string }{"foobar"}
+
+	c := New(WithMarshalMaxProcs(1))
 	for i := range items {
-		items[i] = Item{Key: testKey}
+		blobs[i] = mustValue[[]byte](t)(c.Marshal(&fooObj))
+		items[i] = Item{Key: testKey, Value: &fooObj}
 	}
 
 	testErr := errors.New("test error")
-	var callCount uint32
-	cache := New(WithMarshalMaxProcs(1)).WithUnmarshal(
-		func(b []byte, v any) error {
-			atomic.AddUint32(&callCount, 1)
-			return testErr
-		})
-	require.NotNil(t, cache)
+	c.WithUnmarshal(func(b []byte, v any) error { return testErr })
+	require.NotNil(t, c)
 
-	ctx := t.Context()
-	err := cache.unmarshalItems(ctx, bytes[:], items[:])
+	err := c.unmarshalItems(t.Context(), blobs[:], items[:])
 	require.ErrorIs(t, err, testErr)
 }

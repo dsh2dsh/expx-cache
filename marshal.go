@@ -6,22 +6,89 @@ import (
 	"runtime"
 
 	"github.com/klauspost/compress/s2"
-	"github.com/vmihailenco/msgpack/v5"
 	"golang.org/x/sync/errgroup"
 )
 
+const compressionThreshold = 64
+
 const (
-	compressionThreshold = 64
-	noCompression        = 0x0
-	s2Compression        = 0x1
+	noCompression = iota
+	s2Compression
 )
 
 func (self *Cache) Marshal(value any) ([]byte, error) {
-	return self.marshal(value)
+	switch value := value.(type) {
+	case nil:
+		return nil, nil
+	case []byte:
+		return value, nil
+	case string:
+		return []byte(value), nil
+	}
+
+	b, err := self.marshal(value)
+	if err != nil {
+		return nil, fmt.Errorf("marshal: %w", err)
+	}
+	return compress(b), nil
+}
+
+func compress(data []byte) []byte {
+	if len(data) < compressionThreshold {
+		b := make([]byte, len(data)+1)
+		copy(b, data)
+		b[len(data)] = noCompression
+		return b
+	}
+
+	b := make([]byte, s2.MaxEncodedLen(len(data))+1)
+	b = s2.Encode(b, data)
+	return append(b, s2Compression) //nolint:makezero // b is a sub-slice
 }
 
 func (self *Cache) Unmarshal(b []byte, value any) error {
-	return self.unmarshal(b, value)
+	if len(b) == 0 {
+		return nil
+	}
+
+	switch value := value.(type) {
+	case nil:
+		return nil
+	case *[]byte:
+		clone := make([]byte, len(b))
+		copy(clone, b)
+		*value = clone
+		return nil
+	case *string:
+		*value = string(b)
+		return nil
+	}
+
+	b, err := uncompress(b)
+	if err != nil {
+		return fmt.Errorf("unmarshal: %w", err)
+	}
+
+	if err := self.unmarshal(b, value); err != nil {
+		return fmt.Errorf("unmarshal: %w", err)
+	}
+	return nil
+}
+
+func uncompress(b []byte) ([]byte, error) {
+	c := b[len(b)-1]
+	switch c {
+	case noCompression:
+		return b[:len(b)-1], nil
+	case s2Compression:
+		b = b[:len(b)-1]
+		decoded, err := s2.Decode(nil, b)
+		if err != nil {
+			return nil, fmt.Errorf("decompress error: %w", err)
+		}
+		return decoded, nil
+	}
+	return nil, fmt.Errorf("unknown compression method: %x", c)
 }
 
 func (self *Cache) marshalItems(ctx context.Context, items []Item,
@@ -60,11 +127,11 @@ func (self *Cache) unmarshalItems(ctx context.Context, bytes [][]byte,
 		}
 	}
 
-	const errMsg = "failed unmarshal items: %w"
+	const errMsg = "unmarshal items(%v): %w"
 	if err2 := g.Wait(); err2 != nil {
-		err = fmt.Errorf(errMsg, err2)
+		err = fmt.Errorf(errMsg, len(items), err2)
 	} else if err != nil {
-		err = fmt.Errorf(errMsg, err)
+		err = fmt.Errorf(errMsg, len(items), err)
 	}
 	return err
 }
@@ -108,7 +175,7 @@ func (self *marshalGroup) marshal(v any) ([]byte, error) {
 		return nil, fmt.Errorf("failed acquire marshalers: %w", err)
 	}
 	defer self.cache.marshalers.Release(1)
-	b, err := self.cache.marshal(v)
+	b, err := self.cache.Marshal(v)
 	if err != nil {
 		return nil, err
 	}
@@ -121,7 +188,7 @@ func (self *marshalGroup) GoUnmarshal(b []byte, v any) error {
 	}
 	self.g.Go(func() error {
 		defer self.cache.marshalers.Release(1)
-		if err := self.cache.unmarshal(b, v); err != nil {
+		if err := self.cache.Unmarshal(b, v); err != nil {
 			return err
 		}
 		return nil
@@ -143,76 +210,4 @@ func (self *marshalGroup) Cause() error {
 
 func (self *marshalGroup) Wait() error {
 	return self.g.Wait() //nolint:wrapcheck // caller will wrap the error
-}
-
-// --------------------------------------------------
-
-func marshal(value any) ([]byte, error) {
-	switch value := value.(type) {
-	case nil:
-		return nil, nil
-	case []byte:
-		return value, nil
-	case string:
-		return []byte(value), nil
-	}
-
-	b, err := msgpack.Marshal(value)
-	if err != nil {
-		return nil, fmt.Errorf("marshal: msgpack error: %w", err)
-	}
-
-	return compress(b), nil
-}
-
-func unmarshal(b []byte, value any) error {
-	if len(b) == 0 {
-		return nil
-	}
-
-	switch value := value.(type) {
-	case nil:
-		return nil
-	case *[]byte:
-		clone := make([]byte, len(b))
-		copy(clone, b)
-		*value = clone
-		return nil
-	case *string:
-		*value = string(b)
-		return nil
-	}
-
-	switch c := b[len(b)-1]; c {
-	case noCompression:
-		b = b[:len(b)-1]
-	case s2Compression:
-		b = b[:len(b)-1]
-		if decoded, err := s2.Decode(nil, b); err != nil {
-			return fmt.Errorf("unmarshal: decompress error: %w", err)
-		} else {
-			b = decoded
-		}
-	default:
-		return fmt.Errorf("unmarshal: unknown compression method: %x", c)
-	}
-
-	if err := msgpack.Unmarshal(b, value); err != nil {
-		return fmt.Errorf("unmarshal msgpack error: %w", err)
-	}
-
-	return nil
-}
-
-func compress(data []byte) []byte {
-	if len(data) < compressionThreshold {
-		b := make([]byte, len(data)+1)
-		copy(b, data)
-		b[len(data)] = noCompression
-		return b
-	}
-
-	b := make([]byte, s2.MaxEncodedLen(len(data))+1)
-	b = s2.Encode(b, data)
-	return append(b, s2Compression) //nolint:makezero // b is a sub-slice
 }
