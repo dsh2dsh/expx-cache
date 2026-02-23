@@ -9,9 +9,10 @@ import (
 	"testing"
 	"time"
 
-	redis "github.com/dsh2dsh/expx-cache-redis"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+
+	"github.com/dsh2dsh/expx-cache/model"
 )
 
 func (self *CacheTestSuite) TestOnceLock() {
@@ -736,7 +737,7 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 						return true, nil, nil
 					},
 					SetFunc: func(ctx context.Context, maxItems int,
-						items iter.Seq[redis.Item],
+						items iter.Seq[model.RedisItem],
 					) error {
 						assert.Equal(t, 1, maxItems)
 						return testErr
@@ -793,7 +794,7 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 						return true, nil, nil
 					},
 					SetFunc: func(ctx context.Context, maxItems int,
-						items iter.Seq[redis.Item],
+						items iter.Seq[model.RedisItem],
 					) error {
 						assert.Equal(t, 1, maxItems)
 						return nil
@@ -831,7 +832,7 @@ func TestCache_OnceLock_withErrRedisCache(t *testing.T) {
 						return false, nil
 					},
 					SetFunc: func(ctx context.Context, maxItems int,
-						items iter.Seq[redis.Item],
+						items iter.Seq[model.RedisItem],
 					) error {
 						assert.Equal(t, 1, maxItems)
 						return nil

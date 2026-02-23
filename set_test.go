@@ -6,9 +6,10 @@ import (
 	"iter"
 	"testing"
 
-	cacheRedis "github.com/dsh2dsh/expx-cache-redis"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+
+	"github.com/dsh2dsh/expx-cache/model"
 )
 
 func TestCache_Set_errorMarshal(t *testing.T) {
@@ -40,7 +41,7 @@ func TestCache_Set_redisErr(t *testing.T) {
 
 	redisCache := &MoqRedisCache{
 		SetFunc: func(ctx context.Context, maxItems int,
-			items iter.Seq[cacheRedis.Item],
+			items iter.Seq[model.RedisItem],
 		) error {
 			assert.Equal(t, 1, maxItems)
 			return wantErr
@@ -54,7 +55,7 @@ func TestCache_Set_redisErr(t *testing.T) {
 	assert.Len(t, redisCache.SetCalls(), 1)
 
 	redisCache.SetFunc = func(ctx context.Context, maxItems int,
-		items iter.Seq[cacheRedis.Item],
+		items iter.Seq[model.RedisItem],
 	) error {
 		assert.Equal(t, 2, maxItems)
 		return wantErr

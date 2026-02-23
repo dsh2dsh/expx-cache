@@ -11,6 +11,8 @@ import (
 	redis "github.com/dsh2dsh/expx-cache-redis"
 	"golang.org/x/sync/semaphore"
 	"golang.org/x/sync/singleflight"
+
+	"github.com/dsh2dsh/expx-cache/model"
 )
 
 const defaultTTL = time.Hour
@@ -25,7 +27,7 @@ type RedisCache interface {
 	Del(ctx context.Context, keys []string) error
 	Get(ctx context.Context, maxItems int,
 		keys iter.Seq[string]) iter.Seq2[[]byte, error]
-	Set(ctx context.Context, maxItems int, items iter.Seq[redis.Item]) error
+	Set(ctx context.Context, maxItems int, items iter.Seq[model.RedisItem]) error
 
 	LockGet(ctx context.Context, keySet, value string, ttl time.Duration,
 		keyGet string) (ok bool, b []byte, err error)

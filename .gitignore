@@ -2,3 +2,4 @@
 /.env.local
 /cover.out
 /go.work
+/go.work.sum

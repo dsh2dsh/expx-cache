@@ -10,7 +10,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/dsh2dsh/expx-cache-redis"
+	"github.com/dsh2dsh/expx-cache/model"
 )
 
 // Ensure that MoqLocalCache does implement LocalCache.
@@ -234,7 +234,7 @@ var _ RedisCache = &MoqRedisCache{}
 //			LockGetFunc: func(ctx context.Context, keySet string, value string, ttl time.Duration, keyGet string) (bool, []byte, error) {
 //				panic("mock out the LockGet method")
 //			},
-//			SetFunc: func(ctx context.Context, maxItems int, items iter.Seq[redis.Item]) error {
+//			SetFunc: func(ctx context.Context, maxItems int, items iter.Seq[model.RedisItem]) error {
 //				panic("mock out the Set method")
 //			},
 //			UnlockFunc: func(ctx context.Context, key string, value string) (bool, error) {
@@ -263,7 +263,7 @@ type MoqRedisCache struct {
 	LockGetFunc func(ctx context.Context, keySet string, value string, ttl time.Duration, keyGet string) (bool, []byte, error)
 
 	// SetFunc mocks the Set method.
-	SetFunc func(ctx context.Context, maxItems int, items iter.Seq[redis.Item]) error
+	SetFunc func(ctx context.Context, maxItems int, items iter.Seq[model.RedisItem]) error
 
 	// UnlockFunc mocks the Unlock method.
 	UnlockFunc func(ctx context.Context, key string, value string) (bool, error)
@@ -324,7 +324,7 @@ type MoqRedisCache struct {
 			// MaxItems is the maxItems argument value.
 			MaxItems int
 			// Items is the items argument value.
-			Items iter.Seq[redis.Item]
+			Items iter.Seq[model.RedisItem]
 		}
 		// Unlock holds details about calls to the Unlock method.
 		Unlock []struct {
@@ -585,14 +585,14 @@ func (mock *MoqRedisCache) ResetLockGetCalls() {
 }
 
 // Set calls SetFunc.
-func (mock *MoqRedisCache) Set(ctx context.Context, maxItems int, items iter.Seq[redis.Item]) error {
+func (mock *MoqRedisCache) Set(ctx context.Context, maxItems int, items iter.Seq[model.RedisItem]) error {
 	if mock.SetFunc == nil {
 		panic("MoqRedisCache.SetFunc: method is nil but RedisCache.Set was just called")
 	}
 	callInfo := struct {
 		Ctx      context.Context
 		MaxItems int
-		Items    iter.Seq[redis.Item]
+		Items    iter.Seq[model.RedisItem]
 	}{
 		Ctx:      ctx,
 		MaxItems: maxItems,
@@ -611,12 +611,12 @@ func (mock *MoqRedisCache) Set(ctx context.Context, maxItems int, items iter.Seq
 func (mock *MoqRedisCache) SetCalls() []struct {
 	Ctx      context.Context
 	MaxItems int
-	Items    iter.Seq[redis.Item]
+	Items    iter.Seq[model.RedisItem]
 } {
 	var calls []struct {
 		Ctx      context.Context
 		MaxItems int
-		Items    iter.Seq[redis.Item]
+		Items    iter.Seq[model.RedisItem]
 	}
 	mock.lockSet.RLock()
 	calls = mock.calls.Set

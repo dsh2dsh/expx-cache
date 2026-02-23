@@ -8,9 +8,10 @@ import (
 	"testing"
 	"time"
 
-	cacheRedis "github.com/dsh2dsh/expx-cache-redis"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+
+	"github.com/dsh2dsh/expx-cache/model"
 )
 
 func TestCache_Get_withoutCache(t *testing.T) {
@@ -391,7 +392,7 @@ func TestCache_GetSet_withErrRedisCache(t *testing.T) {
 						return makeBytesIter([][]byte{nil}, nil)
 					},
 					SetFunc: func(ctx context.Context, maxItems int,
-						items iter.Seq[cacheRedis.Item],
+						items iter.Seq[model.RedisItem],
 					) error {
 						assert.Equal(t, 1, maxItems)
 						return testErr
@@ -426,7 +427,7 @@ func TestCache_GetSet_withErrRedisCache(t *testing.T) {
 						return makeBytesIter([][]byte{nil, nil}, nil)
 					},
 					SetFunc: func(ctx context.Context, maxItems int,
-						items iter.Seq[cacheRedis.Item],
+						items iter.Seq[model.RedisItem],
 					) error {
 						assert.Equal(t, 2, maxItems)
 						return testErr
@@ -521,7 +522,7 @@ func TestCache_GetSet_itemDoNil(t *testing.T) {
 						return makeBytesIter([][]byte{nil, nil}, nil)
 					},
 					SetFunc: func(ctx context.Context, maxItems int,
-						items iter.Seq[cacheRedis.Item],
+						items iter.Seq[model.RedisItem],
 					) error {
 						assert.Equal(t, 2, maxItems)
 						return nil

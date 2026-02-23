@@ -13,7 +13,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	redis "github.com/dsh2dsh/expx-cache-redis"
+	"github.com/dsh2dsh/expx-cache/model"
 )
 
 func (self *CacheTestSuite) TestOnce_funcFails() {
@@ -425,7 +425,7 @@ func TestCache_Once_withErrRedisCache(t *testing.T) {
 						return makeBytesIter([][]byte{nil}, nil)
 					},
 					SetFunc: func(ctx context.Context, maxItems int,
-						items iter.Seq[redis.Item],
+						items iter.Seq[model.RedisItem],
 					) error {
 						assert.Equal(t, 1, maxItems)
 						return testErr
